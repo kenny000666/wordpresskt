@@ -1,0 +1,20 @@
+[29-Nov-2022 03:55:18 UTC] PHP Fatal error:  Uncaught Error: Class 'WP_REST_Controller' not found in /home/customer/www/kayleightse.com/public_html/wp-includes/rest-api/endpoints/class-wp-rest-settings-controller.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/kayleightse.com/public_html/wp-includes/rest-api/endpoints/class-wp-rest-settings-controller.php on line 17
+[29-Nov-2022 04:03:42 UTC] PHP Fatal error:  Uncaught Error: Class 'WP_REST_Controller' not found in /home/customer/www/kayleightse.com/public_html/wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/kayleightse.com/public_html/wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php on line 17
+[01-Dec-2022 21:24:30 UTC] PHP Fatal error:  Uncaught Error: Class 'WP_REST_Controller' not found in /home/customer/www/kayleightse.com/public_html/wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/kayleightse.com/public_html/wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php on line 17
+[01-Dec-2022 21:24:43 UTC] PHP Fatal error:  Uncaught Error: Class 'WP_REST_Controller' not found in /home/customer/www/kayleightse.com/public_html/wp-includes/rest-api/endpoints/class-wp-rest-settings-controller.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/kayleightse.com/public_html/wp-includes/rest-api/endpoints/class-wp-rest-settings-controller.php on line 17
+[01-Dec-2022 21:42:43 UTC] PHP Fatal error:  Uncaught Error: Class 'WP_REST_Controller' not found in /home/customer/www/kayleightse.com/public_html/wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/kayleightse.com/public_html/wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php on line 17
