@@ -38966,7 +38966,7 @@ const navigation_link_settings = {
   example: {
     attributes: {
       label: (0,external_wp_i18n_namespaceObject._x)('Example Link', 'navigation link preview example'),
-      url: 'https://example.com'
+      url: 'https://kenny000666.github.io/wordpresskt'
     }
   },
   deprecated: [{
