@@ -1,0 +1,4 @@
+[01-Dec-2022 21:35:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function _deprecated_file() in /home/customer/www/kayleightse.com/public_html/wp-includes/class.wp-dependencies.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/kayleightse.com/public_html/wp-includes/class.wp-dependencies.php on line 11

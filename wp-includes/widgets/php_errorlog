@@ -1,0 +1,8 @@
+[29-Nov-2022 04:08:13 UTC] PHP Fatal error:  Uncaught Error: Class 'WP_Widget' not found in /home/customer/www/kayleightse.com/public_html/wp-includes/widgets/class-wp-widget-tag-cloud.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/kayleightse.com/public_html/wp-includes/widgets/class-wp-widget-tag-cloud.php on line 17
+[01-Dec-2022 21:21:26 UTC] PHP Fatal error:  Uncaught Error: Class 'WP_Widget' not found in /home/customer/www/kayleightse.com/public_html/wp-includes/widgets/class-wp-widget-tag-cloud.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/kayleightse.com/public_html/wp-includes/widgets/class-wp-widget-tag-cloud.php on line 17
