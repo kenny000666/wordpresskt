@@ -3,6 +3,6 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://example.com/sitemap_index.xml
+Sitemap: https://kenny000666.github.io/wordpresskt/sitemap_index.xml
 # ---------------------------
 # END YOAST BLOCK

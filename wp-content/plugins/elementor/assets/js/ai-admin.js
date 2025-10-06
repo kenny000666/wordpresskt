@@ -31333,7 +31333,7 @@ function tokenizeAutolink(effects, ok, nok) {
    * Start of an autolink.
    *
    * ```markdown
-   * > | a<https://kenny000666.github.io/wordpresskt>b
+   * > | a<https://example.com>b
    *      ^
    * > | a<user@example.com>b
    *      ^
@@ -31355,7 +31355,7 @@ function tokenizeAutolink(effects, ok, nok) {
    * After `<`, at protocol or atext.
    *
    * ```markdown
-   * > | a<https://kenny000666.github.io/wordpresskt>b
+   * > | a<https://example.com>b
    *       ^
    * > | a<user@example.com>b
    *       ^
@@ -31376,7 +31376,7 @@ function tokenizeAutolink(effects, ok, nok) {
    * At second byte of protocol or atext.
    *
    * ```markdown
-   * > | a<https://kenny000666.github.io/wordpresskt>b
+   * > | a<https://example.com>b
    *        ^
    * > | a<user@example.com>b
    *        ^
@@ -31404,7 +31404,7 @@ function tokenizeAutolink(effects, ok, nok) {
    * In ambiguous protocol or atext.
    *
    * ```markdown
-   * > | a<https://kenny000666.github.io/wordpresskt>b
+   * > | a<https://example.com>b
    *        ^
    * > | a<user@example.com>b
    *        ^
@@ -31439,7 +31439,7 @@ function tokenizeAutolink(effects, ok, nok) {
    * After protocol, in URL.
    *
    * ```markdown
-   * > | a<https://kenny000666.github.io/wordpresskt>b
+   * > | a<https://example.com>b
    *             ^
    * ```
    *
@@ -39924,7 +39924,7 @@ const types = /** @type {const} */ ({
   // Includes text.
   atxHeadingText: 'atxHeadingText',
 
-  // Whole autolink (`<https://kenny000666.github.io/wordpresskt>` or `<admin@example.com>`)
+  // Whole autolink (`<https://example.com>` or `<admin@example.com>`)
   // Includes `autolinkMarker` and `autolinkProtocol` or `autolinkEmail`.
   autolink: 'autolink',
 
@@ -39934,7 +39934,7 @@ const types = /** @type {const} */ ({
   // Marker around an `autolinkProtocol` or `autolinkEmail` (`<` or `>`).
   autolinkMarker: 'autolinkMarker',
 
-  // Protocol autolink w/o markers (`https://kenny000666.github.io/wordpresskt`)
+  // Protocol autolink w/o markers (`https://example.com`)
   autolinkProtocol: 'autolinkProtocol',
 
   // A whole character escape (`\-`).
@@ -40175,16 +40175,16 @@ const types = /** @type {const} */ ({
   // Includes string.
   referenceString: 'referenceString',
 
-  // A resource (`(https://kenny000666.github.io/wordpresskt "alpha")`).
+  // A resource (`(https://example.com "alpha")`).
   // Includes `resourceMarker`, an optional `resourceDestination` with an optional
   // `whitespace` and `resourceTitle`.
   resource: 'resource',
 
-  // A resource destination (`https://kenny000666.github.io/wordpresskt`).
+  // A resource destination (`https://example.com`).
   // Includes `resourceDestinationLiteral` or `resourceDestinationRaw`.
   resourceDestination: 'resourceDestination',
 
-  // A literal resource destination (`<https://kenny000666.github.io/wordpresskt>`).
+  // A literal resource destination (`<https://example.com>`).
   // Includes `resourceDestinationLiteralMarker` and optionally
   // `resourceDestinationString`.
   resourceDestinationLiteral: 'resourceDestinationLiteral',
@@ -40192,11 +40192,11 @@ const types = /** @type {const} */ ({
   // A resource destination marker (`<` or `>`).
   resourceDestinationLiteralMarker: 'resourceDestinationLiteralMarker',
 
-  // A raw resource destination (`https://kenny000666.github.io/wordpresskt`).
+  // A raw resource destination (`https://example.com`).
   // Includes `resourceDestinationString`.
   resourceDestinationRaw: 'resourceDestinationRaw',
 
-  // Resource destination text (`https://kenny000666.github.io/wordpresskt`).
+  // Resource destination text (`https://example.com`).
   // Includes string.
   resourceDestinationString: 'resourceDestinationString',
 
