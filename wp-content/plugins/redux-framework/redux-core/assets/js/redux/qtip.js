@@ -9,35 +9,35 @@
 	$.redux.initQtip = function () {
 		let classes;
 
-		// Shadow.
+		/ Shadow.
 		let shadow      = '';
 		const tipShadow = redux.optName.args.hints.tip_style.shadow;
 
-		// Color.
+		/ Color.
 		let color      = '';
 		const tipColor = redux.optName.args.hints.tip_style.color;
 
-		// Rounded.
+		/ Rounded.
 		let rounded      = '';
 		const tipRounded = redux.optName.args.hints.tip_style.rounded;
 
-		// Tip style.
+		/ Tip style.
 		let style      = '';
 		const tipStyle = redux.optName.args.hints.tip_style.style;
 
-		// Get position data.
+		/ Get position data.
 		let myPos = redux.optName.args.hints.tip_position.my;
 		let atPos = redux.optName.args.hints.tip_position.at;
 
-		// Tooltip trigger action.
+		/ Tooltip trigger action.
 		const showEvent = redux.optName.args.hints.tip_effect.show.event;
 		const hideEvent = redux.optName.args.hints.tip_effect.hide.event;
 
-		// Tip show effect.
+		/ Tip show effect.
 		const tipShowEffect   = redux.optName.args.hints.tip_effect.show.effect;
 		const tipShowDuration = redux.optName.args.hints.tip_effect.show.duration;
 
-		// Tip hide effect.
+		/ Tip hide effect.
 		const tipHideEffect   = redux.optName.args.hints.tip_effect.hide.effect;
 		const tipHideDuration = redux.optName.args.hints.tip_effect.hide.duration;
 
@@ -61,7 +61,7 @@
 			classes = shadow + ',' + color + ',' + rounded + ',' + style + ',redux-qtip';
 			classes = classes.replace( /,/g, ' ' );
 
-			// Gotta be lowercase, and in proper format.
+			/ Gotta be lowercase, and in proper format.
 			myPos = $.redux.verifyPos( myPos.toLowerCase(), true );
 			atPos = $.redux.verifyPos( atPos.toLowerCase(), false );
 
@@ -168,10 +168,10 @@
 		let paramOne;
 		let paramTwo;
 
-		// Trim off spaces.
+		/ Trim off spaces.
 		s = s.replace( /^\s+|\s+$/gm, '' );
 
-		// Position value is blank, set the default.
+		/ Position value is blank, set the default.
 		if ( '' === s || - 1 === s.search( ' ' ) ) {
 			if ( true === b ) {
 				return 'top left';
@@ -180,17 +180,17 @@
 			}
 		}
 
-		// Split string into array.
+		/ Split string into array.
 		split = s.split( ' ' );
 
-		// Evaluate first string.  Must be top, center, or bottom.
+		/ Evaluate first string.  Must be top, center, or bottom.
 		paramOne = b ? 'top' : 'bottom';
 
 		if ( 'top' === split[0] || 'center' === split[0] || 'bottom' === split[0] ) {
 			paramOne = split[0];
 		}
 
-		// Evaluate second string.  Must be left, center, or right.
+		/ Evaluate second string.  Must be left, center, or right.
 		paramTwo = b ? 'left' : 'right';
 
 		if ( 'left' === split[1] || 'center' === split[1] || 'right' === split[1] ) {

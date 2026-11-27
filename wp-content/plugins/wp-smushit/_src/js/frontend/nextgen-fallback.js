@@ -1,11 +1,11 @@
 (function () {
 	'use strict';
 
-	// Source: https://developers.google.com/speed/webp/faq#in_your_own_javascript.
+	/ Source: https://developers.google.com/speed/webp/faq#in_your_own_javascript.
 	function check_feature(feature, callback) {
 		const testImages = {
 			webp: "data:image/webp;base64,UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA==",
-			avif: "data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A="
+			avif: "data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D//8WfhwB8+ErK42A="
 		};
 		const img = new Image();
 		img.onload = function () {
@@ -27,7 +27,7 @@
 
 			const originalGetAttribute = Object.getOwnPropertyDescriptor(Element.prototype, 'getAttribute');
 
-			// Redefine the getAttribute function with a custom implementation
+			/ Redefine the getAttribute function with a custom implementation
 			Object.defineProperty(Element.prototype, 'getAttribute', {
 				value: function (attributeName) {
 					if (!this.dataset.hasOwnProperty(dataValueName)) {
@@ -46,7 +46,7 @@
 
 			const elementsWithFallback = document.querySelectorAll('[' + fallbackAttributeName + ']:not(.lazyload)');
 			if (elementsWithFallback.length) {
-				// Update background image, src, srcset.
+				/ Update background image, src, srcset.
 				const imageDisplayAttrs = ['src', 'srcset'];
 				elementsWithFallback.forEach((element) => {
 					const fallbackObject = JSON.parse(element.dataset[dataValueName]);
@@ -56,7 +56,7 @@
 						}
 					});
 
-					// Update background image.
+					/ Update background image.
 					if ('bg' in fallbackObject) {
 						element.style.background = fallbackObject.bg;
 					}

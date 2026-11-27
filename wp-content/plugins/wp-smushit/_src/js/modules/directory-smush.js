@@ -26,14 +26,14 @@ import Scanner from '../smush/directory-scanner';
 			let totalSteps = 0,
 				currentScanStep = 0;
 
-			// Make sure directory smush vars are set.
+			/ Make sure directory smush vars are set.
 			if ( typeof window.wp_smushit_data.dir_smush !== 'undefined' ) {
 				totalSteps = window.wp_smushit_data.dir_smush.totalSteps;
 				currentScanStep =
 					window.wp_smushit_data.dir_smush.currentScanStep;
 			}
 
-			// Init image scanner.
+			/ Init image scanner.
 			this.scanner = new Scanner( totalSteps, currentScanStep );
 
 			/**
@@ -52,10 +52,10 @@ import Scanner from '../smush/directory-scanner';
 					e.preventDefault();
 
 					if ( $( e.currentTarget ).hasClass( 'wp-smush-browse' ) ) {
-						// Hide all the notices.
+						/ Hide all the notices.
 						$( 'div.wp-smush-scan-result div.wp-smush-notice' ).hide();
 
-						// Remove notice.
+						/ Remove notice.
 						$( 'div.wp-smush-info' ).remove();
 					}
 
@@ -67,7 +67,7 @@ import Scanner from '../smush/directory-scanner';
 						)[0],
 						true
 					);
-					//Display File tree for Directory Smush
+					/Display File tree for Directory Smush
 					self.initFileTree();
 				}
 			);
@@ -87,7 +87,7 @@ import Scanner from '../smush/directory-scanner';
 
 				const button = $( this );
 
-				// Display the spinner.
+				/ Display the spinner.
 				button.addClass('sui-button-onload');
 
 				const selectedFolders = self.tree.getSelectedNodes();
@@ -97,7 +97,7 @@ import Scanner from '../smush/directory-scanner';
 					paths.push( folder.key );
 				} );
 
-				// Send a ajax request to get a list of all the image files
+				/ Send a ajax request to get a list of all the image files
 				const param = {
 					action: 'image_list',
 					smush_path: paths,
@@ -108,14 +108,14 @@ import Scanner from '../smush/directory-scanner';
 
 				$.post( ajaxurl, param, function( response ) {
 					if ( response.success ) {
-						// Close the modal.
+						/ Close the modal.
 						window.SUI.closeModal();
 
 						self.scanner = new Scanner( response.data, 0 );
 						self.showProgressDialog( response.data );
 						self.scanner.scan();
 					} else {
-						// Remove the spinner.
+						/ Remove the spinner.
 						button.removeClass('sui-button-onload');
 
 						window.SUI.openNotice(
@@ -135,7 +135,7 @@ import Scanner from '../smush/directory-scanner';
 				'#cancel-directory-smush, #dialog-close-div, .wp-smush-cancel-dir',
 				function( e ) {
 					e.preventDefault();
-					// Display the spinner
+					/ Display the spinner
 					$( '.wp-smush-cancel-dir' ).addClass( 'sui-button-onload' );
 					self.scanner
 						.cancel()
@@ -189,20 +189,20 @@ import Scanner from '../smush/directory-scanner';
 					cache: false,
 				};
 
-			// Object already defined.
+			/ Object already defined.
 			if ( Object.entries( self.tree ).length > 0 ) {
 				return;
 			}
 
 			self.tree = createTree( '.wp-smush-list-dialog .content', {
-				autoCollapse: true, // Automatically collapse all siblings, when a node is expanded
-				clickFolderMode: 3, // 1:activate, 2:expand, 3:activate and expand, 4:activate (dblclick expands)
-				checkbox: true, // Show checkboxes
-				debugLevel: 0, // 0:quiet, 1:errors, 2:warnings, 3:infos, 4:debug
-				selectMode: 3, // 1:single, 2:multi, 3:multi-hier
-				tabindex: '0', // Whole tree behaves as one single control
-				keyboard: true, // Support keyboard navigation
-				quicksearch: true, // Navigate to next node by typing the first letters
+				autoCollapse: true, / Automatically collapse all siblings, when a node is expanded
+				clickFolderMode: 3, / 1:activate, 2:expand, 3:activate and expand, 4:activate (dblclick expands)
+				checkbox: true, / Show checkboxes
+				debugLevel: 0, / 0:quiet, 1:errors, 2:warnings, 3:infos, 4:debug
+				selectMode: 3, / 1:single, 2:multi, 3:multi-hier
+				tabindex: '0', / Whole tree behaves as one single control
+				keyboard: true, / Support keyboard navigation
+				quicksearch: true, / Navigate to next node by typing the first letters
 				source: ajaxSettings,
 				lazyLoad: ( event, data ) => {
 					data.result = new Promise( function( resolve, reject ) {
@@ -213,7 +213,7 @@ import Scanner from '../smush/directory-scanner';
 					} );
 				},
 				loadChildren: ( event, data ) =>
-					data.node.fixSelection3AfterClick(), // Apply parent's state to new child nodes:
+					data.node.fixSelection3AfterClick(), / Apply parent's state to new child nodes:
 				select: () =>
 					smushButton.prop(
 						'disabled',
@@ -229,7 +229,7 @@ import Scanner from '../smush/directory-scanner';
 		 * @param {number} items Number of items in the scan.
 		 */
 		showProgressDialog( items ) {
-			// Update items status and show the progress dialog..
+			/ Update items status and show the progress dialog..
 			$( '.wp-smush-progress-dialog .sui-progress-state-text' ).html(
 				'0/' + items + ' ' + self.wp_smush_msgs.progress_smushed
 			);
@@ -253,7 +253,7 @@ import Scanner from '../smush/directory-scanner';
 				progress = 100;
 			}
 
-			// Update progress bar
+			/ Update progress bar
 			$( '.sui-progress-block .sui-progress-text span' ).text(
 				progress + '%'
 			);

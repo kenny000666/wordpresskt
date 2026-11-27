@@ -86,7 +86,7 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 		initTableColumns() {
 			const $table = el.$overview.find( '.wp-list-table' );
 
-			// Set the Name column as primary.
+			/ Set the Name column as primary.
 			$table.find( '.column-primary' ).removeClass( 'column-primary' );
 			$table.find( '.column-name' ).addClass( 'column-primary' );
 		},
@@ -274,10 +274,10 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 		 */
 		resetSearch: function( event ) {
 
-			// Reset search term.
+			/ Reset search term.
 			$( '#wpforms-overview-search-term' ).val( '' );
 
-			// Submit the form.
+			/ Submit the form.
 			$( this ).closest( 'form' ).trigger( 'submit' );
 		},
 
@@ -356,15 +356,15 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 				$select = $columnForm.find( 'select' );
 			}
 
-			// Hide opened tags edit form.
+			/ Hide opened tags edit form.
 			$tbody.find( '.wpforms-column-tags-links.wpforms-hidden' ).removeClass( 'wpforms-hidden' );
 			$tbody.find( '.wpforms-column-tags-form:not(.wpforms-hidden)' ).addClass( 'wpforms-hidden' );
 
-			// Show tags edit form instead of tags links.
+			/ Show tags edit form instead of tags links.
 			$columnLinks.addClass( 'wpforms-hidden' );
 			$columnForm.removeClass( 'wpforms-hidden' );
 
-			// Store current opened Choice.js object and its value.
+			/ Store current opened Choice.js object and its value.
 			vars.currentEditTagsChoicesObj = app.initChoicesJS( $select );
 			vars.currentEditTagsValueBackup = vars.currentEditTagsChoicesObj.getValue( true );
 		},
@@ -383,7 +383,7 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 				$columnLinks = $td.find( '.wpforms-column-tags-links' ),
 				$columnForm = $td.find( '.wpforms-column-tags-form' );
 
-			// Restore saved value from the backup.
+			/ Restore saved value from the backup.
 			vars.currentEditTagsChoicesObj
 				.removeActiveItems()
 				.setChoiceByValue( vars.currentEditTagsValueBackup );
@@ -437,7 +437,7 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 				$select = $columnForm.find( 'select' ),
 				choicesObj = $select.data( 'choicesjs' );
 
-			// Show spinner.
+			/ Show spinner.
 			$btn.addClass( 'wpforms-hidden' );
 			$spinner.removeClass( 'wpforms-hidden' );
 
@@ -448,10 +448,10 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 				},
 				function( res ) {
 
-					// Update tags links in the column.
+					/ Update tags links in the column.
 					$columnLinks.find( '.wpforms-column-tags-links-list' ).html( res.data.tags_links );
 
-					// Update tags ids.
+					/ Update tags ids.
 					$columnLinks.data( 'tags', res.data.tags_ids );
 
 					if ( choicesObj ) {
@@ -468,11 +468,11 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 				},
 				function() {
 
-					// Hide spinner.
+					/ Hide spinner.
 					$btn.removeClass( 'wpforms-hidden' );
 					$spinner.addClass( 'wpforms-hidden' );
 
-					// Hide form, show tags links.
+					/ Hide form, show tags links.
 					$columnLinks.removeClass( 'wpforms-hidden' );
 					$columnForm.addClass( 'wpforms-hidden' );
 				}
@@ -540,12 +540,12 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 
 			wpforms_admin_forms_overview.all_tags_choices = allTagsChoices;
 
-			// Update Tags Filter items.
+			/ Update Tags Filter items.
 			el.$tagsFilterSelect.each( function() {
 				app.initChoicesJS( $( this ) );
 			} );
 
-			// Show Tags Filter and Manage Tags button if at least one tag exists.
+			/ Show Tags Filter and Manage Tags button if at least one tag exists.
 			if ( wpforms_admin_forms_overview.all_tags_choices.length > 0 ) {
 				$( '.wpforms-tags-filter, .wpforms-manage-tags' ).removeClass( 'wpforms-hidden' );
 			}
@@ -562,7 +562,7 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 		 */
 		initChoicesJS: function( $select ) {
 
-			// Skip in certain cases.
+			/ Skip in certain cases.
 			if (
 				! wpforms_admin_forms_overview.choicesjs_config ||
 				! $select.length ||
@@ -578,9 +578,9 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 				config.noResultsText = wpforms_admin_forms_overview.strings.add_new_tag;
 			}
 
-			// Add arrow placeholder.
-			// It is needed to catch the arrow click event in the specific case
-			// when Tags Filter has many selected tags which overflow the Choices.js control.
+			/ Add arrow placeholder.
+			/ It is needed to catch the arrow click event in the specific case
+			/ when Tags Filter has many selected tags which overflow the Choices.js control.
 			config.callbackOnInit = function() {
 				$select.closest( '.choices__inner' ).append( '<div class="choices__arrow"></div>' );
 
@@ -588,17 +588,17 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 				wpf.showMoreButtonForChoices( this.containerOuter.element );
 			};
 
-			// Init or get Choices.js object instance.
+			/ Init or get Choices.js object instance.
 			if ( $select.data( 'choice' ) === 'active' ) {
 				choicesObj = $select.data( 'choicesjs' );
 			} else {
 				choicesObj = new Choices( $select[0], config );
 			}
 
-			// Backup current value.
+			/ Backup current value.
 			var	currentValue = choicesObj.getValue( true );
 
-			// Update all tags choices. We need to do it evey time, since tags could be added dynamically.
+			/ Update all tags choices. We need to do it evey time, since tags could be added dynamically.
 			choicesObj
 				.clearStore()
 				.setChoices(
@@ -860,7 +860,7 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 				formsValue = [],
 				tagsValue = [];
 
-			// Iterate checked forms.
+			/ Iterate checked forms.
 			el.$listTableRows.find( 'input:checked' ).each( function( i ) {
 
 				var $input = $( this ),
@@ -889,7 +889,7 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 
 			el.$bulkEditTagsRows.removeClass( 'wpforms-hidden' );
 
-			// Init Choices.js instance for forms.
+			/ Init Choices.js instance for forms.
 			app.initChoicesJS( el.$bulkEditTagsForms )
 				.clearStore()
 				.setChoices(
@@ -900,12 +900,12 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 				)
 				.setChoiceByValue( formsValue );
 
-			// Init Choices.js instance for tags.
+			/ Init Choices.js instance for tags.
 			app.initChoicesJS( el.$bulkEditTagsTags )
 				.removeActiveItems()
 				.setChoiceByValue( tagsValue );
 
-			// Update message.
+			/ Update message.
 			app.updateBulkEditTagsFormMessage( formsValue );
 		},
 
@@ -962,7 +962,7 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 				return;
 			}
 
-			// We should remove new tag from the list of choices.
+			/ We should remove new tag from the list of choices.
 			var choicesObj = $( event.target ).data( 'choicesjs' ),
 				currentValue = choicesObj.getValue( true ),
 				choices = _.filter( choicesObj._currentState.choices, function( item ) {
@@ -990,7 +990,7 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 				$columns = $table.find( 'thead .manage-column' ).not( '.hidden' ),
 				$formCells = $( '.wpforms-bulk-edit-tags td' );
 
-			// Update colspan attributes.
+			/ Update colspan attributes.
 			$formCells.attr( 'colspan', $columns.length );
 
 			let nameWidth = $table.find( '.column-name' ).outerWidth();
@@ -1001,7 +1001,7 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 
 			const formsInputWidth = `calc( 100% - ${ cellsWidth }px )`;
 
-			// Update width property of the forms input element.
+			/ Update width property of the forms input element.
 			el.$bulkEditTagsForms.closest( '.wpforms-edit-forms' ).css( 'width', formsInputWidth );
 		},
 
@@ -1046,7 +1046,7 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 					tags:  app.getTagsValue( el.$bulkEditTagsTags.data( 'choicesjs' ) ),
 				};
 
-			// Show spinner.
+			/ Show spinner.
 			$spinner.removeClass( 'wpforms-hidden' );
 
 			app.saveTagsAjax(
@@ -1065,13 +1065,13 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 							return;
 						}
 
-						// Update tags ids.
+						/ Update tags ids.
 						$columnLinks.data( 'tags', res.data.tags_ids );
 
-						// Update tags links in the column.
+						/ Update tags links in the column.
 						$columnLinks.find( '.wpforms-column-tags-links-list' ).html( res.data.tags_links );
 
-						// Update tags options in still not converted selects.
+						/ Update tags options in still not converted selects.
 						$select.html( res.data.tags_options );
 
 						if ( choicesObj ) {
@@ -1090,10 +1090,10 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 				},
 				function() {
 
-					// Hide spinner.
+					/ Hide spinner.
 					$spinner.addClass( 'wpforms-hidden' );
 
-					// Hide the form.
+					/ Hide the form.
 					el.$bulkEditTagsRows.addClass( 'wpforms-hidden' );
 				}
 			);
@@ -1169,7 +1169,7 @@ WPFormsForms.Overview = WPFormsForms.Overview || ( function( document, window, $
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 
 }( document, window, jQuery ) );

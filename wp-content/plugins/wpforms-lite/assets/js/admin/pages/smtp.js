@@ -71,10 +71,10 @@ var WPFormsPagesSMTP = window.WPFormsPagesSMTP || ( function( document, window, 
 		 */
 		events: function() {
 
-			// Step 'Install' button click.
+			/ Step 'Install' button click.
 			el.$stepInstall.on( 'click', 'button', app.stepInstallClick );
 
-			// Step 'Setup' button click.
+			/ Step 'Setup' button click.
 			el.$stepSetup.on( 'click', 'button', app.gotoURL );
 		},
 
@@ -250,7 +250,7 @@ var WPFormsPagesSMTP = window.WPFormsPagesSMTP || ( function( document, window, 
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 
 }( document, window, jQuery ) );

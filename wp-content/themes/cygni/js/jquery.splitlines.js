@@ -76,16 +76,16 @@
  * @param index Current line index
  */
 	function _markupContent(tag, html, index) {
-		// wrap in a temp div so .html() gives us the tags we specify
+		/ wrap in a temp div so .html() gives us the tags we specify
 		tag = '<div class="stop">' + tag;
-		// find the deepest child, add html, then find the parent
+		/ find the deepest child, add html, then find the parent
 		var $outer = $(tag)
 			.find('*:not(:has("*"))')
 			.html(html)
 			.closest('.stop')
 			.slice(-1);
 
-		// jQuery does not support setting CSS vars until 3.2, so manually set them
+		/ jQuery does not support setting CSS vars until 3.2, so manually set them
 		$outer.children().each(function (i, element) {
 			element.style.setProperty('--line-index', index);
 		});
@@ -129,7 +129,7 @@
 			var html = tempLine.html();
 			tempLine.html(html+words[w]+' ');
 			if (tempLine.html() == prev) {
-				// repeating word, it will never fit so just use it instead of failing
+				/ repeating word, it will never fit so just use it instead of failing
 				prev = '';
 				newHtml.append(_markupContent(settings.tag, tempLine.html(), lineCount));
 				tempLine.html('');

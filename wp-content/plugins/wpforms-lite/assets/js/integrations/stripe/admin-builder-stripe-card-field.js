@@ -213,7 +213,7 @@ var WPFormsStripeCardField = window.WPFormsStripeCardField || ( function( docume
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 
 }( document, window, jQuery ) );

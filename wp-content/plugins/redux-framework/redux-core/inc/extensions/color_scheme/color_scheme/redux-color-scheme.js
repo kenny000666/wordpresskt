@@ -250,13 +250,13 @@
 			redux.field_objects.color_scheme.default_params = $.extend( {}, redux.field_objects.color_scheme.default_params, select2_params );
 		}
 
-		// Init select2 for scheme select.
+		/ Init select2 for scheme select.
 		el.find( '.redux-scheme-select' ).select2( redux.field_objects.color_scheme.default_params );
 
-		// Init select2 for select boxes.
+		/ Init select2 for select boxes.
 		el.find( 'select.redux-color-scheme-opt-select' ).select2( redux.field_objects.color_scheme.default_params );
 
-		// Auto select text in input box.
+		/ Auto select text in input box.
 		el.find( 'input.redux-scheme-input-' + redux.field_objects.color_scheme.fieldID ).on(
 			'click',
 			function ( e ) {
@@ -266,10 +266,10 @@
 			}
 		);
 
-		// Set scheme input box to selected value.
+		/ Set scheme input box to selected value.
 		el.find( 'input.redux-scheme-input-' + redux.field_objects.color_scheme.fieldID ).val( el.find( '#redux-scheme-select-' + redux.field_objects.color_scheme.fieldID ).val() );
 
-		// Select change.
+		/ Select change.
 		el.find( '#redux-scheme-select-' + redux.field_objects.color_scheme.fieldID ).on(
 			'change',
 			function () {
@@ -322,7 +322,7 @@
 							content: content
 						};
 
-						// Post ajax.
+						/ Post ajax.
 						$.post(
 							redux_ajax_script.ajaxurl,
 							data,
@@ -333,7 +333,7 @@
 
 								el.find( '#redux-' + fieldID + '-scheme-message-notice h2' ).html( response.data );
 
-								// Show message.
+								/ Show message.
 								$.blockUI(
 									{
 										message: el.find( '#redux-' + fieldID + '-scheme-message-notice' ),
@@ -344,21 +344,21 @@
 									}
 								);
 
-								// Click OK.
+								/ Click OK.
 								$( '#redux-' + fieldID + '-scheme-ok' ).on(
 									'click',
 									function () {
 
-										// Unload modal.
+										/ Unload modal.
 										$.unblockUI();
 
-										// Reload window on success.
+										/ Reload window on success.
 										if ( true === response.result ) {
 											window.onbeforeunload = '';
 											location.reload();
 										}
 
-										// Bail out!
+										/ Bail out!
 										return false;
 									}
 								);
@@ -382,19 +382,19 @@
 			function ( event ) {
 				let select_name;
 
-				// Prevent default action.
+				/ Prevent default action.
 				event.preventDefault();
 
-				// Retrieve selected scheme name.
+				/ Retrieve selected scheme name.
 				select_name = el.find( '#redux-scheme-select-' + field_id ).val();
 
-				// Check for 'default', as we don't want to delete it.
+				/ Check for 'default', as we don't want to delete it.
 				if ( 'default' === select_name.toLowerCase() ) {
 
-					// Set on screen message.
+					/ Set on screen message.
 					el.find( '#redux-' + field_id + '-scheme-message-notice h2' ).html( 'Cannot delete the <strong>Default</strong> scheme, as it is reserved.' );
 
-					// Show message.
+					/ Show message.
 					$.blockUI(
 						{
 							message: el.find( '#redux-' + field_id + '-scheme-message-notice' ),
@@ -406,7 +406,7 @@
 						}
 					);
 
-					// Clicked OK.
+					/ Clicked OK.
 					$( '#redux-' + field_id + '-scheme-ok' ).on(
 						'click',
 						function () {
@@ -418,7 +418,7 @@
 					return false;
 				}
 
-				// Load delete question modal.
+				/ Load delete question modal.
 				$.blockUI(
 					{
 						message: el.find( '#redux-' + field_id + '-delete-scheme-question' ),
@@ -430,17 +430,17 @@
 					}
 				);
 
-				// Clicked yes.
+				/ Clicked yes.
 				$( '#redux-' + field_id + '-delete-scheme-yes' ).on(
 					'click',
 					function () {
 						let data;
 						let wait_msg;
 
-						// If selected scheme name is valid...
+						/ If selected scheme name is valid...
 						if ( select_name ) {
 
-							// Set ajax parameters.
+							/ Set ajax parameters.
 							data = {
 								action: 'redux_color_schemes',
 								nonce: redux.field_objects.color_scheme.nonce,
@@ -450,7 +450,7 @@
 								field_id: field_id
 							};
 
-							// Load Please wait message.
+							/ Load Please wait message.
 							wait_msg = el.find( '#redux-' + field_id + '-scheme-wait-message h1' ).html();
 							$.blockUI(
 								{
@@ -463,29 +463,29 @@
 								}
 							);
 
-							// Post ajax.
+							/ Post ajax.
 							$.post(
 								redux_ajax_script.ajaxurl,
 								data,
 								function ( response ) {
 
-									// Successful delete.
+									/ Successful delete.
 									if ( 'success' === response ) {
 
-										// Remove deleted scheme from selector.
+										/ Remove deleted scheme from selector.
 										el.find( '#redux-scheme-select-' + field_id + ' option[value=\'' + select_name + '\']' ).remove();
 
-										// Clear selector (default).
+										/ Clear selector (default).
 										el.find( '.redux-scheme-select' ).select2();
 										el.find( '.redux-scheme-select' ).val( 'Default' ).trigger( 'change' );
 
-										// Clear input box.
+										/ Clear input box.
 										el.find( 'input.redux-scheme-input-' + field_id ).val( '' );
 
-										// Update modal message text.
+										/ Update modal message text.
 										el.find( '#redux-' + field_id + '-scheme-message-notice h2' ).html( 'The <strong>' + select_name + '</strong> scheme has been removed.<br/><br/>The color table has been reset to default values.' );
 
-										// Display the notice.
+										/ Display the notice.
 										$.blockUI(
 											{
 												message: el.find( '#redux-' + field_id + '-scheme-message-notice' ),
@@ -497,13 +497,13 @@
 											}
 										);
 
-										// Click OK, unload msg, bail out.
+										/ Click OK, unload msg, bail out.
 										$( '#redux-' + field_id + '-scheme-ok' ).on(
 											'click',
 											function () {
 												$.unblockUI();
 
-												// Update the HTML preview.
+												/ Update the HTML preview.
 												redux.field_objects.color_scheme.updateSchemeHTML( 0, el );
 
 												return false;
@@ -511,10 +511,10 @@
 										);
 									} else {
 
-										// Update modal message with fail response.
+										/ Update modal message with fail response.
 										el.find( '#redux-' + field_id + '-scheme-message-notice h2' ).html( 'Delete failed: ' + response );
 
-										// Display the notice.
+										/ Display the notice.
 										$.blockUI(
 											{
 												message: el.find( '#redux-' + field_id + '-scheme-message-notice' ),
@@ -526,7 +526,7 @@
 											}
 										);
 
-										// Click OK, unload msg, bail out.
+										/ Click OK, unload msg, bail out.
 										$( '#redux-' + field_id + '-scheme-ok' ).on(
 											'click',
 											function () {
@@ -541,7 +541,7 @@
 					}
 				);
 
-				// Clicked no.
+				/ Clicked no.
 				$( '#redux-' + field_id + '-delete-scheme-no' ).on(
 					'click',
 					function () {
@@ -568,27 +568,27 @@
 
 				event.preventDefault();
 
-				// Prevent blank input.
+				/ Prevent blank input.
 				input_text = el.find( 'input.redux-scheme-input-' + field_id ).val();
 
-				// Trim.
+				/ Trim.
 				input_text = input_text.replace( /^\s+|\s+$/gm, '' );
 
-				// Allow only alphanumeric, space, dash, and underscore.
+				/ Allow only alphanumeric, space, dash, and underscore.
 				input_text = input_text.replace( /[^a-z0-9\s\-]/gi, '' );
 
-				// Do nothing if input_text is empty.
+				/ Do nothing if input_text is empty.
 				if ( '' === input_text ) {
 					return false;
 				}
 
-				// Check for default scheme.
+				/ Check for default scheme.
 				if ( 'default' === input_text.toLowerCase() ) {
 
-					// Update notice message.
+					/ Update notice message.
 					el.find( '#redux-' + field_id + '-scheme-message-notice h2' ).html( 'The name <strong>Default</strong> cannot be used as it is reserved.' );
 
-					// Display msg.
+					/ Display msg.
 					$.blockUI(
 						{
 							message: el.find( '#redux-' + field_id + '-scheme-message-notice' ),
@@ -600,7 +600,7 @@
 						}
 					);
 
-					// Clicked OK.  Close message and exit.
+					/ Clicked OK.  Close message and exit.
 					$( '#redux-' + field_id + '-scheme-ok' ).on(
 						'click',
 						function () {
@@ -609,11 +609,11 @@
 						}
 					);
 
-					// Bail out.
+					/ Bail out.
 					return false;
 				}
 
-				// Enum through them all and collect data.
+				/ Enum through them all and collect data.
 				el.find( '.redux-scheme-layout-container' ).each(
 					function () {
 						const obj   = $( this ).children( '.redux-color-scheme' );
@@ -624,7 +624,7 @@
 						const rgba  = obj.data( 'rgba' );
 						const group = obj.data( 'group' );
 
-						// Push data into the array.
+						/ Push data into the array.
 						arrData.push(
 							{
 								id: id,
@@ -641,13 +641,13 @@
 				arrData = JSON.stringify( arrData );
 				arrData = encodeURIComponent( arrData );
 
-				// Get scheme name from text box.
+				/ Get scheme name from text box.
 				scheme_name = el.find( '.redux-scheme-input-' + field_id ).val();
 
-				// If one exists, proceed.
+				/ If one exists, proceed.
 				if ( scheme_name ) {
 
-					// Set ajax parameters.
+					/ Set ajax parameters.
 					data = {
 						action: 'redux_color_schemes',
 						nonce: redux.field_objects.color_scheme.nonce,
@@ -658,10 +658,10 @@
 						field_id: field_id
 					};
 
-					// Get default wait message.
+					/ Get default wait message.
 					wait_msg = el.find( '#redux-' + field_id + '-scheme-wait-message h1' ).html();
 
-					// Load wait message.
+					/ Load wait message.
 					$.blockUI(
 						{
 							message: '<h1>' + wait_msg + 'saving scheme.</h1>',
@@ -675,13 +675,13 @@
 
 					el.find( '.redux-scheme-select' ).select2( 'destroy' );
 
-					// Post ajax.
+					/ Post ajax.
 					$.post(
 						redux_ajax_script.ajaxurl,
 						data,
 						function ( response ) {
 
-							// New selector change hook.
+							/ New selector change hook.
 							el.find( '#redux-scheme-select-' + field_id ).on(
 								'change',
 								function () {
@@ -693,14 +693,14 @@
 								el.find( '#redux-' + field_id + '-scheme-message-notice h2' ).html( 'The scheme <strong>' + scheme_name + '</strong> already exists and cannot be added again.' );
 							} else {
 
-								// Replace selector with updated values.
+								/ Replace selector with updated values.
 								el.find( '#redux-scheme-select-' + field_id ).replaceWith( response );
 
-								// Update notice message.
+								/ Update notice message.
 								el.find( '#redux-' + field_id + '-scheme-message-notice h2' ).html( 'The scheme <strong>' + scheme_name + '</strong> has been added to your scheme list.' );
 							}
 
-							// Display notice message.
+							/ Display notice message.
 							$.blockUI(
 								{
 									message: el.find( '#redux-' + field_id + '-scheme-message-notice' ),
@@ -712,7 +712,7 @@
 								}
 							);
 
-							// Clicked OK.  Unload and exit.
+							/ Clicked OK.  Unload and exit.
 							$( '#redux-' + field_id + '-scheme-ok' ).on(
 								'click',
 								function () {
@@ -742,19 +742,19 @@
 
 		const field_id = redux.field_objects.color_scheme.fieldID;
 
-		// Fade out the colour pickers.
+		/ Fade out the colour pickers.
 		el.find( 'ul.redux-scheme-layout' ).fadeOut();
 
-		// Get selected value.
+		/ Get selected value.
 		selected = el.find( '#redux-scheme-select-' + field_id ).val();
 
-		// Remove default blank value, if any.
+		/ Remove default blank value, if any.
 		el.find( '#redux-scheme-select-' + field_id + ' option[value=\'\']' ).remove();
 
-		// Get scheme name from input box.
+		/ Get scheme name from input box.
 		el.find( 'input.redux-scheme-input-' + field_id ).val( selected );
 
-		// Update colour pickers.
+		/ Update colour pickers.
 		redux.field_objects.color_scheme.updateSchemeHTML( selected, el );
 	};
 
@@ -764,10 +764,10 @@
 
 		const field_id = redux.field_objects.color_scheme.fieldID;
 
-		// Get default wait msg.
+		/ Get default wait msg.
 		const wait_msg = el.find( '#redux-' + field_id + '-scheme-wait-message h1' ).html();
 
-		// Display appended msg.
+		/ Display appended msg.
 		$.blockUI(
 			{
 				message: '<h1>' + wait_msg + 'updating scheme.</h1>',
@@ -779,10 +779,10 @@
 			}
 		);
 
-		// Get field class.  Needed for custom classes from field array.
+		/ Get field class.  Needed for custom classes from field array.
 		field_class = el.find( '.redux-color-scheme' ).attr( 'class' );
 
-		// Set ajax parameters.
+		/ Set ajax parameters.
 		data = {
 			action: 'redux_color_schemes',
 			nonce: redux.field_objects.color_scheme.nonce,
@@ -793,25 +793,25 @@
 			field_class: field_class
 		};
 
-		// Post ajax.
+		/ Post ajax.
 		$.post(
 			redux_ajax_script.ajaxurl,
 			data,
 			function ( response ) {
 
-				// Replace colour picker layout.
+				/ Replace colour picker layout.
 				el.find( 'ul.redux-scheme-layout' ).replaceWith( response );
 
-				// Re-init colour pickers.
+				/ Re-init colour pickers.
 				redux.field_objects.color_scheme.setAccordions( el );
 
-				// Fade colour pickers back in.
+				/ Fade colour pickers back in.
 				el.find( 'ul.redux-scheme-layout' ).fadeIn();
 
-				// Remove waiting msg.
+				/ Remove waiting msg.
 				$.unblockUI();
 
-				// Set flags for compiler.
+				/ Set flags for compiler.
 				redux_change( el.find( '.redux-color-scheme-container' ) );
 
 				el.find( 'select.redux-color-scheme-opt-select' ).select2( redux.field_objects.color_scheme.default_params );
@@ -824,79 +824,79 @@
 		);
 	};
 
-	// Initialize colour picker.
+	/ Initialize colour picker.
 	redux.field_objects.color_scheme.initColorPicker = function ( el ) {
 
-		// Get field ID.
+		/ Get field ID.
 		const field_id = redux.field_objects.color_scheme.fieldID;
 
-		// Get the color scheme container.
+		/ Get the color scheme container.
 		let colorpickerInput = el.find( '.redux-color-scheme' );
 
-		// Get alpha value and sanitize it.
+		/ Get alpha value and sanitize it.
 		let currentAlpha = colorpickerInput.data( 'current-alpha' );
 
-		// Get colour value and sanitize it.
+		/ Get colour value and sanitize it.
 		let currentColor = colorpickerInput.data( 'current-color' );
 
 		let outputTransparent = colorpickerInput.data( 'output-transparent' );
 
-		// Color picker arguments.
+		/ Color picker arguments.
 		const container = redux.field_objects.color_scheme.el.find( '.redux-color-scheme-container' );
 
-		// Get, decode and parse palette.
+		/ Get, decode and parse palette.
 		let palette = container.data( 'palette' );
 
 		let pickerGap = container.data( 'picker-gap' );
 
 		let pickerFontSize = container.data( 'picker-font-size' );
 
-		// Get and sanitize show input argument.
+		/ Get and sanitize show input argument.
 		let showInput = container.data( 'show-input' );
 
-		// Get and sanitize show initial argument.
+		/ Get and sanitize show initial argument.
 		let showInitial = container.data( 'show-initial' );
 
-		// Get and sanitize show alpha argument.
+		/ Get and sanitize show alpha argument.
 		let showAlpha = container.data( 'show-alpha' );
 
-		// Get and sanitize allow empty argument.
+		/ Get and sanitize allow empty argument.
 		let allowEmpty = container.data( 'allow-empty' );
 
-		// Get and sanitize show palette argument.
+		/ Get and sanitize show palette argument.
 		let showPalette = container.data( 'show-palette' );
 
-		// Get and sanitize show palette only argument.
+		/ Get and sanitize show palette only argument.
 		let showPaletteOnly = container.data( 'show-palette-only' );
 
-		// Get and sanitize show selection palette argument.
+		/ Get and sanitize show selection palette argument.
 		let showSelectionPalette = container.data( 'show-selection-palette' );
 
-		// Get max palette size.
+		/ Get max palette size.
 		let maxPaletteSize = Number( container.data( 'max-palette-size' ) );
 
-		// Get and sanitize clickout fires change argument.
+		/ Get and sanitize clickout fires change argument.
 		let clickoutFiresChange = container.data( 'clickout-fires-change' );
 
-		// Get choose button text.
+		/ Get choose button text.
 		let chooseText = String( container.data( 'choose-text' ) );
 
-		// Get cancel button text.
+		/ Get cancel button text.
 		let cancelText = String( container.data( 'cancel-text' ) );
 
-		// Get and sanitize show buttons argument.
+		/ Get and sanitize show buttons argument.
 		let showButtons = container.data( 'show-buttons' );
 
-		// Get container class.
+		/ Get container class.
 		let containerClass = String( container.data( 'container-class' ) );
 
-		// Get replacer class.
+		/ Get replacer class.
 		let replacerClass = String( container.data( 'replacer-class' ) );
 
-		// Picker gap css.
+		/ Picker gap css.
 		el.find( 'li.redux-scheme-layout' ).css( 'width', pickerGap );
 
-		// Picker font size.
+		/ Picker font size.
 		el.find( '.redux-layout-label' ).attr( 'style', 'font-size: ' + pickerFontSize + '!important' );
 
 		currentAlpha      = Number( ( null === currentAlpha || undefined === currentAlpha ) ? 1 : currentAlpha );
@@ -906,7 +906,7 @@
 		palette = decodeURIComponent( palette );
 		palette = JSON.parse( palette );
 
-		// Default palette.
+		/ Default palette.
 		if ( null === palette ) {
 			palette = [
 				['#000000', '#434343', '#666666', '#999999', '#b7b7b7', '#cccccc', '#d9d9d9', '#efefef', '#f3f3f3', '#ffffff'],
@@ -932,7 +932,7 @@
 		clickoutFiresChange  = Boolean( ( '' === clickoutFiresChange ) ? false : clickoutFiresChange );
 		showButtons          = Boolean( ( '' === showButtons ) ? false : showButtons );
 
-		// Color picker options.
+		/ Color picker options.
 		colorpickerInput.spectrum(
 			{
 				color: currentColor,
@@ -955,7 +955,7 @@
 				localStorageKey: 'redux.spectrum.' + field_id,
 				palette: palette,
 
-				// On change.
+				/ On change.
 				change: function ( color ) {
 					let colorVal;
 					let alphaVal;

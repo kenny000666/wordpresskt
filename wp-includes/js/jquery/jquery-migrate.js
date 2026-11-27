@@ -7,18 +7,18 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [ "jquery" ], function( jQuery ) {
 			return factory( jQuery, window );
 		} );
 	} else if ( typeof module === "object" && module.exports ) {
 
-		// Node/CommonJS
-		// eslint-disable-next-line no-undef
+		/ Node/CommonJS
+		/ eslint-disable-next-line no-undef
 		module.exports = factory( require( "jquery" ), window );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery, window );
 	}
 } )( function( jQuery, window ) {
@@ -84,14 +84,14 @@ jQuery.migrateIsPatchEnabled = function( patchCode ) {
 
 ( function() {
 
-	// Support: IE9 only
-	// IE9 only creates console object when dev tools are first opened
-	// IE9 console is a host object, callable but doesn't have .apply()
+	/ Support: IE9 only
+	/ IE9 only creates console object when dev tools are first opened
+	/ IE9 console is a host object, callable but doesn't have .apply()
 	if ( !window.console || !window.console.log ) {
 		return;
 	}
 
-	// Need jQuery 3.x-4.x and no older Migrate loaded
+	/ Need jQuery 3.x-4.x and no older Migrate loaded
 	if ( !jQuery || !jQueryVersionSince( "3.0.0" ) ||
 			jQueryVersionSince( "5.0.0" ) ) {
 		window.console.log( "JQMIGRATE: jQuery 3.x-4.x REQUIRED" );
@@ -100,7 +100,7 @@ jQuery.migrateIsPatchEnabled = function( patchCode ) {
 		window.console.log( "JQMIGRATE: Migrate plugin loaded multiple times" );
 	}
 
-	// Show a message on the console so devs know we're active
+	/ Show a message on the console so devs know we're active
 	window.console.log( "JQMIGRATE: Migrate is installed" +
 		( jQuery.migrateMute ? "" : " with logging active" ) +
 		", version " + jQuery.migrateVersion );
@@ -162,20 +162,20 @@ function migrateWarnFuncInternal( obj, prop, newFunc, code, msg ) {
 
 	obj[ prop ] = function() {
 
-		// If `msg` not provided, do not warn; more sophisticated warnings
-		// logic is most likely embedded in `newFunc`, in that case here
-		// we just care about the logic choosing the proper implementation
-		// based on whether the patch is disabled or not.
+		/ If `msg` not provided, do not warn; more sophisticated warnings
+		/ logic is most likely embedded in `newFunc`, in that case here
+		/ we just care about the logic choosing the proper implementation
+		/ based on whether the patch is disabled or not.
 		if ( msg ) {
 			migrateWarn( code, msg );
 		}
 
-		// Since patches can be disabled & enabled dynamically, we
-		// need to decide which implementation to run on each invocation.
+		/ Since patches can be disabled & enabled dynamically, we
+		/ need to decide which implementation to run on each invocation.
 		finalFunc = jQuery.migrateIsPatchEnabled( code ) ?
 			newFunc :
 
-			// The function may not have existed originally so we need a fallback.
+			/ The function may not have existed originally so we need a fallback.
 			( origFunc || jQuery.noop );
 
 		return finalFunc.apply( this, arguments );
@@ -195,7 +195,7 @@ function migratePatchFunc( obj, prop, newFunc, code ) {
 
 if ( window.document.compatMode === "BackCompat" ) {
 
-	// jQuery has never supported or tested Quirks Mode
+	/ jQuery has never supported or tested Quirks Mode
 	migrateWarn( "quirks", "jQuery is not compatible with Quirks Mode" );
 }
 
@@ -207,8 +207,8 @@ var findProp,
 	rattrHashTest = /\[(\s*[-\w]+\s*)([~|^$*]?=)\s*([-\w#]*?#[-\w#]*)\s*\]/,
 	rattrHashGlob = /\[(\s*[-\w]+\s*)([~|^$*]?=)\s*([-\w#]*?#[-\w#]*)\s*\]/g,
 
-	// Require that the "whitespace run" starts from a non-whitespace
-	// to avoid O(N^2) behavior when the engine would try matching "\s+$" at each space position.
+	/ Require that the "whitespace run" starts from a non-whitespace
+	/ to avoid O(N^2) behavior when the engine would try matching "\s+$" at each space position.
 	rtrim = /^[\s\uFEFF\xA0]+|([^\s\uFEFF\xA0])[\s\uFEFF\xA0]+$/g;
 
 migratePatchFunc( jQuery.fn, "init", function( arg1 ) {
@@ -217,8 +217,8 @@ migratePatchFunc( jQuery.fn, "init", function( arg1 ) {
 	if ( jQuery.migrateIsPatchEnabled( "selector-empty-id" ) &&
 		typeof arg1 === "string" && arg1 === "#" ) {
 
-		// JQuery( "#" ) is a bogus ID selector, but it returned an empty set
-		// before jQuery 3.0
+		/ JQuery( "#" ) is a bogus ID selector, but it returned an empty set
+		/ before jQuery 3.0
 		migrateWarn( "selector-empty-id", "jQuery( '#' ) is not a valid selector" );
 		args[ 0 ] = [];
 	}
@@ -234,23 +234,23 @@ jQuery.fn.init.prototype = jQuery.fn;
 migratePatchFunc( jQuery, "find", function( selector ) {
 	var args = Array.prototype.slice.call( arguments );
 
-	// Support: PhantomJS 1.x
-	// String#match fails to match when used with a //g RegExp, only on some strings
+	/ Support: PhantomJS 1.x
+	/ String#match fails to match when used with a /g RegExp, only on some strings
 	if ( typeof selector === "string" && rattrHashTest.test( selector ) ) {
 
-		// The nonstandard and undocumented unquoted-hash was removed in jQuery 1.12.0
-		// First see if qS thinks it's a valid selector, if so avoid a false positive
+		/ The nonstandard and undocumented unquoted-hash was removed in jQuery 1.12.0
+		/ First see if qS thinks it's a valid selector, if so avoid a false positive
 		try {
 			window.document.querySelector( selector );
 		} catch ( err1 ) {
 
-			// Didn't *look* valid to qSA, warn and try quoting what we think is the value
+			/ Didn't *look* valid to qSA, warn and try quoting what we think is the value
 			selector = selector.replace( rattrHashGlob, function( _, attr, op, value ) {
 				return "[" + attr + op + "\"" + value + "\"]";
 			} );
 
-			// If the regexp *may* have created an invalid selector, don't update it
-			// Note that there may be false alarms if selector uses jQuery extensions
+			/ If the regexp *may* have created an invalid selector, don't update it
+			/ Note that there may be false alarms if selector uses jQuery extensions
 			try {
 				window.document.querySelector( selector );
 				migrateWarn( "selector-hash",
@@ -322,21 +322,21 @@ if ( jQueryVersionSince( "3.3.0" ) ) {
 
 	migratePatchAndWarnFunc( jQuery, "isNumeric", function( obj ) {
 
-			// As of jQuery 3.0, isNumeric is limited to
-			// strings and numbers (primitives or objects)
-			// that can be coerced to finite numbers (gh-2662)
+			/ As of jQuery 3.0, isNumeric is limited to
+			/ strings and numbers (primitives or objects)
+			/ that can be coerced to finite numbers (gh-2662)
 			var type = typeof obj;
 			return ( type === "number" || type === "string" ) &&
 
-				// parseFloat NaNs numeric-cast false positives ("")
-				// ...but misinterprets leading-number strings, e.g. hex literals ("0x...")
-				// subtraction forces infinities to NaN
+				/ parseFloat NaNs numeric-cast false positives ("")
+				/ ...but misinterprets leading-number strings, e.g. hex literals ("0x...")
+				/ subtraction forces infinities to NaN
 				!isNaN( obj - parseFloat( obj ) );
 		}, "isNumeric",
 		"jQuery.isNumeric() is deprecated"
 	);
 
-	// Populate the class2type map
+	/ Populate the class2type map
 	jQuery.each( "Boolean Number String Function Array Date RegExp Object Error Symbol".
 		split( " " ),
 	function( _, name ) {
@@ -348,7 +348,7 @@ if ( jQueryVersionSince( "3.3.0" ) ) {
 			return obj + "";
 		}
 
-		// Support: Android <=2.3 only (functionish RegExp)
+		/ Support: Android <=2.3 only (functionish RegExp)
 		return typeof obj === "object" || typeof obj === "function" ?
 			class2type[ Object.prototype.toString.call( obj ) ] || "object" :
 			typeof obj;
@@ -378,7 +378,7 @@ var oldAjax = jQuery.ajax,
 migratePatchFunc( jQuery, "ajax", function() {
 	var jQXHR = oldAjax.apply( this, arguments );
 
-	// Be sure we got a jQXHR (e.g., not sync)
+	/ Be sure we got a jQXHR (e.g., not sync)
 	if ( jQXHR.promise ) {
 		migratePatchAndWarnFunc( jQXHR, "success", jQXHR.done, "jqXHR-methods",
 			"jQXHR.success is deprecated and removed" );
@@ -396,12 +396,12 @@ migratePatchFunc( jQuery, "ajax", function() {
 // want to restore the legacy behavior.
 if ( !jQueryVersionSince( "4.0.0" ) ) {
 
-	// Register this prefilter before the jQuery one. Otherwise, a promoted
-	// request is transformed into one with the script dataType and we can't
-	// catch it anymore.
+	/ Register this prefilter before the jQuery one. Otherwise, a promoted
+	/ request is transformed into one with the script dataType and we can't
+	/ catch it anymore.
 	jQuery.ajaxPrefilter( "+json", function( s ) {
 
-		// Warn if JSON-to-JSONP auto-promotion happens.
+		/ Warn if JSON-to-JSONP auto-promotion happens.
 		if ( s.jsonp !== false && ( rjsonp.test( s.url ) ||
 				typeof s.data === "string" &&
 				( s.contentType || "" )
@@ -426,9 +426,9 @@ migratePatchFunc( jQuery.fn, "removeAttr", function( name ) {
 	jQuery.each( name.match( rmatchNonSpace ), function( _i, attr ) {
 		if ( jQuery.expr.match.bool.test( attr ) ) {
 
-			// Only warn if at least a single node had the property set to
-			// something else than `false`. Otherwise, this Migrate patch
-			// doesn't influence the behavior and there's no need to set or warn.
+			/ Only warn if at least a single node had the property set to
+			/ something else than `false`. Otherwise, this Migrate patch
+			/ doesn't influence the behavior and there's no need to set or warn.
 			self.each( function() {
 				if ( jQuery( this ).prop( attr ) !== false ) {
 					patchNeeded = true;
@@ -449,7 +449,7 @@ migratePatchFunc( jQuery.fn, "removeAttr", function( name ) {
 
 migratePatchFunc( jQuery.fn, "toggleClass", function( state ) {
 
-	// Only deprecating no-args or single boolean arg
+	/ Only deprecating no-args or single boolean arg
 	if ( state !== undefined && typeof state !== "boolean" ) {
 
 		return oldToggleClass.apply( this, arguments );
@@ -457,7 +457,7 @@ migratePatchFunc( jQuery.fn, "toggleClass", function( state ) {
 
 	migrateWarn( "toggleClass-bool", "jQuery.fn.toggleClass( boolean ) is deprecated" );
 
-	// Toggle entire class name of each element
+	/ Toggle entire class name of each element
 	return this.each( function() {
 		var className = this.getAttribute && this.getAttribute( "class" ) || "";
 
@@ -465,10 +465,10 @@ migratePatchFunc( jQuery.fn, "toggleClass", function( state ) {
 			jQuery.data( this, "__className__", className );
 		}
 
-		// If the element has a class name or if we're passed `false`,
-		// then remove the whole classname (if there was one, the above saved it).
-		// Otherwise bring back whatever was previously saved (if anything),
-		// falling back to the empty string if nothing was stored.
+		/ If the element has a class name or if we're passed `false`,
+		/ then remove the whole classname (if there was one, the above saved it).
+		/ Otherwise bring back whatever was previously saved (if anything),
+		/ falling back to the empty string if nothing was stored.
 		if ( this.setAttribute ) {
 			this.setAttribute( "class",
 				className || state === false ?
@@ -489,27 +489,27 @@ var origFnCss, internalCssNumber,
 	internalSwapCall = false,
 	ralphaStart = /^[a-z]/,
 
-	// The regex visualized:
-	//
-	//                         /----------\
-	//                        |            |    /-------\
-	//                        |  / Top  \  |   |         |
-	//         /--- Border ---+-| Right  |-+---+- Width -+---\
-	//        |                 | Bottom |                    |
-	//        |                  \ Left /                     |
-	//        |                                               |
-	//        |                              /----------\     |
-	//        |          /-------------\    |            |    |- END
-	//        |         |               |   |  / Top  \  |    |
-	//        |         |  / Margin  \  |   | | Right  | |    |
-	//        |---------+-|           |-+---+-| Bottom |-+----|
-	//        |            \ Padding /         \ Left /       |
-	// BEGIN -|                                               |
-	//        |                /---------\                    |
-	//        |               |           |                   |
-	//        |               |  / Min \  |    / Width  \     |
-	//         \--------------+-|       |-+---|          |---/
-	//                           \ Max /       \ Height /
+	/ The regex visualized:
+	/
+	/                         /----------\
+	/                        |            |    /-------\
+	/                        |  / Top  \  |   |         |
+	/         /--- Border ---+-| Right  |-+---+- Width -+---\
+	/        |                 | Bottom |                    |
+	/        |                  \ Left /                     |
+	/        |                                               |
+	/        |                              /----------\     |
+	/        |          /-------------\    |            |    |- END
+	/        |         |               |   |  / Top  \  |    |
+	/        |         |  / Margin  \  |   | | Right  | |    |
+	/        |---------+-|           |-+---+-| Bottom |-+----|
+	/        |            \ Padding /         \ Left /       |
+	/ BEGIN -|                                               |
+	/        |                /---------\                    |
+	/        |               |           |                   |
+	/        |               |  / Min \  |    / Width  \     |
+	/         \--------------+-|       |-+---|          |---/
+	/                           \ Max /       \ Height /
 	rautoPx = /^(?:Border(?:Top|Right|Bottom|Left)?(?:Width|)|(?:Margin|Padding)?(?:Top|Right|Bottom|Left)?|(?:Min|Max)?(?:Width|Height))$/;
 
 // If this version of jQuery has .swap(), don't false-alarm on internal uses
@@ -538,7 +538,7 @@ migratePatchFunc( jQuery, "swap", function( elem, options, callback, args ) {
 		migrateWarn( "swap", "jQuery.swap() is undocumented and deprecated" );
 	}
 
-	// Remember the old values, and insert the new ones
+	/ Remember the old values, and insert the new ones
 	for ( name in options ) {
 		old[ name ] = elem.style[ name ];
 		elem.style[ name ] = options[ name ];
@@ -546,7 +546,7 @@ migratePatchFunc( jQuery, "swap", function( elem, options, callback, args ) {
 
 	ret = callback.apply( elem, args || [] );
 
-	// Revert the old values
+	/ Revert the old values
 	for ( name in options ) {
 		elem.style[ name ] = old[ name ];
 	}
@@ -569,8 +569,8 @@ if ( jQueryVersionSince( "3.4.0" ) && typeof Proxy !== "undefined" ) {
 // Migrate warnings when jQuery gets updated to >=4.0.0 (gh-438).
 if ( jQueryVersionSince( "4.0.0" ) ) {
 
-	// We need to keep this as a local variable as we need it internally
-	// in a `jQuery.fn.css` patch and this usage shouldn't warn.
+	/ We need to keep this as a local variable as we need it internally
+	/ in a `jQuery.fn.css` patch and this usage shouldn't warn.
 	internalCssNumber = {
 		animationIterationCount: true,
 		columnCount: true,
@@ -607,23 +607,23 @@ if ( jQueryVersionSince( "4.0.0" ) ) {
 		} );
 	} else {
 
-		// Support: IE 9-11+
-		// IE doesn't support proxies, but we still want to restore the legacy
-		// jQuery.cssNumber there.
+		/ Support: IE 9-11+
+		/ IE doesn't support proxies, but we still want to restore the legacy
+		/ jQuery.cssNumber there.
 		jQuery.cssNumber = internalCssNumber;
 	}
 } else {
 
-	// Make `internalCssNumber` defined for jQuery <4 as well as it's needed
-	// in the `jQuery.fn.css` patch below.
+	/ Make `internalCssNumber` defined for jQuery <4 as well as it's needed
+	/ in the `jQuery.fn.css` patch below.
 	internalCssNumber = jQuery.cssNumber;
 }
 
 function isAutoPx( prop ) {
 
-	// The first test is used to ensure that:
-	// 1. The prop starts with a lowercase letter (as we uppercase it for the second regex).
-	// 2. The prop is not empty.
+	/ The first test is used to ensure that:
+	/ 1. The prop starts with a lowercase letter (as we uppercase it for the second regex).
+	/ 2. The prop is not empty.
 	return ralphaStart.test( prop ) &&
 		rautoPx.test( prop[ 0 ].toUpperCase() + prop.slice( 1 ) );
 }
@@ -644,8 +644,8 @@ migratePatchFunc( jQuery.fn, "css", function( name, value ) {
 	if ( typeof value === "number" ) {
 		camelName = camelCase( name );
 
-		// Use `internalCssNumber` to avoid triggering our warnings in this
-		// internal check.
+		/ Use `internalCssNumber` to avoid triggering our warnings in this
+		/ internal check.
 		if ( !isAutoPx( camelName ) && !internalCssNumber[ camelName ] ) {
 			migrateWarn( "css-number",
 				"Number-typed values are deprecated for jQuery.fn.css( \"" +
@@ -661,7 +661,7 @@ var origData = jQuery.data;
 migratePatchFunc( jQuery, "data", function( elem, name, value ) {
 	var curData, sameKeys, key;
 
-	// Name can be an object, and each entry in the object is meant to be set as data
+	/ Name can be an object, and each entry in the object is meant to be set as data
 	if ( name && typeof name === "object" && arguments.length === 2 ) {
 
 		curData = jQuery.hasData( elem ) && origData.call( this, elem );
@@ -681,7 +681,7 @@ migratePatchFunc( jQuery, "data", function( elem, name, value ) {
 		return name;
 	}
 
-	// If the name is transformed, look for the un-transformed name in the data object
+	/ If the name is transformed, look for the un-transformed name in the data object
 	if ( name && typeof name === "string" && name !== camelCase( name ) ) {
 
 		curData = jQuery.hasData( elem ) && origData.call( this, elem );
@@ -735,7 +735,7 @@ if ( window.requestAnimationFrame ) {
 				migrateWarn( "fx-interval", intervalMsg );
 			}
 
-			// Only fallback to the default if patch is enabled
+			/ Only fallback to the default if patch is enabled
 			if ( !jQuery.migrateIsPatchEnabled( "fx-interval" ) ) {
 				return intervalValue;
 			}
@@ -795,7 +795,7 @@ migratePatchFunc( jQuery.event, "fix", function( originalEvent ) {
 
 migratePatchFunc( jQuery.event, "add", function( elem, types ) {
 
-	// This misses the multiple-types case but that seems awfully rare
+	/ This misses the multiple-types case but that seems awfully rare
 	if ( elem === window && types === "load" && window.document.readyState === "complete" ) {
 		migrateWarn( "load-after-event",
 			"jQuery(window).on('load'...) called after load event occurred" );
@@ -808,10 +808,10 @@ jQuery.each( [ "load", "unload", "error" ], function( _, name ) {
 	migratePatchFunc( jQuery.fn, name, function() {
 		var args = Array.prototype.slice.call( arguments, 0 );
 
-		// If this is an ajax load() the first arg should be the string URL;
-		// technically this could also be the "Anything" arg of the event .load()
-		// which just goes to show why this dumb signature has been deprecated!
-		// jQuery custom builds that exclude the Ajax module justifiably die here.
+		/ If this is an ajax load() the first arg should be the string URL;
+		/ technically this could also be the "Anything" arg of the event .load()
+		/ which just goes to show why this dumb signature has been deprecated!
+		/ jQuery custom builds that exclude the Ajax module justifiably die here.
 		if ( name === "load" && typeof args[ 0 ] === "string" ) {
 			return oldLoad.apply( this, args );
 		}
@@ -824,10 +824,10 @@ jQuery.each( [ "load", "unload", "error" ], function( _, name ) {
 			return this.on.apply( this, args );
 		}
 
-		// Use .triggerHandler here because:
-		// - load and unload events don't need to bubble, only applied to window or image
-		// - error event should not bubble to window, although it does pre-1.7
-		// See http://bugs.jquery.com/ticket/11820
+		/ Use .triggerHandler here because:
+		/ - load and unload events don't need to bubble, only applied to window or image
+		/ - error event should not bubble to window, although it does pre-1.7
+		/ See http://bugs.jquery.com/ticket/11820
 		this.triggerHandler.apply( this, args );
 		return this;
 	}, "shorthand-removed-v3" );
@@ -839,7 +839,7 @@ jQuery.each( ( "blur focus focusin focusout resize scroll click dblclick " +
 	"change select submit keydown keypress keyup contextmenu" ).split( " " ),
 	function( _i, name ) {
 
-	// Handle event binding
+	/ Handle event binding
 	migratePatchAndWarnFunc( jQuery.fn, name, function( data, fn ) {
 		return arguments.length > 0 ?
 			this.on( name, null, data, fn ) :
@@ -955,7 +955,7 @@ if ( jQuery.Deferred ) {
 var oldDeferred = jQuery.Deferred,
 	tuples = [
 
-		// Action, add listener, callbacks, .then handlers, final state
+		/ Action, add listener, callbacks, .then handlers, final state
 		[ "resolve", "done", jQuery.Callbacks( "once memory" ),
 			jQuery.Callbacks( "once memory" ), "resolved" ],
 		[ "reject", "fail", jQuery.Callbacks( "once memory" ),
@@ -975,9 +975,9 @@ migratePatchFunc( jQuery, "Deferred", function( func ) {
 			jQuery.each( tuples, function( i, tuple ) {
 				var fn = typeof fns[ i ] === "function" && fns[ i ];
 
-				// Deferred.done(function() { bind to newDefer or newDefer.resolve })
-				// deferred.fail(function() { bind to newDefer or newDefer.reject })
-				// deferred.progress(function() { bind to newDefer or newDefer.notify })
+				/ Deferred.done(function() { bind to newDefer or newDefer.resolve })
+				/ deferred.fail(function() { bind to newDefer or newDefer.reject })
+				/ deferred.progress(function() { bind to newDefer or newDefer.notify })
 				deferred[ tuple[ 1 ] ]( function() {
 					var returned = fn && fn.apply( this, arguments );
 					if ( returned && typeof returned.promise === "function" ) {

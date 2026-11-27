@@ -133,8 +133,8 @@
 
 							event = null;
 
-							// IE doesn't register the blur when sorting
-							// so trigger focusout handlers to remove .ui-state-focus.
+							/ IE doesn't register the blur when sorting
+							/ so trigger focusout handlers to remove .ui-state-focus.
 							ui.item.children( 'h3' ).triggerHandler( 'focusout' );
 							inputs = $( 'input.slide-sort' );
 							inputs.each(

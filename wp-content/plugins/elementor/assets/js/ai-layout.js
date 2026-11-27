@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../assets/dev/js/utils/react.js":
@@ -39,10 +39,10 @@ function render(app, domElement) {
       root.unmount();
     };
   } catch (e) {
-    // eslint-disable-next-line react/no-deprecated
+    / eslint-disable-next-line react/no-deprecated
     ReactDOM.render(app, domElement);
     unmountFunction = function unmountFunction() {
-      // eslint-disable-next-line react/no-deprecated
+      / eslint-disable-next-line react/no-deprecated
       ReactDOM.unmountComponentAtNode(domElement);
     };
   }
@@ -622,7 +622,7 @@ var DraggablePaper = function DraggablePaper(props) {
   var handlePositionBoundaries = function handlePositionBoundaries() {
     clearTimeout(timeout.current);
 
-    // Ensuring the dialog header, which is used as the dialog dragging handle, does not exceed the screen.
+    / Ensuring the dialog header, which is used as the dialog dragging handle, does not exceed the screen.
     timeout.current = setTimeout(function () {
       var _paperRef$current;
       var dialogTop = (_paperRef$current = paperRef.current) === null || _paperRef$current === void 0 ? void 0 : _paperRef$current.getBoundingClientRect().top;
@@ -726,7 +726,7 @@ var PromptErrorMessage = function PromptErrorMessage(_ref) {
       };
     }
     return {
-      // Translators: %s is the feature name.
+      / Translators: %s is the feature name.
       text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, sprintf((0, _i18n.__)('You\'ve used all AI credits for %s.', 'elementor'), featureName.toLowerCase())),
       description: (0, _i18n.__)('Upgrade now to keep using this feature. You still have credits for other AI features (Text, Code, Images, Containers, etc.)', 'elementor'),
       buttonText: (0, _i18n.__)('Upgrade now', 'elementor'),
@@ -930,7 +930,7 @@ var StyledArrow = (0, _ui.styled)(_ui.Box)(function (_ref2) {
     height: theme.spacing(2.5),
     position: 'absolute',
     overflow: 'hidden',
-    // Override Popper inline styles.
+    / Override Popper inline styles.
     left: '50% !important',
     transform: 'translateX(-50%) rotate(var(--rotate, 0deg)) !important',
     '[data-popper-placement="top"] &': {
@@ -2445,7 +2445,7 @@ var Connect = function Connect(_ref) {
     onSuccess = _ref.onSuccess;
   var approveButtonRef = (0, _react.useRef)();
   (0, _react.useEffect)(function () {
-    // On local dev (as a standalone app), the connect lib is not loaded.
+    / On local dev (as a standalone app), the connect lib is not loaded.
     if (!jQuery.fn.elementorConnect) {
       return;
     }
@@ -3036,7 +3036,7 @@ var Thumbnail = exports.Thumbnail = function Thumbnail(props) {
   var scaleFactor = Math.min(height, width);
   var scale = THUMBNAIL_SIZE / scaleFactor;
 
-  // Center the preview
+  / Center the preview
   var top = height > width ? (THUMBNAIL_SIZE - THUMBNAIL_SIZE * (height / width)) / 2 : 0;
   var left = width > height ? (THUMBNAIL_SIZE - THUMBNAIL_SIZE * (width / height)) / 2 : 0;
   return /*#__PURE__*/_react.default.createElement(_ui.Box, {
@@ -3136,7 +3136,7 @@ var UrlDialog = exports.UrlDialog = function UrlDialog(props) {
         });
         isOpen.current = true;
       } catch (error) {
-        // eslint-disable-next-line no-console
+        / eslint-disable-next-line no-console
         console.error(error);
       }
     }
@@ -3390,7 +3390,7 @@ var StyledArrow = (0, _ui.styled)(_ui.Box)(function (_ref2) {
     width: theme.spacing(5),
     height: theme.spacing(5),
     overflow: 'hidden',
-    // Override Popper inline styles.
+    / Override Popper inline styles.
     left: '100% !important',
     transform: 'translateX(-50%) translateY(-50%) rotate(var(--rotate, 0deg)) !important',
     '&::after': {
@@ -3529,7 +3529,7 @@ function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbol
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0, _defineProperty2.default)(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var TextInput = (0, _react.forwardRef)(function (props, ref) {
   return /*#__PURE__*/_react.default.createElement(_ui.TextField
-  // eslint-disable-next-line jsx-a11y/no-autofocus
+  / eslint-disable-next-line jsx-a11y/no-autofocus
   , (0, _extends2.default)({
     autoFocus: true,
     multiline: true,
@@ -4524,7 +4524,7 @@ var useScreenshots = function useScreenshots(_ref) {
                     content = _ref4.content,
                     label = _ref4.label,
                     source = _ref4.source;
-                  // Send only the data that is needed for the generation.
+                  / Send only the data that is needed for the generation.
                   return {
                     type: type,
                     content: content,
@@ -4620,7 +4620,7 @@ var useSlider = function useSlider() {
   var offsetXPercentage = (slideWidthPercentage + gapPercentage) * slidesPerPage * (currentPage - 1) * -1;
   var pagesCount = Math.ceil(slidesCount / slidesPerPage);
   (0, _react.useEffect)(function () {
-    // In cases when the slidesCount value was reduced, we need to navigate to the last page.
+    / In cases when the slidesCount value was reduced, we need to navigate to the last page.
     if (currentPage > 1 && currentPage > pagesCount) {
       setCurrentPage(pagesCount);
     }
@@ -4779,7 +4779,7 @@ var FormLayout = function FormLayout(_ref) {
   var dialogContentChildren = DialogContentProps.children,
     dialogContentProps = (0, _objectWithoutProperties2.default)(DialogContentProps, _excluded);
 
-  // When there are no screenshots the prompt field should be editable.
+  / When there are no screenshots the prompt field should be editable.
   var shouldFallbackToEditPrompt = !!(error && 0 === screenshots.length);
   var isPromptFormActive = isPromptEditable || shouldFallbackToEditPrompt;
   var abortAndClose = function abortAndClose() {
@@ -4814,7 +4814,7 @@ var FormLayout = function FormLayout(_ref) {
   var handleRegenerate = function handleRegenerate() {
     lastRun.current = function () {
       regenerate(promptInputRef.current.value, attachments);
-      // Changing the current page to the next page number.
+      / Changing the current page to the next page number.
       setCurrentPage(pagesCount + 1);
     };
     lastRun.current();
@@ -4847,7 +4847,7 @@ var FormLayout = function FormLayout(_ref) {
         typeConfig.previewGenerator(item.content).then(function (html) {
           item.previewHTML = html;
           setAttachments(function (prev) {
-            // Replace the attachment with the updated one.
+            / Replace the attachment with the updated one.
             return prev.map(function (attachment) {
               if (attachment.content === item.content) {
                 return item;
@@ -5353,7 +5353,7 @@ var renderLayoutApp = exports.renderLayoutApp = function renderLayoutApp() {
   };
   closePanel();
   var previewContainer = (0, _previewContainer.createPreviewContainer)(options.parentContainer, {
-    // Create the container at the "drag widget here" area position.
+    / Create the container at the "drag widget here" area position.
     at: options.at
   });
   var _getUiConfig = getUiConfig(),
@@ -5629,7 +5629,7 @@ function createContainer(parentContainer, model) {
  */
 function createIdleContainer(parentContainer) {
   var containerOptions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  // Create an empty container that'll be used of UI purposes.
+  / Create an empty container that'll be used of UI purposes.
   var container = createContainer(parentContainer, {
     elType: 'container'
   }, containerOptions);
@@ -5644,7 +5644,7 @@ function hideContainers(containers) {
 function showContainer(container) {
   container.view.$el.removeClass(CLASS_HIDDEN);
 
-  // Delay the scroll to avoid UI jumps when toggling between containers.
+  / Delay the scroll to avoid UI jumps when toggling between containers.
   setTimeout(function () {
     container.view.$el[0].scrollIntoView({
       behavior: 'smooth',
@@ -5694,14 +5694,14 @@ var takeScreenshot = exports.takeScreenshot = /*#__PURE__*/function () {
           }
           return _context.abrupt("return", '');
         case 2:
-          // Disable history so the Editor won't show our hidden container as a user action.
+          / Disable history so the Editor won't show our hidden container as a user action.
           (0, _history.toggleHistory)(false);
           hiddenWrapper = createHiddenWrapper();
           container = createContainer(template);
           wrapContainer(container, hiddenWrapper);
           elementor.getPreviewView().$childViewContainer[0].appendChild(hiddenWrapper);
 
-          // Wait for the container to render.
+          / Wait for the container to render.
           _context.next = 9;
           return waitForContainer(container.id);
         case 9:
@@ -5724,7 +5724,7 @@ var takeScreenshot = exports.takeScreenshot = /*#__PURE__*/function () {
         case 18:
           _context.prev = 18;
           _context.t0 = _context["catch"](12);
-          // Return an empty image url if the screenshot failed.
+          / Return an empty image url if the screenshot failed.
           screenshot = '';
         case 21:
           deleteContainer(container);
@@ -5744,7 +5744,7 @@ var takeScreenshot = exports.takeScreenshot = /*#__PURE__*/function () {
 function screenshotNode(node) {
   return toWebp(node, {
     quality: 0.01,
-    // Transparent 1x1 pixel.
+    / Transparent 1x1 pixel.
     imagePlaceholder: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
   });
 }
@@ -5784,7 +5784,7 @@ function createHiddenWrapper() {
 function createContainer(template) {
   var model = (0, _requestsIds.generateIds)(template);
 
-  // Set a custom ID, so it can be used later on in the backend.
+  / Set a custom ID, so it can be used later on in the backend.
   model.id = "e-ai-screenshot-container-".concat(model.id);
   return $e.run('document/elements/create', {
     container: elementor.getPreviewContainer(),
@@ -5813,7 +5813,7 @@ function waitForContainer(id) {
                 _context2.next = 5;
                 break;
               }
-              images = (0, _toConsumableArray2.default)($element[0].querySelectorAll('img')); // Wait for all images to load.
+              images = (0, _toConsumableArray2.default)($element[0].querySelectorAll('img')); / Wait for all images to load.
               _context2.next = 4;
               return Promise.all(images.map(waitForImage));
             case 4:
@@ -5838,7 +5838,7 @@ function waitForImage(image) {
   return new Promise(function (resolve) {
     image.addEventListener('load', resolve);
     image.addEventListener('error', function () {
-      // Remove the image to make sure it won't break the screenshot.
+      / Remove the image to make sure it won't break the screenshot.
       image.remove();
       resolve();
     });
@@ -5940,7 +5940,7 @@ async function cloneIFrameElement(iframe) {
         }
     }
     catch (_b) {
-        // Failed to clone iframe
+        / Failed to clone iframe
     }
     return iframe.cloneNode(false);
 }
@@ -6051,7 +6051,7 @@ async function ensureSVGSymbols(clone, options) {
             const exist = clone.querySelector(id);
             const definition = document.querySelector(id);
             if (!exist && definition && !processedDefs[id]) {
-                // eslint-disable-next-line no-await-in-loop
+                / eslint-disable-next-line no-await-in-loop
                 processedDefs[id] = (await cloneNode(definition, options, true));
             }
         }
@@ -6196,9 +6196,9 @@ function getCacheKey(url, contentType, includeQueryParams) {
     if (includeQueryParams) {
         key = url;
     }
-    // font resource
+    / font resource
     if (/ttf|otf|eot|woff2?/i.test(key)) {
-        key = key.replace(/.*\//, '');
+        key = key.replace(/.*\/, '');
     }
     return contentType ? `[${contentType}]${key}` : key;
 }
@@ -6207,16 +6207,16 @@ async function resourceToDataURL(resourceUrl, contentType, options) {
     if (cache[cacheKey] != null) {
         return cache[cacheKey];
     }
-    // ref: https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#Bypassing_the_cache
+    / ref: https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#Bypassing_the_cache
     if (options.cacheBust) {
-        // eslint-disable-next-line no-param-reassign
+        / eslint-disable-next-line no-param-reassign
         resourceUrl += (/\?/.test(resourceUrl) ? '&' : '?') + new Date().getTime();
     }
     let dataURL;
     try {
         const content = await fetchAsDataURL(resourceUrl, options.fetchRequestInit, ({ res, result }) => {
             if (!contentType) {
-                // eslint-disable-next-line no-param-reassign
+                / eslint-disable-next-line no-param-reassign
                 contentType = res.headers.get('Content-Type') || '';
             }
             return getContentFromDataUrl(result);
@@ -6345,7 +6345,7 @@ const URL_REGEX = /url\((['"]?)([^'"]+?)\1\)/g;
 const URL_WITH_FORMAT_REGEX = /url\([^)]+\)\s*format\((["']?)([^"']+)\1\)/g;
 const FONT_SRC_REGEX = /src:\s*(?:url\([^)]+\)\s*format\([^)]+\)[,;]\s*)+/g;
 function toRegex(url) {
-    // eslint-disable-next-line no-useless-escape
+    / eslint-disable-next-line no-useless-escape
     const escaped = url.replace(/([.*+?^${}()|\[\]\/\\])/g, '\\$1');
     return new RegExp(`(url\\(['"]?)(${escaped})(['"]?\\))`, 'g');
 }
@@ -6372,7 +6372,7 @@ async function embed(cssText, resourceURL, baseURL, options, getContentFromUrl) 
         return cssText.replace(toRegex(resourceURL), `$1${dataURL}$3`);
     }
     catch (error) {
-        // pass
+        / pass
     }
     return cssText;
 }
@@ -6380,7 +6380,7 @@ function filterPreferredFontFormat(str, { preferredFontFormat }) {
     return !preferredFontFormat
         ? str
         : str.replace(FONT_SRC_REGEX, (match) => {
-            // eslint-disable-next-line no-constant-condition
+            / eslint-disable-next-line no-constant-condition
             while (true) {
                 const [src, , format] = URL_WITH_FORMAT_REGEX.exec(match) || [];
                 if (!format) {
@@ -6459,11 +6459,11 @@ function parseCSS(source) {
     }
     const result = [];
     const commentsRegex = /(\/\*[\s\S]*?\*\/)/gi;
-    // strip out comments
+    / strip out comments
     let cssText = source.replace(commentsRegex, '');
-    // eslint-disable-next-line prefer-regex-literals
+    / eslint-disable-next-line prefer-regex-literals
     const keyframesRegex = new RegExp('((@.*?keyframes [\\s\\S]*?){([\\s\\S]*?}\\s*?)})', 'gi');
-    // eslint-disable-next-line no-constant-condition
+    / eslint-disable-next-line no-constant-condition
     while (true) {
         const matches = keyframesRegex.exec(cssText);
         if (matches === null) {
@@ -6473,12 +6473,12 @@ function parseCSS(source) {
     }
     cssText = cssText.replace(keyframesRegex, '');
     const importRegex = /@import[\s\S]*?url\([^)]*\)[\s\S]*?;/gi;
-    // to match css & media queries together
+    / to match css & media queries together
     const combinedCSSRegex = '((\\s*?(?:\\/\\*[\\s\\S]*?\\*\\/)?\\s*?@media[\\s\\S]' +
         '*?){([\\s\\S]*?)}\\s*?})|(([\\s\\S]*?){([\\s\\S]*?)})';
-    // unified regex
+    / unified regex
     const unifiedRegex = new RegExp(combinedCSSRegex, 'gi');
-    // eslint-disable-next-line no-constant-condition
+    / eslint-disable-next-line no-constant-condition
     while (true) {
         let matches = importRegex.exec(cssText);
         if (matches === null) {
@@ -6500,7 +6500,7 @@ function parseCSS(source) {
 async function getCSSRules(styleSheets, options) {
     const ret = [];
     const deferreds = [];
-    // First loop inlines imports
+    / First loop inlines imports
     styleSheets.forEach((sheet) => {
         if ('cssRules' in sheet) {
             try {
@@ -6547,7 +6547,7 @@ async function getCSSRules(styleSheets, options) {
         }
     });
     return Promise.all(deferreds).then(() => {
-        // Second loop parses rules
+        / Second loop parses rules
         styleSheets.forEach((sheet) => {
             if ('cssRules' in sheet) {
                 try {
@@ -6752,15 +6752,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   uuid: () => (/* binding */ uuid)
 /* harmony export */ });
 function resolveUrl(url, baseUrl) {
-    // url is absolute already
-    if (url.match(/^[a-z]+:\/\//i)) {
+    / url is absolute already
+    if (url.match(/^[a-z]+:\/\/i)) {
         return url;
     }
-    // url is absolute already, without protocol
-    if (url.match(/^\/\//)) {
+    / url is absolute already, without protocol
+    if (url.match(/^\/\/)) {
         return window.location.protocol + url;
     }
-    // dataURI, mailto:, tel:, etc.
+    / dataURI, mailto:, tel:, etc.
     if (url.match(/^[a-z]+:/i)) {
         return url;
     }
@@ -6776,12 +6776,12 @@ function resolveUrl(url, baseUrl) {
     return a.href;
 }
 const uuid = (() => {
-    // generate uuid for className of pseudo elements.
-    // We should not use GUIDs, otherwise pseudo elements sometimes cannot be captured.
+    / generate uuid for className of pseudo elements.
+    / We should not use GUIDs, otherwise pseudo elements sometimes cannot be captured.
     let counter = 0;
-    // ref: http://stackoverflow.com/a/6248722/2519373
+    / ref: http://stackoverflow.com/a/6248722/2519373
     const random = () => 
-    // eslint-disable-next-line no-bitwise
+    / eslint-disable-next-line no-bitwise
     `0000${((Math.random() * 36 ** 4) << 0).toString(36)}`.slice(-4);
     return () => {
         counter += 1;
@@ -6827,7 +6827,7 @@ function getPixelRatio() {
         FINAL_PROCESS = process;
     }
     catch (e) {
-        // pass
+        / pass
     }
     const val = FINAL_PROCESS && FINAL_PROCESS.env
         ? FINAL_PROCESS.env.devicePixelRatio
@@ -6965,16 +6965,16 @@ function shouldUseNative() {
 			return false;
 		}
 
-		// Detect buggy property enumeration order in older V8 versions.
+		/ Detect buggy property enumeration order in older V8 versions.
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc');  / eslint-disable-line no-new-wrappers
 		test1[5] = 'de';
 		if (Object.getOwnPropertyNames(test1)[0] === '5') {
 			return false;
 		}
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=3056
 		var test2 = {};
 		for (var i = 0; i < 10; i++) {
 			test2['_' + String.fromCharCode(i)] = i;
@@ -6986,7 +6986,7 @@ function shouldUseNative() {
 			return false;
 		}
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=3056
 		var test3 = {};
 		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
 			test3[letter] = letter;
@@ -6998,7 +6998,7 @@ function shouldUseNative() {
 
 		return true;
 	} catch (err) {
-		// We don't expect any of the above to throw, but better to be safe.
+		/ We don't expect any of the above to throw, but better to be safe.
 		return false;
 	}
 }
@@ -7062,9 +7062,9 @@ if (true) {
       console.error(message);
     }
     try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
+      / --- Welcome to debugging React ---
+      / This error was thrown as a convenience so that you can use this stack
+      / to find the callsite that caused this warning to fire.
       throw new Error(message);
     } catch (x) { /**/ }
   };
@@ -7086,12 +7086,12 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
     for (var typeSpecName in typeSpecs) {
       if (has(typeSpecs, typeSpecName)) {
         var error;
-        // Prop type validation may throw. In case they do, we don't want to
-        // fail the render phase where it didn't fail before. So we log it.
-        // After these have been cleaned up, we'll let them throw.
+        / Prop type validation may throw. In case they do, we don't want to
+        / fail the render phase where it didn't fail before. So we log it.
+        / After these have been cleaned up, we'll let them throw.
         try {
-          // This is intentionally an invariant that gets caught. It's the same
-          // behavior as without this statement except with a better message.
+          / This is intentionally an invariant that gets caught. It's the same
+          / behavior as without this statement except with a better message.
           if (typeof typeSpecs[typeSpecName] !== 'function') {
             var err = Error(
               (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
@@ -7116,8 +7116,8 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
           );
         }
         if (error instanceof Error && !(error.message in loggedTypeFailures)) {
-          // Only monitor this failure once because there tends to be a lot of the
-          // same error.
+          / Only monitor this failure once because there tends to be a lot of the
+          / same error.
           loggedTypeFailures[error.message] = true;
 
           var stack = getStack ? getStack() : '';
@@ -7179,9 +7179,9 @@ if (true) {
       console.error(message);
     }
     try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
+      / --- Welcome to debugging React ---
+      / This error was thrown as a convenience so that you can use this stack
+      / to find the callsite that caused this warning to fire.
       throw new Error(message);
     } catch (x) {}
   };
@@ -7194,7 +7194,7 @@ function emptyFunctionThatReturnsNull() {
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
   var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
-  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+  var FAUX_ITERATOR_SYMBOL = '@@iterator'; / Before Symbol spec.
 
   /**
    * Returns the iterator method function contained on the iterable object.
@@ -7224,13 +7224,13 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    *   var Props = require('ReactPropTypes');
    *   var MyArticle = React.createClass({
    *     propTypes: {
-   *       // An optional string prop named "description".
+   *       / An optional string prop named "description".
    *       description: Props.string,
    *
-   *       // A required enum prop named "category".
+   *       / A required enum prop named "category".
    *       category: Props.oneOf(['News','Photos']).isRequired,
    *
-   *       // A prop named "dialog" that requires an instance of Dialog.
+   *       / A prop named "dialog" that requires an instance of Dialog.
    *       dialog: Props.instanceOf(Dialog).isRequired
    *     },
    *     render: function() { ... }
@@ -7246,7 +7246,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    *
    *  var MyLink = React.createClass({
    *    propTypes: {
-   *      // An optional string or URI prop named "href".
+   *      / An optional string or URI prop named "href".
    *      href: function(props, propName, componentName) {
    *        var propValue = props[propName];
    *        if (propValue != null && typeof propValue !== 'string' &&
@@ -7266,8 +7266,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
   var ANONYMOUS = '<<anonymous>>';
 
-  // Important!
-  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+  / Important!
+  / Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
   var ReactPropTypes = {
     array: createPrimitiveTypeChecker('array'),
     bigint: createPrimitiveTypeChecker('bigint'),
@@ -7297,13 +7297,13 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    */
   /*eslint-disable no-self-compare*/
   function is(x, y) {
-    // SameValue algorithm
+    / SameValue algorithm
     if (x === y) {
-      // Steps 1-5, 7-10
-      // Steps 6.b-6.e: +0 != -0
+      / Steps 1-5, 7-10
+      / Steps 6.b-6.e: +0 != -0
       return x !== 0 || 1 / x === 1 / y;
     } else {
-      // Step 6.a: NaN == NaN
+      / Step 6.a: NaN == NaN
       return x !== x && y !== y;
     }
   }
@@ -7321,7 +7321,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     this.data = data && typeof data === 'object' ? data: {};
     this.stack = '';
   }
-  // Make `instanceof Error` still work for returned errors.
+  / Make `instanceof Error` still work for returned errors.
   PropTypeError.prototype = Error.prototype;
 
   function createChainableTypeChecker(validate) {
@@ -7335,7 +7335,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
       if (secret !== ReactPropTypesSecret) {
         if (throwOnDirectAccess) {
-          // New behavior only for users of `prop-types` package
+          / New behavior only for users of `prop-types` package
           var err = new Error(
             'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
             'Use `PropTypes.checkPropTypes()` to call them. ' +
@@ -7344,11 +7344,11 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
           err.name = 'Invariant Violation';
           throw err;
         } else if ( true && typeof console !== 'undefined') {
-          // Old behavior for people using React.PropTypes
+          / Old behavior for people using React.PropTypes
           var cacheKey = componentName + ':' + propName;
           if (
             !manualPropTypeCallCache[cacheKey] &&
-            // Avoid spamming the console because they are often not actionable except for lib authors
+            / Avoid spamming the console because they are often not actionable except for lib authors
             manualPropTypeWarningCount < 3
           ) {
             printWarning(
@@ -7387,9 +7387,9 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
       var propValue = props[propName];
       var propType = getPropType(propValue);
       if (propType !== expectedType) {
-        // `propValue` being instance of, say, date/regexp, pass the 'object'
-        // check, but we can offer a more precise error message here rather than
-        // 'of type `object`'.
+        / `propValue` being instance of, say, date/regexp, pass the 'object'
+        / check, but we can offer a more precise error message here rather than
+        / 'of type `object`'.
         var preciseType = getPreciseType(propValue);
 
         return new PropTypeError(
@@ -7602,7 +7602,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
       if (propType !== 'object') {
         return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
       }
-      // We need to check all keys in case some are required but missing from props.
+      / We need to check all keys in case some are required but missing from props.
       var allKeys = assign({}, props[propName], shapeTypes);
       for (var key in allKeys) {
         var checker = shapeTypes[key];
@@ -7654,7 +7654,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
               }
             }
           } else {
-            // Iterator will provide entry [k,v] tuples rather than values.
+            / Iterator will provide entry [k,v] tuples rather than values.
             while (!(step = iterator.next()).done) {
               var entry = step.value;
               if (entry) {
@@ -7675,22 +7675,22 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
   }
 
   function isSymbol(propType, propValue) {
-    // Native Symbol.
+    / Native Symbol.
     if (propType === 'symbol') {
       return true;
     }
 
-    // falsy value can't be a Symbol
+    / falsy value can't be a Symbol
     if (!propValue) {
       return false;
     }
 
-    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
+    / 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
     if (propValue['@@toStringTag'] === 'Symbol') {
       return true;
     }
 
-    // Fallback for non-spec compliant Symbols which are polyfilled.
+    / Fallback for non-spec compliant Symbols which are polyfilled.
     if (typeof Symbol === 'function' && propValue instanceof Symbol) {
       return true;
     }
@@ -7698,16 +7698,16 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return false;
   }
 
-  // Equivalent of `typeof` but with special handling for array and regexp.
+  / Equivalent of `typeof` but with special handling for array and regexp.
   function getPropType(propValue) {
     var propType = typeof propValue;
     if (Array.isArray(propValue)) {
       return 'array';
     }
     if (propValue instanceof RegExp) {
-      // Old webkits (at least until Android 4.0) return 'function' rather than
-      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
-      // passes PropTypes.object.
+      / Old webkits (at least until Android 4.0) return 'function' rather than
+      / 'object' for typeof a RegExp. We'll normalize this here so that /bla/
+      / passes PropTypes.object.
       return 'object';
     }
     if (isSymbol(propType, propValue)) {
@@ -7716,8 +7716,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return propType;
   }
 
-  // This handles more types than `getPropType`. Only used for error messages.
-  // See `createPrimitiveTypeChecker`.
+  / This handles more types than `getPropType`. Only used for error messages.
+  / See `createPrimitiveTypeChecker`.
   function getPreciseType(propValue) {
     if (typeof propValue === 'undefined' || propValue === null) {
       return '' + propValue;
@@ -7733,8 +7733,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return propType;
   }
 
-  // Returns a string that is postfixed to a warning about an invalid type.
-  // For example, "undefined" or "of type array"
+  / Returns a string that is postfixed to a warning about an invalid type.
+  / For example, "undefined" or "of type array"
   function getPostfixForTypeWarning(value) {
     var type = getPreciseType(value);
     switch (type) {
@@ -7750,7 +7750,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     }
   }
 
-  // Returns class name of the object, if any.
+  / Returns class name of the object, if any.
   function getClassName(propValue) {
     if (!propValue.constructor || !propValue.constructor.name) {
       return ANONYMOUS;
@@ -7784,8 +7784,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 if (true) {
   var ReactIs = __webpack_require__(/*! react-is */ "../node_modules/prop-types/node_modules/react-is/index.js");
 
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
+  / By explicitly using `prop-types` you are opting into new development behavior.
+  / http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
   module.exports = __webpack_require__(/*! ./factoryWithTypeCheckers */ "../node_modules/prop-types/factoryWithTypeCheckers.js")(ReactIs.isElement, throwOnDirectAccess);
 } else {}
@@ -7860,7 +7860,7 @@ var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
 var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
 var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
 var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
-var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; / TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
 // (unstable) APIs that have been removed. Can we remove the symbols?
 
 var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
@@ -7876,7 +7876,7 @@ var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
 var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
 
 function isValidElementType(type) {
-  return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+  return typeof type === 'string' || typeof type === 'function' || / Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
   type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
 }
 
@@ -7920,7 +7920,7 @@ function typeOf(object) {
   }
 
   return undefined;
-} // AsyncMode is deprecated along with isAsyncMode
+} / AsyncMode is deprecated along with isAsyncMode
 
 var AsyncMode = REACT_ASYNC_MODE_TYPE;
 var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
@@ -7935,12 +7935,12 @@ var Portal = REACT_PORTAL_TYPE;
 var Profiler = REACT_PROFILER_TYPE;
 var StrictMode = REACT_STRICT_MODE_TYPE;
 var Suspense = REACT_SUSPENSE_TYPE;
-var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
+var hasWarnedAboutDeprecatedIsAsyncMode = false; / AsyncMode should be deprecated
 
 function isAsyncMode(object) {
   {
     if (!hasWarnedAboutDeprecatedIsAsyncMode) {
-      hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+      hasWarnedAboutDeprecatedIsAsyncMode = true; / Using console['warn'] to evade Babel and ESLint
 
       console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
     }
@@ -8133,8 +8133,8 @@ function _toPrimitive(input, hint) { if (typeof input !== "object" || input === 
 // Define <Draggable>
 //
 class Draggable extends React.Component /*:: <DraggableProps, DraggableState>*/{
-  // React 16.3+
-  // Arity (props, state)
+  / React 16.3+
+  / Arity (props, state)
   static getDerivedStateFromProps(_ref /*:: */, _ref2 /*:: */) /*: ?Partial<DraggableState>*/{
     let {
       position
@@ -8142,7 +8142,7 @@ class Draggable extends React.Component /*:: <DraggableProps, DraggableState>*/{
     let {
       prevPropsPosition
     } /*: DraggableState*/ = _ref2 /*: DraggableState*/;
-    // Set x/y if a new position is provided in props that is different than the previous.
+    / Set x/y if a new position is provided in props that is different than the previous.
     if (position && (!prevPropsPosition || position.x !== prevPropsPosition.x || position.y !== prevPropsPosition.y)) {
       (0, _log.default)('Draggable: getDerivedStateFromProps %j', {
         position,
@@ -8163,9 +8163,9 @@ class Draggable extends React.Component /*:: <DraggableProps, DraggableState>*/{
     _defineProperty(this, "onDragStart", (e, coreData) => {
       (0, _log.default)('Draggable: onDragStart: %j', coreData);
 
-      // Short-circuit if user's callback killed it.
+      / Short-circuit if user's callback killed it.
       const shouldStart = this.props.onStart(e, (0, _positionFns.createDraggableData)(this, coreData));
-      // Kills start event on core as well, so move handlers are never bound.
+      / Kills start event on core as well, so move handlers are never bound.
       if (shouldStart === false) return false;
       this.setState({
         dragging: true,
@@ -8183,37 +8183,37 @@ class Draggable extends React.Component /*:: <DraggableProps, DraggableState>*/{
         slackY: 0
       };
 
-      // Keep within bounds.
+      / Keep within bounds.
       if (this.props.bounds) {
-        // Save original x and y.
+        / Save original x and y.
         const {
           x,
           y
         } = newState;
 
-        // Add slack to the values used to calculate bound position. This will ensure that if
-        // we start removing slack, the element won't react to it right away until it's been
-        // completely removed.
+        / Add slack to the values used to calculate bound position. This will ensure that if
+        / we start removing slack, the element won't react to it right away until it's been
+        / completely removed.
         newState.x += this.state.slackX;
         newState.y += this.state.slackY;
 
-        // Get bound position. This will ceil/floor the x and y within the boundaries.
+        / Get bound position. This will ceil/floor the x and y within the boundaries.
         const [newStateX, newStateY] = (0, _positionFns.getBoundPosition)(this, newState.x, newState.y);
         newState.x = newStateX;
         newState.y = newStateY;
 
-        // Recalculate slack by noting how much was shaved by the boundPosition handler.
+        / Recalculate slack by noting how much was shaved by the boundPosition handler.
         newState.slackX = this.state.slackX + (x - newState.x);
         newState.slackY = this.state.slackY + (y - newState.y);
 
-        // Update the event we fire to reflect what really happened after bounds took effect.
+        / Update the event we fire to reflect what really happened after bounds took effect.
         uiData.x = newState.x;
         uiData.y = newState.y;
         uiData.deltaX = newState.x - this.state.x;
         uiData.deltaY = newState.y - this.state.y;
       }
 
-      // Short-circuit if user's callback killed it.
+      / Short-circuit if user's callback killed it.
       const shouldUpdate = this.props.onDrag(e, uiData);
       if (shouldUpdate === false) return false;
       this.setState(newState);
@@ -8221,7 +8221,7 @@ class Draggable extends React.Component /*:: <DraggableProps, DraggableState>*/{
     _defineProperty(this, "onDragStop", (e, coreData) => {
       if (!this.state.dragging) return false;
 
-      // Short-circuit if user's callback killed it.
+      / Short-circuit if user's callback killed it.
       const shouldContinue = this.props.onStop(e, (0, _positionFns.createDraggableData)(this, coreData));
       if (shouldContinue === false) return false;
       (0, _log.default)('Draggable: onDragStop: %j', coreData);
@@ -8231,8 +8231,8 @@ class Draggable extends React.Component /*:: <DraggableProps, DraggableState>*/{
         slackY: 0
       };
 
-      // If this is a controlled component, the result of this operation will be to
-      // revert back to the old position. We expect a handler on `onDragStop`, at the least.
+      / If this is a controlled component, the result of this operation will be to
+      / revert back to the old position. We expect a handler on `onDragStop`, at the least.
       const controlled = Boolean(this.props.position);
       if (controlled) {
         const {
@@ -8245,29 +8245,29 @@ class Draggable extends React.Component /*:: <DraggableProps, DraggableState>*/{
       this.setState(newState);
     });
     this.state = {
-      // Whether or not we are currently dragging.
+      / Whether or not we are currently dragging.
       dragging: false,
-      // Whether or not we have been dragged before.
+      / Whether or not we have been dragged before.
       dragged: false,
-      // Current transform x and y.
+      / Current transform x and y.
       x: props.position ? props.position.x : props.defaultPosition.x,
       y: props.position ? props.position.y : props.defaultPosition.y,
       prevPropsPosition: {
         ...props.position
       },
-      // Used for compensating for out-of-bounds drags
+      / Used for compensating for out-of-bounds drags
       slackX: 0,
       slackY: 0,
-      // Can only determine if SVG after mounting
+      / Can only determine if SVG after mounting
       isElementSVG: false
     };
     if (props.position && !(props.onDrag || props.onStop)) {
-      // eslint-disable-next-line no-console
+      / eslint-disable-next-line no-console
       console.warn('A `position` was applied to this <Draggable>, without drag handlers. This will make this ' + 'component effectively undraggable. Please attach `onDrag` or `onStop` handlers so you can adjust the ' + '`position` of this element.');
     }
   }
   componentDidMount() {
-    // Check to see if the element passed is an instanceof SVGElement
+    / Check to see if the element passed is an instanceof SVGElement
     if (typeof window.SVGElement !== 'undefined' && this.findDOMNode() instanceof window.SVGElement) {
       this.setState({
         isElementSVG: true
@@ -8277,11 +8277,11 @@ class Draggable extends React.Component /*:: <DraggableProps, DraggableState>*/{
   componentWillUnmount() {
     this.setState({
       dragging: false
-    }); // prevents invariant if unmounted while dragging
+    }); / prevents invariant if unmounted while dragging
   }
 
-  // React Strict Mode compatibility: if `nodeRef` is passed, we will use it instead of trying to find
-  // the underlying DOM node ourselves. See the README for more information.
+  / React Strict Mode compatibility: if `nodeRef` is passed, we will use it instead of trying to find
+  / the underlying DOM node ourselves. See the README for more information.
   findDOMNode() /*: ?HTMLElement*/{
     var _this$props$nodeRef$c, _this$props;
     return (_this$props$nodeRef$c = (_this$props = this.props) === null || _this$props === void 0 || (_this$props = _this$props.nodeRef) === null || _this$props === void 0 ? void 0 : _this$props.current) !== null && _this$props$nodeRef$c !== void 0 ? _this$props$nodeRef$c : _reactDom.default.findDOMNode(this);
@@ -8303,36 +8303,36 @@ class Draggable extends React.Component /*:: <DraggableProps, DraggableState>*/{
     let style = {};
     let svgTransform = null;
 
-    // If this is controlled, we don't want to move it - unless it's dragging.
+    / If this is controlled, we don't want to move it - unless it's dragging.
     const controlled = Boolean(position);
     const draggable = !controlled || this.state.dragging;
     const validPosition = position || defaultPosition;
     const transformOpts = {
-      // Set left if horizontal drag is enabled
+      / Set left if horizontal drag is enabled
       x: (0, _positionFns.canDragX)(this) && draggable ? this.state.x : validPosition.x,
-      // Set top if vertical drag is enabled
+      / Set top if vertical drag is enabled
       y: (0, _positionFns.canDragY)(this) && draggable ? this.state.y : validPosition.y
     };
 
-    // If this element was SVG, we use the `transform` attribute.
+    / If this element was SVG, we use the `transform` attribute.
     if (this.state.isElementSVG) {
       svgTransform = (0, _domFns.createSVGTransform)(transformOpts, positionOffset);
     } else {
-      // Add a CSS transform to move the element around. This allows us to move the element around
-      // without worrying about whether or not it is relatively or absolutely positioned.
-      // If the item you are dragging already has a transform set, wrap it in a <span> so <Draggable>
-      // has a clean slate.
+      / Add a CSS transform to move the element around. This allows us to move the element around
+      / without worrying about whether or not it is relatively or absolutely positioned.
+      / If the item you are dragging already has a transform set, wrap it in a <span> so <Draggable>
+      / has a clean slate.
       style = (0, _domFns.createCSSTransform)(transformOpts, positionOffset);
     }
 
-    // Mark with class while dragging
+    / Mark with class while dragging
     const className = (0, _clsx.default)(children.props.className || '', defaultClassName, {
       [defaultClassNameDragging]: this.state.dragging,
       [defaultClassNameDragged]: this.state.dragged
     });
 
-    // Reuse the child provided
-    // This makes it flexible to use whatever element is wanted (div, ul, etc)
+    / Reuse the child provided
+    / This makes it flexible to use whatever element is wanted (div, ul, etc)
     return /*#__PURE__*/React.createElement(_DraggableCore.default, _extends({}, draggableCoreProps, {
       onStart: this.onDragStart,
       onDrag: this.onDrag,
@@ -8350,7 +8350,7 @@ class Draggable extends React.Component /*:: <DraggableProps, DraggableState>*/{
 exports["default"] = Draggable;
 _defineProperty(Draggable, "displayName", 'Draggable');
 _defineProperty(Draggable, "propTypes", {
-  // Accepts all props <DraggableCore> accepts.
+  / Accepts all props <DraggableCore> accepts.
   ..._DraggableCore.default.propTypes,
   /**
    * `axis` determines which axis the draggable can move.
@@ -8556,19 +8556,19 @@ class DraggableCore extends React.Component /*:: <DraggableCoreProps>*/{
   constructor() {
     super(...arguments);
     _defineProperty(this, "dragging", false);
-    // Used while dragging to determine deltas.
+    / Used while dragging to determine deltas.
     _defineProperty(this, "lastX", NaN);
     _defineProperty(this, "lastY", NaN);
     _defineProperty(this, "touchIdentifier", null);
     _defineProperty(this, "mounted", false);
     _defineProperty(this, "handleDragStart", e => {
-      // Make it possible to attach event handlers on top of this one.
+      / Make it possible to attach event handlers on top of this one.
       this.props.onMouseDown(e);
 
-      // Only accept left-clicks.
+      / Only accept left-clicks.
       if (!this.props.allowAnyClick && typeof e.button === 'number' && e.button !== 0) return false;
 
-      // Get nodes. Be sure to grab relative document (could be iframed)
+      / Get nodes. Be sure to grab relative document (could be iframed)
       const thisNode = this.findDOMNode();
       if (!thisNode || !thisNode.ownerDocument || !thisNode.ownerDocument.body) {
         throw new Error('<DraggableCore> not mounted on DragStart!');
@@ -8577,57 +8577,57 @@ class DraggableCore extends React.Component /*:: <DraggableCoreProps>*/{
         ownerDocument
       } = thisNode;
 
-      // Short circuit if handle or cancel prop was provided and selector doesn't match.
+      / Short circuit if handle or cancel prop was provided and selector doesn't match.
       if (this.props.disabled || !(e.target instanceof ownerDocument.defaultView.Node) || this.props.handle && !(0, _domFns.matchesSelectorAndParentsTo)(e.target, this.props.handle, thisNode) || this.props.cancel && (0, _domFns.matchesSelectorAndParentsTo)(e.target, this.props.cancel, thisNode)) {
         return;
       }
 
-      // Prevent scrolling on mobile devices, like ipad/iphone.
-      // Important that this is after handle/cancel.
+      / Prevent scrolling on mobile devices, like ipad/iphone.
+      / Important that this is after handle/cancel.
       if (e.type === 'touchstart') e.preventDefault();
 
-      // Set touch identifier in component state if this is a touch event. This allows us to
-      // distinguish between individual touches on multitouch screens by identifying which
-      // touchpoint was set to this element.
+      / Set touch identifier in component state if this is a touch event. This allows us to
+      / distinguish between individual touches on multitouch screens by identifying which
+      / touchpoint was set to this element.
       const touchIdentifier = (0, _domFns.getTouchIdentifier)(e);
       this.touchIdentifier = touchIdentifier;
 
-      // Get the current drag point from the event. This is used as the offset.
+      / Get the current drag point from the event. This is used as the offset.
       const position = (0, _positionFns.getControlPosition)(e, touchIdentifier, this);
-      if (position == null) return; // not possible but satisfies flow
+      if (position == null) return; / not possible but satisfies flow
       const {
         x,
         y
       } = position;
 
-      // Create an event object with all the data parents need to make a decision here.
+      / Create an event object with all the data parents need to make a decision here.
       const coreEvent = (0, _positionFns.createCoreData)(this, x, y);
       (0, _log.default)('DraggableCore: handleDragStart: %j', coreEvent);
 
-      // Call event handler. If it returns explicit false, cancel.
+      / Call event handler. If it returns explicit false, cancel.
       (0, _log.default)('calling', this.props.onStart);
       const shouldUpdate = this.props.onStart(e, coreEvent);
       if (shouldUpdate === false || this.mounted === false) return;
 
-      // Add a style to the body to disable user-select. This prevents text from
-      // being selected all over the page.
+      / Add a style to the body to disable user-select. This prevents text from
+      / being selected all over the page.
       if (this.props.enableUserSelectHack) (0, _domFns.addUserSelectStyles)(ownerDocument);
 
-      // Initiate dragging. Set the current x and y as offsets
-      // so we know how much we've moved during the drag. This allows us
-      // to drag elements around even if they have been moved, without issue.
+      / Initiate dragging. Set the current x and y as offsets
+      / so we know how much we've moved during the drag. This allows us
+      / to drag elements around even if they have been moved, without issue.
       this.dragging = true;
       this.lastX = x;
       this.lastY = y;
 
-      // Add events to the document directly so we catch when the user's mouse/touch moves outside of
-      // this element. We use different events depending on whether or not we have detected that this
-      // is a touch-capable device.
+      / Add events to the document directly so we catch when the user's mouse/touch moves outside of
+      / this element. We use different events depending on whether or not we have detected that this
+      / is a touch-capable device.
       (0, _domFns.addEvent)(ownerDocument, dragEventFor.move, this.handleDrag);
       (0, _domFns.addEvent)(ownerDocument, dragEventFor.stop, this.handleDragStop);
     });
     _defineProperty(this, "handleDrag", e => {
-      // Get the current drag point from the event. This is used as the offset.
+      / Get the current drag point from the event. This is used as the offset.
       const position = (0, _positionFns.getControlPosition)(e, this.touchIdentifier, this);
       if (position == null) return;
       let {
@@ -8635,28 +8635,28 @@ class DraggableCore extends React.Component /*:: <DraggableCoreProps>*/{
         y
       } = position;
 
-      // Snap to grid if prop has been provided
+      / Snap to grid if prop has been provided
       if (Array.isArray(this.props.grid)) {
         let deltaX = x - this.lastX,
           deltaY = y - this.lastY;
         [deltaX, deltaY] = (0, _positionFns.snapToGrid)(this.props.grid, deltaX, deltaY);
-        if (!deltaX && !deltaY) return; // skip useless drag
+        if (!deltaX && !deltaY) return; / skip useless drag
         x = this.lastX + deltaX, y = this.lastY + deltaY;
       }
       const coreEvent = (0, _positionFns.createCoreData)(this, x, y);
       (0, _log.default)('DraggableCore: handleDrag: %j', coreEvent);
 
-      // Call event handler. If it returns explicit false, trigger end.
+      / Call event handler. If it returns explicit false, trigger end.
       const shouldUpdate = this.props.onDrag(e, coreEvent);
       if (shouldUpdate === false || this.mounted === false) {
         try {
-          // $FlowIgnore
+          / $FlowIgnore
           this.handleDragStop(new MouseEvent('mouseup'));
         } catch (err) {
-          // Old browsers
+          / Old browsers
           const event = ((document.createEvent('MouseEvents') /*: any*/) /*: MouseTouchEvent*/);
-          // I see why this insanity was deprecated
-          // $FlowIgnore
+          / I see why this insanity was deprecated
+          / $FlowIgnore
           event.initMouseEvent('mouseup', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
           this.handleDragStop(event);
         }
@@ -8674,7 +8674,7 @@ class DraggableCore extends React.Component /*:: <DraggableCoreProps>*/{
         y
       } = position;
 
-      // Snap to grid if prop has been provided
+      / Snap to grid if prop has been provided
       if (Array.isArray(this.props.grid)) {
         let deltaX = x - this.lastX || 0;
         let deltaY = y - this.lastY || 0;
@@ -8683,29 +8683,29 @@ class DraggableCore extends React.Component /*:: <DraggableCoreProps>*/{
       }
       const coreEvent = (0, _positionFns.createCoreData)(this, x, y);
 
-      // Call event handler
+      / Call event handler
       const shouldContinue = this.props.onStop(e, coreEvent);
       if (shouldContinue === false || this.mounted === false) return false;
       const thisNode = this.findDOMNode();
       if (thisNode) {
-        // Remove user-select hack
+        / Remove user-select hack
         if (this.props.enableUserSelectHack) (0, _domFns.removeUserSelectStyles)(thisNode.ownerDocument);
       }
       (0, _log.default)('DraggableCore: handleDragStop: %j', coreEvent);
 
-      // Reset the el.
+      / Reset the el.
       this.dragging = false;
       this.lastX = NaN;
       this.lastY = NaN;
       if (thisNode) {
-        // Remove event handlers
+        / Remove event handlers
         (0, _log.default)('DraggableCore: Removing handlers');
         (0, _domFns.removeEvent)(thisNode.ownerDocument, dragEventFor.move, this.handleDrag);
         (0, _domFns.removeEvent)(thisNode.ownerDocument, dragEventFor.stop, this.handleDragStop);
       }
     });
     _defineProperty(this, "onMouseDown", e => {
-      dragEventFor = eventsFor.mouse; // on touchscreen laptops we could switch back to mouse
+      dragEventFor = eventsFor.mouse; / on touchscreen laptops we could switch back to mouse
 
       return this.handleDragStart(e);
     });
@@ -8713,22 +8713,22 @@ class DraggableCore extends React.Component /*:: <DraggableCoreProps>*/{
       dragEventFor = eventsFor.mouse;
       return this.handleDragStop(e);
     });
-    // Same as onMouseDown (start drag), but now consider this a touch device.
+    / Same as onMouseDown (start drag), but now consider this a touch device.
     _defineProperty(this, "onTouchStart", e => {
-      // We're on a touch device now, so change the event handlers
+      / We're on a touch device now, so change the event handlers
       dragEventFor = eventsFor.touch;
       return this.handleDragStart(e);
     });
     _defineProperty(this, "onTouchEnd", e => {
-      // We're on a touch device now, so change the event handlers
+      / We're on a touch device now, so change the event handlers
       dragEventFor = eventsFor.touch;
       return this.handleDragStop(e);
     });
   }
   componentDidMount() {
     this.mounted = true;
-    // Touch handlers must be added with {passive: false} to be cancelable.
-    // https://developers.google.com/web/updates/2017/01/scrolling-intervention
+    / Touch handlers must be added with {passive: false} to be cancelable.
+    / https://developers.google.com/web/updates/2017/01/scrolling-intervention
     const thisNode = this.findDOMNode();
     if (thisNode) {
       (0, _domFns.addEvent)(thisNode, eventsFor.touch.start, this.onTouchStart, {
@@ -8738,8 +8738,8 @@ class DraggableCore extends React.Component /*:: <DraggableCoreProps>*/{
   }
   componentWillUnmount() {
     this.mounted = false;
-    // Remove any leftover event handlers. Remove both touch and mouse handlers in case
-    // some browser quirk caused a touch event to fire during a mouse move, or vice versa.
+    / Remove any leftover event handlers. Remove both touch and mouse handlers in case
+    / some browser quirk caused a touch event to fire during a mouse move, or vice versa.
     const thisNode = this.findDOMNode();
     if (thisNode) {
       const {
@@ -8756,23 +8756,23 @@ class DraggableCore extends React.Component /*:: <DraggableCoreProps>*/{
     }
   }
 
-  // React Strict Mode compatibility: if `nodeRef` is passed, we will use it instead of trying to find
-  // the underlying DOM node ourselves. See the README for more information.
+  / React Strict Mode compatibility: if `nodeRef` is passed, we will use it instead of trying to find
+  / the underlying DOM node ourselves. See the README for more information.
   findDOMNode() /*: ?HTMLElement*/{
     var _this$props, _this$props2;
     return (_this$props = this.props) !== null && _this$props !== void 0 && _this$props.nodeRef ? (_this$props2 = this.props) === null || _this$props2 === void 0 || (_this$props2 = _this$props2.nodeRef) === null || _this$props2 === void 0 ? void 0 : _this$props2.current : _reactDom.default.findDOMNode(this);
   }
   render() /*: React.Element<any>*/{
-    // Reuse the child provided
-    // This makes it flexible to use whatever element is wanted (div, ul, etc)
+    / Reuse the child provided
+    / This makes it flexible to use whatever element is wanted (div, ul, etc)
     return /*#__PURE__*/React.cloneElement(React.Children.only(this.props.children), {
-      // Note: mouseMove handler is attached to document so it will still function
-      // when the user drags quickly and leaves the bounds of the element.
+      / Note: mouseMove handler is attached to document so it will still function
+      / when the user drags quickly and leaves the bounds of the element.
       onMouseDown: this.onMouseDown,
       onMouseUp: this.onMouseUp,
-      // onTouchStart is added on `componentDidMount` so they can be added with
-      // {passive: false}, which allows it to cancel. See
-      // https://developers.google.com/web/updates/2017/01/scrolling-intervention
+      / onTouchStart is added on `componentDidMount` so they can be added with
+      / {passive: false}, which allows it to cancel. See
+      / https://developers.google.com/web/updates/2017/01/scrolling-intervention
       onTouchEnd: this.onTouchEnd
     });
   }
@@ -8905,7 +8905,7 @@ _defineProperty(DraggableCore, "propTypes", {
 });
 _defineProperty(DraggableCore, "defaultProps", {
   allowAnyClick: false,
-  // by default only accept left click
+  / by default only accept left click
   disabled: false,
   enableUserSelectHack: true,
   onStart: function () {},
@@ -8931,7 +8931,7 @@ const {
   DraggableCore
 } = __webpack_require__(/*! ./Draggable */ "../node_modules/react-draggable/build/cjs/Draggable.js");
 
-// Previous versions of this lib exported <Draggable> as the root export. As to no-// them, or TypeScript, we export *both* as the root and as 'default'.
+// Previous versions of this lib exported <Draggable> as the root export. As to no-/ them, or TypeScript, we export *both* as the root and as 'default'.
 // See https://github.com/mzabriskie/react-draggable/pull/254
 // and https://github.com/mzabriskie/react-draggable/issues/266
 module.exports = Draggable;
@@ -8979,16 +8979,16 @@ let matchesSelectorFunc = '';
 function matchesSelector(el /*: Node*/, selector /*: string*/) /*: boolean*/{
   if (!matchesSelectorFunc) {
     matchesSelectorFunc = (0, _shims.findInArray)(['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'], function (method) {
-      // $FlowIgnore: Doesn't think elements are indexable
+      / $FlowIgnore: Doesn't think elements are indexable
       return (0, _shims.isFunction)(el[method]);
     });
   }
 
-  // Might not be found entirely (not an Element?) - in that case, bail
-  // $FlowIgnore: Doesn't think elements are indexable
+  / Might not be found entirely (not an Element?) - in that case, bail
+  / $FlowIgnore: Doesn't think elements are indexable
   if (!(0, _shims.isFunction)(el[matchesSelectorFunc])) return false;
 
-  // $FlowIgnore: Doesn't think elements are indexable
+  / $FlowIgnore: Doesn't think elements are indexable
   return el[matchesSelectorFunc](selector);
 }
 
@@ -8998,7 +8998,7 @@ function matchesSelectorAndParentsTo(el /*: Node*/, selector /*: string*/, baseN
   do {
     if (matchesSelector(node, selector)) return true;
     if (node === baseNode) return false;
-    // $FlowIgnore[incompatible-type]
+    / $FlowIgnore[incompatible-type]
     node = node.parentNode;
   } while (node);
   return false;
@@ -9009,13 +9009,13 @@ function addEvent(el /*: ?Node*/, event /*: string*/, handler /*: Function*/, in
     capture: true,
     ...inputOptions
   };
-  // $FlowIgnore[method-unbinding]
+  / $FlowIgnore[method-unbinding]
   if (el.addEventListener) {
     el.addEventListener(event, handler, options);
   } else if (el.attachEvent) {
     el.attachEvent('on' + event, handler);
   } else {
-    // $FlowIgnore: Doesn't think elements are indexable
+    / $FlowIgnore: Doesn't think elements are indexable
     el['on' + event] = handler;
   }
 }
@@ -9025,19 +9025,19 @@ function removeEvent(el /*: ?Node*/, event /*: string*/, handler /*: Function*/,
     capture: true,
     ...inputOptions
   };
-  // $FlowIgnore[method-unbinding]
+  / $FlowIgnore[method-unbinding]
   if (el.removeEventListener) {
     el.removeEventListener(event, handler, options);
   } else if (el.detachEvent) {
     el.detachEvent('on' + event, handler);
   } else {
-    // $FlowIgnore: Doesn't think elements are indexable
+    / $FlowIgnore: Doesn't think elements are indexable
     el['on' + event] = null;
   }
 }
 function outerHeight(node /*: HTMLElement*/) /*: number*/{
-  // This is deliberately excluding margin for our calculations, since we are using
-  // offsetTop which is including margin. See getBoundPosition
+  / This is deliberately excluding margin for our calculations, since we are using
+  / offsetTop which is including margin. See getBoundPosition
   let height = node.clientHeight;
   const computedStyle = node.ownerDocument.defaultView.getComputedStyle(node);
   height += (0, _shims.int)(computedStyle.borderTopWidth);
@@ -9045,8 +9045,8 @@ function outerHeight(node /*: HTMLElement*/) /*: number*/{
   return height;
 }
 function outerWidth(node /*: HTMLElement*/) /*: number*/{
-  // This is deliberately excluding margin for our calculations, since we are using
-  // offsetLeft which is including margin. See getBoundPosition
+  / This is deliberately excluding margin for our calculations, since we are using
+  / offsetLeft which is including margin. See getBoundPosition
   let width = node.clientWidth;
   const computedStyle = node.ownerDocument.defaultView.getComputedStyle(node);
   width += (0, _shims.int)(computedStyle.borderLeftWidth);
@@ -9137,20 +9137,20 @@ function removeUserSelectStyles(doc /*: ?Document*/) {
   if (!doc) return;
   try {
     if (doc.body) removeClassName(doc.body, 'react-draggable-transparent-selection');
-    // $FlowIgnore: IE
+    / $FlowIgnore: IE
     if (doc.selection) {
-      // $FlowIgnore: IE
+      / $FlowIgnore: IE
       doc.selection.empty();
     } else {
-      // Remove selection caused by scroll, unless it's a focused input
-      // (we use doc.defaultView in case we're in an iframe)
+      / Remove selection caused by scroll, unless it's a focused input
+      / (we use doc.defaultView in case we're in an iframe)
       const selection = (doc.defaultView || window).getSelection();
       if (selection && selection.type !== 'Caret') {
         selection.removeAllRanges();
       }
     }
   } catch (e) {
-    // probably IE
+    / probably IE
   }
 }
 function addClassName(el /*: HTMLElement*/, className /*: string*/) {
@@ -9192,12 +9192,12 @@ const prefixes = ['Moz', 'Webkit', 'O', 'ms'];
 function getPrefix() /*: string*/{
   var _window$document;
   let prop /*: string*/ = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'transform';
-  // Ensure we're running in an environment where there is actually a global
-  // `window` obj
+  / Ensure we're running in an environment where there is actually a global
+  / `window` obj
   if (typeof window === 'undefined') return '';
 
-  // If we're in a pseudo-browser server-side environment, this access
-  // path may not exist, so bail out if it doesn't.
+  / If we're in a pseudo-browser server-side environment, this access
+  / path may not exist, so bail out if it doesn't.
   const style = (_window$document = window.document) === null || _window$document === void 0 || (_window$document = _window$document.documentElement) === null || _window$document === void 0 ? void 0 : _window$document.style;
   if (!style) return '';
   if (prop in style) return '';
@@ -9280,10 +9280,10 @@ var _domFns = __webpack_require__(/*! ./domFns */ "../node_modules/react-draggab
 /*:: import type {Bounds, ControlPosition, DraggableData, MouseTouchEvent} from './types';*/
 /*:: import type DraggableCore from '../DraggableCore';*/
 function getBoundPosition(draggable /*: Draggable*/, x /*: number*/, y /*: number*/) /*: [number, number]*/{
-  // If no bounds, short-circuit and move on
+  / If no bounds, short-circuit and move on
   if (!draggable.props.bounds) return [x, y];
 
-  // Clone new bounds
+  / Clone new bounds
   let {
     bounds
   } = draggable.props;
@@ -9303,10 +9303,10 @@ function getBoundPosition(draggable /*: Draggable*/, x /*: number*/, y /*: numbe
     if (!(boundNode instanceof ownerWindow.HTMLElement)) {
       throw new Error('Bounds selector "' + bounds + '" could not find an element.');
     }
-    const boundNodeEl /*: HTMLElement*/ = boundNode; // for Flow, can't seem to refine correctly
+    const boundNodeEl /*: HTMLElement*/ = boundNode; / for Flow, can't seem to refine correctly
     const nodeStyle = ownerWindow.getComputedStyle(node);
     const boundNodeStyle = ownerWindow.getComputedStyle(boundNodeEl);
-    // Compute bounds. This is a pain with padding and offsets but this gets it exactly right.
+    / Compute bounds. This is a pain with padding and offsets but this gets it exactly right.
     bounds = {
       left: -node.offsetLeft + (0, _shims.int)(boundNodeStyle.paddingLeft) + (0, _shims.int)(nodeStyle.marginLeft),
       top: -node.offsetTop + (0, _shims.int)(boundNodeStyle.paddingTop) + (0, _shims.int)(nodeStyle.marginTop),
@@ -9315,11 +9315,11 @@ function getBoundPosition(draggable /*: Draggable*/, x /*: number*/, y /*: numbe
     };
   }
 
-  // Keep x and y below right and bottom limits...
+  / Keep x and y below right and bottom limits...
   if ((0, _shims.isNum)(bounds.right)) x = Math.min(x, bounds.right);
   if ((0, _shims.isNum)(bounds.bottom)) y = Math.min(y, bounds.bottom);
 
-  // But above left and top limits.
+  / But above left and top limits.
   if ((0, _shims.isNum)(bounds.left)) x = Math.max(x, bounds.left);
   if ((0, _shims.isNum)(bounds.top)) y = Math.max(y, bounds.top);
   return [x, y];
@@ -9339,9 +9339,9 @@ function canDragY(draggable /*: Draggable*/) /*: boolean*/{
 // Get {x, y} positions from event.
 function getControlPosition(e /*: MouseTouchEvent*/, touchIdentifier /*: ?number*/, draggableCore /*: DraggableCore*/) /*: ?ControlPosition*/{
   const touchObj = typeof touchIdentifier === 'number' ? (0, _domFns.getTouch)(e, touchIdentifier) : null;
-  if (typeof touchIdentifier === 'number' && !touchObj) return null; // not the right touch
+  if (typeof touchIdentifier === 'number' && !touchObj) return null; / not the right touch
   const node = findDOMNode(draggableCore);
-  // User can provide an offsetParent if desired.
+  / User can provide an offsetParent if desired.
   const offsetParent = draggableCore.props.offsetParent || node.offsetParent || node.ownerDocument.body;
   return (0, _domFns.offsetXYFromParent)(touchObj || e, offsetParent, draggableCore.props.scale);
 }
@@ -9351,7 +9351,7 @@ function createCoreData(draggable /*: DraggableCore*/, x /*: number*/, y /*: num
   const isStart = !(0, _shims.isNum)(draggable.lastX);
   const node = findDOMNode(draggable);
   if (isStart) {
-    // If this is our first move, use the x and y as last coords.
+    / If this is our first move, use the x and y as last coords.
     return {
       node,
       deltaX: 0,
@@ -9362,7 +9362,7 @@ function createCoreData(draggable /*: DraggableCore*/, x /*: number*/, y /*: num
       y
     };
   } else {
-    // Otherwise calculate proper values.
+    / Otherwise calculate proper values.
     return {
       node,
       deltaX: x - draggable.lastX,
@@ -9403,7 +9403,7 @@ function findDOMNode(draggable /*: Draggable | DraggableCore*/) /*: HTMLElement*
   if (!node) {
     throw new Error('<DraggableCore>: Unmounted during event!');
   }
-  // $FlowIgnore we can't assert on HTMLElement due to tests... FIXME
+  / $FlowIgnore we can't assert on HTMLElement due to tests... FIXME
   return node;
 }
 
@@ -9433,7 +9433,7 @@ function findInArray(array /*: Array<any> | TouchList*/, callback /*: Function*/
   }
 }
 function isFunction(func /*: any*/) /*: boolean %checks*/{
-  // $FlowIgnore[method-unbinding]
+  / $FlowIgnore[method-unbinding]
   return typeof func === 'function' || Object.prototype.toString.call(func) === '[object Function]';
 }
 function isNum(num /*: any*/) /*: boolean %checks*/{
@@ -9506,7 +9506,7 @@ function isFQDN(str, options) {
   var parts = str.split('.');
   var tld = parts[parts.length - 1];
   if (options.require_tld) {
-    // disallow fqdns without tld
+    / disallow fqdns without tld
     if (parts.length < 2) {
       return false;
     }
@@ -9514,13 +9514,13 @@ function isFQDN(str, options) {
       return false;
     }
 
-    // disallow spaces
+    / disallow spaces
     if (/\s/.test(tld)) {
       return false;
     }
   }
 
-  // reject numeric TLDs
+  / reject numeric TLDs
   if (!options.allow_numeric_tld && /^\d+$/.test(tld)) {
     return false;
   }
@@ -9532,12 +9532,12 @@ function isFQDN(str, options) {
       return false;
     }
 
-    // disallow full-width chars
+    / disallow full-width chars
     if (/[\uff01-\uff5e]/.test(part)) {
       return false;
     }
 
-    // disallow parts starting or ending with hyphen
+    / disallow parts starting or ending with hyphen
     if (/^-|-$/.test(part)) {
       return false;
     }
@@ -9716,7 +9716,7 @@ function isURL(url, options) {
     }
   } else if (options.require_protocol) {
     return false;
-  } else if (url.slice(0, 2) === '//') {
+  } else if (url.slice(0, 2) === '/') {
     if (!options.allow_protocol_relative_urls) {
       return false;
     }
@@ -10735,34 +10735,34 @@ try {
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -10779,7 +10779,7 @@ try {
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -10894,7 +10894,7 @@ var Module = exports["default"] = /*#__PURE__*/function (_elementorModules$edi) 
         }()
       };
 
-      // Add on top of save group actions
+      / Add on top of save group actions
       saveGroup.actions.unshift(contextMenu);
       return groups;
     });

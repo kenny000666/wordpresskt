@@ -54,7 +54,7 @@
 
 						redux_change( $( '.checkbox-input', parent ) );
 
-						// Fold/unfold related options.
+						/ Fold/unfold related options.
 						obj   = $( this );
 						$fold = '.f_' + obj.data( 'id' );
 
@@ -81,7 +81,7 @@
 
 						redux_change( $( '.checkbox-input', parent ) );
 
-						// Fold/unfold related options.
+						/ Fold/unfold related options.
 						obj   = $( this );
 						$fold = '.f_' + obj.data( 'id' );
 

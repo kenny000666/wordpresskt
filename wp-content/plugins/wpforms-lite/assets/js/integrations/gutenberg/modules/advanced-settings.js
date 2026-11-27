@@ -88,7 +88,7 @@ export default ( function( $ ) {
 			const $input = $( this );
 
 			if ( $input.siblings( 'label' ).text() === strings.copy_paste_settings ) {
-				// Select all text, so it's easier to copy and paste value.
+				/ Select all text, so it's easier to copy and paste value.
 				$input.select();
 			}
 		},
@@ -103,12 +103,12 @@ export default ( function( $ ) {
 		 * @return {Object} Inspector advanced controls JSX code.
 		 */
 		getFields( props ) {
-			// Proceed only for WPForms block and when form ID is set.
+			/ Proceed only for WPForms block and when form ID is set.
 			if ( props?.name !== 'wpforms/form-selector' || ! props?.attributes?.formId ) {
 				return null;
 			}
 
-			// Common event handlers.
+			/ Common event handlers.
 			const handlers = app.common.getSettingsFieldsHandlers( props );
 
 			return (
@@ -159,6 +159,6 @@ export default ( function( $ ) {
 		),
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( jQuery ) );

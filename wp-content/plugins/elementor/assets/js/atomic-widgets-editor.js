@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../assets/dev/js/editor/elements/views/behaviors/sortable.js":
@@ -64,7 +64,7 @@ SortableBehavior = Marionette.Behavior.extend({
   createPlaceholder: function createPlaceholder($element) {
     var className = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
     var hide = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-    // Get the actual item size.
+    / Get the actual item size.
     $element.css('display', '');
     var _$element$ = $element[0],
       width = _$element$.clientWidth,
@@ -90,12 +90,12 @@ SortableBehavior = Marionette.Behavior.extend({
       start: function start(event, ui) {
         $childViewContainer.sortable('refreshPositions');
 
-        // TODO: Find a better solution than this hack.
-        // Used in order to prevent dragging a container into itself.
+        / TODO: Find a better solution than this hack.
+        / Used in order to prevent dragging a container into itself.
         _this2.createPlaceholder(ui.item, placeholderClass);
       },
       stop: function stop() {
-        // Cleanup.
+        / Cleanup.
         $childViewContainer.find(".".concat(placeholderClass)).remove();
       }
     };
@@ -120,21 +120,21 @@ SortableBehavior = Marionette.Behavior.extend({
         },
         helper: this._getSortableHelper.bind(this),
         cancel: 'input, textarea, button, select, option, .elementor-inline-editing, .elementor-tab-title',
-        // Fix: Sortable - Unable to drag and drop sections with huge height.
+        / Fix: Sortable - Unable to drag and drop sections with huge height.
         start: function start() {
           $childViewContainer.sortable('refreshPositions');
         }
       };
     var sortableOptions = _.extend(defaultSortableOptions, this.view.getSortableOptions());
 
-    // Add a swappable behavior (used for flex containers).
+    / Add a swappable behavior (used for flex containers).
     if (this.isSwappable()) {
       $childViewContainer.addClass('e-swappable');
       sortableOptions = _.extend(sortableOptions, this.getSwappableOptions());
     }
 
-    // TODO: Temporary hack for Container.
-    //  Will be removed in the future when the Navigator will use React.
+    / TODO: Temporary hack for Container.
+    /  Will be removed in the future when the Navigator will use React.
     if (sortableOptions.preventInit) {
       return;
     }
@@ -145,8 +145,8 @@ SortableBehavior = Marionette.Behavior.extend({
    */
   activate: function activate() {
     if (!this.getChildViewContainer().sortable('instance')) {
-      // Generate sortable instance for this element. Since fresh instances of sortable already allowing sorting,
-      // we can return.
+      / Generate sortable instance for this element. Since fresh instances of sortable already allowing sorting,
+      / we can return.
       this.applySortable();
       return;
     }
@@ -161,8 +161,8 @@ SortableBehavior = Marionette.Behavior.extend({
   getChildViewContainer: function getChildViewContainer() {
     return this.view.getChildViewContainer(this.view);
   },
-  // The natural widget index in the column is wrong, since there are other elements
-  // at the beginning of the column (background-overlay, element-overlay, resizeable-handle)
+  / The natural widget index in the column is wrong, since there are other elements
+  / at the beginning of the column (background-overlay, element-overlay, resizeable-handle)
   getSortedElementNewIndex: function getSortedElementNewIndex($element) {
     var widgets = Object.values($element.parent().find('> .elementor-element'));
     return widgets.indexOf($element[0]);
@@ -190,7 +190,7 @@ SortableBehavior = Marionette.Behavior.extend({
     var container = elementor.getContainer(ui.item.attr('data-id'));
     elementor.channels.data.reply('dragging:model', container.model).reply('dragging:view', container.view).reply('dragging:parent:view', this.view).trigger('drag:start', container.model).trigger(container.model.get('elType') + ':drag:start');
   },
-  // On sorting element
+  / On sorting element
   updateSort: function updateSort(ui, newIndex) {
     if (undefined === newIndex) {
       newIndex = ui.item.index();
@@ -201,7 +201,7 @@ SortableBehavior = Marionette.Behavior.extend({
       jQuery(ui.sender).sortable('cancel');
     }
   },
-  // On receiving element from another container
+  / On receiving element from another container
   receiveSort: function receiveSort(event, ui, newIndex) {
     event.stopPropagation();
     if (this.view.isCollectionFilled()) {
@@ -356,10 +356,10 @@ function render(app, domElement) {
       root.unmount();
     };
   } catch (e) {
-    // eslint-disable-next-line react/no-deprecated
+    / eslint-disable-next-line react/no-deprecated
     ReactDOM.render(app, domElement);
     unmountFunction = function unmountFunction() {
-      // eslint-disable-next-line react/no-deprecated
+      / eslint-disable-next-line react/no-deprecated
       ReactDOM.unmountComponentAtNode(domElement);
     };
   }
@@ -617,7 +617,7 @@ var DivBlockView = BaseElementView.extend({
   className: function className() {
     return "".concat(BaseElementView.prototype.className.apply(this), " e-con ").concat(this.getClassString());
   },
-  // TODO: Copied from `views/column.js`.
+  / TODO: Copied from `views/column.js`.
   ui: function ui() {
     var ui = BaseElementView.prototype.ui.apply(this, arguments);
     ui.percentsTooltip = '> .elementor-element-overlay .elementor-column-percents-tooltip';
@@ -636,7 +636,7 @@ var DivBlockView = BaseElementView.extend({
     }
     return _objectSpread(_objectSpread({}, attr), local);
   },
-  // TODO: Copied from `views/column.js`.
+  / TODO: Copied from `views/column.js`.
   attachElContent: function attachElContent() {
     BaseElementView.prototype.attachElContent.apply(this, arguments);
     var $tooltip = jQuery('<div>', {
@@ -645,14 +645,14 @@ var DivBlockView = BaseElementView.extend({
     });
     this.$el.children('.elementor-element-overlay').append($tooltip);
   },
-  // TODO: Copied from `views/column.js`.
+  / TODO: Copied from `views/column.js`.
   getPercentSize: function getPercentSize(size) {
     if (!size) {
       size = this.el.getBoundingClientRect().width;
     }
     return +(size / this.$el.parent().width() * 100).toFixed(3);
   },
-  // TODO: Copied from `views/column.js`.
+  / TODO: Copied from `views/column.js`.
   getPercentsForDisplay: function getPercentsForDisplay() {
     var width = +this.model.getSetting('width') || this.getPercentSize();
     return width.toFixed(1) + '%';
@@ -664,7 +664,7 @@ var DivBlockView = BaseElementView.extend({
     }
     BaseElementView.prototype.renderOnChange.apply(this, settings);
     if (changed.classes) {
-      // Rebuild the whole class attribute to remove previous outdated classes
+      / Rebuild the whole class attribute to remove previous outdated classes
       this.$el.attr('class', this.className());
       return;
     }
@@ -693,7 +693,7 @@ var DivBlockView = BaseElementView.extend({
     var _this = this;
     BaseElementView.prototype.onRender.apply(this, arguments);
 
-    // Defer to wait for everything to render.
+    / Defer to wait for everything to render.
     setTimeout(function () {
       _this.droppableInitialize();
     });
@@ -786,7 +786,7 @@ var DivBlockView = BaseElementView.extend({
       onDropping: function onDropping(side, event) {
         event.stopPropagation();
 
-        // Triggering the drag end manually, since it won't fire above the iframe
+        / Triggering the drag end manually, since it won't fire above the iframe
         elementor.getPreviewView().onPanelElementDragEnd();
         var draggedView = elementor.channels.editor.request('element:dragged'),
           draggedElement = draggedView === null || draggedView === void 0 ? void 0 : draggedView.getContainer().view.el,
@@ -832,8 +832,8 @@ var DivBlockView = BaseElementView.extend({
     var isRtl = elementorCommon.config.isRTL;
     var isReverse = isRow ? isFlexReverse !== isRtl : isFlexReverse;
 
-    // The element should be placed BEFORE the current target
-    // if is reversed + side is bottom/right OR not is reversed + side is top/left
+    / The element should be placed BEFORE the current target
+    / if is reversed + side is bottom/right OR not is reversed + side is top/left
     if (isReverse === this.draggingOnBottomOrRightSide(side)) {
       if (-1 === selfIndex || selfIndex >= index - 1) {
         return index;
@@ -846,7 +846,7 @@ var DivBlockView = BaseElementView.extend({
     return index + 1;
   },
   moveDroppedItem: function moveDroppedItem(draggedView, dropIndex) {
-    // Reset the dragged element cache.
+    / Reset the dragged element cache.
     elementor.channels.editor.reply('element:dragged', null);
     $e.run('document/elements/move', {
       container: draggedView.getContainer(),
@@ -907,10 +907,10 @@ var DivBlockView = BaseElementView.extend({
     this.$el.before(addSectionView.$el);
     addSectionView.$el.hide();
 
-    // Delaying the slide down for slow-render browsers (such as FF)
+    / Delaying the slide down for slow-render browsers (such as FF)
     setTimeout(function () {
       addSectionView.$el.slideDown(null, function () {
-        // Remove inline style, for preview mode.
+        / Remove inline style, for preview mode.
         jQuery(this).css('display', '');
       });
     });
@@ -1287,7 +1287,7 @@ function updateStyleId(container) {
     return isClassesProp(propValue);
   });
   var newStyles = {};
-  var changedIds = {}; // Conversion map - {[originalId: string]: newId: string}
+  var changedIds = {}; / Conversion map - {[originalId: string]: newId: string}
 
   Object.entries(originalStyles).forEach(function (_ref3) {
     var _ref4 = (0, _slicedToArray2.default)(_ref3, 2),
@@ -1311,13 +1311,13 @@ function updateStyleId(container) {
     })];
   }, {});
 
-  // Update classes array
+  / Update classes array
   $e.internal('document/elements/set-settings', {
     container: container,
     settings: Object.fromEntries(newClassesProps)
   });
 
-  // Update local styles
+  / Update local styles
   container.model.set('styles', newStyles);
 }
 function updateElementsStyleIdsInsideOut(styledElements) {
@@ -1786,27 +1786,27 @@ module.exports = _unsupportedIterableToArray, module.exports.__esModule = true, 
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	

@@ -6,8 +6,8 @@
  *
  * @since 1.9.6
  */
-var WPFormsElementorEditorContext = window.WPFormsElementorEditorContext || ( function( document, window, $ ) { // eslint-disable-line no-var
-	// noinspection JSUnusedGlobalSymbols
+var WPFormsElementorEditorContext = window.WPFormsElementorEditorContext || ( function( document, window, $ ) { / eslint-disable-line no-var
+	/ noinspection JSUnusedGlobalSymbols
 	/**
 	 * Public functions and properties.
 	 *
@@ -33,25 +33,25 @@ var WPFormsElementorEditorContext = window.WPFormsElementorEditorContext || ( fu
 		 */
 		events() {
 			$( window ).on( 'elementor/init', function() {
-				// To add action on save event, we should use hookUI.After.
+				/ To add action on save event, we should use hookUI.After.
 				$e.hooks.registerUIAfter( new class extends $e.modules.hookUI.After {
-					// noinspection JSUnusedGlobalSymbols
+					/ noinspection JSUnusedGlobalSymbols
 					getCommand() {
 						return 'document/save/save';
 					}
 
-					// noinspection JSUnusedGlobalSymbols
+					/ noinspection JSUnusedGlobalSymbols
 					getId() {
 						return 'wpforms-elementor-editor-context-after-save';
 					}
 
-					// noinspection JSUnusedGlobalSymbols
+					/ noinspection JSUnusedGlobalSymbols
 					getConditions() {
 						return true;
 					}
 
 					apply() {
-						// Save custom themes in a preview window.
+						/ Save custom themes in a preview window.
 						const previewWindow = elementor.$preview[ 0 ]?.contentWindow;
 
 						if ( previewWindow ) {

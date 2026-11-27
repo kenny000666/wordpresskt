@@ -18,7 +18,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"../version",
@@ -26,7 +26,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -54,12 +54,12 @@ return $.effects.define( "slide", "show", function( options, done ) {
 	startClip = element.cssClip();
 	startRef = element.position()[ ref ];
 
-	// Define hide animation
+	/ Define hide animation
 	animation[ ref ] = ( positiveMotion ? -1 : 1 ) * distance + startRef;
 	animation.clip = element.cssClip();
 	animation.clip[ map[ direction ][ 1 ] ] = animation.clip[ map[ direction ][ 0 ] ];
 
-	// Reverse the animation if we're showing
+	/ Reverse the animation if we're showing
 	if ( mode === "show" ) {
 		element.cssClip( animation.clip );
 		element.css( ref, animation[ ref ] );
@@ -67,7 +67,7 @@ return $.effects.define( "slide", "show", function( options, done ) {
 		animation[ ref ] = startRef;
 	}
 
-	// Actually animate
+	/ Actually animate
 	element.animate( animation, {
 		queue: false,
 		duration: options.duration,

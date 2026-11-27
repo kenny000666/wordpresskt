@@ -63,8 +63,8 @@ class GridContainer extends elementorModules.frontend.handlers.Base {
   }
   handleGridControls(sectionName, editor) {
     const advancedSections = ['_section_style',
-    // Widgets
-    'section_layout' // Containers
+    / Widgets
+    'section_layout' / Containers
     ];
     if (!advancedSections.includes(sectionName)) {
       return;
@@ -110,7 +110,7 @@ class GridContainer extends elementorModules.frontend.handlers.Base {
   }
   initLayoutOverlay() {
     this.getCorrectContainer();
-    // Re-init empty view element after container layout change
+    / Re-init empty view element after container layout change
     const selectors = this.getSettings('selectors'),
       isGridContainer = 'grid' === this.getElementSettings('container_type');
     this.elements.emptyView = this.findElement(selectors.emptyView)[0];
@@ -227,7 +227,7 @@ class GridContainer extends elementorModules.frontend.handlers.Base {
         value: controlValue
       };
     } else {
-      // In this case the data is taken from the getComputedStyle and not from the control, in order to handle cases when the user has more elements than grid cells.
+      / In this case the data is taken from the getComputedStyle and not from the control, in order to handle cases when the user has more elements than grid cells.
       controlData = {
         value: `repeat(${computedStyleLength}, 1fr)`
       };
@@ -247,7 +247,7 @@ class GridContainer extends elementorModules.frontend.handlers.Base {
     }
     let propsThatTriggerGridLayoutRender = ['grid_rows_grid', 'grid_columns_grid', 'grid_gaps', 'container_type', 'boxed_width', 'content_width', 'width', 'height', 'min_height', 'padding', 'grid_auto_flow'];
 
-    // Add responsive control names to the list of controls that trigger re-rendering.
+    / Add responsive control names to the list of controls that trigger re-rendering.
     propsThatTriggerGridLayoutRender = this.getResponsiveControlNames(propsThatTriggerGridLayoutRender);
     if (propsThatTriggerGridLayoutRender.includes(propertyName)) {
       this.initLayoutOverlay();
@@ -307,7 +307,7 @@ class GridContainer extends elementorModules.frontend.handlers.Base {
         emptyView.style.minHeight = 'auto';
       }
 
-      // This is to handle cases where `minHeight: auto` computes to `0`.
+      / This is to handle cases where `minHeight: auto` computes to `0`.
       if (emptyView?.offsetHeight <= 0) {
         emptyView.style.minHeight = '100px';
       }
@@ -426,7 +426,7 @@ class Shapes extends elementorModules.frontend.handlers.Base {
       $svgContainer = this.elements['$' + side + 'Container'];
     $svgContainer.attr('data-shape', shapeType);
     if (!shapeType) {
-      $svgContainer.empty(); // Shape-divider set to 'none'
+      $svgContainer.empty(); / Shape-divider set to 'none'
       return;
     }
     let fileName = shapeType;

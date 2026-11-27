@@ -88,10 +88,10 @@ matchSorter.rankings = rankings;
  */
 function getHighestRanking(item, keys, value, options) {
   if (!keys) {
-    // if keys is not specified, then we assume the item given is ready to be matched
+    / if keys is not specified, then we assume the item given is ready to be matched
     const stringItem = item;
     return {
-      // ends up being duplicate of 'item' in matches but consistent
+      / ends up being duplicate of 'item' in matches but consistent
       rankedValue: stringItem,
       rank: getMatchRanking(stringItem, value, options),
       keyIndex: -1,
@@ -153,52 +153,52 @@ function getMatchRanking(testString, stringToRank, options) {
   testString = prepareValueForComparison(testString, options);
   stringToRank = prepareValueForComparison(stringToRank, options);
 
-  // too long
+  / too long
   if (stringToRank.length > testString.length) {
     return rankings.NO_MATCH;
   }
 
-  // case sensitive equals
+  / case sensitive equals
   if (testString === stringToRank) {
     return rankings.CASE_SENSITIVE_EQUAL;
   }
 
-  // Lower casing before further comparison
+  / Lower casing before further comparison
   testString = testString.toLowerCase();
   stringToRank = stringToRank.toLowerCase();
 
-  // case insensitive equals
+  / case insensitive equals
   if (testString === stringToRank) {
     return rankings.EQUAL;
   }
 
-  // starts with
+  / starts with
   if (testString.startsWith(stringToRank)) {
     return rankings.STARTS_WITH;
   }
 
-  // word starts with
+  / word starts with
   if (testString.includes(` ${stringToRank}`)) {
     return rankings.WORD_STARTS_WITH;
   }
 
-  // contains
+  / contains
   if (testString.includes(stringToRank)) {
     return rankings.CONTAINS;
   } else if (stringToRank.length === 1) {
-    // If the only character in the given stringToRank
-    //   isn't even contained in the testString, then
-    //   it's definitely not a match.
+    / If the only character in the given stringToRank
+    /   isn't even contained in the testString, then
+    /   it's definitely not a match.
     return rankings.NO_MATCH;
   }
 
-  // acronym
+  / acronym
   if (getAcronym(testString).includes(stringToRank)) {
     return rankings.ACRONYM;
   }
 
-  // will return a number between rankings.MATCHES and
-  // rankings.MATCHES + 1 depending  on how close of a match it is.
+  / will return a number between rankings.MATCHES and
+  / rankings.MATCHES + 1 depending  on how close of a match it is.
   return getClosenessRanking(testString, stringToRank);
 }
 
@@ -286,7 +286,7 @@ function sortRankedValues(a, b, baseSort) {
   const same = aRank === bRank;
   if (same) {
     if (aKeyIndex === bKeyIndex) {
-      // use the base sort function as a tie-breaker
+      / use the base sort function as a tie-breaker
       return baseSort(a, b);
     } else {
       return aKeyIndex < bKeyIndex ? aFirst : bFirst;
@@ -306,9 +306,9 @@ function prepareValueForComparison(value, _ref4) {
   let {
     keepDiacritics
   } = _ref4;
-  // value might not actually be a string at this point (we don't get to choose)
-  // so part of preparing the value for comparison is ensure that it is a string
-  value = `${value}`; // toString
+  / value might not actually be a string at this point (we don't get to choose)
+  / so part of preparing the value for comparison is ensure that it is a string
+  value = `${value}`; / toString
   if (!keepDiacritics) {
     value = remove_accents__WEBPACK_IMPORTED_MODULE_0___default()(value);
   }
@@ -333,13 +333,13 @@ function getItemValues(item, key) {
   } else if (Object.hasOwnProperty.call(item, key)) {
     value = item[key];
   } else if (key.includes('.')) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    / eslint-disable-next-line @typescript-eslint/no-unsafe-call
     return getNestedValues(key, item);
   } else {
     value = null;
   }
 
-  // because `value` can also be undefined
+  / because `value` can also be undefined
   if (value == null) {
     return [];
   }
@@ -371,20 +371,20 @@ function getNestedValues(path, item) {
           nestedValues.push(nestedValue);
         }
       } else if (nestedKey === '*') {
-        // ensure that values is an array
+        / ensure that values is an array
         nestedValues = nestedValues.concat(nestedItem);
       }
     }
     values = nestedValues;
   }
   if (Array.isArray(values[0])) {
-    // keep allowing the implicit wildcard for an array of strings at the end of
-    // the path; don't use `.flat()` because that's not available in node.js v10
+    / keep allowing the implicit wildcard for an array of strings at the end of
+    / the path; don't use `.flat()` because that's not available in node.js v10
     const result = [];
     return result.concat(...values);
   }
-  // Based on our logic it should be an array of strings by now...
-  // assuming the user's path terminated in strings
+  / Based on our logic it should be an array of strings by now...
+  / assuming the user's path terminated in strings
   return values;
 }
 
@@ -1029,7 +1029,7 @@ var Expander = function Expander(_ref) {
  * filled with the remaining elements
  *
  * @example
- * chunkArray(['a','b', 'c', 'd', 'e'], 2) // returns [['a','b'], ['c', 'd'], ['e']]
+ * chunkArray(['a','b', 'c', 'd', 'e'], 2) / returns [['a','b'], ['c', 'd'], ['e']]
  */
 function chunkArray(array, size) {
   if (size < 1) return [];
@@ -1300,7 +1300,7 @@ function ReactQueryDevtools(_ref) {
   var _handleDragStart = function handleDragStart(panelElement, startEvent) {
     var _panelElement$getBoun;
 
-    if (startEvent.button !== 0) return; // Only allow left click for drag
+    if (startEvent.button !== 0) return; / Only allow left click for drag
 
     setIsResizing(true);
     var dragInfo = {
@@ -1332,8 +1332,8 @@ function ReactQueryDevtools(_ref) {
 
   react__WEBPACK_IMPORTED_MODULE_2___default().useEffect(function () {
     setIsResolvedOpen(isOpen != null ? isOpen : false);
-  }, [isOpen, isResolvedOpen, setIsResolvedOpen]); // Toggle panel visibility before/after transition (depending on direction).
-  // Prevents focusing in a closed panel.
+  }, [isOpen, isResolvedOpen, setIsResolvedOpen]); / Toggle panel visibility before/after transition (depending on direction).
+  / Prevents focusing in a closed panel.
 
   react__WEBPACK_IMPORTED_MODULE_2___default().useEffect(function () {
     var ref = panelRef.current;
@@ -1404,7 +1404,7 @@ function ReactQueryDevtools(_ref) {
   var _toggleButtonProps$st = toggleButtonProps.style,
       toggleButtonStyle = _toggleButtonProps$st === void 0 ? {} : _toggleButtonProps$st,
       onToggleClick = toggleButtonProps.onClick,
-      otherToggleButtonProps = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(toggleButtonProps, ["style", "onClick"]); // Do not render on the server
+      otherToggleButtonProps = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(toggleButtonProps, ["style", "onClick"]); / Do not render on the server
 
 
   if (!isMounted()) return null;
@@ -1429,7 +1429,7 @@ function ReactQueryDevtools(_ref) {
       boxShadow: '0 0 20px rgba(0,0,0,.3)',
       borderTop: "1px solid " + _theme__WEBPACK_IMPORTED_MODULE_7__.defaultTheme.gray,
       transformOrigin: 'top',
-      // visibility will be toggled after transitions, but set initial state here
+      / visibility will be toggled after transitions, but set initial state here
       visibility: isOpen ? 'visible' : 'hidden'
     }, panelStyle, isResizing ? {
       transition: "none"
@@ -1610,8 +1610,8 @@ var ReactQueryDevtoolsPanel = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___de
     if (isOpen) {
       var unsubscribe = queryCache.subscribe(function () {
         setUnsortedQueries(Object.values(queryCache.getAll()));
-      }); // re-subscribing after the panel is closed and re-opened won't trigger the callback,
-      // So we'll manually populate our state
+      }); / re-subscribing after the panel is closed and re-opened won't trigger the callback,
+      / So we'll manually populate our state
 
       setUnsortedQueries(Object.values(queryCache.getAll()));
       return unsubscribe;
@@ -1995,7 +1995,7 @@ var Panel = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.styled)('div', function (_pro
     flexDirection: 'column'
   },
   '(max-width: 600px)': {
-    fontSize: '.9em' // flexDirection: 'column',
+    fontSize: '.9em' / flexDirection: 'column',
 
   }
 });
@@ -2210,34 +2210,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 function useMediaQuery(query) {
-  // Keep track of the preference in state, start with the current match
+  / Keep track of the preference in state, start with the current match
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default().useState(function () {
     if (typeof window !== 'undefined') {
       return window.matchMedia && window.matchMedia(query).matches;
     }
   }),
       isMatch = _React$useState[0],
-      setIsMatch = _React$useState[1]; // Watch for changes
+      setIsMatch = _React$useState[1]; / Watch for changes
 
 
   react__WEBPACK_IMPORTED_MODULE_0___default().useEffect(function () {
     if (typeof window !== 'undefined') {
       if (!window.matchMedia) {
         return;
-      } // Create a matcher
+      } / Create a matcher
 
 
-      var matcher = window.matchMedia(query); // Create our handler
+      var matcher = window.matchMedia(query); / Create our handler
 
       var onChange = function onChange(_ref) {
         var matches = _ref.matches;
         return setIsMatch(matches);
-      }; // Listen for changes
+      }; / Listen for changes
 
 
       matcher.addListener(onChange);
       return function () {
-        // Stop listening for changes
+        / Stop listening for changes
         matcher.removeListener(onChange);
       };
     }
@@ -2295,7 +2295,7 @@ function styled(type, newStyles, queries) {
     var mediaStyles = Object.entries(queries).reduce(function (current, _ref2) {
       var key = _ref2[0],
           value = _ref2[1];
-      // eslint-disable-next-line react-hooks/rules-of-hooks
+      / eslint-disable-next-line react-hooks/rules-of-hooks
       return (0,_useMediaQuery__WEBPACK_IMPORTED_MODULE_4__["default"])(key) ? (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, current, typeof value === 'function' ? value(rest, theme) : value) : current;
     }, {});
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(type, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, rest, {

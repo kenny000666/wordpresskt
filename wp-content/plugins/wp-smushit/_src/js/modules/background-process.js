@@ -52,7 +52,7 @@ import loopbackTester from '../loopback-tester';
         return {
             hookStatusChecks() {
                 if (intervalHandle) {
-                    // Already done
+                    / Already done
                     return;
                 }
 
@@ -68,7 +68,7 @@ import loopbackTester from '../loopback-tester';
                     count++;
                     const statusSynced = this.syncBackgroundStatus();
                     if (count % 3 === 0) {
-                        // Do a full update every nth time
+                        / Do a full update every nth time
                         statusSynced.then(() => {
                             if (!statSyncInProgress) {
                                 this.syncStats().then(() => {
@@ -93,16 +93,16 @@ import loopbackTester from '../loopback-tester';
                 } );
             },
             start() {
-                // Reset boStats.
+                / Reset boStats.
                 this.resetBOStatsOnStart();
 
-                // Disable UI.
+                / Disable UI.
                 this.onStart();
 
                 loopbackTester.performTest().then( ( res ) => {
                     const isLoopbackHealthy = res?.loopback;
                     if ( isLoopbackHealthy ) {
-                         // Start BO.
+                         / Start BO.
                         this.startBulkSmush();
                     } else {
                         this.showLoopbackErrorModal();
@@ -117,13 +117,13 @@ import loopbackTester from '../loopback-tester';
             startBulkSmush() {
                 BO.handle('start').then((res) => {
                     if (res.success) {
-                        // Update stats.
+                        / Update stats.
                         const updatedStats = this.updateStats(res.data, false);
-                        // Show progress bar.
+                        / Show progress bar.
                         this.showProgressBar();
                         this.hookStatusChecks();
                         if ( updatedStats ) {
-                            // Render stats.
+                            / Render stats.
                             GlobalStats.renderStats();
                         }
                     } else {
@@ -147,7 +147,7 @@ import loopbackTester from '../loopback-tester';
                     return;
                 }
         
-                // Cache current process type.
+                / Cache current process type.
                 loopbackErrorModal.dataset.processType = 'smush';
         
                 WP_Smush.helpers.showModal( loopbackErrorModal.id );
@@ -159,21 +159,21 @@ import loopbackTester from '../loopback-tester';
                 if (!GlobalStats.getBoStats().in_processing) {
                     return;
                 }
-                // Disable UI.
+                / Disable UI.
                 this.onStart();
-                // Start BO.
+                / Start BO.
                 BO.initState().then((res) => {
                     if (res.success) {
-                        // Update stats.
+                        / Update stats.
                         this.updateStats(res.data, false);
-                        // Show progress bar.
+                        / Show progress bar.
                         this.showProgressBar();
                         this.hookStatusChecks();
-                        // Maybe update errors.
+                        / Maybe update errors.
                         if ( res.data.errors && ! Object.keys( GlobalStats.getErrors() ).length ) {
                             GlobalStats.setErrors( res.data.errors );
                         }
-                        // Render stats.
+                        / Render stats.
                         GlobalStats.renderStats();
                     } else {
                         WP_Smush.helpers.showNotice( res );
@@ -195,13 +195,13 @@ import loopbackTester from '../loopback-tester';
                 });
             },
             hideProgressBar() {
-                // Hide progress bar.
+                / Hide progress bar.
                 SmushProgress.close().update(0, GlobalStats.getBoStats().total_items);
             },
             showProgressBar() {
-                // Reset progress bar.
+                / Reset progress bar.
                 SmushProgress.update(GlobalStats.getBoStats().processed_items, GlobalStats.getBoStats().total_items);
-                // Show progress bar.
+                / Show progress bar.
                 SmushProgress.show();
             },
             /**
@@ -210,7 +210,7 @@ import loopbackTester from '../loopback-tester';
              * @param updateGlobal
              */
             updateStats(newStats, updateGlobal) {
-                // Make sure we have processed_stats/errors property (not added by default when start).
+                / Make sure we have processed_stats/errors property (not added by default when start).
                 newStats.global_stats = newStats.global_stats || {};
                 newStats.errors = newStats.errors || {};
                 const {
@@ -221,33 +221,33 @@ import loopbackTester from '../loopback-tester';
                 if ( ! GlobalStats.isChangedStats( newBoStats ) ) {
                     return false;
                 }
-                // Update BO stats.
+                / Update BO stats.
                 GlobalStats.setBoStats(newBoStats);
                 if (updateGlobal) {
-                    // Update global stats.
+                    / Update global stats.
                     GlobalStats.setGlobalStats(global_stats);
                 }
-                // Update Errors.
+                / Update Errors.
                 GlobalStats.setErrors( errors );
                 return true;
             },
             cancelBulk() {
-                // Sync Stats.
+                / Sync Stats.
                 this.syncStats(() => {
                     if (100 === GlobalStats.getGlobalStats().percent_optimized) {
-                        // If the last item was getting processed when the user cancelled then the process might have completed
+                        / If the last item was getting processed when the user cancelled then the process might have completed
                         GlobalStats.setBoStats( {
                             is_completed: true
                         } );
                         this.onCompletedBulk();
                     } else {
-                        // Update status of boStats.
+                        / Update status of boStats.
                         GlobalStats.setBoStats( {
                             is_cancelled: true
                         } );
-                        // Reset and hide progress bar.
+                        / Reset and hide progress bar.
                         this.onFinish();
-                        // Bulk is cancelled, show bulk desc.
+                        / Bulk is cancelled, show bulk desc.
                         SmushProgress.showBulkSmushDescription();
                     }
 
@@ -255,8 +255,8 @@ import loopbackTester from '../loopback-tester';
                 });
             },
             showCompletedMessage() {
-                // Render completed message.
-                // Show completed message.
+                / Render completed message.
+                / Show completed message.
                 const processedWrapper = bulkWrapper.querySelector('.wp-smush-all-done');
                 if ( GlobalStats.getBoStats().failed_items ) {
                     let completeMessage = wp_smush_msgs.all_failed;
@@ -285,18 +285,18 @@ import loopbackTester from '../loopback-tester';
                 return this.isFailedAllItems() ? 'warning' : 'success';
             },
             onCompletedBulk() {
-                // Reset and hide progress bar.
+                / Reset and hide progress bar.
                 this.onFinish();
-                // Bulk is completed, hide bulk desc.
+                / Bulk is completed, hide bulk desc.
                 SmushProgress.hideBulkSmushDescription();
-                // Show completed message.
+                / Show completed message.
                 this.showCompletedMessage();
 
-                // Reset the progress when we finish so the next smushing starts from zero.
+                / Reset the progress when we finish so the next smushing starts from zero.
                 SmushProgress.update(0, GlobalStats.getBoStats().total_items);
             },
             completeBulk() {
-                // Sync Stats.
+                / Sync Stats.
                 this.syncStats(() => this.onCompletedBulk());
             },
             syncStats(onComplete = () => false) {
@@ -325,19 +325,19 @@ import loopbackTester from '../loopback-tester';
                     }
 
                     if (res.success) {
-                        // Update stats.
+                        / Update stats.
                         if ( this.updateStats(res.data, false) ) {
-                            // Update progress bar.
+                            / Update progress bar.
                             SmushProgress.update(GlobalStats.getBoStats().processed_items, GlobalStats.getBoStats().total_items);
 
                             if (! GlobalStats.getBoStats().is_cancelled && ! GlobalStats.getBoStats().is_completed) {
-                                // Render stats.
+                                / Render stats.
                                 GlobalStats.renderStats();
                             }
                         }
 
                         if (GlobalStats.getBoStats().is_cancelled && !cancellationInProgress) {
-                            // Cancelled on server side
+                            / Cancelled on server side
                             this.cancelBulk();
                         } else if (GlobalStats.getBoStats().is_completed) {
                             this.completeBulk();
@@ -350,12 +350,12 @@ import loopbackTester from '../loopback-tester';
                 });
             },
             onStart() {
-                // Disable btn.
+                / Disable btn.
                 startBtn.setAttribute('disabled', '');
-                // Disable re-check images.
+                / Disable re-check images.
                 reScanImagesButton && reScanImagesButton.setAttribute('disabled', '');
                 $('.wp-smush-restore').setAttribute('disabled', '');
-                // Show upsell cdn.
+                / Show upsell cdn.
                 UpsellManger.maybeShowCDNUpsellForPreSiteOnStart();
 
                 this.hideBulkSmushFailedNotice();
@@ -369,21 +369,21 @@ import loopbackTester from '../loopback-tester';
                 }
             },
             onFinish() {
-                // Clear interval.
+                / Clear interval.
                 if (intervalHandle) {
                     clearInterval(intervalHandle);
                     intervalHandle = 0;
                 }
 
-                // Disable btn.
+                / Disable btn.
                 startBtn.removeAttribute('disabled');
-                // Reset and hide Progress Bar.
+                / Reset and hide Progress Bar.
                 this.hideProgressBar();
-                // Disable re-check images.
+                / Disable re-check images.
                 reScanImagesButton && reScanImagesButton.removeAttribute('disabled', '');
                 $('.wp-smush-restore').removeAttribute('disabled', '');
 
-                // Show upsell cdn.
+                / Show upsell cdn.
                 UpsellManger.maybeShowCDNUpsellForPreSiteOnCompleted();
             },
             onDead() {
@@ -415,7 +415,7 @@ import loopbackTester from '../loopback-tester';
                     return;
                 }
 
-                // Start BO.
+                / Start BO.
                 startBtn.onclick = () => {
                     const requiredScanMedia = startBtn.classList.contains('wp-smush-scan-and-bulk-smush');
                     if ( requiredScanMedia ) {
@@ -433,7 +433,7 @@ import loopbackTester from '../loopback-tester';
                     } );
                 }
 
-                // If BO is running, initial new state.
+                / If BO is running, initial new state.
                 this.initState();
             },
 			setCancelButtonStateToInitial() {
@@ -446,7 +446,7 @@ import loopbackTester from '../loopback-tester';
             },
         }
     })();
-    // Run.
+    / Run.
     BackgroundSmush && BackgroundSmush.init();
     /**
      * For globalStats, we will need to update it on reload and after re-checking images,
@@ -455,7 +455,7 @@ import loopbackTester from '../loopback-tester';
      * 2. On reload or after re-checking images, we need to update globalStats from global variable:
      * window.wp_smushit_data
      */
-    // Update global stats after re-checking images.
+    / Update global stats after re-checking images.
     document.addEventListener('wpSmushAfterRecheckImages', function(){
         GlobalStats.updateGlobalStatsFromSmushScriptData();
     });

@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../assets/dev/js/editor/container/container.js":
@@ -59,7 +59,7 @@ var Container = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     (0, _classCallCheck2.default)(this, Container);
     _this = _callSuper(this, Container, [args]);
 
-    // Validate args.
+    / Validate args.
     /**
      * Container type.
      *
@@ -159,12 +159,12 @@ var Container = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     _this.validateArgs(args);
     args = Object.entries(args);
 
-    // If empty.
+    / If empty.
     if (0 === args.length) {
       throw Error('Container cannot be empty.');
     }
 
-    // Set properties, if not defined - keep the defaults.
+    / Set properties, if not defined - keep the defaults.
     args.forEach(function (_ref) {
       var _ref2 = (0, _slicedToArray2.default)(_ref, 2),
         key = _ref2[0],
@@ -202,7 +202,7 @@ var Container = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
       this.requireArgumentInstance('settings', Backbone.Model, args);
       this.requireArgumentInstance('model', Backbone.Model, args);
 
-      // Require it, unless it's forced to be `false`.
+      / Require it, unless it's forced to be `false`.
       if (false !== args.parent) {
         this.requireArgumentInstance('parent', elementorModules.editor.Container, args);
       }
@@ -315,7 +315,7 @@ var Container = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
           }
           var container = view.container;
 
-          // Since the way 'global-widget' rendered, it does not have parent sometimes.
+          / Since the way 'global-widget' rendered, it does not have parent sometimes.
           if (container.parent.children) {
             container.parent.children[view._index] = container;
           }
@@ -332,7 +332,7 @@ var Container = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
         return;
       }
 
-      // On create container tell the parent where it was created.
+      / On create container tell the parent where it was created.
       this.parent.children.splice(this.view._index, 0, this);
     }
   }, {
@@ -343,7 +343,7 @@ var Container = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
         return;
       }
 
-      // When delete container its should notify its parent, that his children is dead.
+      / When delete container its should notify its parent, that his children is dead.
       this.parent.children = this.parent.children.filter(function (filtered) {
         return filtered.id !== _this4.id;
       });
@@ -375,8 +375,8 @@ var Container = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
         });
       });
 
-      // Backwards Compatibility: if there is only one repeater (type=repeater), set it's children as current children.
-      // Since 3.0.0.
+      / Backwards Compatibility: if there is only one repeater (type=repeater), set it's children as current children.
+      / Since 3.0.0.
       if (['widget', 'document'].includes(this.type)) {
         var repeaters = Object.values(this.controls).filter(function (control) {
           return 'repeater' === control.type;
@@ -408,7 +408,7 @@ var Container = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     value: function addRepeaterItem(repeaterName, rowSettingsModel, index) {
       var rowId = rowSettingsModel.get('_id');
 
-      // TODO: Temp backwards compatibility. since 2.8.0.
+      / TODO: Temp backwards compatibility. since 2.8.0.
       if (!rowId) {
         rowId = 'bc-' + elementorCommon.helpers.getUniqueId();
         rowSettingsModel.set('_id', rowId);
@@ -450,7 +450,7 @@ var Container = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
         this.renderer = this.renderer.lookup();
       }
       if (undefined === this.view || !this.view.lookup || !this.view.isDisconnected()) {
-        // Hack For repeater item the result is the parent container.
+        / Hack For repeater item the result is the parent container.
         if (Container.TYPE_REPEATER_ITEM === this.type) {
           this.settings = this.parent.parent.settings.get(this.model.get('name')).findWhere({
             _id: this.id
@@ -462,7 +462,7 @@ var Container = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
       if (lookup) {
         result = lookup.getContainer();
 
-        // Hack For repeater item the result is the parent container.
+        / Hack For repeater item the result is the parent container.
         if (Container.REPEATER === this.type) {
           this.settings = result.settings.get(this.model.get('name')).findWhere({
             _id: this.id
@@ -470,7 +470,7 @@ var Container = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
           return this;
         }
 
-        // If lookup were done, new container were created and parent does not know about it.
+        / If lookup were done, new container were created and parent does not know about it.
         if (result.parent.children) {
           result.parent.children[result.view._index] = result;
         }
@@ -574,7 +574,7 @@ var Container = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
         return localValue;
       }
 
-      // Try to get the value in the order: Global, Local, Global default.
+      / Try to get the value in the order: Global, Local, Global default.
       var globalValue;
       if (this.getGlobalKey(name)) {
         globalValue = this.getGlobalValue(name);
@@ -599,9 +599,9 @@ var Container = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
       var id = data.id;
       var value;
 
-      // It's a global settings with additional controls in group.
+      / It's a global settings with additional controls in group.
       if (control.groupType) {
-        // A regex containing all of the active breakpoints' prefixes ('_mobile', '_tablet' etc.).
+        / A regex containing all of the active breakpoints' prefixes ('_mobile', '_tablet' etc.).
         var responsivePrefixRegex = elementor.breakpoints.getActiveMatchRegex();
         var propertyName = control.name.replace(control.groupPrefix, '').replace(responsivePrefixRegex, '');
         if (!data.value[elementor.config.kit_config.typography_prefix + propertyName]) {
@@ -636,14 +636,14 @@ var Container = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
       var _this$controls$contro;
       var controlGlobalArgs = (_this$controls$contro = this.controls[controlName]) === null || _this$controls$contro === void 0 ? void 0 : _this$controls$contro.global;
       if (controlGlobalArgs !== null && controlGlobalArgs !== void 0 && controlGlobalArgs.default) {
-        // Temp fix.
+        / Temp fix.
         var controlType = this.controls[controlName].type;
         if ('color' === controlType) {
           controlType = 'colors';
         }
-        // End temp fix
+        / End temp fix
 
-        // If the control is a color/typography control and default colors/typography are disabled, don't return the global value.
+        / If the control is a color/typography control and default colors/typography are disabled, don't return the global value.
         if (!elementor.config.globals.defaults_enabled[controlType]) {
           return '';
         }
@@ -654,7 +654,7 @@ var Container = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
         return result === null || result === void 0 ? void 0 : result.value;
       }
 
-      // No global default.
+      / No global default.
       return '';
     }
   }]);
@@ -901,7 +901,7 @@ BaseSettingsModel = Backbone.Model.extend({
   initialize: function initialize(data, options) {
     var self = this;
 
-    // Keep the options for cloning
+    / Keep the options for cloning
     self.options = options;
     self.controls = elementor.mergeControlsSettings(options.controls);
     self.validators = {};
@@ -911,7 +911,7 @@ BaseSettingsModel = Backbone.Model.extend({
     var attrs = data || {},
       defaults = {};
     _.each(self.controls, function (control) {
-      // Check features since they does not exist in tests.
+      / Check features since they does not exist in tests.
       var isUIControl = control.features && -1 !== control.features.indexOf('ui');
       if (isUIControl) {
         return;
@@ -932,7 +932,7 @@ BaseSettingsModel = Backbone.Model.extend({
         hasDynamicSettings = true;
       }
 
-      // Check if the value is a plain object ( and not an array )
+      / Check if the value is a plain object ( and not an array )
       var isMultipleControl = jQuery.isPlainObject(control.default);
       if (undefined !== attrs[controlName] && isMultipleControl && !_.isObject(attrs[controlName]) && !hasDynamicSettings) {
         elementorCommon.debug.addCustomError(new TypeError('An invalid argument supplied as multiple control value'), 'InvalidElementData', 'Element `' + (self.get('widgetType') || self.get('elType')) + '` got <' + attrs[controlName] + '> as `' + controlName + '` value. Expected array or object.');
@@ -955,7 +955,7 @@ BaseSettingsModel = Backbone.Model.extend({
           options.controls[item.name] = item;
         });
 
-        // TODO: Cannot be deleted, since it handle repeater items after repeater widget creation.
+        / TODO: Cannot be deleted, since it handle repeater items after repeater widget creation.
         if (!attributes._id) {
           attributes._id = elementorCommon.helpers.getUniqueId();
         }
@@ -967,7 +967,7 @@ BaseSettingsModel = Backbone.Model.extend({
     var self = this;
     _.each(this.controls, function (field) {
       if (field.is_repeater) {
-        // TODO: Apply defaults on each field in repeater fields
+        / TODO: Apply defaults on each field in repeater fields
         if (!(attrs[field.name] instanceof Backbone.Collection)) {
           attrs[field.name] = self.convertRepeaterValueToCollection(attrs, field);
         }
@@ -1176,7 +1176,7 @@ BaseSettingsModel = Backbone.Model.extend({
         return;
       }
 
-      // TODO: use `save_default` in text|textarea controls.
+      / TODO: use `save_default` in text|textarea controls.
       if (control.save_default || ('text' === control.type || 'textarea' === control.type) && data[key]) {
         return;
       }
@@ -1352,13 +1352,13 @@ var EditorModule = elementorModules.Module.extend({
     });
     $window.on('elementor:init', this.onElementorReady);
   },
-  // TODO: Delete as soon as possible.
+  / TODO: Delete as soon as possible.
   getEditorControlView: function getEditorControlView(name) {
     var _this$getEditorContro;
     var editor = elementor.getPanelView().getCurrentPageView();
     return editor.children.findByModelCid((_this$getEditorContro = this.getEditorControlModel(name)) === null || _this$getEditorContro === void 0 ? void 0 : _this$getEditorContro.cid);
   },
-  // TODO: Delete as soon as possible.
+  / TODO: Delete as soon as possible.
   getEditorControlModel: function getEditorControlModel(name) {
     var editor = elementor.getPanelView().getCurrentPageView();
     return editor.collection.findWhere({
@@ -1409,7 +1409,7 @@ var ControlsPopover = exports["default"] = /*#__PURE__*/function () {
     this.$popover.append(child.$el);
     this.popoverToggleView = child._parent.children.findByIndex(child._index - 1);
 
-    // Add the "Typography" header to the popover
+    / Add the "Typography" header to the popover
     if ('typography' === this.child.model.attributes.groupType) {
       this.createPopoverHeader();
     }
@@ -1424,7 +1424,7 @@ var ControlsPopover = exports["default"] = /*#__PURE__*/function () {
     value: function createPopoverHeader() {
       var _this = this;
       var $popoverToggleControl = this.$popover.prev(),
-        // Get the existing reset button.
+        / Get the existing reset button.
         $resetLabel = $popoverToggleControl.find('.elementor-control-popover-toggle-reset-label');
       this.$popoverHeader = jQuery('<div>', {
         class: 'e-group-control-header'
@@ -1433,12 +1433,12 @@ var ControlsPopover = exports["default"] = /*#__PURE__*/function () {
         class: 'e-control-tools'
       });
 
-      // Give the reset button the control tool styling, and add a click event so clicking on it closes the popover.
+      / Give the reset button the control tool styling, and add a click event so clicking on it closes the popover.
       $resetLabel.addClass('e-control-tool').on('click', function () {
         return _this.onResetButtonClick();
       });
 
-      // Move the popover toggle reset button into the popover header.
+      / Move the popover toggle reset button into the popover header.
       this.$headerControlsWrapper.append($resetLabel);
       this.$popoverHeader.append(this.$headerControlsWrapper);
       var globalConfig = this.popoverToggleView.model.get('global');
@@ -1457,8 +1457,8 @@ var ControlsPopover = exports["default"] = /*#__PURE__*/function () {
           settings: (0, _defineProperty2.default)({}, groupControlName, '')
         };
       if (this.child.options.container.globals.get(groupControlName)) {
-        // The Disable Globals command applies global settings locally,
-        // so disabling the global shouldn't actually change the appearance of the widget.
+        / The Disable Globals command applies global settings locally,
+        / so disabling the global shouldn't actually change the appearance of the widget.
         $e.run('document/globals/disable', args);
       } else {
         $e.run('document/elements/settings', args);
@@ -1533,7 +1533,7 @@ ControlsStack = Marionette.CompositeView.extend({
   },
   childViewOptions: function childViewOptions() {
     return {
-      // TODO: elementSettingsModel is deprecated since 2.8.0.
+      / TODO: elementSettingsModel is deprecated since 2.8.0.
       elementSettingsModel: this.model
     };
   },
@@ -1821,8 +1821,8 @@ var ArgsObject = exports["default"] = /*#__PURE__*/function (_InstanceType) {
       var args = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.args;
       this.requireArgument(property, args);
 
-      // Note: Converting the constructor to string in order to avoid equation issues
-      // due to different memory addresses between iframes (window.Object !== window.top.Object).
+      / Note: Converting the constructor to string in order to avoid equation issues
+      / due to different memory addresses between iframes (window.Object !== window.top.Object).
       if (args[property].constructor.toString() !== type.prototype.constructor.toString()) {
         throw Error("".concat(property, " invalid constructor type."));
       }
@@ -1860,7 +1860,7 @@ var InstanceType = exports["default"] = /*#__PURE__*/function () {
   function InstanceType() {
     var _this = this;
     (0, _classCallCheck2.default)(this, InstanceType);
-    // Since anonymous classes sometimes do not get validated by babel, do it manually.
+    / Since anonymous classes sometimes do not get validated by babel, do it manually.
     var target = this instanceof InstanceType ? this.constructor : void 0;
     var prototypes = [];
     while (target.__proto__ && target.__proto__.name) {
@@ -1881,7 +1881,7 @@ var InstanceType = exports["default"] = /*#__PURE__*/function () {
        */
       var result = _superPropGet(InstanceType, Symbol.hasInstance, this, 2)([target]);
 
-      // Act normal when validate a class, which does not have instance type.
+      / Act normal when validate a class, which does not have instance type.
       if (target && !target.constructor.getInstanceType) {
         return result;
       }
@@ -1902,7 +1902,7 @@ var InstanceType = exports["default"] = /*#__PURE__*/function () {
         }
       }
       if (!result && target) {
-        // Check if the given 'target', is instance of known types.
+        / Check if the given 'target', is instance of known types.
         result = target.instanceTypes && Array.isArray(target.instanceTypes) && -1 !== target.instanceTypes.indexOf(this.getInstanceType());
       }
       return result;
@@ -2900,27 +2900,27 @@ try {
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	

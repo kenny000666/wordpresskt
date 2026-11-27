@@ -36,7 +36,7 @@
 				}
 
 				el       = link.parents( '.redux-container:first' );
-				relid    = link.data( 'rel' ); // The group ID of interest.
+				relid    = link.data( 'rel' ); / The group ID of interest.
 				oldid    = el.find( '.redux-group-tab-link-li.active:first .redux-group-tab-link-a' ).data( 'rel' );
 				opt_name = $.redux.getOptName( el );
 
@@ -60,7 +60,7 @@
 					}
 				}
 
-				// Set the proper page cookie.
+				/ Set the proper page cookie.
 				$.cookie(
 					cookieName,
 					relid,
@@ -161,14 +161,14 @@
 					}
 				}
 
-				// Show the group.
+				/ Show the group.
 				el.find( '#' + oldid + '_section_group' ).hide();
 
 				el.find( '#' + relid + '_section_group' ).fadeIn(
 					200,
 					function () {
 						if ( 0 !== el.find( '#redux-footer' ).length ) {
-							$.redux.stickyInfo(); // Race condition fix.
+							$.redux.stickyInfo(); / Race condition fix.
 						}
 
 						$.redux.initFields();
@@ -246,7 +246,7 @@
 					sTab = $( this ).find( '#' + $.cookie( cookieName ) + '_section_group_li_a' );
 				}
 
-				// Tab the first item or the saved one.
+				/ Tab the first item or the saved one.
 				if ( null === $.cookie( cookieName ) || 'undefined' === typeof ( $.cookie( cookieName ) ) || 0 === sTab.length ) {
 					$( this ).find( '.redux-group-tab-link-a:first' ).trigger( 'click' );
 				} else {

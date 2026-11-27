@@ -31,7 +31,7 @@
 				el.find( '.redux_spinner' ).each(
 					function () {
 
-						// Slider init.
+						/ Slider init.
 						const spinner = $( this ).find( '.spinner-input' ).data();
 
 						spinner.id = $( this ).find( '.spinner-input' ).attr( 'id' );

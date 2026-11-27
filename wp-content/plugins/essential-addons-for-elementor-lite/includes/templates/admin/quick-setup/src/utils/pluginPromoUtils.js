@@ -19,7 +19,7 @@ export const hasDisplayablePlugins = () => {
   
   if (plugins.length === 0) return false;
   
-  // Check if there are any plugins that are not installed
+  / Check if there are any plugins that are not installed
   return plugins.some(plugin => plugin.local_plugin_data === false);
 };
 

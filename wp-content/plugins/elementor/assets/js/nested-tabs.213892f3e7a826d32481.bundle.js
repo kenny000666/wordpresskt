@@ -73,7 +73,7 @@ function getChildrenWidth(children) {
   let totalWidth = 0;
   const parentContainer = children[0].parentNode,
     computedStyles = getComputedStyle(parentContainer),
-    gap = parseFloat(computedStyles.gap) || 0; // Get the gap value or default to 0 if it's not specified
+    gap = parseFloat(computedStyles.gap) || 0; / Get the gap value or default to 0 if it's not specified
 
   for (let i = 0; i < children.length; i++) {
     totalWidth += children[i].offsetWidth + gap;
@@ -199,14 +199,14 @@ class NestedTabs extends _base.default {
         hideTabFn: settings.hideTabFn
       };
 
-    // Toggle tabs without animation to avoid jumping
+    / Toggle tabs without animation to avoid jumping
     this.setSettings({
       showTabFn: 'show',
       hideTabFn: 'hide'
     });
     this.changeActiveTab(defaultActiveTab);
 
-    // Return back original toggle effects
+    / Return back original toggle effects
     this.setSettings(originalToggleMethods);
     this.elements.$widgetContainer.addClass('e-activated');
   }
@@ -244,9 +244,9 @@ class NestedTabs extends _base.default {
     let $requestedTitle = this.elements.$tabTitles.filter(this.getTabTitleFilterSelector(tabIndex)),
       $requestedContent = this.elements.$tabContents.filter(this.getTabContentFilterSelector(tabIndex));
 
-    // Check if the tabIndex exists.
+    / Check if the tabIndex exists.
     if (!$requestedTitle.length) {
-      // Activate the previous tab and ensure that the tab index is not less than 1.
+      / Activate the previous tab and ensure that the tab index is not less than 1.
       const previousTabIndex = Math.max(tabIndex - 1, 1);
       $requestedTitle = this.elements.$tabTitles.filter(this.getTabTitleFilterSelector(previousTabIndex));
       $requestedContent = this.elements.$tabContents.filter(this.getTabContentFilterSelector(previousTabIndex));
@@ -337,7 +337,7 @@ class NestedTabs extends _base.default {
         } = _ref;
         new NestedTitleKeyboardHandler(this.getKeyboardNavigationSettings());
       }).catch(error => {
-        // eslint-disable-next-line no-console
+        / eslint-disable-next-line no-console
         console.error('Error importing module:', error);
       });
     }
@@ -362,8 +362,8 @@ class NestedTabs extends _base.default {
    */
   changeActiveTab(tabIndex) {
     let fromUser = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-    // `document/repeater/select` is used only in the editor, only when the element
-    // is in the currently-edited document, and only when its not internal call,
+    / `document/repeater/select` is used only in the editor, only when the element
+    / is in the currently-edited document, and only when its not internal call,
     if (fromUser && this.isEdit && this.isElementInTheCurrentDocument()) {
       return window.top.$e.run('document/repeater/select', {
         container: elementor.getContainer(this.$element.attr('data-id')),
@@ -393,7 +393,7 @@ class NestedTabs extends _base.default {
     this.changeActiveTab(settings.titleIndex, true);
   }
   activateMobileTab(tabIndex) {
-    // Timeout time added to ensure that opening of the active tab starts after closing the other tab on Apple devices.
+    / Timeout time added to ensure that opening of the active tab starts after closing the other tab on Apple devices.
     setTimeout(() => {
       this.activateTab(tabIndex);
       this.forceActiveTabToBeInViewport(tabIndex);

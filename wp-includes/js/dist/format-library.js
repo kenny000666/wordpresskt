@@ -1,18 +1,18 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
 var __webpack_exports__ = {};
 
-;// external ["wp","richText"]
+;/ external ["wp","richText"]
 const external_wp_richText_namespaceObject = window["wp"]["richText"];
-;// external ["wp","i18n"]
+;/ external ["wp","i18n"]
 const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
-;// external ["wp","blockEditor"]
+;/ external ["wp","blockEditor"]
 const external_wp_blockEditor_namespaceObject = window["wp"]["blockEditor"];
-;// external ["wp","primitives"]
+;/ external ["wp","primitives"]
 const external_wp_primitives_namespaceObject = window["wp"]["primitives"];
-;// external "ReactJSXRuntime"
+;/ external "ReactJSXRuntime"
 const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
-;// ./node_modules/@wordpress/icons/build-module/library/format-bold.js
+;/ ./node_modules/@wordpress/icons/build-module/library/format-bold.js
 /**
  * WordPress dependencies
  */
@@ -27,7 +27,7 @@ const formatBold = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)
 });
 /* harmony default export */ const format_bold = (formatBold);
 
-;// ./node_modules/@wordpress/format-library/build-module/bold/index.js
+;/ ./node_modules/@wordpress/format-library/build-module/bold/index.js
 /**
  * WordPress dependencies
  */
@@ -82,7 +82,7 @@ const bold = {
   }
 };
 
-;// ./node_modules/@wordpress/icons/build-module/library/code.js
+;/ ./node_modules/@wordpress/icons/build-module/library/code.js
 /**
  * WordPress dependencies
  */
@@ -97,7 +97,7 @@ const code = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(exter
 });
 /* harmony default export */ const library_code = (code);
 
-;// ./node_modules/@wordpress/format-library/build-module/code/index.js
+;/ ./node_modules/@wordpress/format-library/build-module/code/index.js
 /**
  * WordPress dependencies
  */
@@ -121,7 +121,7 @@ const code_code = {
     } = value;
     const characterBefore = text[start - 1];
 
-    // Quick check the text for the necessary character.
+    / Quick check the text for the necessary character.
     if (characterBefore !== BACKTICK) {
       return value;
     }
@@ -173,11 +173,11 @@ const code_code = {
   }
 };
 
-;// external ["wp","components"]
+;/ external ["wp","components"]
 const external_wp_components_namespaceObject = window["wp"]["components"];
-;// external ["wp","element"]
+;/ external ["wp","element"]
 const external_wp_element_namespaceObject = window["wp"]["element"];
-;// ./node_modules/@wordpress/format-library/build-module/image/index.js
+;/ ./node_modules/@wordpress/format-library/build-module/image/index.js
 /**
  * WordPress dependencies
  */
@@ -266,7 +266,7 @@ function InlineUI({
           help: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_ReactJSXRuntime_namespaceObject.Fragment, {
             children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.ExternalLink, {
               href:
-              // translators: Localized tutorial, if one exists. W3C Web Accessibility Initiative link has list of existing translations.
+              / translators: Localized tutorial, if one exists. W3C Web Accessibility Initiative link has list of existing translations.
               (0,external_wp_i18n_namespaceObject.__)('https://www.w3.org/WAI/tutorials/images/decision-tree/'),
               children: (0,external_wp_i18n_namespaceObject.__)('Describe the purpose of the image.')
             }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("br", {}), (0,external_wp_i18n_namespaceObject.__)('Leave empty if decorative.')]
@@ -337,7 +337,7 @@ function Edit({
   });
 }
 
-;// ./node_modules/@wordpress/icons/build-module/library/format-italic.js
+;/ ./node_modules/@wordpress/icons/build-module/library/format-italic.js
 /**
  * WordPress dependencies
  */
@@ -352,7 +352,7 @@ const formatItalic = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.js
 });
 /* harmony default export */ const format_italic = (formatItalic);
 
-;// ./node_modules/@wordpress/format-library/build-module/italic/index.js
+;/ ./node_modules/@wordpress/format-library/build-module/italic/index.js
 /**
  * WordPress dependencies
  */
@@ -407,11 +407,11 @@ const italic = {
   }
 };
 
-;// external ["wp","url"]
+;/ external ["wp","url"]
 const external_wp_url_namespaceObject = window["wp"]["url"];
-;// external ["wp","htmlEntities"]
+;/ external ["wp","htmlEntities"]
 const external_wp_htmlEntities_namespaceObject = window["wp"]["htmlEntities"];
-;// ./node_modules/@wordpress/icons/build-module/library/link.js
+;/ ./node_modules/@wordpress/icons/build-module/library/link.js
 /**
  * WordPress dependencies
  */
@@ -426,11 +426,11 @@ const link_link = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(
 });
 /* harmony default export */ const library_link = (link_link);
 
-;// external ["wp","a11y"]
+;/ external ["wp","a11y"]
 const external_wp_a11y_namespaceObject = window["wp"]["a11y"];
-;// external ["wp","data"]
+;/ external ["wp","data"]
 const external_wp_data_namespaceObject = window["wp"]["data"];
-;// ./node_modules/@wordpress/format-library/build-module/link/utils.js
+;/ ./node_modules/@wordpress/format-library/build-module/link/utils.js
 /**
  * WordPress dependencies
  */
@@ -452,15 +452,15 @@ function isValidHref(href) {
     return false;
   }
 
-  // Does the href start with something that looks like a URL protocol?
+  / Does the href start with something that looks like a URL protocol?
   if (/^\S+:/.test(trimmedHref)) {
     const protocol = (0,external_wp_url_namespaceObject.getProtocol)(trimmedHref);
     if (!(0,external_wp_url_namespaceObject.isValidProtocol)(protocol)) {
       return false;
     }
 
-    // Add some extra checks for http(s) URIs, since these are the most common use-case.
-    // This ensures URIs with an http protocol have exactly two forward slashes following the protocol.
+    / Add some extra checks for http(s) URIs, since these are the most common use-case.
+    / This ensures URIs with an http protocol have exactly two forward slashes following the protocol.
     if (protocol.startsWith('http') && !/^https?:\/\/[^\/\s]/i.test(trimmedHref)) {
       return false;
     }
@@ -482,7 +482,7 @@ function isValidHref(href) {
     }
   }
 
-  // Validate anchor links.
+  / Validate anchor links.
   if (trimmedHref.startsWith('#') && !(0,external_wp_url_namespaceObject.isValidFragment)(trimmedHref)) {
     return false;
   }
@@ -555,7 +555,7 @@ function getFormatBoundary(value, format, startIndex = value.start, endIndex = v
     return EMPTY_BOUNDARIES;
   }
 
-  // Clone formats to avoid modifying source formats.
+  / Clone formats to avoid modifying source formats.
   const newFormats = formats.slice();
   const formatAtStart = newFormats[startIndex]?.find(({
     type
@@ -567,17 +567,17 @@ function getFormatBoundary(value, format, startIndex = value.start, endIndex = v
     type
   }) => type === format.type);
   if (!!formatAtStart) {
-    // Set values to conform to "start"
+    / Set values to conform to "start"
     targetFormat = formatAtStart;
     initialIndex = startIndex;
   } else if (!!formatAtEnd) {
-    // Set values to conform to "end"
+    / Set values to conform to "end"
     targetFormat = formatAtEnd;
     initialIndex = endIndex;
   } else if (!!formatAtEndMinusOne) {
-    // This is an edge case which will occur if you create a format, then place
-    // the caret just before the format and hit the back ARROW key. The resulting
-    // value object will have start and end +1 beyond the edge of the format boundary.
+    / This is an edge case which will occur if you create a format, then place
+    / the caret just before the format and hit the back ARROW key. The resulting
+    / value object will have start and end +1 beyond the edge of the format boundary.
     targetFormat = formatAtEndMinusOne;
     initialIndex = endIndex - 1;
   } else {
@@ -586,16 +586,16 @@ function getFormatBoundary(value, format, startIndex = value.start, endIndex = v
   const index = newFormats[initialIndex].indexOf(targetFormat);
   const walkingArgs = [newFormats, initialIndex, targetFormat, index];
 
-  // Walk the startIndex "backwards" to the leading "edge" of the matching format.
+  / Walk the startIndex "backwards" to the leading "edge" of the matching format.
   startIndex = walkToStart(...walkingArgs);
 
-  // Walk the endIndex "forwards" until the trailing "edge" of the matching format.
+  / Walk the endIndex "forwards" until the trailing "edge" of the matching format.
   endIndex = walkToEnd(...walkingArgs);
 
-  // Safe guard: start index cannot be less than 0.
+  / Safe guard: start index cannot be less than 0.
   startIndex = startIndex < 0 ? 0 : startIndex;
 
-  // // Return the indices of the "edges" as the boundaries.
+  / / Return the indices of the "edges" as the boundaries.
   return {
     start: startIndex,
     end: endIndex
@@ -619,15 +619,15 @@ function walkToBoundary(formats, initialIndex, targetFormatRef, formatIndex, dir
     forwards: 1,
     backwards: -1
   };
-  const directionIncrement = directions[direction] || 1; // invalid direction arg default to forwards
+  const directionIncrement = directions[direction] || 1; / invalid direction arg default to forwards
   const inverseDirectionIncrement = directionIncrement * -1;
   while (formats[index] && formats[index][formatIndex] === targetFormatRef) {
-    // Increment/decrement in the direction of operation.
+    / Increment/decrement in the direction of operation.
     index = index + directionIncrement;
   }
 
-  // Restore by one in inverse direction of operation
-  // to avoid out of bounds.
+  / Restore by one in inverse direction of operation
+  / to avoid out of bounds.
   index = index + inverseDirectionIncrement;
   return index;
 }
@@ -635,7 +635,7 @@ const partialRight = (fn, ...partialArgs) => (...args) => fn(...args, ...partial
 const walkToStart = partialRight(walkToBoundary, 'backwards');
 const walkToEnd = partialRight(walkToBoundary, 'forwards');
 
-;// ./node_modules/@wordpress/format-library/build-module/link/inline.js
+;/ ./node_modules/@wordpress/format-library/build-module/link/inline.js
 /**
  * WordPress dependencies
  */
@@ -670,7 +670,7 @@ function InlineLinkUI({
 }) {
   const richLinkTextValue = getRichTextValueFromSelection(value, isActive);
 
-  // Get the text content minus any HTML tags.
+  / Get the text content minus any HTML tags.
   const richTextText = richLinkTextValue.text;
   const {
     selectionChange
@@ -709,7 +709,7 @@ function InlineLinkUI({
     const hasLink = linkValue?.url;
     const isNewLink = !hasLink;
 
-    // Merge the next value with the current link value.
+    / Merge the next value with the current link value.
     nextValue = {
       ...linkValue,
       ...nextValue
@@ -724,19 +724,19 @@ function InlineLinkUI({
     });
     const newText = nextValue.title || newUrl;
 
-    // Scenario: we have any active text selection or an active format.
+    / Scenario: we have any active text selection or an active format.
     let newValue;
     if ((0,external_wp_richText_namespaceObject.isCollapsed)(value) && !isActive) {
-      // Scenario: we don't have any actively selected text or formats.
+      / Scenario: we don't have any actively selected text or formats.
       const inserted = (0,external_wp_richText_namespaceObject.insert)(value, newText);
       newValue = (0,external_wp_richText_namespaceObject.applyFormat)(inserted, linkFormat, value.start, value.start + newText.length);
       onChange(newValue);
 
-      // Close the Link UI.
+      / Close the Link UI.
       stopAddingLink();
 
-      // Move the selection to the end of the inserted link outside of the format boundary
-      // so the user can continue typing after the link.
+      / Move the selection to the end of the inserted link outside of the format boundary
+      / so the user can continue typing after the link.
       selectionChange({
         clientId: selectionStart.clientId,
         identifier: selectionStart.attributeKey,
@@ -746,49 +746,49 @@ function InlineLinkUI({
     } else if (newText === richTextText) {
       newValue = (0,external_wp_richText_namespaceObject.applyFormat)(value, linkFormat);
     } else {
-      // Scenario: Editing an existing link.
+      / Scenario: Editing an existing link.
 
-      // Create new RichText value for the new text in order that we
-      // can apply formats to it.
+      / Create new RichText value for the new text in order that we
+      / can apply formats to it.
       newValue = (0,external_wp_richText_namespaceObject.create)({
         text: newText
       });
-      // Apply the new Link format to this new text value.
+      / Apply the new Link format to this new text value.
       newValue = (0,external_wp_richText_namespaceObject.applyFormat)(newValue, linkFormat, 0, newText.length);
 
-      // Get the boundaries of the active link format.
+      / Get the boundaries of the active link format.
       const boundary = getFormatBoundary(value, {
         type: 'core/link'
       });
 
-      // Split the value at the start of the active link format.
-      // Passing "start" as the 3rd parameter is required to ensure
-      // the second half of the split value is split at the format's
-      // start boundary and avoids relying on the value's "end" property
-      // which may not correspond correctly.
+      / Split the value at the start of the active link format.
+      / Passing "start" as the 3rd parameter is required to ensure
+      / the second half of the split value is split at the format's
+      / start boundary and avoids relying on the value's "end" property
+      / which may not correspond correctly.
       const [valBefore, valAfter] = (0,external_wp_richText_namespaceObject.split)(value, boundary.start, boundary.start);
 
-      // Update the original (full) RichTextValue replacing the
-      // target text with the *new* RichTextValue containing:
-      // 1. The new text content.
-      // 2. The new link format.
-      // As "replace" will operate on the first match only, it is
-      // run only against the second half of the value which was
-      // split at the active format's boundary. This avoids a bug
-      // with incorrectly targeted replacements.
-      // See: https://github.com/WordPress/gutenberg/issues/41771.
-      // Note original formats will be lost when applying this change.
-      // That is expected behaviour.
-      // See: https://github.com/WordPress/gutenberg/pull/33849#issuecomment-936134179.
+      / Update the original (full) RichTextValue replacing the
+      / target text with the *new* RichTextValue containing:
+      / 1. The new text content.
+      / 2. The new link format.
+      / As "replace" will operate on the first match only, it is
+      / run only against the second half of the value which was
+      / split at the active format's boundary. This avoids a bug
+      / with incorrectly targeted replacements.
+      / See: https://github.com/WordPress/gutenberg/issues/41771.
+      / Note original formats will be lost when applying this change.
+      / That is expected behaviour.
+      / See: https://github.com/WordPress/gutenberg/pull/33849#issuecomment-936134179.
       const newValAfter = (0,external_wp_richText_namespaceObject.replace)(valAfter, richTextText, newValue);
       newValue = (0,external_wp_richText_namespaceObject.concat)(valBefore, newValAfter);
     }
     onChange(newValue);
 
-    // Focus should only be returned to the rich text on submit if this link is not
-    // being created for the first time. If it is then focus should remain within the
-    // Link UI because it should remain open for the user to modify the link they have
-    // just created.
+    / Focus should only be returned to the rich text on submit if this link is not
+    / being created for the first time. If it is then focus should remain within the
+    / Link UI because it should remain open for the user to modify the link they have
+    / just created.
     if (!isNewLink) {
       stopAddingLink();
     }
@@ -848,7 +848,7 @@ function InlineLinkUI({
       settings: LINK_SETTINGS,
       showInitialSuggestions: true,
       suggestionsQuery: {
-        // always show Pages as initial suggestions
+        / always show Pages as initial suggestions
         initialSuggestionsSearchOptions: {
           type: 'post',
           subtype: 'page',
@@ -859,30 +859,30 @@ function InlineLinkUI({
   });
 }
 function getRichTextValueFromSelection(value, isActive) {
-  // Default to the selection ranges on the RichTextValue object.
+  / Default to the selection ranges on the RichTextValue object.
   let textStart = value.start;
   let textEnd = value.end;
 
-  // If the format is currently active then the rich text value
-  // should always be taken from the bounds of the active format
-  // and not the selected text.
+  / If the format is currently active then the rich text value
+  / should always be taken from the bounds of the active format
+  / and not the selected text.
   if (isActive) {
     const boundary = getFormatBoundary(value, {
       type: 'core/link'
     });
     textStart = boundary.start;
 
-    // Text *selection* always extends +1 beyond the edge of the format.
-    // We account for that here.
+    / Text *selection* always extends +1 beyond the edge of the format.
+    / We account for that here.
     textEnd = boundary.end + 1;
   }
 
-  // Get a RichTextValue containing the selected text content.
+  / Get a RichTextValue containing the selected text content.
   return (0,external_wp_richText_namespaceObject.slice)(value, textStart, textEnd);
 }
 /* harmony default export */ const inline = (InlineLinkUI);
 
-;// ./node_modules/@wordpress/format-library/build-module/link/index.js
+;/ ./node_modules/@wordpress/format-library/build-module/link/index.js
 /**
  * WordPress dependencies
  */
@@ -913,12 +913,12 @@ function link_Edit({
 }) {
   const [addingLink, setAddingLink] = (0,external_wp_element_namespaceObject.useState)(false);
 
-  // We only need to store the button element that opened the popover. We can ignore the other states, as they will be handled by the onFocus prop to return to the rich text field.
+  / We only need to store the button element that opened the popover. We can ignore the other states, as they will be handled by the onFocus prop to return to the rich text field.
   const [openedBy, setOpenedBy] = (0,external_wp_element_namespaceObject.useState)(null);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
-    // When the link becomes inactive (i.e. isActive is false), reset the editingLink state
-    // and the creatingLink state. This means that if the Link UI is displayed and the link
-    // becomes inactive (e.g. used arrow keys to move cursor outside of link bounds), the UI will close.
+    / When the link becomes inactive (i.e. isActive is false), reset the editingLink state
+    / and the creatingLink state. This means that if the Link UI is displayed and the link
+    / becomes inactive (e.g. used arrow keys to move cursor outside of link bounds), the UI will close.
     if (!isActive) {
       setAddingLink(false);
     }
@@ -929,15 +929,15 @@ function link_Edit({
       return;
     }
     function handleClick(event) {
-      // There is a situation whereby there is an existing link in the rich text
-      // and the user clicks on the leftmost edge of that link and fails to activate
-      // the link format, but the click event still fires on the `<a>` element.
-      // This causes the `editingLink` state to be set to `true` and the link UI
-      // to be rendered in "creating" mode. We need to check isActive to see if
-      // we have an active link format.
+      / There is a situation whereby there is an existing link in the rich text
+      / and the user clicks on the leftmost edge of that link and fails to activate
+      / the link format, but the click event still fires on the `<a>` element.
+      / This causes the `editingLink` state to be set to `true` and the link UI
+      / to be rendered in "creating" mode. We need to check isActive to see if
+      / we have an active link format.
       const link = event.target.closest('[contenteditable] a');
       if (!link ||
-      // other formats (e.g. bold) may be nested within the link.
+      / other formats (e.g. bold) may be nested within the link.
       !isActive) {
         return;
       }
@@ -979,7 +979,7 @@ function link_Edit({
       if (target) {
         setOpenedBy({
           el: target,
-          action: null // We don't need to distinguish between click or keyboard here
+          action: null / We don't need to distinguish between click or keyboard here
         });
       }
       setAddingLink(true);
@@ -991,34 +991,34 @@ function link_Edit({
    * but _not_ on a click outside the popover. onFocusOutside handles that.
    */
   function stopAddingLink() {
-    // Don't let the click handler on the toolbar button trigger again.
+    / Don't let the click handler on the toolbar button trigger again.
 
-    // There are two places for us to return focus to on Escape keypress:
-    // 1. The rich text field.
-    // 2. The toolbar button.
+    / There are two places for us to return focus to on Escape keypress:
+    / 1. The rich text field.
+    / 2. The toolbar button.
 
-    // The toolbar button is the only one we need to handle returning focus to.
-    // Otherwise, we rely on the passed in onFocus to return focus to the rich text field.
+    / The toolbar button is the only one we need to handle returning focus to.
+    / Otherwise, we rely on the passed in onFocus to return focus to the rich text field.
 
-    // Close the popover
+    / Close the popover
     setAddingLink(false);
 
-    // Return focus to the toolbar button or the rich text field
+    / Return focus to the toolbar button or the rich text field
     if (openedBy?.el?.tagName === 'BUTTON') {
       openedBy.el.focus();
     } else {
       onFocus();
     }
-    // Remove the openedBy state
+    / Remove the openedBy state
     setOpenedBy(null);
   }
 
-  // Test for this:
-  // 1. Click on the link button
-  // 2. Click the Options button in the top right of header
-  // 3. Focus should be in the dropdown of the Options button
-  // 4. Press Escape
-  // 5. Focus should be on the Options button
+  / Test for this:
+  / 1. Click on the link button
+  / 2. Click the Options button in the top right of header
+  / 3. Focus should be in the dropdown of the Options button
+  / 4. Press Escape
+  / 5. Focus should be on the Options button
   function onFocusOutside() {
     setAddingLink(false);
     setOpenedBy(null);
@@ -1028,7 +1028,7 @@ function link_Edit({
     (0,external_wp_a11y_namespaceObject.speak)((0,external_wp_i18n_namespaceObject.__)('Link removed.'), 'assertive');
   }
 
-  // Only autofocus if we have clicked a link within the editor
+  / Only autofocus if we have clicked a link within the editor
   const shouldAutoFocus = !(openedBy?.el?.tagName === 'A' && openedBy?.action === 'click');
   const hasSelection = !(0,external_wp_richText_namespaceObject.isCollapsed)(value);
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_ReactJSXRuntime_namespaceObject.Fragment, {
@@ -1083,13 +1083,13 @@ const build_module_link_link = {
   }) {
     const pastedText = (html || plainText).replace(/<[^>]+>/g, '').trim();
 
-    // A URL was pasted, turn the selection into a link.
-    // For the link pasting feature, allow only http(s) protocols.
+    / A URL was pasted, turn the selection into a link.
+    / For the link pasting feature, allow only http(s) protocols.
     if (!(0,external_wp_url_namespaceObject.isURL)(pastedText) || !/^https?:/.test(pastedText)) {
       return value;
     }
 
-    // Allows us to ask for this information when we get a report.
+    / Allows us to ask for this information when we get a report.
     window.console.log('Created link:\n\n', pastedText);
     const format = {
       type: link_name,
@@ -1107,7 +1107,7 @@ const build_module_link_link = {
   edit: link_Edit
 };
 
-;// ./node_modules/@wordpress/icons/build-module/library/format-strikethrough.js
+;/ ./node_modules/@wordpress/icons/build-module/library/format-strikethrough.js
 /**
  * WordPress dependencies
  */
@@ -1122,7 +1122,7 @@ const formatStrikethrough = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceOb
 });
 /* harmony default export */ const format_strikethrough = (formatStrikethrough);
 
-;// ./node_modules/@wordpress/format-library/build-module/strikethrough/index.js
+;/ ./node_modules/@wordpress/format-library/build-module/strikethrough/index.js
 /**
  * WordPress dependencies
  */
@@ -1167,7 +1167,7 @@ const strikethrough = {
   }
 };
 
-;// ./node_modules/@wordpress/format-library/build-module/underline/index.js
+;/ ./node_modules/@wordpress/format-library/build-module/underline/index.js
 /**
  * WordPress dependencies
  */
@@ -1211,7 +1211,7 @@ const underline = {
   }
 };
 
-;// ./node_modules/@wordpress/icons/build-module/icon/index.js
+;/ ./node_modules/@wordpress/icons/build-module/icon/index.js
 /**
  * WordPress dependencies
  */
@@ -1243,7 +1243,7 @@ function Icon({
 }
 /* harmony default export */ const icon = ((0,external_wp_element_namespaceObject.forwardRef)(Icon));
 
-;// ./node_modules/@wordpress/icons/build-module/library/text-color.js
+;/ ./node_modules/@wordpress/icons/build-module/library/text-color.js
 /**
  * WordPress dependencies
  */
@@ -1258,7 +1258,7 @@ const textColor = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(
 });
 /* harmony default export */ const text_color = (textColor);
 
-;// ./node_modules/@wordpress/icons/build-module/library/color.js
+;/ ./node_modules/@wordpress/icons/build-module/library/color.js
 /**
  * WordPress dependencies
  */
@@ -1273,9 +1273,9 @@ const color = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(exte
 });
 /* harmony default export */ const library_color = (color);
 
-;// external ["wp","privateApis"]
+;/ external ["wp","privateApis"]
 const external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
-;// ./node_modules/@wordpress/format-library/build-module/lock-unlock.js
+;/ ./node_modules/@wordpress/format-library/build-module/lock-unlock.js
 /**
  * WordPress dependencies
  */
@@ -1285,7 +1285,7 @@ const {
   unlock
 } = (0,external_wp_privateApis_namespaceObject.__dangerousOptInToUnstableAPIsOnlyForCoreModules)('I acknowledge private features are not for use in themes or plugins and doing so will break in the next version of WordPress.', '@wordpress/format-library');
 
-;// ./node_modules/@wordpress/format-library/build-module/text-color/inline.js
+;/ ./node_modules/@wordpress/format-library/build-module/text-color/inline.js
 /**
  * WordPress dependencies
  */
@@ -1328,7 +1328,7 @@ function parseCSS(css = '') {
 }
 function parseClassName(className = '', colorSettings) {
   return className.split(' ').reduce((accumulator, name) => {
-    // `colorSlug` could contain dashes, so simply match the start and end.
+    / `colorSlug` could contain dashes, so simply match the start and end.
     if (name.startsWith('has-') && name.endsWith('-color')) {
       const colorSlug = name.replace(/^has-/, '').replace(/-color$/, '');
       const colorObject = (0,external_wp_blockEditor_namespaceObject.getColorObjectByAttributeValues)(colorSettings, colorSlug);
@@ -1364,7 +1364,7 @@ function setColors(value, name, colorSettings, colors) {
   if (backgroundColor) {
     styles.push(['background-color', backgroundColor].join(':'));
   } else {
-    // Override default browser color for mark element.
+    / Override default browser color for mark element.
     styles.push(['background-color', transparentValue].join(':'));
   }
   if (color) {
@@ -1407,7 +1407,7 @@ function ColorPicker({
         [property]: color
       }));
     }
-    // Prevent the text and color picker from overlapping.
+    / Prevent the text and color picker from overlapping.
     ,
     __experimentalIsRenderedInSidebar: true
   });
@@ -1451,7 +1451,7 @@ function InlineColorUI({
   });
 }
 
-;// ./node_modules/@wordpress/format-library/build-module/text-color/index.js
+;/ ./node_modules/@wordpress/format-library/build-module/text-color/index.js
 /**
  * WordPress dependencies
  */
@@ -1519,7 +1519,7 @@ function TextColorEdit({
         style: colorIndicatorStyle
       }),
       title: text_color_title
-      // If has no colors to choose but a color is active remove the color onClick.
+      / If has no colors to choose but a color is active remove the color onClick.
       ,
       onClick: hasColorsToChoose ? () => setIsAddingColor(true) : () => onChange((0,external_wp_richText_namespaceObject.removeFormat)(value, text_color_name)),
       role: "menuitemcheckbox"
@@ -1546,7 +1546,7 @@ const text_color_textColor = {
   edit: TextColorEdit
 };
 
-;// ./node_modules/@wordpress/icons/build-module/library/subscript.js
+;/ ./node_modules/@wordpress/icons/build-module/library/subscript.js
 /**
  * WordPress dependencies
  */
@@ -1561,7 +1561,7 @@ const subscript = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(
 });
 /* harmony default export */ const library_subscript = (subscript);
 
-;// ./node_modules/@wordpress/format-library/build-module/subscript/index.js
+;/ ./node_modules/@wordpress/format-library/build-module/subscript/index.js
 /**
  * WordPress dependencies
  */
@@ -1603,7 +1603,7 @@ const subscript_subscript = {
   }
 };
 
-;// ./node_modules/@wordpress/icons/build-module/library/superscript.js
+;/ ./node_modules/@wordpress/icons/build-module/library/superscript.js
 /**
  * WordPress dependencies
  */
@@ -1618,7 +1618,7 @@ const superscript = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx
 });
 /* harmony default export */ const library_superscript = (superscript);
 
-;// ./node_modules/@wordpress/format-library/build-module/superscript/index.js
+;/ ./node_modules/@wordpress/format-library/build-module/superscript/index.js
 /**
  * WordPress dependencies
  */
@@ -1660,7 +1660,7 @@ const superscript_superscript = {
   }
 };
 
-;// ./node_modules/@wordpress/icons/build-module/library/button.js
+;/ ./node_modules/@wordpress/icons/build-module/library/button.js
 /**
  * WordPress dependencies
  */
@@ -1675,7 +1675,7 @@ const button_button = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.j
 });
 /* harmony default export */ const library_button = (button_button);
 
-;// ./node_modules/@wordpress/format-library/build-module/keyboard/index.js
+;/ ./node_modules/@wordpress/format-library/build-module/keyboard/index.js
 /**
  * WordPress dependencies
  */
@@ -1717,7 +1717,7 @@ const keyboard = {
   }
 };
 
-;// ./node_modules/@wordpress/icons/build-module/library/help.js
+;/ ./node_modules/@wordpress/icons/build-module/library/help.js
 /**
  * WordPress dependencies
  */
@@ -1732,7 +1732,7 @@ const help = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(exter
 });
 /* harmony default export */ const library_help = (help);
 
-;// ./node_modules/@wordpress/format-library/build-module/unknown/index.js
+;/ ./node_modules/@wordpress/format-library/build-module/unknown/index.js
 /**
  * WordPress dependencies
  */
@@ -1780,7 +1780,7 @@ const unknown = {
   }
 };
 
-;// ./node_modules/@wordpress/icons/build-module/library/language.js
+;/ ./node_modules/@wordpress/icons/build-module/library/language.js
 /**
  * WordPress dependencies
  */
@@ -1795,7 +1795,7 @@ const language = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(e
 });
 /* harmony default export */ const library_language = (language);
 
-;// ./node_modules/@wordpress/format-library/build-module/language/index.js
+;/ ./node_modules/@wordpress/format-library/build-module/language/index.js
 /**
  * WordPress dependencies
  */
@@ -1915,7 +1915,7 @@ function InlineLanguageUI({
   });
 }
 
-;// ./node_modules/@wordpress/format-library/build-module/non-breaking-space/index.js
+;/ ./node_modules/@wordpress/format-library/build-module/non-breaking-space/index.js
 /**
  * WordPress dependencies
  */
@@ -1945,7 +1945,7 @@ const nonBreakingSpace = {
   }
 };
 
-;// ./node_modules/@wordpress/format-library/build-module/default-formats.js
+;/ ./node_modules/@wordpress/format-library/build-module/default-formats.js
 /**
  * Internal dependencies
  */
@@ -1965,7 +1965,7 @@ const nonBreakingSpace = {
 
 /* harmony default export */ const default_formats = ([bold, code_code, image_image, italic, build_module_link_link, strikethrough, underline, text_color_textColor, subscript_subscript, superscript_superscript, keyboard, unknown, language_language, nonBreakingSpace]);
 
-;// ./node_modules/@wordpress/format-library/build-module/index.js
+;/ ./node_modules/@wordpress/format-library/build-module/index.js
 /**
  * WordPress dependencies
  */

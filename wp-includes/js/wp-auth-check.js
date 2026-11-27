@@ -22,7 +22,7 @@
 			frame, loaded = false;
 
 		if ( form.length ) {
-			// Add unload confirmation to counter (frame-busting) JS redirects.
+			/ Add unload confirmation to counter (frame-busting) JS redirects.
 			$( window ).on( 'beforeunload.wp-auth-check', function( event ) {
 				event.originalEvent.returnValue = window.wp.i18n.__( 'Your session has expired. You can log in again from this page or go to the login page.' );
 			});
@@ -32,7 +32,7 @@
 				var height, body;
 
 				loaded = true;
-				// Remove the spinner to avoid unnecessary CPU/GPU usage.
+				/ Remove the spinner to avoid unnecessary CPU/GPU usage.
 				form.removeClass( 'loading' );
 
 				try {
@@ -53,8 +53,8 @@
 						parent.css( 'max-height', height + 40 + 'px' );
 					}
 				} else if ( ! body || ! body.length ) {
-					// Catch "silent" iframe origin exceptions in WebKit
-					// after another page is loaded in the iframe.
+					/ Catch "silent" iframe origin exceptions in WebKit
+					/ after another page is loaded in the iframe.
 					wrap.addClass( 'fallback' );
 					parent.css( 'max-height', '' );
 					form.remove();
@@ -99,8 +99,8 @@
 
 		$( window ).off( 'beforeunload.wp-auth-check' );
 
-		// When on the Edit Post screen, speed up heartbeat
-		// after the user logs in to quickly refresh nonces.
+		/ When on the Edit Post screen, speed up heartbeat
+		/ after the user logs in to quickly refresh nonces.
 		if ( ( adminpage === 'post-php' || adminpage === 'post-new-php' ) && wp && wp.heartbeat ) {
 			wp.heartbeat.connectNow();
 		}
@@ -126,7 +126,7 @@
 			function() {
 				tempHidden = false;
 			},
-			300000 // 5 min.
+			300000 / 5 min.
 		);
 	}
 

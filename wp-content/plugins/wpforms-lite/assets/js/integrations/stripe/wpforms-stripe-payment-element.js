@@ -27,7 +27,7 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 	 */
 	let originalSubmitHandler;
 
-	// noinspection JSUnusedLocalSymbols
+	/ noinspection JSUnusedLocalSymbols
 	/**
 	 * Public functions and properties.
 	 *
@@ -62,7 +62,7 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 		 * @since 1.8.2
 		 */
 		init() {
-			app.stripe = Stripe( // eslint-disable-line new-cap
+			app.stripe = Stripe( / eslint-disable-line new-cap
 				wpforms_stripe.publishable_key,
 				{
 					locale: wpforms_stripe.data.element_locale,
@@ -74,7 +74,7 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 
 				$( '.wpforms-stripe form' )
 					.each( app.setupStripeForm )
-					.on( 'wpformsConvFormsFieldActivationAfter', app.convFormsFieldActivationAfter ); // Initialize in Conversational Form on field activation.
+					.on( 'wpformsConvFormsFieldActivationAfter', app.convFormsFieldActivationAfter ); / Initialize in Conversational Form on field activation.
 			} );
 
 			$( document )
@@ -92,7 +92,7 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 		 * @deprecated 1.8.9
 		 */
 		initializeFormsDefaultObject() {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "WPFormsStripePaymentElement.initializeFormsDefaultObject()" has been deprecated, please use the "WPFormsStripePaymentElement.initializeFormDefaultObject( formId )" function instead!' );
 
 			$( '.wpforms-stripe form' ).each( function() {
@@ -140,7 +140,7 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 
 			const formId = $form.data( 'formid' );
 
-			// Bail early if form was already setup.
+			/ Bail early if form was already setup.
 			if ( typeof app.forms[ formId ] !== 'undefined' ) {
 				return;
 			}
@@ -159,10 +159,10 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 				return;
 			}
 
-			// Store the original submitHandler.
+			/ Store the original submitHandler.
 			originalSubmitHandler = validator.settings.submitHandler;
 
-			// Replace the default submit handler.
+			/ Replace the default submit handler.
 			validator.settings.submitHandler = app.submitHandler;
 
 			$form.on( 'wpformsAjaxSubmitActionRequired', app.confirmPaymentActionCallback );
@@ -197,10 +197,10 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 
 			await app.stripe.confirmPayment(
 				{
-					clientSecret: json.data.payment_intent_client_secret, // eslint-disable-line camelcase
+					clientSecret: json.data.payment_intent_client_secret, / eslint-disable-line camelcase
 					confirmParams: {
-						return_url: redirectUrl.toString(), // eslint-disable-line camelcase
-						payment_method: app.forms[ formId ].paymentMethodId, // eslint-disable-line camelcase
+						return_url: redirectUrl.toString(), / eslint-disable-line camelcase
+						payment_method: app.forms[ formId ].paymentMethodId, / eslint-disable-line camelcase
 					},
 					redirect: 'if_required',
 				}
@@ -263,8 +263,8 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 				{
 					currency: wpforms.getCurrency().code.toLowerCase(),
 					mode: 'payment',
-					// eslint-disable-next-line
-					// See min amount for different currencies https://stripe.com/docs/currencies#minimum-and-maximum-charge-amounts.
+					/ eslint-disable-next-line
+					/ See min amount for different currencies https://stripe.com/docs/currencies#minimum-and-maximum-charge-amounts.
 					amount: 7777777,
 					loader: 'always',
 					locale: wpforms_stripe.data.element_locale,
@@ -275,10 +275,10 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 
 			app.linkEmailMappedFieldTriggers( $form );
 
-			// Update the total amount in case of fixed price.
+			/ Update the total amount in case of fixed price.
 			wpforms.amountTotalCalc( $form );
 
-			// Update styles in Modern Markup mode.
+			/ Update styles in Modern Markup mode.
 			app.updatePaymentElementStylesModern( $form );
 
 			WPFormsUtils.triggerEvent( $( document ), 'wpformsStripePaymentElementInitialized', [ $form, app.forms ] );
@@ -294,7 +294,7 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 		 * @param {boolean} pass    Pass logic.
 		 * @param {string}  action  Action to execute.
 		 */
-		processConditionalsField( formID, fieldID, pass, action ) { // eslint-disable-line complexity
+		processConditionalsField( formID, fieldID, pass, action ) { / eslint-disable-line complexity
 			const $form = $( '#wpforms-form-' + formID ),
 				$stripeDiv = $form.find( '.wpforms-field-stripe-credit-card' ),
 				isHidden = ( pass && action === 'hide' ) || ( ! pass && action !== 'hide' );
@@ -323,7 +323,7 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 		 *
 		 * @return {Object} Appearance options.
 		 */
-		getElementAppearanceOptions( $form ) { // eslint-disable-line complexity, max-lines-per-function
+		getElementAppearanceOptions( $form ) { / eslint-disable-line complexity, max-lines-per-function
 			const customAppearanceOptions = app.getCustomAppearanceOptions();
 
 			if ( ! $.isEmptyObject( customAppearanceOptions ) ) {
@@ -351,8 +351,8 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 			inputStyle.colorBackground = WPFormsUtils.cssColorsUtils.rgbaToHex( inputStyle.colorBackground );
 			inputStyle.borderColor = WPFormsUtils.cssColorsUtils.isValidColor( inputStyle.borderColor ) ? inputStyle.borderColor : inputStyle.colorText;
 
-			// We shouldn't provide opacity if we show sub-labels
-			// since Stripe using this property for floating labels.
+			/ We shouldn't provide opacity if we show sub-labels
+			/ since Stripe using this property for floating labels.
 			const labelOpacity = ! labelHide ? { opacity: 0 } : {};
 
 			return {
@@ -388,7 +388,7 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 						boxShadow: '0 0 0 1px ' + inputStyle.borderColor,
 						fontSize: inputStyle.fontSize,
 						padding: '12px 14px',
-						lineHeight: parseInt( inputStyle.fontSize, 10 ) + 5 + 'px', // match the font and line height to prevent overflow
+						lineHeight: parseInt( inputStyle.fontSize, 10 ) + 5 + 'px', / match the font and line height to prevent overflow
 						transition: 'none',
 						color: inputStyle.colorText,
 						backgroundColor: inputStyle.colorBackground,
@@ -514,11 +514,11 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 
 			app.mountPaymentElement( $form );
 
-			// eslint-disable-next-line complexity
+			/ eslint-disable-next-line complexity
 			app.forms[ formId ].paymentElement.on( 'change', function( event ) {
 				app.forms[ formId ].paymentType = event.value.type;
 
-				// Destroy a link element as it's not required for Google and Apple Pay.
+				/ Destroy a link element as it's not required for Google and Apple Pay.
 				if ( ! $fieldRow.data( 'link-email' ) ) {
 					if ( event.value.type === 'google_pay' || event.value.type === 'apple_pay' ) {
 						app.forms[ formId ].linkElement.destroy();
@@ -558,7 +558,7 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 				app.displayStripeLoadError( $form, event.error.message );
 			} );
 
-			// Trigger event when payment element is focused.
+			/ Trigger event when payment element is focused.
 			app.forms[ formId ].paymentElement.on( 'focus', function() {
 				app.triggerPaymentElementFocusEvent( $form );
 			} );
@@ -618,7 +618,7 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 					return;
 				}
 
-				// Reinitialize payment element if card data not completed yet.
+				/ Reinitialize payment element if card data not completed yet.
 				app.initializePaymentElement( $form, $( this ).val() );
 			} );
 		},
@@ -686,7 +686,7 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 				app.displayStripeLoadError( $form, event.error.message );
 			} );
 
-			// Trigger event when link element is focused.
+			/ Trigger event when link element is focused.
 			app.forms[ formId ].linkElement.on( 'focus', function() {
 				app.triggerPaymentElementFocusEvent( $form );
 			} );
@@ -713,7 +713,7 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 		 *
 		 * @param {Object} form JS form element.
 		 */
-		// eslint-disable-next-line complexity
+		/ eslint-disable-next-line complexity
 		submitHandler( form ) {
 			const $form = $( form ),
 				$stripeDiv = $form.find( '.wpforms-field-stripe-credit-card' ),
@@ -765,15 +765,15 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 
 			const formId = $form.data( 'formid' );
 
-			// Check if Stripe Elements exist on the form.
-			// Can be in a multiple-step form or when the field is hidden by conditional logic.
+			/ Check if Stripe Elements exist on the form.
+			/ Can be in a multiple-step form or when the field is hidden by conditional logic.
 			if ( ! app.forms[ formId ] || ! app.forms[ formId ].elements ) {
 				return;
 			}
 
 			const currency = wpforms.getCurrency();
 
-			// Save total to variable to avoid calling `amountTotalCalc` again in SubmitHandler.
+			/ Save total to variable to avoid calling `amountTotalCalc` again in SubmitHandler.
 			app.forms[ formId ].total = total;
 
 			app.forms[ formId ].elements.update( { amount: parseInt( wpforms.numberFormat( total, currency.decimals, '', '' ), 10 ) } );
@@ -797,7 +797,7 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 				elements: app.forms[ formId ].elements,
 			} ).then( function( result ) {
 				if ( result.error ) {
-					// eslint-disable-next-line prefer-const
+					/ eslint-disable-next-line prefer-const
 					const basicErrors = [
 							'incomplete_email',
 							'email_invalid',
@@ -884,9 +884,9 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 
 			wpforms.displayFormAjaxFieldErrors( $form, errors );
 
-			// Switch page for the multipage form.
+			/ Switch page for the multipage form.
 			if ( ! $stripeDiv.is( ':visible' ) && $form.find( '.wpforms-page-indicator-steps' ).length > 0 ) {
-				// Empty $json object needed to change the page to the first one.
+				/ Empty $json object needed to change the page to the first one.
 				wpforms.setCurrentPage( $form, {} );
 			}
 
@@ -930,7 +930,7 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 		 * @param {jQuery} $form       Current form.
 		 * @param {string} action      The navigation action.
 		 */
-		pageChange( event, currentPage, $form, action ) { // eslint-disable-line complexity
+		pageChange( event, currentPage, $form, action ) { / eslint-disable-line complexity
 			const $stripeDiv = $form.find( '.wpforms-field-stripe-credit-card .wpforms-field-row' );
 
 			const formId = $form.data( 'formid' );
@@ -949,7 +949,7 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 				}
 			}
 
-			// Stop navigation through page break pages.
+			/ Stop navigation through page break pages.
 			if (
 				! $stripeDiv.is( ':visible' ) ||
 				( ! $stripeDiv.data( 'required' ) && ! app.forms[ formId ].elementsModified ) ||
@@ -996,9 +996,9 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 		 *
 		 * @return {string} CSS variable value;
 		 */
-		// eslint-disable-next-line no-unused-vars
+		/ eslint-disable-next-line no-unused-vars
 		getCssVar( style, varName ) {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "WPFormsStripePaymentElement.getCssVar()" has been deprecated, please use the "WPForms.FrontendModern.getCssVar()" function instead!' );
 
 			return WPForms?.FrontendModern?.getCssVar();
@@ -1011,9 +1011,9 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 		 *
 		 * @param {jQuery} $form Form object.
 		 */
-		// eslint-disable-next-line complexity
+		/ eslint-disable-next-line complexity
 		updatePaymentElementStylesModern( $form ) {
-			// Should work only in Modern Markup mode.
+			/ Should work only in Modern Markup mode.
 			if ( ! $.isEmptyObject( app.getCustomAppearanceOptions() ) || ! window.WPForms || ! WPForms.FrontendModern ) {
 				return;
 			}
@@ -1022,7 +1022,7 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 				return;
 			}
 
-			// Skip Lead Form.
+			/ Skip Lead Form.
 			if ( $form.closest( '.wpforms-container' ).hasClass( 'wpforms-lead-forms-container' ) ) {
 				return;
 			}
@@ -1049,18 +1049,18 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 		 * @param {Function} formElements.update         Form payment elements common options.
 		 * @param {Object}   cssVars                     CSS variables data.
 		 */
-		updateFormElementsAppearance( formElements, cssVars ) { // eslint-disable-line max-lines-per-function
+		updateFormElementsAppearance( formElements, cssVars ) { / eslint-disable-line max-lines-per-function
 			if ( ! formElements || ! formElements._commonOptions ) {
 				return;
 			}
 
-			// Get existing appearance options.
+			/ Get existing appearance options.
 			const appearance = formElements._commonOptions.appearance;
 
-			// Need to perform vertical padding calculation.
+			/ Need to perform vertical padding calculation.
 			cssVars[ 'field-size-padding-v' ] = ( ( parseInt( cssVars[ 'field-size-input-height' ], 10 ) - parseInt( cssVars[ 'field-size-font-size' ], 10 ) - 6 ) / 2 ) + 'px';
 
-			// Update variables.
+			/ Update variables.
 			appearance.variables.spacingGridRow = cssVars[ 'field-size-input-spacing' ];
 			appearance.variables.spacingGridColumn = '20px';
 			appearance.variables.spacingTab = '10px';
@@ -1070,7 +1070,7 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 
 			maybeMenuBgColor = WPForms.FrontendModern.getSolidColor( maybeMenuBgColor );
 
-			// Update rules.
+			/ Update rules.
 			appearance.rules = {
 				'.Input': {
 					border: cssVars[ 'field-border-size' ] + ' ' + cssVars[ 'field-border-style' ] + ' ' + cssVars[ 'field-border-color' ],
@@ -1269,7 +1269,7 @@ var WPFormsStripePaymentElement = window.WPFormsStripePaymentElement || ( functi
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

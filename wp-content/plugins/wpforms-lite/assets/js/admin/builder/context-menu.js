@@ -7,7 +7,7 @@
  * @since 1.8.6
  */
 
-var WPForms = window.WPForms || {}; // eslint-disable-line no-var
+var WPForms = window.WPForms || {}; / eslint-disable-line no-var
 
 WPForms.Admin = WPForms.Admin || {};
 WPForms.Admin.Builder = WPForms.Admin.Builder || {};
@@ -75,7 +75,7 @@ WPForms.Admin.Builder.ContextMenu = WPForms.Admin.Builder.ContextMenu || ( funct
 		 * @since 1.8.6
 		 */
 		setup() {
-			// Cache DOM elements.
+			/ Cache DOM elements.
 			el.$document = $( document );
 			el.$contextMenu = $( app.selectors.contextMenu );
 			el.$mainContextMenuContainer = $( app.selectors.mainContextMenuContainer );
@@ -94,7 +94,7 @@ WPForms.Admin.Builder.ContextMenu = WPForms.Admin.Builder.ContextMenu || ( funct
 		 * @since 1.8.6
 		 */
 		events() {
-			// Display a main menu on click on the icon in the toolbar.
+			/ Display a main menu on click on the icon in the toolbar.
 			el.$mainContextMenuContainer.on( 'click', ( event ) => {
 				event.preventDefault();
 
@@ -103,13 +103,13 @@ WPForms.Admin.Builder.ContextMenu = WPForms.Admin.Builder.ContextMenu || ( funct
 				} );
 			} );
 
-			// Handle clicks on the main menu items.
+			/ Handle clicks on the main menu items.
 			el.$mainContextMenu.on( 'click', '.wpforms-context-menu-list-item', app.mainMenuItemClickAction );
 
-			// Hide the main menu if it's visible when clicking outside it.
+			/ Hide the main menu if it's visible when clicking outside it.
 			el.$builder.on( 'click contextmenu', app.hideMainContextMenu );
 
-			// Display a context menu on right-click on the form field in the preview area.
+			/ Display a context menu on right-click on the form field in the preview area.
 			el.$document.on( 'contextmenu', app.rightClickContextMenuHandler );
 
 			el.$document.on( 'click', app.hideMenuOnClick );
@@ -241,7 +241,7 @@ WPForms.Admin.Builder.ContextMenu = WPForms.Admin.Builder.ContextMenu || ( funct
 		handleEditAction( $field, fieldId ) {
 			$field.trigger( 'click' );
 
-			// This is needed to make sure the sidebar is open when the "Edit" button is clicked.
+			/ This is needed to make sure the sidebar is open when the "Edit" button is clicked.
 			app.maybeOpenSidebar();
 
 			$( `#wpforms-field-option-basic-${ fieldId } .wpforms-field-option-group-toggle` ).trigger( 'click' );
@@ -306,7 +306,7 @@ WPForms.Admin.Builder.ContextMenu = WPForms.Admin.Builder.ContextMenu || ( funct
 		 * @param {string} fieldId Field ID.
 		 */
 		handleSmartLogicAction( $field, fieldId ) {
-			// This is needed to make sure the sidebar is open when the "Edit Conditional Logic" button is clicked.
+			/ This is needed to make sure the sidebar is open when the "Edit Conditional Logic" button is clicked.
 			app.maybeOpenSidebar();
 
 			$field.trigger( 'click' );
@@ -356,24 +356,24 @@ WPForms.Admin.Builder.ContextMenu = WPForms.Admin.Builder.ContextMenu || ( funct
 				return;
 			}
 
-			// The form does not need to be saved, open the URL.
+			/ The form does not need to be saved, open the URL.
 			if ( ! saveForm ) {
-				newTab ? window.open( actionUrl ) : window.location.assign( actionUrl ); // eslint-disable-line no-unused-expressions
+				newTab ? window.open( actionUrl ) : window.location.assign( actionUrl ); / eslint-disable-line no-unused-expressions
 				return;
 			}
 
-			// The form was changed and must be saved before following the action URL.
+			/ The form was changed and must be saved before following the action URL.
 			if ( ! WPFormsBuilder.formIsSaved() ) {
 				el.$builder.on( 'wpformsSaved', () => {
-					newTab ? window.open( actionUrl ) : window.location.assign( actionUrl ); // eslint-disable-line no-unused-expressions
+					newTab ? window.open( actionUrl ) : window.location.assign( actionUrl ); / eslint-disable-line no-unused-expressions
 				} );
 
 				WPFormsBuilder.formSave( false );
 				return;
 			}
 
-			// The form was not changed, open the URL.
-			newTab ? window.open( actionUrl ) : window.location.assign( actionUrl ); // eslint-disable-line no-unused-expressions
+			/ The form was not changed, open the URL.
+			newTab ? window.open( actionUrl ) : window.location.assign( actionUrl ); / eslint-disable-line no-unused-expressions
 		},
 
 		/**
@@ -697,7 +697,7 @@ WPForms.Admin.Builder.ContextMenu = WPForms.Admin.Builder.ContextMenu || ( funct
 		 * @since 1.8.8
 		 */
 		maybeOpenSidebar() {
-			// If the sidebar is already open, do nothing.
+			/ If the sidebar is already open, do nothing.
 			if ( ! el.$sidebarToggle.parent().hasClass( 'wpforms-panel-sidebar-closed' ) ) {
 				return;
 			}
@@ -706,7 +706,7 @@ WPForms.Admin.Builder.ContextMenu = WPForms.Admin.Builder.ContextMenu || ( funct
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

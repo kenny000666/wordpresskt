@@ -35,15 +35,15 @@
 
       $target.data('popover-hover', true);
 
-      // popover already displayed
+      / popover already displayed
       if ($target.next('.popover').length) {
        return;
       }
 
-      // show the popover
+      / show the popover
       $container.popover('show');
 
-      // register mouse events on the popover
+      / register mouse events on the popover
       $target.next('.popover:not(.popover-initialized)')
        .on({
         'mouseenter': function () {

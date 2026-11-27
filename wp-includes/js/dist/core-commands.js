@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -23,7 +23,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -42,15 +42,15 @@ __webpack_require__.d(__webpack_exports__, {
   privateApis: () => (/* reexport */ privateApis)
 });
 
-;// external ["wp","commands"]
+;/ external ["wp","commands"]
 const external_wp_commands_namespaceObject = window["wp"]["commands"];
-;// external ["wp","i18n"]
+;/ external ["wp","i18n"]
 const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
-;// external ["wp","primitives"]
+;/ external ["wp","primitives"]
 const external_wp_primitives_namespaceObject = window["wp"]["primitives"];
-;// external "ReactJSXRuntime"
+;/ external "ReactJSXRuntime"
 const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
-;// ./node_modules/@wordpress/icons/build-module/library/plus.js
+;/ ./node_modules/@wordpress/icons/build-module/library/plus.js
 /**
  * WordPress dependencies
  */
@@ -65,21 +65,21 @@ const plus = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(exter
 });
 /* harmony default export */ const library_plus = (plus);
 
-;// external ["wp","url"]
+;/ external ["wp","url"]
 const external_wp_url_namespaceObject = window["wp"]["url"];
-;// external ["wp","coreData"]
+;/ external ["wp","coreData"]
 const external_wp_coreData_namespaceObject = window["wp"]["coreData"];
-;// external ["wp","data"]
+;/ external ["wp","data"]
 const external_wp_data_namespaceObject = window["wp"]["data"];
-;// external ["wp","element"]
+;/ external ["wp","element"]
 const external_wp_element_namespaceObject = window["wp"]["element"];
-;// external ["wp","notices"]
+;/ external ["wp","notices"]
 const external_wp_notices_namespaceObject = window["wp"]["notices"];
-;// external ["wp","router"]
+;/ external ["wp","router"]
 const external_wp_router_namespaceObject = window["wp"]["router"];
-;// external ["wp","privateApis"]
+;/ external ["wp","privateApis"]
 const external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
-;// ./node_modules/@wordpress/core-commands/build-module/lock-unlock.js
+;/ ./node_modules/@wordpress/core-commands/build-module/lock-unlock.js
 /**
  * WordPress dependencies
  */
@@ -89,7 +89,7 @@ const {
   unlock
 } = (0,external_wp_privateApis_namespaceObject.__dangerousOptInToUnstableAPIsOnlyForCoreModules)('I acknowledge private features are not for use in themes or plugins and doing so will break in the next version of WordPress.', '@wordpress/core-commands');
 
-;// ./node_modules/@wordpress/core-commands/build-module/admin-navigation-commands.js
+;/ ./node_modules/@wordpress/core-commands/build-module/admin-navigation-commands.js
 /**
  * WordPress dependencies
  */
@@ -172,7 +172,7 @@ function useAdminNavigationCommands() {
   });
 }
 
-;// ./node_modules/@wordpress/icons/build-module/library/post.js
+;/ ./node_modules/@wordpress/icons/build-module/library/post.js
 /**
  * WordPress dependencies
  */
@@ -187,7 +187,7 @@ const post = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(exter
 });
 /* harmony default export */ const library_post = (post);
 
-;// ./node_modules/@wordpress/icons/build-module/library/page.js
+;/ ./node_modules/@wordpress/icons/build-module/library/page.js
 /**
  * WordPress dependencies
  */
@@ -204,7 +204,7 @@ const page = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(exte
 });
 /* harmony default export */ const library_page = (page);
 
-;// ./node_modules/@wordpress/icons/build-module/library/layout.js
+;/ ./node_modules/@wordpress/icons/build-module/library/layout.js
 /**
  * WordPress dependencies
  */
@@ -219,7 +219,7 @@ const layout = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ext
 });
 /* harmony default export */ const library_layout = (layout);
 
-;// ./node_modules/@wordpress/icons/build-module/library/symbol-filled.js
+;/ ./node_modules/@wordpress/icons/build-module/library/symbol-filled.js
 /**
  * WordPress dependencies
  */
@@ -234,7 +234,7 @@ const symbolFilled = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.js
 });
 /* harmony default export */ const symbol_filled = (symbolFilled);
 
-;// ./node_modules/@wordpress/icons/build-module/library/navigation.js
+;/ ./node_modules/@wordpress/icons/build-module/library/navigation.js
 /**
  * WordPress dependencies
  */
@@ -249,7 +249,7 @@ const navigation = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)
 });
 /* harmony default export */ const library_navigation = (navigation);
 
-;// ./node_modules/@wordpress/icons/build-module/library/styles.js
+;/ ./node_modules/@wordpress/icons/build-module/library/styles.js
 /**
  * WordPress dependencies
  */
@@ -266,7 +266,7 @@ const styles = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ext
 });
 /* harmony default export */ const library_styles = (styles);
 
-;// ./node_modules/@wordpress/icons/build-module/library/symbol.js
+;/ ./node_modules/@wordpress/icons/build-module/library/symbol.js
 /**
  * WordPress dependencies
  */
@@ -281,11 +281,11 @@ const symbol = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ext
 });
 /* harmony default export */ const library_symbol = (symbol);
 
-;// external ["wp","compose"]
+;/ external ["wp","compose"]
 const external_wp_compose_namespaceObject = window["wp"]["compose"];
-;// external ["wp","htmlEntities"]
+;/ external ["wp","htmlEntities"]
 const external_wp_htmlEntities_namespaceObject = window["wp"]["htmlEntities"];
-;// ./node_modules/@wordpress/core-commands/build-module/utils/order-entity-records-by-search.js
+;/ ./node_modules/@wordpress/core-commands/build-module/utils/order-entity-records-by-search.js
 function orderEntityRecordsBySearch(records = [], search = '') {
   if (!Array.isArray(records) || !records.length) {
     return [];
@@ -306,7 +306,7 @@ function orderEntityRecordsBySearch(records = [], search = '') {
   return priority.concat(nonPriority);
 }
 
-;// ./node_modules/@wordpress/core-commands/build-module/site-editor-navigation-commands.js
+;/ ./node_modules/@wordpress/core-commands/build-module/site-editor-navigation-commands.js
 /**
  * WordPress dependencies
  */
@@ -628,7 +628,7 @@ const getSiteEditorBasicNavigationCommands = () => function useSiteEditorBasicNa
           }
           close();
         } else {
-          // If a user cannot access the site editor
+          / If a user cannot access the site editor
           document.location.href = 'edit.php?post_type=wp_block';
         }
       }
@@ -664,7 +664,7 @@ function useSiteEditorNavigationCommands() {
   });
 }
 
-;// ./node_modules/@wordpress/core-commands/build-module/private-apis.js
+;/ ./node_modules/@wordpress/core-commands/build-module/private-apis.js
 /**
  * Internal dependencies
  */
@@ -680,7 +680,7 @@ lock(privateApis, {
   useCommands
 });
 
-;// ./node_modules/@wordpress/core-commands/build-module/index.js
+;/ ./node_modules/@wordpress/core-commands/build-module/index.js
 
 
 (window.wp = window.wp || {}).coreCommands = __webpack_exports__;

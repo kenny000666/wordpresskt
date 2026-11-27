@@ -96,7 +96,7 @@
 					let totalErrors;
 					const container = $( this );
 
-					// Ajax cleanup.
+					/ Ajax cleanup.
 					container.find( '.redux-menu-error' ).remove();
 
 					totalErrors = container.find( '.redux-field-error' ).length;
@@ -166,7 +166,7 @@
 
 					const container = $( this );
 
-					// Ajax cleanup.
+					/ Ajax cleanup.
 					container.find( '.redux-menu-warning' ).remove();
 
 					totalWarnings = container.find( '.redux-field-warning' ).length;

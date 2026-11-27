@@ -31,7 +31,7 @@ const wpFormsAIDock = ( function( $ ) {
 
 		const $toolbar = $( '#wpforms-builder-form .wpforms-toolbar' );
 
-		// Get the distance from the top of the screen to the bottom border of the toolbar.
+		/ Get the distance from the top of the screen to the bottom border of the toolbar.
 		const toolbarHeight = $toolbar.offset().top + $toolbar.outerHeight();
 
 		$modal.addClass( 'pinned' );
@@ -89,7 +89,7 @@ const wpFormsAIDock = ( function( $ ) {
 			pinModal( $modal );
 		}
 
-		// Re-apply this action also for other modals but hide them.
+		/ Re-apply this action also for other modals but hide them.
 		const $otherModals = $( '.jconfirm.jconfirm-wpforms-ai-modal' ).not( $modal );
 
 		$otherModals.each( function() {
@@ -138,7 +138,7 @@ const wpFormsAIDock = ( function( $ ) {
 		$( document )
 			.off( 'click', '.wpforms-ai-modal-pin' )
 			.on( 'click', '.wpforms-ai-modal-pin', onPinIconClick )
-			// Hide pin icon for the time of response generation.
+			/ Hide pin icon for the time of response generation.
 			.on( 'wpformsAIChatBeforeSendMessage', () => AIModalPin.addClass( 'not-allowed' ) )
 			.on( 'wpformsAIChatBeforeError wpformsAIChatAfterTypeText', () => AIModalPin.removeClass( 'not-allowed' ) );
 
@@ -179,7 +179,7 @@ const wpFormsAIDock = ( function( $ ) {
 
 		const $closeIcon = $jconfirmAIModal.find( '.jconfirm-closeIcon' );
 
-		// Append new bar after close icon and move close icon inside this bar.
+		/ Append new bar after close icon and move close icon inside this bar.
 		$closeIcon.after(
 			`<div class="wpforms-ai-modal-top-bar">
 			<div class="wpforms-ai-modal-pin" title="${ wpforms_ai_chat_element.pinChat }"></div>

@@ -8,15 +8,15 @@
 ( function($) {
 	$.widget('wp.wpdialog', $.ui.dialog, {
 		open: function() {
-			// Add beforeOpen event.
+			/ Add beforeOpen event.
 			if ( this.isOpen() || false === this._trigger('beforeOpen') ) {
 				return;
 			}
 
-			// Open the dialog.
+			/ Open the dialog.
 			this._super();
 
-			// WebKit leaves focus in the TinyMCE editor unless we shift focus.
+			/ WebKit leaves focus in the TinyMCE editor unless we shift focus.
 			this.element.trigger('focus');
 			this._trigger('refresh');
 		}

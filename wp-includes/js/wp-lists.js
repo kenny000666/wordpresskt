@@ -368,7 +368,7 @@ wpList = {
 			}
 
 			$.each( parsedResponse.responses, function() {
-				wpList.add.call( list, this.data, $.extend( {}, settings, { // this.firstChild.nodevalue
+				wpList.add.call( list, this.data, $.extend( {}, settings, { / this.firstChild.nodevalue
 					position: this.position || 0,
 					id:       this.id || 0,
 					oldId:    this.oldId || null
@@ -495,7 +495,7 @@ wpList = {
 			data     = wpList.parseData( $element, 'dim' ),
 			$eventTarget, isClass, color, dimColor, parsedResponse, returnedResponse;
 
-		// Prevent hidden links from being clicked by hotkeys.
+		/ Prevent hidden links from being clicked by hotkeys.
 		if ( 'none' === $element.parent().css( 'display' ) ) {
 			return false;
 		}
@@ -579,11 +579,11 @@ wpList = {
 				var $submittedOn = $element.find( '.submitted-on' ),
 					$commentLink = $submittedOn.find( 'a' );
 
-				// Comment is approved; link the date field.
+				/ Comment is approved; link the date field.
 				if ( '' !== parsedResponse.responses[0].supplemental.comment_link ) {
 					$submittedOn.html( $('<a></a>').text( $submittedOn.text() ).prop( 'href', parsedResponse.responses[0].supplemental.comment_link ) );
 
-				// Comment is not approved; unlink the date field.
+				/ Comment is not approved; unlink the date field.
 				} else if ( $commentLink.length ) {
 					$submittedOn.text( $commentLink.text() );
 				}
@@ -688,7 +688,7 @@ wpList = {
 			} );
 		}
 
-		// Add event handlers.
+		/ Add event handlers.
 		$list.each( function( index, list ) {
 			list.wpList.process( $element );
 		} );
@@ -706,15 +706,15 @@ wpList = {
 			$element = $( elementId ),
 			type, tagName;
 
-		// Bail if we're within the list.
+		/ Bail if we're within the list.
 		if ( list.wpList && $element.parents( '#' + list.id ).length ) {
 			return;
 		}
 
-		// Check each input field.
+		/ Check each input field.
 		$element.find( ':input' ).each( function( index, input ) {
 
-			// Bail if the form was marked to not to be cleared.
+			/ Bail if the form was marked to not to be cleared.
 			if ( $( input ).parents( '.form-no-clear' ).length ) {
 				return;
 			}
@@ -768,7 +768,7 @@ wpList = {
 			evenOdd = [':even', ':odd'],
 			items;
 
-		// Bail if there is no alternate class name specified.
+		/ Bail if there is no alternate class name specified.
 		if ( ! list.wpList.settings.alt ) {
 			return;
 		}

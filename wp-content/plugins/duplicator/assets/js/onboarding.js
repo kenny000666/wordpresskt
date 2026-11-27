@@ -63,19 +63,19 @@ var DupOnboarding = window.DupOnboarding || (function (document, window, $) {
                             email: duplicator_onboarding.email,
                         },
                         beforeSend: function () {
-                            // Show spinner
+                            / Show spinner
                             btn.find('i.fas').replaceWith('<i class="fas fa-spinner fa-spin"></i>');
                         },
                         success: function (response) {
                             if (response.success) {
                                 btn.find('i.fas').replaceWith('<i class="fas fa-check"></i>');
-                                //wait to display checkmark before redirecting
+                                /wait to display checkmark before redirecting
                                 setTimeout(function () {
                                     window.location.href = duplicator_onboarding.redirect_url;
                                 }, 1000);
                             } else {
                                 btn.find('i.fas').replaceWith('<i class="fas fa-times"></i>');
-                                //wait to display X (fail) sign before reverting back to arrow
+                                /wait to display X (fail) sign before reverting back to arrow
                                 setTimeout(function () {
                                     btn.find('i.fas').replaceWith('<i class="fas fa-arrow-right"></i>');
                                 }, 1000);
@@ -83,7 +83,7 @@ var DupOnboarding = window.DupOnboarding || (function (document, window, $) {
                         },
                         fail: function () {
                             btn.find('i.fas').replaceWith('<i class="fas fa-times"></i>');
-                            //wait to display X (fail) sign before reverting back to arrow
+                            /wait to display X (fail) sign before reverting back to arrow
                             setTimeout(function () {
                                 btn.find('i.fas').replaceWith('<i class="fas fa-arrow-right"></i>');
                             }, 1000);

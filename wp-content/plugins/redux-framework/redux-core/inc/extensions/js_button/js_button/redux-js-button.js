@@ -18,12 +18,12 @@
 	 ******************************************************************************/
 	redux.field_objects.js_button.init = function ( selector ) {
 
-		// If no selector is passed, grab one from the HTML.
+		/ If no selector is passed, grab one from the HTML.
 		if ( ! selector ) {
 			selector = $( document ).find( '.redux-container-js_button' );
 		}
 
-		// Enum instances of our object.
+		/ Enum instances of our object.
 		$( selector ).each(
 			function () {
 				let button;
@@ -41,10 +41,10 @@
 					return;
 				}
 
-				// Do module level init.
+				/ Do module level init.
 				redux.field_objects.js_button.modInit( el );
 
-				// Get the button handle.
+				/ Get the button handle.
 				button = $( el ).find( 'input' );
 
 				$.each(
@@ -57,19 +57,19 @@
 							function ( e ) {
 								const funcName = $( value ).data( 'function' );
 
-								// Not really needed, but just in case.
+								/ Not really needed, but just in case.
 								e.preventDefault();
 
 								if ( '' !== funcName ) {
 
-									// Ensure custom function exists.
+									/ Ensure custom function exists.
 									if ( 'function' === typeof ( window[funcName] ) ) {
 
-										// Add it to the window object and execute.
+										/ Add it to the window object and execute.
 										window[funcName]();
 									} else {
 
-										// Let the dev know he fucked up someplace.
+										/ Let the dev know he fucked up someplace.
 										throw( 'JS Button Error.  Function ' + funcName + ' does not exist.' );
 									}
 								}
@@ -86,7 +86,7 @@
 	 ******************************************************************************/
 	redux.field_objects.js_button.modInit = function ( el ) {
 
-		// ID of the fieldset.
+		/ ID of the fieldset.
 		redux.field_objects.js_button.mainID = el.attr( 'data-id' );
 	};
 } )( jQuery );

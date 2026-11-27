@@ -21,7 +21,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"../keycode",
@@ -32,7 +32,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -55,7 +55,7 @@ $.widget( "ui.tabs", {
 		hide: null,
 		show: null,
 
-		// Callbacks
+		/ Callbacks
 		activate: null,
 		beforeActivate: null,
 		beforeLoad: null,
@@ -71,7 +71,7 @@ $.widget( "ui.tabs", {
 			anchorUrl = anchor.href.replace( rhash, "" );
 			locationUrl = location.href.replace( rhash, "" );
 
-			// Decoding may throw an error if the URL isn't UTF-8 (#9518)
+			/ Decoding may throw an error if the URL isn't UTF-8 (#9518)
 			try {
 				anchorUrl = decodeURIComponent( anchorUrl );
 			} catch ( error ) {}
@@ -95,8 +95,8 @@ $.widget( "ui.tabs", {
 		this._processTabs();
 		options.active = this._initialActive();
 
-		// Take disabling tabs via class attribute from HTML
-		// into account and update option properly.
+		/ Take disabling tabs via class attribute from HTML
+		/ into account and update option properly.
 		if ( Array.isArray( options.disabled ) ) {
 			options.disabled = $.uniqueSort( options.disabled.concat(
 				$.map( this.tabs.filter( ".ui-state-disabled" ), function( li ) {
@@ -105,7 +105,7 @@ $.widget( "ui.tabs", {
 			) ).sort();
 		}
 
-		// Check for length avoids error when initializing empty list
+		/ Check for length avoids error when initializing empty list
 		if ( this.options.active !== false && this.anchors.length ) {
 			this.active = this._findActive( options.active );
 		} else {
@@ -126,7 +126,7 @@ $.widget( "ui.tabs", {
 
 		if ( active === null ) {
 
-			// check the fragment identifier in the URL
+			/ check the fragment identifier in the URL
 			if ( locationHash ) {
 				this.tabs.each( function( i, tab ) {
 					if ( $( tab ).attr( "aria-controls" ) === locationHash ) {
@@ -136,18 +136,18 @@ $.widget( "ui.tabs", {
 				} );
 			}
 
-			// Check for a tab marked active via a class
+			/ Check for a tab marked active via a class
 			if ( active === null ) {
 				active = this.tabs.index( this.tabs.filter( ".ui-tabs-active" ) );
 			}
 
-			// No active tab, set to false
+			/ No active tab, set to false
 			if ( active === null || active === -1 ) {
 				active = this.tabs.length ? 0 : false;
 			}
 		}
 
-		// Handle numbers: negative, out of range
+		/ Handle numbers: negative, out of range
 		if ( active !== false ) {
 			active = this.tabs.index( this.tabs.eq( active ) );
 			if ( active === -1 ) {
@@ -155,7 +155,7 @@ $.widget( "ui.tabs", {
 			}
 		}
 
-		// Don't allow collapsible: false and active: false
+		/ Don't allow collapsible: false and active: false
 		if ( !collapsible && active === false && this.anchors.length ) {
 			active = 0;
 		}
@@ -197,35 +197,35 @@ $.widget( "ui.tabs", {
 			break;
 		case $.ui.keyCode.SPACE:
 
-			// Activate only, no collapsing
+			/ Activate only, no collapsing
 			event.preventDefault();
 			clearTimeout( this.activating );
 			this._activate( selectedIndex );
 			return;
 		case $.ui.keyCode.ENTER:
 
-			// Toggle (cancel delayed activation, allow collapsing)
+			/ Toggle (cancel delayed activation, allow collapsing)
 			event.preventDefault();
 			clearTimeout( this.activating );
 
-			// Determine if we should collapse or activate
+			/ Determine if we should collapse or activate
 			this._activate( selectedIndex === this.options.active ? false : selectedIndex );
 			return;
 		default:
 			return;
 		}
 
-		// Focus the appropriate tab, based on which key was pressed
+		/ Focus the appropriate tab, based on which key was pressed
 		event.preventDefault();
 		clearTimeout( this.activating );
 		selectedIndex = this._focusNextTab( selectedIndex, goingForward );
 
-		// Navigating with control/command key will prevent automatic activation
+		/ Navigating with control/command key will prevent automatic activation
 		if ( !event.ctrlKey && !event.metaKey ) {
 
-			// Update aria-selected immediately so that AT think the tab is already selected.
-			// Otherwise AT may confuse the user by stating that they need to activate the tab,
-			// but the tab will already be activated by the time the announcement finishes.
+			/ Update aria-selected immediately so that AT think the tab is already selected.
+			/ Otherwise AT may confuse the user by stating that they need to activate the tab,
+			/ but the tab will already be activated by the time the announcement finishes.
 			focusedTab.attr( "aria-selected", "false" );
 			this.tabs.eq( selectedIndex ).attr( "aria-selected", "true" );
 
@@ -240,14 +240,14 @@ $.widget( "ui.tabs", {
 			return;
 		}
 
-		// Ctrl+up moves focus to the current tab
+		/ Ctrl+up moves focus to the current tab
 		if ( event.ctrlKey && event.keyCode === $.ui.keyCode.UP ) {
 			event.preventDefault();
 			this.active.trigger( "focus" );
 		}
 	},
 
-	// Alt+page up/down moves focus to the previous/next tab (and activates)
+	/ Alt+page up/down moves focus to the previous/next tab (and activates)
 	_handlePageNav: function( event ) {
 		if ( event.altKey && event.keyCode === $.ui.keyCode.PAGE_UP ) {
 			this._activate( this._focusNextTab( this.options.active - 1, false ) );
@@ -288,7 +288,7 @@ $.widget( "ui.tabs", {
 	_setOption: function( key, value ) {
 		if ( key === "active" ) {
 
-			// _activate() will handle invalid values and update this.options
+			/ _activate() will handle invalid values and update this.options
 			this._activate( value );
 			return;
 		}
@@ -298,7 +298,7 @@ $.widget( "ui.tabs", {
 		if ( key === "collapsible" ) {
 			this._toggleClass( "ui-tabs-collapsible", null, value );
 
-			// Setting collapsible: false while collapsed; open first panel
+			/ Setting collapsible: false while collapsed; open first panel
 			if ( !value && this.options.active === false ) {
 				this._activate( 0 );
 			}
@@ -321,36 +321,36 @@ $.widget( "ui.tabs", {
 		var options = this.options,
 			lis = this.tablist.children( ":has(a[href])" );
 
-		// Get disabled tabs from class attribute from HTML
-		// this will get converted to a boolean if needed in _refresh()
+		/ Get disabled tabs from class attribute from HTML
+		/ this will get converted to a boolean if needed in _refresh()
 		options.disabled = $.map( lis.filter( ".ui-state-disabled" ), function( tab ) {
 			return lis.index( tab );
 		} );
 
 		this._processTabs();
 
-		// Was collapsed or no tabs
+		/ Was collapsed or no tabs
 		if ( options.active === false || !this.anchors.length ) {
 			options.active = false;
 			this.active = $();
 
-		// was active, but active tab is gone
+		/ was active, but active tab is gone
 		} else if ( this.active.length && !$.contains( this.tablist[ 0 ], this.active[ 0 ] ) ) {
 
-			// all remaining tabs are disabled
+			/ all remaining tabs are disabled
 			if ( this.tabs.length === options.disabled.length ) {
 				options.active = false;
 				this.active = $();
 
-			// activate previous tab
+			/ activate previous tab
 			} else {
 				this._activate( this._findNextTab( Math.max( 0, options.active - 1 ), false ) );
 			}
 
-		// was active, active tab still exists
+		/ was active, active tab still exists
 		} else {
 
-			// make sure active index is correct
+			/ make sure active index is correct
 			options.active = this.tabs.index( this.active );
 		}
 
@@ -373,7 +373,7 @@ $.widget( "ui.tabs", {
 				"aria-hidden": "true"
 			} );
 
-		// Make sure one tab is in the tab order
+		/ Make sure one tab is in the tab order
 		if ( !this.active.length ) {
 			this.tabs.eq( 0 ).attr( "tabIndex", 0 );
 		} else {
@@ -402,7 +402,7 @@ $.widget( "ui.tabs", {
 		this._addClass( this.tablist, "ui-tabs-nav",
 			"ui-helper-reset ui-helper-clearfix ui-widget-header" );
 
-		// Prevent users from focusing disabled tabs via click
+		/ Prevent users from focusing disabled tabs via click
 		this.tablist
 			.on( "mousedown" + this.eventNamespace, "> li", function( event ) {
 				if ( $( this ).is( ".ui-state-disabled" ) ) {
@@ -410,12 +410,12 @@ $.widget( "ui.tabs", {
 				}
 			} )
 
-			// Support: IE <9
-			// Preventing the default action in mousedown doesn't prevent IE
-			// from focusing the element, so if the anchor gets focused, blur.
-			// We don't have to worry about focusing the previously focused
-			// element since clicking on a non-focusable element should focus
-			// the body anyway.
+			/ Support: IE <9
+			/ Preventing the default action in mousedown doesn't prevent IE
+			/ from focusing the element, so if the anchor gets focused, blur.
+			/ We don't have to worry about focusing the previously focused
+			/ element since clicking on a non-focusable element should focus
+			/ the body anyway.
 			.on( "focus" + this.eventNamespace, ".ui-tabs-anchor", function() {
 				if ( $( this ).closest( "li" ).is( ".ui-state-disabled" ) ) {
 					this.blur();
@@ -445,17 +445,17 @@ $.widget( "ui.tabs", {
 				tab = $( anchor ).closest( "li" ),
 				originalAriaControls = tab.attr( "aria-controls" );
 
-			// Inline tab
+			/ Inline tab
 			if ( that._isLocal( anchor ) ) {
 				selector = anchor.hash;
 				panelId = selector.substring( 1 );
 				panel = that.element.find( that._sanitizeSelector( selector ) );
 
-			// remote tab
+			/ remote tab
 			} else {
 
-				// If the tab doesn't already have aria-controls,
-				// generate an id by using a throw-away element
+				/ If the tab doesn't already have aria-controls,
+				/ generate an id by using a throw-away element
 				panelId = tab.attr( "aria-controls" ) || $( {} ).uniqueId()[ 0 ].id;
 				selector = "#" + panelId;
 				panel = that.element.find( selector );
@@ -482,7 +482,7 @@ $.widget( "ui.tabs", {
 		this.panels.attr( "role", "tabpanel" );
 		this._addClass( this.panels, "ui-tabs-panel", "ui-widget-content" );
 
-		// Avoid memory leaks (#10056)
+		/ Avoid memory leaks (#10056)
 		if ( prevTabs ) {
 			this._off( prevTabs.not( this.tabs ) );
 			this._off( prevAnchors.not( this.anchors ) );
@@ -490,7 +490,7 @@ $.widget( "ui.tabs", {
 		}
 	},
 
-	// Allow overriding how to find the list for rare usage scenarios (#7715)
+	/ Allow overriding how to find the list for rare usage scenarios (#7715)
 	_getList: function() {
 		return this.tablist || this.element.find( "ol, ul" ).eq( 0 );
 	},
@@ -512,7 +512,7 @@ $.widget( "ui.tabs", {
 			}
 		}
 
-		// Disable tabs
+		/ Disable tabs
 		for ( i = 0; ( li = this.tabs[ i ] ); i++ ) {
 			currentItem = $( li );
 			if ( disabled === true || $.inArray( i, disabled ) !== -1 ) {
@@ -540,7 +540,7 @@ $.widget( "ui.tabs", {
 
 		this._off( this.anchors.add( this.tabs ).add( this.panels ) );
 
-		// Always prevent the default action, even when disabled
+		/ Always prevent the default action, even when disabled
 		this._on( true, this.anchors, {
 			click: function( event ) {
 				event.preventDefault();
@@ -609,16 +609,16 @@ $.widget( "ui.tabs", {
 
 		if ( tab.hasClass( "ui-state-disabled" ) ||
 
-				// tab is already loading
+				/ tab is already loading
 				tab.hasClass( "ui-tabs-loading" ) ||
 
-				// can't switch durning an animation
+				/ can't switch durning an animation
 				this.running ||
 
-				// click on active header, but not collapsible
+				/ click on active header, but not collapsible
 				( clickedIsActive && !options.collapsible ) ||
 
-				// allow canceling activation
+				/ allow canceling activation
 				( this._trigger( "beforeActivate", event, eventData ) === false ) ) {
 			return;
 		}
@@ -640,7 +640,7 @@ $.widget( "ui.tabs", {
 		this._toggle( event, eventData );
 	},
 
-	// Handles show/hide for selecting tabs
+	/ Handles show/hide for selecting tabs
 	_toggle: function( event, eventData ) {
 		var that = this,
 			toShow = eventData.newPanel,
@@ -664,7 +664,7 @@ $.widget( "ui.tabs", {
 			}
 		}
 
-		// Start out by hiding, then showing, then completing
+		/ Start out by hiding, then showing, then completing
 		if ( toHide.length && this.options.hide ) {
 			this._hide( toHide, this.options.hide, function() {
 				that._removeClass( eventData.oldTab.closest( "li" ),
@@ -684,9 +684,9 @@ $.widget( "ui.tabs", {
 			"aria-expanded": "false"
 		} );
 
-		// If we're switching tabs, remove the old tab from the tab order.
-		// If we're opening from collapsed state, remove the previous tab from the tab order.
-		// If we're collapsing, then keep the collapsing tab in the tab order.
+		/ If we're switching tabs, remove the old tab from the tab order.
+		/ If we're opening from collapsed state, remove the previous tab from the tab order.
+		/ If we're collapsing, then keep the collapsing tab in the tab order.
 		if ( toShow.length && toHide.length ) {
 			eventData.oldTab.attr( "tabIndex", -1 );
 		} else if ( toShow.length ) {
@@ -708,12 +708,12 @@ $.widget( "ui.tabs", {
 		var anchor,
 			active = this._findActive( index );
 
-		// Trying to activate the already active panel
+		/ Trying to activate the already active panel
 		if ( active[ 0 ] === this.active[ 0 ] ) {
 			return;
 		}
 
-		// Trying to collapse, simulate a click on the current active header
+		/ Trying to collapse, simulate a click on the current active header
 		if ( !active.length ) {
 			active = this.active;
 		}
@@ -732,7 +732,7 @@ $.widget( "ui.tabs", {
 
 	_getIndex: function( index ) {
 
-		// meta-function to give users option to provide a href string instead of a numerical index.
+		/ meta-function to give users option to provide a href string instead of a numerical index.
 		if ( typeof index === "string" ) {
 			index = this.anchors.index( this.anchors.filter( "[href$='" +
 				$.escapeSelector( index ) + "']" ) );
@@ -850,16 +850,16 @@ $.widget( "ui.tabs", {
 				}
 			};
 
-		// Not remote
+		/ Not remote
 		if ( this._isLocal( anchor[ 0 ] ) ) {
 			return;
 		}
 
 		this.xhr = $.ajax( this._ajaxSettings( anchor, event, eventData ) );
 
-		// Support: jQuery <1.8
-		// jQuery <1.8 returns false if the request is canceled in beforeSend,
-		// but as of 1.8, $.ajax() always returns a jqXHR object.
+		/ Support: jQuery <1.8
+		/ jQuery <1.8 returns false if the request is canceled in beforeSend,
+		/ but as of 1.8, $.ajax() always returns a jqXHR object.
 		if ( this.xhr && this.xhr.statusText !== "canceled" ) {
 			this._addClass( tab, "ui-tabs-loading" );
 			panel.attr( "aria-busy", "true" );
@@ -867,8 +867,8 @@ $.widget( "ui.tabs", {
 			this.xhr
 				.done( function( response, status, jqXHR ) {
 
-					// support: jQuery <1.8
-					// https://bugs.jquery.com/ticket/11778
+					/ support: jQuery <1.8
+					/ https://bugs.jquery.com/ticket/11778
 					setTimeout( function() {
 						panel.html( response );
 						that._trigger( "load", event, eventData );
@@ -878,8 +878,8 @@ $.widget( "ui.tabs", {
 				} )
 				.fail( function( jqXHR, status ) {
 
-					// support: jQuery <1.8
-					// https://bugs.jquery.com/ticket/11778
+					/ support: jQuery <1.8
+					/ https://bugs.jquery.com/ticket/11778
 					setTimeout( function() {
 						complete( jqXHR, status );
 					}, 1 );
@@ -891,8 +891,8 @@ $.widget( "ui.tabs", {
 		var that = this;
 		return {
 
-			// Support: IE <11 only
-			// Strip any hash that exists to prevent errors with the Ajax request
+			/ Support: IE <11 only
+			/ Strip any hash that exists to prevent errors with the Ajax request
 			url: anchor.attr( "href" ).replace( /#.*$/, "" ),
 			beforeSend: function( jqXHR, settings ) {
 				return that._trigger( "beforeLoad", event,
@@ -911,7 +911,7 @@ $.widget( "ui.tabs", {
 // TODO: Switch return back to widget declaration at top of file when this is removed
 if ( $.uiBackCompat !== false ) {
 
-	// Backcompat for ui-tab class (now ui-tabs-tab)
+	/ Backcompat for ui-tab class (now ui-tabs-tab)
 	$.widget( "ui.tabs", $.ui.tabs, {
 		_processTabs: function() {
 			this._superApply( arguments );

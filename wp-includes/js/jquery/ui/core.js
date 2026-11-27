@@ -7,11 +7,11 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [ "jquery" ], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } ( function( $ ) {
@@ -45,7 +45,7 @@ $.extend( $.expr.pseudos, {
 			};
 		} ) :
 
-		// Support: jQuery <1.8
+		/ Support: jQuery <1.8
 		function( elem, i, match ) {
 			return !!$.data( elem, match[ 3 ] );
 		}
@@ -120,10 +120,10 @@ $.ui.focusable = function( element, hasTabindex ) {
 
 		if ( focusableIfVisible ) {
 
-			// Form controls within a disabled fieldset are disabled.
-			// However, controls within the fieldset's legend do not get disabled.
-			// Since controls generally aren't placed inside legends, we skip
-			// this portion of the check.
+			/ Form controls within a disabled fieldset are disabled.
+			/ However, controls within the fieldset's legend do not get disabled.
+			/ Since controls generally aren't placed inside legends, we skip
+			/ this portion of the check.
 			fieldset = $( element ).closest( "fieldset" )[ 0 ];
 			if ( fieldset ) {
 				focusableIfVisible = !fieldset.disabled;
@@ -181,7 +181,7 @@ $.ui.formResetMixin = {
 	_formResetHandler: function() {
 		var form = $( this );
 
-		// Wait for the form reset to actually happen before refreshing
+		/ Wait for the form reset to actually happen before refreshing
 		setTimeout( function() {
 			var instances = form.data( "ui-form-reset-instances" );
 			$.each( instances, function() {
@@ -199,7 +199,7 @@ $.ui.formResetMixin = {
 		var instances = this.form.data( "ui-form-reset-instances" ) || [];
 		if ( !instances.length ) {
 
-			// We don't use _on() here because we use a single event handler per form
+			/ We don't use _on() here because we use a single event handler per form
 			this.form.on( "reset.ui-form-reset", this._formResetHandler );
 		}
 		instances.push( this );
@@ -259,23 +259,23 @@ if ( !$.uniqueSort ) {
 // Code from https://github.com/jquery/jquery/blob/e539bac79e666bba95bba86d690b4e609dca2286/src/selector/escapeSelector.js
 if ( !$.escapeSelector ) {
 
-	// CSS string/identifier serialization
-	// https://drafts.csswg.org/cssom/#common-serializing-idioms
+	/ CSS string/identifier serialization
+	/ https://drafts.csswg.org/cssom/#common-serializing-idioms
 	var rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\x80-\uFFFF\w-]/g;
 
 	var fcssescape = function( ch, asCodePoint ) {
 		if ( asCodePoint ) {
 
-			// U+0000 NULL becomes U+FFFD REPLACEMENT CHARACTER
+			/ U+0000 NULL becomes U+FFFD REPLACEMENT CHARACTER
 			if ( ch === "\0" ) {
 				return "\uFFFD";
 			}
 
-			// Control characters and (dependent upon position) numbers get escaped as code points
+			/ Control characters and (dependent upon position) numbers get escaped as code points
 			return ch.slice( 0, -1 ) + "\\" + ch.charCodeAt( ch.length - 1 ).toString( 16 ) + " ";
 		}
 
-		// Other potentially-special ASCII characters get backslash-escaped
+		/ Other potentially-special ASCII characters get backslash-escaped
 		return "\\" + ch;
 	};
 
@@ -357,35 +357,35 @@ $.fn.labels = function() {
 		return this.pushStack( [] );
 	}
 
-	// Check control.labels first
+	/ Check control.labels first
 	if ( this[ 0 ].labels && this[ 0 ].labels.length ) {
 		return this.pushStack( this[ 0 ].labels );
 	}
 
-	// Support: IE <= 11, FF <= 37, Android <= 2.3 only
-	// Above browsers do not support control.labels. Everything below is to support them
-	// as well as document fragments. control.labels does not work on document fragments
+	/ Support: IE <= 11, FF <= 37, Android <= 2.3 only
+	/ Above browsers do not support control.labels. Everything below is to support them
+	/ as well as document fragments. control.labels does not work on document fragments
 	labels = this.eq( 0 ).parents( "label" );
 
-	// Look for the label based on the id
+	/ Look for the label based on the id
 	id = this.attr( "id" );
 	if ( id ) {
 
-		// We don't search against the document in case the element
-		// is disconnected from the DOM
+		/ We don't search against the document in case the element
+		/ is disconnected from the DOM
 		ancestor = this.eq( 0 ).parents().last();
 
-		// Get a full set of top level ancestors
+		/ Get a full set of top level ancestors
 		ancestors = ancestor.add( ancestor.length ? ancestor.siblings() : this.siblings() );
 
-		// Create a selector for the label based on the id
+		/ Create a selector for the label based on the id
 		selector = "label[for='" + $.escapeSelector( id ) + "']";
 
 		labels = labels.add( ancestors.find( selector ).addBack( selector ) );
 
 	}
 
-	// Return whatever we have found for labels
+	/ Return whatever we have found for labels
 	return this.pushStack( labels );
 };
 
@@ -557,12 +557,12 @@ $.fn.position = function( options ) {
 		return _position.apply( this, arguments );
 	}
 
-	// Make a copy, we don't want to modify arguments
+	/ Make a copy, we don't want to modify arguments
 	options = $.extend( {}, options );
 
 	var atOffset, targetWidth, targetHeight, targetOffset, basePosition, dimensions,
 
-		// Make sure string options are treated as CSS selectors
+		/ Make sure string options are treated as CSS selectors
 		target = typeof options.of === "string" ?
 			$( document ).find( options.of ) :
 			$( options.of ),
@@ -575,18 +575,18 @@ $.fn.position = function( options ) {
 	dimensions = getDimensions( target );
 	if ( target[ 0 ].preventDefault ) {
 
-		// Force left top to allow flipping
+		/ Force left top to allow flipping
 		options.at = "left top";
 	}
 	targetWidth = dimensions.width;
 	targetHeight = dimensions.height;
 	targetOffset = dimensions.offset;
 
-	// Clone to reuse original targetOffset later
+	/ Clone to reuse original targetOffset later
 	basePosition = $.extend( {}, targetOffset );
 
-	// Force my and at to have valid horizontal and vertical positions
-	// if a value is missing or invalid, it will be converted to center
+	/ Force my and at to have valid horizontal and vertical positions
+	/ if a value is missing or invalid, it will be converted to center
 	$.each( [ "my", "at" ], function() {
 		var pos = ( options[ this ] || "" ).split( " " ),
 			horizontalOffset,
@@ -602,7 +602,7 @@ $.fn.position = function( options ) {
 		pos[ 0 ] = rhorizontal.test( pos[ 0 ] ) ? pos[ 0 ] : "center";
 		pos[ 1 ] = rvertical.test( pos[ 1 ] ) ? pos[ 1 ] : "center";
 
-		// Calculate offsets
+		/ Calculate offsets
 		horizontalOffset = roffset.exec( pos[ 0 ] );
 		verticalOffset = roffset.exec( pos[ 1 ] );
 		offsets[ this ] = [
@@ -610,14 +610,14 @@ $.fn.position = function( options ) {
 			verticalOffset ? verticalOffset[ 0 ] : 0
 		];
 
-		// Reduce to just the positions without the offsets
+		/ Reduce to just the positions without the offsets
 		options[ this ] = [
 			rposition.exec( pos[ 0 ] )[ 0 ],
 			rposition.exec( pos[ 1 ] )[ 0 ]
 		];
 	} );
 
-	// Normalize collision option
+	/ Normalize collision option
 	if ( collision.length === 1 ) {
 		collision[ 1 ] = collision[ 0 ];
 	}
@@ -693,7 +693,7 @@ $.fn.position = function( options ) {
 
 		if ( options.using ) {
 
-			// Adds feedback as second argument to using callback, if present
+			/ Adds feedback as second argument to using callback, if present
 			using = function( props ) {
 				var left = targetOffset.left - position.left,
 					right = left + targetWidth - elemWidth,
@@ -747,20 +747,20 @@ $.ui.position = {
 				overRight = collisionPosLeft + data.collisionWidth - outerWidth - withinOffset,
 				newOverRight;
 
-			// Element is wider than within
+			/ Element is wider than within
 			if ( data.collisionWidth > outerWidth ) {
 
-				// Element is initially over the left side of within
+				/ Element is initially over the left side of within
 				if ( overLeft > 0 && overRight <= 0 ) {
 					newOverRight = position.left + overLeft + data.collisionWidth - outerWidth -
 						withinOffset;
 					position.left += overLeft - newOverRight;
 
-				// Element is initially over right side of within
+				/ Element is initially over right side of within
 				} else if ( overRight > 0 && overLeft <= 0 ) {
 					position.left = withinOffset;
 
-				// Element is initially over both left and right sides of within
+				/ Element is initially over both left and right sides of within
 				} else {
 					if ( overLeft > overRight ) {
 						position.left = withinOffset + outerWidth - data.collisionWidth;
@@ -769,15 +769,15 @@ $.ui.position = {
 					}
 				}
 
-			// Too far left -> align with left edge
+			/ Too far left -> align with left edge
 			} else if ( overLeft > 0 ) {
 				position.left += overLeft;
 
-			// Too far right -> align with right edge
+			/ Too far right -> align with right edge
 			} else if ( overRight > 0 ) {
 				position.left -= overRight;
 
-			// Adjust based on position and margin
+			/ Adjust based on position and margin
 			} else {
 				position.left = max( position.left - collisionPosLeft, position.left );
 			}
@@ -791,20 +791,20 @@ $.ui.position = {
 				overBottom = collisionPosTop + data.collisionHeight - outerHeight - withinOffset,
 				newOverBottom;
 
-			// Element is taller than within
+			/ Element is taller than within
 			if ( data.collisionHeight > outerHeight ) {
 
-				// Element is initially over the top of within
+				/ Element is initially over the top of within
 				if ( overTop > 0 && overBottom <= 0 ) {
 					newOverBottom = position.top + overTop + data.collisionHeight - outerHeight -
 						withinOffset;
 					position.top += overTop - newOverBottom;
 
-				// Element is initially over bottom of within
+				/ Element is initially over bottom of within
 				} else if ( overBottom > 0 && overTop <= 0 ) {
 					position.top = withinOffset;
 
-				// Element is initially over both top and bottom of within
+				/ Element is initially over both top and bottom of within
 				} else {
 					if ( overTop > overBottom ) {
 						position.top = withinOffset + outerHeight - data.collisionHeight;
@@ -813,15 +813,15 @@ $.ui.position = {
 					}
 				}
 
-			// Too far up -> align with top
+			/ Too far up -> align with top
 			} else if ( overTop > 0 ) {
 				position.top += overTop;
 
-			// Too far down -> align with bottom edge
+			/ Too far down -> align with bottom edge
 			} else if ( overBottom > 0 ) {
 				position.top -= overBottom;
 
-			// Adjust based on position and margin
+			/ Adjust based on position and margin
 			} else {
 				position.top = max( position.top - collisionPosTop, position.top );
 			}
@@ -919,24 +919,24 @@ $.ui.position = {
 $.ui.safeActiveElement = function( document ) {
 	var activeElement;
 
-	// Support: IE 9 only
-	// IE9 throws an "Unspecified error" accessing document.activeElement from an <iframe>
+	/ Support: IE 9 only
+	/ IE9 throws an "Unspecified error" accessing document.activeElement from an <iframe>
 	try {
 		activeElement = document.activeElement;
 	} catch ( error ) {
 		activeElement = document.body;
 	}
 
-	// Support: IE 9 - 11 only
-	// IE may return null instead of an element
-	// Interestingly, this only seems to occur when NOT in an iframe
+	/ Support: IE 9 - 11 only
+	/ IE may return null instead of an element
+	/ Interestingly, this only seems to occur when NOT in an iframe
 	if ( !activeElement ) {
 		activeElement = document.body;
 	}
 
-	// Support: IE 11 only
-	// IE11 returns a seemingly empty object in some cases when accessing
-	// document.activeElement from an <iframe>
+	/ Support: IE 11 only
+	/ IE11 returns a seemingly empty object in some cases when accessing
+	/ document.activeElement from an <iframe>
 	if ( !activeElement.nodeName ) {
 		activeElement = document.body;
 	}
@@ -947,8 +947,8 @@ $.ui.safeActiveElement = function( document ) {
 // Source: safe-blur.js
 $.ui.safeBlur = function( element ) {
 
-	// Support: IE9 - 10 only
-	// If the <body> is blurred, IE will switch windows, see #9420
+	/ Support: IE9 - 10 only
+	/ If the <body> is blurred, IE will switch windows, see #9420
 	if ( element && element.nodeName.toLowerCase() !== "body" ) {
 		$( element ).trigger( "blur" );
 	}
@@ -1072,7 +1072,7 @@ $.cleanData = ( function( orig ) {
 		var events, elem, i;
 		for ( i = 0; ( elem = elems[ i ] ) != null; i++ ) {
 
-			// Only trigger remove when necessary to save time
+			/ Only trigger remove when necessary to save time
 			events = $._data( elem, "events" );
 			if ( events && events.remove ) {
 				$( elem ).triggerHandler( "remove" );
@@ -1085,8 +1085,8 @@ $.cleanData = ( function( orig ) {
 $.widget = function( name, base, prototype ) {
 	var existingConstructor, constructor, basePrototype;
 
-	// ProxiedPrototype allows the provided prototype to remain unmodified
-	// so that it can be used as a mixin for multiple widgets (#8876)
+	/ ProxiedPrototype allows the provided prototype to remain unmodified
+	/ so that it can be used as a mixin for multiple widgets (#8876)
 	var proxiedPrototype = {};
 
 	var namespace = name.split( "." )[ 0 ];
@@ -1102,7 +1102,7 @@ $.widget = function( name, base, prototype ) {
 		prototype = $.extend.apply( null, [ {} ].concat( prototype ) );
 	}
 
-	// Create selector for plugin
+	/ Create selector for plugin
 	$.expr.pseudos[ fullName.toLowerCase() ] = function( elem ) {
 		return !!$.data( elem, fullName );
 	};
@@ -1111,36 +1111,36 @@ $.widget = function( name, base, prototype ) {
 	existingConstructor = $[ namespace ][ name ];
 	constructor = $[ namespace ][ name ] = function( options, element ) {
 
-		// Allow instantiation without "new" keyword
+		/ Allow instantiation without "new" keyword
 		if ( !this || !this._createWidget ) {
 			return new constructor( options, element );
 		}
 
-		// Allow instantiation without initializing for simple inheritance
-		// must use "new" keyword (the code above always passes args)
+		/ Allow instantiation without initializing for simple inheritance
+		/ must use "new" keyword (the code above always passes args)
 		if ( arguments.length ) {
 			this._createWidget( options, element );
 		}
 	};
 
-	// Extend with the existing constructor to carry over any static properties
+	/ Extend with the existing constructor to carry over any static properties
 	$.extend( constructor, existingConstructor, {
 		version: prototype.version,
 
-		// Copy the object used to create the prototype in case we need to
-		// redefine the widget later
+		/ Copy the object used to create the prototype in case we need to
+		/ redefine the widget later
 		_proto: $.extend( {}, prototype ),
 
-		// Track widgets that inherit from this widget in case this widget is
-		// redefined after a widget inherits from it
+		/ Track widgets that inherit from this widget in case this widget is
+		/ redefined after a widget inherits from it
 		_childConstructors: []
 	} );
 
 	basePrototype = new base();
 
-	// We need to make the options hash a property directly on the new instance
-	// otherwise we'll modify the options hash on the prototype that we're
-	// inheriting from
+	/ We need to make the options hash a property directly on the new instance
+	/ otherwise we'll modify the options hash on the prototype that we're
+	/ inheriting from
 	basePrototype.options = $.widget.extend( {}, basePrototype.options );
 	$.each( prototype, function( prop, value ) {
 		if ( typeof value !== "function" ) {
@@ -1175,9 +1175,9 @@ $.widget = function( name, base, prototype ) {
 	} );
 	constructor.prototype = $.widget.extend( basePrototype, {
 
-		// TODO: remove support for widgetEventPrefix
-		// always use the name + a colon as the prefix, e.g., draggable:start
-		// don't prefix for widgets that aren't DOM-based
+		/ TODO: remove support for widgetEventPrefix
+		/ always use the name + a colon as the prefix, e.g., draggable:start
+		/ don't prefix for widgets that aren't DOM-based
 		widgetEventPrefix: existingConstructor ? ( basePrototype.widgetEventPrefix || name ) : name
 	}, proxiedPrototype, {
 		constructor: constructor,
@@ -1186,22 +1186,22 @@ $.widget = function( name, base, prototype ) {
 		widgetFullName: fullName
 	} );
 
-	// If this widget is being redefined then we need to find all widgets that
-	// are inheriting from it and redefine all of them so that they inherit from
-	// the new version of this widget. We're essentially trying to replace one
-	// level in the prototype chain.
+	/ If this widget is being redefined then we need to find all widgets that
+	/ are inheriting from it and redefine all of them so that they inherit from
+	/ the new version of this widget. We're essentially trying to replace one
+	/ level in the prototype chain.
 	if ( existingConstructor ) {
 		$.each( existingConstructor._childConstructors, function( i, child ) {
 			var childPrototype = child.prototype;
 
-			// Redefine the child widget using the same prototype that was
-			// originally used, but inherit from the new version of the base
+			/ Redefine the child widget using the same prototype that was
+			/ originally used, but inherit from the new version of the base
 			$.widget( childPrototype.namespace + "." + childPrototype.widgetName, constructor,
 				child._proto );
 		} );
 
-		// Remove the list of existing child constructors from the old constructor
-		// so the old child constructors can be garbage collected
+		/ Remove the list of existing child constructors from the old constructor
+		/ so the old child constructors can be garbage collected
 		delete existingConstructor._childConstructors;
 	} else {
 		base._childConstructors.push( constructor );
@@ -1224,15 +1224,15 @@ $.widget.extend = function( target ) {
 			value = input[ inputIndex ][ key ];
 			if ( widgetHasOwnProperty.call( input[ inputIndex ], key ) && value !== undefined ) {
 
-				// Clone objects
+				/ Clone objects
 				if ( $.isPlainObject( value ) ) {
 					target[ key ] = $.isPlainObject( target[ key ] ) ?
 						$.widget.extend( {}, target[ key ], value ) :
 
-						// Don't extend strings, arrays, etc. with objects
+						/ Don't extend strings, arrays, etc. with objects
 						$.widget.extend( {}, value );
 
-				// Copy everything else by reference
+				/ Copy everything else by reference
 				} else {
 					target[ key ] = value;
 				}
@@ -1251,8 +1251,8 @@ $.widget.bridge = function( name, object ) {
 
 		if ( isMethodCall ) {
 
-			// If this is an empty collection, we need to have the instance method
-			// return undefined instead of the jQuery instance
+			/ If this is an empty collection, we need to have the instance method
+			/ return undefined instead of the jQuery instance
 			if ( !this.length && options === "instance" ) {
 				returnValue = undefined;
 			} else {
@@ -1289,7 +1289,7 @@ $.widget.bridge = function( name, object ) {
 			}
 		} else {
 
-			// Allow multiple hashes to be passed on init
+			/ Allow multiple hashes to be passed on init
 			if ( args.length ) {
 				options = $.widget.extend.apply( null, [ options ].concat( args ) );
 			}
@@ -1323,7 +1323,7 @@ $.Widget.prototype = {
 		classes: {},
 		disabled: false,
 
-		// Callbacks
+		/ Callbacks
 		create: null
 	},
 
@@ -1349,10 +1349,10 @@ $.Widget.prototype = {
 			} );
 			this.document = $( element.style ?
 
-				// Element within the document
+				/ Element within the document
 				element.ownerDocument :
 
-				// Element is window or document
+				/ Element is window or document
 				element.document || element );
 			this.window = $( this.document[ 0 ].defaultView || this.document[ 0 ].parentWindow );
 		}
@@ -1390,8 +1390,8 @@ $.Widget.prototype = {
 			that._removeClass( value, key );
 		} );
 
-		// We can probably remove the unbind calls in 2.0
-		// all event bindings should go through this._on()
+		/ We can probably remove the unbind calls in 2.0
+		/ all event bindings should go through this._on()
 		this.element
 			.off( this.eventNamespace )
 			.removeData( this.widgetFullName );
@@ -1399,7 +1399,7 @@ $.Widget.prototype = {
 			.off( this.eventNamespace )
 			.removeAttr( "aria-disabled" );
 
-		// Clean up events and states
+		/ Clean up events and states
 		this.bindings.off( this.eventNamespace );
 	},
 
@@ -1417,13 +1417,13 @@ $.Widget.prototype = {
 
 		if ( arguments.length === 0 ) {
 
-			// Don't return a reference to the internal hash
+			/ Don't return a reference to the internal hash
 			return $.widget.extend( {}, this.options );
 		}
 
 		if ( typeof key === "string" ) {
 
-			// Handle nested keys, e.g., "foo.bar" => { foo: { bar: ___ } }
+			/ Handle nested keys, e.g., "foo.bar" => { foo: { bar: ___ } }
 			options = {};
 			parts = key.split( "." );
 			key = parts.shift();
@@ -1486,17 +1486,17 @@ $.Widget.prototype = {
 				continue;
 			}
 
-			// We are doing this to create a new jQuery object because the _removeClass() call
-			// on the next line is going to destroy the reference to the current elements being
-			// tracked. We need to save a copy of this collection so that we can add the new classes
-			// below.
+			/ We are doing this to create a new jQuery object because the _removeClass() call
+			/ on the next line is going to destroy the reference to the current elements being
+			/ tracked. We need to save a copy of this collection so that we can add the new classes
+			/ below.
 			elements = $( currentElements.get() );
 			this._removeClass( currentElements, classKey );
 
-			// We don't use _addClass() here, because that uses this.options.classes
-			// for generating the string of classes. We want to use the value passed in from
-			// _setOption(), this is the new value of the classes option which was passed to
-			// _setOption(). We pass this value directly to _classes().
+			/ We don't use _addClass() here, because that uses this.options.classes
+			/ for generating the string of classes. We want to use the value passed in from
+			/ _setOption(), this is the new value of the classes option which was passed to
+			/ _setOption(). We pass this value directly to _classes().
 			elements.addClass( this._classes( {
 				element: elements,
 				keys: classKey,
@@ -1509,7 +1509,7 @@ $.Widget.prototype = {
 	_setOptionDisabled: function( value ) {
 		this._toggleClass( this.widget(), this.widgetFullName + "-disabled", null, !!value );
 
-		// If the widget is becoming disabled, then nothing is interactive
+		/ If the widget is becoming disabled, then nothing is interactive
 		if ( value ) {
 			this._removeClass( this.hoverable, null, "ui-state-hover" );
 			this._removeClass( this.focusable, null, "ui-state-focus" );
@@ -1618,14 +1618,14 @@ $.Widget.prototype = {
 		var delegateElement;
 		var instance = this;
 
-		// No suppressDisabledCheck flag, shuffle arguments
+		/ No suppressDisabledCheck flag, shuffle arguments
 		if ( typeof suppressDisabledCheck !== "boolean" ) {
 			handlers = element;
 			element = suppressDisabledCheck;
 			suppressDisabledCheck = false;
 		}
 
-		// No element argument, shuffle and use this.element
+		/ No element argument, shuffle and use this.element
 		if ( !handlers ) {
 			handlers = element;
 			element = this.element;
@@ -1638,9 +1638,9 @@ $.Widget.prototype = {
 		$.each( handlers, function( event, handler ) {
 			function handlerProxy() {
 
-				// Allow widgets to customize the disabled handling
-				// - disabled as an array instead of boolean
-				// - disabled class as method for disabling individual parts
+				/ Allow widgets to customize the disabled handling
+				/ - disabled as an array instead of boolean
+				/ - disabled class as method for disabling individual parts
 				if ( !suppressDisabledCheck &&
 						( instance.options.disabled === true ||
 						$( this ).hasClass( "ui-state-disabled" ) ) ) {
@@ -1650,7 +1650,7 @@ $.Widget.prototype = {
 					.apply( instance, arguments );
 			}
 
-			// Copy the guid so direct unbinding works
+			/ Copy the guid so direct unbinding works
 			if ( typeof handler !== "string" ) {
 				handlerProxy.guid = handler.guid =
 					handler.guid || handlerProxy.guid || $.guid++;
@@ -1673,7 +1673,7 @@ $.Widget.prototype = {
 			this.eventNamespace;
 		element.off( eventName );
 
-		// Clear the stack to avoid memory leaks (#10056)
+		/ Clear the stack to avoid memory leaks (#10056)
 		this.bindings = $( this.bindings.not( element ).get() );
 		this.focusable = $( this.focusable.not( element ).get() );
 		this.hoverable = $( this.hoverable.not( element ).get() );
@@ -1722,11 +1722,11 @@ $.Widget.prototype = {
 			type :
 			this.widgetEventPrefix + type ).toLowerCase();
 
-		// The original event may come from any element
-		// so we need to reset the target on the new event
+		/ The original event may come from any element
+		/ so we need to reset the target on the new event
 		event.target = this.element[ 0 ];
 
-		// Copy original event properties over to the new event
+		/ Copy original event properties over to the new event
 		orig = event.originalEvent;
 		if ( orig ) {
 			for ( prop in orig ) {

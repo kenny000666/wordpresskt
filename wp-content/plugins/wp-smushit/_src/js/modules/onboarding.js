@@ -15,7 +15,7 @@ import GlobalTracking from '../global-tracking';
 	 * @since 3.1
 	 */
 	WP_Smush.onboarding = {
-		membership: 'free', // Assume free by default.
+		membership: 'free', / Assume free by default.
 		onboardingModal: document.getElementById( 'smush-onboarding-dialog' ),
 		first_slide: 'usage',
 		settings: {
@@ -78,7 +78,7 @@ import GlobalTracking from '../global-tracking';
 
 			this.renderTemplate();
 
-			// Skip setup.
+			/ Skip setup.
 			this.skipButton = this.onboardingModal.querySelector(
 				'.smush-onboarding-skip-link'
 			);
@@ -86,7 +86,7 @@ import GlobalTracking from '../global-tracking';
 				this.skipButton.addEventListener( 'click', this.skipSetup.bind( this ) );
 			}
 
-			// Show the modal.
+			/ Show the modal.
 			window.SUI.openModal(
 				'smush-onboarding-dialog',
 				'wpcontent',
@@ -141,7 +141,7 @@ import GlobalTracking from '../global-tracking';
 		 * @param {string} directionClass Accepts: fadeInRight, fadeInLeft, none.
 		 */
 		renderTemplate( directionClass = 'none' ) {
-			// Grab the selected value.
+			/ Grab the selected value.
 			const input = this.onboardingModal.querySelector(
 				'input[type="checkbox"]'
 			);
@@ -212,7 +212,7 @@ import GlobalTracking from '../global-tracking';
 
 					submitButton.classList.add( 'wp-smush-link-in-progress' );
 
-					// Because we are not rendering the template, we need to update the last element value.
+					/ Because we are not rendering the template, we need to update the last element value.
 					const input = self.onboardingModal.querySelector(
 						'input[type="checkbox"]'
 					);
@@ -294,7 +294,7 @@ import GlobalTracking from '../global-tracking';
 
 			this.settings = {
 				first: 0 === newIndex,
-				last: newIndex + 1 === this.onboardingSlides.length, // length !== index
+				last: newIndex + 1 === this.onboardingSlides.length, / length !== index
 				slide: this.onboardingSlides[ newIndex ],
 				value: this.selection[ this.onboardingSlides[ newIndex ] ],
 			};
@@ -312,7 +312,7 @@ import GlobalTracking from '../global-tracking';
 
 			this.settings = {
 				first: 0 === newIndex,
-				last: newIndex + 1 === this.onboardingSlides.length, // length !== index
+				last: newIndex + 1 === this.onboardingSlides.length, / length !== index
 				slide: target,
 				value: this.selection[ target ],
 			};
@@ -326,7 +326,7 @@ import GlobalTracking from '../global-tracking';
 		skipSetup() {
 			const _nonce = document.getElementById( 'smush_quick_setup_nonce' );
 
-			// Track skip setup wizard.
+			/ Track skip setup wizard.
 			this.trackSkipSetupWizard();
 
 			const xhr = new XMLHttpRequest();
@@ -416,7 +416,7 @@ import GlobalTracking from '../global-tracking';
 				return;
 			}
 			this.upsellButton.classList.remove( 'smush-btn-ripple' );
-			void this.upsellButton.offsetWidth; // Trigger a reflow.
+			void this.upsellButton.offsetWidth; / Trigger a reflow.
 			this.upsellButton.classList.add( 'smush-btn-ripple' );
 		},
 		cacheProFeatureClick( proFeature ) {

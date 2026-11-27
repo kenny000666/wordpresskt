@@ -13,8 +13,8 @@ if ( typeof tb_pathToImage != 'string' ) {
 
 //on page load call tb_init
 jQuery(document).ready(function(){
-	tb_init('a.thickbox, area.thickbox, input.thickbox');//pass where to apply thickbox
-	imgLoader = new Image();// preload image
+	tb_init('a.thickbox, area.thickbox, input.thickbox');/pass where to apply thickbox
+	imgLoader = new Image();/ preload image
 	imgLoader.src = tb_pathToImage;
 });
 
@@ -39,19 +39,19 @@ function tb_click(){
 	return false;
 }
 
-function tb_show(caption, url, imageGroup) {//function called when the user clicks on a thickbox link
+function tb_show(caption, url, imageGroup) {/function called when the user clicks on a thickbox link
 
 	var $closeBtn;
 
 	try {
-		if (typeof document.body.style.maxHeight === "undefined") {//if IE 6
+		if (typeof document.body.style.maxHeight === "undefined") {/if IE 6
 			jQuery("body","html").css({height: "100%", width: "100%"});
 			jQuery("html").css("overflow","hidden");
-			if (document.getElementById("TB_HideSelect") === null) {//iframe to hide select elements in ie6
+			if (document.getElementById("TB_HideSelect") === null) {/iframe to hide select elements in ie6
 				jQuery("body").append("<iframe id='TB_HideSelect'>"+thickboxL10n.noiframes+"</iframe><div id='TB_overlay'></div><div id='TB_window' class='thickbox-loading'></div>");
 				jQuery("#TB_overlay").on( 'click', tb_remove );
 			}
-		}else{//all others
+		}else{/all others
 			if(document.getElementById("TB_overlay") === null){
 				jQuery("body").append("<div id='TB_overlay'></div><div id='TB_window' class='thickbox-loading'></div>");
 				jQuery("#TB_overlay").on( 'click', tb_remove );
@@ -60,17 +60,17 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 		}
 
 		if(tb_detectMacXFF()){
-			jQuery("#TB_overlay").addClass("TB_overlayMacFFBGHack");//use png overlay so hide flash
+			jQuery("#TB_overlay").addClass("TB_overlayMacFFBGHack");/use png overlay so hide flash
 		}else{
-			jQuery("#TB_overlay").addClass("TB_overlayBG");//use background and opacity
+			jQuery("#TB_overlay").addClass("TB_overlayBG");/use background and opacity
 		}
 
 		if(caption===null){caption="";}
-		jQuery("body").append("<div id='TB_load'><img src='"+imgLoader.src+"' width='208' /></div>");//add loader to the page
-		jQuery('#TB_load').show();//show loader
+		jQuery("body").append("<div id='TB_load'><img src='"+imgLoader.src+"' width='208' /></div>");/add loader to the page
+		jQuery('#TB_load').show();/show loader
 
 		var baseURL;
-	   if(url.indexOf("?")!==-1){ //ff there is a query string involved
+	   if(url.indexOf("?")!==-1){ /ff there is a query string involved
 			baseURL = url.substr(0, url.indexOf("?"));
 	   }else{
 	   		baseURL = url;
@@ -86,7 +86,7 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 			urlType == '.bmp' ||
 			urlType == '.webp' ||
 			urlType == '.avif'
-		){//code to show images
+		){/code to show images
 
 			TB_PrevCaption = "";
 			TB_PrevURL = "";
@@ -121,7 +121,7 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 			imgPreloader.onload = function(){
 			imgPreloader.onload = null;
 
-			// Resizing large images - original by Christian Montoya edited by me.
+			/ Resizing large images - original by Christian Montoya edited by me.
 			var pagesize = tb_getPageSize();
 			var x = pagesize[0] - 150;
 			var y = pagesize[1] - 150;
@@ -142,7 +142,7 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 					imageWidth = x;
 				}
 			}
-			// End Resizing
+			/ End Resizing
 
 			TB_WIDTH = imageWidth + 30;
 			TB_HEIGHT = imageHeight + 60;
@@ -173,15 +173,15 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 			}
 
 			jQuery(document).on('keydown.thickbox', function(e){
-				if ( e.which == 27 ){ // close
+				if ( e.which == 27 ){ / close
 					tb_remove();
 
-				} else if ( e.which == 190 ){ // display previous image
+				} else if ( e.which == 190 ){ / display previous image
 					if(!(TB_NextHTML == "")){
 						jQuery(document).off('thickbox');
 						goNext();
 					}
-				} else if ( e.which == 188 ){ // display next image
+				} else if ( e.which == 188 ){ / display next image
 					if(!(TB_PrevHTML == "")){
 						jQuery(document).off('thickbox');
 						goPrev();
@@ -193,38 +193,38 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 			tb_position();
 			jQuery("#TB_load").remove();
 			jQuery("#TB_ImageOff").on( 'click', tb_remove );
-			jQuery("#TB_window").css({'visibility':'visible'}); //for safari using css instead of show
+			jQuery("#TB_window").css({'visibility':'visible'}); /for safari using css instead of show
 			};
 
 			imgPreloader.src = url;
-		}else{//code to show html
+		}else{/code to show html
 
 			var queryString = url.replace(/^[^\?]+\??/,'');
 			var params = tb_parseQuery( queryString );
 
-			TB_WIDTH = (params['width']*1) + 30 || 630; //defaults to 630 if no parameters were added to URL
-			TB_HEIGHT = (params['height']*1) + 40 || 440; //defaults to 440 if no parameters were added to URL
+			TB_WIDTH = (params['width']*1) + 30 || 630; /defaults to 630 if no parameters were added to URL
+			TB_HEIGHT = (params['height']*1) + 40 || 440; /defaults to 440 if no parameters were added to URL
 			ajaxContentW = TB_WIDTH - 30;
 			ajaxContentH = TB_HEIGHT - 45;
 
-			if(url.indexOf('TB_iframe') != -1){// either iframe or ajax window
+			if(url.indexOf('TB_iframe') != -1){/ either iframe or ajax window
 					urlNoQuery = url.split('TB_');
 					jQuery("#TB_iframeContent").remove();
-					if(params['modal'] != "true"){//iframe no modal
+					if(params['modal'] != "true"){/iframe no modal
 						jQuery("#TB_window").append("<div id='TB_title'><div id='TB_ajaxWindowTitle'>"+caption+"</div><div id='TB_closeAjaxWindow'><button type='button' id='TB_closeWindowButton'><span class='screen-reader-text'>"+thickboxL10n.close+"</span><span class='tb-close-icon' aria-hidden='true'></span></button></div></div><iframe frameborder='0' hspace='0' allowtransparency='true' src='"+urlNoQuery[0]+"' id='TB_iframeContent' name='TB_iframeContent"+Math.round(Math.random()*1000)+"' onload='tb_showIframe()' style='width:"+(ajaxContentW + 29)+"px;height:"+(ajaxContentH + 17)+"px;' >"+thickboxL10n.noiframes+"</iframe>");
-					}else{//iframe modal
+					}else{/iframe modal
 					jQuery("#TB_overlay").off();
 						jQuery("#TB_window").append("<iframe frameborder='0' hspace='0' allowtransparency='true' src='"+urlNoQuery[0]+"' id='TB_iframeContent' name='TB_iframeContent"+Math.round(Math.random()*1000)+"' onload='tb_showIframe()' style='width:"+(ajaxContentW + 29)+"px;height:"+(ajaxContentH + 17)+"px;'>"+thickboxL10n.noiframes+"</iframe>");
 					}
-			}else{// not an iframe, ajax
+			}else{/ not an iframe, ajax
 					if(jQuery("#TB_window").css("visibility") != "visible"){
-						if(params['modal'] != "true"){//ajax no modal
+						if(params['modal'] != "true"){/ajax no modal
 						jQuery("#TB_window").append("<div id='TB_title'><div id='TB_ajaxWindowTitle'>"+caption+"</div><div id='TB_closeAjaxWindow'><button type='button' id='TB_closeWindowButton'><span class='screen-reader-text'>"+thickboxL10n.close+"</span><span class='tb-close-icon' aria-hidden='true'></span></button></div></div><div id='TB_ajaxContent' style='width:"+ajaxContentW+"px;height:"+ajaxContentH+"px'></div>");
-						}else{//ajax modal
+						}else{/ajax modal
 						jQuery("#TB_overlay").off();
 						jQuery("#TB_window").append("<div id='TB_ajaxContent' class='TB_modal' style='width:"+ajaxContentW+"px;height:"+ajaxContentH+"px;'></div>");
 						}
-					}else{//this means the window is already up, we are just loading new content via ajax
+					}else{/this means the window is already up, we are just loading new content via ajax
 						jQuery("#TB_ajaxContent")[0].style.width = ajaxContentW +"px";
 						jQuery("#TB_ajaxContent")[0].style.height = ajaxContentH +"px";
 						jQuery("#TB_ajaxContent")[0].scrollTop = 0;
@@ -237,7 +237,7 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 				if(url.indexOf('TB_inline') != -1){
 					jQuery("#TB_ajaxContent").append(jQuery('#' + params['inlineId']).children());
 					jQuery("#TB_window").on('tb_unload', function () {
-						jQuery('#' + params['inlineId']).append( jQuery("#TB_ajaxContent").children() ); // move elements back when you're finished
+						jQuery('#' + params['inlineId']).append( jQuery("#TB_ajaxContent").children() ); / move elements back when you're finished
 					});
 					tb_position();
 					jQuery("#TB_load").remove();
@@ -249,7 +249,7 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 				}else{
 					var load_url = url;
 					load_url += -1 === url.indexOf('?') ? '?' : '&';
-					jQuery("#TB_ajaxContent").load(load_url += "random=" + (new Date().getTime()),function(){//to do a post change this load method
+					jQuery("#TB_ajaxContent").load(load_url += "random=" + (new Date().getTime()),function(){/to do a post change this load method
 						tb_position();
 						jQuery("#TB_load").remove();
 						tb_init("#TB_ajaxContent a.thickbox");
@@ -261,7 +261,7 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 
 		if(!params['modal']){
 			jQuery(document).on('keydown.thickbox', function(e){
-				if ( e.which == 27 ){ // close
+				if ( e.which == 27 ){ / close
 					tb_remove();
 					return false;
 				}
@@ -279,7 +279,7 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 		}
 
 	} catch(e) {
-		//nothing here
+		/nothing here
 	}
 }
 
@@ -298,7 +298,7 @@ function tb_remove() {
 	});
 	jQuery( 'body' ).removeClass( 'modal-open' );
 	jQuery("#TB_load").remove();
-	if (typeof document.body.style.maxHeight == "undefined") {//if IE 6
+	if (typeof document.body.style.maxHeight == "undefined") {/if IE 6
 		jQuery("body","html").css({height: "auto", width: "auto"});
 		jQuery("html").css("overflow","");
 	}
@@ -309,14 +309,14 @@ function tb_remove() {
 function tb_position() {
 var isIE6 = typeof document.body.style.maxHeight === "undefined";
 jQuery("#TB_window").css({marginLeft: '-' + parseInt((TB_WIDTH / 2),10) + 'px', width: TB_WIDTH + 'px'});
-	if ( ! isIE6 ) { // take away IE6
+	if ( ! isIE6 ) { / take away IE6
 		jQuery("#TB_window").css({marginTop: '-' + parseInt((TB_HEIGHT / 2),10) + 'px'});
 	}
 }
 
 function tb_parseQuery ( query ) {
    var Params = {};
-   if ( ! query ) {return Params;}// return empty object
+   if ( ! query ) {return Params;}/ return empty object
    var Pairs = query.split(/[;&]/);
    for ( var i = 0; i < Pairs.length; i++ ) {
       var KeyVal = Pairs[i].split('=');

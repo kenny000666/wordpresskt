@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -18,7 +18,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -35,7 +35,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -100,9 +100,9 @@ __webpack_require__.d(actions_namespaceObject, {
   removeFormatTypes: () => (removeFormatTypes)
 });
 
-;// external ["wp","data"]
+;/ external ["wp","data"]
 const external_wp_data_namespaceObject = window["wp"]["data"];
-;// ./node_modules/@wordpress/rich-text/build-module/store/reducer.js
+;/ ./node_modules/@wordpress/rich-text/build-module/store/reducer.js
 /**
  * WordPress dependencies
  */
@@ -121,7 +121,7 @@ function formatTypes(state = {}, action) {
     case 'ADD_FORMAT_TYPES':
       return {
         ...state,
-        // Key format types by their name.
+        / Key format types by their name.
         ...action.formatTypes.reduce((newFormatTypes, type) => ({
           ...newFormatTypes,
           [type.name]: type
@@ -136,7 +136,7 @@ function formatTypes(state = {}, action) {
   formatTypes
 }));
 
-;// ./node_modules/@wordpress/rich-text/build-module/store/selectors.js
+;/ ./node_modules/@wordpress/rich-text/build-module/store/selectors.js
 /**
  * WordPress dependencies
  */
@@ -298,7 +298,7 @@ function getFormatTypeForClassName(state, elementClassName) {
   });
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/store/actions.js
+;/ ./node_modules/@wordpress/rich-text/build-module/store/actions.js
 /**
  * Returns an action object used in signalling that format types have been
  * added.
@@ -335,7 +335,7 @@ function removeFormatTypes(names) {
   };
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/store/index.js
+;/ ./node_modules/@wordpress/rich-text/build-module/store/index.js
 /**
  * WordPress dependencies
  */
@@ -363,7 +363,7 @@ const store = (0,external_wp_data_namespaceObject.createReduxStore)(STORE_NAME, 
 });
 (0,external_wp_data_namespaceObject.register)(store);
 
-;// ./node_modules/@wordpress/rich-text/build-module/is-format-equal.js
+;/ ./node_modules/@wordpress/rich-text/build-module/is-format-equal.js
 /** @typedef {import('./types').RichTextFormat} RichTextFormat */
 
 /**
@@ -375,12 +375,12 @@ const store = (0,external_wp_data_namespaceObject.createReduxStore)(STORE_NAME, 
  * @return {boolean} True if formats are equal, false if not.
  */
 function isFormatEqual(format1, format2) {
-  // Both not defined.
+  / Both not defined.
   if (format1 === format2) {
     return true;
   }
 
-  // Either not defined.
+  / Either not defined.
   if (!format1 || !format2) {
     return false;
   }
@@ -390,12 +390,12 @@ function isFormatEqual(format1, format2) {
   const attributes1 = format1.attributes;
   const attributes2 = format2.attributes;
 
-  // Both not defined.
+  / Both not defined.
   if (attributes1 === attributes2) {
     return true;
   }
 
-  // Either not defined.
+  / Either not defined.
   if (!attributes1 || !attributes2) {
     return false;
   }
@@ -406,7 +406,7 @@ function isFormatEqual(format1, format2) {
   }
   const length = keys1.length;
 
-  // Optimise for speed.
+  / Optimise for speed.
   for (let i = 0; i < length; i++) {
     const name = keys1[i];
     if (attributes1[name] !== attributes2[name]) {
@@ -416,7 +416,7 @@ function isFormatEqual(format1, format2) {
   return true;
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/normalise-formats.js
+;/ ./node_modules/@wordpress/rich-text/build-module/normalise-formats.js
 /**
  * Internal dependencies
  */
@@ -454,7 +454,7 @@ function normaliseFormats(value) {
   };
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/apply-format.js
+;/ ./node_modules/@wordpress/rich-text/build-module/apply-format.js
 /**
  * Internal dependencies
  */
@@ -489,14 +489,14 @@ function applyFormat(value, format, startIndex = value.start, endIndex = value.e
   } = value;
   const newFormats = formats.slice();
 
-  // The selection is collapsed.
+  / The selection is collapsed.
   if (startIndex === endIndex) {
     const startFormat = newFormats[startIndex]?.find(({
       type
     }) => type === format.type);
 
-    // If the caret is at a format of the same type, expand start and end to
-    // the edges of the format. This is useful to apply new attributes.
+    / If the caret is at a format of the same type, expand start and end to
+    / the edges of the format. This is useful to apply new attributes.
     if (startFormat) {
       const index = newFormats[startIndex].indexOf(startFormat);
       while (newFormats[startIndex] && newFormats[startIndex][index] === startFormat) {
@@ -510,7 +510,7 @@ function applyFormat(value, format, startIndex = value.start, endIndex = value.e
       }
     }
   } else {
-    // Determine the highest position the new format can be inserted at.
+    / Determine the highest position the new format can be inserted at.
     let position = +Infinity;
     for (let index = startIndex; index < endIndex; index++) {
       if (newFormats[index]) {
@@ -533,16 +533,16 @@ function applyFormat(value, format, startIndex = value.start, endIndex = value.e
   return normaliseFormats({
     ...value,
     formats: newFormats,
-    // Always revise active formats. This serves as a placeholder for new
-    // inputs with the format so new input appears with the format applied,
-    // and ensures a format of the same type uses the latest values.
+    / Always revise active formats. This serves as a placeholder for new
+    / inputs with the format so new input appears with the format applied,
+    / and ensures a format of the same type uses the latest values.
     activeFormats: [...(activeFormats?.filter(({
       type
     }) => type !== format.type) || []), format]
   });
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/create-element.js
+;/ ./node_modules/@wordpress/rich-text/build-module/create-element.js
 /**
  * Parse the given HTML into a body element.
  *
@@ -558,10 +558,10 @@ function applyFormat(value, format, startIndex = value.start, endIndex = value.e
 function createElement({
   implementation
 }, html) {
-  // Because `createHTMLDocument` is an expensive operation, and with this
-  // function being internal to `rich-text` (full control in avoiding a risk
-  // of asynchronous operations on the shared reference), a single document
-  // is reused and reset for each call to the function.
+  / Because `createHTMLDocument` is an expensive operation, and with this
+  / function being internal to `rich-text` (full control in avoiding a risk
+  / of asynchronous operations on the shared reference), a single document
+  / is reused and reset for each call to the function.
   if (!createElement.body) {
     createElement.body = implementation.createHTMLDocument('').body;
   }
@@ -569,7 +569,7 @@ function createElement({
   return createElement.body;
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/special-characters.js
+;/ ./node_modules/@wordpress/rich-text/build-module/special-characters.js
 /**
  * Object replacement character, used as a placeholder for objects.
  */
@@ -581,9 +581,9 @@ const OBJECT_REPLACEMENT_CHARACTER = '\ufffc';
  */
 const ZWNBSP = '\ufeff';
 
-;// external ["wp","escapeHtml"]
+;/ external ["wp","escapeHtml"]
 const external_wp_escapeHtml_namespaceObject = window["wp"]["escapeHtml"];
-;// ./node_modules/@wordpress/rich-text/build-module/get-active-formats.js
+;/ ./node_modules/@wordpress/rich-text/build-module/get-active-formats.js
 /** @typedef {import('./types').RichTextValue} RichTextValue */
 /** @typedef {import('./types').RichTextFormatList} RichTextFormatList */
 
@@ -612,46 +612,46 @@ function getActiveFormats(value, EMPTY_ACTIVE_FORMATS = []) {
     return EMPTY_ACTIVE_FORMATS;
   }
   if (start === end) {
-    // For a collapsed caret, it is possible to override the active formats.
+    / For a collapsed caret, it is possible to override the active formats.
     if (activeFormats) {
       return activeFormats;
     }
     const formatsBefore = formats[start - 1] || EMPTY_ACTIVE_FORMATS;
     const formatsAfter = formats[start] || EMPTY_ACTIVE_FORMATS;
 
-    // By default, select the lowest amount of formats possible (which means
-    // the caret is positioned outside the format boundary). The user can
-    // then use arrow keys to define `activeFormats`.
+    / By default, select the lowest amount of formats possible (which means
+    / the caret is positioned outside the format boundary). The user can
+    / then use arrow keys to define `activeFormats`.
     if (formatsBefore.length < formatsAfter.length) {
       return formatsBefore;
     }
     return formatsAfter;
   }
 
-  // If there's no formats at the start index, there are not active formats.
+  / If there's no formats at the start index, there are not active formats.
   if (!formats[start]) {
     return EMPTY_ACTIVE_FORMATS;
   }
   const selectedFormats = formats.slice(start, end);
 
-  // Clone the formats so we're not mutating the live value.
+  / Clone the formats so we're not mutating the live value.
   const _activeFormats = [...selectedFormats[0]];
   let i = selectedFormats.length;
 
-  // For performance reasons, start from the end where it's much quicker to
-  // realise that there are no active formats.
+  / For performance reasons, start from the end where it's much quicker to
+  / realise that there are no active formats.
   while (i--) {
     const formatsAtIndex = selectedFormats[i];
 
-    // If we run into any index without formats, we're sure that there's no
-    // active formats.
+    / If we run into any index without formats, we're sure that there's no
+    / active formats.
     if (!formatsAtIndex) {
       return EMPTY_ACTIVE_FORMATS;
     }
     let ii = _activeFormats.length;
 
-    // Loop over the active formats and remove any that are not present at
-    // the current index.
+    / Loop over the active formats and remove any that are not present at
+    / the current index.
     while (ii--) {
       const format = _activeFormats[ii];
       if (!formatsAtIndex.find(_format => isFormatEqual(format, _format))) {
@@ -659,7 +659,7 @@ function getActiveFormats(value, EMPTY_ACTIVE_FORMATS = []) {
       }
     }
 
-    // If there are no active formats, we can stop.
+    / If there are no active formats, we can stop.
     if (_activeFormats.length === 0) {
       return EMPTY_ACTIVE_FORMATS;
     }
@@ -667,7 +667,7 @@ function getActiveFormats(value, EMPTY_ACTIVE_FORMATS = []) {
   return _activeFormats || EMPTY_ACTIVE_FORMATS;
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/get-format-type.js
+;/ ./node_modules/@wordpress/rich-text/build-module/get-format-type.js
 /**
  * WordPress dependencies
  */
@@ -690,7 +690,7 @@ function get_format_type_getFormatType(name) {
   return (0,external_wp_data_namespaceObject.select)(store).getFormatType(name);
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/to-tree.js
+;/ ./node_modules/@wordpress/rich-text/build-module/to-tree.js
 /**
  * Internal dependencies
  */
@@ -778,8 +778,8 @@ function fromFormat({
     }
   }
 
-  // When a format is declared as non editable, make it non editable in the
-  // editor.
+  / When a format is declared as non editable, make it non editable in the
+  / editor.
   if (isEditableTree && formatType.contentEditable === false) {
     elementAttributes.contenteditable = 'false';
   }
@@ -838,17 +838,17 @@ function toTree({
   for (let i = 0; i < formatsLength; i++) {
     const character = text.charAt(i);
     const shouldInsertPadding = isEditableTree && (
-    // Pad the line if the line is empty.
+    / Pad the line if the line is empty.
     !lastCharacter ||
-    // Pad the line if the previous character is a line break, otherwise
-    // the line break won't be visible.
+    / Pad the line if the previous character is a line break, otherwise
+    / the line break won't be visible.
     lastCharacter === '\n');
     const characterFormats = formats[i];
     let pointer = getLastChild(tree);
     if (characterFormats) {
       characterFormats.forEach((format, formatIndex) => {
         if (pointer && lastCharacterFormats &&
-        // Reuse the last element if all formats remain the same.
+        / Reuse the last element if all formats remain the same.
         isEqualUntil(characterFormats, lastCharacterFormats, formatIndex)) {
           pointer = getLastChild(pointer);
           return;
@@ -876,7 +876,7 @@ function toTree({
       });
     }
 
-    // If there is selection at 0, handle it before characters are inserted.
+    / If there is selection at 0, handle it before characters are inserted.
     if (i === 0) {
       if (onStartIndex && start === 0) {
         onStartIndex(tree, pointer);
@@ -916,7 +916,7 @@ function toTree({
           html: decodeURIComponent(attributes['data-rich-text-script'])
         });
       } else if (formatType?.contentEditable === false) {
-        // For non editable formats, render the stored inner HTML.
+        / For non editable formats, render the stored inner HTML.
         pointer = append(getParent(pointer), fromFormat({
           ...replacement,
           isEditableTree,
@@ -934,7 +934,7 @@ function toTree({
           isEditableTree
         }));
       }
-      // Ensure pointer is text node.
+      / Ensure pointer is text node.
       pointer = append(getParent(pointer), '');
     } else if (!preserveWhiteSpace && character === '\n') {
       pointer = append(getParent(pointer), {
@@ -944,7 +944,7 @@ function toTree({
         } : undefined,
         object: true
       });
-      // Ensure pointer is text node.
+      / Ensure pointer is text node.
       pointer = append(getParent(pointer), '');
     } else if (!isText(pointer)) {
       pointer = append(getParent(pointer), character);
@@ -960,15 +960,15 @@ function toTree({
     if (shouldInsertPadding && i === text.length) {
       append(getParent(pointer), ZWNBSP);
 
-      // We CANNOT use CSS to add a placeholder with pseudo elements on
-      // the main block wrappers because that could clash with theme CSS.
+      / We CANNOT use CSS to add a placeholder with pseudo elements on
+      / the main block wrappers because that could clash with theme CSS.
       if (placeholder && text.length === 0) {
         append(getParent(pointer), {
           type: 'span',
           attributes: {
             'data-rich-text-placeholder': placeholder,
-            // Necessary to prevent the placeholder from catching
-            // selection and being editable.
+            / Necessary to prevent the placeholder from catching
+            / selection and being editable.
             style: 'pointer-events:none;user-select:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;'
           }
         });
@@ -980,7 +980,7 @@ function toTree({
   return tree;
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/to-html-string.js
+;/ ./node_modules/@wordpress/rich-text/build-module/to-html-string.js
 /**
  * WordPress dependencies
  */
@@ -1073,11 +1073,11 @@ function createElementHTML({
   children
 }) {
   if (type === '#comment') {
-    // We can't restore the original comment delimiters, because once parsed
-    // into DOM nodes, we don't have the information. But in the future we
-    // could allow comment handlers to specify custom delimiters, for
-    // example `</{comment-content}>` for Bits, where `comment-content`
-    // would be `/{bit-name}` or `__{translatable-string}` (TBD).
+    / We can't restore the original comment delimiters, because once parsed
+    / into DOM nodes, we don't have the information. But in the future we
+    / could allow comment handlers to specify custom delimiters, for
+    / example `</{comment-content}>` for Bits, where `comment-content`
+    / would be `/{bit-name}` or `__{translatable-string}` (TBD).
     return `<!--${attributes['data-rich-text-comment']}-->`;
   }
   let attributeString = '';
@@ -1101,7 +1101,7 @@ function createChildrenHTML(children = []) {
   }).join('');
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/get-text-content.js
+;/ ./node_modules/@wordpress/rich-text/build-module/get-text-content.js
 /**
  * Internal dependencies
  */
@@ -1123,7 +1123,7 @@ function getTextContent({
   return text.replace(OBJECT_REPLACEMENT_CHARACTER, '');
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/create.js
+;/ ./node_modules/@wordpress/rich-text/build-module/create.js
 /**
  * WordPress dependencies
  */
@@ -1156,7 +1156,7 @@ function toFormat({
   if (attributes && attributes.class) {
     formatType = (0,external_wp_data_namespaceObject.select)(store).getFormatTypeForClassName(attributes.class);
     if (formatType) {
-      // Preserve any additional classes.
+      / Preserve any additional classes.
       attributes.class = ` ${attributes.class} `.replace(` ${formatType.className} `, ' ').trim();
       if (!attributes.class) {
         delete attributes.class;
@@ -1193,8 +1193,8 @@ function toFormat({
     const name = formatType.attributes[key];
     registeredAttributes[key] = _attributes[name];
 
-    // delete the attribute and what's left is considered
-    // to be unregistered.
+    / delete the attribute and what's left is considered
+    / to be unregistered.
     delete _attributes[name];
     if (typeof registeredAttributes[key] === 'undefined') {
       delete registeredAttributes[key];
@@ -1271,8 +1271,8 @@ class RichTextData {
   toPlainText() {
     return getTextContent(this.#value);
   }
-  // We could expose `toHTMLElement` at some point as well, but we'd only use
-  // it internally.
+  / We could expose `toHTMLElement` at some point as well, but we'd only use
+  / it internally.
   /**
    * Convert the rich text value to an HTML string.
    *
@@ -1315,7 +1315,7 @@ for (const name of Object.getOwnPropertyNames(String.prototype)) {
   }
   Object.defineProperty(RichTextData.prototype, name, {
     value(...args) {
-      // Should we convert back to RichTextData?
+      / Should we convert back to RichTextData?
       return this.toHTMLString()[name](...args);
     }
   });
@@ -1377,8 +1377,8 @@ function create({
     };
   }
   if (typeof html === 'string' && html.length > 0) {
-    // It does not matter which document this is, we're just using it to
-    // parse.
+    / It does not matter which document this is, we're just using it to
+    / parse.
     element = createElement(document, html);
   }
   if (typeof element !== 'object') {
@@ -1415,36 +1415,36 @@ function accumulateSelection(accumulator, node, range, value) {
   } = range;
   const currentLength = accumulator.text.length;
 
-  // Selection can be extracted from value.
+  / Selection can be extracted from value.
   if (value.start !== undefined) {
     accumulator.start = currentLength + value.start;
-    // Range indicates that the current node has selection.
+    / Range indicates that the current node has selection.
   } else if (node === startContainer && node.nodeType === node.TEXT_NODE) {
     accumulator.start = currentLength + startOffset;
-    // Range indicates that the current node is selected.
+    / Range indicates that the current node is selected.
   } else if (parentNode === startContainer && node === startContainer.childNodes[startOffset]) {
     accumulator.start = currentLength;
-    // Range indicates that the selection is after the current node.
+    / Range indicates that the selection is after the current node.
   } else if (parentNode === startContainer && node === startContainer.childNodes[startOffset - 1]) {
     accumulator.start = currentLength + value.text.length;
-    // Fallback if no child inside handled the selection.
+    / Fallback if no child inside handled the selection.
   } else if (node === startContainer) {
     accumulator.start = currentLength;
   }
 
-  // Selection can be extracted from value.
+  / Selection can be extracted from value.
   if (value.end !== undefined) {
     accumulator.end = currentLength + value.end;
-    // Range indicates that the current node has selection.
+    / Range indicates that the current node has selection.
   } else if (node === endContainer && node.nodeType === node.TEXT_NODE) {
     accumulator.end = currentLength + endOffset;
-    // Range indicates that the current node is selected.
+    / Range indicates that the current node is selected.
   } else if (parentNode === endContainer && node === endContainer.childNodes[endOffset - 1]) {
     accumulator.end = currentLength + value.text.length;
-    // Range indicates that the selection is before the current node.
+    / Range indicates that the selection is before the current node.
   } else if (parentNode === endContainer && node === endContainer.childNodes[endOffset]) {
     accumulator.end = currentLength;
-    // Fallback if no child inside handled the selection.
+    / Fallback if no child inside handled the selection.
   } else if (node === endContainer) {
     accumulator.end = currentLength + endOffset;
   }
@@ -1541,8 +1541,8 @@ const CARRIAGE_RETURN = '\r';
  * @param {string} string
  */
 function removeReservedCharacters(string) {
-  // with the global flag, note that we should create a new regex each time OR
-  // reset lastIndex state.
+  / with the global flag, note that we should create a new regex each time OR
+  / reset lastIndex state.
   return string.replace(new RegExp(`[${ZWNBSP}${OBJECT_REPLACEMENT_CHARACTER}${CARRIAGE_RETURN}]`, 'gu'), '');
 }
 
@@ -1571,7 +1571,7 @@ function createFromElement({
   }
   const length = element.childNodes.length;
 
-  // Optimise for speed.
+  / Optimise for speed.
   for (let index = 0; index < length; index++) {
     const node = element.childNodes[index];
     const tagName = node.nodeName.toLowerCase();
@@ -1581,8 +1581,8 @@ function createFromElement({
       accumulateSelection(accumulator, node, range, {
         text
       });
-      // Create a sparse array of the same length as `text`, in which
-      // formats can be added.
+      / Create a sparse array of the same length as `text`, in which
+      / formats can be added.
       accumulator.formats.length += text.length;
       accumulator.replacements.length += text.length;
       accumulator.text += text;
@@ -1607,7 +1607,7 @@ function createFromElement({
       continue;
     }
     if (isEditableTree &&
-    // Ignore any line breaks that are not inserted by us.
+    / Ignore any line breaks that are not inserted by us.
     tagName === 'br' && !node.getAttribute('data-rich-text-line-break')) {
       accumulateSelection(accumulator, node, range, createEmptyValue());
       continue;
@@ -1641,8 +1641,8 @@ function createFromElement({
       })
     });
 
-    // When a format type is declared as not editable, replace it with an
-    // object replacement character and preserve the inner HTML.
+    / When a format type is declared as not editable, replace it with an
+    / object replacement character and preserve the inner HTML.
     if (format?.formatType?.contentEditable === false) {
       delete format.formatType;
       accumulateSelection(accumulator, node, range, createEmptyValue());
@@ -1666,8 +1666,8 @@ function createFromElement({
     });
     accumulateSelection(accumulator, node, range, value);
 
-    // Ignore any placeholders, but keep their content since the browser
-    // might insert text inside them when the editable element is flex.
+    / Ignore any placeholders, but keep their content since the browser
+    / might insert text inside them when the editable element is flex.
     if (!format || node.getAttribute('data-rich-text-placeholder')) {
       mergePair(accumulator, value);
     } else if (value.text.length === 0) {
@@ -1679,8 +1679,8 @@ function createFromElement({
         });
       }
     } else {
-      // Indices should share a reference to the same formats array.
-      // Only create a new reference if `formats` changes.
+      / Indices should share a reference to the same formats array.
+      / Only create a new reference if `formats` changes.
       function mergeFormats(formats) {
         if (mergeFormats.formats === formats) {
           return mergeFormats.newFormats;
@@ -1691,8 +1691,8 @@ function createFromElement({
         return newFormats;
       }
 
-      // Since the formats parameter can be `undefined`, preset
-      // `mergeFormats` with a new reference.
+      / Since the formats parameter can be `undefined`, preset
+      / `mergeFormats` with a new reference.
       mergeFormats.newFormats = [format];
       mergePair(accumulator, {
         ...value,
@@ -1721,7 +1721,7 @@ function getAttributes({
   const length = element.attributes.length;
   let accumulator;
 
-  // Optimise for speed.
+  / Optimise for speed.
   for (let i = 0; i < length; i++) {
     const {
       name,
@@ -1737,7 +1737,7 @@ function getAttributes({
   return accumulator;
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/concat.js
+;/ ./node_modules/@wordpress/rich-text/build-module/concat.js
 /**
  * Internal dependencies
  */
@@ -1775,7 +1775,7 @@ function concat(...values) {
   return normaliseFormats(values.reduce(mergePair, create()));
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/get-active-format.js
+;/ ./node_modules/@wordpress/rich-text/build-module/get-active-format.js
 /**
  * Internal dependencies
  */
@@ -1802,7 +1802,7 @@ function getActiveFormat(value, formatType) {
   }) => type === formatType);
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/get-active-object.js
+;/ ./node_modules/@wordpress/rich-text/build-module/get-active-object.js
 /**
  * Internal dependencies
  */
@@ -1831,7 +1831,7 @@ function getActiveObject({
   return replacements[start];
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/is-collapsed.js
+;/ ./node_modules/@wordpress/rich-text/build-module/is-collapsed.js
 /**
  * Internal dependencies
  */
@@ -1857,7 +1857,7 @@ function isCollapsed({
   return start === end;
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/is-empty.js
+;/ ./node_modules/@wordpress/rich-text/build-module/is-empty.js
 /** @typedef {import('./types').RichTextValue} RichTextValue */
 
 /**
@@ -1874,7 +1874,7 @@ function isEmpty({
   return text.length === 0;
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/join.js
+;/ ./node_modules/@wordpress/rich-text/build-module/join.js
 /**
  * Internal dependencies
  */
@@ -1911,7 +1911,7 @@ function join(values, separator = '') {
   })));
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/register-format-type.js
+;/ ./node_modules/@wordpress/rich-text/build-module/register-format-type.js
 /**
  * WordPress dependencies
  */
@@ -2002,7 +2002,7 @@ function registerFormatType(name, settings) {
   return settings;
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/remove-format.js
+;/ ./node_modules/@wordpress/rich-text/build-module/remove-format.js
 /**
  * Internal dependencies
  */
@@ -2030,8 +2030,8 @@ function removeFormat(value, formatType, startIndex = value.start, endIndex = va
   } = value;
   const newFormats = formats.slice();
 
-  // If the selection is collapsed, expand start and end to the edges of the
-  // format.
+  / If the selection is collapsed, expand start and end to the edges of the
+  / format.
   if (startIndex === endIndex) {
     const format = newFormats[startIndex]?.find(({
       type
@@ -2073,7 +2073,7 @@ function filterFormats(formats, index, formatType) {
   }
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/insert.js
+;/ ./node_modules/@wordpress/rich-text/build-module/insert.js
 /**
  * Internal dependencies
  */
@@ -2117,7 +2117,7 @@ function insert(value, valueToInsert, startIndex = value.start, endIndex = value
   });
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/remove.js
+;/ ./node_modules/@wordpress/rich-text/build-module/remove.js
 /**
  * Internal dependencies
  */
@@ -2141,7 +2141,7 @@ function remove_remove(value, startIndex, endIndex) {
   return insert(value, create(), startIndex, endIndex);
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/replace.js
+;/ ./node_modules/@wordpress/rich-text/build-module/replace.js
 /**
  * Internal dependencies
  */
@@ -2208,7 +2208,7 @@ function replace_replace({
   });
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/insert-object.js
+;/ ./node_modules/@wordpress/rich-text/build-module/insert-object.js
 /**
  * Internal dependencies
  */
@@ -2240,7 +2240,7 @@ function insertObject(value, formatToInsert, startIndex, endIndex) {
   return insert(value, valueToInsert, startIndex, endIndex);
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/slice.js
+;/ ./node_modules/@wordpress/rich-text/build-module/slice.js
 /** @typedef {import('./types').RichTextValue} RichTextValue */
 
 /**
@@ -2272,7 +2272,7 @@ function slice(value, startIndex = value.start, endIndex = value.end) {
   };
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/split.js
+;/ ./node_modules/@wordpress/rich-text/build-module/split.js
 /**
  * Internal dependencies
  */
@@ -2348,7 +2348,7 @@ function splitAtSelection({
   return [before, after];
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/is-range-equal.js
+;/ ./node_modules/@wordpress/rich-text/build-module/is-range-equal.js
 /**
  * Returns true if two ranges are equal, or false otherwise. Ranges are
  * considered equal if their start and end occur in the same container and
@@ -2363,7 +2363,7 @@ function isRangeEqual(a, b) {
   return a === b || a && b && a.startContainer === b.startContainer && a.startOffset === b.startOffset && a.endContainer === b.endContainer && a.endOffset === b.endOffset;
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/to-dom.js
+;/ ./node_modules/@wordpress/rich-text/build-module/to-dom.js
 /**
  * Internal dependencies
  */
@@ -2535,7 +2535,7 @@ function apply({
   __unstableDomOnly,
   placeholder
 }) {
-  // Construct a new element tree in memory.
+  / Construct a new element tree in memory.
   const {
     body,
     selection
@@ -2566,8 +2566,8 @@ function applyValue(future, current) {
         if (currentAttributes) {
           let ii = currentAttributes.length;
 
-          // Reverse loop because `removeAttribute` on `currentChild`
-          // changes `currentAttributes`.
+          / Reverse loop because `removeAttribute` on `currentChild`
+          / changes `currentAttributes`.
           while (ii--) {
             const {
               name
@@ -2626,8 +2626,8 @@ function applySelection({
     activeElement
   } = ownerDocument;
   if (selection.rangeCount > 0) {
-    // If the to be added range and the live range are the same, there's no
-    // need to remove the live range and add the equivalent range.
+    / If the to be added range and the live range are the same, there's no
+    / need to remove the live range and add the equivalent range.
     if (isRangeEqual(range, selection.getRangeAt(0))) {
       return;
     }
@@ -2635,26 +2635,26 @@ function applySelection({
   }
   selection.addRange(range);
 
-  // This function is not intended to cause a shift in focus. Since the above
-  // selection manipulations may shift focus, ensure that focus is restored to
-  // its previous state.
+  / This function is not intended to cause a shift in focus. Since the above
+  / selection manipulations may shift focus, ensure that focus is restored to
+  / its previous state.
   if (activeElement !== ownerDocument.activeElement) {
-    // The `instanceof` checks protect against edge cases where the focused
-    // element is not of the interface HTMLElement (does not have a `focus`
-    // or `blur` property).
-    //
-    // See: https://github.com/Microsoft/TypeScript/issues/5901#issuecomment-431649653
+    / The `instanceof` checks protect against edge cases where the focused
+    / element is not of the interface HTMLElement (does not have a `focus`
+    / or `blur` property).
+    /
+    / See: https://github.com/Microsoft/TypeScript/issues/5901#issuecomment-431649653
     if (activeElement instanceof defaultView.HTMLElement) {
       activeElement.focus();
     }
   }
 }
 
-;// external ["wp","a11y"]
+;/ external ["wp","a11y"]
 const external_wp_a11y_namespaceObject = window["wp"]["a11y"];
-;// external ["wp","i18n"]
+;/ external ["wp","i18n"]
 const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
-;// ./node_modules/@wordpress/rich-text/build-module/toggle-format.js
+;/ ./node_modules/@wordpress/rich-text/build-module/toggle-format.js
 /**
  * WordPress dependencies
  */
@@ -2683,22 +2683,22 @@ const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
  */
 function toggleFormat(value, format) {
   if (getActiveFormat(value, format.type)) {
-    // For screen readers, will announce if formatting control is disabled.
+    / For screen readers, will announce if formatting control is disabled.
     if (format.title) {
-      // translators: %s: title of the formatting control
+      / translators: %s: title of the formatting control
       (0,external_wp_a11y_namespaceObject.speak)((0,external_wp_i18n_namespaceObject.sprintf)((0,external_wp_i18n_namespaceObject.__)('%s removed.'), format.title), 'assertive');
     }
     return removeFormat(value, format.type);
   }
-  // For screen readers, will announce if formatting control is enabled.
+  / For screen readers, will announce if formatting control is enabled.
   if (format.title) {
-    // translators: %s: title of the formatting control
+    / translators: %s: title of the formatting control
     (0,external_wp_a11y_namespaceObject.speak)((0,external_wp_i18n_namespaceObject.sprintf)((0,external_wp_i18n_namespaceObject.__)('%s applied.'), format.title), 'assertive');
   }
   return applyFormat(value, format);
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/unregister-format-type.js
+;/ ./node_modules/@wordpress/rich-text/build-module/unregister-format-type.js
 /**
  * WordPress dependencies
  */
@@ -2730,12 +2730,12 @@ function unregisterFormatType(name) {
   return oldFormat;
 }
 
-;// external ["wp","element"]
+;/ external ["wp","element"]
 const external_wp_element_namespaceObject = window["wp"]["element"];
-;// external ["wp","deprecated"]
+;/ external ["wp","deprecated"]
 const external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
 var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_namespaceObject);
-;// ./node_modules/@wordpress/rich-text/build-module/component/use-anchor-ref.js
+;/ ./node_modules/@wordpress/rich-text/build-module/component/use-anchor-ref.js
 /**
  * WordPress dependencies
  */
@@ -2802,7 +2802,7 @@ function useAnchorRef({
     }
     let element = range.startContainer;
 
-    // If the caret is right before the element, select the next element.
+    / If the caret is right before the element, select the next element.
     element = element.nextElementSibling || element;
     while (element.nodeType !== element.ELEMENT_NODE) {
       element = element.parentNode;
@@ -2811,9 +2811,9 @@ function useAnchorRef({
   }, [activeFormat, value.start, value.end, tagName, className]);
 }
 
-;// external ["wp","compose"]
+;/ external ["wp","compose"]
 const external_wp_compose_namespaceObject = window["wp"]["compose"];
-;// ./node_modules/@wordpress/rich-text/build-module/component/use-anchor.js
+;/ ./node_modules/@wordpress/rich-text/build-module/component/use-anchor.js
 /**
  * WordPress dependencies
  */
@@ -2837,10 +2837,10 @@ const external_wp_compose_namespaceObject = window["wp"]["compose"];
 function getFormatElement(range, editableContentElement, tagName, className) {
   let element = range.startContainer;
 
-  // Even if the active format is defined, the actually DOM range's start
-  // container may be outside of the format's DOM element:
-  // `a‸<strong>b</strong>` (DOM) while visually it's `a<strong>‸b</strong>`.
-  // So at a given selection index, start with the deepest format DOM element.
+  / Even if the active format is defined, the actually DOM range's start
+  / container may be outside of the format's DOM element:
+  / `a‸<strong>b</strong>` (DOM) while visually it's `a<strong>‸b</strong>`.
+  / So at a given selection index, start with the deepest format DOM element.
   if (element.nodeType === element.TEXT_NODE && range.startOffset === element.length && element.nextSibling) {
     element = element.nextSibling;
     while (element.firstChild) {
@@ -2861,12 +2861,12 @@ function getFormatElement(range, editableContentElement, tagName, className) {
   }
   const selector = tagName + (className ? '.' + className : '');
 
-  // .closest( selector ), but with a boundary. Check if the element matches
-  // the selector. If it doesn't match, try the parent element if it's not the
-  // editable wrapper. We don't want to try to match ancestors of the editable
-  // wrapper, which is what .closest( selector ) would do. When the element is
-  // the editable wrapper (which is most likely the case because most text is
-  // unformatted), this never runs.
+  / .closest( selector ), but with a boundary. Check if the element matches
+  / the selector. If it doesn't match, try the parent element if it's not the
+  / editable wrapper. We don't want to try to match ancestors of the editable
+  / wrapper, which is what .closest( selector ) would do. When the element is
+  / the editable wrapper (which is most likely the case because most text is
+  / unformatted), this never runs.
   while (element !== editableContentElement) {
     if (element.matches(selector)) {
       return element;
@@ -2978,11 +2978,11 @@ function useAnchor({
       ownerDocument
     } = editableContentElement;
     if (editableContentElement === ownerDocument.activeElement ||
-    // When a link is created, we need to attach the popover to the newly created anchor.
+    / When a link is created, we need to attach the popover to the newly created anchor.
     !wasActive && isActive ||
-    // Sometimes we're _removing_ an active anchor, such as the inline color popover.
-    // When we add the color, it switches from a virtual anchor to a `<mark>` element.
-    // When we _remove_ the color, it switches from a `<mark>` element to a virtual anchor.
+    / Sometimes we're _removing_ an active anchor, such as the inline color popover.
+    / When we add the color, it switches from a virtual anchor to a `<mark>` element.
+    / When we _remove_ the color, it switches from a `<mark>` element to a virtual anchor.
     wasActive && !isActive) {
       setAnchor(getAnchor(editableContentElement, tagName, className));
       attach();
@@ -2998,7 +2998,7 @@ function useAnchor({
   return anchor;
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/component/use-default-style.js
+;/ ./node_modules/@wordpress/rich-text/build-module/component/use-default-style.js
 /**
  * WordPress dependencies
  */
@@ -3041,7 +3041,7 @@ function useDefaultStyle() {
   }, []);
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/component/use-boundary-style.js
+;/ ./node_modules/@wordpress/rich-text/build-module/component/use-boundary-style.js
 /**
  * WordPress dependencies
  */
@@ -3062,8 +3062,8 @@ function useBoundaryStyle({
   } = record.current;
   const activeReplacement = replacements[start];
   (0,external_wp_element_namespaceObject.useEffect)(() => {
-    // There's no need to recalculate the boundary styles if no formats are
-    // active, because no boundary styles will be visible.
+    / There's no need to recalculate the boundary styles if no formats are
+    / active, because no boundary styles will be visible.
     if ((!activeFormats || !activeFormats.length) && !activeReplacement) {
       return;
     }
@@ -3097,7 +3097,7 @@ function useBoundaryStyle({
   return ref;
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/copy-handler.js
+;/ ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/copy-handler.js
 /**
  * Internal dependencies
  */
@@ -3140,14 +3140,14 @@ function useBoundaryStyle({
   };
 });
 
-;// ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/select-object.js
+;/ ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/select-object.js
 /* harmony default export */ const select_object = (() => element => {
   function onClick(event) {
     const {
       target
     } = event;
 
-    // If the child element has no text content, it must be an object.
+    / If the child element has no text content, it must be an object.
     if (target === element || target.textContent && target.isContentEditable) {
       return;
     }
@@ -3159,14 +3159,14 @@ function useBoundaryStyle({
     } = ownerDocument;
     const selection = defaultView.getSelection();
 
-    // If it's already selected, do nothing and let default behavior happen.
-    // This means it's "click-through".
+    / If it's already selected, do nothing and let default behavior happen.
+    / This means it's "click-through".
     if (selection.containsNode(target)) {
       return;
     }
     const range = ownerDocument.createRange();
-    // If the target is within a non editable element, select the non
-    // editable element.
+    / If the target is within a non editable element, select the non
+    / editable element.
     const nodeToSelect = target.isContentEditable ? target : target.closest('[contenteditable]');
     range.selectNode(nodeToSelect);
     selection.removeAllRanges();
@@ -3174,7 +3174,7 @@ function useBoundaryStyle({
     event.preventDefault();
   }
   function onFocusIn(event) {
-    // When there is incoming focus from a link, select the object.
+    / When there is incoming focus from a link, select the object.
     if (event.relatedTarget && !element.contains(event.relatedTarget) && event.relatedTarget.tagName === 'A') {
       onClick(event);
     }
@@ -3187,9 +3187,9 @@ function useBoundaryStyle({
   };
 });
 
-;// external ["wp","keycodes"]
+;/ external ["wp","keycodes"]
 const external_wp_keycodes_namespaceObject = window["wp"]["keycodes"];
-;// ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/format-boundaries.js
+;/ ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/format-boundaries.js
 /**
  * WordPress dependencies
  */
@@ -3210,7 +3210,7 @@ const EMPTY_ACTIVE_FORMATS = [];
       ctrlKey
     } = event;
     if (
-    // Only override left and right keys without modifiers pressed.
+    / Only override left and right keys without modifiers pressed.
     shiftKey || altKey || metaKey || ctrlKey || keyCode !== external_wp_keycodes_namespaceObject.LEFT && keyCode !== external_wp_keycodes_namespaceObject.RIGHT) {
       return;
     }
@@ -3233,17 +3233,17 @@ const EMPTY_ACTIVE_FORMATS = [];
     const {
       defaultView
     } = ownerDocument;
-    // To do: ideally, we should look at visual position instead.
+    / To do: ideally, we should look at visual position instead.
     const {
       direction
     } = defaultView.getComputedStyle(element);
     const reverseKey = direction === 'rtl' ? external_wp_keycodes_namespaceObject.RIGHT : external_wp_keycodes_namespaceObject.LEFT;
     const isReverse = event.keyCode === reverseKey;
 
-    // If the selection is collapsed and at the very start, do nothing if
-    // navigating backward.
-    // If the selection is collapsed and at the very end, do nothing if
-    // navigating forward.
+    / If the selection is collapsed and at the very start, do nothing if
+    / navigating backward.
+    / If the selection is collapsed and at the very end, do nothing if
+    / navigating forward.
     if (collapsed && currentActiveFormats.length === 0) {
       if (start === 0 && isReverse) {
         return;
@@ -3253,9 +3253,9 @@ const EMPTY_ACTIVE_FORMATS = [];
       }
     }
 
-    // If the selection is not collapsed, let the browser handle collapsing
-    // the selection for now. Later we could expand this logic to set
-    // boundary positions if needed.
+    / If the selection is not collapsed, let the browser handle collapsing
+    / the selection for now. Later we could expand this logic to set
+    / boundary positions if needed.
     if (!collapsed) {
       return;
     }
@@ -3291,7 +3291,7 @@ const EMPTY_ACTIVE_FORMATS = [];
   };
 });
 
-;// ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/delete.js
+;/ ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/delete.js
 /**
  * WordPress dependencies
  */
@@ -3323,7 +3323,7 @@ const EMPTY_ACTIVE_FORMATS = [];
       text
     } = currentValue;
 
-    // Always handle full content deletion ourselves.
+    / Always handle full content deletion ourselves.
     if (start === 0 && end !== 0 && end === text.length) {
       handleChange(remove_remove(currentValue));
       event.preventDefault();
@@ -3335,7 +3335,7 @@ const EMPTY_ACTIVE_FORMATS = [];
   };
 });
 
-;// ./node_modules/@wordpress/rich-text/build-module/update-formats.js
+;/ ./node_modules/@wordpress/rich-text/build-module/update-formats.js
 /**
  * Internal dependencies
  */
@@ -3362,14 +3362,14 @@ function updateFormats({
   end,
   formats
 }) {
-  // Start and end may be switched in case of delete.
+  / Start and end may be switched in case of delete.
   const min = Math.min(start, end);
   const max = Math.max(start, end);
   const formatsBefore = value.formats[min - 1] || [];
   const formatsAfter = value.formats[max] || [];
 
-  // First, fix the references. If any format right before or after are
-  // equal, the replacement format should use the same reference.
+  / First, fix the references. If any format right before or after are
+  / equal, the replacement format should use the same reference.
   value.activeFormats = formats.map((format, index) => {
     if (formatsBefore[index]) {
       if (isFormatEqual(format, formatsBefore[index])) {
@@ -3392,7 +3392,7 @@ function updateFormats({
   return value;
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/input-and-selection.js
+;/ ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/input-and-selection.js
 /**
  * Internal dependencies
  */
@@ -3440,10 +3440,10 @@ function fixPlaceholderSelection(defaultView) {
   } = ownerDocument;
   let isComposing = false;
   function onInput(event) {
-    // Do not trigger a change if characters are being composed. Browsers
-    // will usually emit a final `input` event when the characters are
-    // composed. As of December 2019, Safari doesn't support
-    // nativeEvent.isComposing.
+    / Do not trigger a change if characters are being composed. Browsers
+    / will usually emit a final `input` event when the characters are
+    / composed. As of December 2019, Safari doesn't support
+    / nativeEvent.isComposing.
     if (isComposing) {
       return;
     }
@@ -3458,8 +3458,8 @@ function fixPlaceholderSelection(defaultView) {
       handleChange
     } = props.current;
 
-    // The browser formatted something or tried to insert HTML. Overwrite
-    // it. It will be handled later by the format library if needed.
+    / The browser formatted something or tried to insert HTML. Overwrite
+    / it. It will be handled later by the format library if needed.
     if (inputType && (inputType.indexOf('format') === 0 || INSERTION_INPUT_TYPES_TO_IGNORE.has(inputType))) {
       applyRecord(record.current);
       return;
@@ -3470,7 +3470,7 @@ function fixPlaceholderSelection(defaultView) {
       activeFormats: oldActiveFormats = []
     } = record.current;
 
-    // Update the formats between the last and new caret position.
+    / Update the formats between the last and new caret position.
     const change = updateFormats({
       value: currentValue,
       start,
@@ -3492,23 +3492,23 @@ function fixPlaceholderSelection(defaultView) {
       onSelectionChange
     } = props.current;
 
-    // Check if the implementor disabled editing. `contentEditable` does
-    // disable input, but not text selection, so we must ignore selection
-    // changes.
+    / Check if the implementor disabled editing. `contentEditable` does
+    / disable input, but not text selection, so we must ignore selection
+    / changes.
     if (element.contentEditable !== 'true') {
       return;
     }
 
-    // Ensure the active element is the rich text element.
+    / Ensure the active element is the rich text element.
     if (ownerDocument.activeElement !== element) {
-      // If it is not, we can stop listening for selection changes. We
-      // resume listening when the element is focused.
+      / If it is not, we can stop listening for selection changes. We
+      / resume listening when the element is focused.
       ownerDocument.removeEventListener('selectionchange', handleSelectionChange);
       return;
     }
 
-    // In case of a keyboard event, ignore selection changes during
-    // composition.
+    / In case of a keyboard event, ignore selection changes during
+    / composition.
     if (isComposing) {
       return;
     }
@@ -3519,16 +3519,16 @@ function fixPlaceholderSelection(defaultView) {
     } = createRecord();
     const oldRecord = record.current;
 
-    // Fallback mechanism for IE11, which doesn't support the input event.
-    // Any input results in a selection change.
+    / Fallback mechanism for IE11, which doesn't support the input event.
+    / Any input results in a selection change.
     if (text !== oldRecord.text) {
       onInput();
       return;
     }
     if (start === oldRecord.start && end === oldRecord.end) {
-      // Sometimes the browser may set the selection on the placeholder
-      // element, in which case the caret is not visible. We need to set
-      // the caret before the placeholder if that's the case.
+      / Sometimes the browser may set the selection on the placeholder
+      / element, in which case the caret is not visible. We need to set
+      / the caret before the placeholder if that's the case.
       if (oldRecord.text.length === 0 && start === 0) {
         fixPlaceholderSelection(defaultView);
       }
@@ -3538,19 +3538,19 @@ function fixPlaceholderSelection(defaultView) {
       ...oldRecord,
       start,
       end,
-      // _newActiveFormats may be set on arrow key navigation to control
-      // the right boundary position. If undefined, getActiveFormats will
-      // give the active formats according to the browser.
+      / _newActiveFormats may be set on arrow key navigation to control
+      / the right boundary position. If undefined, getActiveFormats will
+      / give the active formats according to the browser.
       activeFormats: oldRecord._newActiveFormats,
       _newActiveFormats: undefined
     };
     const newActiveFormats = getActiveFormats(newValue, input_and_selection_EMPTY_ACTIVE_FORMATS);
 
-    // Update the value with the new active formats.
+    / Update the value with the new active formats.
     newValue.activeFormats = newActiveFormats;
 
-    // It is important that the internal value is updated first,
-    // otherwise the value will be wrong on render!
+    / It is important that the internal value is updated first,
+    / otherwise the value will be wrong on render!
     record.current = newValue;
     applyRecord(newValue, {
       domOnly: true
@@ -3559,24 +3559,24 @@ function fixPlaceholderSelection(defaultView) {
   }
   function onCompositionStart() {
     isComposing = true;
-    // Do not update the selection when characters are being composed as
-    // this rerenders the component and might destroy internal browser
-    // editing state.
+    / Do not update the selection when characters are being composed as
+    / this rerenders the component and might destroy internal browser
+    / editing state.
     ownerDocument.removeEventListener('selectionchange', handleSelectionChange);
-    // Remove the placeholder. Since the rich text value doesn't update
-    // during composition, the placeholder doesn't get removed. There's no
-    // need to re-add it, when the value is updated on compositionend it
-    // will be re-added when the value is empty.
+    / Remove the placeholder. Since the rich text value doesn't update
+    / during composition, the placeholder doesn't get removed. There's no
+    / need to re-add it, when the value is updated on compositionend it
+    / will be re-added when the value is empty.
     element.querySelector(`[${PLACEHOLDER_ATTR_NAME}]`)?.remove();
   }
   function onCompositionEnd() {
     isComposing = false;
-    // Ensure the value is up-to-date for browsers that don't emit a final
-    // input event after composition.
+    / Ensure the value is up-to-date for browsers that don't emit a final
+    / input event after composition.
     onInput({
       inputType: 'insertText'
     });
-    // Tracking selection changes can be resumed.
+    / Tracking selection changes can be resumed.
     ownerDocument.addEventListener('selectionchange', handleSelectionChange);
   }
   function onFocus() {
@@ -3587,15 +3587,15 @@ function fixPlaceholderSelection(defaultView) {
       applyRecord
     } = props.current;
 
-    // When the whole editor is editable, let writing flow handle
-    // selection.
+    / When the whole editor is editable, let writing flow handle
+    / selection.
     if (element.parentElement.closest('[contenteditable="true"]')) {
       return;
     }
     if (!isSelected) {
-      // We know for certain that on focus, the old selection is invalid.
-      // It will be recalculated on the next mouseup, keyup, or touchend
-      // event.
+      / We know for certain that on focus, the old selection is invalid.
+      / It will be recalculated on the next mouseup, keyup, or touchend
+      / event.
       const index = undefined;
       record.current = {
         ...record.current,
@@ -3610,9 +3610,9 @@ function fixPlaceholderSelection(defaultView) {
     }
     onSelectionChange(record.current.start, record.current.end);
 
-    // There is no selection change event when the element is focused, so
-    // we need to manually trigger it. The selection is also not available
-    // yet in this call stack.
+    / There is no selection change event when the element is focused, so
+    / we need to manually trigger it. The selection is also not available
+    / yet in this call stack.
     window.queueMicrotask(handleSelectionChange);
     ownerDocument.addEventListener('selectionchange', handleSelectionChange);
   }
@@ -3628,7 +3628,7 @@ function fixPlaceholderSelection(defaultView) {
   };
 });
 
-;// ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/selection-change-compat.js
+;/ ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/selection-change-compat.js
 /**
  * Internal dependencies
  */
@@ -3679,7 +3679,7 @@ function fixPlaceholderSelection(defaultView) {
   };
 });
 
-;// ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/prevent-focus-capture.js
+;/ ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/prevent-focus-capture.js
 /**
  * Prevents focus from being captured by the element when clicking _outside_
  * around the element. This may happen when the parent element is flex.
@@ -3696,7 +3696,7 @@ function preventFocusCapture() {
     } = ownerDocument;
     let value = null;
     function onPointerDown(event) {
-      // Abort if the event is default prevented, we will not get a pointer up event.
+      / Abort if the event is default prevented, we will not get a pointer up event.
       if (event.defaultPrevented) {
         return;
       }
@@ -3725,7 +3725,7 @@ function preventFocusCapture() {
   };
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/index.js
+;/ ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/index.js
 /**
  * WordPress dependencies
  */
@@ -3757,7 +3757,7 @@ function useEventListeners(props) {
   }, [refEffects]);
 }
 
-;// ./node_modules/@wordpress/rich-text/build-module/component/index.js
+;/ ./node_modules/@wordpress/rich-text/build-module/component/index.js
 /**
  * WordPress dependencies
  */
@@ -3818,7 +3818,7 @@ function useRichText({
     });
   }
 
-  // Internal values are updated synchronously, unlike props and state.
+  / Internal values are updated synchronously, unlike props and state.
   const _valueRef = (0,external_wp_element_namespaceObject.useRef)(value);
   const recordRef = (0,external_wp_element_namespaceObject.useRef)();
   function setRecordFromProps() {
@@ -3829,7 +3829,7 @@ function useRichText({
         preserveWhiteSpace
       }) : RichTextData.empty();
     }
-    // To do: make rich text internally work with RichTextData.
+    / To do: make rich text internally work with RichTextData.
     recordRef.current = {
       text: recordRef.current.text,
       formats: recordRef.current.formats,
@@ -3892,9 +3892,9 @@ function useRichText({
       text
     } = recordRef.current;
 
-    // Selection must be updated first, so it is recorded in history when
-    // the content change happens.
-    // We batch both calls to only attempt to rerender once.
+    / Selection must be updated first, so it is recorded in history when
+    / the content change happens.
+    / We batch both calls to only attempt to rerender once.
     registry.batch(() => {
       onSelectionChange(start, end);
       onChange(_valueRef.current, {
@@ -3910,7 +3910,7 @@ function useRichText({
   }
   const didMountRef = (0,external_wp_element_namespaceObject.useRef)(false);
 
-  // Value updates must happen synchronously to avoid overwriting newer values.
+  / Value updates must happen synchronously to avoid overwriting newer values.
   (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
     if (didMountRef.current && value !== _valueRef.current) {
       applyFromProps();
@@ -3918,7 +3918,7 @@ function useRichText({
     }
   }, [value]);
 
-  // Value updates must happen synchronously to avoid overwriting newer values.
+  / Value updates must happen synchronously to avoid overwriting newer values.
   (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
     if (!hadSelectionUpdateRef.current) {
       return;
@@ -3945,11 +3945,11 @@ function useRichText({
   }, [placeholder, ...__unstableDependencies])]);
   return {
     value: recordRef.current,
-    // A function to get the most recent value so event handlers in
-    // useRichText implementations have access to it. For example when
-    // listening to input events, we internally update the state, but this
-    // state is not yet available to the input event handler because React
-    // may re-render asynchronously.
+    / A function to get the most recent value so event handlers in
+    / useRichText implementations have access to it. For example when
+    / listening to input events, we internally update the state, but this
+    / state is not yet available to the input event handler because React
+    / may re-render asynchronously.
     getValue: () => recordRef.current,
     onChange: handleChange,
     ref: mergedRefs
@@ -3957,7 +3957,7 @@ function useRichText({
 }
 function __experimentalRichText() {}
 
-;// ./node_modules/@wordpress/rich-text/build-module/index.js
+;/ ./node_modules/@wordpress/rich-text/build-module/index.js
 
 
 

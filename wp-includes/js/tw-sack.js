@@ -94,7 +94,7 @@ function sack(file) {
 			}
 		}
 
-		// prevents caching of URLString
+		/ prevents caching of URLString
 		this.setVar("rndval", new Date().getTime());
 
 		urlstringtemp = new Array();

@@ -93,7 +93,7 @@ class WebP extends NextGen {
 					isConfigured !==
 					this.recheckStatusButton.dataset.isConfigured
 				) {
-					// Reload the page when the configuration status changed.
+					/ Reload the page when the configuration status changed.
 					location.reload();
 				}
 			} else {

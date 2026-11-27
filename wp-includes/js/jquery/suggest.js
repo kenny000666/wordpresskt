@@ -20,17 +20,17 @@
 		$input = $(input).attr("autocomplete", "off");
 		$results = $("<ul/>");
 
-		timeout = false;		// hold timeout ID for suggestion results to appear
-		prevLength = 0;			// last recorded length of $input.val()
-		cache = [];				// cache MRU list
-		cacheSize = 0;			// size of cache in chars (bytes?)
+		timeout = false;		/ hold timeout ID for suggestion results to appear
+		prevLength = 0;			/ last recorded length of $input.val()
+		cache = [];				/ cache MRU list
+		cacheSize = 0;			/ size of cache in chars (bytes?)
 
 		$results.addClass(options.resultsClass).appendTo('body');
 
 
 		resetPosition();
 		$(window)
-			.on( 'load', resetPosition ) // just in case user is changing size of page while loading
+			.on( 'load', resetPosition ) / just in case user is changing size of page while loading
 			.on( 'resize', resetPosition );
 
 		$input.blur(function() {
@@ -40,7 +40,7 @@
 		$input.keydown(processKey);
 
 		function resetPosition() {
-			// requires jquery.dimension plugin
+			/ requires jquery.dimension plugin
 			var offset = $input.offset();
 			$results.css({
 				top: (offset.top + input.offsetHeight) + 'px',
@@ -51,8 +51,8 @@
 
 		function processKey(e) {
 
-			// handling up/down/escape requires results to be visible
-			// handling enter/tab requires that AND a result to be selected
+			/ handling up/down/escape requires results to be visible
+			/ handling enter/tab requires that AND a result to be selected
 			if ((/27$|38$|40$/.test(e.keyCode) && $results.is(':visible')) ||
 				(/^13$|^9$/.test(e.keyCode) && getCurrentResult())) {
 
@@ -66,20 +66,20 @@
 
 				switch(e.keyCode) {
 
-					case 38: // up
+					case 38: / up
 						prevResult();
 						break;
 
-					case 40: // down
+					case 40: / down
 						nextResult();
 						break;
 
-					case 9:  // tab
-					case 13: // return
+					case 9:  / tab
+					case 13: / return
 						selectCurrentResult();
 						break;
 
-					case 27: //	escape
+					case 27: /	escape
 						$results.hide();
 						break;
 
@@ -179,7 +179,7 @@
 				return;
 			}
 
-			resetPosition(); // when the form moves after the page has loaded
+			resetPosition(); / when the form moves after the page has loaded
 
 			for (i = 0; i < items.length; i++)
 				html += '<li>' + items[i] + '</li>';
@@ -204,7 +204,7 @@
 
 			var items = [], tokens = txt.split(options.delimiter), i, token;
 
-			// parse returned data for non-empty items
+			/ parse returned data for non-empty items
 			for (i = 0; i < tokens.length; i++) {
 				token = $.trim(tokens[i]);
 				if (token) {

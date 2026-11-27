@@ -62,7 +62,7 @@ const WPFormsSettingsStripe = window.WPFormsSettingsStripe || ( function( docume
 		 * @since 1.8.2
 		 */
 		setup() {
-			// Cache DOM elements.
+			/ Cache DOM elements.
 			el.$wrapper = $( '.wpforms-admin-content-payments' );
 			el.$liveConnectionBlock = $( '.wpforms-stripe-connection-status-live' );
 			el.$testConnectionBlock = $( '.wpforms-stripe-connection-status-test' );
@@ -131,7 +131,7 @@ const WPFormsSettingsStripe = window.WPFormsSettingsStripe || ( function( docume
 		 * @param {Object} event Event object.
 		 */
 		copyWebhooksEndpoint( event ) {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "WPFormsSettingsStripe.copyWebhooksEndpoint()" has been deprecated! Use wpf.copyWebhooksEndpoint() instead.' );
 
 			wpf.copyValueToClipboard( event, $( this ), el.webhookEndpointUrl );
@@ -150,7 +150,7 @@ const WPFormsSettingsStripe = window.WPFormsSettingsStripe || ( function( docume
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

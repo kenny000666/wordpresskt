@@ -14,7 +14,7 @@
 		'version': 302,
 	};
 
-	// Always try to use the last version of this script.
+	/ Always try to use the last version of this script.
 	if (
 		'wpColorPickerAlpha' in window &&
 		'version' in window.wpColorPickerAlpha
@@ -25,15 +25,15 @@
 		}
 	}
 
-	// Prevent multiple initiations
+	/ Prevent multiple initiations
 	if ( Color.fn.hasOwnProperty( 'to_s' ) ) {
 		return;
 	}
 
-	// Create new method to replace the `Color.toString()` inside the scripts.
+	/ Create new method to replace the `Color.toString()` inside the scripts.
 	Color.fn.to_s = function ( type ) {
 		type = ( type || 'hex' );
-		// Change hex to rgba to return the correct color.
+		/ Change hex to rgba to return the correct color.
 		if ( 'hex' === type && this._alpha < 1 ) {
 			type = 'rgba';
 		}
@@ -49,12 +49,12 @@
 		return color;
 	};
 
-	// Register the global variable.
+	/ Register the global variable.
 	window.wpColorPickerAlpha = wpColorPickerAlpha;
 
-	// Background image encoded
+	/ Background image encoded
 	var backgroundImage =
-		'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAAHnlligAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHJJREFUeNpi+P///4EDBxiAGMgCCCAGFB5AADGCRBgYDh48CCRZIJS9vT2QBAggFBkmBiSAogxFBiCAoHogAKIKAlBUYTELAiAmEtABEECk20G6BOmuIl0CIMBQ/IEMkO0myiSSraaaBhZcbkUOs0HuBwDplz5uFJ3Z4gAAAABJRU5ErkJggg==';
+		'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAAHnlligAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHJJREFUeNpi+P//4EDBxiAGMgCCCAGFB5AADGCRBgYDh48CCRZIJS9vT2QBAggFBkmBiSAogxFBiCAoHogAKIKAlBUYTELAiAmEtABEECk20G6BOmuIl0CIMBQ/IEMkO0myiSSraaaBhZcbkUOs0HuBwDplz5uFJ3Z4gAAAABJRU5ErkJggg==';
 
 	/**
 	 * Iris
@@ -104,13 +104,13 @@
 		 */
 		_create: function () {
 			try {
-				// Try to get the wpColorPicker alpha options.
+				/ Try to get the wpColorPicker alpha options.
 				this.alphaOptions = this.element.wpColorPicker(
 					'instance'
 				).alphaOptions;
 			} catch ( e ) {}
 
-			// We make sure there are all options
+			/ We make sure there are all options
 			$.extend( {}, this.alphaOptions, {
 				alphaEnabled: false,
 				alphaCustomWidth: 130,
@@ -142,7 +142,7 @@
 					input.removeClass( 'iris-error' );
 
 					if ( ! color.error ) {
-						// let's not do this on keyup for hex shortcodes
+						/ let's not do this on keyup for hex shortcodes
 						if (
 							'hex' !== type ||
 							! (
@@ -150,7 +150,7 @@
 								val.match( /^[0-9a-fA-F]{3}$/ )
 							)
 						) {
-							// Compare color ( #AARRGGBB )
+							/ Compare color ( #AARRGGBB )
 							if (
 								color.toIEOctoHex() !==
 								self._color.toIEOctoHex()
@@ -172,7 +172,7 @@
 				input.on( 'keyup', self._debounce( callback, self.alphaOptions.alphaDebounceTimeout ) );
 			}
 
-			// If we initialized hidden, show on first focus. The rest is up to you.
+			/ If we initialized hidden, show on first focus. The rest is up to you.
 			if ( self.options.hide ) {
 				input.one( 'focus', function () {
 					self.show();
@@ -191,7 +191,7 @@
 			this._super();
 
 			if ( this.alphaOptions.alphaEnabled ) {
-				// Create Alpha controls
+				/ Create Alpha controls
 				var self = this,
 					stripAlpha = self.controls.strip.clone( false, false ),
 					stripAlphaSlider = stripAlpha.find( '.iris-slider-offset' ),
@@ -204,12 +204,12 @@
 				stripAlphaSlider.addClass( 'iris-slider-offset-alpha' );
 				stripAlpha.appendTo( self.picker.find( '.iris-picker-inner' ) );
 
-				// Push new controls
+				/ Push new controls
 				$.each( controls, function ( k, v ) {
 					self.controls[ k ] = v;
 				} );
 
-				// Create slider
+				/ Create slider
 				self.controls.stripAlphaSlider.slider( {
 					orientation: 'vertical',
 					min: 0,
@@ -218,7 +218,7 @@
 					value: parseInt( self._color._alpha * 100 ),
 					slide: function ( event, ui ) {
 						self.active = 'strip';
-						// Update alpha value
+						/ Update alpha value
 						self._color._alpha = parseFloat( ui.value / 100 );
 						self._change.apply( self, arguments );
 					},
@@ -263,16 +263,16 @@
 				innerWidth = Math.round(
 					self.picker.outerWidth( true ) - ( opts.border ? 22 : 0 )
 				);
-				// The width of the draggable, aka square.
+				/ The width of the draggable, aka square.
 				squareWidth = Math.round( square.outerWidth() );
-				// The width for the sliders
+				/ The width for the sliders
 				stripWidth = Math.round( ( innerWidth - squareWidth ) / 2 );
-				// The margin for the sliders
+				/ The margin for the sliders
 				stripMargin = Math.round( stripWidth / 2 );
-				// The total width of the elements.
+				/ The total width of the elements.
 				totalWidth = Math.round(squareWidth + ( stripWidth * 2 ) + ( stripMargin * 2 ) );
 
-				// Check and change if necessary.
+				/ Check and change if necessary.
 				while ( totalWidth > innerWidth ) {
 					stripWidth = Math.round( stripWidth - 2 );
 					stripMargin = Math.round( stripMargin - 1 );
@@ -312,9 +312,9 @@
 						.find( '.wp-color-result' );
 
 				self.options.color = self._getColor();
-				// Generate background slider alpha, only for CSS3.
+				/ Generate background slider alpha, only for CSS3.
 				controls.stripAlpha.css( {'background' : 'linear-gradient(to bottom, ' + gradient.join( ', ' ) + '), url(' + backgroundImage + ')' } );
-				// Update alpha value
+				/ Update alpha value
 				if ( active ) {
 					controls.stripAlphaSlider.slider( 'value', alpha );
 				}
@@ -350,7 +350,7 @@
 			var self = this,
 				color = false;
 
-			// Fix for slider hue opacity.
+			/ Fix for slider hue opacity.
 			if ( self.alphaOptions.alphaEnabled && 'strip' === control ) {
 				color = self._color;
 				self._color = new Color( color.toString() );
@@ -359,7 +359,7 @@
 
 			self._super( origin, control );
 
-			// Restore the color after paint.
+			/ Restore the color after paint.
 			if ( color ) {
 				self._color = color;
 			}
@@ -377,10 +377,10 @@
 		_setOption: function ( key, value ) {
 			var self = this;
 			if ( 'color' === key && self.alphaOptions.alphaEnabled ) {
-				// cast to string in case we have a number
+				/ cast to string in case we have a number
 				value = '' + value;
 				newColor = new Color( value ).setHSpace( self.options.mode );
-				// Check if error && Check the color to prevent callbacks with the same color.
+				/ Check if error && Check the color to prevent callbacks with the same color.
 				if (
 					! newColor.error &&
 					self._getColor( newColor ) !== self._getColor()
@@ -495,15 +495,15 @@
 		 * @return {void}
 		 */
 		_create: function () {
-			// Return early if Iris support is missing.
+			/ Return early if Iris support is missing.
 			if ( ! $.support.iris ) {
 				return;
 			}
 
-			// Set the alpha options for the current instance.
+			/ Set the alpha options for the current instance.
 			this.alphaOptions = this._getAlphaOptions();
 
-			// Create widget.
+			/ Create widget.
 			this._super();
 		},
 		/**
@@ -553,7 +553,7 @@
 				'background-color': el.val(),
 			} );
 
-			// Define the correct position for ltr or rtl direction.
+			/ Define the correct position for ltr or rtl direction.
 			if ( 'ltr' === self.colorAlpha.css( 'direction' ) ) {
 				self.colorAlpha.css( {
 					'border-bottom-left-radius': '2px',
@@ -589,7 +589,7 @@
 						),
 					} );
 
-					// fire change callback if we have one
+					/ fire change callback if we have one
 					if ( typeof self.options.change === 'function' ) {
 						self.options.change.call( this, event, ui );
 					}
@@ -646,7 +646,7 @@
 
 					self.colorAlpha.css( 'background-color', '' );
 
-					// fire clear callback if we have one
+					/ fire clear callback if we have one
 					if ( typeof self.options.clear === 'function' ) {
 						self.options.clear.call( this, event );
 					}
@@ -673,7 +673,7 @@
 
 					self.colorAlpha.css( 'background-color', '' );
 
-					// fire clear callback if we have one
+					/ fire clear callback if we have one
 					if ( typeof self.options.clear === 'function' ) {
 						self.options.clear.call( this, event );
 					}

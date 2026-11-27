@@ -81,7 +81,7 @@ class ContactButtonsHandler extends _base.default {
       hidden
     } = this.getSettings('constants');
 
-    // Set current state
+    / Set current state
     if (true === hide) {
       this.elements.contentWrapper.classList.add(hidden);
       this.elements.contentWrapper.setAttribute('aria-hidden', 'true');
@@ -93,11 +93,11 @@ class ContactButtonsHandler extends _base.default {
       return;
     }
 
-    // Get current state
+    / Get current state
     return this.elements.contentWrapper.classList.contains(hidden);
   }
   onDocumentKeyup(event) {
-    // Bail if not ESC key
+    / Bail if not ESC key
     if (event.keyCode !== 27 || !this.elements.main) {
       return;
     }
@@ -268,7 +268,7 @@ class ContactButtonsHandler extends _base.default {
     this.elements.chatButton.classList.add(entranceAnimationControl);
   }
   initDefaultState() {
-    // Manage accessibility
+    / Manage accessibility
     if (this.elements.contentWrapper) {
       const isHidden = this.contentWrapperIsHidden();
       if (this.elements.chatButton) {

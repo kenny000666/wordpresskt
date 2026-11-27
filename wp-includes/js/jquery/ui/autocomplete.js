@@ -21,7 +21,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"./menu",
@@ -33,7 +33,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -54,7 +54,7 @@ $.widget( "ui.autocomplete", {
 		},
 		source: null,
 
-		// Callbacks
+		/ Callbacks
 		change: null,
 		close: null,
 		focus: null,
@@ -70,22 +70,22 @@ $.widget( "ui.autocomplete", {
 
 	_create: function() {
 
-		// Some browsers only repeat keydown events, not keypress events,
-		// so we use the suppressKeyPress flag to determine if we've already
-		// handled the keydown event. #7269
-		// Unfortunately the code for & in keypress is the same as the up arrow,
-		// so we use the suppressKeyPressRepeat flag to avoid handling keypress
-		// events when we know the keydown event was used to modify the
-		// search term. #7799
+		/ Some browsers only repeat keydown events, not keypress events,
+		/ so we use the suppressKeyPress flag to determine if we've already
+		/ handled the keydown event. #7269
+		/ Unfortunately the code for & in keypress is the same as the up arrow,
+		/ so we use the suppressKeyPressRepeat flag to avoid handling keypress
+		/ events when we know the keydown event was used to modify the
+		/ search term. #7799
 		var suppressKeyPress, suppressKeyPressRepeat, suppressInput,
 			nodeName = this.element[ 0 ].nodeName.toLowerCase(),
 			isTextarea = nodeName === "textarea",
 			isInput = nodeName === "input";
 
-		// Textareas are always multi-line
-		// Inputs are always single-line, even if inside a contentEditable element
-		// IE also treats inputs as contentEditable
-		// All other element types are determined by whether or not they're contentEditable
+		/ Textareas are always multi-line
+		/ Inputs are always single-line, even if inside a contentEditable element
+		/ IE also treats inputs as contentEditable
+		/ All other element types are determined by whether or not they're contentEditable
 		this.isMultiLine = isTextarea || !isInput && this._isContentEditable( this.element );
 
 		this.valueMethod = this.element[ isTextarea || isInput ? "val" : "text" ];
@@ -126,11 +126,11 @@ $.widget( "ui.autocomplete", {
 					break;
 				case keyCode.ENTER:
 
-					// when menu is open and has focus
+					/ when menu is open and has focus
 					if ( this.menu.active ) {
 
-						// #6055 - Opera still allows the keypress to occur
-						// which causes forms to submit
+						/ #6055 - Opera still allows the keypress to occur
+						/ which causes forms to submit
 						suppressKeyPress = true;
 						event.preventDefault();
 						this.menu.select( event );
@@ -148,16 +148,16 @@ $.widget( "ui.autocomplete", {
 						}
 						this.close( event );
 
-						// Different browsers have different default behavior for escape
-						// Single press can mean undo or clear
-						// Double press in IE means clear the whole form
+						/ Different browsers have different default behavior for escape
+						/ Single press can mean undo or clear
+						/ Double press in IE means clear the whole form
 						event.preventDefault();
 					}
 					break;
 				default:
 					suppressKeyPressRepeat = true;
 
-					// search timeout should be triggered before the input value is changed
+					/ search timeout should be triggered before the input value is changed
 					this._searchTimeout( event );
 					break;
 				}
@@ -174,7 +174,7 @@ $.widget( "ui.autocomplete", {
 					return;
 				}
 
-				// Replicate some key handlers to allow them to repeat in Firefox and Opera
+				/ Replicate some key handlers to allow them to repeat in Firefox and Opera
 				var keyCode = $.ui.keyCode;
 				switch ( event.keyCode ) {
 				case keyCode.PAGE_UP:
@@ -215,17 +215,17 @@ $.widget( "ui.autocomplete", {
 			.appendTo( this._appendTo() )
 			.menu( {
 
-				// disable ARIA support, the live region takes care of that
+				/ disable ARIA support, the live region takes care of that
 				role: null
 			} )
 			.hide()
 
-			// Support: IE 11 only, Edge <= 14
-			// For other browsers, we preventDefault() on the mousedown event
-			// to keep the dropdown from taking focus from the input. This doesn't
-			// work for IE/Edge, causing problems with selection and scrolling (#9638)
-			// Happily, IE and Edge support an "unselectable" attribute that
-			// prevents an element from receiving focus, exactly what we want here.
+			/ Support: IE 11 only, Edge <= 14
+			/ For other browsers, we preventDefault() on the mousedown event
+			/ to keep the dropdown from taking focus from the input. This doesn't
+			/ work for IE/Edge, causing problems with selection and scrolling (#9638)
+			/ Happily, IE and Edge support an "unselectable" attribute that
+			/ prevents an element from receiving focus, exactly what we want here.
 			.attr( {
 				"unselectable": "on"
 			} )
@@ -235,14 +235,14 @@ $.widget( "ui.autocomplete", {
 		this._on( this.menu.element, {
 			mousedown: function( event ) {
 
-				// Prevent moving focus out of the text field
+				/ Prevent moving focus out of the text field
 				event.preventDefault();
 			},
 			menufocus: function( event, ui ) {
 				var label, item;
 
-				// support: Firefox
-				// Prevent accidental activation of menu items in Firefox (#7024 #9118)
+				/ support: Firefox
+				/ Prevent accidental activation of menu items in Firefox (#7024 #9118)
 				if ( this.isNewMenu ) {
 					this.isNewMenu = false;
 					if ( event.originalEvent && /^mouse/.test( event.originalEvent.type ) ) {
@@ -259,13 +259,13 @@ $.widget( "ui.autocomplete", {
 				item = ui.item.data( "ui-autocomplete-item" );
 				if ( false !== this._trigger( "focus", event, { item: item } ) ) {
 
-					// use value to match what will end up in the input, if it was a key event
+					/ use value to match what will end up in the input, if it was a key event
 					if ( event.originalEvent && /^key/.test( event.originalEvent.type ) ) {
 						this._value( item.value );
 					}
 				}
 
-				// Announce the value in the liveRegion
+				/ Announce the value in the liveRegion
 				label = ui.item.attr( "aria-label" ) || item.value;
 				if ( label && String.prototype.trim.call( label ).length ) {
 					clearTimeout( this.liveRegionTimer );
@@ -278,14 +278,14 @@ $.widget( "ui.autocomplete", {
 				var item = ui.item.data( "ui-autocomplete-item" ),
 					previous = this.previous;
 
-				// Only trigger when focus was lost (click on menu)
+				/ Only trigger when focus was lost (click on menu)
 				if ( this.element[ 0 ] !== $.ui.safeActiveElement( this.document[ 0 ] ) ) {
 					this.element.trigger( "focus" );
 					this.previous = previous;
 
-					// #6109 - IE triggers two focus events and the second
-					// is asynchronous, so we need to reset the previous
-					// term synchronously and asynchronously :-(
+					/ #6109 - IE triggers two focus events and the second
+					/ is asynchronous, so we need to reset the previous
+					/ term synchronously and asynchronously :-(
 					this._delay( function() {
 						this.previous = previous;
 						this.selectedItem = item;
@@ -296,8 +296,8 @@ $.widget( "ui.autocomplete", {
 					this._value( item.value );
 				}
 
-				// reset the term after the select event
-				// this allows custom select handling to work properly
+				/ reset the term after the select event
+				/ this allows custom select handling to work properly
 				this.term = this._value();
 
 				this.close( event );
@@ -314,9 +314,9 @@ $.widget( "ui.autocomplete", {
 
 		this._addClass( this.liveRegion, null, "ui-helper-hidden-accessible" );
 
-		// Turning off autocomplete prevents the browser from remembering the
-		// value when navigating through history, so we re-enable autocomplete
-		// if the page is unloaded before the widget is destroyed. #7790
+		/ Turning off autocomplete prevents the browser from remembering the
+		/ value when navigating through history, so we re-enable autocomplete
+		/ if the page is unloaded before the widget is destroyed. #7790
 		this._on( this.window, {
 			beforeunload: function() {
 				this.element.removeAttr( "autocomplete" );
@@ -413,7 +413,7 @@ $.widget( "ui.autocomplete", {
 		clearTimeout( this.searching );
 		this.searching = this._delay( function() {
 
-			// Search if the value has changed, or if the user retypes the same value (see #7434)
+			/ Search if the value has changed, or if the user retypes the same value (see #7434)
 			var equalValues = this.term === this._value(),
 				menuVisible = this.menu.element.is( ":visible" ),
 				modifierKey = event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
@@ -428,7 +428,7 @@ $.widget( "ui.autocomplete", {
 	search: function( value, event ) {
 		value = value != null ? value : this._value();
 
-		// Always save the actual value, not the one passed as an argument
+		/ Always save the actual value, not the one passed as an argument
 		this.term = this._value();
 
 		if ( value.length < this.options.minLength ) {
@@ -475,7 +475,7 @@ $.widget( "ui.autocomplete", {
 			this._trigger( "open" );
 		} else {
 
-			// use ._close() instead of .close() so we don't cancel future searches
+			/ use ._close() instead of .close() so we don't cancel future searches
 			this._close();
 		}
 	},
@@ -487,7 +487,7 @@ $.widget( "ui.autocomplete", {
 
 	_close: function( event ) {
 
-		// Remove the handler that closes the menu on outside clicks
+		/ Remove the handler that closes the menu on outside clicks
 		this._off( this.document, "mousedown" );
 
 		if ( this.menu.element.is( ":visible" ) ) {
@@ -506,7 +506,7 @@ $.widget( "ui.autocomplete", {
 
 	_normalize: function( items ) {
 
-		// assume all items have the right format when the first item is complete
+		/ assume all items have the right format when the first item is complete
 		if ( items.length && items[ 0 ].label && items[ 0 ].value ) {
 			return items;
 		}
@@ -530,7 +530,7 @@ $.widget( "ui.autocomplete", {
 		this.isNewMenu = true;
 		this.menu.refresh();
 
-		// Size and position menu
+		/ Size and position menu
 		ul.show();
 		this._resizeMenu();
 		ul.position( $.extend( {
@@ -541,7 +541,7 @@ $.widget( "ui.autocomplete", {
 			this.menu.next();
 		}
 
-		// Listen for interactions outside of the widget (#6642)
+		/ Listen for interactions outside of the widget (#6642)
 		this._on( this.document, {
 			mousedown: "_closeOnClickOutside"
 		} );
@@ -551,8 +551,8 @@ $.widget( "ui.autocomplete", {
 		var ul = this.menu.element;
 		ul.outerWidth( Math.max(
 
-			// Firefox wraps long text (possibly a rounding bug)
-			// so we add 1px to avoid the wrapping (#7513)
+			/ Firefox wraps long text (possibly a rounding bug)
+			/ so we add 1px to avoid the wrapping (#7513)
 			ul.width( "" ).outerWidth() + 1,
 			this.element.outerWidth()
 		) );
@@ -605,15 +605,15 @@ $.widget( "ui.autocomplete", {
 		if ( !this.isMultiLine || this.menu.element.is( ":visible" ) ) {
 			this._move( keyEvent, event );
 
-			// Prevents moving cursor to beginning/end of the text field in some browsers
+			/ Prevents moving cursor to beginning/end of the text field in some browsers
 			event.preventDefault();
 		}
 	},
 
-	// Support: Chrome <=50
-	// We should be able to just use this.element.prop( "isContentEditable" )
-	// but hidden elements always report false in Chrome.
-	// https://code.google.com/p/chromium/issues/detail?id=313082
+	/ Support: Chrome <=50
+	/ We should be able to just use this.element.prop( "isContentEditable" )
+	/ but hidden elements always report false in Chrome.
+	/ https://code.google.com/p/chromium/issues/detail?id=313082
 	_isContentEditable: function( element ) {
 		if ( !element.length ) {
 			return false;

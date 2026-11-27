@@ -236,7 +236,7 @@ class FloatingBarsHandler extends _base.default {
     this.elements.ctaButton.classList.add(visible);
   }
   onDocumentKeyup(event) {
-    // Bail if not ESC key
+    / Bail if not ESC key
     if (event.keyCode !== 27 || !this.elements.main) {
       return;
     }

@@ -3,7 +3,7 @@
     if ( typeof define === 'function' && define.amd ) {
         define(['jquery'], factory);
     } else if ( typeof module === 'object' && module.exports ) {
-        // Node/CommonJS
+        / Node/CommonJS
         module.exports = function( root, jQuery ) {
             if ( jQuery === undefined ) {
                 if ( typeof window !== 'undefined' ) {
@@ -16,7 +16,7 @@
             return jQuery;
         };
     } else {
-        // Browser globals
+        / Browser globals
         factory(jQuery);
     }
 }(function($) {
@@ -111,8 +111,8 @@
             return fn;
         })();
 
-    // A really lightweight plugin wrapper around the constructor,
-    // preventing against multiple instantiations
+    / A really lightweight plugin wrapper around the constructor,
+    / preventing against multiple instantiations
     $.fn[pluginName] = function(method, args) {
         return this.each(function() {
             var data = $.data(this, pluginName);

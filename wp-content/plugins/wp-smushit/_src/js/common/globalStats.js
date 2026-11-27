@@ -29,7 +29,7 @@ export const GlobalStats = ( () => {
 	if ( ! summarySmush ) {
 		return {};
 	}
-	// Cache initial stats.
+	/ Cache initial stats.
 	let boStats = window.wp_smushit_data.bo_stats;
 	let globalStats = {
 		count_images: 0,
@@ -111,11 +111,11 @@ export const GlobalStats = ( () => {
 			this.renderConversionSavings();
 		},
 		renderTotalStats() {
-			// Total savings.
+			/ Total savings.
 			summarySmush.querySelector( '.sui-summary-large.wp-smush-stats-human' ).innerHTML = globalStats.human_bytes;
-			// Update the savings percent.
+			/ Update the savings percent.
 			summarySmush.querySelector( '.wp-smush-savings .wp-smush-stats-percent' ).innerHTML = globalStats.savings_percent;
-			// To total smushed images files.
+			/ To total smushed images files.
 			summarySmush.querySelector( '.wp-smush-count-total .wp-smush-total-optimised' ).innerHTML = globalStats.count_images;
 		},
 		renderResizedStats() {
@@ -131,7 +131,7 @@ export const GlobalStats = ( () => {
 			resizeCountElement.querySelector( '.wp-smush-total-optimised' ).innerHTML = globalStats.count_resize;
 		},
 		renderConversionSavings() {
-			// PNG2JPG Savings.
+			/ PNG2JPG Savings.
 			const conversionSavingsElement = summarySmush.querySelector( '.smush-conversion-savings .wp-smush-stats' );
 			if ( ! conversionSavingsElement ) {
 				return;
@@ -144,9 +144,9 @@ export const GlobalStats = ( () => {
 			}
 		},
 		renderBoxSummary() {
-			// Circle core progress.
+			/ Circle core progress.
 			this.renderScoreProgress();
-			// Summary detail.
+			/ Summary detail.
 			this.renderSummaryDetail();
 		},
 		setErrors( newErrors ) {
@@ -161,7 +161,7 @@ export const GlobalStats = ( () => {
 			}
 			const errors = [];
 			const errorKeys = Object.keys( allErrors );
-			// Cache error code to avoid double upsell notice.
+			/ Cache error code to avoid double upsell notice.
 			let showAnimatedUpsell = false;
 			errorKeys.map( ( image_id, index ) => {
 				const upsellErrorCode = allErrors[ image_id ].error_code;
@@ -181,12 +181,12 @@ export const GlobalStats = ( () => {
 			logBulk.innerHTML = errors.join( '' );
 			logBulk.parentElement.classList.remove( 'sui-hidden' );
 			logBulk.parentElement.style.display = null;
-			// Show view all.
+			/ Show view all.
 			if ( errorKeys.length > 1 ) {
 				$( '.smush-bulk-errors-actions' ).classList.remove( 'sui-hidden' );
 			}
 
-			// Show animated upsell CDN if user disabled CDN and found an animated error in first 5 errors.
+			/ Show animated upsell CDN if user disabled CDN and found an animated error in first 5 errors.
 			if ( showAnimatedUpsell ) {
 				UpsellManger.maybeShowCDNActivationNotice();
 			}
@@ -203,9 +203,9 @@ export const GlobalStats = ( () => {
 			allErrors = {};
 		},
 		renderStats() {
-			// Render Smush box summary.
+			/ Render Smush box summary.
 			this.renderBoxSummary();
-			// Render Errors.
+			/ Render Errors.
 			this.renderErrors();
 		},
 		maybeUpdateBulkSmushCountContent( newContent ) {

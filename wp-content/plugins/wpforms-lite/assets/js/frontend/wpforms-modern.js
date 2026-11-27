@@ -17,7 +17,7 @@
 var WPForms = window.WPForms || {};
 
 WPForms.FrontendModern = WPForms.FrontendModern || ( function( document, window, $ ) {
-	// noinspection JSUnusedLocalSymbols,JSUnusedGlobalSymbols
+	/ noinspection JSUnusedLocalSymbols,JSUnusedGlobalSymbols
 	const app = {
 
 		/**
@@ -26,7 +26,7 @@ WPForms.FrontendModern = WPForms.FrontendModern || ( function( document, window,
 		 * @since 1.8.1
 		 */
 		init() {
-			// Document ready.
+			/ Document ready.
 			$( app.ready );
 			app.bindOptinMonster();
 		},
@@ -61,11 +61,11 @@ WPForms.FrontendModern = WPForms.FrontendModern || ( function( document, window,
 			$( 'form.wpforms-form .wpforms-submit' )
 				.on( 'keydown click', app.disabledButtonPress );
 
-			// Add styling to timepicker dropdown.
+			/ Add styling to timepicker dropdown.
 			$( document )
 				.on( 'focus', '.wpforms-render-modern .wpforms-timepicker', app.updateTimepickerDropdown );
 
-			// Reset timepicker dropdown styles.
+			/ Reset timepicker dropdown styles.
 			$( document )
 				.on( 'focusout', '.wpforms-render-modern .wpforms-timepicker', app.resetTimepickerDropdown );
 		},
@@ -79,12 +79,12 @@ WPForms.FrontendModern = WPForms.FrontendModern || ( function( document, window,
 		 * @since 1.9.0
 		 */
 		bindOptinMonster() {
-			// OM v5.
+			/ OM v5.
 			document.addEventListener( 'om.Campaign.load', function() {
 				app.ready();
 			} );
 
-			// OM Legacy.
+			/ OM Legacy.
 			$( document ).on( 'OptinMonsterOnShow', function() {
 				app.ready();
 			} );
@@ -134,7 +134,7 @@ WPForms.FrontendModern = WPForms.FrontendModern || ( function( document, window,
 		 * @since 1.8.8
 		 */
 		initButtonStyle() {
-			// Loop through all the GB blocks on the page.
+			/ Loop through all the GB blocks on the page.
 			$( '.wpforms-block.wpforms-container-full, .elementor-widget-wpforms .wpforms-container-full' ).each( function() {
 				const $form = $( this );
 				const contStyle = getComputedStyle( $form.get( 0 ) );
@@ -158,11 +158,11 @@ WPForms.FrontendModern = WPForms.FrontendModern || ( function( document, window,
 		isTransparentColor( color ) {
 			const rgba = app.getColorAsRGBArray( color );
 
-			// The max opacity value of the color that is considered as transparent.
+			/ The max opacity value of the color that is considered as transparent.
 			const opacityThreshold = 0.33;
 			const opacity = Number( rgba?.[ 3 ] );
 
-			// Compare the opacity value with the threshold.
+			/ Compare the opacity value with the threshold.
 			return opacity <= opacityThreshold;
 		},
 
@@ -172,7 +172,7 @@ WPForms.FrontendModern = WPForms.FrontendModern || ( function( document, window,
 		 * @since 1.8.1
 		 */
 		updateGBBlockAccentColors() {
-			// Loop through all the GB blocks on the page.
+			/ Loop through all the GB blocks on the page.
 			$( '.wpforms-block.wpforms-container-full, .elementor-widget-wpforms .wpforms-container-full' ).each( function() {
 				const $form = $( this );
 
@@ -262,12 +262,12 @@ WPForms.FrontendModern = WPForms.FrontendModern || ( function( document, window,
 				id: errorCntId,
 			} );
 
-			// Add error message prefix.
+			/ Add error message prefix.
 			$errorCnt.find( '> .wpforms-hidden:first-child' ).remove();
 			$errorCnt.prepend( `<span class="wpforms-hidden">${ wpforms_settings.formErrorMessagePrefix }</span>` );
 
-			// Instead of set the `disabled` property,
-			// we must use `aria-disabled` and `aria-describedby` attributes in conduction with `wpforms-disabled` class.
+			/ Instead of set the `disabled` property,
+			/ we must use `aria-disabled` and `aria-describedby` attributes in conduction with `wpforms-disabled` class.
 			$submitBtn.attr( 'aria-describedby', errorCntId );
 		},
 
@@ -281,14 +281,14 @@ WPForms.FrontendModern = WPForms.FrontendModern || ( function( document, window,
 		 * @param {jQuery} $form     Form object.
 		 * @param {jQuery} $errorCnt Error container object.
 		 */
-		// eslint-disable-next-line no-unused-vars
+		/ eslint-disable-next-line no-unused-vars
 		combinedUploadsSizeOk( e, $form, $errorCnt ) {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "WPForms.FrontendModern( e, $form, $errorCnt )" has been deprecated, please use the new "formSubmitButtonDisable: function( e, $form, $submitBtn )" function instead!' );
 
 			const $submitBtn = $form.find( '.wpforms-submit' );
 
-			// Revert aria-* attributes to the normal state.
+			/ Revert aria-* attributes to the normal state.
 			$submitBtn
 				.removeClass( 'wpforms-disabled' )
 				.attr( 'aria-disabled', 'false' )
@@ -431,7 +431,7 @@ WPForms.FrontendModern = WPForms.FrontendModern || ( function( document, window,
 		 * @return {string} Color in RGBA format with an added alpha channel according to given opacity.
 		 */
 		getColorWithOpacity( color, opacity ) {
-			// Moved to ../share/utils.js
+			/ Moved to ../share/utils.js
 			return WPFormsUtils.cssColorsUtils.getColorWithOpacity( color, opacity );
 		},
 
@@ -454,7 +454,7 @@ WPForms.FrontendModern = WPForms.FrontendModern || ( function( document, window,
 				return color;
 			}
 
-			// Combine and return the RGB color.
+			/ Combine and return the RGB color.
 			return `rgb(${ rgbArray[ 0 ] },${ rgbArray[ 1 ] },${ rgbArray[ 2 ] })`;
 		},
 
@@ -468,7 +468,7 @@ WPForms.FrontendModern = WPForms.FrontendModern || ( function( document, window,
 		 * @return {boolean} True if the given color is a valid CSS color.
 		 */
 		isValidColor( color ) {
-			// Moved to ../share/utils.js
+			/ Moved to ../share/utils.js
 			return WPFormsUtils.cssColorsUtils.isValidColor( color );
 		},
 
@@ -482,7 +482,7 @@ WPForms.FrontendModern = WPForms.FrontendModern || ( function( document, window,
 		 * @return {Array|boolean} Color as an array of RGBA values. False on error.
 		 */
 		getColorAsRGBArray( color ) {
-			// Moved to ../share/utils.js
+			/ Moved to ../share/utils.js
 			return WPFormsUtils.cssColorsUtils.getColorAsRGBArray( color );
 		},
 

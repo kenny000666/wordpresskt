@@ -6,7 +6,7 @@ jQuery(document).ready(function ($) {
         $('#dup-settings-connect-btn').on('click', function (event) {
             event.stopPropagation();
 
-            // Generate OTH for secure redirect
+            / Generate OTH for secure redirect
             Duplicator.Util.ajaxWrapper(
                 {
                     action: 'duplicator_generate_connect_oth',

@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js":
@@ -2249,8 +2249,8 @@ var ArgsObject = exports["default"] = /*#__PURE__*/function (_InstanceType) {
       var args = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.args;
       this.requireArgument(property, args);
 
-      // Note: Converting the constructor to string in order to avoid equation issues
-      // due to different memory addresses between iframes (window.Object !== window.top.Object).
+      / Note: Converting the constructor to string in order to avoid equation issues
+      / due to different memory addresses between iframes (window.Object !== window.top.Object).
       if (args[property].constructor.toString() !== type.prototype.constructor.toString()) {
         throw Error("".concat(property, " invalid constructor type."));
       }
@@ -2296,9 +2296,9 @@ var ForceMethodImplementation = exports.ForceMethodImplementation = /*#__PURE__*
     (0, _classCallCheck2.default)(this, ForceMethodImplementation);
     _this = _callSuper(this, ForceMethodImplementation, ["".concat(info.isStatic ? 'static ' : '').concat(info.fullName, "() should be implemented, please provide '").concat(info.functionName || info.fullName, "' functionality."), args]);
 
-    // Allow to pass custom properties to the error.
+    / Allow to pass custom properties to the error.
     if (Object.keys(args).length) {
-      // eslint-disable-next-line no-console
+      / eslint-disable-next-line no-console
       console.error(args);
     }
     Error.captureStackTrace(_this, ForceMethodImplementation);
@@ -2349,7 +2349,7 @@ var InstanceType = exports["default"] = /*#__PURE__*/function () {
   function InstanceType() {
     var _this = this;
     (0, _classCallCheck2.default)(this, InstanceType);
-    // Since anonymous classes sometimes do not get validated by babel, do it manually.
+    / Since anonymous classes sometimes do not get validated by babel, do it manually.
     var target = this instanceof InstanceType ? this.constructor : void 0;
     var prototypes = [];
     while (target.__proto__ && target.__proto__.name) {
@@ -2370,7 +2370,7 @@ var InstanceType = exports["default"] = /*#__PURE__*/function () {
        */
       var result = _superPropGet(InstanceType, Symbol.hasInstance, this, 2)([target]);
 
-      // Act normal when validate a class, which does not have instance type.
+      / Act normal when validate a class, which does not have instance type.
       if (target && !target.constructor.getInstanceType) {
         return result;
       }
@@ -2391,7 +2391,7 @@ var InstanceType = exports["default"] = /*#__PURE__*/function () {
         }
       }
       if (!result && target) {
-        // Check if the given 'target', is instance of known types.
+        / Check if the given 'target', is instance of known types.
         result = target.instanceTypes && Array.isArray(target.instanceTypes) && -1 !== target.instanceTypes.indexOf(this.getInstanceType());
       }
       return result;
@@ -2495,7 +2495,7 @@ var Module = function Module() {
     return message;
   };
 
-  // TODO: This function should be deleted ?.
+  / TODO: This function should be deleted ?.
   this.forceMethodImplementation = function (functionName) {
     throw new Error(this.getErrorMessage('forceMethodImplementation', functionName));
   };
@@ -2527,7 +2527,7 @@ var Module = function Module() {
     if (-1 !== callbackIndex) {
       delete events[eventName][callbackIndex];
 
-      // Reset array index (for next off on same event).
+      / Reset array index (for next off on same event).
       events[eventName] = events[eventName].filter(function (val) {
         return val;
       });
@@ -2665,8 +2665,8 @@ var Scroll = exports["default"] = /*#__PURE__*/function () {
     function scrollObserver(obj) {
       var lastScrollY = 0;
 
-      // Generating thresholds points along the animation height
-      // More thresholds points = more trigger points of the callback
+      / Generating thresholds points along the animation height
+      / More thresholds points = more trigger points of the callback
       var buildThresholds = function buildThresholds() {
         var sensitivityPercentage = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
         var thresholds = [];
@@ -3376,19 +3376,19 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
       throw RangeError('Doing it wrong: Each command type should have `registerConfig`.');
     }
 
-    // Acknowledge self about which command it run.
+    / Acknowledge self about which command it run.
     _this.command = _this.constructor.getCommand();
 
-    // Assign instance of current component.
+    / Assign instance of current component.
     _this.component = _this.constructor.getComponent();
 
-    // Who ever need do something before without `super` the constructor can use `initialize` method.
+    / Who ever need do something before without `super` the constructor can use `initialize` method.
     _this.initialize(args);
 
-    // Refresh args, maybe the changed via `initialize`.
+    / Refresh args, maybe the changed via `initialize`.
     args = _this.args;
 
-    // Validate args before run.
+    / Validate args before run.
     _this.validateArgs(args);
     return _this;
   }
@@ -3415,7 +3415,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     key: "initialize",
     value: function initialize() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
     /**
      * Function validateArgs().
@@ -3428,9 +3428,9 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     key: "validateArgs",
     value: function validateArgs() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Function apply().
      *
@@ -3444,7 +3444,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     key: "apply",
     value: function apply() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       elementorModules.ForceMethodImplementation();
     }
 
@@ -3472,7 +3472,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     key: "onBeforeRun",
     value: function onBeforeRun() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
     /**
      * Function onAfterRun.
@@ -3487,7 +3487,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     value: function onAfterRun() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var result = arguments.length > 1 ? arguments[1] : undefined;
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
     /**
      * Function onBeforeApply.
@@ -3500,7 +3500,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     key: "onBeforeApply",
     value: function onBeforeApply() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
     /**
      * Function onAfterApply.
@@ -3515,7 +3515,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     value: function onAfterApply() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var result = arguments.length > 1 ? arguments[1] : undefined;
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
     /**
      * Function onCatchApply.
@@ -3526,7 +3526,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
      */
   }, {
     key: "onCatchApply",
-    value: function onCatchApply(e) {} // eslint-disable-line no-unused-vars
+    value: function onCatchApply(e) {} / eslint-disable-line no-unused-vars
   }], [{
     key: "getInstanceType",
     value: function getInstanceType() {
@@ -3838,7 +3838,7 @@ var ComponentBase = exports["default"] = /*#__PURE__*/function (_Module) {
       });
     }
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * @return {string} namespace
      */
@@ -4017,14 +4017,14 @@ var ComponentBase = exports["default"] = /*#__PURE__*/function (_Module) {
           component: this
         };
 
-      // Support pure callback.
+      / Support pure callback.
       if (!instanceType) {
         if ($e.devTools) {
           $e.devTools.log.warn("Attach command-callback-base, on command: '".concat(fullCommand, "', context is unknown type."));
         }
         registerConfig.callback = context;
 
-        // Unique class.
+        / Unique class.
         context = /*#__PURE__*/function (_CommandCallbackBase) {
           function context() {
             (0, _classCallCheck2.default)(this, context);
@@ -4183,14 +4183,14 @@ var ComponentBase = exports["default"] = /*#__PURE__*/function (_Module) {
     value: function addTab(tab, args, position) {
       var _this3 = this;
       this.tabs[tab] = args;
-      // It can be 0.
+      / It can be 0.
       if ('undefined' !== typeof position) {
         var newTabs = {};
         var ids = Object.keys(this.tabs);
-        // Remove new tab
+        / Remove new tab
         ids.pop();
 
-        // Add it to position.
+        / Add it to position.
         ids.splice(position, 0, tab);
         ids.forEach(function (id) {
           newTabs[id] = _this3.tabs[id];
@@ -4211,7 +4211,7 @@ var ComponentBase = exports["default"] = /*#__PURE__*/function (_Module) {
     }
   }, {
     key: "renderTab",
-    value: function renderTab(tab) {} // eslint-disable-line
+    value: function renderTab(tab) {} / eslint-disable-line
   }, {
     key: "activateTab",
     value: function activateTab(tab, args) {
@@ -4229,7 +4229,7 @@ var ComponentBase = exports["default"] = /*#__PURE__*/function (_Module) {
   }, {
     key: "getBodyClass",
     value: function getBodyClass(route) {
-      return 'e-route-' + route.replace(/\//g, '-');
+      return 'e-route-' + route.replace(/\/g, '-');
     }
 
     /**
@@ -4256,7 +4256,7 @@ var ComponentBase = exports["default"] = /*#__PURE__*/function (_Module) {
       var _this5 = this;
       var commands = {};
 
-      // Convert `Commands` to `ComponentBase` workable format.
+      / Convert `Commands` to `ComponentBase` workable format.
       Object.entries(commandsFromImport).forEach(function (_ref11) {
         var _ref12 = (0, _slicedToArray2.default)(_ref11, 2),
           className = _ref12[0],
@@ -4476,14 +4476,14 @@ var Console = exports["default"] = /*#__PURE__*/function () {
   return (0, _createClass2.default)(Console, null, [{
     key: "error",
     value: function error(message) {
-      // Show an error if devTools is available.
+      / Show an error if devTools is available.
       if ($e.devTools) {
         $e.devTools.log.error(message);
       }
 
-      // If not a 'Hook-Break' then show error.
+      / If not a 'Hook-Break' then show error.
       if (!(message instanceof $e.modules.HookBreak)) {
-        // eslint-disable-next-line no-console
+        / eslint-disable-next-line no-console
         console.error(message);
       }
     }
@@ -4496,7 +4496,7 @@ var Console = exports["default"] = /*#__PURE__*/function () {
         args[_key] = arguments[_key];
       }
       args.unshift('%c  %c', style, '');
-      (_console = console).warn.apply(_console, args); // eslint-disable-line no-console
+      (_console = console).warn.apply(_console, args); / eslint-disable-line no-console
     }
   }]);
 }();
@@ -4719,19 +4719,19 @@ __webpack_require__.r(__webpack_exports__);
  * and returns an instance of the thunk middleware that uses that value
  */
 function createThunkMiddleware(extraArgument) {
-  // Standard Redux middleware definition pattern:
-  // See: https://redux.js.org/tutorials/fundamentals/part-4-store#writing-custom-middleware
+  / Standard Redux middleware definition pattern:
+  / See: https://redux.js.org/tutorials/fundamentals/part-4-store#writing-custom-middleware
   var middleware = function middleware(_ref) {
     var dispatch = _ref.dispatch,
         getState = _ref.getState;
     return function (next) {
       return function (action) {
-        // The thunk middleware looks for any functions that were passed to `store.dispatch`.
-        // If this "action" is really a function, call it and return the result.
+        / The thunk middleware looks for any functions that were passed to `store.dispatch`.
+        / If this "action" is really a function, call it and return the result.
         if (typeof action === 'function') {
-          // Inject the store's `dispatch` and `getState` methods, as well as any "extra arg"
+          / Inject the store's `dispatch` and `getState` methods, as well as any "extra arg"
           return action(dispatch, getState, extraArgument);
-        } // Otherwise, pass the action down the middleware chain as usual
+        } / Otherwise, pass the action down the middleware chain as usual
 
 
         return next(action);
@@ -4742,7 +4742,7 @@ function createThunkMiddleware(extraArgument) {
   return middleware;
 }
 
-var thunk = createThunkMiddleware(); // Attach the factory function so users can create a customized version
+var thunk = createThunkMiddleware(); / Attach the factory function so users can create a customized version
 // with whatever "extra arg" they want to inject into their thunks
 
 thunk.withExtraArgument = createThunkMiddleware;
@@ -4849,7 +4849,7 @@ function miniKindOf(val) {
     case 'Map':
     case 'Set':
       return constructorName;
-  } // other
+  } / other
 
 
   return type.slice(8, -1).toLowerCase().replace(/\s/g, '');
@@ -5086,10 +5086,10 @@ function createStore(reducer, preloadedState, enhancer) {
       throw new Error( false ? 0 : "Expected the nextReducer to be a function. Instead, received: '" + kindOf(nextReducer));
     }
 
-    currentReducer = nextReducer; // This action has a similiar effect to ActionTypes.INIT.
-    // Any reducers that existed in both the new and old rootReducer
-    // will receive the previous state. This effectively populates
-    // the new state tree with any relevant data from the old one.
+    currentReducer = nextReducer; / This action has a similiar effect to ActionTypes.INIT.
+    / Any reducers that existed in both the new and old rootReducer
+    / will receive the previous state. This effectively populates
+    / the new state tree with any relevant data from the old one.
 
     dispatch({
       type: ActionTypes.REPLACE
@@ -5136,9 +5136,9 @@ function createStore(reducer, preloadedState, enhancer) {
     }, _ref[$$observable] = function () {
       return this;
     }, _ref;
-  } // When a store is created, an "INIT" action is dispatched so that every
-  // reducer returns their initial state. This effectively populates
-  // the initial state tree.
+  } / When a store is created, an "INIT" action is dispatched so that every
+  / reducer returns their initial state. This effectively populates
+  / the initial state tree.
 
 
   dispatch({
@@ -5199,11 +5199,11 @@ function warning(message) {
 
 
   try {
-    // This error was thrown as a convenience so that if you enable
-    // "break on all exceptions" in your console,
-    // it would pause the execution at this line.
+    / This error was thrown as a convenience so that if you enable
+    / "break on all exceptions" in your console,
+    / it would pause the execution at this line.
     throw new Error(message);
-  } catch (e) {} // eslint-disable-line no-empty
+  } catch (e) {} / eslint-disable-line no-empty
 
 }
 
@@ -5286,8 +5286,8 @@ function combineReducers(reducers) {
     }
   }
 
-  var finalReducerKeys = Object.keys(finalReducers); // This is used to make sure we don't warn about the same
-  // keys multiple times.
+  var finalReducerKeys = Object.keys(finalReducers); / This is used to make sure we don't warn about the same
+  / keys multiple times.
 
   var unexpectedKeyCache;
 
@@ -5525,10 +5525,10 @@ function createLruCache(maxSize, equals) {
   function get(key) {
     var cacheIndex = entries.findIndex(function (entry) {
       return equals(key, entry.key);
-    }); // We found a cached entry
+    }); / We found a cached entry
 
     if (cacheIndex > -1) {
-      var entry = entries[cacheIndex]; // Cached entry not at top of cache, move it to the top
+      var entry = entries[cacheIndex]; / Cached entry not at top of cache, move it to the top
 
       if (cacheIndex > 0) {
         entries.splice(cacheIndex, 1);
@@ -5536,7 +5536,7 @@ function createLruCache(maxSize, equals) {
       }
 
       return entry.value;
-    } // No entry found in cache, return sentinel
+    } / No entry found in cache, return sentinel
 
 
     return NOT_FOUND;
@@ -5544,7 +5544,7 @@ function createLruCache(maxSize, equals) {
 
   function put(key, value) {
     if (get(key) === NOT_FOUND) {
-      // TODO Is unshift slow?
+      / TODO Is unshift slow?
       entries.unshift({
         key: key,
         value: value
@@ -5579,7 +5579,7 @@ function createCacheKeyComparator(equalityCheck) {
   return function areArgumentsShallowlyEqual(prev, next) {
     if (prev === null || next === null || prev.length !== next.length) {
       return false;
-    } // Do this in a for loop (and not a `forEach` or an `every`) so we can determine equality as fast as possible.
+    } / Do this in a for loop (and not a `forEach` or an `every`) so we can determine equality as fast as possible.
 
 
     var length = prev.length;
@@ -5605,13 +5605,13 @@ function defaultMemoize(func, equalityCheckOrOptions) {
       maxSize = _providedOptions$maxS === void 0 ? 1 : _providedOptions$maxS,
       resultEqualityCheck = providedOptions.resultEqualityCheck;
   var comparator = createCacheKeyComparator(equalityCheck);
-  var cache = maxSize === 1 ? createSingletonCache(comparator) : createLruCache(maxSize, comparator); // we reference arguments instead of spreading them for performance reasons
+  var cache = maxSize === 1 ? createSingletonCache(comparator) : createLruCache(maxSize, comparator); / we reference arguments instead of spreading them for performance reasons
 
   function memoized() {
     var value = cache.get(arguments);
 
     if (value === NOT_FOUND) {
-      // @ts-ignore
+      / @ts-ignore
       value = func.apply(null, arguments);
 
       if (resultEqualityCheck) {
@@ -5686,54 +5686,54 @@ function createSelectorCreator(memoize) {
 
     var _recomputations = 0;
 
-    var _lastResult; // Due to the intricacies of rest params, we can't do an optional arg after `...funcs`.
-    // So, start by declaring the default value here.
-    // (And yes, the words 'memoize' and 'options' appear too many times in this next sequence.)
+    var _lastResult; / Due to the intricacies of rest params, we can't do an optional arg after `...funcs`.
+    / So, start by declaring the default value here.
+    / (And yes, the words 'memoize' and 'options' appear too many times in this next sequence.)
 
 
     var directlyPassedOptions = {
       memoizeOptions: undefined
-    }; // Normally, the result func or "output selector" is the last arg
+    }; / Normally, the result func or "output selector" is the last arg
 
-    var resultFunc = funcs.pop(); // If the result func is actually an _object_, assume it's our options object
+    var resultFunc = funcs.pop(); / If the result func is actually an _object_, assume it's our options object
 
     if (typeof resultFunc === 'object') {
-      directlyPassedOptions = resultFunc; // and pop the real result func off
+      directlyPassedOptions = resultFunc; / and pop the real result func off
 
       resultFunc = funcs.pop();
     }
 
     if (typeof resultFunc !== 'function') {
       throw new Error("createSelector expects an output function after the inputs, but received: [" + typeof resultFunc + "]");
-    } // Determine which set of options we're using. Prefer options passed directly,
-    // but fall back to options given to createSelectorCreator.
+    } / Determine which set of options we're using. Prefer options passed directly,
+    / but fall back to options given to createSelectorCreator.
 
 
     var _directlyPassedOption = directlyPassedOptions,
         _directlyPassedOption2 = _directlyPassedOption.memoizeOptions,
-        memoizeOptions = _directlyPassedOption2 === void 0 ? memoizeOptionsFromArgs : _directlyPassedOption2; // Simplifying assumption: it's unlikely that the first options arg of the provided memoizer
-    // is an array. In most libs I've looked at, it's an equality function or options object.
-    // Based on that, if `memoizeOptions` _is_ an array, we assume it's a full
-    // user-provided array of options. Otherwise, it must be just the _first_ arg, and so
-    // we wrap it in an array so we can apply it.
+        memoizeOptions = _directlyPassedOption2 === void 0 ? memoizeOptionsFromArgs : _directlyPassedOption2; / Simplifying assumption: it's unlikely that the first options arg of the provided memoizer
+    / is an array. In most libs I've looked at, it's an equality function or options object.
+    / Based on that, if `memoizeOptions` _is_ an array, we assume it's a full
+    / user-provided array of options. Otherwise, it must be just the _first_ arg, and so
+    / we wrap it in an array so we can apply it.
 
     var finalMemoizeOptions = Array.isArray(memoizeOptions) ? memoizeOptions : [memoizeOptions];
     var dependencies = getDependencies(funcs);
     var memoizedResultFunc = memoize.apply(void 0, [function recomputationWrapper() {
-      _recomputations++; // apply arguments instead of spreading for performance.
+      _recomputations++; / apply arguments instead of spreading for performance.
 
       return resultFunc.apply(null, arguments);
-    }].concat(finalMemoizeOptions)); // If a selector is called with the exact same arguments we don't need to traverse our dependencies again.
+    }].concat(finalMemoizeOptions)); / If a selector is called with the exact same arguments we don't need to traverse our dependencies again.
 
     var selector = memoize(function dependenciesChecker() {
       var params = [];
       var length = dependencies.length;
 
       for (var i = 0; i < length; i++) {
-        // apply arguments instead of spreading and mutate a local list of params for performance.
-        // @ts-ignore
+        / apply arguments instead of spreading and mutate a local list of params for performance.
+        / @ts-ignore
         params.push(dependencies[i].apply(null, arguments));
-      } // apply arguments instead of spreading for performance.
+      } / apply arguments instead of spreading for performance.
 
 
       _lastResult = memoizedResultFunc.apply(null, params);
@@ -5754,7 +5754,7 @@ function createSelectorCreator(memoize) {
       }
     });
     return selector;
-  }; // @ts-ignore
+  }; / @ts-ignore
 
 
   return createSelector;
@@ -5771,7 +5771,7 @@ var createStructuredSelector = function createStructuredSelector(selectors, sele
   }
 
   var objectKeys = Object.keys(selectors);
-  var resultSelector = selectorCreator( // @ts-ignore
+  var resultSelector = selectorCreator( / @ts-ignore
   objectKeys.map(function (key) {
     return selectors[key];
   }), function () {
@@ -6413,34 +6413,34 @@ function n(n){for(var r=arguments.length,t=Array(r>1?r-1:0),e=1;e<r;e++)t[e-1]=a
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -6469,7 +6469,7 @@ function n(n){for(var r=arguments.length,t=Array(r>1?r-1:0),e=1;e<r;e++)t[e-1]=a
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -6499,7 +6499,7 @@ _modules.default.common = {
    * @deprecated since 2.9.0, use `$e.modules.ComponentBase` instead.
    */
   get Component() {
-    // `elementorCommon` isn't available during it self initialize.
+    / `elementorCommon` isn't available during it self initialize.
     setTimeout(function () {
       elementorDevTools.deprecation.deprecated('elementorModules.common.Component', '2.9.0', '$e.modules.ComponentBase');
     }, 2000);
@@ -6509,7 +6509,7 @@ _modules.default.common = {
    * @deprecated since 2.9.0, use `$e.modules.ComponentModalBase` instead.
    */
   get ComponentModal() {
-    // `elementorCommon` isn't available during it self initialize.
+    / `elementorCommon` isn't available during it self initialize.
     setTimeout(function () {
       elementorDevTools.deprecation.deprecated('elementorModules.common.ComponentModal', '2.9.0', '$e.modules.ComponentModalBase');
     }, 2000);
@@ -6519,7 +6519,7 @@ _modules.default.common = {
    * @deprecated since 2.9.0, use `$e.modules.HookBreak` instead.
    */
   get HookBreak() {
-    // `elementorCommon` isn't available during it self initialize.
+    / `elementorCommon` isn't available during it self initialize.
     setTimeout(function () {
       elementorDevTools.deprecation.deprecated('elementorModules.common.HookBreak', '2.9.0', '$e.modules.HookBreak');
     }, 2000);

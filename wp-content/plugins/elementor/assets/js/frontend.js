@@ -156,7 +156,7 @@ module.exports = function ($) {
     const elementID = options.$element.data('model-cid');
     let handlerID;
 
-    // If element is in edit mode
+    / If element is in edit mode
     if (elementID) {
       handlerID = HandlerClass.prototype.getConstructorID();
       if (!handlersInstances[elementID]) {
@@ -211,7 +211,7 @@ module.exports = function ($) {
       return;
     }
 
-    // Initializing the `$scope` as frontend jQuery instance
+    / Initializing the `$scope` as frontend jQuery instance
     const $scope = jQuery(scope),
       elementType = $scope.attr('data-element_type');
     if (!elementType) {
@@ -351,14 +351,14 @@ class Frontend extends elementorModules.ViewModule {
     return this.getKitSettings(`elementor_${settingName}`);
   }
   getKitSettings(settingName) {
-    // TODO: use Data API.
+    / TODO: use Data API.
     return this.getItems(this.config.kit, settingName);
   }
   getCurrentDeviceMode() {
     return getComputedStyle(this.elements.$deviceMode[0], ':after').content.replace(/"/g, '');
   }
   getDeviceSetting(deviceMode, settings, settingKey) {
-    // Add specific handling for widescreen since it is larger than desktop.
+    / Add specific handling for widescreen since it is larger than desktop.
     if ('widescreen' === deviceMode) {
       return this.getWidescreenSetting(settings, settingKey);
     }
@@ -372,7 +372,7 @@ class Frontend extends elementorModules.ViewModule {
         fullSettingKey = settingKey + '_' + currentDevice,
         deviceValue = settings[fullSettingKey];
 
-      // Accept 0 as value.
+      / Accept 0 as value.
       if (deviceValue || 0 === deviceValue) {
         return deviceValue;
       }
@@ -385,11 +385,11 @@ class Frontend extends elementorModules.ViewModule {
       widescreenSettingKey = settingKey + '_' + deviceMode;
     let settingToReturn;
 
-    // If the device mode is 'widescreen', and the setting exists - return it.
+    / If the device mode is 'widescreen', and the setting exists - return it.
     if (settings[widescreenSettingKey]) {
       settingToReturn = settings[widescreenSettingKey];
     } else {
-      // Otherwise, return the desktop setting
+      / Otherwise, return the desktop setting
       settingToReturn = settings[settingKey];
     }
     return settingToReturn;
@@ -430,7 +430,7 @@ class Frontend extends elementorModules.ViewModule {
       anchor_scroll_margin: new _anchorScrollMargin.default()
     };
 
-    // TODO: BC since 2.4.0
+    / TODO: BC since 2.4.0
     this.modules = {
       StretchElement: elementorModules.frontend.tools.StretchElement,
       Masonry: elementorModules.utils.Masonry
@@ -483,7 +483,7 @@ class Frontend extends elementorModules.ViewModule {
     }
   }
 
-  // Based on underscore function
+  / Based on underscore function
   debounce(func, wait) {
     let timeout;
     return function () {
@@ -514,10 +514,10 @@ class Frontend extends elementorModules.ViewModule {
       shapes: _frontend.default
     };
 
-    // TODO: BC - Deprecated since 3.5.0
+    / TODO: BC - Deprecated since 3.5.0
     elementorFrontend.trigger('elementor/modules/init:before');
 
-    // TODO: Use this instead.
+    / TODO: Use this instead.
     elementorFrontend.trigger('elementor/modules/init/before');
     Object.entries(handlers).forEach(_ref => {
       let [moduleName, ModuleClass] = _ref;
@@ -546,7 +546,7 @@ class Frontend extends elementorModules.ViewModule {
       this.muteMigrationTraces();
     }
 
-    // Keep this line before `initOnReadyComponents` call
+    / Keep this line before `initOnReadyComponents` call
     _events.default.dispatch(this.elements.$window, 'elementor/frontend/init');
     this.initModules();
     this.initOnReadyElements();
@@ -914,7 +914,7 @@ AssetsLoader.assets = {
     'share-link': {
       src: `${assetsUrl}lib/share-link/share-link${fileSuffix}.js?ver=${pluginVersion}`
     },
-    // TODO: Remove 'swiper' in v3.29.0 [ED-16272].
+    / TODO: Remove 'swiper' in v3.29.0 [ED-16272].
     swiper: {
       src: `${assetsUrl}lib/swiper/v8/swiper${fileSuffix}.js?ver=8.4.5`
     }
@@ -992,14 +992,14 @@ class Controls {
     const currentDeviceMode = device || elementorFrontend.getCurrentDeviceMode(),
       controlValueDesktop = this.getControlValue(controlSettings, controlKey, controlSubKey);
 
-    // Set the control value for the current device mode.
-    // First check the widescreen device mode.
+    / Set the control value for the current device mode.
+    / First check the widescreen device mode.
     if ('widescreen' === currentDeviceMode) {
       const controlValueWidescreen = this.getControlValue(controlSettings, `${controlKey}_widescreen`, controlSubKey);
       return !!controlValueWidescreen || 0 === controlValueWidescreen ? controlValueWidescreen : controlValueDesktop;
     }
 
-    // Loop through all responsive and desktop device modes.
+    / Loop through all responsive and desktop device modes.
     const activeBreakpoints = elementorFrontend.breakpoints.getActiveBreakpointsList({
       withDesktop: true
     });
@@ -1018,7 +1018,7 @@ class Controls {
         break;
       }
 
-      // If no control value has been set for the current device mode, then check the parent device mode.
+      / If no control value has been set for the current device mode, then check the parent device mode.
       deviceIndex++;
       parentDeviceMode = activeBreakpoints[deviceIndex];
     }
@@ -1075,7 +1075,7 @@ class LightboxManager extends elementorModules.ViewModule {
     };
   }
   isLightboxLink(element) {
-    // Check for lowercase `a` to make sure it works also for links inside SVGs.
+    / Check for lowercase `a` to make sure it works also for links inside SVGs.
     if ('a' === element.tagName.toLowerCase() && (element.hasAttribute('download') || !/^[^?]+\.(png|jpe?g|gif|svg|webp|avif)(\?.*)?$/i.test(element.href)) && !element.dataset.elementorLightboxVideo) {
       return false;
     }
@@ -1103,7 +1103,7 @@ class LightboxManager extends elementorModules.ViewModule {
       return;
     }
 
-    // Disable lightbox on color picking mode.
+    / Disable lightbox on color picking mode.
     if (isColorPickingMode) {
       return;
     }
@@ -1121,12 +1121,12 @@ class LightboxManager extends elementorModules.ViewModule {
     this.maybeActivateLightboxOnLink();
   }
   maybeActivateLightboxOnLink() {
-    // Detecting lightbox links on init will reduce the time of waiting to the lightbox to be display on slow connections.
+    / Detecting lightbox links on init will reduce the time of waiting to the lightbox to be display on slow connections.
     this.elements.$links.each((index, element) => {
       if (this.isLightboxLink(element)) {
         LightboxManager.getLightbox();
 
-        // Breaking the iteration when the library loading has already been triggered.
+        / Breaking the iteration when the library loading has already been triggered.
         return false;
       }
     });
@@ -1154,18 +1154,18 @@ class SwiperHandler {
   constructor(container, config) {
     this.config = config;
     if (this.config.breakpoints) {
-      // The config is passed as a param to allow adjustConfig to be called outside of this wrapper
+      / The config is passed as a param to allow adjustConfig to be called outside of this wrapper
       this.config = this.adjustConfig(config);
     }
     if (container instanceof jQuery) {
       container = container[0];
     }
 
-    // The Swiper will overlap the column width when applying custom margin values on the column.
+    / The Swiper will overlap the column width when applying custom margin values on the column.
     container.closest('.elementor-widget-wrap')?.classList.add('e-swiper-container');
     container.closest('.elementor-widget')?.classList.add('e-widget-swiper');
     return new Promise(resolve => {
-      // TODO: Remove in v3.29.0 [ED-16272].
+      / TODO: Remove in v3.29.0 [ED-16272].
       if ('undefined' === typeof Swiper) {
         elementorFrontend.utils.assetsLoader.load('script', 'swiper').then(() => resolve(this.createSwiperInstance(container, this.config)));
         return;
@@ -1182,10 +1182,10 @@ class SwiperHandler {
     return new SwiperSource(container, config);
   }
 
-  // Backwards compatibility for Elementor Pro <2.9.0 (old Swiper version - <5.0.0)
-  // In Swiper 5.0.0 and up, breakpoints changed from acting as max-width to acting as min-width
+  / Backwards compatibility for Elementor Pro <2.9.0 (old Swiper version - <5.0.0)
+  / In Swiper 5.0.0 and up, breakpoints changed from acting as max-width to acting as min-width
   adjustConfig(config) {
-    // Only reverse the breakpoints if the handle param has been defined
+    / Only reverse the breakpoints if the handle param has been defined
     if (!config.handleElementorBreakpoints) {
       return config;
     }
@@ -1195,29 +1195,29 @@ class SwiperHandler {
       const configBPKeyInt = parseInt(configBPKey);
       let breakpointToUpdate;
 
-      // The `configBPKeyInt + 1` is a BC Fix for Elementor Pro Carousels from 2.8.0-2.8.3 used with Elementor >= 2.9.0
+      / The `configBPKeyInt + 1` is a BC Fix for Elementor Pro Carousels from 2.8.0-2.8.3 used with Elementor >= 2.9.0
       if (configBPKeyInt === elementorBreakpoints.mobile.value || configBPKeyInt + 1 === elementorBreakpoints.mobile.value) {
-        // This handles the mobile breakpoint. Elementor's default sm breakpoint is never actually used,
-        // so the mobile breakpoint (md) needs to be handled separately and set to the 0 breakpoint (xs)
+        / This handles the mobile breakpoint. Elementor's default sm breakpoint is never actually used,
+        / so the mobile breakpoint (md) needs to be handled separately and set to the 0 breakpoint (xs)
         breakpointToUpdate = 0;
       } else if (elementorBreakpoints.widescreen && (configBPKeyInt === elementorBreakpoints.widescreen.value || configBPKeyInt + 1 === elementorBreakpoints.widescreen.value)) {
-        // Widescreen is a min-width breakpoint. Since in Swiper >5.0 the breakpoint system is min-width based,
-        // the value we pass to the Swiper instance in this case is the breakpoint from the user, unchanged.
+        / Widescreen is a min-width breakpoint. Since in Swiper >5.0 the breakpoint system is min-width based,
+        / the value we pass to the Swiper instance in this case is the breakpoint from the user, unchanged.
         breakpointToUpdate = configBPKeyInt;
       } else {
-        // Find the index of the current config breakpoint in the Elementor Breakpoints array
+        / Find the index of the current config breakpoint in the Elementor Breakpoints array
         const currentBPIndexInElementorBPs = elementorBreakpointValues.findIndex(elementorBP => {
-          // BC Fix for Elementor Pro Carousels from 2.8.0-2.8.3 used with Elementor >= 2.9.0
+          / BC Fix for Elementor Pro Carousels from 2.8.0-2.8.3 used with Elementor >= 2.9.0
           return configBPKeyInt === elementorBP || configBPKeyInt + 1 === elementorBP;
         });
 
-        // For all other Swiper config breakpoints, move them one breakpoint down on the breakpoint list,
-        // according to the array of Elementor's global breakpoints
+        / For all other Swiper config breakpoints, move them one breakpoint down on the breakpoint list,
+        / according to the array of Elementor's global breakpoints
         breakpointToUpdate = elementorBreakpointValues[currentBPIndexInElementorBPs - 1];
       }
       config.breakpoints[breakpointToUpdate] = config.breakpoints[configBPKey];
 
-      // Then reset the settings in the original breakpoint key to the default values
+      / Then reset the settings in the original breakpoint key to the default values
       config.breakpoints[configBPKey] = {
         slidesPerView: config.slidesPerView,
         slidesPerGroup: config.slidesPerGroup ? config.slidesPerGroup : 1
@@ -1259,10 +1259,10 @@ class _default extends elementorModules.ViewModule {
       lightbox: async settings => {
         const lightbox = await elementorFrontend.utils.lightbox;
         if (settings.slideshow) {
-          // Handle slideshow display
+          / Handle slideshow display
           lightbox.openSlideshow(settings.slideshow, settings.url);
         } else {
-          // If the settings has an ID - the lightbox target content is an image - the ID is an attachment ID.
+          / If the settings has an ID - the lightbox target content is an image - the ID is an attachment ID.
           if (settings.id) {
             settings.type = 'image';
           }
@@ -1305,14 +1305,14 @@ class _default extends elementorModules.ViewModule {
       return;
     }
 
-    // Only if an element with this action hash exists on the page do we allow running the action.
+    / Only if an element with this action hash exists on the page do we allow running the action.
     const elementWithHash = document.querySelector(`[data-e-action-hash="${location.hash}"], a[href*="${location.hash}"]`);
     if (elementWithHash) {
       this.runAction(elementWithHash.getAttribute('data-e-action-hash'));
     }
   }
   createActionHash(action, settings) {
-    // We need to encode the hash tag (#) here, in order to support share links for a variety of providers
+    / We need to encode the hash tag (#) here, in order to support share links for a variety of providers
     return encodeURIComponent(`#elementor-action:action=${action}&settings=${btoa(JSON.stringify(settings))}`);
   }
   onInit() {
@@ -1402,7 +1402,7 @@ class BaseLoader extends elementorModules.ViewModule {
     if (this.isApiLoaded()) {
       callback(this.getApiObject());
     } else {
-      // If not ready check again by timeout..
+      / If not ready check again by timeout..
       setTimeout(() => {
         this.onApiReady(callback);
       }, 350);
@@ -1444,7 +1444,7 @@ class VimeoLoader extends _baseLoader.default {
     return Vimeo;
   }
   getAutoplayURL(videoURL) {
-    // Vimeo requires the '#t=' param to be last in the URL.
+    / Vimeo requires the '#t=' param to be last in the URL.
     const timeMatch = videoURL.match(/#t=[^&]*/);
     return videoURL.replace(timeMatch[0], '') + timeMatch;
   }
@@ -1525,7 +1525,7 @@ class Breakpoints extends elementorModules.Module {
   constructor(responsiveConfig) {
     super();
 
-    // The passed config is either `elementor.config.responsive` or `elementorFrontend.config.responsive`
+    / The passed config is either `elementor.config.responsive` or `elementorFrontend.config.responsive`
     this.responsiveConfig = responsiveConfig;
   }
 
@@ -1551,7 +1551,7 @@ class Breakpoints extends elementorModules.Module {
     };
     const breakpointKeys = Object.keys(this.responsiveConfig.activeBreakpoints);
     if (args.withDesktop) {
-      // If there is an active 'widescreen' breakpoint, insert the artificial 'desktop' device below it.
+      / If there is an active 'widescreen' breakpoint, insert the artificial 'desktop' device below it.
       const widescreenIndex = breakpointKeys.indexOf('widescreen'),
         indexToInsertDesktopDevice = -1 === widescreenIndex ? breakpointKeys.length : breakpointKeys.length - 1;
       breakpointKeys.splice(indexToInsertDesktopDevice, 0, 'desktop');
@@ -1597,11 +1597,11 @@ class Breakpoints extends elementorModules.Module {
       breakpointKeys = Object.keys(activeBreakpoints),
       numOfDevices = breakpointKeys.length;
     if ('min' === activeBreakpoints[breakpointKeys[numOfDevices - 1]].direction) {
-      // If the widescreen breakpoint is active, the device that's previous to desktop is the last one before
-      // widescreen.
+      / If the widescreen breakpoint is active, the device that's previous to desktop is the last one before
+      / widescreen.
       desktopPreviousDevice = breakpointKeys[numOfDevices - 2];
     } else {
-      // If the widescreen breakpoint isn't active, we just take the last device returned by the config.
+      / If the widescreen breakpoint isn't active, we just take the last device returned by the config.
       desktopPreviousDevice = breakpointKeys[numOfDevices - 1];
     }
     return desktopPreviousDevice;
@@ -1648,16 +1648,16 @@ class Breakpoints extends elementorModules.Module {
       breakpointNames = Object.keys(activeBreakpoints);
     let minBreakpoint;
     if (breakpointNames[0] === device) {
-      // For the lowest breakpoint, the min point is always 320.
+      / For the lowest breakpoint, the min point is always 320.
       minBreakpoint = 320;
     } else if ('widescreen' === device) {
-      // Widescreen only has a minimum point. In this case, the breakpoint
-      // value in the Breakpoints config is itself the device min point.
+      / Widescreen only has a minimum point. In this case, the breakpoint
+      / value in the Breakpoints config is itself the device min point.
       if (activeBreakpoints[device]) {
         minBreakpoint = activeBreakpoints[device].value;
       } else {
-        // If the widescreen breakpoint does not exist in the active breakpoints config (for example, in the
-        // case this method runs as the breakpoint is being added), get the value from the full config.
+        / If the widescreen breakpoint does not exist in the active breakpoints config (for example, in the
+        / case this method runs as the breakpoint is being added), get the value from the full config.
         minBreakpoint = this.responsiveConfig.breakpoints.widescreen;
       }
     } else {
@@ -1712,18 +1712,18 @@ class Events {
   static dispatch(context, event) {
     let data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
     let bcEvent = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-    // Make sure to use the native context if it's a jQuery instance.
+    / Make sure to use the native context if it's a jQuery instance.
     context = context instanceof jQuery ? context[0] : context;
 
-    // Dispatch the BC event only if exists.
+    / Dispatch the BC event only if exists.
     if (bcEvent) {
       context.dispatchEvent(new CustomEvent(bcEvent, {
         detail: data
       }));
     }
 
-    // jQuery's `.on()` listens also to native custom events, so there is no need
-    // to dispatch also a jQuery event.
+    / jQuery's `.on()` listens also to native custom events, so there is no need
+    / to dispatch also a jQuery event.
     context.dispatchEvent(new CustomEvent(event, {
       detail: data
     }));
@@ -1833,10 +1833,10 @@ var EventManager = function () {
       context
     };
 
-    // Utilize 'prop itself' : http://jsperf.com/hasownproperty-vs-in-vs-undefined/19
+    / Utilize 'prop itself' : http://jsperf.com/hasownproperty-vs-in-vs-undefined/19
     var hooks = STORAGE[type][hook];
     if (hooks) {
-      // TEMP FIX BUG
+      / TEMP FIX BUG
       var hasSameCallback = false;
       jQuery.each(hooks, function () {
         if (this.callback === callback) {
@@ -1847,7 +1847,7 @@ var EventManager = function () {
       if (hasSameCallback) {
         return;
       }
-      // END TEMP FIX BUG
+      / END TEMP FIX BUG
 
       hooks.push(hookObject);
       hooks = _hookInsertSort(hooks);
@@ -1983,7 +1983,7 @@ var EventManager = function () {
     addAction
   };
 
-  // Return all of the publicly available methods
+  / Return all of the publicly available methods
   return MethodsAvailable;
 };
 module.exports = EventManager;
@@ -2006,25 +2006,25 @@ const matchUserAgent = UserAgentStr => {
     return userAgent.indexOf(UserAgentStr) >= 0;
   },
   userAgent = navigator.userAgent,
-  // Solution influenced by https://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser
+  / Solution influenced by https://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser
 
-  // Opera 8.0+
+  / Opera 8.0+
   isOpera = !!window.opr && !!opr.addons || !!window.opera || matchUserAgent(' OPR/'),
-  // Firefox 1.0+
+  / Firefox 1.0+
   isFirefox = matchUserAgent('Firefox'),
-  // Safari 3.0+ "[object HTMLElementConstructor]"
+  / Safari 3.0+ "[object HTMLElementConstructor]"
   isSafari = /^((?!chrome|android).)*safari/i.test(userAgent) || /constructor/i.test(window.HTMLElement) || (p => {
     return '[object SafariRemoteNotification]' === p.toString();
   })(!window.safari || typeof safari !== 'undefined' && safari.pushNotification),
-  // Internet Explorer 6-11
+  / Internet Explorer 6-11
   isIE = /Trident|MSIE/.test(userAgent) && (/* @cc_on!@*/ false || !!document.documentMode),
-  // Edge 20+
+  / Edge 20+
   isEdge = !isIE && !!window.StyleMedia || matchUserAgent('Edg'),
-  // Google Chrome (Not accurate)
+  / Google Chrome (Not accurate)
   isChrome = !!window.chrome && matchUserAgent('Chrome') && !(isEdge || isOpera),
-  // Blink engine
+  / Blink engine
   isBlink = matchUserAgent('Chrome') && !!window.CSS,
-  // Apple Webkit engine
+  / Apple Webkit engine
   isAppleWebkit = matchUserAgent('AppleWebKit') && !isBlink,
   isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0,
   environment = {
@@ -2244,7 +2244,7 @@ var aCallable = __webpack_require__(/*! ../internals/a-callable */ "../node_modu
 
 module.exports = function (object, key, method) {
   try {
-    // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+    / eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
     return uncurryThis(aCallable(Object.getOwnPropertyDescriptor(object, key)[method]));
   } catch (error) { /* empty */ }
 };
@@ -2267,9 +2267,9 @@ var setPrototypeOf = __webpack_require__(/*! ../internals/object-set-prototype-o
 module.exports = function ($this, dummy, Wrapper) {
   var NewTarget, NewTargetPrototype;
   if (
-    // it can work only with native `setPrototypeOf`
+    / it can work only with native `setPrototypeOf`
     setPrototypeOf &&
-    // we haven't completely correct pre-ES6 way for getting `new.target`, so use this
+    / we haven't completely correct pre-ES6 way for getting `new.target`, so use this
     isCallable(NewTarget = dummy.constructor) &&
     NewTarget !== Wrapper &&
     isObject(NewTargetPrototype = NewTarget.prototype) &&
@@ -2492,7 +2492,7 @@ var FORCED_CONSTRUCTOR = ERROR_HAS_STACK && !BUGGY_DESCRIPTOR && !DOM_EXCEPTION_
 
 // `DOMException` constructor patch for `.stack` where it's required
 // https://webidl.spec.whatwg.org/#es-DOMException-specialness
-$({ global: true, constructor: true, forced: IS_PURE || FORCED_CONSTRUCTOR }, { // TODO: fix export logic
+$({ global: true, constructor: true, forced: IS_PURE || FORCED_CONSTRUCTOR }, { / TODO: fix export logic
   DOMException: FORCED_CONSTRUCTOR ? $DOMException : NativeDOMException
 });
 
@@ -2517,7 +2517,7 @@ if (PolyfilledDOMExceptionPrototype.constructor !== PolyfilledDOMException) {
 /***/ })
 
 },
-/******/ __webpack_require__ => { // webpackRuntimeModules
+/******/ __webpack_require__ => { / webpackRuntimeModules
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
 /******/ __webpack_require__.O(0, ["frontend-modules"], () => (__webpack_exec__("../assets/dev/js/frontend/frontend.js")));
 /******/ var __webpack_exports__ = __webpack_require__.O();

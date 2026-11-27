@@ -426,7 +426,7 @@ var AreaButton = function AreaButton(props) {
     activateArea(area);
   };
 
-  // TODO: Add hover/active states
+  / TODO: Add hover/active states
 
   return /*#__PURE__*/_react.default.createElement(Button, {
     variant: "transparent",
@@ -986,7 +986,7 @@ var SettingsProvider = exports.SettingsProvider = function SettingsProvider(prop
     _setSettings = _useState4[1];
   var settingsRef = (0, _react.useRef)(settings);
 
-  // TODO: Use `useDebouncedCallback` instead of `useCallback`.
+  / TODO: Use `useDebouncedCallback` instead of `useCallback`.
   var setSettings = function setSettings(newSettings) {
     settingsRef.current = newSettings;
     _setSettings(newSettings);

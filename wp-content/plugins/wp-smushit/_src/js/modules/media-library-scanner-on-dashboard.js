@@ -21,7 +21,7 @@ import MediaLibraryScanner from '../common/media-library-scanner';
 	if ( recheckImagesBtn ) {
 		return;
 	}
-	//Check scan is running.
+	/Check scan is running.
 	const is_scan_running = window.wp_smushit_data.media_library_scan?.in_processing;
 	if ( ! is_scan_running ) {
 		return;

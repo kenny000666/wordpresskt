@@ -9,7 +9,7 @@ window.wp = window.wp || {};
 	var api = {}, ctor, inherits,
 		slice = Array.prototype.slice;
 
-	// Shared empty constructor function to aid in prototype-chain creation.
+	/ Shared empty constructor function to aid in prototype-chain creation.
 	ctor = function() {};
 
 	/**
@@ -45,29 +45,29 @@ window.wp = window.wp || {};
 			};
 		}
 
-		// Inherit class (static) properties from parent.
+		/ Inherit class (static) properties from parent.
 		$.extend( child, parent );
 
-		// Set the prototype chain to inherit from `parent`,
-		// without calling `parent`'s constructor function.
+		/ Set the prototype chain to inherit from `parent`,
+		/ without calling `parent`'s constructor function.
 		ctor.prototype  = parent.prototype;
 		child.prototype = new ctor();
 
-		// Add prototype properties (instance properties) to the subclass,
-		// if supplied.
+		/ Add prototype properties (instance properties) to the subclass,
+		/ if supplied.
 		if ( protoProps ) {
 			$.extend( child.prototype, protoProps );
 		}
 
-		// Add static properties to the constructor function, if supplied.
+		/ Add static properties to the constructor function, if supplied.
 		if ( staticProps ) {
 			$.extend( child, staticProps );
 		}
 
-		// Correctly set child's `prototype.constructor`.
+		/ Correctly set child's `prototype.constructor`.
 		child.prototype.constructor = child;
 
-		// Set a convenience property in case the parent's prototype is needed later.
+		/ Set a convenience property in case the parent's prototype is needed later.
 		child.__super__ = parent.prototype;
 
 		return child;
@@ -191,7 +191,7 @@ window.wp = window.wp || {};
 		 * @param {Object} options
 		 */
 		initialize: function( initial, options ) {
-			this._value = initial; // @todo Potentially change this to a this.set() call.
+			this._value = initial; / @todo Potentially change this to a this.set() call.
 			this.callbacks = $.Callbacks();
 			this._dirty = false;
 
@@ -228,7 +228,7 @@ window.wp = window.wp || {};
 			to = this._setter.apply( this, arguments );
 			to = this.validate( to );
 
-			// Bail if the sanitized value is null or unchanged.
+			/ Bail if the sanitized value is null or unchanged.
 			if ( null === to || _.isEqual( from, to ) ) {
 				return this;
 			}
@@ -248,7 +248,7 @@ window.wp = window.wp || {};
 		setter: function( callback ) {
 			var from = this.get();
 			this._setter = callback;
-			// Temporarily clear value so setter can decide if it's valid.
+			/ Temporarily clear value so setter can decide if it's valid.
 			this._value = null;
 			this.set( from );
 			return this;
@@ -284,7 +284,7 @@ window.wp = window.wp || {};
 			return this;
 		},
 
-		link: function() { // values*
+		link: function() { / values*
 			var set = this.set;
 			$.each( arguments, function() {
 				this.bind( set );
@@ -292,7 +292,7 @@ window.wp = window.wp || {};
 			return this;
 		},
 
-		unlink: function() { // values*
+		unlink: function() { / values*
 			var set = this.set;
 			$.each( arguments, function() {
 				this.unbind( set );
@@ -300,7 +300,7 @@ window.wp = window.wp || {};
 			return this;
 		},
 
-		sync: function() { // values*
+		sync: function() { / values*
 			var that = this;
 			$.each( arguments, function() {
 				that.link( this );
@@ -309,7 +309,7 @@ window.wp = window.wp || {};
 			return this;
 		},
 
-		unsync: function() { // values*
+		unsync: function() { / values*
 			var that = this;
 			$.each( arguments, function() {
 				that.unlink( this );
@@ -416,15 +416,15 @@ window.wp = window.wp || {};
 			collection._value[ id ] = instance;
 			instance.parent = collection;
 
-			// Propagate a 'change' event on an item up to the collection.
+			/ Propagate a 'change' event on an item up to the collection.
 			if ( instance.extended( api.Value ) ) {
 				instance.bind( collection._change );
 			}
 
 			collection.trigger( 'add', instance );
 
-			// If a deferred object exists for this item,
-			// resolve it.
+			/ If a deferred object exists for this item,
+			/ resolve it.
 			if ( collection._deferreds[ id ] ) {
 				collection._deferreds[ id ].resolve();
 			}
@@ -468,7 +468,7 @@ window.wp = window.wp || {};
 
 			if ( value ) {
 
-				// Trigger event right before the element is removed from the collection.
+				/ Trigger event right before the element is removed from the collection.
 				this.trigger( 'remove', value );
 
 				if ( value.extended( api.Value ) ) {
@@ -480,7 +480,7 @@ window.wp = window.wp || {};
 			delete this._value[ id ];
 			delete this._deferreds[ id ];
 
-			// Trigger removed event after the item has been eliminated from the collection.
+			/ Trigger removed event after the item has been eliminated from the collection.
 			if ( value ) {
 				this.trigger( 'removed', value );
 			}
@@ -501,7 +501,7 @@ window.wp = window.wp || {};
 				ids  = slice.call( arguments ),
 				dfd  = $.Deferred();
 
-			// If the last argument is a callback, bind it to .done().
+			/ If the last argument is a callback, bind it to .done().
 			if ( typeof ids[ ids.length - 1 ] === 'function' ) {
 				dfd.done( ids.pop() );
 			}
@@ -525,10 +525,10 @@ window.wp = window.wp || {};
 						return self( id );
 					});
 
-				// If a value is missing, we've used at least one expired deferred.
-				// Call Values.when again to generate a new deferred.
+				/ If a value is missing, we've used at least one expired deferred.
+				/ Call Values.when again to generate a new deferred.
 				if ( values.length !== ids.length ) {
-					// ids.push( callback );
+					/ ids.push( callback );
 					self.when.apply( self, ids ).done( function() {
 						dfd.resolveWith( self, values );
 					});
@@ -550,7 +550,7 @@ window.wp = window.wp || {};
 		}
 	});
 
-	// Create a global events bus on the Customizer.
+	/ Create a global events bus on the Customizer.
 	$.extend( api.Values.prototype, api.Events );
 
 
@@ -690,7 +690,7 @@ window.wp = window.wp || {};
 		 * @param {Object} options - Extend any instance parameter or method with this object.
 		 */
 		initialize: function( params, options ) {
-			// Target the parent frame by default, but only if a parent frame exists.
+			/ Target the parent frame by default, but only if a parent frame exists.
 			var defaultTarget = window.parent === window ? null : window.parent;
 
 			$.extend( this, options || {} );
@@ -700,13 +700,13 @@ window.wp = window.wp || {};
 			this.add( 'origin', this.url() ).link( this.url ).setter( function( to ) {
 				var urlParser = document.createElement( 'a' );
 				urlParser.href = to;
-				// Port stripping needed by IE since it adds to host but not to event.origin.
-				return urlParser.protocol + '//' + urlParser.host.replace( /:(80|443)$/, '' );
+				/ Port stripping needed by IE since it adds to host but not to event.origin.
+				return urlParser.protocol + '/' + urlParser.host.replace( /:(80|443)$/, '' );
 			});
 
-			// First add with no value.
+			/ First add with no value.
 			this.add( 'targetWindow', null );
-			// This avoids SecurityErrors when setting a window object in x-origin iframe'd scenarios.
+			/ This avoids SecurityErrors when setting a window object in x-origin iframe'd scenarios.
 			this.targetWindow.set = function( to ) {
 				var from = this._value;
 
@@ -724,7 +724,7 @@ window.wp = window.wp || {};
 
 				return this;
 			};
-			// Now set it.
+			/ Now set it.
 			this.targetWindow( params.targetWindow || defaultTarget );
 
 
@@ -759,24 +759,24 @@ window.wp = window.wp || {};
 				return;
 			}
 
-			// Check to make sure the origin is valid.
+			/ Check to make sure the origin is valid.
 			if ( this.origin() && event.origin !== this.origin() ) {
 				return;
 			}
 
-			// Ensure we have a string that's JSON.parse-able.
+			/ Ensure we have a string that's JSON.parse-able.
 			if ( typeof event.data !== 'string' || event.data[0] !== '{' ) {
 				return;
 			}
 
 			message = JSON.parse( event.data );
 
-			// Check required message properties.
+			/ Check required message properties.
 			if ( ! message || ! message.id || typeof message.data === 'undefined' ) {
 				return;
 			}
 
-			// Check if channel names match.
+			/ Check if channel names match.
 			if ( ( message.channel || this.channel() ) && this.channel() !== message.channel ) {
 				return;
 			}
@@ -808,7 +808,7 @@ window.wp = window.wp || {};
 		}
 	});
 
-	// Add the Events mixin to api.Messenger.
+	/ Add the Events mixin to api.Messenger.
 	$.extend( api.Messenger.prototype, api.Events );
 
 	/**
@@ -927,7 +927,7 @@ window.wp = window.wp || {};
 		}
 	});
 
-	// The main API object is also a collection of all customizer settings.
+	/ The main API object is also a collection of all customizer settings.
 	api = $.extend( new api.Values(), api );
 
 	/**
@@ -974,7 +974,7 @@ window.wp = window.wp || {};
 				return;
 			}
 			key = decodeURIComponent( parts[0].replace( /\+/g, ' ' ) );
-			key = key.replace( / /g, '_' ); // What PHP does.
+			key = key.replace( / /g, '_' ); / What PHP does.
 			if ( _.isUndefined( parts[1] ) ) {
 				value = null;
 			} else {

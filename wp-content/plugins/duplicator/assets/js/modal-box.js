@@ -37,24 +37,24 @@ class DuplicatorModalBox {
     }
 
     open() {
-        // Create modal element
+        / Create modal element
         this.#modal = document.createElement('div');
         this.#modal.classList.add('dup-modal-wrapper');
 
-        // Add modal styles
+        / Add modal styles
         this.#addModalStyles();
 
-        // Create close button
+        / Create close button
         this.#closeButton = document.createElement('div');
         this.#closeButton.classList.add('dup-modal-close-button');
         this.#closeButton.innerHTML = '<i class="fa-regular fa-circle-xmark"></i>';
 
-        // Add event listener to close button
+        / Add event listener to close button
         this.#closeButton.addEventListener('click', () => {
             this.close();
         });
 
-        // Add close button to modal
+        / Add close button to modal
         this.#modal.appendChild(this.#closeButton);
 
         if (this.#url) {
@@ -63,10 +63,10 @@ class DuplicatorModalBox {
             this.#insertContentAsHtml();
         }
 
-        // Set overflow property of body to hidden
+        / Set overflow property of body to hidden
         document.body.style.overflow = 'hidden';
 
-        // Add opacity animation
+        / Add opacity animation
         this.#modal.animate([
             { opacity: '0' },
             { opacity: '1' }
@@ -75,7 +75,7 @@ class DuplicatorModalBox {
             iterations: 1,
         });
 
-        // Add modal to document
+        / Add modal to document
         document.body.appendChild(this.#modal);
     }
 
@@ -84,12 +84,12 @@ class DuplicatorModalBox {
             return;
         }
 
-        // Remove modal from document
+        / Remove modal from document
         document.body.removeChild(this.#modal);
-        // Set overflow property of body to hidden
+        / Set overflow property of body to hidden
         document.body.style.overflow = 'auto';
 
-        // Reset modal and iframe variables
+        / Reset modal and iframe variables
         this.#modal = null;
         this.#iframe = null;
     }
@@ -109,7 +109,7 @@ class DuplicatorModalBox {
         content.classList.add('dup-modal-content');
         content.innerHTML = this.#htmlContent;
 
-        // Add content to modal
+        / Add content to modal
         this.#modal.appendChild(content);
 
         if (typeof this.#openCallack == 'function') {
@@ -118,11 +118,11 @@ class DuplicatorModalBox {
     }
 
     #insertContentAsIframe() {
-        // Create iframe element
+        / Create iframe element
         this.#iframe = document.createElement('iframe');
         this.#iframe.classList.add('dup-modal-iframe');
 
-        // Add open callback function
+        / Add open callback function
         if(typeof this.#openCallack == 'function') {
             let openCallack = this.#openCallack;
             let iframe = this.#iframe;
@@ -136,7 +136,7 @@ class DuplicatorModalBox {
         this.#iframe.setAttribute('frameborder', '0');
         this.#iframe.setAttribute('allowfullscreen', '');
 
-        // Add iframe to modal
+        / Add iframe to modal
         this.#modal.appendChild(this.#iframe);
     }
 

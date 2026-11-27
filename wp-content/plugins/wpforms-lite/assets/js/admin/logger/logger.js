@@ -56,7 +56,7 @@ const WPFormsLogger = window.WPFormsLogger || ( function( document, window, $ ) 
 		 * @param {boolean} checked Checked state.
 		 */
 		toggleLogs( checked ) {
-			// Toggle hidden class.
+			/ Toggle hidden class.
 			$( '.wpforms-logs-settings' ).toggleClass( 'wpforms-hidden', ! checked );
 		},
 
@@ -121,7 +121,7 @@ const WPFormsLogger = window.WPFormsLogger || ( function( document, window, $ ) 
 			}
 
 			msg = msg ? ': ' + msg : '';
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.log( 'WPForms Debug: Error receiving log record data' + msg );
 		},
 

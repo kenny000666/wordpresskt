@@ -36,14 +36,14 @@ var WPFormsStripeElements = window.WPFormsStripeElements || ( function( document
 		 */
 		init: function() {
 
-			app.stripe = Stripe( // eslint-disable-line new-cap
+			app.stripe = Stripe( / eslint-disable-line new-cap
 				wpforms_stripe.publishable_key,
 				{ 'locale': wpforms_stripe.data.element_locale }
 			);
 
 			$( document ).on( 'wpformsReady', function() {
 				$( '.wpforms-stripe form' )
-					.filter( ( _, form ) => typeof $( form ).data( 'formid' ) === 'number' ) // filter out forms which are locked (formid changed to 'locked-...').
+					.filter( ( _, form ) => typeof $( form ).data( 'formid' ) === 'number' ) / filter out forms which are locked (formid changed to 'locked-...').
 					.each( app.setupStripeForm );
 			} );
 
@@ -193,7 +193,7 @@ var WPFormsStripeElements = window.WPFormsStripeElements || ( function( document
 				cardElement       = app.setupCardElement( $form, formValidator ),
 				$stripeDiv        = $form.find( '.wpforms-field-stripe-credit-card-cardnumber' );
 
-			// Replace the default submit handler.
+			/ Replace the default submit handler.
 			formValidator.settings.submitHandler = function() {
 
 				let valid = $form.validate().form(),
@@ -213,7 +213,7 @@ var WPFormsStripeElements = window.WPFormsStripeElements || ( function( document
 
 				} else if ( valid ) {
 
-					// Form is valid, however no credit card to process.
+					/ Form is valid, however no credit card to process.
 					$form.find( '.wpforms-submit' ).prop( 'disabled', false );
 					return formSubmitHandler( $form );
 
@@ -277,7 +277,7 @@ var WPFormsStripeElements = window.WPFormsStripeElements || ( function( document
 				app.stripe.handleCardPayment(
 					json.data.payment_intent_client_secret,
 					{
-						// eslint-disable-next-line camelcase
+						/ eslint-disable-next-line camelcase
 						payment_method: json.data.payment_method_id,
 					}
 				).then( function( result ) {
@@ -327,9 +327,9 @@ var WPFormsStripeElements = window.WPFormsStripeElements || ( function( document
 
 			wpforms.displayFormAjaxFieldErrors( $form, errors );
 
-			// Switch page for the multipage form.
+			/ Switch page for the multipage form.
 			if ( ! $stripeDiv.is( ':visible' ) && $form.find( '.wpforms-page-indicator-steps' ).length > 0 ) {
-				// Empty $json object needed to change the page to the first one.
+				/ Empty $json object needed to change the page to the first one.
 				wpforms.setCurrentPage( $form, {} );
 			}
 
@@ -345,7 +345,7 @@ var WPFormsStripeElements = window.WPFormsStripeElements || ( function( document
 		 * @param {jQuery} $form Form element.
 		 */
 		formAjaxUnblock( $form ) {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "WPFormsStripeElements.formAjaxUnblock()" has been deprecated, please use the new "wpforms.restoreSubmitButton()" function instead!' );
 
 			wpforms.restoreSubmitButton( $form, $form.closest( '.wpforms-container' ) );
@@ -368,7 +368,7 @@ var WPFormsStripeElements = window.WPFormsStripeElements || ( function( document
 				ccEmpty = $stripeDiv.hasClass( wpforms_stripe.data.element_classes.empty ),
 				ccInvalid = $stripeDiv.hasClass( wpforms_stripe.data.element_classes.invalid );
 
-			// Stop navigation through page break pages.
+			/ Stop navigation through page break pages.
 			if (
 				! $stripeDiv.is( ':visible' ) ||
 				( ! $stripeDiv.data( 'required' ) && ccEmpty ) ||
@@ -422,7 +422,7 @@ var WPFormsStripeElements = window.WPFormsStripeElements || ( function( document
 		 * @param {jQuery} $form Form object.
 		 */
 		updateCardElementStylesModern( $form ) {
-			// Should work only in Modern Markup mode.
+			/ Should work only in Modern Markup mode.
 			if ( ! window.WPForms || ! WPForms.FrontendModern || ! $.isEmptyObject( wpforms_stripe.data.element_style ) ) {
 				return;
 			}
@@ -463,7 +463,7 @@ var WPFormsStripeElements = window.WPFormsStripeElements || ( function( document
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 
 }( document, window, jQuery ) );

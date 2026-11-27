@@ -18,7 +18,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"../version",
@@ -26,7 +26,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -60,7 +60,7 @@ return $.effects.define( "drop", "hide", function( options, done ) {
 		animation.opacity = 1;
 	}
 
-	// Animate
+	/ Animate
 	element.animate( animation, {
 		queue: false,
 		duration: options.duration,

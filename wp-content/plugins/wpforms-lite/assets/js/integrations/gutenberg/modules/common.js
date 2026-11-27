@@ -63,13 +63,13 @@ export default ( function( document, window, $ ) {
 	const { strings, defaults, sizes, urls, isPro, isLicenseActive, isAdmin } = wpforms_gutenberg_form_selector;
 	const defaultStyleSettings = defaults;
 
-	// noinspection JSUnusedLocalSymbols
+	/ noinspection JSUnusedLocalSymbols
 	/**
 	 * WPForms Education script.
 	 *
 	 * @since 1.8.8
 	 */
-	const WPFormsEducation = window.WPFormsEducation || {}; // eslint-disable-line no-unused-vars
+	const WPFormsEducation = window.WPFormsEducation || {}; / eslint-disable-line no-unused-vars
 
 	/**
 	 * List of forms.
@@ -292,7 +292,7 @@ export default ( function( document, window, $ ) {
 		 * @since 1.8.8
 		 */
 		initJConfirm() {
-			// jquery-confirm defaults.
+			/ jquery-confirm defaults.
 			jconfirm.defaults = {
 				closeIcon: false,
 				backgroundDismiss: false,
@@ -313,23 +313,23 @@ export default ( function( document, window, $ ) {
 		 * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-api-fetch/
 		 */
 		async getForms() {
-			// If a fetch is already in progress, exit the function.
+			/ If a fetch is already in progress, exit the function.
 			if ( isFetching ) {
 				return;
 			}
 
-			// Set the flag to true indicating a fetch is in progress.
+			/ Set the flag to true indicating a fetch is in progress.
 			isFetching = true;
 
 			try {
-				// Fetch forms.
+				/ Fetch forms.
 				formList = await wp.apiFetch( {
 					path: wpforms_gutenberg_form_selector.route_namespace + 'forms/',
 					method: 'GET',
 					cache: 'no-cache',
 				} );
 			} catch ( error ) {
-				// eslint-disable-next-line no-console
+				/ eslint-disable-next-line no-console
 				console.error( error );
 			} finally {
 				isFetching = false;
@@ -378,15 +378,15 @@ export default ( function( document, window, $ ) {
 						return;
 					}
 
-					// Insert a new block when a new form is created from the popup to update the form list and attributes.
+					/ Insert a new block when a new form is created from the popup to update the form list and attributes.
 					const newBlock = wp.blocks.createBlock( 'wpforms/form-selector', {
-						formId: formId.toString(), // Expects string value, make sure we insert string.
+						formId: formId.toString(), / Expects string value, make sure we insert string.
 					} );
 
-					// eslint-disable-next-line camelcase
+					/ eslint-disable-next-line camelcase
 					formList = [ { ID: formId, post_title: formTitle } ];
 
-					// Insert a new block.
+					/ Insert a new block.
 					wp.data.dispatch( 'core/block-editor' ).removeBlock( clientID );
 					wp.data.dispatch( 'core/block-editor' ).insertBlocks( newBlock );
 				} );
@@ -399,7 +399,7 @@ export default ( function( document, window, $ ) {
 		 *
 		 * @param {Object} blockOptions Additional block options.
 		 */
-		// eslint-disable-next-line max-lines-per-function
+		/ eslint-disable-next-line max-lines-per-function
 		registerBlock( blockOptions ) {
 			registerBlockType( 'wpforms/form-selector', {
 				title: strings.title,
@@ -416,16 +416,16 @@ export default ( function( document, window, $ ) {
 						preview: true,
 					},
 				},
-				// eslint-disable-next-line max-lines-per-function,complexity
+				/ eslint-disable-next-line max-lines-per-function,complexity
 				edit( props ) {
 					const { attributes } = props;
 					const formOptions = app.getFormOptions();
 					const handlers = app.getSettingsFieldsHandlers( props );
 
-					const [ isNotDisabled ] = useState( isPro && isLicenseActive ); // eslint-disable-line react-hooks/rules-of-hooks
-					const [ isProEnabled ] = useState( isPro ); // eslint-disable-line react-hooks/rules-of-hooks, no-unused-vars
-					const [ showBackgroundPreview, setShowBackgroundPreview ] = useState( blockOptions.panels.background._showBackgroundPreview( props ) ); // eslint-disable-line react-hooks/rules-of-hooks
-					const [ lastBgImage, setLastBgImage ] = useState( '' ); // eslint-disable-line react-hooks/rules-of-hooks
+					const [ isNotDisabled ] = useState( isPro && isLicenseActive ); / eslint-disable-line react-hooks/rules-of-hooks
+					const [ isProEnabled ] = useState( isPro ); / eslint-disable-line react-hooks/rules-of-hooks, no-unused-vars
+					const [ showBackgroundPreview, setShowBackgroundPreview ] = useState( blockOptions.panels.background._showBackgroundPreview( props ) ); / eslint-disable-line react-hooks/rules-of-hooks
+					const [ lastBgImage, setLastBgImage ] = useState( '' ); / eslint-disable-line react-hooks/rules-of-hooks
 
 					const uiState = {
 						isNotDisabled,
@@ -436,7 +436,7 @@ export default ( function( document, window, $ ) {
 						setLastBgImage,
 					};
 
-					useEffect( () => { // eslint-disable-line react-hooks/rules-of-hooks
+					useEffect( () => { / eslint-disable-line react-hooks/rules-of-hooks
 						if ( attributes.formId ) {
 							setShowBackgroundPreview(
 								props.attributes.backgroundImage !== 'none' &&
@@ -444,24 +444,24 @@ export default ( function( document, window, $ ) {
 								props.attributes.backgroundUrl !== 'url()'
 							);
 						}
-					}, [ backgroundSelected, props.attributes.backgroundImage, props.attributes.backgroundUrl ] ); // eslint-disable-line react-hooks/exhaustive-deps
+					}, [ backgroundSelected, props.attributes.backgroundImage, props.attributes.backgroundUrl ] ); / eslint-disable-line react-hooks/exhaustive-deps
 
-					// Get block properties.
-					const blockProps = useBlockProps(); // eslint-disable-line react-hooks/rules-of-hooks, no-unused-vars
+					/ Get block properties.
+					const blockProps = useBlockProps(); / eslint-disable-line react-hooks/rules-of-hooks, no-unused-vars
 
-					// Store block clientId in attributes.
+					/ Store block clientId in attributes.
 					if ( ! attributes.clientId || ! app.isClientIdAttrUnique( props ) ) {
-						// We just want the client ID to update once.
-						// The block editor doesn't have a fixed block ID, so we need to get it on the initial load, but only once.
+						/ We just want the client ID to update once.
+						/ The block editor doesn't have a fixed block ID, so we need to get it on the initial load, but only once.
 						props.setAttributes( { clientId: props.clientId } );
 					}
 
-					// Main block settings.
+					/ Main block settings.
 					const jsx = [
 						app.jsxParts.getMainSettings( attributes, handlers, formOptions ),
 					];
 
-					// Block preview picture.
+					/ Block preview picture.
 					if ( ! app.hasForms() ) {
 						jsx.push(
 							app.jsxParts.getEmptyFormsPreview( props ),
@@ -472,9 +472,9 @@ export default ( function( document, window, $ ) {
 
 					const sizeOptions = app.getSizeOptions();
 
-					// Show placeholder when form is not available (trashed, deleted etc.).
+					/ Show placeholder when form is not available (trashed, deleted etc.).
 					if ( attributes && attributes.formId && app.isFormAvailable( attributes.formId ) === false ) {
-						// Block placeholder (form selector).
+						/ Block placeholder (form selector).
 						jsx.push(
 							app.jsxParts.getBlockPlaceholder( props.attributes, handlers, formOptions ),
 						);
@@ -482,9 +482,9 @@ export default ( function( document, window, $ ) {
 						return <div { ...blockProps }>{ jsx }</div>;
 					}
 
-					// Form style settings & block content.
+					/ Form style settings & block content.
 					if ( attributes.formId ) {
-						// Subscribe to block events.
+						/ Subscribe to block events.
 						app.maybeSubscribeToBlockEvents( props, handlers, blockOptions );
 
 						jsx.push(
@@ -503,7 +503,7 @@ export default ( function( document, window, $ ) {
 						return <div { ...blockProps }>{ jsx }</div>;
 					}
 
-					// Block preview picture.
+					/ Block preview picture.
 					if ( attributes.preview ) {
 						jsx.push(
 							app.jsxParts.getBlockPreview(),
@@ -512,7 +512,7 @@ export default ( function( document, window, $ ) {
 						return <div { ...blockProps }>{ jsx }</div>;
 					}
 
-					// Block placeholder (form selector).
+					/ Block placeholder (form selector).
 					jsx.push(
 						app.jsxParts.getBlockPlaceholder( props.attributes, handlers, formOptions ),
 					);
@@ -588,14 +588,14 @@ export default ( function( document, window, $ ) {
 		maybeSubscribeToBlockEvents( subscriberProps, subscriberHandlers, subscriberBlockOptions ) {
 			const id = subscriberProps.clientId;
 
-			// Unsubscribe from block events.
-			// This is needed to avoid multiple subscriptions when the block is re-rendered.
+			/ Unsubscribe from block events.
+			/ This is needed to avoid multiple subscriptions when the block is re-rendered.
 			el.$window
 				.off( 'wpformsFormSelectorDeleteTheme.' + id )
 				.off( 'wpformsFormSelectorUpdateTheme.' + id )
 				.off( 'wpformsFormSelectorSetTheme.' + id );
 
-			// Subscribe to block events.
+			/ Subscribe to block events.
 			el.$window
 				.on( 'wpformsFormSelectorDeleteTheme.' + id, app.subscriberDeleteTheme( subscriberProps, subscriberBlockOptions ) )
 				.on( 'wpformsFormSelectorUpdateTheme.' + id, app.subscriberUpdateTheme( subscriberProps, subscriberBlockOptions ) )
@@ -626,7 +626,7 @@ export default ( function( document, window, $ ) {
 					return;
 				}
 
-				// Reset theme to default one.
+				/ Reset theme to default one.
 				subscriberBlockOptions.panels.themes.setBlockTheme( subscriberProps, 'default' );
 			};
 		},
@@ -655,7 +655,7 @@ export default ( function( document, window, $ ) {
 					return;
 				}
 
-				// Reset theme to default one.
+				/ Reset theme to default one.
 				subscriberBlockOptions.panels.themes.setBlockTheme( subscriberProps, themeSlug );
 			};
 		},
@@ -671,8 +671,8 @@ export default ( function( document, window, $ ) {
 		 * @return {Function} Event handler.
 		 */
 		subscriberSetTheme( subscriberProps, subscriberBlockOptions ) {
-			// noinspection JSUnusedLocalSymbols
-			return function( e, block, themeSlug, triggerProps ) { // eslint-disable-line no-unused-vars
+			/ noinspection JSUnusedLocalSymbols
+			return function( e, block, themeSlug, triggerProps ) { / eslint-disable-line no-unused-vars
 				if ( subscriberProps.clientId === triggerProps.clientId ) {
 					return;
 				}
@@ -681,7 +681,7 @@ export default ( function( document, window, $ ) {
 					return;
 				}
 
-				// Set theme.
+				/ Set theme.
 				app.onSetTheme( subscriberProps );
 			};
 		},
@@ -706,7 +706,7 @@ export default ( function( document, window, $ ) {
 			 *
 			 * @return {JSX.Element} Main setting JSX code.
 			 */
-			getMainSettings( attributes, handlers, formOptions ) { // eslint-disable-line max-lines-per-function
+			getMainSettings( attributes, handlers, formOptions ) { / eslint-disable-line max-lines-per-function
 				if ( ! app.hasForms() ) {
 					return app.jsxParts.printEmptyFormsNotice( attributes.clientId );
 				}
@@ -852,7 +852,7 @@ export default ( function( document, window, $ ) {
 			 *
 			 * @return {Object} Page Indicator styles JSX code.
 			 */
-			getPageIndicatorStyles( props, handlers ) { // eslint-disable-line complexity
+			getPageIndicatorStyles( props, handlers ) { / eslint-disable-line complexity
 				const hasPageBreak = app.hasPageBreak( formList, props.attributes.formId );
 				const hasRating = app.hasRating( formList, props.attributes.formId );
 
@@ -940,8 +940,8 @@ export default ( function( document, window, $ ) {
 				const clientId = props.clientId;
 				const block = app.getBlockContainer( props );
 
-				// In the case of empty content, use server side renderer.
-				// This happens when the block is duplicated or converted to a reusable block.
+				/ In the case of empty content, use server side renderer.
+				/ This happens when the block is duplicated or converted to a reusable block.
 				if ( ! block?.innerHTML ) {
 					triggerServerRender = true;
 
@@ -1021,7 +1021,7 @@ export default ( function( document, window, $ ) {
 											'wpforms-lite'
 										),
 										{
-											// eslint-disable-next-line jsx-a11y/anchor-has-content
+											/ eslint-disable-next-line jsx-a11y/anchor-has-content
 											a: <a href={ wpforms_gutenberg_form_selector.wpforms_guide } target="_blank" rel="noopener noreferrer" />,
 										}
 									)
@@ -1123,7 +1123,7 @@ export default ( function( document, window, $ ) {
 				cssClass += ' disabled_panel';
 			}
 
-			// Restrict styling panel for non-admins.
+			/ Restrict styling panel for non-admins.
 			if ( ! ( isAdmin || panel === 'themes' ) ) {
 				cssClass += ' wpforms-gutenberg-panel-restricted';
 			}
@@ -1193,7 +1193,7 @@ export default ( function( document, window, $ ) {
 			const blockSelector = `#block-${ props.clientId } > div`;
 			let block = document.querySelector( blockSelector );
 
-			// For FSE / Gutenberg plugin, we need to take a look inside the iframe.
+			/ For FSE / Gutenberg plugin, we need to take a look inside the iframe.
 			if ( ! block ) {
 				const editorCanvas = document.querySelector( 'iframe[name="editor-canvas"]' );
 
@@ -1213,10 +1213,10 @@ export default ( function( document, window, $ ) {
 		 * @return {Element|null} Form container.
 		 */
 		getFormBlock( formId ) {
-			// First, try to find the iframe for blocks version 3.
+			/ First, try to find the iframe for blocks version 3.
 			const editorCanvas = document.querySelector( 'iframe[name="editor-canvas"]' );
 
-			// If the iframe is found, try to find the form.
+			/ If the iframe is found, try to find the form.
 			return editorCanvas?.contentWindow.document.querySelector( `#wpforms-${ formId }` ) || $( `#wpforms-${ formId }` );
 		},
 
@@ -1230,7 +1230,7 @@ export default ( function( document, window, $ ) {
 		 * @param {Element} container Form container.
 		 * @param {Object}  props     Block properties.
 		 */
-		updatePreviewCSSVarValue( attribute, value, container, props ) { // eslint-disable-line complexity, max-lines-per-function
+		updatePreviewCSSVarValue( attribute, value, container, props ) { / eslint-disable-line complexity, max-lines-per-function
 			if ( ! container || ! attribute ) {
 				return;
 			}
@@ -1328,7 +1328,7 @@ export default ( function( document, window, $ ) {
 		 * @return {string|*} New background color.
 		 */
 		maybeSetButtonAltBackgroundColor( value, buttonBorderColor, container ) {
-			// Setting css property value to child `form` element overrides the parent property value.
+			/ Setting css property value to child `form` element overrides the parent property value.
 			const form = container.querySelector( 'form' );
 
 			form.style.setProperty( '--wpforms-button-background-color-alt', value );
@@ -1382,10 +1382,10 @@ export default ( function( document, window, $ ) {
 		 * @param {Object} container             Form container.
 		 */
 		maybeUpdateAccentColor( color, buttonBackgroundColor, container ) {
-			// Setting css property value to child `form` element overrides the parent property value.
+			/ Setting css property value to child `form` element overrides the parent property value.
 			const form = container.querySelector( 'form' );
 
-			// Fallback to default color if the border color is transparent.
+			/ Fallback to default color if the border color is transparent.
 			color = WPFormsUtils.cssColorsUtils.isTransparentColor( color ) ? defaultStyleSettings.buttonBackgroundColor : color;
 
 			if ( WPFormsUtils.cssColorsUtils.isTransparentColor( buttonBackgroundColor ) ) {
@@ -1407,7 +1407,7 @@ export default ( function( document, window, $ ) {
 		 *
 		 * @return {Object} Object that contains event handlers for the settings fields.
 		 */
-		getSettingsFieldsHandlers( props ) { // eslint-disable-line max-lines-per-function
+		getSettingsFieldsHandlers( props ) { / eslint-disable-line max-lines-per-function
 			return {
 				/**
 				 * Field style attribute change event handler.
@@ -1422,7 +1422,7 @@ export default ( function( document, window, $ ) {
 						container = block.querySelector( `#wpforms-${ props.attributes.formId }` ),
 						setAttr = {};
 
-					// Unset the color means setting the transparent color.
+					/ Unset the color means setting the transparent color.
 					if ( attribute.includes( 'Color' ) ) {
 						value = value ?? 'rgba( 0, 0, 0, 0 )';
 					}
@@ -1442,7 +1442,7 @@ export default ( function( document, window, $ ) {
 
 					this.maybeToggleDropdown( props, attribute );
 
-					// Trigger event for developers.
+					/ Trigger event for developers.
 					el.$window.trigger( 'wpformsFormSelectorStyleAttrChange', [ block, props, attribute, value ] );
 				},
 
@@ -1454,7 +1454,7 @@ export default ( function( document, window, $ ) {
 				 * @param {Object} props     The block properties.
 				 * @param {string} attribute The name of the attribute being changed.
 				 */
-				maybeToggleDropdown( props, attribute ) { // eslint-disable-line no-shadow
+				maybeToggleDropdown( props, attribute ) { / eslint-disable-line no-shadow
 					const formId = props.attributes.formId;
 					const menu = document.querySelector( `#wpforms-form-${ formId } .choices__list.choices__list--dropdown` );
 					const classicMenu = document.querySelector( `#wpforms-form-${ formId } .wpforms-field-select-style-classic select` );
@@ -1674,7 +1674,7 @@ export default ( function( document, window, $ ) {
 			const wpformsBlocks = app.getWPFormsBlocks();
 
 			for ( const key in wpformsBlocks ) {
-				// Skip the current block.
+				/ Skip the current block.
 				if ( wpformsBlocks[ key ].clientId === props.clientId ) {
 					continue;
 				}
@@ -1723,7 +1723,7 @@ export default ( function( document, window, $ ) {
 		 *
 		 * @return {boolean} True on success.
 		 */
-		setBlockRuntimeStateVar( clientId, varName, value ) { // eslint-disable-line complexity
+		setBlockRuntimeStateVar( clientId, varName, value ) { / eslint-disable-line complexity
 			if ( ! clientId || ! varName ) {
 				return false;
 			}
@@ -1731,7 +1731,7 @@ export default ( function( document, window, $ ) {
 			blocks[ clientId ] = blocks[ clientId ] || {};
 			blocks[ clientId ][ varName ] = value;
 
-			// Prevent referencing to object.
+			/ Prevent referencing to object.
 			if ( typeof value === 'object' && ! Array.isArray( value ) && value !== null ) {
 				blocks[ clientId ][ varName ] = { ...value };
 			}
@@ -1929,7 +1929,7 @@ export default ( function( document, window, $ ) {
 						$input = $( self.input.element ),
 						sizeClass = $element.data( 'size-class' );
 
-					// Add CSS-class for size.
+					/ Add CSS-class for size.
 					if ( sizeClass ) {
 						$( self.containerOuter.element ).addClass( sizeClass );
 					}
@@ -1939,7 +1939,7 @@ export default ( function( document, window, $ ) {
 					 * In case if select is empty - we return placeholder text.
 					 */
 					if ( $element.prop( 'multiple' ) ) {
-						// On init event.
+						/ On init event.
 						$input.data( 'placeholder', $input.attr( 'placeholder' ) );
 
 						if ( self.getValue( true ).length ) {
@@ -1957,7 +1957,7 @@ export default ( function( document, window, $ ) {
 					}
 
 					$el.data( 'choicesjs', new parent.Choices( selectEl, args ) );
-				} catch ( e ) {} // eslint-disable-line no-empty
+				} catch ( e ) {} / eslint-disable-line no-empty
 			} );
 		},
 
@@ -1975,7 +1975,7 @@ export default ( function( document, window, $ ) {
 				return;
 			}
 
-			// Set default tab to `Visual`.
+			/ Set default tab to `Visual`.
 			$( form ).find( '.wp-editor-wrap' ).removeClass( 'html-active' ).addClass( 'tmce-active' );
 		},
 
@@ -1995,7 +1995,7 @@ export default ( function( document, window, $ ) {
 
 			const $rowButtons = $( form ).find( '.wpforms-field-repeater > .wpforms-field-repeater-display-rows .wpforms-field-repeater-display-rows-buttons' );
 
-			// Get the label height and set the button position.
+			/ Get the label height and set the button position.
 			$rowButtons.each( function() {
 				const $cont = $( this );
 				const $labels = $cont.siblings( '.wpforms-layout-column' )
@@ -2015,7 +2015,7 @@ export default ( function( document, window, $ ) {
 				$cont.css( { top } );
 			} );
 
-			// Init buttons and descriptions for each repeater in each form.
+			/ Init buttons and descriptions for each repeater in each form.
 			$( `.wpforms-form[data-formid="${ formId }"]` ).each( function() {
 				const $repeater = $( this ).find( '.wpforms-field-repeater' );
 
@@ -2036,6 +2036,6 @@ export default ( function( document, window, $ ) {
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );

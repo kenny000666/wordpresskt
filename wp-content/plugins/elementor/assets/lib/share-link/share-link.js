@@ -17,7 +17,7 @@
 				openShareLink( networkName );
 			} );
 
-			// Add "Enter" and "Space" event only if the element has role=button attribute.
+			/ Add "Enter" and "Space" event only if the element has role=button attribute.
 			if ( 'button' === $element.attr( 'role' ) ) {
 				$element.on( 'keyup', ( event ) => {
 					if ( 13 === event.keyCode || 32 === event.keyCode ) {
@@ -40,7 +40,7 @@
 			}
 
 			var link = ShareLink.getNetworkLink( networkName, settings ),
-				isPlainLink = /^https?:\/\//.test( link ),
+				isPlainLink = /^https?:\/\/.test( link ),
 				windowName = isPlainLink ? '' : '_self';
 
 			open( link, windowName, shareWindowParams );

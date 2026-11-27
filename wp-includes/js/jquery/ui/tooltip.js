@@ -21,7 +21,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"../keycode",
@@ -32,7 +32,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -47,12 +47,12 @@ $.widget( "ui.tooltip", {
 		content: function() {
 			var title = $( this ).attr( "title" );
 
-			// Escape title, since we're going from an attribute to raw HTML
+			/ Escape title, since we're going from an attribute to raw HTML
 			return $( "<a>" ).text( title ).html();
 		},
 		hide: true,
 
-		// Disabled elements have inconsistent behavior across browsers (#8661)
+		/ Disabled elements have inconsistent behavior across browsers (#8661)
 		items: "[title]:not([disabled])",
 		position: {
 			my: "left top+15",
@@ -62,7 +62,7 @@ $.widget( "ui.tooltip", {
 		show: true,
 		track: false,
 
-		// Callbacks
+		/ Callbacks
 		close: null,
 		open: null
 	},
@@ -99,13 +99,13 @@ $.widget( "ui.tooltip", {
 			focusin: "open"
 		} );
 
-		// IDs of generated tooltips, needed for destroy
+		/ IDs of generated tooltips, needed for destroy
 		this.tooltips = {};
 
-		// IDs of parent tooltips where we removed the title attribute
+		/ IDs of parent tooltips where we removed the title attribute
 		this.parents = {};
 
-		// Append the aria-live region so tooltips announce correctly
+		/ Append the aria-live region so tooltips announce correctly
 		this.liveRegion = $( "<div>" )
 			.attr( {
 				role: "log",
@@ -137,14 +137,14 @@ $.widget( "ui.tooltip", {
 	_disable: function() {
 		var that = this;
 
-		// Close open tooltips
+		/ Close open tooltips
 		$.each( this.tooltips, function( id, tooltipData ) {
 			var event = $.Event( "blur" );
 			event.target = event.currentTarget = tooltipData.element[ 0 ];
 			that.close( event, true );
 		} );
 
-		// Remove title attributes to prevent native tooltips
+		/ Remove title attributes to prevent native tooltips
 		this.disabledTitles = this.disabledTitles.add(
 			this.element.find( this.options.items ).addBack()
 				.filter( function() {
@@ -160,7 +160,7 @@ $.widget( "ui.tooltip", {
 
 	_enable: function() {
 
-		// restore title attributes
+		/ restore title attributes
 		this.disabledTitles.each( function() {
 			var element = $( this );
 			if ( element.data( "ui-tooltip-title" ) ) {
@@ -174,11 +174,11 @@ $.widget( "ui.tooltip", {
 		var that = this,
 			target = $( event ? event.target : this.element )
 
-				// we need closest here due to mouseover bubbling,
-				// but always pointing at the same event target
+				/ we need closest here due to mouseover bubbling,
+				/ but always pointing at the same event target
 				.closest( this.options.items );
 
-		// No element to show a tooltip for or the tooltip is already open
+		/ No element to show a tooltip for or the tooltip is already open
 		if ( !target.length || target.data( "ui-tooltip-id" ) ) {
 			return;
 		}
@@ -189,7 +189,7 @@ $.widget( "ui.tooltip", {
 
 		target.data( "ui-tooltip-open", true );
 
-		// Kill parent tooltips, custom or native, for hover
+		/ Kill parent tooltips, custom or native, for hover
 		if ( event && event.type === "mouseover" ) {
 			target.parents().each( function() {
 				var parent = $( this ),
@@ -227,20 +227,20 @@ $.widget( "ui.tooltip", {
 
 		content = contentOption.call( target[ 0 ], function( response ) {
 
-			// IE may instantly serve a cached response for ajax requests
-			// delay this call to _open so the other call to _open runs first
+			/ IE may instantly serve a cached response for ajax requests
+			/ delay this call to _open so the other call to _open runs first
 			that._delay( function() {
 
-				// Ignore async response if tooltip was closed already
+				/ Ignore async response if tooltip was closed already
 				if ( !target.data( "ui-tooltip-open" ) ) {
 					return;
 				}
 
-				// JQuery creates a special event for focusin when it doesn't
-				// exist natively. To improve performance, the native event
-				// object is reused and the type is changed. Therefore, we can't
-				// rely on the type being correct after the event finished
-				// bubbling, so we set it back to the previous value. (#8740)
+				/ JQuery creates a special event for focusin when it doesn't
+				/ exist natively. To improve performance, the native event
+				/ object is reused and the type is changed. Therefore, we can't
+				/ rely on the type being correct after the event finished
+				/ bubbling, so we set it back to the previous value. (#8740)
 				if ( event ) {
 					event.type = eventType;
 				}
@@ -260,21 +260,21 @@ $.widget( "ui.tooltip", {
 			return;
 		}
 
-		// Content can be updated multiple times. If the tooltip already
-		// exists, then just update the content and bail.
+		/ Content can be updated multiple times. If the tooltip already
+		/ exists, then just update the content and bail.
 		tooltipData = this._find( target );
 		if ( tooltipData ) {
 			tooltipData.tooltip.find( ".ui-tooltip-content" ).html( content );
 			return;
 		}
 
-		// If we have a title, clear it to prevent the native tooltip
-		// we have to check first to avoid defining a title if none exists
-		// (we don't want to cause an element to start matching [title])
-		//
-		// We use removeAttr only for key events, to allow IE to export the correct
-		// accessible attributes. For mouse events, set to empty string to avoid
-		// native tooltip showing up (happens only when removing inside mouseover).
+		/ If we have a title, clear it to prevent the native tooltip
+		/ we have to check first to avoid defining a title if none exists
+		/ (we don't want to cause an element to start matching [title])
+		/
+		/ We use removeAttr only for key events, to allow IE to export the correct
+		/ accessible attributes. For mouse events, set to empty string to avoid
+		/ native tooltip showing up (happens only when removing inside mouseover).
 		if ( target.is( "[title]" ) ) {
 			if ( event && event.type === "mouseover" ) {
 				target.attr( "title", "" );
@@ -288,9 +288,9 @@ $.widget( "ui.tooltip", {
 		this._addDescribedBy( target, tooltip.attr( "id" ) );
 		tooltip.find( ".ui-tooltip-content" ).html( content );
 
-		// Support: Voiceover on OS X, JAWS on IE <= 9
-		// JAWS announces deletions even when aria-relevant="additions"
-		// Voiceover will sometimes re-read the entire log region's contents from the beginning
+		/ Support: Voiceover on OS X, JAWS on IE <= 9
+		/ JAWS announces deletions even when aria-relevant="additions"
+		/ Voiceover will sometimes re-read the entire log region's contents from the beginning
 		this.liveRegion.children().hide();
 		a11yContent = $( "<div>" ).html( tooltip.find( ".ui-tooltip-content" ).html() );
 		a11yContent.removeAttr( "name" ).find( "[name]" ).removeAttr( "name" );
@@ -309,7 +309,7 @@ $.widget( "ui.tooltip", {
 				mousemove: position
 			} );
 
-			// trigger once to override element-relative positioning
+			/ trigger once to override element-relative positioning
 			position( event );
 		} else {
 			tooltip.position( $.extend( {
@@ -321,10 +321,10 @@ $.widget( "ui.tooltip", {
 
 		this._show( tooltip, this.options.show );
 
-		// Handle tracking tooltips that are shown with a delay (#8644). As soon
-		// as the tooltip is visible, position the tooltip using the most recent
-		// event.
-		// Adds the check to add the timers only when both delay and track options are set (#14682)
+		/ Handle tracking tooltips that are shown with a delay (#8644). As soon
+		/ as the tooltip is visible, position the tooltip using the most recent
+		/ event.
+		/ Adds the check to add the timers only when both delay and track options are set (#14682)
 		if ( this.options.track && this.options.show && this.options.show.delay ) {
 			delayedShow = this.delayedShow = setInterval( function() {
 				if ( tooltip.is( ":visible" ) ) {
@@ -348,8 +348,8 @@ $.widget( "ui.tooltip", {
 			}
 		};
 
-		// Only bind remove handler for delegated targets. Non-delegated
-		// tooltips will handle this in destroy.
+		/ Only bind remove handler for delegated targets. Non-delegated
+		/ tooltips will handle this in destroy.
 		if ( target[ 0 ] !== this.element[ 0 ] ) {
 			events.remove = function() {
 				var targetElement = this._find( target );
@@ -374,30 +374,30 @@ $.widget( "ui.tooltip", {
 			target = $( event ? event.currentTarget : this.element ),
 			tooltipData = this._find( target );
 
-		// The tooltip may already be closed
+		/ The tooltip may already be closed
 		if ( !tooltipData ) {
 
-			// We set ui-tooltip-open immediately upon open (in open()), but only set the
-			// additional data once there's actually content to show (in _open()). So even if the
-			// tooltip doesn't have full data, we always remove ui-tooltip-open in case we're in
-			// the period between open() and _open().
+			/ We set ui-tooltip-open immediately upon open (in open()), but only set the
+			/ additional data once there's actually content to show (in _open()). So even if the
+			/ tooltip doesn't have full data, we always remove ui-tooltip-open in case we're in
+			/ the period between open() and _open().
 			target.removeData( "ui-tooltip-open" );
 			return;
 		}
 
 		tooltip = tooltipData.tooltip;
 
-		// Disabling closes the tooltip, so we need to track when we're closing
-		// to avoid an infinite loop in case the tooltip becomes disabled on close
+		/ Disabling closes the tooltip, so we need to track when we're closing
+		/ to avoid an infinite loop in case the tooltip becomes disabled on close
 		if ( tooltipData.closing ) {
 			return;
 		}
 
-		// Clear the interval for delayed tracking tooltips
+		/ Clear the interval for delayed tracking tooltips
 		clearInterval( this.delayedShow );
 
-		// Only set title if we had one before (see comment in _open())
-		// If the title attribute has changed since open(), don't restore
+		/ Only set title if we had one before (see comment in _open())
+		/ If the title attribute has changed since open(), don't restore
 		if ( target.data( "ui-tooltip-title" ) && !target.attr( "title" ) ) {
 			target.attr( "title", target.data( "ui-tooltip-title" ) );
 		}
@@ -413,7 +413,7 @@ $.widget( "ui.tooltip", {
 		target.removeData( "ui-tooltip-open" );
 		this._off( target, "mouseleave focusout keyup" );
 
-		// Remove 'remove' binding only on delegated targets
+		/ Remove 'remove' binding only on delegated targets
 		if ( target[ 0 ] !== this.element[ 0 ] ) {
 			this._off( target, "remove" );
 		}
@@ -456,7 +456,7 @@ $.widget( "ui.tooltip", {
 
 	_removeTooltip: function( tooltip ) {
 
-		// Clear the interval for delayed tracking tooltips
+		/ Clear the interval for delayed tracking tooltips
 		clearInterval( this.delayedShow );
 
 		tooltip.remove();
@@ -476,23 +476,23 @@ $.widget( "ui.tooltip", {
 	_destroy: function() {
 		var that = this;
 
-		// Close open tooltips
+		/ Close open tooltips
 		$.each( this.tooltips, function( id, tooltipData ) {
 
-			// Delegate to close method to handle common cleanup
+			/ Delegate to close method to handle common cleanup
 			var event = $.Event( "blur" ),
 				element = tooltipData.element;
 			event.target = event.currentTarget = element[ 0 ];
 			that.close( event, true );
 
-			// Remove immediately; destroying an open tooltip doesn't use the
-			// hide animation
+			/ Remove immediately; destroying an open tooltip doesn't use the
+			/ hide animation
 			$( "#" + id ).remove();
 
-			// Restore the title
+			/ Restore the title
 			if ( element.data( "ui-tooltip-title" ) ) {
 
-				// If the title attribute has changed since open(), don't restore
+				/ If the title attribute has changed since open(), don't restore
 				if ( !element.attr( "title" ) ) {
 					element.attr( "title", element.data( "ui-tooltip-title" ) );
 				}
@@ -507,7 +507,7 @@ $.widget( "ui.tooltip", {
 // TODO: Switch return back to widget declaration at top of file when this is removed
 if ( $.uiBackCompat !== false ) {
 
-	// Backcompat for tooltipClass option
+	/ Backcompat for tooltipClass option
 	$.widget( "ui.tooltip", $.ui.tooltip, {
 		options: {
 			tooltipClass: null

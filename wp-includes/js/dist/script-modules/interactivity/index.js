@@ -21,34 +21,34 @@ var n,l,t,u,i,r,o,e,f,c,s,a,h,p={},v=[],y=/acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc
 
 /******/ });
 /************************************************************************/
-/******/ // The module cache
+/******/ / The module cache
 /******/ var __webpack_module_cache__ = {};
 /******/ 
-/******/ // The require function
+/******/ / The require function
 /******/ function __webpack_require__(moduleId) {
-/******/ 	// Check if module is in cache
+/******/ 	/ Check if module is in cache
 /******/ 	var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 	if (cachedModule !== undefined) {
 /******/ 		return cachedModule.exports;
 /******/ 	}
-/******/ 	// Create a new module (and put it into the cache)
+/******/ 	/ Create a new module (and put it into the cache)
 /******/ 	var module = __webpack_module_cache__[moduleId] = {
-/******/ 		// no module.id needed
-/******/ 		// no module.loaded needed
+/******/ 		/ no module.id needed
+/******/ 		/ no module.loaded needed
 /******/ 		exports: {}
 /******/ 	};
 /******/ 
-/******/ 	// Execute the module function
+/******/ 	/ Execute the module function
 /******/ 	__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 
-/******/ 	// Return the exports of the module
+/******/ 	/ Return the exports of the module
 /******/ 	return module.exports;
 /******/ }
 /******/ 
 /************************************************************************/
 /******/ /* webpack/runtime/define property getters */
 /******/ (() => {
-/******/ 	// define getter functions for harmony exports
+/******/ 	/ define getter functions for harmony exports
 /******/ 	__webpack_require__.d = (exports, definition) => {
 /******/ 		for(var key in definition) {
 /******/ 			if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -90,14 +90,14 @@ __webpack_require__.d(__webpack_exports__, {
 
 // EXTERNAL MODULE: ./node_modules/preact/dist/preact.module.js
 var preact_module = __webpack_require__(622);
-;// ./node_modules/preact/hooks/dist/hooks.module.js
+;/ ./node_modules/preact/hooks/dist/hooks.module.js
 var hooks_module_t,r,hooks_module_u,i,hooks_module_o=0,hooks_module_f=[],hooks_module_c=preact_module/* options */.fF,e=hooks_module_c.__b,a=hooks_module_c.__r,v=hooks_module_c.diffed,l=hooks_module_c.__c,m=hooks_module_c.unmount,s=hooks_module_c.__;function p(n,t){hooks_module_c.__h&&hooks_module_c.__h(r,n,hooks_module_o||t),hooks_module_o=0;var u=r.__H||(r.__H={__:[],__h:[]});return n>=u.__.length&&u.__.push({}),u.__[n]}function d(n){return hooks_module_o=1,h(D,n)}function h(n,u,i){var o=p(hooks_module_t++,2);if(o.t=n,!o.__c&&(o.__=[i?i(u):D(void 0,u),function(n){var t=o.__N?o.__N[0]:o.__[0],r=o.t(t,n);t!==r&&(o.__N=[r,o.__[1]],o.__c.setState({}))}],o.__c=r,!r.__f)){var f=function(n,t,r){if(!o.__c.__H)return!0;var u=o.__c.__H.__.filter(function(n){return!!n.__c});if(u.every(function(n){return!n.__N}))return!c||c.call(this,n,t,r);var i=o.__c.props!==n;return u.forEach(function(n){if(n.__N){var t=n.__[0];n.__=n.__N,n.__N=void 0,t!==n.__[0]&&(i=!0)}}),c&&c.call(this,n,t,r)||i};r.__f=!0;var c=r.shouldComponentUpdate,e=r.componentWillUpdate;r.componentWillUpdate=function(n,t,r){if(this.__e){var u=c;c=void 0,f(n,t,r),c=u}e&&e.call(this,n,t,r)},r.shouldComponentUpdate=f}return o.__N||o.__}function y(n,u){var i=p(hooks_module_t++,3);!hooks_module_c.__s&&C(i.__H,u)&&(i.__=n,i.u=u,r.__H.__h.push(i))}function _(n,u){var i=p(hooks_module_t++,4);!hooks_module_c.__s&&C(i.__H,u)&&(i.__=n,i.u=u,r.__h.push(i))}function A(n){return hooks_module_o=5,T(function(){return{current:n}},[])}function F(n,t,r){hooks_module_o=6,_(function(){if("function"==typeof n){var r=n(t());return function(){n(null),r&&"function"==typeof r&&r()}}if(n)return n.current=t(),function(){return n.current=null}},null==r?r:r.concat(n))}function T(n,r){var u=p(hooks_module_t++,7);return C(u.__H,r)&&(u.__=n(),u.__H=r,u.__h=n),u.__}function q(n,t){return hooks_module_o=8,T(function(){return n},t)}function x(n){var u=r.context[n.__c],i=p(hooks_module_t++,9);return i.c=n,u?(null==i.__&&(i.__=!0,u.sub(r)),u.props.value):n.__}function P(n,t){hooks_module_c.useDebugValue&&hooks_module_c.useDebugValue(t?t(n):n)}function b(n){var u=p(hooks_module_t++,10),i=d();return u.__=n,r.componentDidCatch||(r.componentDidCatch=function(n,t){u.__&&u.__(n,t),i[1](n)}),[i[0],function(){i[1](void 0)}]}function g(){var n=p(hooks_module_t++,11);if(!n.__){for(var u=r.__v;null!==u&&!u.__m&&null!==u.__;)u=u.__;var i=u.__m||(u.__m=[0,0]);n.__="P"+i[0]+"-"+i[1]++}return n.__}function j(){for(var n;n=hooks_module_f.shift();)if(n.__P&&n.__H)try{n.__H.__h.forEach(z),n.__H.__h.forEach(B),n.__H.__h=[]}catch(t){n.__H.__h=[],hooks_module_c.__e(t,n.__v)}}hooks_module_c.__b=function(n){r=null,e&&e(n)},hooks_module_c.__=function(n,t){n&&t.__k&&t.__k.__m&&(n.__m=t.__k.__m),s&&s(n,t)},hooks_module_c.__r=function(n){a&&a(n),hooks_module_t=0;var i=(r=n.__c).__H;i&&(hooks_module_u===r?(i.__h=[],r.__h=[],i.__.forEach(function(n){n.__N&&(n.__=n.__N),n.u=n.__N=void 0})):(i.__h.forEach(z),i.__h.forEach(B),i.__h=[],hooks_module_t=0)),hooks_module_u=r},hooks_module_c.diffed=function(n){v&&v(n);var t=n.__c;t&&t.__H&&(t.__H.__h.length&&(1!==hooks_module_f.push(t)&&i===hooks_module_c.requestAnimationFrame||((i=hooks_module_c.requestAnimationFrame)||w)(j)),t.__H.__.forEach(function(n){n.u&&(n.__H=n.u),n.u=void 0})),hooks_module_u=r=null},hooks_module_c.__c=function(n,t){t.some(function(n){try{n.__h.forEach(z),n.__h=n.__h.filter(function(n){return!n.__||B(n)})}catch(r){t.some(function(n){n.__h&&(n.__h=[])}),t=[],hooks_module_c.__e(r,n.__v)}}),l&&l(n,t)},hooks_module_c.unmount=function(n){m&&m(n);var t,r=n.__c;r&&r.__H&&(r.__H.__.forEach(function(n){try{z(n)}catch(n){t=n}}),r.__H=void 0,t&&hooks_module_c.__e(t,r.__v))};var k="function"==typeof requestAnimationFrame;function w(n){var t,r=function(){clearTimeout(u),k&&cancelAnimationFrame(t),setTimeout(n)},u=setTimeout(r,100);k&&(t=requestAnimationFrame(r))}function z(n){var t=r,u=n.__c;"function"==typeof u&&(n.__c=void 0,u()),r=t}function B(n){var t=r;n.__c=n.__(),r=t}function C(n,t){return!n||n.length!==t.length||t.some(function(t,r){return t!==n[r]})}function D(n,t){return"function"==typeof t?t(n):t}
 
-;// ./node_modules/@preact/signals-core/dist/signals-core.module.js
+;/ ./node_modules/@preact/signals-core/dist/signals-core.module.js
 var signals_core_module_i=Symbol.for("preact-signals");function signals_core_module_t(){if(!(signals_core_module_s>1)){var i,t=!1;while(void 0!==signals_core_module_h){var r=signals_core_module_h;signals_core_module_h=void 0;signals_core_module_f++;while(void 0!==r){var o=r.o;r.o=void 0;r.f&=-3;if(!(8&r.f)&&signals_core_module_c(r))try{r.c()}catch(r){if(!t){i=r;t=!0}}r=o}}signals_core_module_f=0;signals_core_module_s--;if(t)throw i}else signals_core_module_s--}function signals_core_module_r(i){if(signals_core_module_s>0)return i();signals_core_module_s++;try{return i()}finally{signals_core_module_t()}}var signals_core_module_o=void 0;function n(i){var t=signals_core_module_o;signals_core_module_o=void 0;try{return i()}finally{signals_core_module_o=t}}var signals_core_module_h=void 0,signals_core_module_s=0,signals_core_module_f=0,signals_core_module_v=0;function signals_core_module_e(i){if(void 0!==signals_core_module_o){var t=i.n;if(void 0===t||t.t!==signals_core_module_o){t={i:0,S:i,p:signals_core_module_o.s,n:void 0,t:signals_core_module_o,e:void 0,x:void 0,r:t};if(void 0!==signals_core_module_o.s)signals_core_module_o.s.n=t;signals_core_module_o.s=t;i.n=t;if(32&signals_core_module_o.f)i.S(t);return t}else if(-1===t.i){t.i=0;if(void 0!==t.n){t.n.p=t.p;if(void 0!==t.p)t.p.n=t.n;t.p=signals_core_module_o.s;t.n=void 0;signals_core_module_o.s.n=t;signals_core_module_o.s=t}return t}}}function signals_core_module_u(i){this.v=i;this.i=0;this.n=void 0;this.t=void 0}signals_core_module_u.prototype.brand=signals_core_module_i;signals_core_module_u.prototype.h=function(){return!0};signals_core_module_u.prototype.S=function(i){if(this.t!==i&&void 0===i.e){i.x=this.t;if(void 0!==this.t)this.t.e=i;this.t=i}};signals_core_module_u.prototype.U=function(i){if(void 0!==this.t){var t=i.e,r=i.x;if(void 0!==t){t.x=r;i.e=void 0}if(void 0!==r){r.e=t;i.x=void 0}if(i===this.t)this.t=r}};signals_core_module_u.prototype.subscribe=function(i){var t=this;return E(function(){var r=t.value,n=signals_core_module_o;signals_core_module_o=void 0;try{i(r)}finally{signals_core_module_o=n}})};signals_core_module_u.prototype.valueOf=function(){return this.value};signals_core_module_u.prototype.toString=function(){return this.value+""};signals_core_module_u.prototype.toJSON=function(){return this.value};signals_core_module_u.prototype.peek=function(){var i=signals_core_module_o;signals_core_module_o=void 0;try{return this.value}finally{signals_core_module_o=i}};Object.defineProperty(signals_core_module_u.prototype,"value",{get:function(){var i=signals_core_module_e(this);if(void 0!==i)i.i=this.i;return this.v},set:function(i){if(i!==this.v){if(signals_core_module_f>100)throw new Error("Cycle detected");this.v=i;this.i++;signals_core_module_v++;signals_core_module_s++;try{for(var r=this.t;void 0!==r;r=r.x)r.t.N()}finally{signals_core_module_t()}}}});function signals_core_module_d(i){return new signals_core_module_u(i)}function signals_core_module_c(i){for(var t=i.s;void 0!==t;t=t.n)if(t.S.i!==t.i||!t.S.h()||t.S.i!==t.i)return!0;return!1}function signals_core_module_a(i){for(var t=i.s;void 0!==t;t=t.n){var r=t.S.n;if(void 0!==r)t.r=r;t.S.n=t;t.i=-1;if(void 0===t.n){i.s=t;break}}}function signals_core_module_l(i){var t=i.s,r=void 0;while(void 0!==t){var o=t.p;if(-1===t.i){t.S.U(t);if(void 0!==o)o.n=t.n;if(void 0!==t.n)t.n.p=o}else r=t;t.S.n=t.r;if(void 0!==t.r)t.r=void 0;t=o}i.s=r}function signals_core_module_y(i){signals_core_module_u.call(this,void 0);this.x=i;this.s=void 0;this.g=signals_core_module_v-1;this.f=4}(signals_core_module_y.prototype=new signals_core_module_u).h=function(){this.f&=-3;if(1&this.f)return!1;if(32==(36&this.f))return!0;this.f&=-5;if(this.g===signals_core_module_v)return!0;this.g=signals_core_module_v;this.f|=1;if(this.i>0&&!signals_core_module_c(this)){this.f&=-2;return!0}var i=signals_core_module_o;try{signals_core_module_a(this);signals_core_module_o=this;var t=this.x();if(16&this.f||this.v!==t||0===this.i){this.v=t;this.f&=-17;this.i++}}catch(i){this.v=i;this.f|=16;this.i++}signals_core_module_o=i;signals_core_module_l(this);this.f&=-2;return!0};signals_core_module_y.prototype.S=function(i){if(void 0===this.t){this.f|=36;for(var t=this.s;void 0!==t;t=t.n)t.S.S(t)}signals_core_module_u.prototype.S.call(this,i)};signals_core_module_y.prototype.U=function(i){if(void 0!==this.t){signals_core_module_u.prototype.U.call(this,i);if(void 0===this.t){this.f&=-33;for(var t=this.s;void 0!==t;t=t.n)t.S.U(t)}}};signals_core_module_y.prototype.N=function(){if(!(2&this.f)){this.f|=6;for(var i=this.t;void 0!==i;i=i.x)i.t.N()}};Object.defineProperty(signals_core_module_y.prototype,"value",{get:function(){if(1&this.f)throw new Error("Cycle detected");var i=signals_core_module_e(this);this.h();if(void 0!==i)i.i=this.i;if(16&this.f)throw this.v;return this.v}});function signals_core_module_w(i){return new signals_core_module_y(i)}function signals_core_module_(i){var r=i.u;i.u=void 0;if("function"==typeof r){signals_core_module_s++;var n=signals_core_module_o;signals_core_module_o=void 0;try{r()}catch(t){i.f&=-2;i.f|=8;signals_core_module_g(i);throw t}finally{signals_core_module_o=n;signals_core_module_t()}}}function signals_core_module_g(i){for(var t=i.s;void 0!==t;t=t.n)t.S.U(t);i.x=void 0;i.s=void 0;signals_core_module_(i)}function signals_core_module_p(i){if(signals_core_module_o!==this)throw new Error("Out-of-order effect");signals_core_module_l(this);signals_core_module_o=i;this.f&=-2;if(8&this.f)signals_core_module_g(this);signals_core_module_t()}function signals_core_module_b(i){this.x=i;this.u=void 0;this.s=void 0;this.o=void 0;this.f=32}signals_core_module_b.prototype.c=function(){var i=this.S();try{if(8&this.f)return;if(void 0===this.x)return;var t=this.x();if("function"==typeof t)this.u=t}finally{i()}};signals_core_module_b.prototype.S=function(){if(1&this.f)throw new Error("Cycle detected");this.f|=1;this.f&=-9;signals_core_module_(this);signals_core_module_a(this);signals_core_module_s++;var i=signals_core_module_o;signals_core_module_o=this;return signals_core_module_p.bind(this,i)};signals_core_module_b.prototype.N=function(){if(!(2&this.f)){this.f|=2;this.o=signals_core_module_h;signals_core_module_h=this}};signals_core_module_b.prototype.d=function(){this.f|=8;if(!(1&this.f))signals_core_module_g(this)};function E(i){var t=new signals_core_module_b(i);try{t.c()}catch(i){t.d();throw i}return t.d.bind(t)}
-;// ./node_modules/@preact/signals/dist/signals.module.js
+;/ ./node_modules/@preact/signals/dist/signals.module.js
 var signals_module_v,signals_module_s;function signals_module_l(i,n){preact_module/* options */.fF[i]=n.bind(null,preact_module/* options */.fF[i]||function(){})}function signals_module_d(i){if(signals_module_s)signals_module_s();signals_module_s=i&&i.S()}function signals_module_h(i){var r=this,f=i.data,o=useSignal(f);o.value=f;var e=T(function(){var i=r.__v;while(i=i.__)if(i.__c){i.__c.__$f|=4;break}r.__$u.c=function(){var i,t=r.__$u.S(),f=e.value;t();if((0,preact_module/* isValidElement */.zO)(f)||3!==(null==(i=r.base)?void 0:i.nodeType)){r.__$f|=1;r.setState({})}else r.base.data=f};return signals_core_module_w(function(){var i=o.value.value;return 0===i?0:!0===i?"":i||""})},[]);return e.value}signals_module_h.displayName="_st";Object.defineProperties(signals_core_module_u.prototype,{constructor:{configurable:!0,value:void 0},type:{configurable:!0,value:signals_module_h},props:{configurable:!0,get:function(){return{data:this}}},__b:{configurable:!0,value:1}});signals_module_l("__b",function(i,r){if("string"==typeof r.type){var n,t=r.props;for(var f in t)if("children"!==f){var o=t[f];if(o instanceof signals_core_module_u){if(!n)r.__np=n={};n[f]=o;t[f]=o.peek()}}}i(r)});signals_module_l("__r",function(i,r){signals_module_d();var n,t=r.__c;if(t){t.__$f&=-2;if(void 0===(n=t.__$u))t.__$u=n=function(i){var r;E(function(){r=this});r.c=function(){t.__$f|=1;t.setState({})};return r}()}signals_module_v=t;signals_module_d(n);i(r)});signals_module_l("__e",function(i,r,n,t){signals_module_d();signals_module_v=void 0;i(r,n,t)});signals_module_l("diffed",function(i,r){signals_module_d();signals_module_v=void 0;var n;if("string"==typeof r.type&&(n=r.__e)){var t=r.__np,f=r.props;if(t){var o=n.U;if(o)for(var e in o){var u=o[e];if(void 0!==u&&!(e in t)){u.d();o[e]=void 0}}else n.U=o={};for(var a in t){var c=o[a],s=t[a];if(void 0===c){c=signals_module_p(n,a,s,f);o[a]=c}else c.o(s,f)}}}i(r)});function signals_module_p(i,r,n,t){var f=r in i&&void 0===i.ownerSVGElement,o=signals_core_module_d(n);return{o:function(i,r){o.value=i;t=r},d:E(function(){var n=o.value.value;if(t[r]!==n){t[r]=n;if(f)i[r]=n;else if(n)i.setAttribute(r,n);else i.removeAttribute(r)}})}}signals_module_l("unmount",function(i,r){if("string"==typeof r.type){var n=r.__e;if(n){var t=n.U;if(t){n.U=void 0;for(var f in t){var o=t[f];if(o)o.d()}}}}else{var e=r.__c;if(e){var u=e.__$u;if(u){e.__$u=void 0;u.d()}}}i(r)});signals_module_l("__h",function(i,r,n,t){if(t<3||9===t)r.__$f|=2;i(r,n,t)});preact_module/* Component */.uA.prototype.shouldComponentUpdate=function(i,r){var n=this.__$u,t=n&&void 0!==n.s;for(var f in r)return!0;if(this.__f||"boolean"==typeof this.u&&!0===this.u){if(!(t||2&this.__$f||4&this.__$f))return!0;if(1&this.__$f)return!0}else{if(!(t||4&this.__$f))return!0;if(3&this.__$f)return!0}for(var o in i)if("__source"!==o&&i[o]!==this.props[o])return!0;for(var e in this.props)if(!(e in i))return!0;return!1};function useSignal(i){return T(function(){return signals_core_module_d(i)},[])}function useComputed(i){var r=f(i);r.current=i;signals_module_v.__$f|=4;return t(function(){return u(function(){return r.current()})},[])}function useSignalEffect(i){var r=f(i);r.current=i;o(function(){return c(function(){return r.current()})},[])}
-;// ./node_modules/@wordpress/interactivity/build-module/namespaces.js
+;/ ./node_modules/@wordpress/interactivity/build-module/namespaces.js
 const namespaceStack = [];
 const getNamespace = () => namespaceStack.slice(-1)[0];
 const setNamespace = namespace => {
@@ -107,7 +107,7 @@ const resetNamespace = () => {
   namespaceStack.pop();
 };
 
-;// ./node_modules/@wordpress/interactivity/build-module/scopes.js
+;/ ./node_modules/@wordpress/interactivity/build-module/scopes.js
 /**
  * External dependencies
  */
@@ -208,7 +208,7 @@ const getElement = () => {
  *      updateServerContext() {
  *        const context = getContext();
  *        const serverContext = getServerContext();
- *        // Override some property with the new value that came from the server.
+ *        / Override some property with the new value that came from the server.
  *        context.overridableProp = serverContext.overridableProp;
  *      },
  *    },
@@ -229,7 +229,7 @@ const getServerContext = namespace => {
   return scope.serverContext[namespace || getNamespace()];
 };
 
-;// ./node_modules/@wordpress/interactivity/build-module/utils.js
+;/ ./node_modules/@wordpress/interactivity/build-module/utils.js
 /**
  * External dependencies
  */
@@ -382,7 +382,7 @@ function withScope(func) {
     };
   }
 
-  // If function was annotated via `withSyncEvent()`, maintain the annotation.
+  / If function was annotated via `withSyncEvent()`, maintain the annotation.
   const syncAware = func;
   if (syncAware.sync) {
     const syncAwareWrapped = wrapped;
@@ -543,15 +543,15 @@ const warn = message => {
       return;
     }
 
-    // eslint-disable-next-line no-console
+    / eslint-disable-next-line no-console
     console.warn(message);
 
-    // Throwing an error and catching it immediately to improve debugging
-    // A consumer can use 'pause on caught exceptions'
+    / Throwing an error and catching it immediately to improve debugging
+    / A consumer can use 'pause on caught exceptions'
     try {
       throw Error(message);
     } catch (e) {
-      // Do nothing.
+      / Do nothing.
     }
     logged.add(message);
   }
@@ -578,7 +578,7 @@ function withSyncEvent(callback) {
   return syncAware;
 }
 
-;// ./node_modules/@wordpress/interactivity/build-module/proxies/registry.js
+;/ ./node_modules/@wordpress/interactivity/build-module/proxies/registry.js
 /**
  * Proxies for each object.
  */
@@ -663,7 +663,7 @@ const shouldProxy = candidate => {
  */
 const getObjectFromProxy = proxy => proxyToObj.get(proxy);
 
-;// ./node_modules/@wordpress/interactivity/build-module/proxies/signals.js
+;/ ./node_modules/@wordpress/interactivity/build-module/proxies/signals.js
 /**
  * External dependencies
  */
@@ -793,7 +793,7 @@ class PropSignal {
   }
 }
 
-;// ./node_modules/@wordpress/interactivity/build-module/proxies/state.js
+;/ ./node_modules/@wordpress/interactivity/build-module/proxies/state.js
 /**
  * External dependencies
  */
@@ -896,7 +896,7 @@ const stateHandlers = {
       return Reflect.get(target, key, receiver);
     }
 
-    // At this point, the property should be reactive.
+    / At this point, the property should be reactive.
     const desc = Object.getOwnPropertyDescriptor(target, key);
     const prop = getPropSignal(receiver, key, desc);
     const result = prop.getComputed().value;
@@ -1039,8 +1039,8 @@ const peek = (obj, key) => {
  *                 by default).
  */
 const deepMergeRecursive = (target, source, override = true) => {
-  // If target is not a plain object and the source is, we don't need to merge
-  // them because the source will be used as the new value of the target.
+  / If target is not a plain object and the source is, we don't need to merge
+  / them because the source will be used as the new value of the target.
   if (!(isPlainObject(target) && isPlainObject(source))) {
     return;
   }
@@ -1052,41 +1052,41 @@ const deepMergeRecursive = (target, source, override = true) => {
     const proxy = getProxyFromObject(target);
     const propSignal = !!proxy && hasPropSignal(proxy, key) && getPropSignal(proxy, key);
 
-    // Handle getters and setters
+    / Handle getters and setters
     if (typeof desc.get === 'function' || typeof desc.set === 'function') {
       if (override || isNew) {
-        // Because we are setting a getter or setter, we need to use
-        // Object.defineProperty to define the property on the target object.
+        / Because we are setting a getter or setter, we need to use
+        / Object.defineProperty to define the property on the target object.
         Object.defineProperty(target, key, {
           ...desc,
           configurable: true,
           enumerable: true
         });
-        // Update the getter in the property signal if it exists
+        / Update the getter in the property signal if it exists
         if (desc.get && propSignal) {
           propSignal.setGetter(desc.get);
         }
       }
 
-      // Handle nested objects
+      / Handle nested objects
     } else if (isPlainObject(source[key])) {
       const targetValue = Object.getOwnPropertyDescriptor(target, key)?.value;
       if (isNew || override && !isPlainObject(targetValue)) {
-        // Create a new object if the property is new or needs to be overridden
+        / Create a new object if the property is new or needs to be overridden
         target[key] = {};
         if (propSignal) {
-          // Create a new proxified state for the nested object
+          / Create a new proxified state for the nested object
           const ns = getNamespaceFromProxy(proxy);
           propSignal.setValue(proxifyState(ns, target[key]));
         }
         deepMergeRecursive(target[key], source[key], override);
       }
-      // Both target and source are plain objects, merge them recursively
+      / Both target and source are plain objects, merge them recursively
       else if (isPlainObject(targetValue)) {
         deepMergeRecursive(target[key], source[key], override);
       }
 
-      // Handle primitive values and non-plain objects
+      / Handle primitive values and non-plain objects
     } else if (override || isNew) {
       Object.defineProperty(target, key, desc);
       if (propSignal) {
@@ -1094,7 +1094,7 @@ const deepMergeRecursive = (target, source, override = true) => {
           value
         } = desc;
         const ns = getNamespaceFromProxy(proxy);
-        // Proxify the value if necessary before setting it in the signal
+        / Proxify the value if necessary before setting it in the signal
         propSignal.setValue(shouldProxy(value) ? proxifyState(ns, value) : value);
       }
     }
@@ -1120,7 +1120,7 @@ const deepMergeRecursive = (target, source, override = true) => {
  */
 const deepMerge = (target, source, override = true) => signals_core_module_r(() => deepMergeRecursive(getObjectFromProxy(target) || target, source, override));
 
-;// ./node_modules/@wordpress/interactivity/build-module/proxies/store.js
+;/ ./node_modules/@wordpress/interactivity/build-module/proxies/store.js
 /**
  * Internal dependencies
  */
@@ -1167,7 +1167,7 @@ const storeHandlers = {
       return scoped;
     }
 
-    // Check if the property is an object. If it is, proxyify it.
+    / Check if the property is an object. If it is, proxyify it.
     if (isPlainObject(result) && shouldProxy(result)) {
       return proxifyStore(ns, result, false);
     }
@@ -1196,7 +1196,7 @@ const proxifyStore = (namespace, obj, isRoot = true) => {
   return proxy;
 };
 
-;// ./node_modules/@wordpress/interactivity/build-module/proxies/context.js
+;/ ./node_modules/@wordpress/interactivity/build-module/proxies/context.js
 const contextObjectToProxy = new WeakMap();
 const contextObjectToFallback = new WeakMap();
 const contextProxies = new WeakSet();
@@ -1206,7 +1206,7 @@ const descriptor = Reflect.getOwnPropertyDescriptor;
 const contextHandlers = {
   get: (target, key) => {
     const fallback = contextObjectToFallback.get(target);
-    // Always subscribe to prop changes in the current context.
+    / Always subscribe to prop changes in the current context.
     const currentProp = target[key];
 
     /*
@@ -1220,8 +1220,8 @@ const contextHandlers = {
   set: (target, key, value) => {
     const fallback = contextObjectToFallback.get(target);
 
-    // If the property exists in the current context, modify it. Otherwise,
-    // add it to the current context.
+    / If the property exists in the current context, modify it. Otherwise,
+    / add it to the current context.
     const obj = key in target || !(key in fallback) ? target : fallback;
     obj[key] = value;
     return true;
@@ -1246,7 +1246,7 @@ const proxifyContext = (current, inherited = {}) => {
   if (contextProxies.has(current)) {
     throw Error('This object cannot be proxified.');
   }
-  // Update the fallback object reference when it changes.
+  / Update the fallback object reference when it changes.
   contextObjectToFallback.set(current, inherited);
   if (!contextObjectToProxy.has(current)) {
     const proxy = new Proxy(current, contextHandlers);
@@ -1256,7 +1256,7 @@ const proxifyContext = (current, inherited = {}) => {
   return contextObjectToProxy.get(current);
 };
 
-;// ./node_modules/@wordpress/interactivity/build-module/proxies/index.js
+;/ ./node_modules/@wordpress/interactivity/build-module/proxies/index.js
 /**
  * Internal dependencies
  */
@@ -1264,7 +1264,7 @@ const proxifyContext = (current, inherited = {}) => {
 
 
 
-;// ./node_modules/@wordpress/interactivity/build-module/store.js
+;/ ./node_modules/@wordpress/interactivity/build-module/store.js
 /**
  * Internal dependencies
  */
@@ -1303,7 +1303,7 @@ const getConfig = namespace => storeConfigs.get(namespace || getNamespace()) || 
  *    callbacks: {
  *      updateServerState() {
  *        const serverState = getServerState();
- *        // Override some property with the new value that came from the server.
+ *        / Override some property with the new value that came from the server.
  *        state.overridableProp = serverState.overridableProp;
  *      },
  *    },
@@ -1385,9 +1385,9 @@ function store(namespace, {
   lock = false
 } = {}) {
   if (!stores.has(namespace)) {
-    // Lock the store if the passed lock is different from the universal
-    // unlock. Once the lock is set (either false, true, or a given string),
-    // it cannot change.
+    / Lock the store if the passed lock is different from the universal
+    / unlock. Once the lock is set (either false, true, or a given string),
+    / it cannot change.
     if (lock !== universalUnlock) {
       storeLocks.set(namespace, lock);
     }
@@ -1399,9 +1399,9 @@ function store(namespace, {
     rawStores.set(namespace, rawStore);
     stores.set(namespace, proxifiedStore);
   } else {
-    // Lock the store if it wasn't locked yet and the passed lock is
-    // different from the universal unlock. If no lock is given, the store
-    // will be public and won't accept any lock from now on.
+    / Lock the store if it wasn't locked yet and the passed lock is
+    / different from the universal unlock. If no lock is given, the store
+    / will be public and won't accept any lock from now on.
     if (lock !== universalUnlock && !storeLocks.has(namespace)) {
       storeLocks.set(namespace, lock);
     } else {
@@ -1423,9 +1423,9 @@ function store(namespace, {
 }
 const parseServerData = (dom = document) => {
   var _dom$getElementById;
-  const jsonDataScriptTag = // Preferred Script Module data passing form
+  const jsonDataScriptTag = / Preferred Script Module data passing form
   (_dom$getElementById = dom.getElementById('wp-script-module-data-@wordpress/interactivity')) !== null && _dom$getElementById !== void 0 ? _dom$getElementById :
-  // Legacy form
+  / Legacy form
   dom.getElementById('wp-interactivity-data');
   if (jsonDataScriptTag?.textContent) {
     try {
@@ -1455,7 +1455,7 @@ const populateServerData = data => {
 const data = parseServerData();
 populateServerData(data);
 
-;// ./node_modules/@wordpress/interactivity/build-module/hooks.js
+;/ ./node_modules/@wordpress/interactivity/build-module/hooks.js
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable react-hooks/exhaustive-deps */
 
@@ -1492,7 +1492,7 @@ const directivePriorities = {};
  * @example
  * ```js
  * directive(
- *   'alert', // Name without the `data-wp-` prefix.
+ *   'alert', / Name without the `data-wp-` prefix.
  *   ( { directives: { alert }, element, evaluate } ) => {
  *     const defaultEntry = alert.find( isDefaultDirectiveSuffix );
  *     element.props.onclick = () => { alert( evaluate( defaultEntry ) ); }
@@ -1532,7 +1532,7 @@ const directivePriorities = {};
  * @example
  * ```js
  * directive(
- *   'color', // Name without prefix and suffix.
+ *   'color', / Name without prefix and suffix.
  *   ( { directives: { color: colors }, ref, evaluate } ) =>
  *     colors.forEach( ( color ) => {
  *       if ( color.suffix = 'text' ) {
@@ -1582,7 +1582,7 @@ const resolve = (path, namespace) => {
     context: getScope().context[namespace]
   };
   try {
-    // TODO: Support lazy/dynamically initialized stores
+    / TODO: Support lazy/dynamically initialized stores
     return path.split('.').reduce((acc, key) => acc[key], current);
   } catch (e) {}
 };
@@ -1600,22 +1600,22 @@ const getEvaluate = ({
   if (typeof path !== 'string') {
     throw new Error('The `value` prop should be a string path');
   }
-  // If path starts with !, remove it and save a flag.
+  / If path starts with !, remove it and save a flag.
   const hasNegationOperator = path[0] === '!' && !!(path = path.slice(1));
   setScope(scope);
   const value = resolve(path, namespace);
-  // Functions are returned without invoking them.
+  / Functions are returned without invoking them.
   if (typeof value === 'function') {
-    // Except if they have a negation operator present, for backward compatibility.
-    // This pattern is strongly discouraged and deprecated, and it will be removed in a near future release.
-    // TODO: Remove this condition to effectively ignore negation operator when provided with a function.
+    / Except if they have a negation operator present, for backward compatibility.
+    / This pattern is strongly discouraged and deprecated, and it will be removed in a near future release.
+    / TODO: Remove this condition to effectively ignore negation operator when provided with a function.
     if (hasNegationOperator) {
       warn('Using a function with a negation operator is deprecated and will stop working in WordPress 6.9. Please use derived state instead.');
       const functionResult = !value(...args);
       resetScope();
       return functionResult;
     }
-    // Reset scope before return and wrap the function so it will still run within the correct scope.
+    / Reset scope before return and wrap the function so it will still run within the correct scope.
     resetScope();
     return (...functionArgs) => {
       setScope(scope);
@@ -1650,9 +1650,9 @@ const Directives = ({
   originalProps,
   previousScope
 }) => {
-  // Initialize the scope of this element. These scopes are different per each
-  // level because each level has a different context, but they share the same
-  // element ref, state and props.
+  / Initialize the scope of this element. These scopes are different per each
+  / level because each level has a different context, but they share the same
+  / element ref, state and props.
   const scope = A({}).current;
   scope.evaluate = q(getEvaluate({
     scope
@@ -1667,14 +1667,14 @@ const Directives = ({
   scope.ref = previousScope?.ref || A(null);
   /* eslint-enable react-hooks/rules-of-hooks */
 
-  // Create a fresh copy of the vnode element and add the props to the scope,
-  // named as attributes (HTML Attributes).
+  / Create a fresh copy of the vnode element and add the props to the scope,
+  / named as attributes (HTML Attributes).
   element = (0,preact_module/* cloneElement */.Ob)(element, {
     ref: scope.ref
   });
   scope.attributes = element.props;
 
-  // Recursively render the wrapper for the next priority level.
+  / Recursively render the wrapper for the next priority level.
   const children = nextPriorityLevels.length > 0 ? (0,preact_module.h)(Directives, {
     directives,
     priorityLevels: nextPriorityLevels,
@@ -1732,7 +1732,7 @@ preact_module/* options */.fF.vnode = vnode => {
   }
 };
 
-;// ./node_modules/@wordpress/interactivity/build-module/directives.js
+;/ ./node_modules/@wordpress/interactivity/build-module/directives.js
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable react-hooks/exhaustive-deps */
 
@@ -1897,7 +1897,7 @@ const getGlobalAsyncEventDirective = type => {
   };
 };
 /* harmony default export */ const directives = (() => {
-  // data-wp-context
+  / data-wp-context
   directive('context', ({
     directives: {
       context
@@ -1921,7 +1921,7 @@ const getGlobalAsyncEventDirective = type => {
       readOnly: true
     }));
 
-    // No change should be made if `defaultEntry` does not exist.
+    / No change should be made if `defaultEntry` does not exist.
     const contextStack = T(() => {
       const result = {
         client: {
@@ -1936,7 +1936,7 @@ const getGlobalAsyncEventDirective = type => {
           namespace,
           value
         } = defaultEntry;
-        // Check that the value is a JSON object. Send a console warning if not.
+        / Check that the value is a JSON object. Send a console warning if not.
         if (!isPlainObject(value)) {
           warn(`The value of data-wp-context in "${namespace}" store must be a valid stringified JSON object.`);
         }
@@ -1954,7 +1954,7 @@ const getGlobalAsyncEventDirective = type => {
     priority: 5
   });
 
-  // data-wp-watch--[name]
+  / data-wp-watch--[name]
   directive('watch', ({
     directives: {
       watch
@@ -1975,7 +1975,7 @@ const getGlobalAsyncEventDirective = type => {
     });
   });
 
-  // data-wp-init--[name]
+  / data-wp-init--[name]
   directive('init', ({
     directives: {
       init
@@ -1983,7 +1983,7 @@ const getGlobalAsyncEventDirective = type => {
     evaluate
   }) => {
     init.forEach(entry => {
-      // TODO: Replace with useEffect to prevent unneeded scopes.
+      / TODO: Replace with useEffect to prevent unneeded scopes.
       useInit(() => {
         let start;
         if (false) {}
@@ -1997,7 +1997,7 @@ const getGlobalAsyncEventDirective = type => {
     });
   });
 
-  // data-wp-on--[event]
+  / data-wp-on--[event]
   directive('on', ({
     directives: {
       on
@@ -2035,7 +2035,7 @@ const getGlobalAsyncEventDirective = type => {
     });
   });
 
-  // data-wp-on-async--[event]
+  / data-wp-on-async--[event]
   directive('on-async', ({
     directives: {
       'on-async': onAsync
@@ -2068,17 +2068,17 @@ const getGlobalAsyncEventDirective = type => {
     });
   });
 
-  // data-wp-on-window--[event]
+  / data-wp-on-window--[event]
   directive('on-window', getGlobalEventDirective('window'));
-  // data-wp-on-document--[event]
+  / data-wp-on-document--[event]
   directive('on-document', getGlobalEventDirective('document'));
 
-  // data-wp-on-async-window--[event]
+  / data-wp-on-async-window--[event]
   directive('on-async-window', getGlobalAsyncEventDirective('window'));
-  // data-wp-on-async-document--[event]
+  / data-wp-on-async-document--[event]
   directive('on-async-document', getGlobalAsyncEventDirective('document'));
 
-  // data-wp-class--[classname]
+  / data-wp-class--[classname]
   directive('class', ({
     directives: {
       class: classNames
@@ -2114,7 +2114,7 @@ const getGlobalAsyncEventDirective = type => {
     });
   });
 
-  // data-wp-style--[style-prop]
+  / data-wp-style--[style-prop]
   directive('style', ({
     directives: {
       style
@@ -2152,7 +2152,7 @@ const getGlobalAsyncEventDirective = type => {
     });
   });
 
-  // data-wp-bind--[attribute]
+  / data-wp-bind--[attribute]
   directive('bind', ({
     directives: {
       bind
@@ -2219,7 +2219,7 @@ const getGlobalAsyncEventDirective = type => {
     });
   });
 
-  // data-wp-ignore
+  / data-wp-ignore
   directive('ignore', ({
     element: {
       type: Type,
@@ -2229,7 +2229,7 @@ const getGlobalAsyncEventDirective = type => {
       }
     }
   }) => {
-    // Preserve the initial inner HTML.
+    / Preserve the initial inner HTML.
     const cached = T(() => innerHTML, []);
     return (0,preact_module.h)(Type, {
       dangerouslySetInnerHTML: {
@@ -2239,7 +2239,7 @@ const getGlobalAsyncEventDirective = type => {
     });
   });
 
-  // data-wp-text
+  / data-wp-text
   directive('text', ({
     directives: {
       text
@@ -2263,7 +2263,7 @@ const getGlobalAsyncEventDirective = type => {
     }
   });
 
-  // data-wp-run
+  / data-wp-run
   directive('run', ({
     directives: {
       run
@@ -2279,7 +2279,7 @@ const getGlobalAsyncEventDirective = type => {
     });
   });
 
-  // data-wp-each--[item]
+  / data-wp-each--[item]
   directive('each', ({
     directives: {
       each,
@@ -2321,7 +2321,7 @@ const getGlobalAsyncEventDirective = type => {
         }
       };
 
-      // Set the item after proxifying the context.
+      / Set the item after proxifying the context.
       mergedContext.client[namespace][itemProp] = item;
       const scope = {
         ...getScope(),
@@ -2345,10 +2345,10 @@ const getGlobalAsyncEventDirective = type => {
   });
 });
 
-;// ./node_modules/@wordpress/interactivity/build-module/constants.js
+;/ ./node_modules/@wordpress/interactivity/build-module/constants.js
 const directivePrefix = 'wp';
 
-;// ./node_modules/@wordpress/interactivity/build-module/vdom.js
+;/ ./node_modules/@wordpress/interactivity/build-module/vdom.js
 /**
  * External dependencies
  */
@@ -2378,7 +2378,7 @@ const directiveParser = new RegExp(`^data-${directivePrefix}-` +
 // (Optional) Match '--' followed by any alphanumeric characters. It
 // excludes underscore intentionally to prevent confusion, but it can
 // contain multiple hyphens. E.g., "--custom-prefix--with-more-info".
-'(?:--([a-z0-9_-]+))?$', 'i' // Case insensitive.
+'(?:--([a-z0-9_-]+))?$', 'i' / Case insensitive.
 );
 
 // Regular expression for reference parsing. It can contain a namespace before
@@ -2395,19 +2395,19 @@ const hydratedIslands = new WeakSet();
  * @return The resulting vDOM tree.
  */
 function toVdom(root) {
-  const treeWalker = document.createTreeWalker(root, 205 // TEXT + CDATA_SECTION + COMMENT + PROCESSING_INSTRUCTION + ELEMENT
+  const treeWalker = document.createTreeWalker(root, 205 / TEXT + CDATA_SECTION + COMMENT + PROCESSING_INSTRUCTION + ELEMENT
   );
   function walk(node) {
     const {
       nodeType
     } = node;
 
-    // TEXT_NODE (3)
+    / TEXT_NODE (3)
     if (nodeType === 3) {
       return [node.data];
     }
 
-    // CDATA_SECTION_NODE (4)
+    / CDATA_SECTION_NODE (4)
     if (nodeType === 4) {
       var _nodeValue;
       const next = treeWalker.nextSibling();
@@ -2415,7 +2415,7 @@ function toVdom(root) {
       return [node.nodeValue, next];
     }
 
-    // COMMENT_NODE (8) || PROCESSING_INSTRUCTION_NODE (7)
+    / COMMENT_NODE (8) || PROCESSING_INSTRUCTION_NODE (7)
     if (nodeType === 8 || nodeType === 7) {
       const next = treeWalker.nextSibling();
       node.remove();
@@ -2449,7 +2449,7 @@ function toVdom(root) {
           if (attributeName === islandAttr) {
             island = true;
             const islandNamespace =
-            // eslint-disable-next-line no-nested-ternary
+            / eslint-disable-next-line no-nested-ternary
             typeof value === 'string' ? value : typeof value?.namespace === 'string' ? value.namespace : null;
             namespaces.push(islandNamespace);
           } else {
@@ -2507,7 +2507,7 @@ function toVdom(root) {
       }
     }
 
-    // Restore previous namespace.
+    / Restore previous namespace.
     if (island) {
       namespaces.pop();
     }
@@ -2516,7 +2516,7 @@ function toVdom(root) {
   return walk(treeWalker.currentNode);
 }
 
-;// ./node_modules/@wordpress/interactivity/build-module/init.js
+;/ ./node_modules/@wordpress/interactivity/build-module/init.js
 /**
  * External dependencies
  */
@@ -2569,7 +2569,7 @@ const init = async () => {
   }
 };
 
-;// ./node_modules/@wordpress/interactivity/build-module/index.js
+;/ ./node_modules/@wordpress/interactivity/build-module/index.js
 /**
  * External dependencies
  */

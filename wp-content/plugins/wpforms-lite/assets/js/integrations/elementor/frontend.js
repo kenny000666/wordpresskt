@@ -61,12 +61,12 @@ var WPFormsElementorFrontend = window.WPFormsElementorFrontend || ( function( do
 				app.initFields( $form );
 			} );
 
-			// Add Elementor popup support for text limit.
+			/ Add Elementor popup support for text limit.
 			window.addEventListener( 'elementor/popup/show', function() {
 				window.WPFormsTextLimit?.initHint( '.elementor-popup-modal' );
 			} );
 
-			// Force load ChoicesJS for elementor popup.
+			/ Force load ChoicesJS for elementor popup.
 			$( document ).on( 'elementor/popup/show', () => {
 				app.forceLoadChoices = true;
 
@@ -74,7 +74,7 @@ var WPFormsElementorFrontend = window.WPFormsElementorFrontend || ( function( do
 			} );
 
 			$( document ).on( 'wpformsBeforeLoadElementChoices', ( event, el ) => {
-				// Do not initialize on elementor popup.
+				/ Do not initialize on elementor popup.
 				if ( ! app.isFormInElementorPopup( el ) || app.forceLoadChoices ) {
 					return;
 				}
@@ -83,7 +83,7 @@ var WPFormsElementorFrontend = window.WPFormsElementorFrontend || ( function( do
 			} );
 
 			$( document ).on( 'wpformsBeforeStripePaymentElementSetup', ( event, el ) => {
-				// Do not initialize on elementor popup.
+				/ Do not initialize on elementor popup.
 				if ( ! app.isFormInElementorPopup( el ) || app.forceSetStripe ) {
 					return;
 				}
@@ -112,16 +112,16 @@ var WPFormsElementorFrontend = window.WPFormsElementorFrontend || ( function( do
 		 *
 		 * @param {Object} $form jQuery selector.
 		 */
-		initFields( $form ) { // eslint-disable-line complexity
-			// Init WPForms things.
+		initFields( $form ) { / eslint-disable-line complexity
+			/ Init WPForms things.
 			wpforms.ready();
 
-			// Init `Modern File Upload` field.
+			/ Init `Modern File Upload` field.
 			if ( 'undefined' !== typeof wpformsModernFileUpload ) {
 				wpformsModernFileUpload.init();
 			}
 
-			// Init CAPTCHA.
+			/ Init CAPTCHA.
 			if ( 'undefined' !== typeof wpformsRecaptchaLoad ) {
 				if ( 'recaptcha' === wpformsElementorVars.captcha_provider && 'v3' === wpformsElementorVars.recaptcha_type ) {
 					if ( 'undefined' !== typeof grecaptcha ) {
@@ -132,17 +132,17 @@ var WPFormsElementorFrontend = window.WPFormsElementorFrontend || ( function( do
 				}
 			}
 
-			// Init Repeater fields.
+			/ Init Repeater fields.
 			if ( 'undefined' !== typeof WPFormsRepeaterField ) {
 				WPFormsRepeaterField.ready();
 			}
 
-			// Init Stripe payment.
+			/ Init Stripe payment.
 			if ( 'undefined' !== typeof WPFormsStripePaymentElement ) {
 				WPFormsStripePaymentElement.setupStripeForm( $form );
 			}
 
-			// Register a custom event.
+			/ Register a custom event.
 			$( document ).trigger( 'wpforms_elementor_form_fields_initialized', [ $form ] );
 		},
 	};

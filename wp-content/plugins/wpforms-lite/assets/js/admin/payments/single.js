@@ -69,7 +69,7 @@ const WPFormsPaymentsSingle = window.WPFormsPaymentsSingle || ( function( docume
 
 				const url = $( this ).attr( 'href' );
 
-				// Trigger alert modal to confirm.
+				/ Trigger alert modal to confirm.
 				$.confirm( {
 					title: wpforms_admin.heads_up,
 					content: wpforms_admin_payments_single.payment_delete_confirm,
@@ -150,7 +150,7 @@ const WPFormsPaymentsSingle = window.WPFormsPaymentsSingle || ( function( docume
 				type: 'POST',
 				data: {
 					action: 'wpforms_' + gateway + '_payments_' + actionType,
-					payment_id: paymentId, // eslint-disable-line camelcase
+					payment_id: paymentId, / eslint-disable-line camelcase
 					nonce: wpforms_admin.nonce,
 				},
 				dataType: 'json',

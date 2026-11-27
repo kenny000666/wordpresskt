@@ -81,7 +81,7 @@ register( {
 				},
 			};
 
-			// To handle CORS issues, when the default host is changed, the origin parameter has to be set.
+			/ To handle CORS issues, when the default host is changed, the origin parameter has to be set.
 			if ( parsedSettings.privacy ) {
 				playerOptions.host = 'https://www.youtube-nocookie.com';
 				playerOptions.origin = window.location.hostname;

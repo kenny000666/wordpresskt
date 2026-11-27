@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -18,7 +18,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -35,7 +35,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -102,7 +102,7 @@ __webpack_require__.d(tabbable_namespaceObject, {
   isTabbableIndex: () => (isTabbableIndex)
 });
 
-;// ./node_modules/@wordpress/dom/build-module/focusable.js
+;/ ./node_modules/@wordpress/dom/build-module/focusable.js
 /**
  * References:
  *
@@ -203,7 +203,7 @@ function find(context, {
   });
 }
 
-;// ./node_modules/@wordpress/dom/build-module/tabbable.js
+;/ ./node_modules/@wordpress/dom/build-module/tabbable.js
 /**
  * Internal dependencies
  */
@@ -258,21 +258,21 @@ function createStatefulCollapseRadioGroup() {
       name
     } = element;
 
-    // For all non-radio tabbables, construct to array by concatenating.
+    / For all non-radio tabbables, construct to array by concatenating.
     if (nodeName !== 'INPUT' || type !== 'radio' || !name) {
       return result.concat(element);
     }
     const hasChosen = CHOSEN_RADIO_BY_NAME.hasOwnProperty(name);
 
-    // Omit by skipping concatenation if the radio element is not chosen.
+    / Omit by skipping concatenation if the radio element is not chosen.
     const isChosen = checked || !hasChosen;
     if (!isChosen) {
       return result;
     }
 
-    // At this point, if there had been a chosen element, the current
-    // element is checked and should take priority. Retroactively remove
-    // the element which had previously been considered the chosen one.
+    / At this point, if there had been a chosen element, the current
+    / element is checked and should take priority. Retroactively remove
+    / the element which had previously been considered the chosen one.
     if (hasChosen) {
       const hadChosenElement = CHOSEN_RADIO_BY_NAME[name];
       result = result.filter(e => e !== hadChosenElement);
@@ -360,7 +360,7 @@ function tabbable_find(context) {
  */
 function findPrevious(element) {
   return filterTabbable(find(element.ownerDocument.body)).reverse().find(focusable =>
-  // eslint-disable-next-line no-bitwise
+  / eslint-disable-next-line no-bitwise
   element.compareDocumentPosition(focusable) & element.DOCUMENT_POSITION_PRECEDING);
 }
 
@@ -374,16 +374,16 @@ function findPrevious(element) {
  */
 function findNext(element) {
   return filterTabbable(find(element.ownerDocument.body)).find(focusable =>
-  // eslint-disable-next-line no-bitwise
+  / eslint-disable-next-line no-bitwise
   element.compareDocumentPosition(focusable) & element.DOCUMENT_POSITION_FOLLOWING);
 }
 
-;// ./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js
+;/ ./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js
 function assertIsDefined(val, name) {
   if (false) {}
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/get-rectangle-from-range.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/get-rectangle-from-range.js
 /**
  * Internal dependencies
  */
@@ -398,23 +398,23 @@ function assertIsDefined(val, name) {
  * @return {DOMRect?} The rectangle.
  */
 function getRectangleFromRange(range) {
-  // For uncollapsed ranges, get the rectangle that bounds the contents of the
-  // range; this a rectangle enclosing the union of the bounding rectangles
-  // for all the elements in the range.
+  / For uncollapsed ranges, get the rectangle that bounds the contents of the
+  / range; this a rectangle enclosing the union of the bounding rectangles
+  / for all the elements in the range.
   if (!range.collapsed) {
     const rects = Array.from(range.getClientRects());
 
-    // If there's just a single rect, return it.
+    / If there's just a single rect, return it.
     if (rects.length === 1) {
       return rects[0];
     }
 
-    // Ignore tiny selection at the edge of a range.
+    / Ignore tiny selection at the edge of a range.
     const filteredRects = rects.filter(({
       width
     }) => width > 1);
 
-    // If it's full of tiny selections, return browser default.
+    / If it's full of tiny selections, return browser default.
     if (filteredRects.length === 0) {
       return range.getBoundingClientRect();
     }
@@ -455,7 +455,7 @@ function getRectangleFromRange(range) {
     ownerDocument
   } = startContainer;
 
-  // Correct invalid "BR" ranges. The cannot contain any children.
+  / Correct invalid "BR" ranges. The cannot contain any children.
   if (startContainer.nodeName === 'BR') {
     const {
       parentNode
@@ -469,22 +469,22 @@ function getRectangleFromRange(range) {
   }
   const rects = range.getClientRects();
 
-  // If we have multiple rectangles for a collapsed range, there's no way to
-  // know which it is, so don't return anything.
+  / If we have multiple rectangles for a collapsed range, there's no way to
+  / know which it is, so don't return anything.
   if (rects.length > 1) {
     return null;
   }
   let rect = rects[0];
 
-  // If the collapsed range starts (and therefore ends) at an element node,
-  // `getClientRects` can be empty in some browsers. This can be resolved
-  // by adding a temporary text node with zero-width space to the range.
-  //
-  // See: https://stackoverflow.com/a/6847328/995445
+  / If the collapsed range starts (and therefore ends) at an element node,
+  / `getClientRects` can be empty in some browsers. This can be resolved
+  / by adding a temporary text node with zero-width space to the range.
+  /
+  / See: https://stackoverflow.com/a/6847328/995445
   if (!rect || rect.height === 0) {
     assertIsDefined(ownerDocument, 'ownerDocument');
     const padNode = ownerDocument.createTextNode('\u200b');
-    // Do not modify the live range.
+    / Do not modify the live range.
     range = range.cloneRange();
     range.insertNode(padNode);
     rect = range.getClientRects()[0];
@@ -494,7 +494,7 @@ function getRectangleFromRange(range) {
   return rect;
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/compute-caret-rect.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/compute-caret-rect.js
 /**
  * Internal dependencies
  */
@@ -518,7 +518,7 @@ function computeCaretRect(win) {
   return getRectangleFromRange(range);
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/document-has-text-selection.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/document-has-text-selection.js
 /**
  * Internal dependencies
  */
@@ -543,7 +543,7 @@ function documentHasTextSelection(doc) {
   return !!range && !range.collapsed;
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/is-html-input-element.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/is-html-input-element.js
 /* eslint-disable jsdoc/valid-types */
 /**
  * @param {Node} node
@@ -554,7 +554,7 @@ function isHTMLInputElement(node) {
   return node?.nodeName === 'INPUT';
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/is-text-field.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/is-text-field.js
 /**
  * Internal dependencies
  */
@@ -576,7 +576,7 @@ function isTextField(node) {
   return isHTMLInputElement(node) && node.type && !nonTextInputs.includes(node.type) || node.nodeName === 'TEXTAREA' || /** @type {HTMLElement} */node.contentEditable === 'true';
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/input-field-has-uncollapsed-selection.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/input-field-has-uncollapsed-selection.js
 /**
  * Internal dependencies
  */
@@ -605,30 +605,30 @@ function inputFieldHasUncollapsedSelection(element) {
     return false;
   }
 
-  // Safari throws a type error when trying to get `selectionStart` and
-  // `selectionEnd` on non-text <input> elements, so a try/catch construct is
-  // necessary.
+  / Safari throws a type error when trying to get `selectionStart` and
+  / `selectionEnd` on non-text <input> elements, so a try/catch construct is
+  / necessary.
   try {
     const {
       selectionStart,
       selectionEnd
     } = /** @type {HTMLInputElement | HTMLTextAreaElement} */element;
     return (
-      // `null` means the input type doesn't implement selection, thus we
-      // cannot determine whether the selection is collapsed, so we
-      // default to true.
+      / `null` means the input type doesn't implement selection, thus we
+      / cannot determine whether the selection is collapsed, so we
+      / default to true.
       selectionStart === null ||
-      // when not null, compare the two points
+      / when not null, compare the two points
       selectionStart !== selectionEnd
     );
   } catch (error) {
-    // This is Safari's way of saying that the input type doesn't implement
-    // selection, so we default to true.
+    / This is Safari's way of saying that the input type doesn't implement
+    / selection, so we default to true.
     return true;
   }
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/document-has-uncollapsed-selection.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/document-has-uncollapsed-selection.js
 /**
  * Internal dependencies
  */
@@ -648,7 +648,7 @@ function documentHasUncollapsedSelection(doc) {
   return documentHasTextSelection(doc) || !!doc.activeElement && inputFieldHasUncollapsedSelection(doc.activeElement);
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/document-has-selection.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/document-has-selection.js
 /**
  * Internal dependencies
  */
@@ -668,7 +668,7 @@ function documentHasSelection(doc) {
   return !!doc.activeElement && (isHTMLInputElement(doc.activeElement) || isTextField(doc.activeElement) || documentHasTextSelection(doc));
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/get-computed-style.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/get-computed-style.js
 /**
  * Internal dependencies
  */
@@ -685,7 +685,7 @@ function getComputedStyle(element) {
   return element.ownerDocument.defaultView.getComputedStyle(element);
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/get-scroll-container.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/get-scroll-container.js
 /**
  * Internal dependencies
  */
@@ -705,9 +705,9 @@ function getScrollContainer(node, direction = 'vertical') {
     return undefined;
   }
   if (direction === 'vertical' || direction === 'all') {
-    // Scrollable if scrollable height exceeds displayed...
+    / Scrollable if scrollable height exceeds displayed...
     if (node.scrollHeight > node.clientHeight) {
-      // ...except when overflow is defined to be hidden or visible
+      / ...except when overflow is defined to be hidden or visible
       const {
         overflowY
       } = getComputedStyle(node);
@@ -717,9 +717,9 @@ function getScrollContainer(node, direction = 'vertical') {
     }
   }
   if (direction === 'horizontal' || direction === 'all') {
-    // Scrollable if scrollable width exceeds displayed...
+    / Scrollable if scrollable width exceeds displayed...
     if (node.scrollWidth > node.clientWidth) {
-      // ...except when overflow is defined to be hidden or visible
+      / ...except when overflow is defined to be hidden or visible
       const {
         overflowX
       } = getComputedStyle(node);
@@ -732,11 +732,11 @@ function getScrollContainer(node, direction = 'vertical') {
     return node;
   }
 
-  // Continue traversing.
+  / Continue traversing.
   return getScrollContainer(/** @type {Element} */node.parentNode, direction);
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/get-offset-parent.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/get-offset-parent.js
 /**
  * Internal dependencies
  */
@@ -754,8 +754,8 @@ function getScrollContainer(node, direction = 'vertical') {
  * @return {Node | null} Offset parent.
  */
 function getOffsetParent(node) {
-  // Cannot retrieve computed style or offset parent only anything other than
-  // an element node, so find the closest element node.
+  / Cannot retrieve computed style or offset parent only anything other than
+  / an element node, so find the closest element node.
   let closestElement;
   while (closestElement = /** @type {Node} */node.parentNode) {
     if (closestElement.nodeType === closestElement.ELEMENT_NODE) {
@@ -766,17 +766,17 @@ function getOffsetParent(node) {
     return null;
   }
 
-  // If the closest element is already positioned, return it, as offsetParent
-  // does not otherwise consider the node itself.
+  / If the closest element is already positioned, return it, as offsetParent
+  / does not otherwise consider the node itself.
   if (getComputedStyle(/** @type {Element} */closestElement).position !== 'static') {
     return closestElement;
   }
 
-  // offsetParent is undocumented/draft.
+  / offsetParent is undocumented/draft.
   return /** @type {Node & { offsetParent: Node }} */closestElement.offsetParent;
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/is-input-or-text-area.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/is-input-or-text-area.js
 /* eslint-disable jsdoc/valid-types */
 /**
  * @param {Element} element
@@ -787,7 +787,7 @@ function isInputOrTextArea(element) {
   return element.tagName === 'INPUT' || element.tagName === 'TEXTAREA';
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/is-entirely-selected.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/is-entirely-selected.js
 /**
  * Internal dependencies
  */
@@ -859,7 +859,7 @@ function isDeepChild(query, container, propName) {
   return false;
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/is-form-element.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/is-form-element.js
 /**
  * Internal dependencies
  */
@@ -884,7 +884,7 @@ function isFormElement(element) {
   return checkForInputTextarea || tagName === 'BUTTON' || tagName === 'SELECT';
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/is-rtl.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/is-rtl.js
 /**
  * Internal dependencies
  */
@@ -901,7 +901,7 @@ function isRTL(element) {
   return getComputedStyle(element).direction === 'rtl';
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/get-range-height.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/get-range-height.js
 /**
  * Gets the height of the range without ignoring zero width rectangles, which
  * some browsers ignore when creating a union.
@@ -923,7 +923,7 @@ function getRangeHeight(range) {
   return lowestBottom - highestTop;
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/is-selection-forward.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/is-selection-forward.js
 /**
  * Internal dependencies
  */
@@ -950,11 +950,11 @@ function isSelectionForward(selection) {
   assertIsDefined(focusNode, 'focusNode');
   const position = anchorNode.compareDocumentPosition(focusNode);
 
-  // Disable reason: `Node#compareDocumentPosition` returns a bitmask value,
-  // so bitwise operators are intended.
+  / Disable reason: `Node#compareDocumentPosition` returns a bitmask value,
+  / so bitwise operators are intended.
   /* eslint-disable no-bitwise */
-  // Compare whether anchor node precedes focus node. If focus node (where
-  // end of selection occurs) is after the anchor node, it is forward.
+  / Compare whether anchor node precedes focus node. If focus node (where
+  / end of selection occurs) is after the anchor node, it is forward.
   if (position & anchorNode.DOCUMENT_POSITION_PRECEDING) {
     return false;
   }
@@ -963,17 +963,17 @@ function isSelectionForward(selection) {
   }
   /* eslint-enable no-bitwise */
 
-  // `compareDocumentPosition` returns 0 when passed the same node, in which
-  // case compare offsets.
+  / `compareDocumentPosition` returns 0 when passed the same node, in which
+  / case compare offsets.
   if (position === 0) {
     return anchorOffset <= focusOffset;
   }
 
-  // This should never be reached, but return true as default case.
+  / This should never be reached, but return true as default case.
   return true;
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/caret-range-from-point.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/caret-range-from-point.js
 /**
  * Polyfill.
  * Get a collapsed range for a given point.
@@ -995,8 +995,8 @@ function caretRangeFromPoint(doc, x, y) {
   }
   const point = doc.caretPositionFromPoint(x, y);
 
-  // If x or y are negative, outside viewport, or there is no text entry node.
-  // https://developer.mozilla.org/en-US/docs/Web/API/Document/caretRangeFromPoint
+  / If x or y are negative, outside viewport, or there is no text entry node.
+  / https://developer.mozilla.org/en-US/docs/Web/API/Document/caretRangeFromPoint
   if (!point) {
     return null;
   }
@@ -1011,7 +1011,7 @@ function caretRangeFromPoint(doc, x, y) {
  * @typedef {{ readonly offset: number; readonly offsetNode: Node; getClientRect(): DOMRect | null; }} CaretPosition
  */
 
-;// ./node_modules/@wordpress/dom/build-module/dom/hidden-caret-range-from-point.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/hidden-caret-range-from-point.js
 /**
  * Internal dependencies
  */
@@ -1037,7 +1037,7 @@ function hiddenCaretRangeFromPoint(doc, x, y, container) {
     position = 'static'
   } = getComputedStyle(container);
 
-  // A z-index only works if the element position is not static.
+  / A z-index only works if the element position is not static.
   if (position === 'static') {
     container.style.position = 'relative';
   }
@@ -1048,7 +1048,7 @@ function hiddenCaretRangeFromPoint(doc, x, y, container) {
   return range;
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/scroll-if-no-range.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/scroll-if-no-range.js
 /**
  * If no range range can be created or it is outside the container, the element
  * may be out of view, so scroll it into view and try again.
@@ -1062,8 +1062,8 @@ function hiddenCaretRangeFromPoint(doc, x, y, container) {
 function scrollIfNoRange(container, alignToTop, callback) {
   let range = callback();
 
-  // If no range range can be created or it is outside the container, the
-  // element may be out of view.
+  / If no range range can be created or it is outside the container, the
+  / element may be out of view.
   if (!range || !range.startContainer || !container.contains(range.startContainer)) {
     container.scrollIntoView(alignToTop);
     range = callback();
@@ -1074,7 +1074,7 @@ function scrollIfNoRange(container, alignToTop, callback) {
   return range;
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/is-edge.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/is-edge.js
 /**
  * Internal dependencies
  */
@@ -1127,7 +1127,7 @@ function isEdge(container, isReverse, onlyVertical = false) {
   const isForward = isSelectionForward(selection);
   const isCollapsed = selection.isCollapsed;
 
-  // Collapse in direction of selection.
+  / Collapse in direction of selection.
   if (!isCollapsed) {
     collapsedRange.collapse(!isForward);
   }
@@ -1137,28 +1137,28 @@ function isEdge(container, isReverse, onlyVertical = false) {
     return false;
   }
 
-  // Only consider the multiline selection at the edge if the direction is
-  // towards the edge. The selection is multiline if it is taller than the
-  // collapsed  selection.
+  / Only consider the multiline selection at the edge if the direction is
+  / towards the edge. The selection is multiline if it is taller than the
+  / collapsed  selection.
   const rangeHeight = getRangeHeight(range);
   if (!isCollapsed && rangeHeight && rangeHeight > collapsedRangeRect.height && isForward === isReverse) {
     return false;
   }
 
-  // In the case of RTL scripts, the horizontal edge is at the opposite side.
+  / In the case of RTL scripts, the horizontal edge is at the opposite side.
   const isReverseDir = isRTL(container) ? !isReverse : isReverse;
   const containerRect = container.getBoundingClientRect();
 
-  // To check if a selection is at the edge, we insert a test selection at the
-  // edge of the container and check if the selections have the same vertical
-  // or horizontal position. If they do, the selection is at the edge.
-  // This method proves to be better than a DOM-based calculation for the
-  // horizontal edge, since it ignores empty textnodes and a trailing line
-  // break element. In other words, we need to check visual positioning, not
-  // DOM positioning.
-  // It also proves better than using the computed style for the vertical
-  // edge, because we cannot know the padding and line height reliably in
-  // pixels. `getComputedStyle` may return a value with different units.
+  / To check if a selection is at the edge, we insert a test selection at the
+  / edge of the container and check if the selections have the same vertical
+  / or horizontal position. If they do, the selection is at the edge.
+  / This method proves to be better than a DOM-based calculation for the
+  / horizontal edge, since it ignores empty textnodes and a trailing line
+  / break element. In other words, we need to check visual positioning, not
+  / DOM positioning.
+  / It also proves better than using the computed style for the vertical
+  / edge, because we cannot know the padding and line height reliably in
+  / pixels. `getComputedStyle` may return a value with different units.
   const x = isReverseDir ? containerRect.left + 1 : containerRect.right - 1;
   const y = isReverse ? containerRect.top + 1 : containerRect.bottom - 1;
   const testRange = scrollIfNoRange(container, isReverse, () => hiddenCaretRangeFromPoint(ownerDocument, x, y, container));
@@ -1174,13 +1174,13 @@ function isEdge(container, isReverse, onlyVertical = false) {
   const verticalDiff = testRect[verticalSide] - rangeRect[verticalSide];
   const horizontalDiff = testRect[horizontalSide] - collapsedRangeRect[horizontalSide];
 
-  // Allow the position to be 1px off.
+  / Allow the position to be 1px off.
   const hasVerticalDiff = Math.abs(verticalDiff) <= 1;
   const hasHorizontalDiff = Math.abs(horizontalDiff) <= 1;
   return onlyVertical ? hasVerticalDiff : hasVerticalDiff && hasHorizontalDiff;
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/is-horizontal-edge.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/is-horizontal-edge.js
 /**
  * Internal dependencies
  */
@@ -1198,10 +1198,10 @@ function isHorizontalEdge(container, isReverse) {
   return isEdge(container, isReverse);
 }
 
-;// external ["wp","deprecated"]
+;/ external ["wp","deprecated"]
 const external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
 var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_namespaceObject);
-;// ./node_modules/@wordpress/dom/build-module/dom/is-number-input.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/is-number-input.js
 /**
  * WordPress dependencies
  */
@@ -1229,7 +1229,7 @@ function isNumberInput(node) {
   return isHTMLInputElement(node) && node.type === 'number' && !isNaN(node.valueAsNumber);
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/is-vertical-edge.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/is-vertical-edge.js
 /**
  * Internal dependencies
  */
@@ -1247,7 +1247,7 @@ function isVerticalEdge(container, isReverse) {
   return isEdge(container, isReverse, true);
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/place-caret-at-edge.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/place-caret-at-edge.js
 /**
  * Internal dependencies
  */
@@ -1270,13 +1270,13 @@ function getRange(container, isReverse, x) {
   const {
     ownerDocument
   } = container;
-  // In the case of RTL scripts, the horizontal edge is at the opposite side.
+  / In the case of RTL scripts, the horizontal edge is at the opposite side.
   const isReverseDir = isRTL(container) ? !isReverse : isReverse;
   const containerRect = container.getBoundingClientRect();
-  // When placing at the end (isReverse), find the closest range to the bottom
-  // right corner. When placing at the start, to the top left corner.
-  // Ensure x is defined and within the container's boundaries. When it's
-  // exactly at the boundary, it's not considered within the boundaries.
+  / When placing at the end (isReverse), find the closest range to the bottom
+  / right corner. When placing at the start, to the top left corner.
+  / Ensure x is defined and within the container's boundaries. When it's
+  / exactly at the boundary, it's not considered within the boundaries.
   if (x === undefined) {
     x = isReverse ? containerRect.right - 1 : containerRect.left + 1;
   } else if (x <= containerRect.left) {
@@ -1301,7 +1301,7 @@ function placeCaretAtEdge(container, isReverse, x) {
   }
   container.focus();
   if (isInputOrTextArea(container)) {
-    // The element may not support selection setting.
+    / The element may not support selection setting.
     if (typeof container.selectionStart !== 'number') {
       return;
     }
@@ -1334,7 +1334,7 @@ function placeCaretAtEdge(container, isReverse, x) {
   selection.addRange(range);
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/place-caret-at-horizontal-edge.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/place-caret-at-horizontal-edge.js
 /**
  * Internal dependencies
  */
@@ -1350,7 +1350,7 @@ function placeCaretAtHorizontalEdge(container, isReverse) {
   return placeCaretAtEdge(container, isReverse, undefined);
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/place-caret-at-vertical-edge.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/place-caret-at-vertical-edge.js
 /**
  * Internal dependencies
  */
@@ -1367,7 +1367,7 @@ function placeCaretAtVerticalEdge(container, isReverse, rect) {
   return placeCaretAtEdge(container, isReverse, rect?.left);
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/insert-after.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/insert-after.js
 /**
  * Internal dependencies
  */
@@ -1386,7 +1386,7 @@ function insertAfter(newNode, referenceNode) {
   referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/remove.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/remove.js
 /**
  * Internal dependencies
  */
@@ -1403,7 +1403,7 @@ function remove(node) {
   node.parentNode.removeChild(node);
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/replace.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/replace.js
 /**
  * Internal dependencies
  */
@@ -1424,7 +1424,7 @@ function replace(processedNode, newNode) {
   remove(processedNode);
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/unwrap.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/unwrap.js
 /**
  * Internal dependencies
  */
@@ -1446,7 +1446,7 @@ function unwrap(node) {
   parent.removeChild(node);
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/replace-tag.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/replace-tag.js
 /**
  * Internal dependencies
  */
@@ -1470,7 +1470,7 @@ function replaceTag(node, tagName) {
   return newNode;
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/wrap.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/wrap.js
 /**
  * Internal dependencies
  */
@@ -1488,7 +1488,7 @@ function wrap(newNode, referenceNode) {
   newNode.appendChild(referenceNode);
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/safe-html.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/safe-html.js
 /**
  * Internal dependencies
  */
@@ -1527,7 +1527,7 @@ function safeHTML(html) {
   return body.innerHTML;
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/strip-html.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/strip-html.js
 /**
  * Internal dependencies
  */
@@ -1541,15 +1541,15 @@ function safeHTML(html) {
  * @return {string} The text content with any html removed.
  */
 function stripHTML(html) {
-  // Remove any script tags or on* attributes otherwise their *contents* will be left
-  // in place following removal of HTML tags.
+  / Remove any script tags or on* attributes otherwise their *contents* will be left
+  / in place following removal of HTML tags.
   html = safeHTML(html);
   const doc = document.implementation.createHTMLDocument('');
   doc.body.innerHTML = html;
   return doc.body.textContent || '';
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/is-empty.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/is-empty.js
 /**
  * Recursively checks if an element is empty. An element is not empty if it
  * contains text or contains elements with attributes such as images.
@@ -1561,8 +1561,8 @@ function stripHTML(html) {
 function isEmpty(element) {
   switch (element.nodeType) {
     case element.TEXT_NODE:
-      // We cannot use \s since it includes special spaces which we want
-      // to preserve.
+      / We cannot use \s since it includes special spaces which we want
+      / to preserve.
       return /^[ \f\n\r\t\v\u00a0]*$/.test(element.nodeValue || '');
     case element.ELEMENT_NODE:
       if (element.hasAttributes()) {
@@ -1576,7 +1576,7 @@ function isEmpty(element) {
   }
 }
 
-;// ./node_modules/@wordpress/dom/build-module/phrasing-content.js
+;/ ./node_modules/@wordpress/dom/build-module/phrasing-content.js
 /**
  * All phrasing content elements.
  *
@@ -1617,8 +1617,8 @@ const textContentSchema = {
   sup: {},
   br: {},
   small: {},
-  // To do: fix blockquote.
-  // cite: {},
+  / To do: fix blockquote.
+  / cite: {},
   q: {
     attributes: ['cite']
   },
@@ -1721,24 +1721,24 @@ function getPhrasingContentSchema(context) {
    */
   const {
     u,
-    // Used to mark misspelling. Shouldn't be pasted.
+    / Used to mark misspelling. Shouldn't be pasted.
     abbr,
-    // Invisible.
+    / Invisible.
     data,
-    // Invisible.
+    / Invisible.
     time,
-    // Invisible.
+    / Invisible.
     wbr,
-    // Invisible.
+    / Invisible.
     bdi,
-    // Invisible.
+    / Invisible.
     bdo,
-    // Invisible.
+    / Invisible.
     ...remainingContentSchema
   } = {
     ...phrasingContentSchema,
-    // We shouldn't paste potentially sensitive information which is not
-    // visible to the user when pasted, so strip the attributes.
+    / We shouldn't paste potentially sensitive information which is not
+    / visible to the user when pasted, so strip the attributes.
     ins: {
       children: phrasingContentSchema.ins.children
     },
@@ -1772,7 +1772,7 @@ function isTextContent(node) {
   return textContentSchema.hasOwnProperty(tag) || tag === 'span';
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/is-element.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/is-element.js
 /* eslint-disable jsdoc/valid-types */
 /**
  * @param {Node | null | undefined} node
@@ -1783,7 +1783,7 @@ function isElement(node) {
   return !!node && node.nodeType === node.ELEMENT_NODE;
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/clean-node-list.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/clean-node-list.js
 /**
  * Internal dependencies
  */
@@ -1822,8 +1822,8 @@ function cleanNodeList(nodeList, doc, schema, inline) {
   Array.from(nodeList).forEach((/** @type {Node & { nextElementSibling?: unknown }} */node) => {
     const tag = node.nodeName.toLowerCase();
 
-    // It's a valid child, if the tag exists in the schema without an isMatch
-    // function, or with an isMatch function that matches the node.
+    / It's a valid child, if the tag exists in the schema without an isMatch
+    / function, or with an isMatch function that matches the node.
     if (schema.hasOwnProperty(tag) && (!schema[tag].isMatch || schema[tag].isMatch?.(node))) {
       if (isElement(node)) {
         const {
@@ -1834,14 +1834,14 @@ function cleanNodeList(nodeList, doc, schema, inline) {
           allowEmpty
         } = schema[tag];
 
-        // If the node is empty and it's supposed to have children,
-        // remove the node.
+        / If the node is empty and it's supposed to have children,
+        / remove the node.
         if (children && !allowEmpty && isEmpty(node)) {
           remove(node);
           return;
         }
         if (node.hasAttributes()) {
-          // Strip invalid attributes.
+          / Strip invalid attributes.
           Array.from(node.attributes).forEach(({
             name
           }) => {
@@ -1850,13 +1850,13 @@ function cleanNodeList(nodeList, doc, schema, inline) {
             }
           });
 
-          // Strip invalid classes.
-          // In jsdom-jscore, 'node.classList' can be undefined.
-          // TODO: Explore patching this in jsdom-jscore.
+          / Strip invalid classes.
+          / In jsdom-jscore, 'node.classList' can be undefined.
+          / TODO: Explore patching this in jsdom-jscore.
           if (node.classList && node.classList.length) {
             const mattchers = classes.map(item => {
               if (item === '*') {
-                // Keep all classes.
+                / Keep all classes.
                 return () => true;
               } else if (typeof item === 'string') {
                 return (/** @type {string} */className) => className === item;
@@ -1876,21 +1876,21 @@ function cleanNodeList(nodeList, doc, schema, inline) {
           }
         }
         if (node.hasChildNodes()) {
-          // Do not filter any content.
+          / Do not filter any content.
           if (children === '*') {
             return;
           }
 
-          // Continue if the node is supposed to have children.
+          / Continue if the node is supposed to have children.
           if (children) {
-            // If a parent requires certain children, but it does
-            // not have them, drop the parent and continue.
+            / If a parent requires certain children, but it does
+            / not have them, drop the parent and continue.
             if (require.length && !node.querySelector(require.join(','))) {
               cleanNodeList(node.childNodes, doc, schema, inline);
               unwrap(node);
-              // If the node is at the top, phrasing content, and
-              // contains children that are block content, unwrap
-              // the node because it is invalid.
+              / If the node is at the top, phrasing content, and
+              / contains children that are block content, unwrap
+              / the node because it is invalid.
             } else if (node.parentNode && node.parentNode.nodeName === 'BODY' && isPhrasingContent(node)) {
               cleanNodeList(node.childNodes, doc, schema, inline);
               if (Array.from(node.childNodes).some(child => !isPhrasingContent(child))) {
@@ -1899,7 +1899,7 @@ function cleanNodeList(nodeList, doc, schema, inline) {
             } else {
               cleanNodeList(node.childNodes, doc, children, inline);
             }
-            // Remove children if the node is not supposed to have any.
+            / Remove children if the node is not supposed to have any.
           } else {
             while (node.firstChild) {
               remove(node.firstChild);
@@ -1907,12 +1907,12 @@ function cleanNodeList(nodeList, doc, schema, inline) {
           }
         }
       }
-      // Invalid child. Continue with schema at the same place and unwrap.
+      / Invalid child. Continue with schema at the same place and unwrap.
     } else {
       cleanNodeList(node.childNodes, doc, schema, inline);
 
-      // For inline mode, insert a line break when unwrapping nodes that
-      // are not phrasing content.
+      / For inline mode, insert a line break when unwrapping nodes that
+      / are not phrasing content.
       if (inline && !isPhrasingContent(node) && node.nextElementSibling) {
         insertAfter(doc.createElement('br'), node);
       }
@@ -1921,7 +1921,7 @@ function cleanNodeList(nodeList, doc, schema, inline) {
   });
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/remove-invalid-html.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/remove-invalid-html.js
 /**
  * Internal dependencies
  */
@@ -1943,7 +1943,7 @@ function removeInvalidHTML(HTML, schema, inline) {
   return doc.body.innerHTML;
 }
 
-;// ./node_modules/@wordpress/dom/build-module/dom/index.js
+;/ ./node_modules/@wordpress/dom/build-module/dom/index.js
 
 
 
@@ -1972,7 +1972,7 @@ function removeInvalidHTML(HTML, schema, inline) {
 
 
 
-;// ./node_modules/@wordpress/dom/build-module/data-transfer.js
+;/ ./node_modules/@wordpress/dom/build-module/data-transfer.js
 /**
  * Gets all files from a DataTransfer object.
  *
@@ -1995,7 +1995,7 @@ function getFilesFromDataTransfer(dataTransfer) {
   return files;
 }
 
-;// ./node_modules/@wordpress/dom/build-module/index.js
+;/ ./node_modules/@wordpress/dom/build-module/index.js
 /**
  * Internal dependencies
  */

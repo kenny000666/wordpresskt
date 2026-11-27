@@ -81,11 +81,11 @@
 		getWeek: function (givenDate) {
 			var date = new Date(givenDate.getTime());
 			date.setHours(0, 0, 0, 0);
-			// Thursday in current week decides the year.
+			/ Thursday in current week decides the year.
 			date.setDate(date.getDate() + 3 - ((date.getDay() + 6) % 7));
-			// January 4 is always in week 1.
+			/ January 4 is always in week 1.
 			var week1 = new Date(date.getFullYear(), 0, 4);
-			// Adjust to Thursday in week 1 and count number of weeks from date to week1.
+			/ Adjust to Thursday in week 1 and count number of weeks from date to week1.
 			return (1 +
 				Math.round(((date.getTime() - week1.getTime()) / 86400000 -
 						3 +
@@ -240,7 +240,7 @@
 			return node;
 		else if (node.parentNode)
 			return findParent(node.parentNode, condition);
-		return undefined; // nothing found
+		return undefined; / nothing found
 	}
 	function createNumberInput(inputClassName, opts) {
 		var wrapper = createElement("div", "numInputWrapper"), numInput = createElement("input", "numInput " + inputClassName), arrowUp = createElement("span", "arrowUp"), arrowDown = createElement("span", "arrowDown");
@@ -365,66 +365,66 @@
 		y: "(\\d{2})",
 	};
 	var formats = {
-		// get the date in UTC
+		/ get the date in UTC
 		Z: function (date) { return date.toISOString(); },
-		// weekday name, short, e.g. Thu
+		/ weekday name, short, e.g. Thu
 		D: function (date, locale, options) {
 			return locale.weekdays.shorthand[formats.w(date, locale, options)];
 		},
-		// full month name e.g. January
+		/ full month name e.g. January
 		F: function (date, locale, options) {
 			return monthToStr(formats.n(date, locale, options) - 1, false, locale);
 		},
-		// padded hour 1-12
+		/ padded hour 1-12
 		G: function (date, locale, options) {
 			return pad(formats.h(date, locale, options));
 		},
-		// hours with leading zero e.g. 03
+		/ hours with leading zero e.g. 03
 		H: function (date) { return pad(date.getHours()); },
-		// day (1-30) with ordinal suffix e.g. 1st, 2nd
+		/ day (1-30) with ordinal suffix e.g. 1st, 2nd
 		J: function (date, locale) {
 			return locale.ordinal !== undefined
 				? date.getDate() + locale.ordinal(date.getDate())
 				: date.getDate();
 		},
-		// AM/PM
+		/ AM/PM
 		K: function (date, locale) { return locale.amPM[int(date.getHours() > 11)]; },
-		// shorthand month e.g. Jan, Sep, Oct, etc
+		/ shorthand month e.g. Jan, Sep, Oct, etc
 		M: function (date, locale) {
 			return monthToStr(date.getMonth(), true, locale);
 		},
-		// seconds 00-59
+		/ seconds 00-59
 		S: function (date) { return pad(date.getSeconds()); },
-		// unix timestamp
+		/ unix timestamp
 		U: function (date) { return date.getTime() / 1000; },
 		W: function (date, _, options) {
 			return options.getWeek(date);
 		},
-		// full year e.g. 2016, padded (0001-9999)
+		/ full year e.g. 2016, padded (0001-9999)
 		Y: function (date) { return pad(date.getFullYear(), 4); },
-		// day in month, padded (01-30)
+		/ day in month, padded (01-30)
 		d: function (date) { return pad(date.getDate()); },
-		// hour from 1-12 (am/pm)
+		/ hour from 1-12 (am/pm)
 		h: function (date) { return (date.getHours() % 12 ? date.getHours() % 12 : 12); },
-		// minutes, padded with leading zero e.g. 09
+		/ minutes, padded with leading zero e.g. 09
 		i: function (date) { return pad(date.getMinutes()); },
-		// day in month (1-30)
+		/ day in month (1-30)
 		j: function (date) { return date.getDate(); },
-		// weekday name, full, e.g. Thursday
+		/ weekday name, full, e.g. Thursday
 		l: function (date, locale) {
 			return locale.weekdays.longhand[date.getDay()];
 		},
-		// padded month number (01-12)
+		/ padded month number (01-12)
 		m: function (date) { return pad(date.getMonth() + 1); },
-		// the month number (1-12)
+		/ the month number (1-12)
 		n: function (date) { return date.getMonth() + 1; },
-		// seconds 0-59
+		/ seconds 0-59
 		s: function (date) { return date.getSeconds(); },
-		// Unix Milliseconds
+		/ Unix Milliseconds
 		u: function (date) { return date.getTime(); },
-		// number of the day of the week
+		/ number of the day of the week
 		w: function (date) { return date.getDay(); },
-		// last two digits of year e.g. 16 for 2016
+		/ last two digits of year e.g. 16 for 2016
 		y: function (date) { return String(date.getFullYear()).substring(2); },
 	};
 
@@ -458,12 +458,12 @@
 			if (date instanceof Date)
 				parsedDate = new Date(date.getTime());
 			else if (typeof date !== "string" &&
-				date.toFixed !== undefined // timestamp
+				date.toFixed !== undefined / timestamp
 			)
-				// create a copy
+				/ create a copy
 				parsedDate = new Date(date);
 			else if (typeof date === "string") {
-				// date string
+				/ date string
 				var format = givenFormat || (config || defaults).dateFormat;
 				var datestr = String(date).trim();
 				if (datestr === "today") {
@@ -474,7 +474,7 @@
 					parsedDate = config.parseDate(date, format);
 				}
 				else if (/Z$/.test(datestr) ||
-					/GMT$/.test(datestr) // datestrings w/ timezone
+					/GMT$/.test(datestr) / datestrings w/ timezone
 				) {
 					parsedDate = new Date(date);
 				}
@@ -495,7 +495,7 @@
 							}
 						}
 						else if (!isBackSlash)
-							regexStr += "."; // don't really care
+							regexStr += "."; / don't really care
 					}
 					parsedDate =
 						!config || !config.noCalendar
@@ -1158,20 +1158,20 @@
 			var prevMonthDays = self.utils.getDaysInMonth((month - 1 + 12) % 12, year);
 			var daysInMonth = self.utils.getDaysInMonth(month, year), days = window.document.createDocumentFragment(), isMultiMonth = self.config.showMonths > 1, prevMonthDayClass = isMultiMonth ? "prevMonthDay hidden" : "prevMonthDay", nextMonthDayClass = isMultiMonth ? "nextMonthDay hidden" : "nextMonthDay";
 			var dayNumber = prevMonthDays + 1 - firstOfMonth, dayIndex = 0;
-			// prepend days from the ending of previous month
+			/ prepend days from the ending of previous month
 			for (; dayNumber <= prevMonthDays; dayNumber++, dayIndex++) {
 				days.appendChild(createDay("flatpickr-day " + prevMonthDayClass, new Date(year, month - 1, dayNumber), dayNumber, dayIndex));
 			}
-			// Start at 1 since there is no 0th day
+			/ Start at 1 since there is no 0th day
 			for (dayNumber = 1; dayNumber <= daysInMonth; dayNumber++, dayIndex++) {
 				days.appendChild(createDay("flatpickr-day", new Date(year, month, dayNumber), dayNumber, dayIndex));
 			}
-			// append days from the next month
+			/ append days from the next month
 			for (var dayNum = daysInMonth + 1; dayNum <= 42 - firstOfMonth &&
 			(self.config.showMonths === 1 || dayIndex % 7 !== 0); dayNum++, dayIndex++) {
 				days.appendChild(createDay("flatpickr-day " + nextMonthDayClass, new Date(year, month + 1, dayNum % daysInMonth), dayNum, dayIndex));
 			}
-			//updateNavigationCurrentMonth();
+			/updateNavigationCurrentMonth();
 			var dayContainer = createElement("div", "dayContainer");
 			dayContainer.appendChild(days);
 			return dayContainer;
@@ -1181,7 +1181,7 @@
 				return;
 			}
 			clearNode(self.daysContainer);
-			// TODO: week numbers for each month
+			/ TODO: week numbers for each month
 			if (self.weekNumbers)
 				clearNode(self.weekNumbers);
 			var frag = document.createDocumentFragment();
@@ -1367,7 +1367,7 @@
 				self.timeContainer.appendChild(secondInput);
 			}
 			if (!self.config.time_24hr) {
-				// add self.amPM if appropriate
+				/ add self.amPM if appropriate
 				self.amPM = createElement("span", "flatpickr-am-pm", self.l10n.amPM[int((self.latestSelectedDateObj
 					? self.hourElement.value
 					: self.config.defaultHour) > 11)]);
@@ -1451,7 +1451,7 @@
 			}
 			self.redraw();
 			if (triggerChangeEvent)
-				// triggerChangeEvent is true (default) or an Event
+				/ triggerChangeEvent is true (default) or an Event
 				triggerEvent("onChange");
 		}
 		function close() {
@@ -1549,8 +1549,8 @@
 				var isInput = eventTarget_1 === self.input ||
 					eventTarget_1 === self.altInput ||
 					self.element.contains(eventTarget_1) ||
-					// web components
-					// e.path is not present in all browsers. circumventing typechecks
+					/ web components
+					/ e.path is not present in all browsers. circumventing typechecks
 					(e.path &&
 						e.path.indexOf &&
 						(~e.path.indexOf(self.input) ||
@@ -1606,7 +1606,7 @@
 		function isEnabled(date, timeless) {
 			var _a;
 			if (timeless === void 0) { timeless = true; }
-			var dateToCheck = self.parseDate(date, undefined, timeless); // timeless
+			var dateToCheck = self.parseDate(date, undefined, timeless); / timeless
 			if ((self.config.minDate &&
 					dateToCheck &&
 					compareDates(dateToCheck, self.config.minDate, timeless !== undefined ? timeless : !self.minDateHasTime) < 0) ||
@@ -1622,23 +1622,23 @@
 			for (var i = 0, d = void 0; i < array.length; i++) {
 				d = array[i];
 				if (typeof d === "function" &&
-					d(dateToCheck) // disabled by function
+					d(dateToCheck) / disabled by function
 				)
 					return bool;
 				else if (d instanceof Date &&
 					dateToCheck !== undefined &&
 					d.getTime() === dateToCheck.getTime())
-					// disabled by date
+					/ disabled by date
 					return bool;
 				else if (typeof d === "string") {
-					// disabled by date string
+					/ disabled by date string
 					var parsed = self.parseDate(d, undefined, true);
 					return parsed && parsed.getTime() === dateToCheck.getTime()
 						? bool
 						: !bool;
 				}
 				else if (
-					// disabled by range
+					/ disabled by range
 					typeof d === "object" &&
 					dateToCheck !== undefined &&
 					d.from &&
@@ -1668,16 +1668,16 @@
 			}
 		}
 		function onKeyDown(e) {
-			// e.key                      e.keyCode
-			// "Backspace"                        8
-			// "Tab"                              9
-			// "Enter"                           13
-			// "Escape"     (IE "Esc")           27
-			// "ArrowLeft"  (IE "Left")          37
-			// "ArrowUp"    (IE "Up")            38
-			// "ArrowRight" (IE "Right")         39
-			// "ArrowDown"  (IE "Down")          40
-			// "Delete"     (IE "Del")           46
+			/ e.key                      e.keyCode
+			/ "Backspace"                        8
+			/ "Tab"                              9
+			/ "Enter"                           13
+			/ "Escape"     (IE "Esc")           27
+			/ "ArrowLeft"  (IE "Left")          37
+			/ "ArrowUp"    (IE "Up")            38
+			/ "ArrowRight" (IE "Right")         39
+			/ "ArrowDown"  (IE "Down")          40
+			/ "Delete"     (IE "Del")           46
 			var eventTarget = getEventTarget(e);
 			var isInput = self.config.wrap
 				? element.contains(eventTarget)
@@ -1712,7 +1712,7 @@
 						else
 							selectDate(e);
 						break;
-					case 27: // escape
+					case 27: / escape
 						e.preventDefault();
 						focusAndClose();
 						break;
@@ -2016,7 +2016,7 @@
 			}
 			Object.assign(self.config, formats, userConfig);
 			for (var i = 0; i < boolOpts.length; i++)
-				// https://github.com/microsoft/TypeScript/issues/31663
+				/ https://github.com/microsoft/TypeScript/issues/31663
 				self.config[boolOpts[i]] =
 					self.config[boolOpts[i]] === true ||
 					self.config[boolOpts[i]] === "true";
@@ -2127,7 +2127,7 @@
 			}
 			else {
 				var doc = getDocumentStyleSheet();
-				// some testing environments don't have css support
+				/ some testing environments don't have css support
 				if (doc === undefined)
 					return;
 				var bodyWidth = window.document.body.offsetWidth;
@@ -2176,7 +2176,7 @@
 			self._input.focus();
 			if (window.navigator.userAgent.indexOf("MSIE") !== -1 ||
 				navigator.msMaxTouchPoints !== undefined) {
-				// hack - bugs in the way IE handles focus keeps the calendar open
+				/ hack - bugs in the way IE handles focus keeps the calendar open
 				setTimeout(self.close, 0);
 			}
 			else {
@@ -2217,7 +2217,7 @@
 				}
 				self.latestSelectedDateObj = selectedDate;
 				self.selectedDates.push(selectedDate);
-				// unless selecting same date twice, sort ascendingly
+				/ unless selecting same date twice, sort ascendingly
 				if (compareDates(selectedDate, self.selectedDates[0], true) !== 0)
 					self.selectedDates.sort(function (a, b) { return a.getTime() - b.getTime(); });
 			}
@@ -2235,7 +2235,7 @@
 			updateNavigationCurrentMonth();
 			buildDays();
 			updateValue();
-			// maintain focus
+			/ maintain focus
 			if (!shouldChangeMonth &&
 				self.config.mode !== "range" &&
 				self.config.showMonths === 1)
@@ -2363,12 +2363,12 @@
 						};
 					return rule;
 				})
-				.filter(function (x) { return x; }); // remove falsy values
+				.filter(function (x) { return x; }); / remove falsy values
 		}
 		function setupDates() {
 			self.selectedDates = [];
 			self.now = self.parseDate(self.config.now) || new Date();
-			// Workaround IE11 setting placeholder as the input's value
+			/ Workaround IE11 setting placeholder as the input's value
 			var preloadedDate = self.config.defaultDate ||
 				((self.input.nodeName === "INPUT" ||
 					self.input.nodeName === "TEXTAREA") &&
@@ -2414,13 +2414,13 @@
 				self.config.errorHandler(new Error("Invalid input element specified"));
 				return;
 			}
-			// hack: store previous type to restore it after destroy()
+			/ hack: store previous type to restore it after destroy()
 			self.input._type = self.input.type;
 			self.input.type = "text";
 			self.input.classList.add("flatpickr-input");
 			self._input = self.input;
 			if (self.config.altInput) {
-				// replicate self.element
+				/ replicate self.element
 				self.altInput = createElement(self.input.nodeName, self.config.altInputClass);
 				self._input = self.altInput;
 				self.altInput.placeholder = self.input.placeholder;
@@ -2486,7 +2486,7 @@
 			self.open(e);
 		}
 		function triggerEvent(event, data) {
-			// If the instance has been destroyed already, all hooks have been removed
+			/ If the instance has been destroyed already, all hooks have been removed
 			if (self.config === undefined)
 				return;
 			var hooks = self.config[event];
@@ -2496,7 +2496,7 @@
 			}
 			if (event === "onChange") {
 				self.input.dispatchEvent(createEvent("change"));
-				// many front-end frameworks bind to the input event
+				/ many front-end frameworks bind to the input event
 				self.input.dispatchEvent(createEvent("input"));
 			}
 		}
@@ -2639,7 +2639,7 @@
 	}
 	/* istanbul ignore next */
 	function _flatpickr(nodeList, config) {
-		// static list
+		/ static list
 		var nodes = Array.prototype.slice
 			.call(nodeList)
 			.filter(function (x) { return x instanceof HTMLElement; });
@@ -2666,7 +2666,7 @@
 	if (typeof HTMLElement !== "undefined" &&
 		typeof HTMLCollection !== "undefined" &&
 		typeof NodeList !== "undefined") {
-		// browser env
+		/ browser env
 		HTMLCollection.prototype.flatpickr = NodeList.prototype.flatpickr = function (config) {
 			return _flatpickr(this, config);
 		};

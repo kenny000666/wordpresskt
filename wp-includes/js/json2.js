@@ -49,7 +49,7 @@
 
                 Date.prototype.toJSON = function (key) {
                     function f(n) {
-                        // Format integers to have at least two digits.
+                        / Format integers to have at least two digits.
                         return n < 10 
                             ? '0' + n 
                             : n;
@@ -91,18 +91,18 @@
             Example:
 
             text = JSON.stringify(['e', {pluribus: 'unum'}]);
-            // text is '["e",{"pluribus":"unum"}]'
+            / text is '["e",{"pluribus":"unum"}]'
 
 
             text = JSON.stringify(['e', {pluribus: 'unum'}], null, '\t');
-            // text is '[\n\t"e",\n\t{\n\t\t"pluribus": "unum"\n\t}\n]'
+            / text is '[\n\t"e",\n\t{\n\t\t"pluribus": "unum"\n\t}\n]'
 
             text = JSON.stringify([new Date()], function (key, value) {
                 return this[key] instanceof Date 
                     ? 'Date(' + this[key] + ')' 
                     : value;
             });
-            // text is '["Date(---current time---)"]'
+            / text is '["Date(---current time---)"]'
 
 
         JSON.parse(text, reviver)
@@ -117,8 +117,8 @@
 
             Example:
 
-            // Parse the text. Values that look like ISO date strings will
-            // be converted to Date objects.
+            / Parse the text. Values that look like ISO date strings will
+            / be converted to Date objects.
 
             myData = JSON.parse(text, function (key, value) {
                 var a;
@@ -181,7 +181,7 @@ if (typeof JSON !== 'object') {
         rx_dangerous = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
 
     function f(n) {
-        // Format integers to have at least two digits.
+        / Format integers to have at least two digits.
         return n < 10 
             ? '0' + n 
             : n;
@@ -239,9 +239,9 @@ if (typeof JSON !== 'object') {
 
 // Produce a string from holder[key].
 
-        var i,          // The loop counter.
-            k,          // The member key.
-            v,          // The member value.
+        var i,          / The loop counter.
+            k,          / The member key.
+            v,          / The member value.
             length,
             mind = gap,
             partial,
@@ -376,7 +376,7 @@ if (typeof JSON !== 'object') {
 // If the JSON object does not yet have a stringify method, give it one.
 
     if (typeof JSON.stringify !== 'function') {
-        meta = {    // table of character substitutions
+        meta = {    / table of character substitutions
             '\b': '\\b',
             '\t': '\\t',
             '\n': '\\n',

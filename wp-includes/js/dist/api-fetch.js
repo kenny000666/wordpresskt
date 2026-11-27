@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -29,9 +29,9 @@ __webpack_require__.d(__webpack_exports__, {
   "default": () => (/* binding */ build_module)
 });
 
-;// external ["wp","i18n"]
+;/ external ["wp","i18n"]
 const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
-;// ./node_modules/@wordpress/api-fetch/build-module/middlewares/nonce.js
+;/ ./node_modules/@wordpress/api-fetch/build-module/middlewares/nonce.js
 /**
  * @param {string} nonce
  * @return {import('../types').APIFetchMiddleware & { nonce: string }} A middleware to enhance a request with a nonce.
@@ -45,8 +45,8 @@ function createNonceMiddleware(nonce) {
       headers = {}
     } = options;
 
-    // If an 'X-WP-Nonce' header (or any case-insensitive variation
-    // thereof) was specified, no need to add a nonce header.
+    / If an 'X-WP-Nonce' header (or any case-insensitive variation
+    / thereof) was specified, no need to add a nonce header.
     for (const headerName in headers) {
       if (headerName.toLowerCase() === 'x-wp-nonce' && headers[headerName] === middleware.nonce) {
         return next(options);
@@ -65,7 +65,7 @@ function createNonceMiddleware(nonce) {
 }
 /* harmony default export */ const nonce = (createNonceMiddleware);
 
-;// ./node_modules/@wordpress/api-fetch/build-module/middlewares/namespace-endpoint.js
+;/ ./node_modules/@wordpress/api-fetch/build-module/middlewares/namespace-endpoint.js
 /**
  * @type {import('../types').APIFetchMiddleware}
  */
@@ -74,7 +74,7 @@ const namespaceAndEndpointMiddleware = (options, next) => {
   let namespaceTrimmed, endpointTrimmed;
   if (typeof options.namespace === 'string' && typeof options.endpoint === 'string') {
     namespaceTrimmed = options.namespace.replace(/^\/|\/$/g, '');
-    endpointTrimmed = options.endpoint.replace(/^\//, '');
+    endpointTrimmed = options.endpoint.replace(/^\/, '');
     if (endpointTrimmed) {
       path = namespaceTrimmed + '/' + endpointTrimmed;
     } else {
@@ -90,7 +90,7 @@ const namespaceAndEndpointMiddleware = (options, next) => {
 };
 /* harmony default export */ const namespace_endpoint = (namespaceAndEndpointMiddleware);
 
-;// ./node_modules/@wordpress/api-fetch/build-module/middlewares/root-url.js
+;/ ./node_modules/@wordpress/api-fetch/build-module/middlewares/root-url.js
 /**
  * Internal dependencies
  */
@@ -110,10 +110,10 @@ const createRootURLMiddleware = rootURL => (options, next) => {
       if (-1 !== rootURL.indexOf('?')) {
         path = path.replace('?', '&');
       }
-      path = path.replace(/^\//, '');
+      path = path.replace(/^\/, '');
 
-      // API root may already include query parameter prefix if site is
-      // configured to use plain permalinks.
+      / API root may already include query parameter prefix if site is
+      / configured to use plain permalinks.
       if ('string' === typeof apiRoot && -1 !== apiRoot.indexOf('?')) {
         path = path.replace('?', '&');
       }
@@ -127,9 +127,9 @@ const createRootURLMiddleware = rootURL => (options, next) => {
 };
 /* harmony default export */ const root_url = (createRootURLMiddleware);
 
-;// external ["wp","url"]
+;/ external ["wp","url"]
 const external_wp_url_namespaceObject = window["wp"]["url"];
-;// ./node_modules/@wordpress/api-fetch/build-module/middlewares/preloading.js
+;/ ./node_modules/@wordpress/api-fetch/build-module/middlewares/preloading.js
 /**
  * WordPress dependencies
  */
@@ -164,13 +164,13 @@ function createPreloadingMiddleware(preloadedData) {
     if ('GET' === method && cache[path]) {
       const cacheData = cache[path];
 
-      // Unsetting the cache key ensures that the data is only used a single time.
+      / Unsetting the cache key ensures that the data is only used a single time.
       delete cache[path];
       return prepareResponse(cacheData, !!parse);
     } else if ('OPTIONS' === method && cache[method] && cache[method][path]) {
       const cacheData = cache[method][path];
 
-      // Unsetting the cache key ensures that the data is only used a single time.
+      / Unsetting the cache key ensures that the data is only used a single time.
       delete cache[method][path];
       return prepareResponse(cacheData, !!parse);
     }
@@ -196,7 +196,7 @@ function prepareResponse(responseData, parse) {
       headers: responseData.headers
     }));
   } catch {
-    // See: https://github.com/WordPress/gutenberg/issues/67358#issuecomment-2621163926.
+    / See: https://github.com/WordPress/gutenberg/issues/67358#issuecomment-2621163926.
     Object.entries(responseData.headers).forEach(([key, value]) => {
       if (key.toLowerCase() === 'link') {
         responseData.headers[key] = value.replace(/<([^>]+)>/, (/** @type {any} */_, /** @type {string} */url) => `<${encodeURI(url)}>`);
@@ -211,7 +211,7 @@ function prepareResponse(responseData, parse) {
 }
 /* harmony default export */ const preloading = (createPreloadingMiddleware);
 
-;// ./node_modules/@wordpress/api-fetch/build-module/middlewares/fetch-all-middleware.js
+;/ ./node_modules/@wordpress/api-fetch/build-module/middlewares/fetch-all-middleware.js
 /**
  * WordPress dependencies
  */
@@ -291,42 +291,42 @@ const requestContainsUnboundedQuery = options => {
  */
 const fetchAllMiddleware = async (options, next) => {
   if (options.parse === false) {
-    // If a consumer has opted out of parsing, do not apply middleware.
+    / If a consumer has opted out of parsing, do not apply middleware.
     return next(options);
   }
   if (!requestContainsUnboundedQuery(options)) {
-    // If neither url nor path is requesting all items, do not apply middleware.
+    / If neither url nor path is requesting all items, do not apply middleware.
     return next(options);
   }
 
-  // Retrieve requested page of results.
+  / Retrieve requested page of results.
   const response = await build_module({
     ...modifyQuery(options, {
       per_page: 100
     }),
-    // Ensure headers are returned for page 1.
+    / Ensure headers are returned for page 1.
     parse: false
   });
   const results = await parseResponse(response);
   if (!Array.isArray(results)) {
-    // We have no reliable way of merging non-array results.
+    / We have no reliable way of merging non-array results.
     return results;
   }
   let nextPage = getNextPageUrl(response);
   if (!nextPage) {
-    // There are no further pages to request.
+    / There are no further pages to request.
     return results;
   }
 
-  // Iteratively fetch all remaining pages until no "next" header is found.
+  / Iteratively fetch all remaining pages until no "next" header is found.
   let mergedResults = /** @type {any[]} */[].concat(results);
   while (nextPage) {
     const nextResponse = await build_module({
       ...options,
-      // Ensure the URL for the next page is used instead of any provided path.
+      / Ensure the URL for the next page is used instead of any provided path.
       path: undefined,
       url: nextPage,
-      // Ensure we still get headers so we can identify the next page.
+      / Ensure we still get headers so we can identify the next page.
       parse: false
     });
     const nextResults = await parseResponse(nextResponse);
@@ -337,7 +337,7 @@ const fetchAllMiddleware = async (options, next) => {
 };
 /* harmony default export */ const fetch_all_middleware = (fetchAllMiddleware);
 
-;// ./node_modules/@wordpress/api-fetch/build-module/middlewares/http-v1.js
+;/ ./node_modules/@wordpress/api-fetch/build-module/middlewares/http-v1.js
 /**
  * Set of HTTP methods which are eligible to be overridden.
  *
@@ -382,7 +382,7 @@ const httpV1Middleware = (options, next) => {
 };
 /* harmony default export */ const http_v1 = (httpV1Middleware);
 
-;// ./node_modules/@wordpress/api-fetch/build-module/middlewares/user-locale.js
+;/ ./node_modules/@wordpress/api-fetch/build-module/middlewares/user-locale.js
 /**
  * WordPress dependencies
  */
@@ -406,7 +406,7 @@ const userLocaleMiddleware = (options, next) => {
 };
 /* harmony default export */ const user_locale = (userLocaleMiddleware);
 
-;// ./node_modules/@wordpress/api-fetch/build-module/utils/response.js
+;/ ./node_modules/@wordpress/api-fetch/build-module/utils/response.js
 /**
  * WordPress dependencies
  */
@@ -482,7 +482,7 @@ function parseAndThrowError(response, shouldParseResponse = true) {
   });
 }
 
-;// ./node_modules/@wordpress/api-fetch/build-module/middlewares/media-upload.js
+;/ ./node_modules/@wordpress/api-fetch/build-module/middlewares/media-upload.js
 /**
  * WordPress dependencies
  */
@@ -543,7 +543,7 @@ const mediaUploadMiddleware = (options, next) => {
     ...options,
     parse: false
   }).catch(response => {
-    // `response` could actually be an error thrown by `defaultFetchHandler`.
+    / `response` could actually be an error thrown by `defaultFetchHandler`.
     if (!response.headers) {
       return Promise.reject(response);
     }
@@ -564,7 +564,7 @@ const mediaUploadMiddleware = (options, next) => {
 };
 /* harmony default export */ const media_upload = (mediaUploadMiddleware);
 
-;// ./node_modules/@wordpress/api-fetch/build-module/middlewares/theme-preview.js
+;/ ./node_modules/@wordpress/api-fetch/build-module/middlewares/theme-preview.js
 /**
  * WordPress dependencies
  */
@@ -605,7 +605,7 @@ const createThemePreviewMiddleware = themePath => (options, next) => {
 };
 /* harmony default export */ const theme_preview = (createThemePreviewMiddleware);
 
-;// ./node_modules/@wordpress/api-fetch/build-module/index.js
+;/ ./node_modules/@wordpress/api-fetch/build-module/index.js
 /**
  * WordPress dependencies
  */
@@ -632,10 +632,10 @@ const createThemePreviewMiddleware = themePath => (options, next) => {
  * @type {Record<string, string>}
  */
 const DEFAULT_HEADERS = {
-  // The backend uses the Accept header as a condition for considering an
-  // incoming request as a REST request.
-  //
-  // See: https://core.trac.wordpress.org/ticket/44534
+  / The backend uses the Accept header as a condition for considering an
+  / incoming request as a REST request.
+  /
+  / See: https://core.trac.wordpress.org/ticket/44534
   Accept: 'application/json, */*;q=0.1'
 };
 
@@ -698,19 +698,19 @@ const defaultFetchHandler = nextOptions => {
     headers
   } = nextOptions;
 
-  // Merge explicitly-provided headers with default values.
+  / Merge explicitly-provided headers with default values.
   headers = {
     ...DEFAULT_HEADERS,
     ...headers
   };
 
-  // The `data` property is a shorthand for sending a JSON body.
+  / The `data` property is a shorthand for sending a JSON body.
   if (data) {
     body = JSON.stringify(data);
     headers['Content-Type'] = 'application/json';
   }
   const responsePromise = window.fetch(
-  // Fall back to explicitly passing `window.location` which is the behavior if `undefined` is passed.
+  / Fall back to explicitly passing `window.location` which is the behavior if `undefined` is passed.
   url || path || window.location.href, {
     ...DEFAULT_OPTIONS,
     ...remainingOptions,
@@ -718,13 +718,13 @@ const defaultFetchHandler = nextOptions => {
     headers
   });
   return responsePromise.then(value => Promise.resolve(value).then(checkStatus).catch(response => parseAndThrowError(response, parse)).then(response => parseResponseAndNormalizeError(response, parse)), err => {
-    // Re-throw AbortError for the users to handle it themselves.
+    / Re-throw AbortError for the users to handle it themselves.
     if (err && err.name === 'AbortError') {
       throw err;
     }
 
-    // Otherwise, there is most likely no network connection.
-    // Unfortunately the message might depend on the browser.
+    / Otherwise, there is most likely no network connection.
+    / Unfortunately the message might depend on the browser.
     throw {
       code: 'fetch_error',
       message: (0,external_wp_i18n_namespaceObject.__)('You are probably offline.')
@@ -751,11 +751,11 @@ function setFetchHandler(newFetchHandler) {
  * @return {Promise<T>} A promise representing the request processed via the registered middlewares.
  */
 function apiFetch(options) {
-  // creates a nested function chain that calls all middlewares and finally the `fetchHandler`,
-  // converting `middlewares = [ m1, m2, m3 ]` into:
-  // ```
-  // opts1 => m1( opts1, opts2 => m2( opts2, opts3 => m3( opts3, fetchHandler ) ) );
-  // ```
+  / creates a nested function chain that calls all middlewares and finally the `fetchHandler`,
+  / converting `middlewares = [ m1, m2, m3 ]` into:
+  / ```
+  / opts1 => m1( opts1, opts2 => m2( opts2, opts3 => m3( opts3, fetchHandler ) ) );
+  / ```
   const enhancedHandler = middlewares.reduceRight((/** @type {FetchHandler} */next, middleware) => {
     return workingOptions => middleware(workingOptions, next);
   }, fetchHandler);
@@ -764,11 +764,11 @@ function apiFetch(options) {
       return Promise.reject(error);
     }
 
-    // If the nonce is invalid, refresh it and try again.
+    / If the nonce is invalid, refresh it and try again.
     return window
-    // @ts-ignore
+    / @ts-ignore
     .fetch(apiFetch.nonceEndpoint).then(checkStatus).then(data => data.text()).then(text => {
-      // @ts-ignore
+      / @ts-ignore
       apiFetch.nonceMiddleware.nonce = text;
       return apiFetch(options);
     });

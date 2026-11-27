@@ -288,7 +288,7 @@ WPFormsChallenge.core = window.WPFormsChallenge.core || ( function( document, wi
 			$( app.ready );
 			$( window ).on( 'load', function() {
 
-				// in case of jQuery 3.+ we need to wait for an `ready` event first.
+				/ in case of jQuery 3.+ we need to wait for an `ready` event first.
 				if ( typeof $.ready.then === 'function' ) {
 					$.ready.then( app.load );
 				} else {
@@ -424,7 +424,7 @@ WPFormsChallenge.core = window.WPFormsChallenge.core || ( function( document, wi
 			var savedStep = el.$challenge.data( 'wpforms-challenge-saved-step' );
 			savedStep = parseInt( savedStep, 10 ) || 0;
 
-			// Step saved on a backend has a priority.
+			/ Step saved on a backend has a priority.
 			if ( app.loadStep() !== savedStep ) {
 				app.saveStep( savedStep );
 			}
@@ -476,14 +476,14 @@ WPFormsChallenge.core = window.WPFormsChallenge.core || ( function( document, wi
 
 					const isRTL = $( 'body' ).hasClass( 'rtl' );
 
-					// Custom positioning.
+					/ Custom positioning.
 					if ( step === 4 || step === 3 ) {
 						instance.option( 'side', isRTL ? 'left' : 'right' );
 					} else if ( step === 1 ) {
 						instance.option( 'side', isRTL ? 'right' : 'left' );
 					}
 
-					// Reposition is needed to render max-width CSS correctly.
+					/ Reposition is needed to render max-width CSS correctly.
 					instance.reposition();
 				},
 			};
@@ -526,7 +526,7 @@ WPFormsChallenge.core = window.WPFormsChallenge.core || ( function( document, wi
 					$dot.removeClass( 'wpforms-challenge-dot-completed wpforms-challenge-dot-next' );
 				}
 
-				// Zero timeout is needed to properly detect $el visibility.
+				/ Zero timeout is needed to properly detect $el visibility.
 				setTimeout( function() {
 					if ( $dot.is( ':visible' ) && elStep === nextStep ) {
 						$dot.tooltipster( 'open' );
@@ -554,7 +554,7 @@ WPFormsChallenge.core = window.WPFormsChallenge.core || ( function( document, wi
 				el.$listBtnToggle.show();
 				el.$progressBar.show();
 
-				// Transform skip button to cancel button.
+				/ Transform skip button to cancel button.
 				var $skipBtn = el.$listBlock.find( '.list-block-button.challenge-skip' );
 
 				$skipBtn
@@ -563,7 +563,7 @@ WPFormsChallenge.core = window.WPFormsChallenge.core || ( function( document, wi
 					.addClass( 'challenge-cancel' );
 			}
 
-			// Set initial window closed (collapsed) state if window is short or if it is closed manually.
+			/ Set initial window closed (collapsed) state if window is short or if it is closed manually.
 			if (
 				initial &&
 				(
@@ -583,7 +583,7 @@ WPFormsChallenge.core = window.WPFormsChallenge.core || ( function( document, wi
 
 			} else {
 
-				// Zero timeout is needed to avoid firing 'focus' and 'click' events in the same loop.
+				/ Zero timeout is needed to avoid firing 'focus' and 'click' events in the same loop.
 				setTimeout( function() {
 					el.$btnPause.show();
 				}, 0 );
@@ -658,12 +658,12 @@ WPFormsChallenge.core = window.WPFormsChallenge.core || ( function( document, wi
 		 */
 		pauseChallenge: function( e ) {
 
-			// Skip if out to the iframe.
+			/ Skip if out to the iframe.
 			if ( document.activeElement.tagName === 'IFRAME' ) {
 				return;
 			}
 
-			// Skip if is not started.
+			/ Skip if is not started.
 			if ( wpforms_challenge_admin.option.status !== 'started' ) {
 				return;
 			}
@@ -684,12 +684,12 @@ WPFormsChallenge.core = window.WPFormsChallenge.core || ( function( document, wi
 		 */
 		resumeChallenge: function( e ) {
 
-			// Skip if is not paused.
+			/ Skip if is not paused.
 			if ( wpforms_challenge_admin.option.status !== 'paused' ) {
 				return;
 			}
 
-			// Resume on 'focus' only if it has been paused on 'blur'.
+			/ Resume on 'focus' only if it has been paused on 'blur'.
 			if ( e.type === 'focus' && vars.pauseEvent !== 'blur' ) {
 				delete vars.pauseEvent;
 				return;
@@ -764,7 +764,7 @@ WPFormsChallenge.core = window.WPFormsChallenge.core || ( function( document, wi
 		 * @param {string}  tooltipText Tooltip text.
 		 */
 		async freezeChallenge( freeze = true, tooltipText = '' ) {
-			// Freeze the Challenge.
+			/ Freeze the Challenge.
 			if ( freeze ) {
 				const closed = el.$listBlock.hasClass( 'closed' );
 
@@ -776,17 +776,17 @@ WPFormsChallenge.core = window.WPFormsChallenge.core || ( function( document, wi
 				return;
 			}
 
-			// Do not unfreeze if it's not frozen.
+			/ Do not unfreeze if it's not frozen.
 			if ( ! el.$challenge.hasClass( 'frozen' ) ) {
 				return;
 			}
 
-			// Unfreeze the Challenge.
+			/ Unfreeze the Challenge.
 			el.$challenge.removeClass( 'frozen' );
 			el.$progressBar.tooltipster( 'close' );
 			app.pauseResumeChallenge( 'resume' );
 
-			// Restore the opened state.
+			/ Restore the opened state.
 			if ( ! el.$challenge.data( 'was-closed' ) ) {
 				el.$listBlock.removeClass( 'closed' ).find( 'p' ).show();
 			}
@@ -816,7 +816,7 @@ WPFormsChallenge.core = window.WPFormsChallenge.core || ( function( document, wi
 					contentAsHTML: true,
 				};
 
-				// Initialize.
+				/ Initialize.
 				el.$progressBar.tooltipster( args );
 				instance = el.$progressBar.tooltipster( 'instance' );
 				el.$progressBar.data( 'tooltipster', instance );
@@ -876,14 +876,14 @@ WPFormsChallenge.core = window.WPFormsChallenge.core || ( function( document, wi
 			var $gb = $( '.block-editor' ),
 				$updateBtn = $gb.find( '.editor-post-publish-button.editor-post-publish-button__button' );
 
-			// Trigger click on the Update button.
+			/ Trigger click on the Update button.
 			if ( $updateBtn.length > 0 ) {
 				$updateBtn.trigger( 'click' );
 
 				return;
 			}
 
-			// Use MutationObserver to wait while Gutenberg create/display panel with Publish button.
+			/ Use MutationObserver to wait while Gutenberg create/display panel with Publish button.
 			var obs = {
 				targetNode  : $gb.find( '.edit-post-layout, .block-editor-editor-skeleton__publish > div' )[0],
 				config      : {
@@ -906,13 +906,13 @@ WPFormsChallenge.core = window.WPFormsChallenge.core || ( function( document, wi
 			obs.observer = new MutationObserver( obs.callback );
 			obs.observer.observe( obs.targetNode, obs.config );
 
-			// Trigger click on the Publish button that opens the additional publishing panel.
+			/ Trigger click on the Publish button that opens the additional publishing panel.
 			$gb.find( '.edit-post-toggle-publish-panel__button, .editor-post-publish-panel__toggle.editor-post-publish-button__button' )
 				.trigger( 'click' );
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 
 }( document, window, jQuery ) );

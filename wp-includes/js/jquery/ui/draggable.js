@@ -19,7 +19,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"./mouse",
@@ -33,7 +33,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -68,7 +68,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 		stack: false,
 		zIndex: false,
 
-		// Callbacks
+		/ Callbacks
 		drag: null,
 		start: null,
 		stop: null
@@ -106,13 +106,13 @@ $.widget( "ui.draggable", $.ui.mouse, {
 	_mouseCapture: function( event ) {
 		var o = this.options;
 
-		// Among others, prevent a drag on a resizable-handle
+		/ Among others, prevent a drag on a resizable-handle
 		if ( this.helper || o.disabled ||
 				$( event.target ).closest( ".ui-resizable-handle" ).length > 0 ) {
 			return false;
 		}
 
-		//Quit if we're not on a valid handle
+		/Quit if we're not on a valid handle
 		this.handle = this._getHandle( event );
 		if ( !this.handle ) {
 			return false;
@@ -150,14 +150,14 @@ $.widget( "ui.draggable", $.ui.mouse, {
 		var activeElement = $.ui.safeActiveElement( this.document[ 0 ] ),
 			target = $( event.target );
 
-		// Don't blur if the event occurred on an element that is within
-		// the currently focused element
-		// See #10527, #12472
+		/ Don't blur if the event occurred on an element that is within
+		/ the currently focused element
+		/ See #10527, #12472
 		if ( target.closest( activeElement ).length ) {
 			return;
 		}
 
-		// Blur any element that currently has focus, see #4261
+		/ Blur any element that currently has focus, see #4261
 		$.ui.safeBlur( activeElement );
 	},
 
@@ -165,15 +165,15 @@ $.widget( "ui.draggable", $.ui.mouse, {
 
 		var o = this.options;
 
-		//Create and append the visible helper
+		/Create and append the visible helper
 		this.helper = this._createHelper( event );
 
 		this._addClass( this.helper, "ui-draggable-dragging" );
 
-		//Cache the helper size
+		/Cache the helper size
 		this._cacheHelperProportions();
 
-		//If ddmanager is used for droppables, set the global draggable
+		/If ddmanager is used for droppables, set the global draggable
 		if ( $.ui.ddmanager ) {
 			$.ui.ddmanager.current = this;
 		}
@@ -183,10 +183,10 @@ $.widget( "ui.draggable", $.ui.mouse, {
 		 * This block generates everything position related - it's the core of draggables.
 		 */
 
-		//Cache the margins of the original element
+		/Cache the margins of the original element
 		this._cacheMargins();
 
-		//Store the helper's css position
+		/Store the helper's css position
 		this.cssPosition = this.helper.css( "position" );
 		this.scrollParent = this.helper.scrollParent( true );
 		this.offsetParent = this.helper.offsetParent();
@@ -194,43 +194,43 @@ $.widget( "ui.draggable", $.ui.mouse, {
 				return $( this ).css( "position" ) === "fixed";
 			} ).length > 0;
 
-		//The element's absolute position on the page minus margins
+		/The element's absolute position on the page minus margins
 		this.positionAbs = this.element.offset();
 		this._refreshOffsets( event );
 
-		//Generate the original position
+		/Generate the original position
 		this.originalPosition = this.position = this._generatePosition( event, false );
 		this.originalPageX = event.pageX;
 		this.originalPageY = event.pageY;
 
-		//Adjust the mouse offset relative to the helper if "cursorAt" is supplied
+		/Adjust the mouse offset relative to the helper if "cursorAt" is supplied
 		if ( o.cursorAt ) {
 			this._adjustOffsetFromHelper( o.cursorAt );
 		}
 
-		//Set a containment if given in the options
+		/Set a containment if given in the options
 		this._setContainment();
 
-		//Trigger event + callbacks
+		/Trigger event + callbacks
 		if ( this._trigger( "start", event ) === false ) {
 			this._clear();
 			return false;
 		}
 
-		//Recache the helper size
+		/Recache the helper size
 		this._cacheHelperProportions();
 
-		//Prepare the droppable offsets
+		/Prepare the droppable offsets
 		if ( $.ui.ddmanager && !o.dropBehaviour ) {
 			$.ui.ddmanager.prepareOffsets( this, event );
 		}
 
-		// Execute the drag once - this causes the helper not to be visible before getting its
-		// correct position
+		/ Execute the drag once - this causes the helper not to be visible before getting its
+		/ correct position
 		this._mouseDrag( event, true );
 
-		// If the ddmanager is used for droppables, inform the manager that dragging has started
-		// (see #5003)
+		/ If the ddmanager is used for droppables, inform the manager that dragging has started
+		/ (see #5003)
 		if ( $.ui.ddmanager ) {
 			$.ui.ddmanager.dragStart( this, event );
 		}
@@ -255,16 +255,16 @@ $.widget( "ui.draggable", $.ui.mouse, {
 
 	_mouseDrag: function( event, noPropagation ) {
 
-		// reset any necessary cached properties (see #5009)
+		/ reset any necessary cached properties (see #5009)
 		if ( this.hasFixedAncestor ) {
 			this.offset.parent = this._getParentOffset();
 		}
 
-		//Compute the helpers position
+		/Compute the helpers position
 		this.position = this._generatePosition( event, true );
 		this.positionAbs = this._convertPositionTo( "absolute" );
 
-		//Call plugins and callbacks and use the resulting position if something is returned
+		/Call plugins and callbacks and use the resulting position if something is returned
 		if ( !noPropagation ) {
 			var ui = this._uiHash();
 			if ( this._trigger( "drag", event, ui ) === false ) {
@@ -286,14 +286,14 @@ $.widget( "ui.draggable", $.ui.mouse, {
 
 	_mouseStop: function( event ) {
 
-		//If we are using droppables, inform the manager about the drop
+		/If we are using droppables, inform the manager about the drop
 		var that = this,
 			dropped = false;
 		if ( $.ui.ddmanager && !this.options.dropBehaviour ) {
 			dropped = $.ui.ddmanager.drop( this, event );
 		}
 
-		//if a drop comes from outside (a sortable)
+		/if a drop comes from outside (a sortable)
 		if ( this.dropped ) {
 			dropped = this.dropped;
 			this.dropped = false;
@@ -325,17 +325,17 @@ $.widget( "ui.draggable", $.ui.mouse, {
 	_mouseUp: function( event ) {
 		this._unblockFrames();
 
-		// If the ddmanager is used for droppables, inform the manager that dragging has stopped
-		// (see #5003)
+		/ If the ddmanager is used for droppables, inform the manager that dragging has stopped
+		/ (see #5003)
 		if ( $.ui.ddmanager ) {
 			$.ui.ddmanager.dragStop( this, event );
 		}
 
-		// Only need to focus if the event occurred on the draggable itself, see #10527
+		/ Only need to focus if the event occurred on the draggable itself, see #10527
 		if ( this.handleElement.is( event.target ) ) {
 
-			// The interaction is over; whether or not the click resulted in a drag,
-			// focus the element
+			/ The interaction is over; whether or not the click resulted in a drag,
+			/ focus the element
 			this.element.trigger( "focus" );
 		}
 
@@ -386,9 +386,9 @@ $.widget( "ui.draggable", $.ui.mouse, {
 				o.appendTo ) );
 		}
 
-		// https://bugs.jqueryui.com/ticket/9446
-		// a helper function can return the original element
-		// which wouldn't have been set to relative in _create
+		/ https://bugs.jqueryui.com/ticket/9446
+		/ a helper function can return the original element
+		/ which wouldn't have been set to relative in _create
 		if ( helperIsFunction && helper[ 0 ] === this.element[ 0 ] ) {
 			this._setPositionRelative();
 		}
@@ -435,17 +435,17 @@ $.widget( "ui.draggable", $.ui.mouse, {
 
 	_getParentOffset: function() {
 
-		//Get the offsetParent and cache its position
+		/Get the offsetParent and cache its position
 		var po = this.offsetParent.offset(),
 			document = this.document[ 0 ];
 
-		// This is a special case where we need to modify a offset calculated on start, since the
-		// following happened:
-		// 1. The position of the helper is absolute, so it's position is calculated based on the
-		// next positioned parent
-		// 2. The actual offset parent is a child of the scroll parent, and the scroll parent isn't
-		// the document, which means that the scroll is included in the initial calculation of the
-		// offset of the parent, and never recalculated upon drag
+		/ This is a special case where we need to modify a offset calculated on start, since the
+		/ following happened:
+		/ 1. The position of the helper is absolute, so it's position is calculated based on the
+		/ next positioned parent
+		/ 2. The actual offset parent is a child of the scroll parent, and the scroll parent isn't
+		/ the document, which means that the scroll is included in the initial calculation of the
+		/ offset of the parent, and never recalculated upon drag
 		if ( this.cssPosition === "absolute" && this.scrollParent[ 0 ] !== document &&
 				$.contains( this.scrollParent[ 0 ], this.offsetParent[ 0 ] ) ) {
 			po.left += this.scrollParent.scrollLeft();
@@ -584,13 +584,13 @@ $.widget( "ui.draggable", $.ui.mouse, {
 		return {
 			top: (
 
-				// The absolute mouse position
+				/ The absolute mouse position
 				pos.top	+
 
-				// Only for relative positioned nodes: Relative offset from element to offset parent
+				/ Only for relative positioned nodes: Relative offset from element to offset parent
 				this.offset.relative.top * mod +
 
-				// The offsetParent's offset without borders (offset + border)
+				/ The offsetParent's offset without borders (offset + border)
 				this.offset.parent.top * mod -
 				( ( this.cssPosition === "fixed" ?
 					-this.offset.scroll.top :
@@ -598,13 +598,13 @@ $.widget( "ui.draggable", $.ui.mouse, {
 			),
 			left: (
 
-				// The absolute mouse position
+				/ The absolute mouse position
 				pos.left +
 
-				// Only for relative positioned nodes: Relative offset from element to offset parent
+				/ Only for relative positioned nodes: Relative offset from element to offset parent
 				this.offset.relative.left * mod +
 
-				// The offsetParent's offset without borders (offset + border)
+				/ The offsetParent's offset without borders (offset + border)
 				this.offset.parent.left * mod	-
 				( ( this.cssPosition === "fixed" ?
 					-this.offset.scroll.left :
@@ -622,7 +622,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 			pageX = event.pageX,
 			pageY = event.pageY;
 
-		// Cache the scroll
+		/ Cache the scroll
 		if ( !scrollIsRootNode || !this.offset.scroll ) {
 			this.offset.scroll = {
 				top: this.scrollParent.scrollTop(),
@@ -635,7 +635,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 		 * Constrain the position to a mix of grid, containment.
 		 */
 
-		// If we are not dragging yet, we won't check for options
+		/ If we are not dragging yet, we won't check for options
 		if ( constrainPosition ) {
 			if ( this.containment ) {
 				if ( this.relativeContainer ) {
@@ -666,8 +666,8 @@ $.widget( "ui.draggable", $.ui.mouse, {
 
 			if ( o.grid ) {
 
-				//Check for grid elements set to 0 to prevent divide by 0 error causing invalid
-				// argument errors in IE (see ticket #6950)
+				/Check for grid elements set to 0 to prevent divide by 0 error causing invalid
+				/ argument errors in IE (see ticket #6950)
 				top = o.grid[ 1 ] ? this.originalPageY + Math.round( ( pageY -
 					this.originalPageY ) / o.grid[ 1 ] ) * o.grid[ 1 ] : this.originalPageY;
 				pageY = containment ? ( ( top - this.offset.click.top >= containment[ 1 ] ||
@@ -698,16 +698,16 @@ $.widget( "ui.draggable", $.ui.mouse, {
 		return {
 			top: (
 
-				// The absolute mouse position
+				/ The absolute mouse position
 				pageY -
 
-				// Click offset (relative to the element)
+				/ Click offset (relative to the element)
 				this.offset.click.top -
 
-				// Only for relative positioned nodes: Relative offset from element to offset parent
+				/ Only for relative positioned nodes: Relative offset from element to offset parent
 				this.offset.relative.top -
 
-				// The offsetParent's offset without borders (offset + border)
+				/ The offsetParent's offset without borders (offset + border)
 				this.offset.parent.top +
 				( this.cssPosition === "fixed" ?
 					-this.offset.scroll.top :
@@ -715,16 +715,16 @@ $.widget( "ui.draggable", $.ui.mouse, {
 			),
 			left: (
 
-				// The absolute mouse position
+				/ The absolute mouse position
 				pageX -
 
-				// Click offset (relative to the element)
+				/ Click offset (relative to the element)
 				this.offset.click.left -
 
-				// Only for relative positioned nodes: Relative offset from element to offset parent
+				/ Only for relative positioned nodes: Relative offset from element to offset parent
 				this.offset.relative.left -
 
-				// The offsetParent's offset without borders (offset + border)
+				/ The offsetParent's offset without borders (offset + border)
 				this.offset.parent.left +
 				( this.cssPosition === "fixed" ?
 					-this.offset.scroll.left :
@@ -746,13 +746,13 @@ $.widget( "ui.draggable", $.ui.mouse, {
 		}
 	},
 
-	// From now on bulk stuff - mainly helpers
+	/ From now on bulk stuff - mainly helpers
 
 	_trigger: function( type, event, ui ) {
 		ui = ui || this._uiHash();
 		$.ui.plugin.call( this, type, [ event, ui, this ], true );
 
-		// Absolute position and offset (see #6884 ) have to be recalculated after plugins
+		/ Absolute position and offset (see #6884 ) have to be recalculated after plugins
 		if ( /^(drag|start|stop)/.test( type ) ) {
 			this.positionAbs = this._convertPositionTo( "absolute" );
 			ui.offset = this.positionAbs;
@@ -786,9 +786,9 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 			if ( sortable && !sortable.options.disabled ) {
 				draggable.sortables.push( sortable );
 
-				// RefreshPositions is called at drag start to refresh the containerCache
-				// which is used in drag. This ensures it's initialized and synchronized
-				// with any changes that might have happened on the page since initialization.
+				/ RefreshPositions is called at drag start to refresh the containerCache
+				/ which is used in drag. This ensures it's initialized and synchronized
+				/ with any changes that might have happened on the page since initialization.
 				sortable.refreshPositions();
 				sortable._trigger( "activate", event, uiSortable );
 			}
@@ -807,13 +807,13 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 			if ( sortable.isOver ) {
 				sortable.isOver = 0;
 
-				// Allow this sortable to handle removing the helper
+				/ Allow this sortable to handle removing the helper
 				draggable.cancelHelperRemoval = true;
 				sortable.cancelHelperRemoval = false;
 
-				// Use _storedCSS To restore properties in the sortable,
-				// as this also handles revert (#9675) since the draggable
-				// may have modified them in unexpected ways (#8809)
+				/ Use _storedCSS To restore properties in the sortable,
+				/ as this also handles revert (#9675) since the draggable
+				/ may have modified them in unexpected ways (#8809)
 				sortable._storedCSS = {
 					position: sortable.placeholder.css( "position" ),
 					top: sortable.placeholder.css( "top" ),
@@ -822,14 +822,14 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 
 				sortable._mouseStop( event );
 
-				// Once drag has ended, the sortable should return to using
-				// its original helper, not the shared helper from draggable
+				/ Once drag has ended, the sortable should return to using
+				/ its original helper, not the shared helper from draggable
 				sortable.options.helper = sortable.options._helper;
 			} else {
 
-				// Prevent this Sortable from removing the helper.
-				// However, don't set the draggable to remove the helper
-				// either as another connected Sortable may yet handle the removal.
+				/ Prevent this Sortable from removing the helper.
+				/ However, don't set the draggable to remove the helper
+				/ either as another connected Sortable may yet handle the removal.
 				sortable.cancelHelperRemoval = true;
 
 				sortable._trigger( "deactivate", event, uiSortable );
@@ -841,7 +841,7 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 			var innermostIntersecting = false,
 				sortable = this;
 
-			// Copy over variables that sortable's _intersectsWith uses
+			/ Copy over variables that sortable's _intersectsWith uses
 			sortable.positionAbs = draggable.positionAbs;
 			sortable.helperProportions = draggable.helperProportions;
 			sortable.offset.click = draggable.offset.click;
@@ -851,7 +851,7 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 
 				$.each( draggable.sortables, function() {
 
-					// Copy over variables that sortable's _intersectsWith uses
+					/ Copy over variables that sortable's _intersectsWith uses
 					this.positionAbs = draggable.positionAbs;
 					this.helperProportions = draggable.helperProportions;
 					this.offset.click = draggable.offset.click;
@@ -868,33 +868,33 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 
 			if ( innermostIntersecting ) {
 
-				// If it intersects, we use a little isOver variable and set it once,
-				// so that the move-in stuff gets fired only once.
+				/ If it intersects, we use a little isOver variable and set it once,
+				/ so that the move-in stuff gets fired only once.
 				if ( !sortable.isOver ) {
 					sortable.isOver = 1;
 
-					// Store draggable's parent in case we need to reappend to it later.
+					/ Store draggable's parent in case we need to reappend to it later.
 					draggable._parent = ui.helper.parent();
 
 					sortable.currentItem = ui.helper
 						.appendTo( sortable.element )
 						.data( "ui-sortable-item", true );
 
-					// Store helper option to later restore it
+					/ Store helper option to later restore it
 					sortable.options._helper = sortable.options.helper;
 
 					sortable.options.helper = function() {
 						return ui.helper[ 0 ];
 					};
 
-					// Fire the start events of the sortable with our passed browser event,
-					// and our own helper (so it doesn't create a new one)
+					/ Fire the start events of the sortable with our passed browser event,
+					/ and our own helper (so it doesn't create a new one)
 					event.target = sortable.currentItem[ 0 ];
 					sortable._mouseCapture( event, true );
 					sortable._mouseStart( event, true, true );
 
-					// Because the browser event is way off the new appended portlet,
-					// modify necessary variables to reflect the changes
+					/ Because the browser event is way off the new appended portlet,
+					/ modify necessary variables to reflect the changes
 					sortable.offset.click.top = draggable.offset.click.top;
 					sortable.offset.click.left = draggable.offset.click.left;
 					sortable.offset.parent.left -= draggable.offset.parent.left -
@@ -904,17 +904,17 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 
 					draggable._trigger( "toSortable", event );
 
-					// Inform draggable that the helper is in a valid drop zone,
-					// used solely in the revert option to handle "valid/invalid".
+					/ Inform draggable that the helper is in a valid drop zone,
+					/ used solely in the revert option to handle "valid/invalid".
 					draggable.dropped = sortable.element;
 
-					// Need to refreshPositions of all sortables in the case that
-					// adding to one sortable changes the location of the other sortables (#9675)
+					/ Need to refreshPositions of all sortables in the case that
+					/ adding to one sortable changes the location of the other sortables (#9675)
 					$.each( draggable.sortables, function() {
 						this.refreshPositions();
 					} );
 
-					// Hack so receive/update callbacks work (mostly)
+					/ Hack so receive/update callbacks work (mostly)
 					draggable.currentItem = draggable.element;
 					sortable.fromOutside = draggable;
 				}
@@ -922,31 +922,31 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 				if ( sortable.currentItem ) {
 					sortable._mouseDrag( event );
 
-					// Copy the sortable's position because the draggable's can potentially reflect
-					// a relative position, while sortable is always absolute, which the dragged
-					// element has now become. (#8809)
+					/ Copy the sortable's position because the draggable's can potentially reflect
+					/ a relative position, while sortable is always absolute, which the dragged
+					/ element has now become. (#8809)
 					ui.position = sortable.position;
 				}
 			} else {
 
-				// If it doesn't intersect with the sortable, and it intersected before,
-				// we fake the drag stop of the sortable, but make sure it doesn't remove
-				// the helper by using cancelHelperRemoval.
+				/ If it doesn't intersect with the sortable, and it intersected before,
+				/ we fake the drag stop of the sortable, but make sure it doesn't remove
+				/ the helper by using cancelHelperRemoval.
 				if ( sortable.isOver ) {
 
 					sortable.isOver = 0;
 					sortable.cancelHelperRemoval = true;
 
-					// Calling sortable's mouseStop would trigger a revert,
-					// so revert must be temporarily false until after mouseStop is called.
+					/ Calling sortable's mouseStop would trigger a revert,
+					/ so revert must be temporarily false until after mouseStop is called.
 					sortable.options._revert = sortable.options.revert;
 					sortable.options.revert = false;
 
 					sortable._trigger( "out", event, sortable._uiHash( sortable ) );
 					sortable._mouseStop( event, true );
 
-					// Restore sortable behaviors that were modfied
-					// when the draggable entered the sortable area (#9481)
+					/ Restore sortable behaviors that were modfied
+					/ when the draggable entered the sortable area (#9481)
 					sortable.options.revert = sortable.options._revert;
 					sortable.options.helper = sortable.options._helper;
 
@@ -954,19 +954,19 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 						sortable.placeholder.remove();
 					}
 
-					// Restore and recalculate the draggable's offset considering the sortable
-					// may have modified them in unexpected ways. (#8809, #10669)
+					/ Restore and recalculate the draggable's offset considering the sortable
+					/ may have modified them in unexpected ways. (#8809, #10669)
 					ui.helper.appendTo( draggable._parent );
 					draggable._refreshOffsets( event );
 					ui.position = draggable._generatePosition( event, true );
 
 					draggable._trigger( "fromSortable", event );
 
-					// Inform draggable that the helper is no longer in a valid drop zone
+					/ Inform draggable that the helper is no longer in a valid drop zone
 					draggable.dropped = false;
 
-					// Need to refreshPositions of all sortables just in case removing
-					// from one sortable changes the location of other sortables (#9675)
+					/ Need to refreshPositions of all sortables just in case removing
+					/ from one sortable changes the location of other sortables (#9675)
 					$.each( draggable.sortables, function() {
 						this.refreshPositions();
 					} );

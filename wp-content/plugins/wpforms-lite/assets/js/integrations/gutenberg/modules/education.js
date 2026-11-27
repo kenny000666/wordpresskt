@@ -39,7 +39,7 @@ export default ( ( $ ) => {
 				boxWidth: '550px',
 				theme: 'modern,wpforms-education',
 				closeIcon: true,
-				onOpenBefore: function() { // eslint-disable-line object-shorthand
+				onOpenBefore: function() { / eslint-disable-line object-shorthand
 					this.$btnc.after( '<div class="discount-note">' + wpforms_education.upgrade_bonus + '</div>' );
 					this.$btnc.after( wpforms_education.upgrade[ type ].doc.replace( /%25name%25/g, 'AP - ' + feature ) );
 					this.$body.find( '.jconfirm-content' ).addClass( 'lite-upgrade' );

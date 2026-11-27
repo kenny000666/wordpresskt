@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../modules/kit-elements-defaults/assets/js/editor/api.js":
@@ -560,7 +560,7 @@ function getConfirmCreationDialog(_ref) {
   }
   var dialog = introductionManager.getDialog();
   dialog.onConfirm = function () {
-    // `getElements` return JQuery object.
+    / `getElements` return JQuery object.
     if (dialog.getElements('checkbox-dont-show-again').prop('checked')) {
       introductionManager.setViewed();
     }
@@ -585,7 +585,7 @@ function createIntroductionManager() {
     dialogOptions: {
       id: dialogId,
       headerMessage: __('Sure you want to change default settings?', 'elementor'),
-      // Translators: %1$s: Opening strong tag, %2$s: Closing strong tag.
+      / Translators: %1$s: Opening strong tag, %2$s: Closing strong tag.
       message: __('Your changes will automatically be saved for future uses of this element. %1$sNote:%2$s This includes sensitive information like emails, API keys, etc.', 'elementor').replace('%1$s', '<strong>').replace('%2$s', '</strong>'),
       effects: {
         show: 'fadeIn',
@@ -608,7 +608,7 @@ function createIntroductionManager() {
     checkbox = _createCheckboxAndLab.checkbox,
     label = _createCheckboxAndLab.label;
   introduction.getDialog().addElement('checkbox-dont-show-again', checkbox);
-  (_introduction$getDial = introduction.getDialog().getElements('message')) === null || _introduction$getDial === void 0 || (_introduction$getDial2 = _introduction$getDial.append) === null || _introduction$getDial2 === void 0 || _introduction$getDial2.call(_introduction$getDial, label); // `getElements` return JQuery object.
+  (_introduction$getDial = introduction.getDialog().getElements('message')) === null || _introduction$getDial === void 0 || (_introduction$getDial2 = _introduction$getDial.append) === null || _introduction$getDial2 === void 0 || _introduction$getDial2.call(_introduction$getDial, label); / `getElements` return JQuery object.
 
   return introduction;
 }
@@ -878,8 +878,8 @@ function _addContextMenuItem() {
   ['widget', 'container', 'section'].forEach(function (elType) {
     elementor.hooks.addFilter("elements/".concat(elType, "/contextMenuGroups"), function (groups, view) {
       var _view$options;
-      // Supporting only inner section and not sections,
-      // extractElementType() will return 'inner-section' for inner sections instead of 'section'.
+      / Supporting only inner section and not sections,
+      / extractElementType() will return 'inner-section' for inner sections instead of 'section'.
       if ('section' === (0, _utils.extractElementType)(((_view$options = view.options) === null || _view$options === void 0 ? void 0 : _view$options.model) || {})) {
         return groups;
       }
@@ -1702,27 +1702,27 @@ try {
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	

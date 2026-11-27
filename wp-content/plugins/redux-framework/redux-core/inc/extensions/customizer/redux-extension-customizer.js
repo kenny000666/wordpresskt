@@ -54,7 +54,7 @@
 
 		if ( redux.customizer ) {
 
-			// Customizer save hook.
+			/ Customizer save hook.
 			$( '#customize-save-button-wrapper #save' ).on(
 				'click',
 				function () {
@@ -225,7 +225,7 @@
 
 		$control = wp.customize.control( $id );
 
-		// Customizer hack since they didn't code it to save order...
+		/ Customizer hack since they didn't code it to save order...
 		if ( JSON.stringify( $control.setting._value ) !== JSON.stringify( $nData ) ) {
 			$control.setting._value = null;
 		}

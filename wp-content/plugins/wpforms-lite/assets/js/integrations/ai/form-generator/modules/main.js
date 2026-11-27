@@ -21,7 +21,7 @@
  *
  * @return {Object} The main module object.
  */
-export default function( generator, $ ) { // eslint-disable-line max-lines-per-function
+export default function( generator, $ ) { / eslint-disable-line max-lines-per-function
 	/**
 	 * Localized strings.
 	 *
@@ -54,7 +54,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 			main.initElementsCache();
 			main.initStateProxy();
 
-			// Magic, we just need to set the state property to `true` to add the panel to the DOM.
+			/ Magic, we just need to set the state property to `true` to add the panel to the DOM.
 			generator.state.panelAdd = true;
 
 			generator.preview.init();
@@ -83,22 +83,22 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 		 * @since 1.9.2
 		 */
 		events() {
-			// Setup panel events.
+			/ Setup panel events.
 			main.el.$setupPanel
 				.on( 'click', '.wpforms-template-generate', main.event.clickGenerateFormBtn )
 				.on( 'click', '.wpforms-template-generate-install-addons', generator.modals.openAddonsModal );
 
-			// Generator panel events.
+			/ Generator panel events.
 			main.el.$generatorPanel
 				.on( 'click', '.wpforms-btn-back-to-templates', main.event.clickBackToTemplatesBtn )
 				.on( 'click', '.wpforms-ai-chat-reload-link', main.event.reloadPage )
 				.on( 'click', '.wpforms-ai-chat-use-form', main.event.useForm );
 
-			// The Form Builder events
+			/ The Form Builder events
 			main.el.$builder
 				.on( 'wpformsPanelSwitch', main.event.panelSwitch );
 
-			// AI chat events.
+			/ AI chat events.
 			main.el.$doc
 				.on( 'wpformsBuilderReady', main.maybeOpenPanel )
 				.on( 'wpformsAIChatBeforeAddAnswer', main.event.chatBeforeAddAnswer )
@@ -113,17 +113,17 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 		 * @since 1.9.2
 		 */
 		initElementsCache() {
-			// Cache DOM elements.
+			/ Cache DOM elements.
 			main.el.$doc = $( document );
 			main.el.$builder = $( '#wpforms-builder' );
 			main.el.$builderToolbar = $( '#wpforms-builder .wpforms-toolbar' );
-			main.el.$templatesList = $( '#wpforms-setup-templates-list .list' ); // The templates list container.
-			main.el.$templateCard = $( '#wpforms-template-generate' ); // The generator template card.
-			main.el.$generatorPanel = $( '#wpforms-panel-ai-form' ); // The generator panel.
-			main.el.$setupPanel = $( '#wpforms-panel-setup' ); // The Setup panel.
-			main.el.$panelsContainer = $( '.wpforms-panels' ); // All panels container.
-			main.el.$allPanels = $( '.wpforms-panel' ); // All panels.
-			main.el.$chat = main.el.$generatorPanel.find( 'wpforms-ai-chat .wpforms-ai-chat' ); // The chat container.
+			main.el.$templatesList = $( '#wpforms-setup-templates-list .list' ); / The templates list container.
+			main.el.$templateCard = $( '#wpforms-template-generate' ); / The generator template card.
+			main.el.$generatorPanel = $( '#wpforms-panel-ai-form' ); / The generator panel.
+			main.el.$setupPanel = $( '#wpforms-panel-setup' ); / The Setup panel.
+			main.el.$panelsContainer = $( '.wpforms-panels' ); / All panels container.
+			main.el.$allPanels = $( '.wpforms-panel' ); / All panels.
+			main.el.$chat = main.el.$generatorPanel.find( 'wpforms-ai-chat .wpforms-ai-chat' ); / The chat container.
 		},
 
 		/**
@@ -134,17 +134,17 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 		initStateProxy() {
 			generator.state = new Proxy( generator.state, {
 				set( state, key, value ) {
-					// Set the state property.
+					/ Set the state property.
 					state[ key ] = value;
 
 					if ( typeof main.setStateHandler[ key ] !== 'function' ) {
 						return true;
 					}
 
-					// Run the set state property handler.
+					/ Run the set state property handler.
 					main.setStateHandler[ key ]( value );
 
-					// Debug log.
+					/ Debug log.
 					wpf.debug( 'Form Generator state changed:', key, '=', value );
 
 					return true;
@@ -172,7 +172,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 					return;
 				}
 
-				// Open the Form Generator panel.
+				/ Open the Form Generator panel.
 				generator.state.panelOpen = true;
 			},
 
@@ -182,7 +182,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 			 * @since 1.9.2
 			 */
 			clickBackToTemplatesBtn() {
-				// Close the Form Generator panel.
+				/ Close the Form Generator panel.
 				generator.state.panelOpen = false;
 			},
 
@@ -194,7 +194,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 			 * @param {Object} e Event object.
 			 */
 			chatBeforeAddAnswer( e ) {
-				// Store the AI response data in state.
+				/ Store the AI response data in state.
 				generator.state.aiResponse = e.originalEvent.detail?.response;
 				generator.state.aiResponseHistory = generator.state.aiResponseHistory || {};
 				generator.state.aiResponseHistory[ generator.state.aiResponse?.responseId ] = generator.state.aiResponse;
@@ -210,7 +210,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 			chatAddedAnswer( e ) {
 				const chat = e.originalEvent.detail?.chat || {};
 
-				// Set chatStart state.
+				/ Set chatStart state.
 				if ( chat?.sessionId && ! generator.state.chatStart ) {
 					generator.state.chatStart = true;
 				}
@@ -297,22 +297,22 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 			 * @param {boolean} value The state value.
 			 */
 			panelAdd( value ) {
-				// Remove the panel from DOM.
+				/ Remove the panel from DOM.
 				if ( ! value ) {
 					main.el.$generatorPanel?.remove();
 
 					return;
 				}
 
-				// The panel already added, no need to add again.
+				/ The panel already added, no need to add again.
 				if ( main.el.$generatorPanel?.length ) {
 					return;
 				}
 
-				// Add panel to DOM.
+				/ Add panel to DOM.
 				main.el.$panelsContainer.append( main.render.generatorPanel() );
 
-				// Cache elements.
+				/ Cache elements.
 				main.el.$generatorPanel = $( '#wpforms-panel-ai-form' );
 				main.el.$chat = main.el.$generatorPanel.find( 'wpforms-ai-chat .wpforms-ai-chat' );
 			},
@@ -329,7 +329,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 				main.el.$templateCard.addClass( 'selected' );
 				main.setToolbarState( value );
 
-				// Freeze/unfreeze the Challenge.
+				/ Freeze/unfreeze the Challenge.
 				window.WPFormsChallenge?.core.freezeChallenge( value, strings.misc.frozenChallengeTooltip );
 				$( 'body' ).toggleClass( 'wpforms-ai-form-generator-active', value );
 
@@ -340,7 +340,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 					return;
 				}
 
-				// Update the response history if it exists.
+				/ Update the response history if it exists.
 				generator.state.aiResponseHistory = wpforms_ai_chat_element.forms.responseHistory;
 
 				const $activeResponse = main.el.$chat.find( '.wpforms-chat-item-answer.active' );
@@ -348,7 +348,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 
 				generator.state.aiResponse = generator.state.aiResponseHistory[ activeResponseId ];
 
-				// Scroll to the active response.
+				/ Scroll to the active response.
 				$activeResponse[ 0 ].scrollIntoView( { behavior: 'smooth', block: 'end' } );
 			},
 
@@ -364,7 +364,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 					return;
 				}
 
-				// Update the generator template card button text.
+				/ Update the generator template card button text.
 				main.el.$templateCard
 					.addClass( 'selected' )
 					.find( '.wpforms-template-generate' )
@@ -383,7 +383,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 					return;
 				}
 
-				// Update the preview.
+				/ Update the preview.
 				generator.preview.update();
 			},
 
@@ -444,15 +444,15 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 		 * @since 1.9.2
 		 */
 		maybeOpenPanel() {
-			// Open the panel only if the `ai-form` query string parameter exists.
+			/ Open the panel only if the `ai-form` query string parameter exists.
 			if ( ! window.location.search.includes( '&ai-form' ) ) {
 				return;
 			}
 
-			// Remove the query string parameter from the URL.
+			/ Remove the query string parameter from the URL.
 			history.replaceState( {}, null, wpf.updateQueryString( 'ai-form', null ) );
 
-			// Open the LiteConnect modal if it is not enabled.
+			/ Open the LiteConnect modal if it is not enabled.
 			const $buttonLiteConnect = $( '.wpforms-template-generate.enable-lite-connect-modal' );
 
 			if ( $buttonLiteConnect.length ) {
@@ -465,14 +465,14 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 				return;
 			}
 
-			// Open the panel if all addons are installed OR the modal is dismissed.
+			/ Open the panel if all addons are installed OR the modal is dismissed.
 			if ( ! Object.keys( strings.addonsData ).length || strings.dismissed.installAddons ) {
 				generator.state.panelOpen = true;
 
 				return;
 			}
 
-			// Open the addons install modal.
+			/ Open the addons install modal.
 			generator.modals.openAddonsModal( null );
 		},
 
@@ -489,10 +489,10 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 
 			WPFormsBuilder.showLoadingOverlay();
 
-			// Rate the response.
+			/ Rate the response.
 			main.getChatElement()?.wpformsAiApi.rate( true, responseId );
 
-			// Do not display the alert about unsaved changes.
+			/ Do not display the alert about unsaved changes.
 			WPFormsBuilder.setCloseConfirmation( false );
 
 			const data = {
@@ -522,7 +522,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 						return;
 					}
 
-					// When the Challenge is active, we need to resume it and continue the steps.
+					/ When the Challenge is active, we need to resume it and continue the steps.
 					WPFormsChallenge.core.resumeChallengeAndExec( {}, () => {
 						WPFormsChallenge.core.stepCompleted( 2 )
 							.done( () => {

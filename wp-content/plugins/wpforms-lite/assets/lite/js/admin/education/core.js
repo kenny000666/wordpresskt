@@ -17,7 +17,7 @@
  * @param wpforms_education.upgrade_bonus
  */
 
-var WPFormsEducation = window.WPFormsEducation || {}; // eslint-disable-line no-var
+var WPFormsEducation = window.WPFormsEducation || {}; / eslint-disable-line no-var
 
 WPFormsEducation.liteCore = window.WPFormsEducation.liteCore || ( function( document, window, $ ) {
 	/**
@@ -108,12 +108,12 @@ WPFormsEducation.liteCore = window.WPFormsEducation.liteCore || ( function( docu
 		 * @param {boolean} isPlural   Is feature name plural.
 		 */
 		upgradeModal( feature, utmContent, type, video, isPlural ) {
-			// Provide a default value.
+			/ Provide a default value.
 			if ( typeof type === 'undefined' || type.length === 0 ) {
 				type = 'pro';
 			}
 
-			// Make sure we received only a supported type.
+			/ Make sure we received only a supported type.
 			if ( $.inArray( type, [ 'pro', 'elite' ] ) < 0 ) {
 				return;
 			}
@@ -168,7 +168,7 @@ WPFormsEducation.liteCore = window.WPFormsEducation.liteCore || ( function( docu
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

@@ -19,7 +19,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"./mouse",
@@ -31,7 +31,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -65,7 +65,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 		tolerance: "intersect",
 		zIndex: 1000,
 
-		// Callbacks
+		/ Callbacks
 		activate: null,
 		beforeStop: null,
 		change: null,
@@ -93,18 +93,18 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 		this.containerCache = {};
 		this._addClass( "ui-sortable" );
 
-		//Get the items
+		/Get the items
 		this.refresh();
 
-		//Let's determine the parent's offset
+		/Let's determine the parent's offset
 		this.offset = this.element.offset();
 
-		//Initialize mouse events for interaction
+		/Initialize mouse events for interaction
 		this._mouseInit();
 
 		this._setHandleClassName();
 
-		//We're ready to go
+		/We're ready to go
 		this.ready = true;
 
 	},
@@ -153,10 +153,10 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			return false;
 		}
 
-		//We have to refresh the items data once first
+		/We have to refresh the items data once first
 		this._refreshItems( event );
 
-		//Find out if the clicked node (or one of its parents) is a actual item in this.items
+		/Find out if the clicked node (or one of its parents) is a actual item in this.items
 		$( event.target ).parents().each( function() {
 			if ( $.data( this, that.widgetName + "-item" ) === that ) {
 				currentItem = $( this );
@@ -194,19 +194,19 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 
 		this.currentContainer = this;
 
-		//We only need to call refreshPositions, because the refreshItems call has been moved to
-		// mouseCapture
+		/We only need to call refreshPositions, because the refreshItems call has been moved to
+		/ mouseCapture
 		this.refreshPositions();
 
-		//Prepare the dragged items parent
+		/Prepare the dragged items parent
 		this.appendTo = $( o.appendTo !== "parent" ?
 				o.appendTo :
 				this.currentItem.parent() );
 
-		//Create and append the visible helper
+		/Create and append the visible helper
 		this.helper = this._createHelper( event );
 
-		//Cache the helper size
+		/Cache the helper size
 		this._cacheHelperProportions();
 
 		/*
@@ -214,10 +214,10 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 		 * This block generates everything position related - it's the core of draggables.
 		 */
 
-		//Cache the margins of the original element
+		/Cache the margins of the original element
 		this._cacheMargins();
 
-		//The element's absolute position on the page minus margins
+		/The element's absolute position on the page minus margins
 		this.offset = this.currentItem.offset();
 		this.offset = {
 			top: this.offset.top - this.margins.top,
@@ -225,58 +225,58 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 		};
 
 		$.extend( this.offset, {
-			click: { //Where the click happened, relative to the element
+			click: { /Where the click happened, relative to the element
 				left: event.pageX - this.offset.left,
 				top: event.pageY - this.offset.top
 			},
 
-			// This is a relative to absolute position minus the actual position calculation -
-			// only used for relative positioned helper
+			/ This is a relative to absolute position minus the actual position calculation -
+			/ only used for relative positioned helper
 			relative: this._getRelativeOffset()
 		} );
 
-		// After we get the helper offset, but before we get the parent offset we can
-		// change the helper's position to absolute
-		// TODO: Still need to figure out a way to make relative sorting possible
+		/ After we get the helper offset, but before we get the parent offset we can
+		/ change the helper's position to absolute
+		/ TODO: Still need to figure out a way to make relative sorting possible
 		this.helper.css( "position", "absolute" );
 		this.cssPosition = this.helper.css( "position" );
 
-		//Adjust the mouse offset relative to the helper if "cursorAt" is supplied
+		/Adjust the mouse offset relative to the helper if "cursorAt" is supplied
 		if ( o.cursorAt ) {
 			this._adjustOffsetFromHelper( o.cursorAt );
 		}
 
-		//Cache the former DOM position
+		/Cache the former DOM position
 		this.domPosition = {
 			prev: this.currentItem.prev()[ 0 ],
 			parent: this.currentItem.parent()[ 0 ]
 		};
 
-		// If the helper is not the original, hide the original so it's not playing any role during
-		// the drag, won't cause anything bad this way
+		/ If the helper is not the original, hide the original so it's not playing any role during
+		/ the drag, won't cause anything bad this way
 		if ( this.helper[ 0 ] !== this.currentItem[ 0 ] ) {
 			this.currentItem.hide();
 		}
 
-		//Create the placeholder
+		/Create the placeholder
 		this._createPlaceholder();
 
-		//Get the next scrolling parent
+		/Get the next scrolling parent
 		this.scrollParent = this.placeholder.scrollParent();
 
 		$.extend( this.offset, {
 			parent: this._getParentOffset()
 		} );
 
-		//Set a containment if given in the options
+		/Set a containment if given in the options
 		if ( o.containment ) {
 			this._setContainment();
 		}
 
-		if ( o.cursor && o.cursor !== "auto" ) { // cursor option
+		if ( o.cursor && o.cursor !== "auto" ) { / cursor option
 			body = this.document.find( "body" );
 
-			// Support: IE
+			/ Support: IE
 			this.storedCursor = body.css( "cursor" );
 			body.css( "cursor", o.cursor );
 
@@ -284,45 +284,45 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 				$( "<style>*{ cursor: " + o.cursor + " !important; }</style>" ).appendTo( body );
 		}
 
-		// We need to make sure to grab the zIndex before setting the
-		// opacity, because setting the opacity to anything lower than 1
-		// causes the zIndex to change from "auto" to 0.
-		if ( o.zIndex ) { // zIndex option
+		/ We need to make sure to grab the zIndex before setting the
+		/ opacity, because setting the opacity to anything lower than 1
+		/ causes the zIndex to change from "auto" to 0.
+		if ( o.zIndex ) { / zIndex option
 			if ( this.helper.css( "zIndex" ) ) {
 				this._storedZIndex = this.helper.css( "zIndex" );
 			}
 			this.helper.css( "zIndex", o.zIndex );
 		}
 
-		if ( o.opacity ) { // opacity option
+		if ( o.opacity ) { / opacity option
 			if ( this.helper.css( "opacity" ) ) {
 				this._storedOpacity = this.helper.css( "opacity" );
 			}
 			this.helper.css( "opacity", o.opacity );
 		}
 
-		//Prepare scrolling
+		/Prepare scrolling
 		if ( this.scrollParent[ 0 ] !== this.document[ 0 ] &&
 				this.scrollParent[ 0 ].tagName !== "HTML" ) {
 			this.overflowOffset = this.scrollParent.offset();
 		}
 
-		//Call callbacks
+		/Call callbacks
 		this._trigger( "start", event, this._uiHash() );
 
-		//Recache the helper size
+		/Recache the helper size
 		if ( !this._preserveHelperProportions ) {
 			this._cacheHelperProportions();
 		}
 
-		//Post "activate" events to possible containers
+		/Post "activate" events to possible containers
 		if ( !noActivation ) {
 			for ( i = this.containers.length - 1; i >= 0; i-- ) {
 				this.containers[ i ]._trigger( "activate", event, this._uiHash( this ) );
 			}
 		}
 
-		//Prepare possible droppables
+		/Prepare possible droppables
 		if ( $.ui.ddmanager ) {
 			$.ui.ddmanager.current = this;
 		}
@@ -335,15 +335,15 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 
 		this._addClass( this.helper, "ui-sortable-helper" );
 
-		//Move the helper, if needed
+		/Move the helper, if needed
 		if ( !this.helper.parent().is( this.appendTo ) ) {
 			this.helper.detach().appendTo( this.appendTo );
 
-			//Update position
+			/Update position
 			this.offset.parent = this._getParentOffset();
 		}
 
-		//Generate the original position
+		/Generate the original position
 		this.position = this.originalPosition = this._generatePosition( event );
 		this.originalPageX = event.pageX;
 		this.originalPageY = event.pageY;
@@ -409,11 +409,11 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 		var i, item, itemElement, intersection,
 			o = this.options;
 
-		//Compute the helpers position
+		/Compute the helpers position
 		this.position = this._generatePosition( event );
 		this.positionAbs = this._convertPositionTo( "absolute" );
 
-		//Set the helper position
+		/Set the helper position
 		if ( !this.options.axis || this.options.axis !== "y" ) {
 			this.helper[ 0 ].style.left = this.position.left + "px";
 		}
@@ -421,11 +421,11 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			this.helper[ 0 ].style.top = this.position.top + "px";
 		}
 
-		//Do scrolling
+		/Do scrolling
 		if ( o.scroll ) {
 			if ( this._scroll( event ) !== false ) {
 
-				//Update item positions used in position checks
+				/Update item positions used in position checks
 				this._refreshItemPositions( true );
 
 				if ( $.ui.ddmanager && !o.dropBehaviour ) {
@@ -439,10 +439,10 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			horizontal: this._getDragHorizontalDirection()
 		};
 
-		//Rearrange
+		/Rearrange
 		for ( i = this.items.length - 1; i >= 0; i-- ) {
 
-			//Cache variables and intersection, continue if no intersection
+			/Cache variables and intersection, continue if no intersection
 			item = this.items[ i ];
 			itemElement = item.item[ 0 ];
 			intersection = this._intersectsWithPointer( item );
@@ -450,20 +450,20 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 				continue;
 			}
 
-			// Only put the placeholder inside the current Container, skip all
-			// items from other containers. This works because when moving
-			// an item from one container to another the
-			// currentContainer is switched before the placeholder is moved.
-			//
-			// Without this, moving items in "sub-sortables" can cause
-			// the placeholder to jitter between the outer and inner container.
+			/ Only put the placeholder inside the current Container, skip all
+			/ items from other containers. This works because when moving
+			/ an item from one container to another the
+			/ currentContainer is switched before the placeholder is moved.
+			/
+			/ Without this, moving items in "sub-sortables" can cause
+			/ the placeholder to jitter between the outer and inner container.
 			if ( item.instance !== this.currentContainer ) {
 				continue;
 			}
 
-			// Cannot intersect with itself
-			// no useless actions that have been done before
-			// no action if the item moved is the parent of the item checked
+			/ Cannot intersect with itself
+			/ no useless actions that have been done before
+			/ no action if the item moved is the parent of the item checked
 			if ( itemElement !== this.currentItem[ 0 ] &&
 				this.placeholder[ intersection === 1 ?
 				"next" : "prev" ]()[ 0 ] !== itemElement &&
@@ -488,15 +488,15 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			}
 		}
 
-		//Post events to containers
+		/Post events to containers
 		this._contactContainers( event );
 
-		//Interconnect with droppables
+		/Interconnect with droppables
 		if ( $.ui.ddmanager ) {
 			$.ui.ddmanager.drag( this, event );
 		}
 
-		//Call callbacks
+		/Call callbacks
 		this._trigger( "sort", event, this._uiHash() );
 
 		this.lastPositionAbs = this.positionAbs;
@@ -510,7 +510,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			return;
 		}
 
-		//If we are using droppables, inform the manager about the drop
+		/If we are using droppables, inform the manager about the drop
 		if ( $.ui.ddmanager && !this.options.dropBehaviour ) {
 			$.ui.ddmanager.drop( this, event );
 		}
@@ -564,7 +564,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 				this.currentItem.show();
 			}
 
-			//Post deactivating events to containers
+			/Post deactivating events to containers
 			for ( var i = this.containers.length - 1; i >= 0; i-- ) {
 				this.containers[ i ]._trigger( "deactivate", null, this._uiHash( this ) );
 				if ( this.containers[ i ].containerCache.over ) {
@@ -577,8 +577,8 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 
 		if ( this.placeholder ) {
 
-			//$(this.placeholder[0]).remove(); would have been the jQuery way - unfortunately,
-			// it unbinds ALL events from the original node!
+			/$(this.placeholder[0]).remove(); would have been the jQuery way - unfortunately,
+			/ it unbinds ALL events from the original node!
 			if ( this.placeholder[ 0 ].parentNode ) {
 				this.placeholder[ 0 ].parentNode.removeChild( this.placeholder[ 0 ] );
 			}
@@ -671,10 +671,10 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			return isOverElement;
 		} else {
 
-			return ( l < x1 + ( this.helperProportions.width / 2 ) && // Right Half
-				x2 - ( this.helperProportions.width / 2 ) < r && // Left Half
-				t < y1 + ( this.helperProportions.height / 2 ) && // Bottom Half
-				y2 - ( this.helperProportions.height / 2 ) < b ); // Top Half
+			return ( l < x1 + ( this.helperProportions.width / 2 ) && / Right Half
+				x2 - ( this.helperProportions.width / 2 ) < r && / Left Half
+				t < y1 + ( this.helperProportions.height / 2 ) && / Bottom Half
+				y2 - ( this.helperProportions.height / 2 ) < b ); / Top Half
 
 		}
 	},
@@ -813,7 +813,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 				$( this.options.items, this.element ), this ] ],
 			connectWith = this._connectWith();
 
-		//Shouldn't be run the first time through due to massive slow-down
+		/Shouldn't be run the first time through due to massive slow-down
 		if ( connectWith && this.ready ) {
 			for ( i = connectWith.length - 1; i >= 0; i-- ) {
 				cur = $( connectWith[ i ], this.document[ 0 ] );
@@ -837,7 +837,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			for ( j = 0, queriesLength = _queries.length; j < queriesLength; j++ ) {
 				item = $( _queries[ j ] );
 
-				// Data for target checking (mouse manager)
+				/ Data for target checking (mouse manager)
 				item.data( this.widgetName + "-item", targetData );
 
 				items.push( {
@@ -857,7 +857,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 		for ( i = this.items.length - 1; i >= 0; i-- ) {
 			item = this.items[ i ];
 
-			//We ignore calculating positions of all connected containers when we're not over them
+			/We ignore calculating positions of all connected containers when we're not over them
 			if ( this.currentContainer && item.instance !== this.currentContainer &&
 					item.item[ 0 ] !== this.currentItem[ 0 ] ) {
 				continue;
@@ -880,13 +880,13 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 
 	refreshPositions: function( fast ) {
 
-		// Determine whether items are being displayed horizontally
+		/ Determine whether items are being displayed horizontally
 		this.floating = this.items.length ?
 			this.options.axis === "x" || this._isFloating( this.items[ 0 ].item ) :
 			false;
 
-		// This has to be redone because due to the item being moved out/into the offsetParent,
-		// the offsetParent's position will change
+		/ This has to be redone because due to the item being moved out/into the offsetParent,
+		/ the offsetParent's position will change
 		if ( this.offsetParent && this.helper ) {
 			this.offset.parent = this._getParentOffset();
 		}
@@ -948,21 +948,21 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 				},
 				update: function( container, p ) {
 
-					// 1. If a className is set as 'placeholder option, we don't force sizes -
-					// the class is responsible for that
-					// 2. The option 'forcePlaceholderSize can be enabled to force it even if a
-					// class name is specified
+					/ 1. If a className is set as 'placeholder option, we don't force sizes -
+					/ the class is responsible for that
+					/ 2. The option 'forcePlaceholderSize can be enabled to force it even if a
+					/ class name is specified
 					if ( className && !o.forcePlaceholderSize ) {
 						return;
 					}
 
-					// If the element doesn't have a actual height or width by itself (without
-					// styles coming from a stylesheet), it receives the inline height and width
-					// from the dragged item. Or, if it's a tbody or tr, it's going to have a height
-					// anyway since we're populating them with <td>s above, but they're unlikely to
-					// be the correct height on their own if the row heights are dynamic, so we'll
-					// always assign the height of the dragged item given forcePlaceholderSize
-					// is true.
+					/ If the element doesn't have a actual height or width by itself (without
+					/ styles coming from a stylesheet), it receives the inline height and width
+					/ from the dragged item. Or, if it's a tbody or tr, it's going to have a height
+					/ anyway since we're populating them with <td>s above, but they're unlikely to
+					/ be the correct height on their own if the row heights are dynamic, so we'll
+					/ always assign the height of the dragged item given forcePlaceholderSize
+					/ is true.
 					if ( !p.height() || ( o.forcePlaceholderSize &&
 							( nodeName === "tbody" || nodeName === "tr" ) ) ) {
 						p.height(
@@ -980,13 +980,13 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			};
 		}
 
-		//Create the placeholder
+		/Create the placeholder
 		that.placeholder = $( o.placeholder.element.call( that.element, that.currentItem ) );
 
-		//Append it after the actual current item
+		/Append it after the actual current item
 		that.currentItem.after( that.placeholder );
 
-		//Update the size of the placeholder (TODO: Logic to fuzzy, see line 316/317)
+		/Update the size of the placeholder (TODO: Logic to fuzzy, see line 316/317)
 		o.placeholder.update( that, that.placeholder );
 
 	},
@@ -1007,17 +1007,17 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			innermostContainer = null,
 			innermostIndex = null;
 
-		// Get innermost container that intersects with item
+		/ Get innermost container that intersects with item
 		for ( i = this.containers.length - 1; i >= 0; i-- ) {
 
-			// Never consider a container that's located within the item itself
+			/ Never consider a container that's located within the item itself
 			if ( $.contains( this.currentItem[ 0 ], this.containers[ i ].element[ 0 ] ) ) {
 				continue;
 			}
 
 			if ( this._intersectsWith( this.containers[ i ].containerCache ) ) {
 
-				// If we've already found a container and it's more "inner" than this, then continue
+				/ If we've already found a container and it's more "inner" than this, then continue
 				if ( innermostContainer &&
 						$.contains(
 							this.containers[ i ].element[ 0 ],
@@ -1030,7 +1030,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 
 			} else {
 
-				// container doesn't intersect. trigger "out" event if necessary
+				/ container doesn't intersect. trigger "out" event if necessary
 				if ( this.containers[ i ].containerCache.over ) {
 					this.containers[ i ]._trigger( "out", event, this._uiHash( this ) );
 					this.containers[ i ].containerCache.over = 0;
@@ -1039,12 +1039,12 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 
 		}
 
-		// If no intersecting containers found, return
+		/ If no intersecting containers found, return
 		if ( !innermostContainer ) {
 			return;
 		}
 
-		// Move the item into the container if it's not there already
+		/ Move the item into the container if it's not there already
 		if ( this.containers.length === 1 ) {
 			if ( !this.containers[ innermostIndex ].containerCache.over ) {
 				this.containers[ innermostIndex ]._trigger( "over", event, this._uiHash( this ) );
@@ -1052,8 +1052,8 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			}
 		} else {
 
-			// When entering a new container, we will find the item with the least distance and
-			// append our item near it
+			/ When entering a new container, we will find the item with the least distance and
+			/ append our item near it
 			dist = 10000;
 			itemWithLeastDistance = null;
 			floating = innermostContainer.floating || this._isFloating( this.currentItem );
@@ -1084,7 +1084,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 				}
 			}
 
-			//Check if dropOnEmpty is enabled
+			/Check if dropOnEmpty is enabled
 			if ( !itemWithLeastDistance && !this.options.dropOnEmpty ) {
 				return;
 			}
@@ -1106,13 +1106,13 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			this.containers[ innermostIndex ]._trigger( "change", event, this._uiHash( this ) );
 			this.currentContainer = this.containers[ innermostIndex ];
 
-			//Update the placeholder
+			/Update the placeholder
 			this.options.placeholder.update( this.currentContainer, this.placeholder );
 
-			//Update scrollParent
+			/Update scrollParent
 			this.scrollParent = this.placeholder.scrollParent();
 
-			//Update overflowOffset
+			/Update overflowOffset
 			if ( this.scrollParent[ 0 ] !== this.document[ 0 ] &&
 					this.scrollParent[ 0 ].tagName !== "HTML" ) {
 				this.overflowOffset = this.scrollParent.offset();
@@ -1131,7 +1131,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 				$( o.helper.apply( this.element[ 0 ], [ event, this.currentItem ] ) ) :
 				( o.helper === "clone" ? this.currentItem.clone() : this.currentItem );
 
-		//Add the helper to the DOM if that didn't happen already
+		/Add the helper to the DOM if that didn't happen already
 		if ( !helper.parents( "body" ).length ) {
 			this.appendTo[ 0 ].appendChild( helper[ 0 ] );
 		}
@@ -1180,25 +1180,25 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 
 	_getParentOffset: function() {
 
-		//Get the offsetParent and cache its position
+		/Get the offsetParent and cache its position
 		this.offsetParent = this.helper.offsetParent();
 		var po = this.offsetParent.offset();
 
-		// This is a special case where we need to modify a offset calculated on start, since the
-		// following happened:
-		// 1. The position of the helper is absolute, so it's position is calculated based on the
-		// next positioned parent
-		// 2. The actual offset parent is a child of the scroll parent, and the scroll parent isn't
-		// the document, which means that the scroll is included in the initial calculation of the
-		// offset of the parent, and never recalculated upon drag
+		/ This is a special case where we need to modify a offset calculated on start, since the
+		/ following happened:
+		/ 1. The position of the helper is absolute, so it's position is calculated based on the
+		/ next positioned parent
+		/ 2. The actual offset parent is a child of the scroll parent, and the scroll parent isn't
+		/ the document, which means that the scroll is included in the initial calculation of the
+		/ offset of the parent, and never recalculated upon drag
 		if ( this.cssPosition === "absolute" && this.scrollParent[ 0 ] !== this.document[ 0 ] &&
 				$.contains( this.scrollParent[ 0 ], this.offsetParent[ 0 ] ) ) {
 			po.left += this.scrollParent.scrollLeft();
 			po.top += this.scrollParent.scrollTop();
 		}
 
-		// This needs to be actually done for all browsers, since pageX/pageY includes this
-		// information with an ugly IE fix
+		/ This needs to be actually done for all browsers, since pageX/pageY includes this
+		/ information with an ugly IE fix
 		if ( this.offsetParent[ 0 ] === this.document[ 0 ].body ||
 				( this.offsetParent[ 0 ].tagName &&
 				this.offsetParent[ 0 ].tagName.toLowerCase() === "html" && $.ui.ie ) ) {
@@ -1302,13 +1302,13 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 		return {
 			top: (
 
-				// The absolute mouse position
+				/ The absolute mouse position
 				pos.top	+
 
-				// Only for relative positioned nodes: Relative offset from element to offset parent
+				/ Only for relative positioned nodes: Relative offset from element to offset parent
 				this.offset.relative.top * mod +
 
-				// The offsetParent's offset without borders (offset + border)
+				/ The offsetParent's offset without borders (offset + border)
 				this.offset.parent.top * mod -
 				( ( this.cssPosition === "fixed" ?
 					-this.scrollParent.scrollTop() :
@@ -1316,13 +1316,13 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			),
 			left: (
 
-				// The absolute mouse position
+				/ The absolute mouse position
 				pos.left +
 
-				// Only for relative positioned nodes: Relative offset from element to offset parent
+				/ Only for relative positioned nodes: Relative offset from element to offset parent
 				this.offset.relative.left * mod +
 
-				// The offsetParent's offset without borders (offset + border)
+				/ The offsetParent's offset without borders (offset + border)
 				this.offset.parent.left * mod	-
 				( ( this.cssPosition === "fixed" ?
 					-this.scrollParent.scrollLeft() : scrollIsRootNode ? 0 :
@@ -1345,10 +1345,10 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 					this.scrollParent,
 				scrollIsRootNode = ( /(html|body)/i ).test( scroll[ 0 ].tagName );
 
-		// This is another very weird special case that only happens for relative elements:
-		// 1. If the css position is relative
-		// 2. and the scroll parent is the document or similar to the offset parent
-		// we have to refresh the relative offset during the scroll so there are no jumps
+		/ This is another very weird special case that only happens for relative elements:
+		/ 1. If the css position is relative
+		/ 2. and the scroll parent is the document or similar to the offset parent
+		/ we have to refresh the relative offset during the scroll so there are no jumps
 		if ( this.cssPosition === "relative" && !( this.scrollParent[ 0 ] !== this.document[ 0 ] &&
 				this.scrollParent[ 0 ] !== this.offsetParent[ 0 ] ) ) {
 			this.offset.relative = this._getRelativeOffset();
@@ -1359,7 +1359,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 		 * Constrain the position to a mix of grid, containment.
 		 */
 
-		if ( this.originalPosition ) { //If we are not dragging yet, we won't check for options
+		if ( this.originalPosition ) { /If we are not dragging yet, we won't check for options
 
 			if ( this.containment ) {
 				if ( event.pageX - this.offset.click.left < this.containment[ 0 ] ) {
@@ -1403,16 +1403,16 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 		return {
 			top: (
 
-				// The absolute mouse position
+				/ The absolute mouse position
 				pageY -
 
-				// Click offset (relative to the element)
+				/ Click offset (relative to the element)
 				this.offset.click.top -
 
-				// Only for relative positioned nodes: Relative offset from element to offset parent
+				/ Only for relative positioned nodes: Relative offset from element to offset parent
 				this.offset.relative.top -
 
-				// The offsetParent's offset without borders (offset + border)
+				/ The offsetParent's offset without borders (offset + border)
 				this.offset.parent.top +
 				( ( this.cssPosition === "fixed" ?
 					-this.scrollParent.scrollTop() :
@@ -1420,16 +1420,16 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			),
 			left: (
 
-				// The absolute mouse position
+				/ The absolute mouse position
 				pageX -
 
-				// Click offset (relative to the element)
+				/ Click offset (relative to the element)
 				this.offset.click.left -
 
-				// Only for relative positioned nodes: Relative offset from element to offset parent
+				/ Only for relative positioned nodes: Relative offset from element to offset parent
 				this.offset.relative.left -
 
-				// The offsetParent's offset without borders (offset + border)
+				/ The offsetParent's offset without borders (offset + border)
 				this.offset.parent.left +
 				( ( this.cssPosition === "fixed" ?
 					-this.scrollParent.scrollLeft() :
@@ -1448,19 +1448,19 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 				( this.direction === "down" ? i.item[ 0 ] : i.item[ 0 ].nextSibling ) );
 		}
 
-		//Various things done here to improve the performance:
-		// 1. we create a setTimeout, that calls refreshPositions
-		// 2. on the instance, we have a counter variable, that get's higher after every append
-		// 3. on the local scope, we copy the counter variable, and check in the timeout,
-		// if it's still the same
-		// 4. this lets only the last addition to the timeout stack through
+		/Various things done here to improve the performance:
+		/ 1. we create a setTimeout, that calls refreshPositions
+		/ 2. on the instance, we have a counter variable, that get's higher after every append
+		/ 3. on the local scope, we copy the counter variable, and check in the timeout,
+		/ if it's still the same
+		/ 4. this lets only the last addition to the timeout stack through
 		this.counter = this.counter ? ++this.counter : 1;
 		var counter = this.counter;
 
 		this._delay( function() {
 			if ( counter === this.counter ) {
 
-				//Precompute after each DOM insertion, NOT on mousemove
+				/Precompute after each DOM insertion, NOT on mousemove
 				this.refreshPositions( !hardRefresh );
 			}
 		} );
@@ -1471,14 +1471,14 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 
 		this.reverting = false;
 
-		// We delay all events that have to be triggered to after the point where the placeholder
-		// has been removed and everything else normalized again
+		/ We delay all events that have to be triggered to after the point where the placeholder
+		/ has been removed and everything else normalized again
 		var i,
 			delayedTriggers = [];
 
-		// We first have to update the dom position of the actual currentItem
-		// Note: don't do it if the current item is already removed (by a user), or it gets
-		// reappended (see #4088)
+		/ We first have to update the dom position of the actual currentItem
+		/ Note: don't do it if the current item is already removed (by a user), or it gets
+		/ reappended (see #4088)
 		if ( !this._noFinalSort && this.currentItem.parent().length ) {
 			this.placeholder.before( this.currentItem );
 		}
@@ -1506,14 +1506,14 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 				this.currentItem.prev().not( ".ui-sortable-helper" )[ 0 ] ||
 				this.domPosition.parent !== this.currentItem.parent()[ 0 ] ) && !noPropagation ) {
 
-			// Trigger update callback if the DOM position has changed
+			/ Trigger update callback if the DOM position has changed
 			delayedTriggers.push( function( event ) {
 				this._trigger( "update", event, this._uiHash() );
 			} );
 		}
 
-		// Check if the items Container has Changed and trigger appropriate
-		// events.
+		/ Check if the items Container has Changed and trigger appropriate
+		/ events.
 		if ( this !== this.currentContainer ) {
 			if ( !noPropagation ) {
 				delayedTriggers.push( function( event ) {
@@ -1532,7 +1532,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			}
 		}
 
-		//Post events to containers
+		/Post events to containers
 		function delayEvent( type, instance, container ) {
 			return function( event ) {
 				container._trigger( type, event, instance._uiHash( instance ) );
@@ -1548,7 +1548,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			}
 		}
 
-		//Do what was originally in plugins
+		/Do what was originally in plugins
 		if ( this.storedCursor ) {
 			this.document.find( "body" ).css( "cursor", this.storedCursor );
 			this.storedStylesheet.remove();
@@ -1566,8 +1566,8 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			this._trigger( "beforeStop", event, this._uiHash() );
 		}
 
-		//$(this.placeholder[0]).remove(); would have been the jQuery way - unfortunately,
-		// it unbinds ALL events from the original node!
+		/$(this.placeholder[0]).remove(); would have been the jQuery way - unfortunately,
+		/ it unbinds ALL events from the original node!
 		this.placeholder[ 0 ].parentNode.removeChild( this.placeholder[ 0 ] );
 
 		if ( !this.cancelHelperRemoval ) {
@@ -1580,7 +1580,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 		if ( !noPropagation ) {
 			for ( i = 0; i < delayedTriggers.length; i++ ) {
 
-				// Trigger all delayed events
+				/ Trigger all delayed events
 				delayedTriggers[ i ].call( this, event );
 			}
 			this._trigger( "stop", event, this._uiHash() );

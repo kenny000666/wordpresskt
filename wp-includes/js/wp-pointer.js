@@ -87,23 +87,23 @@
 			var o   = this.options,
 				tip = this.pointer;
 
-			// Handle document transfer.
+			/ Handle document transfer.
 			if ( key === 'document' && value !== o.document ) {
 				tip.detach().appendTo( value.body );
 
-			// Handle class change.
+			/ Handle class change.
 			} else if ( key === 'pointerClass' ) {
 				tip.removeClass( o.pointerClass ).addClass( value );
 			}
 
-			// Call super method.
+			/ Call super method.
 			$.Widget.prototype._setOption.apply( this, arguments );
 
-			// Reposition automatically.
+			/ Reposition automatically.
 			if ( key === 'position' ) {
 				this.reposition();
 
-			// Update content automatically if pointer is open.
+			/ Update content automatically if pointer is open.
 			} else if ( key === 'content' && this.active ) {
 				this.update();
 			}
@@ -161,16 +161,16 @@
 				self._update( event, content );
 			});
 
-			// Either o.content is a string...
+			/ Either o.content is a string...
 			if ( typeof o.content === 'string' ) {
 				content = o.content;
 
-			// ...or o.content is a callback.
+			/ ...or o.content is a callback.
 			} else {
 				content = o.content.call( this.element[0], dfd.resolve, event, this._handoff() );
 			}
 
-			// If content is set, then complete the update.
+			/ If content is set, then complete the update.
 			if ( content )
 				dfd.resolve( content );
 
@@ -195,7 +195,7 @@
 			if ( ! content )
 				return;
 
-			// Kill any animations on the pointer.
+			/ Kill any animations on the pointer.
 			this.pointer.stop();
 			this.content.html( content );
 
@@ -223,15 +223,15 @@
 
 			position = this._processPosition( this.options.position );
 
-			// Reposition pointer.
+			/ Reposition pointer.
 			this.pointer.css({
 				top: 0,
 				left: 0,
-				zIndex: zindex++ // Increment the z-index so that it shows above other opened pointers.
+				zIndex: zindex++ / Increment the z-index so that it shows above other opened pointers.
 			}).show().position($.extend({
 				of: this.element,
 				collision: 'fit none'
-			}, position )); // The object comes before this.options.position so the user can override position.of.
+			}, position )); / The object comes before this.options.position so the user can override position.of.
 
 			this.repoint();
 		},
@@ -250,10 +250,10 @@
 
 			edge = ( typeof o.position == 'string' ) ? o.position : o.position.edge;
 
-			// Remove arrow classes.
+			/ Remove arrow classes.
 			this.pointer[0].className = this.pointer[0].className.replace( /wp-pointer-[^\s'"]*/, '' );
 
-			// Add arrow class.
+			/ Add arrow class.
 			this.pointer.addClass( 'wp-pointer-' + edge );
 		},
 
@@ -277,7 +277,7 @@
 				},
 				result;
 
-			// If the position object is a string, it is shorthand for position.edge.
+			/ If the position object is a string, it is shorthand for position.edge.
 			if ( typeof position == 'string' ) {
 				result = {
 					edge: position + ''

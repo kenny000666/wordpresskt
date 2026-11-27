@@ -42,8 +42,8 @@
 					return;
 				}
 
-				// Editor in repeater needs to have content manually added to text area,
-				// or the content won't save.
+				/ Editor in repeater needs to have content manually added to text area,
+				/ or the content won't save.
 				editorArea = el.find( '.wp-editor-area' );
 				if ( editorArea.hasClass( 'in-repeater' ) || editorArea.hasClass( 'in-tabbed' ) ) {
 					id  = el.data( 'id' );

@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
@@ -15,27 +15,27 @@ module.exports = wp.i18n;
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
@@ -95,7 +95,7 @@ module.exports = wp.i18n;
       this.hideIframeContent();
       this.buildPanelTopBar();
     },
-    // Sometimes Gutenberg uses iframe instead of div.
+    / Sometimes Gutenberg uses iframe instead of div.
     hasIframe: function hasIframe() {
       return !!this.cache.$gutenberg.find('iframe[name="editor-canvas"]').length;
     },
@@ -124,8 +124,8 @@ module.exports = wp.i18n;
         self.animateLoader();
       }
 
-      // A new post is initialized as an 'auto-draft'.
-      // if the post is not a new post it should not save it to avoid some saving conflict between elementor and gutenberg.
+      / A new post is initialized as an 'auto-draft'.
+      / if the post is not a new post it should not save it to avoid some saving conflict between elementor and gutenberg.
       var isNewPost = 'auto-draft' === wp.data.select('core/editor').getCurrentPost().status;
       if (isNewPost) {
         var documentTitle = wp.data.select('core/editor').getEditedPostAttribute('title');

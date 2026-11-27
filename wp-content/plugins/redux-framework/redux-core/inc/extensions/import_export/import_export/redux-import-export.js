@@ -206,10 +206,10 @@
 						textBox1.onfocus = function () {
 							textBox1.select();
 
-							// Work around Chrome's little problem.
+							/ Work around Chrome's little problem.
 							textBox1.onmouseup = function () {
 
-								// Prevent further mouseup intervention.
+								/ Prevent further mouseup intervention.
 								textBox1.onmouseup = null;
 								return false;
 							};
@@ -220,10 +220,10 @@
 						textBox2.onfocus = function () {
 							textBox2.select();
 
-							// Work around Chrome's little problem.
+							/ Work around Chrome's little problem.
 							textBox2.onmouseup = function () {
 
-								// Prevent further mouseup intervention.
+								/ Prevent further mouseup intervention.
 								textBox2.onmouseup = null;
 								return false;
 							};

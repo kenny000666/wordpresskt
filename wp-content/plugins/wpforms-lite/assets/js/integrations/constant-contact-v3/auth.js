@@ -241,7 +241,7 @@ const WPFormsConstantContactV3Auth = window.WPFormsConstantContactV3Auth || ( fu
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

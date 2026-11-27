@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
@@ -78,9 +78,9 @@ function propertyIsOnObject(object, property) {
 
 // Protects from prototype poisoning and unexpected merging up the prototype chain.
 function propertyIsUnsafe(target, key) {
-	return propertyIsOnObject(target, key) // Properties are safe to merge if they don't exist in the target yet,
-		&& !(Object.hasOwnProperty.call(target, key) // unsafe if they exist up the prototype chain,
-			&& Object.propertyIsEnumerable.call(target, key)) // and also unsafe if they're nonenumerable.
+	return propertyIsOnObject(target, key) / Properties are safe to merge if they don't exist in the target yet,
+		&& !(Object.hasOwnProperty.call(target, key) / unsafe if they exist up the prototype chain,
+			&& Object.propertyIsEnumerable.call(target, key)) / and also unsafe if they're nonenumerable.
 }
 
 function mergeObject(target, source, options) {
@@ -108,8 +108,8 @@ function deepmerge(target, source, options) {
 	options = options || {};
 	options.arrayMerge = options.arrayMerge || defaultArrayMerge;
 	options.isMergeableObject = options.isMergeableObject || isMergeableObject;
-	// cloneUnlessOtherwiseSpecified is added to `options` so that custom arrayMerge()
-	// implementations can use it. The caller may not replace it.
+	/ cloneUnlessOtherwiseSpecified is added to `options` so that custom arrayMerge()
+	/ implementations can use it. The caller may not replace it.
 	options.cloneUnlessOtherwiseSpecified = cloneUnlessOtherwiseSpecified;
 
 	var sourceIsArray = Array.isArray(source);
@@ -197,15 +197,15 @@ function _createClass(Constructor, protoProps, staticProps) {
 function getValuePair(instance, key) {
   var _map = instance._map,
       _arrayTreeMap = instance._arrayTreeMap,
-      _objectTreeMap = instance._objectTreeMap; // Map keeps a reference to the last object-like key used to set the
-  // value, which can be used to shortcut immediately to the value.
+      _objectTreeMap = instance._objectTreeMap; / Map keeps a reference to the last object-like key used to set the
+  / value, which can be used to shortcut immediately to the value.
 
   if (_map.has(key)) {
     return _map.get(key);
-  } // Sort keys to ensure stable retrieval from tree.
+  } / Sort keys to ensure stable retrieval from tree.
 
 
-  var properties = Object.keys(key).sort(); // Tree by type to avoid conflicts on numeric object keys, empty value.
+  var properties = Object.keys(key).sort(); / Tree by type to avoid conflicts on numeric object keys, empty value.
 
   var map = Array.isArray(key) ? _arrayTreeMap : _objectTreeMap;
 
@@ -229,8 +229,8 @@ function getValuePair(instance, key) {
 
   if (!valuePair) {
     return;
-  } // If reached, it implies that an object-like key was set with another
-  // reference, so delete the reference and replace with the current.
+  } / If reached, it implies that an object-like key was set with another
+  / reference, so delete the reference and replace with the current.
 
 
   _map.delete(valuePair[0]);
@@ -262,7 +262,7 @@ function () {
     this.clear();
 
     if (iterable instanceof EquivalentKeyMap) {
-      // Map#forEach is only means of iterating with support for IE11.
+      / Map#forEach is only means of iterating with support for IE11.
       var iterablePairs = [];
       iterable.forEach(function (value, key) {
         iterablePairs.push([key, value]);
@@ -295,16 +295,16 @@ function () {
      * @return {EquivalentKeyMap} Map instance.
      */
     value: function set(key, value) {
-      // Shortcut non-object-like to set on internal Map.
+      / Shortcut non-object-like to set on internal Map.
       if (key === null || _typeof(key) !== 'object') {
         this._map.set(key, value);
 
         return this;
-      } // Sort keys to ensure stable assignment into tree.
+      } / Sort keys to ensure stable assignment into tree.
 
 
       var properties = Object.keys(key).sort();
-      var valuePair = [key, value]; // Tree by type to avoid conflicts on numeric object keys, empty value.
+      var valuePair = [key, value]; / Tree by type to avoid conflicts on numeric object keys, empty value.
 
       var map = Array.isArray(key) ? this._arrayTreeMap : this._objectTreeMap;
 
@@ -323,10 +323,10 @@ function () {
         }
 
         map = map.get(propertyValue);
-      } // If an _ekm_value exists, there was already an equivalent key. Before
-      // overriding, ensure that the old key reference is removed from map to
-      // avoid memory leak of accumulating equivalent keys. This is, in a
-      // sense, a poor man's WeakMap, while still enabling iterability.
+      } / If an _ekm_value exists, there was already an equivalent key. Before
+      / overriding, ensure that the old key reference is removed from map to
+      / avoid memory leak of accumulating equivalent keys. This is, in a
+      / sense, a poor man's WeakMap, while still enabling iterability.
 
 
       var previousValuePair = map.get('_ekm_value');
@@ -353,7 +353,7 @@ function () {
   }, {
     key: "get",
     value: function get(key) {
-      // Shortcut non-object-like to get from internal Map.
+      / Shortcut non-object-like to get from internal Map.
       if (key === null || _typeof(key) !== 'object') {
         return this._map.get(key);
       }
@@ -378,8 +378,8 @@ function () {
     value: function has(key) {
       if (key === null || _typeof(key) !== 'object') {
         return this._map.has(key);
-      } // Test on the _presence_ of the pair, not its value, as even undefined
-      // can be a valid member value for a key.
+      } / Test on the _presence_ of the pair, not its value, as even undefined
+      / can be a valid member value for a key.
 
 
       return getValuePair(this, key) !== undefined;
@@ -398,8 +398,8 @@ function () {
     value: function _delete(key) {
       if (!this.has(key)) {
         return false;
-      } // This naive implementation will leave orphaned child trees. A better
-      // implementation should traverse and remove orphans.
+      } / This naive implementation will leave orphaned child trees. A better
+      / implementation should traverse and remove orphans.
 
 
       this.set(key, undefined);
@@ -422,7 +422,7 @@ function () {
       var thisArg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this;
 
       this._map.forEach(function (value, key) {
-        // Unwrap value from object-like value pair.
+        / Unwrap value from object-like value pair.
         if (key !== null && _typeof(key) === 'object') {
           value = value[1];
         }
@@ -458,34 +458,34 @@ module.exports = EquivalentKeyMap;
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -497,7 +497,7 @@ module.exports = EquivalentKeyMap;
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -514,7 +514,7 @@ module.exports = EquivalentKeyMap;
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -597,10 +597,10 @@ __webpack_require__.d(plugins_namespaceObject, {
   persistence: () => (persistence)
 });
 
-;// external ["wp","deprecated"]
+;/ external ["wp","deprecated"]
 const external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
 var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_namespaceObject);
-;// ./node_modules/redux/dist/redux.mjs
+;/ ./node_modules/redux/dist/redux.mjs
 // src/utils/formatProdErrorMessage.ts
 function formatProdErrorMessage(code) {
   return `Minified Redux error #${code}; visit https://redux.js.org/Errors?code=${code} for the full message or use the non-minified dev environment for full errors. `;
@@ -978,12 +978,12 @@ function isAction(action) {
 // EXTERNAL MODULE: ./node_modules/equivalent-key-map/equivalent-key-map.js
 var equivalent_key_map = __webpack_require__(3249);
 var equivalent_key_map_default = /*#__PURE__*/__webpack_require__.n(equivalent_key_map);
-;// external ["wp","reduxRoutine"]
+;/ external ["wp","reduxRoutine"]
 const external_wp_reduxRoutine_namespaceObject = window["wp"]["reduxRoutine"];
 var external_wp_reduxRoutine_default = /*#__PURE__*/__webpack_require__.n(external_wp_reduxRoutine_namespaceObject);
-;// external ["wp","compose"]
+;/ external ["wp","compose"]
 const external_wp_compose_namespaceObject = window["wp"]["compose"];
-;// ./node_modules/@wordpress/data/build-module/redux-store/combine-reducers.js
+;/ ./node_modules/@wordpress/data/build-module/redux-store/combine-reducers.js
 function combine_reducers_combineReducers(reducers) {
   const keys = Object.keys(reducers);
   return function combinedReducer(state = {}, action) {
@@ -1000,7 +1000,7 @@ function combine_reducers_combineReducers(reducers) {
   };
 }
 
-;// ./node_modules/@wordpress/data/build-module/factory.js
+;/ ./node_modules/@wordpress/data/build-module/factory.js
 /**
  * Internal dependencies
  */
@@ -1028,7 +1028,7 @@ function combine_reducers_combineReducers(reducers) {
  * } );
  *
  * const getPostEdits = createRegistrySelector( ( select ) => ( state ) => {
- *   // calling another registry selector just like any other function
+ *   / calling another registry selector just like any other function
  *   const postType = getCurrentPostType( state );
  *   const postId = getCurrentPostId( state );
  *	 return select( coreStore ).getEntityRecordEdits( 'postType', postType, postId );
@@ -1047,15 +1047,15 @@ function combine_reducers_combineReducers(reducers) {
  */
 function createRegistrySelector(registrySelector) {
   const selectorsByRegistry = new WeakMap();
-  // Create a selector function that is bound to the registry referenced by `selector.registry`
-  // and that has the same API as a regular selector. Binding it in such a way makes it
-  // possible to call the selector directly from another selector.
+  / Create a selector function that is bound to the registry referenced by `selector.registry`
+  / and that has the same API as a regular selector. Binding it in such a way makes it
+  / possible to call the selector directly from another selector.
   const wrappedSelector = (...args) => {
     let selector = selectorsByRegistry.get(wrappedSelector.registry);
-    // We want to make sure the cache persists even when new registry
-    // instances are created. For example patterns create their own editors
-    // with their own core/block-editor stores, so we should keep track of
-    // the cache for each registry instance.
+    / We want to make sure the cache persists even when new registry
+    / instances are created. For example patterns create their own editors
+    / with their own core/block-editor stores, so we should keep track of
+    / the cache for each registry instance.
     if (!selector) {
       selector = registrySelector(wrappedSelector.registry.select);
       selectorsByRegistry.set(wrappedSelector.registry, selector);
@@ -1097,7 +1097,7 @@ function createRegistryControl(registryControl) {
   return registryControl;
 }
 
-;// ./node_modules/@wordpress/data/build-module/controls.js
+;/ ./node_modules/@wordpress/data/build-module/controls.js
 /**
  * Internal dependencies
  */
@@ -1126,10 +1126,10 @@ function isObject(object) {
  * ```js
  * import { controls } from '@wordpress/data';
  *
- * // Action generator using `select`.
+ * / Action generator using `select`.
  * export function* myAction() {
  *   const isEditorSideBarOpened = yield controls.select( 'core/edit-post', 'isEditorSideBarOpened' );
- *   // Do stuff with the result from the `select`.
+ *   / Do stuff with the result from the `select`.
  * }
  * ```
  *
@@ -1159,10 +1159,10 @@ function controls_select(storeNameOrDescriptor, selectorName, ...args) {
  * ```js
  * import { controls } from '@wordpress/data';
  *
- * // Action generator using resolveSelect
+ * / Action generator using resolveSelect
  * export function* myAction() {
  * 	const isSidebarOpened = yield controls.resolveSelect( 'core/edit-post', 'isEditorSideBarOpened' );
- * 	// do stuff with the result from the select.
+ * 	/ do stuff with the result from the select.
  * }
  * ```
  *
@@ -1188,10 +1188,10 @@ function resolveSelect(storeNameOrDescriptor, selectorName, ...args) {
  * ```js
  * import { controls } from '@wordpress/data-controls';
  *
- * // Action generator using dispatch
+ * / Action generator using dispatch
  * export function* myAction() {
  *   yield controls.dispatch( 'core/editor', 'togglePublishSidebar' );
- *   // do some other things.
+ *   / do some other things.
  * }
  * ```
  *
@@ -1231,9 +1231,9 @@ const builtinControls = {
   }) => registry.dispatch(storeKey)[actionName](...args))
 };
 
-;// external ["wp","privateApis"]
+;/ external ["wp","privateApis"]
 const external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
-;// ./node_modules/@wordpress/data/build-module/lock-unlock.js
+;/ ./node_modules/@wordpress/data/build-module/lock-unlock.js
 /**
  * WordPress dependencies
  */
@@ -1243,12 +1243,12 @@ const {
   unlock
 } = (0,external_wp_privateApis_namespaceObject.__dangerousOptInToUnstableAPIsOnlyForCoreModules)('I acknowledge private features are not for use in themes or plugins and doing so will break in the next version of WordPress.', '@wordpress/data');
 
-;// ./node_modules/is-promise/index.mjs
+;/ ./node_modules/is-promise/index.mjs
 function isPromise(obj) {
   return !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
 }
 
-;// ./node_modules/@wordpress/data/build-module/promise-middleware.js
+;/ ./node_modules/@wordpress/data/build-module/promise-middleware.js
 /**
  * External dependencies
  */
@@ -1271,7 +1271,7 @@ const promiseMiddleware = () => next => action => {
 };
 /* harmony default export */ const promise_middleware = (promiseMiddleware);
 
-;// ./node_modules/@wordpress/data/build-module/resolvers-cache-middleware.js
+;/ ./node_modules/@wordpress/data/build-module/resolvers-cache-middleware.js
 /** @typedef {import('./registry').WPDataRegistry} WPDataRegistry */
 
 /**
@@ -1291,15 +1291,15 @@ const createResolversCacheMiddleware = (registry, storeName) => () => next => ac
       return;
     }
     resolversByArgs.forEach((value, args) => {
-      // Works around a bug in `EquivalentKeyMap` where `map.delete` merely sets an entry value
-      // to `undefined` and `map.forEach` then iterates also over these orphaned entries.
+      / Works around a bug in `EquivalentKeyMap` where `map.delete` merely sets an entry value
+      / to `undefined` and `map.forEach` then iterates also over these orphaned entries.
       if (value === undefined) {
         return;
       }
 
-      // resolversByArgs is the map Map([ args ] => boolean) storing the cache resolution status for a given selector.
-      // If the value is "finished" or "error" it means this resolver has finished its resolution which means we need
-      // to invalidate it, if it's true it means it's inflight and the invalidation is not necessary.
+      / resolversByArgs is the map Map([ args ] => boolean) storing the cache resolution status for a given selector.
+      / If the value is "finished" or "error" it means this resolver has finished its resolution which means we need
+      / to invalidate it, if it's true it means it's inflight and the invalidation is not necessary.
       if (value.status !== 'finished' && value.status !== 'error') {
         return;
       }
@@ -1307,7 +1307,7 @@ const createResolversCacheMiddleware = (registry, storeName) => () => next => ac
         return;
       }
 
-      // Trigger cache invalidation
+      / Trigger cache invalidation
       registry.dispatch(storeName).invalidateResolution(selectorName, args);
     });
   });
@@ -1315,7 +1315,7 @@ const createResolversCacheMiddleware = (registry, storeName) => () => next => ac
 };
 /* harmony default export */ const resolvers_cache_middleware = (createResolversCacheMiddleware);
 
-;// ./node_modules/@wordpress/data/build-module/redux-store/thunk-middleware.js
+;/ ./node_modules/@wordpress/data/build-module/redux-store/thunk-middleware.js
 function createThunkMiddleware(args) {
   return () => next => action => {
     if (typeof action === 'function') {
@@ -1325,7 +1325,7 @@ function createThunkMiddleware(args) {
   };
 }
 
-;// ./node_modules/@wordpress/data/build-module/redux-store/metadata/utils.js
+;/ ./node_modules/@wordpress/data/build-module/redux-store/metadata/utils.js
 /**
  * External dependencies
  */
@@ -1338,15 +1338,15 @@ function createThunkMiddleware(args) {
  * @return Higher-order reducer.
  */
 const onSubKey = actionProperty => reducer => (state = {}, action) => {
-  // Retrieve subkey from action. Do not track if undefined; useful for cases
-  // where reducer is scoped by action shape.
+  / Retrieve subkey from action. Do not track if undefined; useful for cases
+  / where reducer is scoped by action shape.
   const key = action[actionProperty];
   if (key === undefined) {
     return state;
   }
 
-  // Avoid updating state if unchanged. Note that this also accounts for a
-  // reducer which returns undefined on a key which is not yet tracked.
+  / Avoid updating state if unchanged. Note that this also accounts for a
+  / reducer which returns undefined on a key which is not yet tracked.
   const nextKeyState = reducer(state[key], action);
   if (nextKeyState === state[key]) {
     return state;
@@ -1376,7 +1376,7 @@ function selectorArgsToStateKey(args) {
   return idx === len ? args : args.slice(0, idx);
 }
 
-;// ./node_modules/@wordpress/data/build-module/redux-store/metadata/reducer.js
+;/ ./node_modules/@wordpress/data/build-module/redux-store/metadata/reducer.js
 /**
  * External dependencies
  */
@@ -1502,7 +1502,7 @@ const isResolved = (state = {}, action) => {
 };
 /* harmony default export */ const metadata_reducer = (isResolved);
 
-;// ./node_modules/rememo/rememo.js
+;/ ./node_modules/rememo/rememo.js
 
 
 /** @typedef {(...args: any[]) => *[]} GetDependants */
@@ -1662,26 +1662,26 @@ function isShallowEqual(a, b, fromIndex) {
 		for (i = 0; i < dependants.length; i++) {
 			dependant = dependants[i];
 
-			// Can only compose WeakMap from object-like key.
+			/ Can only compose WeakMap from object-like key.
 			if (!isObjectLike(dependant)) {
 				isUniqueByDependants = false;
 				break;
 			}
 
-			// Does current segment of cache already have a WeakMap?
+			/ Does current segment of cache already have a WeakMap?
 			if (caches.has(dependant)) {
-				// Traverse into nested WeakMap.
+				/ Traverse into nested WeakMap.
 				caches = caches.get(dependant);
 			} else {
-				// Create, set, and traverse into a new one.
+				/ Create, set, and traverse into a new one.
 				map = new WeakMap();
 				caches.set(dependant, map);
 				caches = map;
 			}
 		}
 
-		// We use an arbitrary (but consistent) object as key for the last item
-		// in the WeakMap to serve as our running cache.
+		/ We use an arbitrary (but consistent) object as key for the last item
+		/ in the WeakMap to serve as our running cache.
 		if (!caches.has(LEAF_KEY)) {
 			cache = createCache();
 			cache.isUniqueByDependants = isUniqueByDependants;
@@ -1717,7 +1717,7 @@ function isShallowEqual(a, b, fromIndex) {
 			args,
 			dependants;
 
-		// Create copy of arguments (avoid leaking deoptimization).
+		/ Create copy of arguments (avoid leaking deoptimization).
 		args = new Array(len);
 		for (i = 0; i < len; i++) {
 			args[i] = arguments[i];
@@ -1726,9 +1726,9 @@ function isShallowEqual(a, b, fromIndex) {
 		dependants = normalizedGetDependants.apply(null, args);
 		cache = getCache(dependants);
 
-		// If not guaranteed uniqueness by dependants (primitive type), shallow
-		// compare against last dependants and, if references have changed,
-		// destroy cache to recalculate result.
+		/ If not guaranteed uniqueness by dependants (primitive type), shallow
+		/ compare against last dependants and, if references have changed,
+		/ destroy cache to recalculate result.
 		if (!cache.isUniqueByDependants) {
 			if (
 				cache.lastDependants &&
@@ -1742,17 +1742,17 @@ function isShallowEqual(a, b, fromIndex) {
 
 		node = cache.head;
 		while (node) {
-			// Check whether node arguments match arguments
+			/ Check whether node arguments match arguments
 			if (!isShallowEqual(node.args, args, 1)) {
 				node = node.next;
 				continue;
 			}
 
-			// At this point we can assume we've found a match
+			/ At this point we can assume we've found a match
 
-			// Surface matched node to head if not already
+			/ Surface matched node to head if not already
 			if (node !== cache.head) {
-				// Adjust siblings to point to each other.
+				/ Adjust siblings to point to each other.
 				/** @type {CacheNode} */ (node.prev).next = node.next;
 				if (node.next) {
 					node.next.prev = node.prev;
@@ -1764,25 +1764,25 @@ function isShallowEqual(a, b, fromIndex) {
 				cache.head = node;
 			}
 
-			// Return immediately
+			/ Return immediately
 			return node.val;
 		}
 
-		// No cached value found. Continue to insertion phase:
+		/ No cached value found. Continue to insertion phase:
 
 		node = /** @type {CacheNode} */ ({
-			// Generate the result from original function
+			/ Generate the result from original function
 			val: selector.apply(null, args),
 		});
 
-		// Avoid including the source object in the cache.
+		/ Avoid including the source object in the cache.
 		args[0] = null;
 		node.args = args;
 
-		// Don't need to check whether node is already head, since it would
-		// have been returned above already if it was
+		/ Don't need to check whether node is already head, since it would
+		/ have been returned above already if it was
 
-		// Shift existing head down list
+		/ Shift existing head down list
 		if (cache.head) {
 			cache.head.prev = node;
 			node.next = cache.head;
@@ -1800,7 +1800,7 @@ function isShallowEqual(a, b, fromIndex) {
 	return /** @type {S & EnhancedSelector} */ (callSelector);
 }
 
-;// ./node_modules/@wordpress/data/build-module/redux-store/metadata/selectors.js
+;/ ./node_modules/@wordpress/data/build-module/redux-store/metadata/selectors.js
 /**
  * WordPress dependencies
  */
@@ -1995,7 +1995,7 @@ const countSelectorsByStatus = rememo(state => {
   return selectorsByStatus;
 }, state => [state]);
 
-;// ./node_modules/@wordpress/data/build-module/redux-store/metadata/actions.js
+;/ ./node_modules/@wordpress/data/build-module/redux-store/metadata/actions.js
 /**
  * Returns an action object used in signalling that selector resolution has
  * started.
@@ -2149,7 +2149,7 @@ function invalidateResolutionForStoreSelector(selectorName) {
   };
 }
 
-;// ./node_modules/@wordpress/data/build-module/redux-store/index.js
+;/ ./node_modules/@wordpress/data/build-module/redux-store/index.js
 /**
  * External dependencies
  */
@@ -2327,8 +2327,8 @@ function createReduxStore(key, options) {
         }
       };
       const store = instantiateReduxStore(key, options, registry, thunkArgs);
-      // Expose the private registration functions on the store
-      // so they can be copied to a sub registry in registry.js.
+      / Expose the private registration functions on the store
+      / so they can be copied to a sub registry in registry.js.
       lock(store, privateRegistrationFunctions);
       const resolversCache = createResolversCache();
       function bindAction(action) {
@@ -2357,17 +2357,17 @@ function createReduxStore(key, options) {
         const boundSelector = (...args) => {
           args = normalize(selector, args);
           const state = store.__unstableOriginalGetState();
-          // Before calling the selector, switch to the correct
-          // registry.
+          / Before calling the selector, switch to the correct
+          / registry.
           if (selector.isRegistrySelector) {
             selector.registry = registry;
           }
           return selector(state.root, ...args);
         };
 
-        // Expose normalization method on the bound selector
-        // in order that it can be called when fulfilling
-        // the resolver.
+        / Expose normalization method on the bound selector
+        / in order that it can be called when fulfilling
+        / the resolver.
         boundSelector.__unstableNormalizeArgs = selector.__unstableNormalizeArgs;
         const resolver = resolvers[selectorName];
         if (!resolver) {
@@ -2383,7 +2383,7 @@ function createReduxStore(key, options) {
           const originalSelectorArgs = args && args[1];
           const targetSelector = options?.selectors?.[originalSelectorName];
 
-          // Normalize the arguments passed to the target selector.
+          / Normalize the arguments passed to the target selector.
           if (originalSelectorName && targetSelector) {
             args[1] = normalize(targetSelector, originalSelectorArgs);
           }
@@ -2398,8 +2398,8 @@ function createReduxStore(key, options) {
       };
       const boundPrivateSelectors = createBindingCache(bindSelector);
 
-      // Pre-bind the private selectors that have been registered by the time of
-      // instantiation, so that registry selectors are bound to the registry.
+      / Pre-bind the private selectors that have been registered by the time of
+      / instantiation, so that registry selectors are bound to the registry.
       for (const [selectorName, selector] of Object.entries(privateSelectors)) {
         boundPrivateSelectors.get(selector, selectorName);
       }
@@ -2420,14 +2420,14 @@ function createReduxStore(key, options) {
       const getResolveSelectors = () => resolveSelectors;
       const getSuspendSelectors = () => suspendSelectors;
 
-      // We have some modules monkey-patching the store object
-      // It's wrong to do so but until we refactor all of our effects to controls
-      // We need to keep the same "store" instance here.
+      / We have some modules monkey-patching the store object
+      / It's wrong to do so but until we refactor all of our effects to controls
+      / We need to keep the same "store" instance here.
       store.__unstableOriginalGetState = store.getState;
       store.getState = () => store.__unstableOriginalGetState().root;
 
-      // Customize subscribe behavior to call listeners only on effective change,
-      // not on every dispatch.
+      / Customize subscribe behavior to call listeners only on effective change,
+      / not on every dispatch.
       const subscribe = store && (listener => {
         listeners.add(listener);
         return () => listeners.delete(listener);
@@ -2444,8 +2444,8 @@ function createReduxStore(key, options) {
         }
       });
 
-      // This can be simplified to just { subscribe, getSelectors, getActions }
-      // Once we remove the use function.
+      / This can be simplified to just { subscribe, getSelectors, getActions }
+      / Once we remove the use function.
       return {
         reducer,
         store,
@@ -2461,9 +2461,9 @@ function createReduxStore(key, options) {
     }
   };
 
-  // Expose the private registration functions on the store
-  // descriptor. That's a natural choice since that's where the
-  // public actions and selectors are stored .
+  / Expose the private registration functions on the store
+  / descriptor. That's a natural choice since that's where the
+  / public actions and selectors are stored .
   lock(storeDescriptor, privateRegistrationFunctions);
   return storeDescriptor;
 }
@@ -2532,8 +2532,8 @@ function mapResolveSelectors(selectors, store) {
     ...storeSelectors
   } = selectors;
   return mapValues(storeSelectors, (selector, selectorName) => {
-    // If the selector doesn't have a resolver, just convert the return value
-    // (including exceptions) to a Promise, no additional extra behavior is needed.
+    / If the selector doesn't have a resolver, just convert the return value
+    / (including exceptions) to a Promise, no additional extra behavior is needed.
     if (!selector.hasResolver) {
       return async (...args) => selector.apply(null, args);
     }
@@ -2550,7 +2550,7 @@ function mapResolveSelectors(selectors, store) {
           }
         };
         const getResult = () => selector.apply(null, args);
-        // Trigger the selector (to trigger the resolver)
+        / Trigger the selector (to trigger the resolver)
         const result = getResult();
         if (hasFinished()) {
           return finalize(result);
@@ -2576,7 +2576,7 @@ function mapResolveSelectors(selectors, store) {
  */
 function mapSuspendSelectors(selectors, store) {
   return mapValues(selectors, (selector, selectorName) => {
-    // Selector without a resolver doesn't have any extra suspense behavior.
+    / Selector without a resolver doesn't have any extra suspense behavior.
     if (!selector.hasResolver) {
       return selector;
     }
@@ -2613,8 +2613,8 @@ function mapResolvers(resolvers) {
     }
     return {
       ...resolver,
-      // Copy the enumerable properties of the resolver function.
-      fulfill: resolver // Add the fulfill method.
+      / Copy the enumerable properties of the resolver function.
+      fulfill: resolver / Add the fulfill method.
     };
   });
 }
@@ -2681,7 +2681,7 @@ function normalize(selector, args) {
   return args;
 }
 
-;// ./node_modules/@wordpress/data/build-module/store/index.js
+;/ ./node_modules/@wordpress/data/build-module/store/index.js
 const coreDataStore = {
   name: 'core/data',
   instantiate(registry) {
@@ -2699,10 +2699,10 @@ const coreDataStore = {
         return Object.fromEntries(['startResolution', 'finishResolution', 'invalidateResolution', 'invalidateResolutionForStore', 'invalidateResolutionForStoreSelector'].map(actionName => [actionName, getCoreDataAction(actionName)]));
       },
       subscribe() {
-        // There's no reasons to trigger any listener when we subscribe to this store
-        // because there's no state stored in this store that need to retrigger selectors
-        // if a change happens, the corresponding store where the tracking stated live
-        // would have already triggered a "subscribe" call.
+        / There's no reasons to trigger any listener when we subscribe to this store
+        / because there's no state stored in this store that need to retrigger selectors
+        / if a change happens, the corresponding store where the tracking stated live
+        / would have already triggered a "subscribe" call.
         return () => () => {};
       }
     };
@@ -2710,7 +2710,7 @@ const coreDataStore = {
 };
 /* harmony default export */ const store = (coreDataStore);
 
-;// ./node_modules/@wordpress/data/build-module/utils/emitter.js
+;/ ./node_modules/@wordpress/data/build-module/utils/emitter.js
 /**
  * Create an event emitter.
  *
@@ -2721,9 +2721,9 @@ function createEmitter() {
   let isPending = false;
   const listeners = new Set();
   const notifyListeners = () =>
-  // We use Array.from to clone the listeners Set
-  // This ensures that we don't run a listener
-  // that was added as a response to another listener.
+  / We use Array.from to clone the listeners Set
+  / This ensures that we don't run a listener
+  / that was added as a response to another listener.
   Array.from(listeners).forEach(listener => listener());
   return {
     get isPaused() {
@@ -2753,7 +2753,7 @@ function createEmitter() {
   };
 }
 
-;// ./node_modules/@wordpress/data/build-module/registry.js
+;/ ./node_modules/@wordpress/data/build-module/registry.js
 /**
  * WordPress dependencies
  */
@@ -2829,22 +2829,22 @@ function createRegistry(storeConfigs = {}, parent = null) {
    * @return {Function} Unsubscribe function.
    */
   const subscribe = (listener, storeNameOrDescriptor) => {
-    // subscribe to all stores
+    / subscribe to all stores
     if (!storeNameOrDescriptor) {
       return emitter.subscribe(listener);
     }
 
-    // subscribe to one store
+    / subscribe to one store
     const storeName = getStoreName(storeNameOrDescriptor);
     const store = stores[storeName];
     if (store) {
       return store.subscribe(listener);
     }
 
-    // Trying to access a store that hasn't been registered,
-    // this is a pattern rarely used but seen in some places.
-    // We fallback to global `subscribe` here for backward-compatibility for now.
-    // See https://github.com/WordPress/gutenberg/pull/27466 for more info.
+    / Trying to access a store that hasn't been registered,
+    / this is a pattern rarely used but seen in some places.
+    / We fallback to global `subscribe` here for backward-compatibility for now.
+    / See https://github.com/WordPress/gutenberg/pull/27466 for more info.
     if (!parent) {
       return emitter.subscribe(listener);
     }
@@ -2937,9 +2937,9 @@ function createRegistry(storeConfigs = {}, parent = null) {
     return parent && parent.dispatch(storeName);
   }
 
-  //
-  // Deprecated
-  // TODO: Remove this after `use()` is removed.
+  /
+  / Deprecated
+  / TODO: Remove this after `use()` is removed.
   function withPlugins(attributes) {
     return Object.fromEntries(Object.entries(attributes).map(([key, attribute]) => {
       if (typeof attribute !== 'function') {
@@ -2959,7 +2959,7 @@ function createRegistry(storeConfigs = {}, parent = null) {
    */
   function registerStoreInstance(name, createStore) {
     if (stores[name]) {
-      // eslint-disable-next-line no-console
+      / eslint-disable-next-line no-console
       console.error('Store "' + name + '" is already registered.');
       return stores[name];
     }
@@ -2973,9 +2973,9 @@ function createRegistry(storeConfigs = {}, parent = null) {
     if (typeof store.subscribe !== 'function') {
       throw new TypeError('store.subscribe must be a function');
     }
-    // The emitter is used to keep track of active listeners when the registry
-    // get paused, that way, when resumed we should be able to call all these
-    // pending listeners.
+    / The emitter is used to keep track of active listeners when the registry
+    / get paused, that way, when resumed we should be able to call all these
+    / pending listeners.
     store.emitter = createEmitter();
     const currentSubscribe = store.subscribe;
     store.subscribe = listener => {
@@ -2995,15 +2995,15 @@ function createRegistry(storeConfigs = {}, parent = null) {
     stores[name] = store;
     store.subscribe(globalListener);
 
-    // Copy private actions and selectors from the parent store.
+    / Copy private actions and selectors from the parent store.
     if (parent) {
       try {
         unlock(store.store).registerPrivateActions(unlock(parent).privateActionsOf(name));
         unlock(store.store).registerPrivateSelectors(unlock(parent).privateSelectorsOf(name));
       } catch (e) {
-        // unlock() throws if store.store was not locked.
-        // The error indicates there's nothing to do here so let's
-        // ignore it.
+        / unlock() throws if store.store was not locked.
+        / The error indicates there's nothing to do here so let's
+        / ignore it.
       }
     }
     return store;
@@ -3041,7 +3041,7 @@ function createRegistry(storeConfigs = {}, parent = null) {
     return store.store;
   }
   function batch(callback) {
-    // If we're already batching, just call the callback.
+    / If we're already batching, just call the callback.
     if (emitter.isPaused) {
       callback();
       return;
@@ -3059,7 +3059,7 @@ function createRegistry(storeConfigs = {}, parent = null) {
     batch,
     stores,
     namespaces: stores,
-    // TODO: Deprecate/remove this.
+    / TODO: Deprecate/remove this.
     subscribe,
     select,
     resolveSelect,
@@ -3072,9 +3072,9 @@ function createRegistry(storeConfigs = {}, parent = null) {
     __unstableMarkListeningStores
   };
 
-  //
-  // TODO:
-  // This function will be deprecated as soon as it is no longer internally referenced.
+  /
+  / TODO:
+  / This function will be deprecated as soon as it is no longer internally referenced.
   function use(plugin, options) {
     if (!plugin) {
       return;
@@ -3098,8 +3098,8 @@ function createRegistry(storeConfigs = {}, parent = null) {
       try {
         return unlock(stores[name].store).privateActions;
       } catch (e) {
-        // unlock() throws an error the store was not locked – this means
-        // there no private actions are available
+        / unlock() throws an error the store was not locked – this means
+        / there no private actions are available
         return {};
       }
     },
@@ -3114,14 +3114,14 @@ function createRegistry(storeConfigs = {}, parent = null) {
   return registryWithPlugins;
 }
 
-;// ./node_modules/@wordpress/data/build-module/default-registry.js
+;/ ./node_modules/@wordpress/data/build-module/default-registry.js
 /**
  * Internal dependencies
  */
 
 /* harmony default export */ const default_registry = (createRegistry());
 
-;// ./node_modules/is-plain-object/dist/is-plain-object.mjs
+;/ ./node_modules/is-plain-object/dist/is-plain-object.mjs
 /*!
  * is-plain-object <https://github.com/jonschlinkert/is-plain-object>
  *
@@ -3138,20 +3138,20 @@ function is_plain_object_isPlainObject(o) {
 
   if (is_plain_object_isObject(o) === false) return false;
 
-  // If has modified constructor
+  / If has modified constructor
   ctor = o.constructor;
   if (ctor === undefined) return true;
 
-  // If has modified prototype
+  / If has modified prototype
   prot = ctor.prototype;
   if (is_plain_object_isObject(prot) === false) return false;
 
-  // If constructor does not have an Object-specific method
+  / If constructor does not have an Object-specific method
   if (prot.hasOwnProperty('isPrototypeOf') === false) {
     return false;
   }
 
-  // Most likely a plain Object
+  / Most likely a plain Object
   return true;
 }
 
@@ -3160,7 +3160,7 @@ function is_plain_object_isPlainObject(o) {
 // EXTERNAL MODULE: ./node_modules/deepmerge/dist/cjs.js
 var cjs = __webpack_require__(66);
 var cjs_default = /*#__PURE__*/__webpack_require__.n(cjs);
-;// ./node_modules/@wordpress/data/build-module/plugins/persistence/storage/object.js
+;/ ./node_modules/@wordpress/data/build-module/plugins/persistence/storage/object.js
 let objectStorage;
 const storage = {
   getItem(key) {
@@ -3181,16 +3181,16 @@ const storage = {
 };
 /* harmony default export */ const object = (storage);
 
-;// ./node_modules/@wordpress/data/build-module/plugins/persistence/storage/default.js
+;/ ./node_modules/@wordpress/data/build-module/plugins/persistence/storage/default.js
 /**
  * Internal dependencies
  */
 
 let default_storage;
 try {
-  // Private Browsing in Safari 10 and earlier will throw an error when
-  // attempting to set into localStorage. The test here is intentional in
-  // causing a thrown error as condition for using fallback object storage.
+  / Private Browsing in Safari 10 and earlier will throw an error when
+  / attempting to set into localStorage. The test here is intentional in
+  / causing a thrown error as condition for using fallback object storage.
   default_storage = window.localStorage;
   default_storage.setItem('__wpDataTestLocalStorage', '');
   default_storage.removeItem('__wpDataTestLocalStorage');
@@ -3199,7 +3199,7 @@ try {
 }
 /* harmony default export */ const storage_default = (default_storage);
 
-;// ./node_modules/@wordpress/data/build-module/plugins/persistence/index.js
+;/ ./node_modules/@wordpress/data/build-module/plugins/persistence/index.js
 /**
  * External dependencies
  */
@@ -3277,8 +3277,8 @@ function createPersistenceInterface(options) {
    */
   function getData() {
     if (data === undefined) {
-      // If unset, getItem is expected to return null. Fall back to
-      // empty object.
+      / If unset, getItem is expected to return null. Fall back to
+      / empty object.
       const persisted = storage.getItem(storageKey);
       if (persisted === null) {
         data = {};
@@ -3286,8 +3286,8 @@ function createPersistenceInterface(options) {
         try {
           data = JSON.parse(persisted);
         } catch (error) {
-          // Similarly, should any error be thrown during parse of
-          // the string (malformed JSON), fall back to empty object.
+          / Similarly, should any error be thrown during parse of
+          / the string (malformed JSON), fall back to empty object.
           data = {};
         }
       }
@@ -3338,11 +3338,11 @@ function persistencePlugin(registry, pluginOptions) {
   function createPersistOnChange(getState, storeName, keys) {
     let getPersistedState;
     if (Array.isArray(keys)) {
-      // Given keys, the persisted state should by produced as an object
-      // of the subset of keys. This implementation uses combineReducers
-      // to leverage its behavior of returning the same object when none
-      // of the property values changes. This allows a strict reference
-      // equality to bypass a persistence set on an unchanging state.
+      / Given keys, the persisted state should by produced as an object
+      / of the subset of keys. This implementation uses combineReducers
+      / to leverage its behavior of returning the same object when none
+      / of the property values changes. This allows a strict reference
+      / equality to bypass a persistence set on an unchanging state.
       const reducers = keys.reduce((accumulator, key) => Object.assign(accumulator, {
         [key]: (state, action) => action.nextState[key]
       }), {});
@@ -3369,24 +3369,24 @@ function persistencePlugin(registry, pluginOptions) {
         return registry.registerStore(storeName, options);
       }
 
-      // Load from persistence to use as initial state.
+      / Load from persistence to use as initial state.
       const persistedState = persistence.get()[storeName];
       if (persistedState !== undefined) {
         let initialState = options.reducer(options.initialState, {
           type: '@@WP/PERSISTENCE_RESTORE'
         });
         if (is_plain_object_isPlainObject(initialState) && is_plain_object_isPlainObject(persistedState)) {
-          // If state is an object, ensure that:
-          // - Other keys are left intact when persisting only a
-          //   subset of keys.
-          // - New keys in what would otherwise be used as initial
-          //   state are deeply merged as base for persisted value.
+          / If state is an object, ensure that:
+          / - Other keys are left intact when persisting only a
+          /   subset of keys.
+          / - New keys in what would otherwise be used as initial
+          /   state are deeply merged as base for persisted value.
           initialState = cjs_default()(initialState, persistedState, {
             isMergeableObject: is_plain_object_isPlainObject
           });
         } else {
-          // If there is a mismatch in object-likeness of default
-          // initial or persisted state, defer to persisted value.
+          / If there is a mismatch in object-likeness of default
+          / initial or persisted state, defer to persisted value.
           initialState = persistedState;
         }
         options = {
@@ -3403,17 +3403,17 @@ function persistencePlugin(registry, pluginOptions) {
 persistencePlugin.__unstableMigrate = () => {};
 /* harmony default export */ const persistence = (persistencePlugin);
 
-;// ./node_modules/@wordpress/data/build-module/plugins/index.js
+;/ ./node_modules/@wordpress/data/build-module/plugins/index.js
 
 
-;// external ["wp","priorityQueue"]
+;/ external ["wp","priorityQueue"]
 const external_wp_priorityQueue_namespaceObject = window["wp"]["priorityQueue"];
-;// external ["wp","element"]
+;/ external ["wp","element"]
 const external_wp_element_namespaceObject = window["wp"]["element"];
-;// external ["wp","isShallowEqual"]
+;/ external ["wp","isShallowEqual"]
 const external_wp_isShallowEqual_namespaceObject = window["wp"]["isShallowEqual"];
 var external_wp_isShallowEqual_default = /*#__PURE__*/__webpack_require__.n(external_wp_isShallowEqual_namespaceObject);
-;// ./node_modules/@wordpress/data/build-module/components/registry-provider/context.js
+;/ ./node_modules/@wordpress/data/build-module/components/registry-provider/context.js
 /**
  * WordPress dependencies
  */
@@ -3471,7 +3471,7 @@ const RegistryConsumer = Consumer;
  */
 /* harmony default export */ const context = (Provider);
 
-;// ./node_modules/@wordpress/data/build-module/components/registry-provider/use-registry.js
+;/ ./node_modules/@wordpress/data/build-module/components/registry-provider/use-registry.js
 /**
  * WordPress dependencies
  */
@@ -3508,7 +3508,7 @@ const RegistryConsumer = Consumer;
  *
  * const SomeChildUsingRegistry = ( props ) => {
  *   const registry = useRegistry();
- *   // ...logic implementing the registry in other react hooks.
+ *   / ...logic implementing the registry in other react hooks.
  * };
  *
  *
@@ -3525,7 +3525,7 @@ function useRegistry() {
   return (0,external_wp_element_namespaceObject.useContext)(Context);
 }
 
-;// ./node_modules/@wordpress/data/build-module/components/async-mode-provider/context.js
+;/ ./node_modules/@wordpress/data/build-module/components/async-mode-provider/context.js
 /**
  * WordPress dependencies
  */
@@ -3574,7 +3574,7 @@ const AsyncModeConsumer = (/* unused pure expression or super */ null && (contex
  */
 /* harmony default export */ const async_mode_provider_context = (context_Provider);
 
-;// ./node_modules/@wordpress/data/build-module/components/async-mode-provider/use-async-mode.js
+;/ ./node_modules/@wordpress/data/build-module/components/async-mode-provider/use-async-mode.js
 /**
  * WordPress dependencies
  */
@@ -3588,7 +3588,7 @@ function useAsyncMode() {
   return (0,external_wp_element_namespaceObject.useContext)(context_Context);
 }
 
-;// ./node_modules/@wordpress/data/build-module/components/use-select/index.js
+;/ ./node_modules/@wordpress/data/build-module/components/use-select/index.js
 /**
  * WordPress dependencies
  */
@@ -3608,7 +3608,7 @@ function warnOnUnstableReference(a, b) {
   }
   const keys = typeof a === 'object' && typeof b === 'object' ? Object.keys(a).filter(k => a[k] !== b[k]) : [];
 
-  // eslint-disable-next-line no-console
+  / eslint-disable-next-line no-console
   console.warn('The `useSelect` hook returns different values when called with the same state and parameters.\n' + 'This can lead to unnecessary re-renders and performance issues if not fixed.\n\n' + 'Non-equal value keys: %s\n\n', keys.join(', '));
 }
 
@@ -3640,28 +3640,28 @@ function Store(registry, suspense) {
   const storeStatesOnMount = new Map();
   function getStoreState(name) {
     var _registry$stores$name;
-    // If there's no store property (custom generic store), return an empty
-    // object. When comparing the state, the empty objects will cause the
-    // equality check to fail, setting `lastMapResultValid` to false.
+    / If there's no store property (custom generic store), return an empty
+    / object. When comparing the state, the empty objects will cause the
+    / equality check to fail, setting `lastMapResultValid` to false.
     return (_registry$stores$name = registry.stores[name]?.store?.getState?.()) !== null && _registry$stores$name !== void 0 ? _registry$stores$name : {};
   }
   const createSubscriber = stores => {
-    // The set of stores the `subscribe` function is supposed to subscribe to. Here it is
-    // initialized, and then the `updateStores` function can add new stores to it.
+    / The set of stores the `subscribe` function is supposed to subscribe to. Here it is
+    / initialized, and then the `updateStores` function can add new stores to it.
     const activeStores = [...stores];
 
-    // The `subscribe` function, which is passed to the `useSyncExternalStore` hook, could
-    // be called multiple times to establish multiple subscriptions. That's why we need to
-    // keep a set of active subscriptions;
+    / The `subscribe` function, which is passed to the `useSyncExternalStore` hook, could
+    / be called multiple times to establish multiple subscriptions. That's why we need to
+    / keep a set of active subscriptions;
     const activeSubscriptions = new Set();
     function subscribe(listener) {
-      // Maybe invalidate the value right after subscription was created.
-      // React will call `getValue` after subscribing, to detect store
-      // updates that happened in the interval between the `getValue` call
-      // during render and creating the subscription, which is slightly
-      // delayed. We need to ensure that this second `getValue` call will
-      // compute a fresh value only if any of the store states have
-      // changed in the meantime.
+      / Maybe invalidate the value right after subscription was created.
+      / React will call `getValue` after subscribing, to detect store
+      / updates that happened in the interval between the `getValue` call
+      / during render and creating the subscription, which is slightly
+      / delayed. We need to ensure that this second `getValue` call will
+      / compute a fresh value only if any of the store states have
+      / changed in the meantime.
       if (lastMapResultValid) {
         for (const name of activeStores) {
           if (storeStatesOnMount.get(name) !== getStoreState(name)) {
@@ -3671,7 +3671,7 @@ function Store(registry, suspense) {
       }
       storeStatesOnMount.clear();
       const onStoreChange = () => {
-        // Invalidate the value on store update, so that a fresh value is computed.
+        / Invalidate the value on store update, so that a fresh value is computed.
         lastMapResultValid = false;
         listener();
       };
@@ -3693,25 +3693,25 @@ function Store(registry, suspense) {
       return () => {
         activeSubscriptions.delete(subscribeStore);
         for (const unsub of unsubs.values()) {
-          // The return value of the subscribe function could be undefined if the store is a custom generic store.
+          / The return value of the subscribe function could be undefined if the store is a custom generic store.
           unsub?.();
         }
-        // Cancel existing store updates that were already scheduled.
+        / Cancel existing store updates that were already scheduled.
         renderQueue.cancel(queueContext);
       };
     }
 
-    // Check if `newStores` contains some stores we're not subscribed to yet, and add them.
+    / Check if `newStores` contains some stores we're not subscribed to yet, and add them.
     function updateStores(newStores) {
       for (const newStore of newStores) {
         if (activeStores.includes(newStore)) {
           continue;
         }
 
-        // New `subscribe` calls will subscribe to `newStore`, too.
+        / New `subscribe` calls will subscribe to `newStore`, too.
         activeStores.push(newStore);
 
-        // Add `newStore` to existing subscriptions.
+        / Add `newStore` to existing subscriptions.
         for (const subscription of activeSubscriptions) {
           subscription(newStore);
         }
@@ -3724,9 +3724,9 @@ function Store(registry, suspense) {
   };
   return (mapSelect, isAsync) => {
     function updateValue() {
-      // If the last value is valid, and the `mapSelect` callback hasn't changed,
-      // then we can safely return the cached value. The value can change only on
-      // store update, and in that case value will be invalidated by the listener.
+      / If the last value is valid, and the `mapSelect` callback hasn't changed,
+      / then we can safely return the cached value. The value can change only on
+      / store update, and in that case value will be invalidated by the listener.
       if (lastMapResultValid && mapSelect === lastMapSelect) {
         return lastMapResult;
       }
@@ -3752,8 +3752,8 @@ function Store(registry, suspense) {
         subscriber.updateStores(listeningStores.current);
       }
 
-      // If the new value is shallow-equal to the old one, keep the old one so
-      // that we don't trigger unwanted updates that do a `===` check.
+      / If the new value is shallow-equal to the old one, keep the old one so
+      / that we don't trigger unwanted updates that do a `===` check.
       if (!external_wp_isShallowEqual_default()(lastMapResult, mapResult)) {
         lastMapResult = mapResult;
       }
@@ -3761,14 +3761,14 @@ function Store(registry, suspense) {
       lastMapResultValid = true;
     }
     function getValue() {
-      // Update the value in case it's been invalidated or `mapSelect` has changed.
+      / Update the value in case it's been invalidated or `mapSelect` has changed.
       updateValue();
       return lastMapResult;
     }
 
-    // When transitioning from async to sync mode, cancel existing store updates
-    // that have been scheduled, and invalidate the value so that it's freshly
-    // computed. It might have been changed by the update we just cancelled.
+    / When transitioning from async to sync mode, cancel existing store updates
+    / that have been scheduled, and invalidate the value so that it's freshly
+    / computed. It might have been changed by the update we just cancelled.
     if (lastIsAsync && !isAsync) {
       lastMapResultValid = false;
       renderQueue.cancel(queueContext);
@@ -3776,7 +3776,7 @@ function Store(registry, suspense) {
     updateValue();
     lastIsAsync = isAsync;
 
-    // Return a pair of functions that can be passed to `useSyncExternalStore`.
+    / Return a pair of functions that can be passed to `useSyncExternalStore`.
     return {
       subscribe: subscriber.subscribe,
       getValue
@@ -3791,8 +3791,8 @@ function _useMappingSelect(suspense, mapSelect, deps) {
   const isAsync = useAsyncMode();
   const store = (0,external_wp_element_namespaceObject.useMemo)(() => Store(registry, suspense), [registry, suspense]);
 
-  // These are "pass-through" dependencies from the parent hook,
-  // and the parent should catch any hook rule violations.
+  / These are "pass-through" dependencies from the parent hook,
+  / and the parent should catch any hook rule violations.
   const selector = (0,external_wp_element_namespaceObject.useCallback)(mapSelect, deps);
   const {
     subscribe,
@@ -3835,8 +3835,8 @@ function _useMappingSelect(suspense, mapSelect, deps) {
  *   } ).format( price );
  * }
  *
- * // Rendered in the application:
- * // <HammerPriceDisplay currency="USD" />
+ * / Rendered in the application:
+ * / <HammerPriceDisplay currency="USD" />
  * ```
  *
  * In the above example, when `HammerPriceDisplay` is rendered into an
@@ -3859,7 +3859,7 @@ function _useMappingSelect(suspense, mapSelect, deps) {
  * function Paste( { children } ) {
  *   const { getSettings } = useSelect( myCustomStore );
  *   function onPaste() {
- *     // Do something with the settings.
+ *     / Do something with the settings.
  *     const settings = getSettings();
  *   }
  *   return <div onPaste={ onPaste }>{ children }</div>;
@@ -3868,8 +3868,8 @@ function _useMappingSelect(suspense, mapSelect, deps) {
  * @return {UseSelectReturn<T>} A custom react hook.
  */
 function useSelect(mapSelect, deps) {
-  // On initial call, on mount, determine the mode of this `useSelect` call
-  // and then never allow it to change on subsequent updates.
+  / On initial call, on mount, determine the mode of this `useSelect` call
+  / and then never allow it to change on subsequent updates.
   const staticSelectMode = typeof mapSelect !== 'function';
   const staticSelectModeRef = (0,external_wp_element_namespaceObject.useRef)(staticSelectMode);
   if (staticSelectMode !== staticSelectModeRef.current) {
@@ -3878,8 +3878,8 @@ function useSelect(mapSelect, deps) {
     throw new Error(`Switching useSelect from ${prevMode} to ${nextMode} is not allowed`);
   }
 
-  // `staticSelectMode` is not allowed to change during the hook instance's,
-  // lifetime, so the rules of hooks are not really violated.
+  / `staticSelectMode` is not allowed to change during the hook instance's,
+  / lifetime, so the rules of hooks are not really violated.
   return staticSelectMode ? _useStaticSelect(mapSelect) : _useMappingSelect(false, mapSelect, deps);
 }
 
@@ -3906,9 +3906,9 @@ function useSuspenseSelect(mapSelect, deps) {
   return _useMappingSelect(true, mapSelect, deps);
 }
 
-;// external "ReactJSXRuntime"
+;/ external "ReactJSXRuntime"
 const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
-;// ./node_modules/@wordpress/data/build-module/components/with-select/index.js
+;/ ./node_modules/@wordpress/data/build-module/components/with-select/index.js
 /**
  * WordPress dependencies
  */
@@ -3950,9 +3950,9 @@ const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
  * 	};
  * } )( PriceDisplay );
  *
- * // Rendered in the application:
- * //
- * //  <HammerPriceDisplay currency="USD" />
+ * / Rendered in the application:
+ * /
+ * /  <HammerPriceDisplay currency="USD" />
  * ```
  * In the above example, when `HammerPriceDisplay` is rendered into an
  * application, it will pass the price into the underlying `PriceDisplay`
@@ -3972,7 +3972,7 @@ const withSelect = mapSelectToProps => (0,external_wp_compose_namespaceObject.cr
 }), 'withSelect');
 /* harmony default export */ const with_select = (withSelect);
 
-;// ./node_modules/@wordpress/data/build-module/components/use-dispatch/use-dispatch-with-map.js
+;/ ./node_modules/@wordpress/data/build-module/components/use-dispatch/use-dispatch-with-map.js
 /**
  * WordPress dependencies
  */
@@ -4008,7 +4008,7 @@ const useDispatchWithMap = (dispatchMap, deps) => {
     const currentDispatchProps = currentDispatchMapRef.current(registry.dispatch, registry);
     return Object.fromEntries(Object.entries(currentDispatchProps).map(([propName, dispatcher]) => {
       if (typeof dispatcher !== 'function') {
-        // eslint-disable-next-line no-console
+        / eslint-disable-next-line no-console
         console.warn(`Property ${propName} returned from dispatchMap in useDispatchWithMap must be a function.`);
       }
       return [propName, (...args) => currentDispatchMapRef.current(registry.dispatch, registry)[propName](...args)];
@@ -4017,7 +4017,7 @@ const useDispatchWithMap = (dispatchMap, deps) => {
 };
 /* harmony default export */ const use_dispatch_with_map = (useDispatchWithMap);
 
-;// ./node_modules/@wordpress/data/build-module/components/with-dispatch/index.js
+;/ ./node_modules/@wordpress/data/build-module/components/with-dispatch/index.js
 /**
  * WordPress dependencies
  */
@@ -4061,9 +4061,9 @@ const useDispatchWithMap = (dispatchMap, deps) => {
  *     };
  * } )( Button );
  *
- * // Rendered in the application:
- * //
- * // <SaleButton discountPercent="20">Start Sale!</SaleButton>
+ * / Rendered in the application:
+ * /
+ * / <SaleButton discountPercent="20">Start Sale!</SaleButton>
  * ```
  *
  * @example
@@ -4089,7 +4089,7 @@ const useDispatchWithMap = (dispatchMap, deps) => {
  * import { store as myCustomStore } from 'my-custom-store';
  *
  * const SaleButton = withDispatch( ( dispatch, ownProps, { select } ) => {
- *    // Stock number changes frequently.
+ *    / Stock number changes frequently.
  *    const { getStockNumber } = select( myCustomStore );
  *    const { startSale } = dispatch( myCustomStore );
  *    return {
@@ -4100,9 +4100,9 @@ const useDispatchWithMap = (dispatchMap, deps) => {
  *    };
  * } )( Button );
  *
- * // Rendered in the application:
- * //
- * //  <SaleButton>Start Sale!</SaleButton>
+ * / Rendered in the application:
+ * /
+ * /  <SaleButton>Start Sale!</SaleButton>
  * ```
  *
  * _Note:_ It is important that the `mapDispatchToProps` function always
@@ -4122,7 +4122,7 @@ const withDispatch = mapDispatchToProps => (0,external_wp_compose_namespaceObjec
 }, 'withDispatch');
 /* harmony default export */ const with_dispatch = (withDispatch);
 
-;// ./node_modules/@wordpress/data/build-module/components/with-registry/index.js
+;/ ./node_modules/@wordpress/data/build-module/components/with-registry/index.js
 /**
  * WordPress dependencies
  */
@@ -4150,7 +4150,7 @@ const withRegistry = (0,external_wp_compose_namespaceObject.createHigherOrderCom
 }), 'withRegistry');
 /* harmony default export */ const with_registry = (withRegistry);
 
-;// ./node_modules/@wordpress/data/build-module/components/use-dispatch/use-dispatch.js
+;/ ./node_modules/@wordpress/data/build-module/components/use-dispatch/use-dispatch.js
 /**
  * Internal dependencies
  */
@@ -4205,9 +4205,9 @@ const withRegistry = (0,external_wp_compose_namespaceObject.createHigherOrderCom
  *   return <Button onClick={ onClick }>{ children }</Button>
  * }
  *
- * // Rendered somewhere in the application:
- * //
- * // <SaleButton>Start Sale!</SaleButton>
+ * / Rendered somewhere in the application:
+ * /
+ * / <SaleButton>Start Sale!</SaleButton>
  * ```
  * @return {UseDispatchReturn<StoreNameOrDescriptor>} A custom react hook.
  */
@@ -4219,7 +4219,7 @@ const useDispatch = storeNameOrDescriptor => {
 };
 /* harmony default export */ const use_dispatch = (useDispatch);
 
-;// ./node_modules/@wordpress/data/build-module/dispatch.js
+;/ ./node_modules/@wordpress/data/build-module/dispatch.js
 /**
  * Internal dependencies
  */
@@ -4249,7 +4249,7 @@ function dispatch_dispatch(storeNameOrDescriptor) {
   return default_registry.dispatch(storeNameOrDescriptor);
 }
 
-;// ./node_modules/@wordpress/data/build-module/select.js
+;/ ./node_modules/@wordpress/data/build-module/select.js
 /**
  * Internal dependencies
  */
@@ -4279,7 +4279,7 @@ function select_select(storeNameOrDescriptor) {
   return default_registry.select(storeNameOrDescriptor);
 }
 
-;// ./node_modules/@wordpress/data/build-module/index.js
+;/ ./node_modules/@wordpress/data/build-module/index.js
 /**
  * Internal dependencies
  */
@@ -4404,11 +4404,11 @@ const suspendSelect = default_registry.suspendSelect;
  * import { subscribe } from '@wordpress/data';
  *
  * const unsubscribe = subscribe( () => {
- * 	// You could use this opportunity to test whether the derived result of a
- * 	// selector has subsequently changed as the result of a state update.
+ * 	/ You could use this opportunity to test whether the derived result of a
+ * 	/ selector has subsequently changed as the result of a state update.
  * } );
  *
- * // Later, if necessary...
+ * / Later, if necessary...
  * unsubscribe();
  * ```
  */

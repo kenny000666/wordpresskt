@@ -6,7 +6,7 @@
  * @param wpforms_builder_lite.disable_notifications
  */
 
-var WPFormsBuilderLite = window.WPFormsBuilderLite || ( function( document, window, $ ) { // eslint-disable-line no-var
+var WPFormsBuilderLite = window.WPFormsBuilderLite || ( function( document, window, $ ) { / eslint-disable-line no-var
 	/**
 	 * Public functions and properties.
 	 *
@@ -22,7 +22,7 @@ var WPFormsBuilderLite = window.WPFormsBuilderLite || ( function( document, wind
 		 * @since 1.0.0
 		 */
 		init() {
-			// Document ready
+			/ Document ready
 			$( app.ready );
 		},
 
@@ -41,7 +41,7 @@ var WPFormsBuilderLite = window.WPFormsBuilderLite || ( function( document, wind
 		 * @since 1.0.0
 		 */
 		bindUIActions() {
-			// Warn users if they disable email notifications.
+			/ Warn users if they disable email notifications.
 			$( document ).on( 'change', '#wpforms-panel-field-settings-notification_enable', function() {
 				app.formBuilderNotificationAlert( $( this ).is( ':checked' ) );
 			} );
@@ -97,13 +97,13 @@ var WPFormsBuilderLite = window.WPFormsBuilderLite || ( function( document, wind
 						},
 					} );
 
-				// Save Choices.js instance for future access.
+				/ Save Choices.js instance for future access.
 				$select.data( 'choicesjs', choicesInstance );
 			} );
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
@@ -25,34 +25,34 @@ module.exports = window["ReactDOM"];
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -69,7 +69,7 @@ module.exports = window["ReactDOM"];
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -132,9 +132,9 @@ __webpack_require__.d(__webpack_exports__, {
   useTransition: () => (/* reexport */ external_React_namespaceObject.useTransition)
 });
 
-;// external "React"
+;/ external "React"
 const external_React_namespaceObject = window["React"];
-;// ./node_modules/@wordpress/element/build-module/create-interpolate-element.js
+;/ ./node_modules/@wordpress/element/build-module/create-interpolate-element.js
 /**
  * Internal dependencies
  */
@@ -252,7 +252,7 @@ const createInterpolateElement = (interpolatedString, conversionMap) => {
     throw new TypeError('The conversionMap provided is not valid. It must be an object with values that are React Elements');
   }
   do {
-    // twiddle our thumbs
+    / twiddle our thumbs
   } while (proceed(conversionMap));
   return (0,external_React_namespaceObject.createElement)(external_React_namespaceObject.Fragment, null, ...output);
 };
@@ -314,7 +314,7 @@ function proceed(conversionMap) {
         return true;
       }
 
-      // Otherwise we found an inner element.
+      / Otherwise we found an inner element.
       addChild(createFrame(conversionMap[name], startOffset, tokenLength));
       offset = startOffset + tokenLength;
       return true;
@@ -323,15 +323,15 @@ function proceed(conversionMap) {
       offset = startOffset + tokenLength;
       return true;
     case 'closer':
-      // If we're not nesting then this is easy - close the block.
+      / If we're not nesting then this is easy - close the block.
       if (1 === stackDepth) {
         closeOuterElement(startOffset);
         offset = startOffset + tokenLength;
         return true;
       }
 
-      // Otherwise we're nested and we have to close out the current
-      // block and add it as a innerBlock to the parent.
+      / Otherwise we're nested and we have to close out the current
+      / block and add it as a innerBlock to the parent.
       const stackTop = stack.pop();
       const text = indoc.substr(stackTop.prevOffset, startOffset - stackTop.prevOffset);
       stackTop.children.push(text);
@@ -356,7 +356,7 @@ function proceed(conversionMap) {
  */
 function nextToken() {
   const matches = tokenizer.exec(indoc);
-  // We have no more tokens.
+  / We have no more tokens.
   if (null === matches) {
     return ['no-more-tokens'];
   }
@@ -444,7 +444,7 @@ function closeOuterElement(endOffset) {
 }
 /* harmony default export */ const create_interpolate_element = (createInterpolateElement);
 
-;// ./node_modules/@wordpress/element/build-module/react.js
+;/ ./node_modules/@wordpress/element/build-module/react.js
 /**
  * External dependencies
  */
@@ -725,7 +725,7 @@ function switchChildrenNodeName(children, nodeName) {
 var external_ReactDOM_ = __webpack_require__(5795);
 // EXTERNAL MODULE: ./node_modules/react-dom/client.js
 var client = __webpack_require__(4140);
-;// ./node_modules/@wordpress/element/build-module/react-platform.js
+;/ ./node_modules/@wordpress/element/build-module/react-platform.js
 /**
  * External dependencies
  */
@@ -797,7 +797,7 @@ var client = __webpack_require__(4140);
  */
 
 
-;// ./node_modules/@wordpress/element/build-module/utils.js
+;/ ./node_modules/@wordpress/element/build-module/utils.js
 /**
  * Checks if the provided WP element is empty.
  *
@@ -814,7 +814,7 @@ const isEmptyElement = element => {
   return !element;
 };
 
-;// ./node_modules/@wordpress/element/build-module/platform.js
+;/ ./node_modules/@wordpress/element/build-module/platform.js
 /**
  * Parts of this source were derived and modified from react-native-web,
  * released under the MIT license.
@@ -849,7 +849,7 @@ const Platform = {
  */
 /* harmony default export */ const platform = (Platform);
 
-;// ./node_modules/is-plain-object/dist/is-plain-object.mjs
+;/ ./node_modules/is-plain-object/dist/is-plain-object.mjs
 /*!
  * is-plain-object <https://github.com/jonschlinkert/is-plain-object>
  *
@@ -866,26 +866,26 @@ function isPlainObject(o) {
 
   if (isObject(o) === false) return false;
 
-  // If has modified constructor
+  / If has modified constructor
   ctor = o.constructor;
   if (ctor === undefined) return true;
 
-  // If has modified prototype
+  / If has modified prototype
   prot = ctor.prototype;
   if (isObject(prot) === false) return false;
 
-  // If constructor does not have an Object-specific method
+  / If constructor does not have an Object-specific method
   if (prot.hasOwnProperty('isPrototypeOf') === false) {
     return false;
   }
 
-  // Most likely a plain Object
+  / Most likely a plain Object
   return true;
 }
 
 
 
-;// ./node_modules/tslib/tslib.es6.mjs
+;/ ./node_modules/tslib/tslib.es6.mjs
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -1245,7 +1245,7 @@ function __disposeResources(env) {
 }
 
 function __rewriteRelativeImportExtension(path, preserveJsx) {
-  if (typeof path === "string" && /^\.\.?\//.test(path)) {
+  if (typeof path === "string" && /^\.\.?\/.test(path)) {
       return path.replace(/\.(tsx)$|((?:\.d)?)((?:\.[^./]+?)?)\.([cm]?)ts$/i, function (m, tsx, d, ext, cm) {
           return tsx ? preserveJsx ? ".jsx" : ".js" : d && (!ext || !cm) ? m : (d + ext + "." + cm.toLowerCase() + "js");
       });
@@ -1288,7 +1288,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
   __rewriteRelativeImportExtension,
 });
 
-;// ./node_modules/lower-case/dist.es2015/index.js
+;/ ./node_modules/lower-case/dist.es2015/index.js
 /**
  * Source: ftp://ftp.unicode.org/Public/UCD/latest/ucd/SpecialCasing.txt
  */
@@ -1337,7 +1337,7 @@ function lowerCase(str) {
     return str.toLowerCase();
 }
 
-;// ./node_modules/no-case/dist.es2015/index.js
+;/ ./node_modules/no-case/dist.es2015/index.js
 
 // Support camel case ("camelCase" -> "camel Case" and "CAMELCase" -> "CAMEL Case").
 var DEFAULT_SPLIT_REGEXP = [/([a-z0-9])([A-Z])/g, /([A-Z])([A-Z][a-z])/g];
@@ -1352,12 +1352,12 @@ function noCase(input, options) {
     var result = replace(replace(input, splitRegexp, "$1\0$2"), stripRegexp, "\0");
     var start = 0;
     var end = result.length;
-    // Trim the delimiter from around the output string.
+    / Trim the delimiter from around the output string.
     while (result.charAt(start) === "\0")
         start++;
     while (result.charAt(end - 1) === "\0")
         end--;
-    // Transform each token independently.
+    / Transform each token independently.
     return result.slice(start, end).split("\0").map(transform).join(delimiter);
 }
 /**
@@ -1369,7 +1369,7 @@ function replace(input, re, value) {
     return re.reduce(function (input, re) { return input.replace(re, value); }, input);
 }
 
-;// ./node_modules/dot-case/dist.es2015/index.js
+;/ ./node_modules/dot-case/dist.es2015/index.js
 
 
 function dotCase(input, options) {
@@ -1377,7 +1377,7 @@ function dotCase(input, options) {
     return noCase(input, __assign({ delimiter: "." }, options));
 }
 
-;// ./node_modules/param-case/dist.es2015/index.js
+;/ ./node_modules/param-case/dist.es2015/index.js
 
 
 function paramCase(input, options) {
@@ -1385,9 +1385,9 @@ function paramCase(input, options) {
     return dotCase(input, __assign({ delimiter: "-" }, options));
 }
 
-;// external ["wp","escapeHtml"]
+;/ external ["wp","escapeHtml"]
 const external_wp_escapeHtml_namespaceObject = window["wp"]["escapeHtml"];
-;// ./node_modules/@wordpress/element/build-module/raw-html.js
+;/ ./node_modules/@wordpress/element/build-module/raw-html.js
 /**
  * Internal dependencies
  */
@@ -1413,15 +1413,15 @@ function RawHTML({
 }) {
   let rawHtml = '';
 
-  // Cast children as an array, and concatenate each element if it is a string.
+  / Cast children as an array, and concatenate each element if it is a string.
   external_React_namespaceObject.Children.toArray(children).forEach(child => {
     if (typeof child === 'string' && child.trim() !== '') {
       rawHtml += child;
     }
   });
 
-  // The `div` wrapper will be stripped by the `renderElement` serializer in
-  // `./serialize.js` unless there are non-children props present.
+  / The `div` wrapper will be stripped by the `renderElement` serializer in
+  / `./serialize.js` unless there are non-children props present.
   return (0,external_React_namespaceObject.createElement)('div', {
     dangerouslySetInnerHTML: {
       __html: rawHtml
@@ -1430,7 +1430,7 @@ function RawHTML({
   });
 }
 
-;// ./node_modules/@wordpress/element/build-module/serialize.js
+;/ ./node_modules/@wordpress/element/build-module/serialize.js
 /**
  * Parts of this source were derived and modified from fast-react-render,
  * released under the MIT license.
@@ -1605,7 +1605,7 @@ function getNormalAttributeValue(attribute, value) {
  * List from: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute.
  */
 const SVG_ATTRIBUTE_WITH_DASHES_LIST = ['accentHeight', 'alignmentBaseline', 'arabicForm', 'baselineShift', 'capHeight', 'clipPath', 'clipRule', 'colorInterpolation', 'colorInterpolationFilters', 'colorProfile', 'colorRendering', 'dominantBaseline', 'enableBackground', 'fillOpacity', 'fillRule', 'floodColor', 'floodOpacity', 'fontFamily', 'fontSize', 'fontSizeAdjust', 'fontStretch', 'fontStyle', 'fontVariant', 'fontWeight', 'glyphName', 'glyphOrientationHorizontal', 'glyphOrientationVertical', 'horizAdvX', 'horizOriginX', 'imageRendering', 'letterSpacing', 'lightingColor', 'markerEnd', 'markerMid', 'markerStart', 'overlinePosition', 'overlineThickness', 'paintOrder', 'panose1', 'pointerEvents', 'renderingIntent', 'shapeRendering', 'stopColor', 'stopOpacity', 'strikethroughPosition', 'strikethroughThickness', 'strokeDasharray', 'strokeDashoffset', 'strokeLinecap', 'strokeLinejoin', 'strokeMiterlimit', 'strokeOpacity', 'strokeWidth', 'textAnchor', 'textDecoration', 'textRendering', 'underlinePosition', 'underlineThickness', 'unicodeBidi', 'unicodeRange', 'unitsPerEm', 'vAlphabetic', 'vHanging', 'vIdeographic', 'vMathematical', 'vectorEffect', 'vertAdvY', 'vertOriginX', 'vertOriginY', 'wordSpacing', 'writingMode', 'xmlnsXlink', 'xHeight'].reduce((map, attribute) => {
-  // The keys are lower-cased for more robust lookup.
+  / The keys are lower-cased for more robust lookup.
   map[attribute.toLowerCase()] = attribute;
   return map;
 }, {});
@@ -1617,7 +1617,7 @@ const SVG_ATTRIBUTE_WITH_DASHES_LIST = ['accentHeight', 'alignmentBaseline', 'ar
  * Lowercase attributes don't need mapping, since we lowercase all attributes by default.
  */
 const CASE_SENSITIVE_SVG_ATTRIBUTES = ['allowReorder', 'attributeName', 'attributeType', 'autoReverse', 'baseFrequency', 'baseProfile', 'calcMode', 'clipPathUnits', 'contentScriptType', 'contentStyleType', 'diffuseConstant', 'edgeMode', 'externalResourcesRequired', 'filterRes', 'filterUnits', 'glyphRef', 'gradientTransform', 'gradientUnits', 'kernelMatrix', 'kernelUnitLength', 'keyPoints', 'keySplines', 'keyTimes', 'lengthAdjust', 'limitingConeAngle', 'markerHeight', 'markerUnits', 'markerWidth', 'maskContentUnits', 'maskUnits', 'numOctaves', 'pathLength', 'patternContentUnits', 'patternTransform', 'patternUnits', 'pointsAtX', 'pointsAtY', 'pointsAtZ', 'preserveAlpha', 'preserveAspectRatio', 'primitiveUnits', 'refX', 'refY', 'repeatCount', 'repeatDur', 'requiredExtensions', 'requiredFeatures', 'specularConstant', 'specularExponent', 'spreadMethod', 'startOffset', 'stdDeviation', 'stitchTiles', 'suppressContentEditableWarning', 'suppressHydrationWarning', 'surfaceScale', 'systemLanguage', 'tableValues', 'targetX', 'targetY', 'textLength', 'viewBox', 'viewTarget', 'xChannelSelector', 'yChannelSelector'].reduce((map, attribute) => {
-  // The keys are lower-cased for more robust lookup.
+  / The keys are lower-cased for more robust lookup.
   map[attribute.toLowerCase()] = attribute;
   return map;
 }, {});
@@ -1770,9 +1770,9 @@ function renderElement(element, context, legacyContext = {}) {
 function renderNativeComponent(type, props, context, legacyContext = {}) {
   let content = '';
   if (type === 'textarea' && props.hasOwnProperty('value')) {
-    // Textarea children can be assigned as value prop. If it is, render in
-    // place of children. Ensure to omit so it is not assigned as attribute
-    // as well.
+    / Textarea children can be assigned as value prop. If it is, render in
+    / place of children. Ensure to omit so it is not assigned as attribute
+    / as well.
     content = renderChildren(props.value, context, legacyContext);
     const {
       value,
@@ -1780,7 +1780,7 @@ function renderNativeComponent(type, props, context, legacyContext = {}) {
     } = props;
     props = restProps;
   } else if (props.dangerouslySetInnerHTML && typeof props.dangerouslySetInnerHTML.__html === 'string') {
-    // Dangerous content is left unescaped.
+    / Dangerous content is left unescaped.
     content = props.dangerouslySetInnerHTML.__html;
   } else if (typeof props.children !== 'undefined') {
     content = renderChildren(props.children, context, legacyContext);
@@ -1811,8 +1811,8 @@ function renderComponent(Component, props, context, legacyContext = {}) {
   const instance = new (/** @type {import('react').ComponentClass} */
   Component)(props, legacyContext);
   if (typeof
-  // Ignore reason: Current prettier reformats parens and mangles type assertion
-  // prettier-ignore
+  / Ignore reason: Current prettier reformats parens and mangles type assertion
+  / prettier-ignore
   /** @type {{getChildContext?: () => unknown}} */
   instance.getChildContext === 'function') {
     Object.assign(legacyContext, /** @type {{getChildContext?: () => unknown}} */instance.getChildContext());
@@ -1856,31 +1856,31 @@ function renderAttributes(props) {
     }
     let value = getNormalAttributeValue(key, props[key]);
 
-    // If value is not of serializable type, skip.
+    / If value is not of serializable type, skip.
     if (!ATTRIBUTES_TYPES.has(typeof value)) {
       continue;
     }
 
-    // Don't render internal attribute names.
+    / Don't render internal attribute names.
     if (isInternalAttribute(key)) {
       continue;
     }
     const isBooleanAttribute = BOOLEAN_ATTRIBUTES.has(attribute);
 
-    // Boolean attribute should be omitted outright if its value is false.
+    / Boolean attribute should be omitted outright if its value is false.
     if (isBooleanAttribute && value === false) {
       continue;
     }
     const isMeaningfulAttribute = isBooleanAttribute || hasPrefix(key, ['data-', 'aria-']) || ENUMERATED_ATTRIBUTES.has(attribute);
 
-    // Only write boolean value as attribute if meaningful.
+    / Only write boolean value as attribute if meaningful.
     if (typeof value === 'boolean' && !isMeaningfulAttribute) {
       continue;
     }
     result += ' ' + attribute;
 
-    // Boolean attributes should write attribute name, but without value.
-    // Mere presence of attribute name is effective truthiness.
+    / Boolean attributes should write attribute name, but without value.
+    / Mere presence of attribute name is effective truthiness.
     if (isBooleanAttribute) {
       continue;
     }
@@ -1900,7 +1900,7 @@ function renderAttributes(props) {
  * @return {string} Style attribute value.
  */
 function renderStyle(style) {
-  // Only generate from object, e.g. tolerate string value.
+  / Only generate from object, e.g. tolerate string value.
   if (!isPlainObject(style)) {
     return style;
   }
@@ -1923,7 +1923,7 @@ function renderStyle(style) {
 }
 /* harmony default export */ const serialize = (renderElement);
 
-;// ./node_modules/@wordpress/element/build-module/index.js
+;/ ./node_modules/@wordpress/element/build-module/index.js
 
 
 

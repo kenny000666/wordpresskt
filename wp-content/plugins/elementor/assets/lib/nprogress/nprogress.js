@@ -75,14 +75,14 @@
     progress.offsetWidth; /* Repaint */
 
     queue(function(next) {
-      // Set positionUsing if it hasn't already been set
+      / Set positionUsing if it hasn't already been set
       if (Settings.positionUsing === '') Settings.positionUsing = NProgress.getPositioningCSS();
 
-      // Add transition
+      / Add transition
       css(bar, barPositionCSS(n, speed, ease));
 
       if (n === 1) {
-        // Fade out
+        / Fade out
         css(progress, { 
           transition: 'none', 
           opacity: 1 
@@ -272,23 +272,23 @@
    */
 
   NProgress.getPositioningCSS = function() {
-    // Sniff on document.body.style
+    / Sniff on document.body.style
     var bodyStyle = document.body.style;
 
-    // Sniff prefixes
+    / Sniff prefixes
     var vendorPrefix = ('WebkitTransform' in bodyStyle) ? 'Webkit' :
                        ('MozTransform' in bodyStyle) ? 'Moz' :
                        ('msTransform' in bodyStyle) ? 'ms' :
                        ('OTransform' in bodyStyle) ? 'O' : '';
 
     if (vendorPrefix + 'Perspective' in bodyStyle) {
-      // Modern browsers with 3D support, e.g. Webkit, IE10
+      / Modern browsers with 3D support, e.g. Webkit, IE10
       return 'translate3d';
     } else if (vendorPrefix + 'Transform' in bodyStyle) {
-      // Browsers without 3D support, e.g. IE9
+      / Browsers without 3D support, e.g. IE9
       return 'translate';
     } else {
-      // Browsers without translate() support, e.g. IE7-8
+      / Browsers without translate() support, e.g. IE7-8
       return 'margin';
     }
   };
@@ -432,7 +432,7 @@
 
     if (hasClass(oldList, name)) return; 
 
-    // Trim the opening space.
+    / Trim the opening space.
     element.className = newList.substring(1);
   }
 
@@ -446,10 +446,10 @@
 
     if (!hasClass(element, name)) return;
 
-    // Replace the class name.
+    / Replace the class name.
     newList = oldList.replace(' ' + name + ' ', ' ');
 
-    // Trim the opening and closing spaces.
+    / Trim the opening and closing spaces.
     element.className = newList.substring(1, newList.length - 1);
   }
 

@@ -39,7 +39,7 @@
  *
  * @return {Object} The preview module object.
  */
-export default function( generator, $ ) { // eslint-disable-line max-lines-per-function
+export default function( generator, $ ) { / eslint-disable-line max-lines-per-function
 	/**
 	 * Localized strings.
 	 *
@@ -95,7 +95,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 		 *
 		 * @param {Object} e Event object.
 		 */
-		openAddonsModal( e ) { // eslint-disable-line max-lines-per-function
+		openAddonsModal( e ) { / eslint-disable-line max-lines-per-function
 			e?.preventDefault();
 
 			const spinner = '<i class="wpforms-loading-spinner wpforms-loading-white wpforms-loading-inline"></i>';
@@ -130,7 +130,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 						action() {
 							modals.updateGenerateFormButton( false );
 
-							// Open the Form Generator panel.
+							/ Open the Form Generator panel.
 							setTimeout( () => {
 								generator.state.panelOpen = true;
 							}, 250 );
@@ -138,7 +138,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 					},
 				},
 				onOpenBefore() {
-					// Add the checkbox to the modal.
+					/ Add the checkbox to the modal.
 					const dontShowAgain = `
 						<label class="jconfirm-checkbox">
 							<input type="checkbox" class="jconfirm-checkbox-input wpforms-ai-forms-install-addons-modal-dismiss">
@@ -163,7 +163,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 		 *
 		 * @param {Object} previousModal Previous modal instance.
 		 */
-		installAddonsAjax( previousModal ) { // eslint-disable-line max-lines-per-function
+		installAddonsAjax( previousModal ) { / eslint-disable-line max-lines-per-function
 			let chain = null;
 			let errorDisplayed = false;
 
@@ -202,10 +202,10 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 				errorDisplayed = true;
 			};
 
-			// Do not display the alert about unsaved changes.
+			/ Do not display the alert about unsaved changes.
 			WPFormsBuilder.setCloseConfirmation( false );
 
-			// Loop through all addons and make a chained AJAX calls.
+			/ Loop through all addons and make a chained AJAX calls.
 			for ( const slug in strings.addonsData ) {
 				const url = strings.addonsData[ slug ]?.url;
 				const data = {
@@ -226,7 +226,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 				chain.fail( postFail );
 			}
 
-			// Open the Addons Installed modal after the last AJAX call.
+			/ Open the Addons Installed modal after the last AJAX call.
 			chain
 				.then( () => {
 					if ( ! errorDisplayed ) {

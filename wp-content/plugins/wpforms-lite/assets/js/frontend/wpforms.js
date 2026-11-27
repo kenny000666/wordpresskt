@@ -12,7 +12,7 @@
  *
  * @since 1.4.0
  */
-var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-disable-line no-var
+var wpforms = window.wpforms || ( function( document, window, $ ) { / eslint-disable-line no-var
 	/**
 	 * Public functions and properties.
 	 *
@@ -41,12 +41,12 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @since 1.2.3
 		 */
 		init() {
-			// Document ready.
+			/ Document ready.
 			$( app.ready );
 
-			// Page load.
+			/ Page load.
 			$( window ).on( 'load', function() {
-				// In the case of jQuery 3.+, we need to wait for a ready event first.
+				/ In the case of jQuery 3.+, we need to wait for a ready event first.
 				if ( typeof $.ready.then === 'function' ) {
 					$.ready.then( app.load );
 				} else {
@@ -64,10 +64,10 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @since 1.2.3
 		 */
 		ready() {
-			// Clear URL - remove wpforms_form_id.
+			/ Clear URL - remove wpforms_form_id.
 			app.clearUrlQuery();
 
-			// Set user identifier.
+			/ Set user identifier.
 			app.setUserIdentifier();
 
 			app.loadValidation();
@@ -83,7 +83,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 
 			app.bindChoicesJS();
 
-			// Randomize elements.
+			/ Randomize elements.
 			$( '.wpforms-randomize' ).each( function() {
 				const $list = $( this ),
 					$listItems = $list.children();
@@ -93,10 +93,10 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				}
 			} );
 
-			// Unlock pagebreak navigation.
+			/ Unlock pagebreak navigation.
 			$( '.wpforms-page-button' ).prop( 'disabled', false );
 
-			// Init forms' start timestamp.
+			/ Init forms' start timestamp.
 			app.initFormsStartTime();
 
 			$( document ).trigger( 'wpformsReady' );
@@ -110,9 +110,9 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		load() {
 		},
 
-		//--------------------------------------------------------------------//
-		// Initializing
-		//--------------------------------------------------------------------//
+		/--------------------------------------------------------------------/
+		/ Initializing
+		/--------------------------------------------------------------------/
 
 		/**
 		 * Remove wpforms_form_id from URL.
@@ -141,12 +141,12 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 					fieldIds = [],
 					fieldLabels = [];
 
-				// Bail early if honeypot protection is disabled for the form.
+				/ Bail early if honeypot protection is disabled for the form.
 				if ( wpforms_settings.hn_data[ formId ] === undefined ) {
 					return;
 				}
 
-				// Collect all field IDs and labels.
+				/ Collect all field IDs and labels.
 				$( `#wpforms-form-${ formId } .wpforms-field` ).each( function() {
 					const $field = $( this );
 
@@ -157,7 +157,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				const label = app.getHoneypotRandomLabel( fieldLabels.join( ' ' ).split( ' ' ) ),
 					honeypotFieldId = app.getHoneypotFieldId( fieldIds );
 
-				// Insert the honeypot field before a random field.
+				/ Insert the honeypot field before a random field.
 				const insertBeforeId = fieldIds[ Math.floor( Math.random() * fieldIds.length ) ],
 					honeypotIdAttr = `wpforms-${ formId }-field_${ honeypotFieldId }`,
 					$insertBeforeField = $( `#wpforms-${ formId }-field_${ insertBeforeId }-container`, $form ),
@@ -171,7 +171,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 
 				$insertBeforeField.before( fieldHTML );
 
-				// Add inline properties for honeypot field on the form.
+				/ Add inline properties for honeypot field on the form.
 				const $fieldContainer = $( `#wpforms-${ formId }-field_${ wpforms_settings.hn_data[ formId ] }-container`, $form );
 
 				$fieldContainer.find( 'input' ).attr( {
@@ -216,7 +216,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 
 			let honeypotFieldId = 0;
 
-			// Find the first available field ID.
+			/ Find the first available field ID.
 			for ( let i = 1; i < maxId; i++ ) {
 				if ( ! fieldIds.includes( i ) ) {
 					honeypotFieldId = i;
@@ -224,7 +224,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				}
 			}
 
-			// If no available field ID found, use the max ID + 1.
+			/ If no available field ID found, use the max ID + 1.
 			if ( ! honeypotFieldId ) {
 				honeypotFieldId = maxId + 1;
 			}
@@ -237,28 +237,28 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 *
 		 * @since 1.2.3
 		 */
-		loadValidation() { // eslint-disable-line max-lines-per-function
-			// Only load if jQuery validation library exists.
+		loadValidation() { / eslint-disable-line max-lines-per-function
+			/ Only load if jQuery validation library exists.
 			if ( typeof $.fn.validate === 'undefined' ) {
 				if ( window.location.hash && '#wpformsdebug' === window.location.hash ) {
-					// eslint-disable-next-line no-console
+					/ eslint-disable-next-line no-console
 					console.log( 'jQuery Validation library not found.' );
 				}
 
 				return;
 			}
 
-			// jQuery Validation library will not correctly validate
-			// fields that do not have a name attribute, so we use the
-			// `wpforms-input-temp-name` class to add a temporary name
-			// attribute before validation is initialized, then remove it
-			// before the form submits.
+			/ jQuery Validation library will not correctly validate
+			/ fields that do not have a name attribute, so we use the
+			/ `wpforms-input-temp-name` class to add a temporary name
+			/ attribute before validation is initialized, then remove it
+			/ before the form submits.
 			$( '.wpforms-input-temp-name' ).each( function( index, el ) {
 				const random = Math.floor( Math.random() * 9999 ) + 1;
 				$( this ).attr( 'name', 'wpf-temp-' + random );
 			} );
 
-			// Prepend URL field contents with https:// if user input doesn't contain a schema.
+			/ Prepend URL field contents with https:// if user input doesn't contain a schema.
 			$( document ).on( 'change', '.wpforms-validate input[type=url]', function() {
 				const url = $( this ).val();
 				if ( ! url ) {
@@ -274,24 +274,24 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 			$.validator.messages.email = wpforms_settings.val_email;
 			$.validator.messages.number = wpforms_settings.val_number;
 
-			// Payments: Validate method for Credit Card Number.
+			/ Payments: Validate method for Credit Card Number.
 			if ( typeof $.fn.payment !== 'undefined' ) {
 				$.validator.addMethod( 'creditcard', function( value, element ) {
-					//var type  = $.payment.cardType(value);
+					/var type  = $.payment.cardType(value);
 					const valid = $.payment.validateCardNumber( value );
 					return this.optional( element ) || valid;
 				}, wpforms_settings.val_creditcard );
 
-				// @todo validate CVC and expiration
+				/ @todo validate CVC and expiration
 			}
 
-			// Validate method for file extensions.
+			/ Validate method for file extensions.
 			$.validator.addMethod( 'extension', function( value, element, param ) {
 				param = 'string' === typeof param ? param.replace( /,/g, '|' ) : 'png|jpe?g|gif';
 				return this.optional( element ) || value.match( new RegExp( '\\.(' + param + ')$', 'i' ) );
 			}, wpforms_settings.val_fileextension );
 
-			// Validate method for file size.
+			/ Validate method for file size.
 			$.validator.addMethod( 'maxsize', function( value, element, param ) {
 				const maxSize = param,
 					optionalValue = this.optional( element );
@@ -334,7 +334,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				return this.optional( element ) || decimalToInt( value ) % decimalToInt( param ) === 0;
 			} );
 
-			// Validate email addresses.
+			/ Validate email addresses.
 			$.validator.methods.email = function( value, element ) {
 				/**
 				 * This function combines is_email() from WordPress core
@@ -347,50 +347,50 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				 *
 				 * @return {boolean} True if the email address is valid, false otherwise.
 				 */
-				const isEmail = function( value ) { // eslint-disable-line complexity
+				const isEmail = function( value ) { / eslint-disable-line complexity
 					if ( typeof value !== 'string' ) {
-						// Do not allow callables, arrays, and objects.
+						/ Do not allow callables, arrays, and objects.
 						return false;
 					}
 
-					// Check the length and position of the @ character.
+					/ Check the length and position of the @ character.
 					const atIndex = value.indexOf( '@', 1 );
 					if ( value.length < 6 || value.length > 254 || atIndex === -1 ) {
 						return false;
 					}
 
-					// Check for more than one "@" symbol.
+					/ Check for more than one "@" symbol.
 					if ( value.indexOf( '@', atIndex + 1 ) !== -1 ) {
 						return false;
 					}
 
-					// Split email address into local and domain parts.
+					/ Split email address into local and domain parts.
 					const [ local, domain ] = value.split( '@' );
 
-					// Check local and domain parts for existence.
+					/ Check local and domain parts for existence.
 					if ( ! local || ! domain ) {
 						return false;
 					}
 
-					// Check local part for invalid characters and length.
+					/ Check local part for invalid characters and length.
 					const localRegex = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~.-]+$/;
 					if ( ! localRegex.test( local ) || local.length > 63 ) {
 						return false;
 					}
 
-					// Check domain part for sequences of periods, leading and trailing periods, and whitespace.
+					/ Check domain part for sequences of periods, leading and trailing periods, and whitespace.
 					const domainRegex = /\.{2,}/;
 					if ( domainRegex.test( domain ) || domain.trim( ' \t\n\r\0\x0B.' ) !== domain ) {
 						return false;
 					}
 
-					// Check domain part for length.
+					/ Check domain part for length.
 					const domainArr = domain.split( '.' );
 					if ( domainArr.length < 2 ) {
 						return false;
 					}
 
-					// Check domain label for length, leading and trailing periods, and whitespace.
+					/ Check domain label for length, leading and trailing periods, and whitespace.
 					const domainLabelRegex = /^[a-z0-9-]+$/i;
 					for ( const domainLabel of domainArr ) {
 						if (
@@ -405,11 +405,11 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 					return true;
 				};
 
-				// Congratulations! The email address is valid.
+				/ Congratulations! The email address is valid.
 				return this.optional( element ) || isEmail( value );
 			};
 
-			// Validate email by allowlist/blocklist.
+			/ Validate email by allowlist/blocklist.
 			$.validator.addMethod( 'restricted-email', function( value, element ) {
 				const $el = $( element );
 
@@ -433,36 +433,36 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				return app.cache[ formId ].restrictedEmailValidation[ value ];
 			}, wpforms_settings.val_email_restricted );
 
-			// Validate confirmations.
+			/ Validate confirmations.
 			$.validator.addMethod( 'confirm', function( value, element, param ) {
 				const field = $( element ).closest( '.wpforms-field' );
 				return $( field.find( 'input' )[ 0 ] ).val() === $( field.find( 'input' )[ 1 ] ).val();
 			}, wpforms_settings.val_confirm );
 
-			// Validate required payments.
+			/ Validate required payments.
 			$.validator.addMethod( 'required-payment', function( value, element ) {
 				return app.amountSanitize( value ) > 0;
 			}, wpforms_settings.val_requiredpayment );
 
-			// Validate 12-hour time.
+			/ Validate 12-hour time.
 			$.validator.addMethod( 'time12h', function( value, element ) {
-				// noinspection RegExpRedundantEscape
-				return this.optional( element ) || /^((0?[1-9]|1[012])(:[0-5]\d){1,2}(\ ?[AP]M))$/i.test( value ); // eslint-disable-line no-useless-escape
+				/ noinspection RegExpRedundantEscape
+				return this.optional( element ) || /^((0?[1-9]|1[012])(:[0-5]\d){1,2}(\ ?[AP]M))$/i.test( value ); / eslint-disable-line no-useless-escape
 			}, wpforms_settings.val_time12h );
 
-			// Validate 24-hour time.
+			/ Validate 24-hour time.
 			$.validator.addMethod( 'time24h', function( value, element ) {
-				// noinspection RegExpRedundantEscape
-				return this.optional( element ) || /^(([0-1]?[0-9])|([2][0-3])):([0-5]?[0-9])(\ ?[AP]M)?$/i.test( value ); // eslint-disable-line no-useless-escape
+				/ noinspection RegExpRedundantEscape
+				return this.optional( element ) || /^(([0-1]?[0-9])|([2][0-3])):([0-5]?[0-9])(\ ?[AP]M)?$/i.test( value ); / eslint-disable-line no-useless-escape
 			}, wpforms_settings.val_time24h );
 
-			// Validate Turnstile captcha.
+			/ Validate Turnstile captcha.
 			$.validator.addMethod( 'turnstile', function( value ) {
 				return value;
 			}, wpforms_settings.val_turnstile_fail_msg );
 
-			// Validate time limits.
-			$.validator.addMethod( 'time-limit', function( value, element ) { // eslint-disable-line complexity
+			/ Validate time limits.
+			$.validator.addMethod( 'time-limit', function( value, element ) { / eslint-disable-line complexity
 				const $input = $( element ),
 					minTime = $input.data( 'min-time' ),
 					isLimited = typeof minTime !== 'undefined';
@@ -490,11 +490,11 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				let minTime = $input.data( 'min-time' ),
 					maxTime = $input.data( 'max-time' );
 
-				// Replace `00:**pm` with `12:**pm`.
+				/ Replace `00:**pm` with `12:**pm`.
 				minTime = minTime.replace( /^00:([0-9]{2})pm$/, '12:$1pm' );
 				maxTime = maxTime.replace( /^00:([0-9]{2})pm$/, '12:$1pm' );
 
-				// Proper format time: add space before AM/PM, make uppercase.
+				/ Proper format time: add space before AM/PM, make uppercase.
 				minTime = minTime.replace( /(am|pm)/g, ' $1' ).toUpperCase();
 				maxTime = maxTime.replace( /(am|pm)/g, ' $1' ).toUpperCase();
 
@@ -503,7 +503,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 					.replace( '{maxTime}', maxTime );
 			} );
 
-			// Validate checkbox choice limit.
+			/ Validate checkbox choice limit.
 			$.validator.addMethod( 'check-limit', function( value, element ) {
 				const $ul = $( element ).closest( 'ul' ),
 					choiceLimit = parseInt( $ul.attr( 'data-choice-limit' ) || 0, 10 );
@@ -520,7 +520,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				return wpforms_settings.val_checklimit.replace( '{#}', choiceLimit );
 			} );
 
-			// Validate Inputmask completeness.
+			/ Validate Inputmask completeness.
 			$.validator.addMethod( 'inputmask-incomplete', function( value, element ) {
 				if ( value.length === 0 || typeof $.fn.inputmask === 'undefined' ) {
 					return true;
@@ -528,7 +528,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				return $( element ).inputmask( 'isComplete' );
 			}, wpforms_settings.val_inputmask_incomplete );
 
-			// Validate Payment item value on zero.
+			/ Validate Payment item value on zero.
 			$.validator.addMethod( 'required-positive-number', function( value, element ) {
 				return app.amountSanitize( value ) > 0;
 			}, wpforms_settings.val_number_positive );
@@ -550,11 +550,11 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				return ( value === '' && ! $el.hasClass( 'wpforms-field-required' ) ) || Number( app.amountSanitize( app.amountFormat( param ) ) ) <= Number( app.amountSanitize( value ) );
 			}, wpforms_settings.val_minimum_price );
 
-			// Validate password strength.
+			/ Validate password strength.
 			$.validator.addMethod( 'password-strength', function( value, element ) {
 				const $el = $( element );
 
-				// Need to check if the password strength to remove the error message.
+				/ Need to check if the password strength to remove the error message.
 				const strength = WPFormsPasswordField.passwordStrength( value, element );
 
 				/**
@@ -565,13 +565,13 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				return ( value === '' && ! $el.hasClass( 'wpforms-field-required' ) ) || strength >= Number( $el.data( 'password-strength-level' ) );
 			}, wpforms_settings.val_password_strength );
 
-			// Finally, load jQuery Validation library for our forms.
-			$( '.wpforms-validate' ).each( function() { // eslint-disable-line max-lines-per-function
+			/ Finally, load jQuery Validation library for our forms.
+			$( '.wpforms-validate' ).each( function() { / eslint-disable-line max-lines-per-function
 				const form = $( this ),
 					formID = form.data( 'formid' );
 				let	properties;
 
-				// TODO: cleanup this BC with wpforms_validate.
+				/ TODO: cleanup this BC with wpforms_validate.
 				if ( typeof window[ 'wpforms_' + formID ] !== 'undefined' && window[ 'wpforms_' + formID ].hasOwnProperty( 'validate' ) ) {
 					properties = window[ 'wpforms_' + formID ].validate;
 				} else if ( typeof wpforms_validate !== 'undefined' ) {
@@ -583,7 +583,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 						validClass: 'wpforms-valid',
 						ignore: ':hidden:not(textarea.wp-editor-area), .wpforms-conditional-hide textarea.wp-editor-area',
 						ignoreTitle: true,
-						errorPlacement( error, element ) { // eslint-disable-line complexity
+						errorPlacement( error, element ) { / eslint-disable-line complexity
 							if ( app.isLikertScaleField( element ) ) {
 								element.closest( 'table' ).hasClass( 'single-row' )
 									? element.closest( '.wpforms-field' ).append( error )
@@ -612,7 +612,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 								} );
 							}
 						},
-						highlight( element, errorClass, validClass ) { // eslint-disable-line complexity
+						highlight( element, errorClass, validClass ) { / eslint-disable-line complexity
 							const $element = $( element ),
 								$field = $element.closest( '.wpforms-field' ),
 								inputName = $element.attr( 'name' );
@@ -623,7 +623,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 								$element.addClass( errorClass ).removeClass( validClass );
 							}
 
-							// Remove password strength container for empty required password field.
+							/ Remove password strength container for empty required password field.
 							if (
 								$element.attr( 'type' ) === 'password' &&
 								$element.val().trim() === '' &&
@@ -647,12 +647,12 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 								$element.addClass( validClass ).removeClass( errorClass );
 							}
 
-							// Remove the error class from the field container if there are no subfield errors.
+							/ Remove the error class from the field container if there are no subfield errors.
 							if ( ! $field.find( ':input.wpforms-error,[data-dz-errormessage]:not(:empty)' ).length ) {
 								$field.removeClass( 'wpforms-has-error' );
 							}
 
-							// Remove an error message to be sure the next time the `errorPlacement` method will be executed.
+							/ Remove an error message to be sure the next time the `errorPlacement` method will be executed.
 							if ( app.isModernMarkupEnabled() ) {
 								$element.parent().find( 'em.wpforms-error' ).remove();
 							}
@@ -696,7 +696,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 							 *
 							 * @return {boolean|void} False if form won't submit.
 							 */
-							const submitHandlerRoutine = function() { // eslint-disable-line complexity
+							const submitHandlerRoutine = function() { / eslint-disable-line complexity
 								const $form = $( form ),
 									$container = $form.closest( '.wpforms-container' ),
 									$submit = $form.find( '.wpforms-submit' ),
@@ -713,7 +713,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 								$form.find( '#wpforms-field_recaptcha-error' ).remove();
 								disableSubmitButton( $form );
 
-								// Display processing text.
+								/ Display processing text.
 								if ( altText ) {
 									$submit.text( altText );
 								}
@@ -723,7 +723,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 								}
 
 								if ( ! app.empty( recaptchaID ) || recaptchaID === 0 ) {
-									// The Form contains invisible reCAPTCHA.
+									/ The Form contains invisible reCAPTCHA.
 									grecaptcha.execute( recaptchaID ).then( null, function() {
 										if ( grecaptcha.getResponse() ) {
 											return;
@@ -734,14 +734,14 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 									return false;
 								}
 
-								// Remove name attributes if needed.
+								/ Remove name attributes if needed.
 								$( '.wpforms-input-temp-name' ).removeAttr( 'name' );
 
 								app.formSubmit( $form );
 							};
 
-							// In the case of active Google reCAPTCHA v3, first, we should call `grecaptcha.execute`.
-							// This is needed to get a proper grecaptcha token before submitting the form.
+							/ In the case of active Google reCAPTCHA v3, first, we should call `grecaptcha.execute`.
+							/ This is needed to get a proper grecaptcha token before submitting the form.
 							if ( typeof wpformsRecaptchaV3Execute === 'function' ) {
 								disableSubmitButton( $( form ) );
 
@@ -755,16 +755,16 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 								app.scrollToError( $( validator.errorList[ 0 ].element ) );
 							}
 						},
-						onkeyup: WPFormsUtils.debounce( // eslint-disable-next-line complexity
+						onkeyup: WPFormsUtils.debounce( / eslint-disable-next-line complexity
 							function( element, event ) {
-								// This code is copied from JQuery Validate 'onkeyup' method with only one change: 'wpforms-novalidate-onkeyup' class check.
+								/ This code is copied from JQuery Validate 'onkeyup' method with only one change: 'wpforms-novalidate-onkeyup' class check.
 								const excludedKeys = [ 16, 17, 18, 20, 35, 36, 37, 38, 39, 40, 45, 144, 225 ];
 
 								if ( $( element ).hasClass( 'wpforms-novalidate-onkeyup' ) ) {
-									return; // Disable onkeyup validation for some elements (e.g. remote calls).
+									return; / Disable onkeyup validation for some elements (e.g. remote calls).
 								}
 
-								// eslint-disable-next-line no-mixed-operators
+								/ eslint-disable-next-line no-mixed-operators
 								if ( event.which === 9 && this.elementValue( element ) === '' || $.inArray( event.keyCode, excludedKeys ) !== -1 ) {
 								} else if ( element.name in this.submitted || element.name in this.invalid ) {
 									this.element( element );
@@ -772,20 +772,20 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 							},
 							1000
 						),
-						onfocusout: function( element ) { // eslint-disable-line complexity, object-shorthand
-							// This code is copied from JQuery Validate 'onfocusout' method with only one change: 'wpforms-novalidate-onkeyup' class check.
+						onfocusout: function( element ) { / eslint-disable-line complexity, object-shorthand
+							/ This code is copied from JQuery Validate 'onfocusout' method with only one change: 'wpforms-novalidate-onkeyup' class check.
 							let validate = false;
 
 							if ( $( element ).hasClass( 'wpforms-novalidate-onkeyup' ) && ! element.value ) {
-								validate = true; // Empty value error handling for elements with onkeyup validation disabled.
+								validate = true; / Empty value error handling for elements with onkeyup validation disabled.
 							}
 
 							if ( ! this.checkable( element ) && ( element.name in this.submitted || ! this.optional( element ) ) ) {
 								validate = true;
 							}
 
-							// If the error comes from server validation, we don't need to validate it again,
-							// because it will clean the error message too early.
+							/ If the error comes from server validation, we don't need to validate it again,
+							/ because it will clean the error message too early.
 							if ( $( element ).data( 'server-error' ) ) {
 								validate = false;
 							}
@@ -845,8 +845,8 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				type: 'post',
 				data: {
 					action: 'wpforms_restricted_email',
-					form_id: formId, // eslint-disable-line camelcase
-					field_id: fieldId, // eslint-disable-line camelcase
+					form_id: formId, / eslint-disable-line camelcase
+					field_id: fieldId, / eslint-disable-line camelcase
 					email: value,
 				},
 				dataType: 'json',
@@ -925,7 +925,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 *
 		 * @return {boolean} true/false.
 		 */
-		isWrappedField( element ) { // eslint-disable-line complexity
+		isWrappedField( element ) { / eslint-disable-line complexity
 			return 'checkbox' === element.attr( 'type' ) ||
 			'radio' === element.attr( 'type' ) ||
 			'range' === element.attr( 'type' ) ||
@@ -975,7 +975,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @return {boolean} true/false.
 		 */
 		isCoupon( element ) {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "wpforms.isCoupon( element )" has been deprecated' );
 
 			return element.closest( '.wpforms-field' ).hasClass( 'wpforms-field-payment-coupon' );
@@ -1008,15 +1008,15 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 *
 		 * @param {jQuery} $context Container to search for datepicker elements.
 		 */
-		loadDatePicker( $context ) { // eslint-disable-line max-lines-per-function
-			// Only load if jQuery datepicker library exists.
+		loadDatePicker( $context ) { / eslint-disable-line max-lines-per-function
+			/ Only load if jQuery datepicker library exists.
 			if ( typeof $.fn.flatpickr === 'undefined' ) {
 				return;
 			}
 
 			$context = $context?.length ? $context : $( document );
 
-			$context.find( '.wpforms-datepicker-wrap' ).each( function() { // eslint-disable-line complexity, max-lines-per-function
+			$context.find( '.wpforms-datepicker-wrap' ).each( function() { / eslint-disable-line complexity, max-lines-per-function
 				const element = $( this ),
 					$input = element.find( 'input' ),
 					form = element.closest( '.wpforms-form' ),
@@ -1037,7 +1037,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 					};
 				}
 
-				// Redefine locale only if user doesn't do that manually, and we have the locale.
+				/ Redefine locale only if user doesn't do that manually, and we have the locale.
 				if (
 					! properties.hasOwnProperty( 'locale' ) &&
 					typeof wpforms_settings !== 'undefined' &&
@@ -1079,8 +1079,8 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 					} ];
 				}
 
-				// Toggle clear date icon.
-				properties.onChange = function( selectedDates, dateStr, instance ) { // eslint-disable-line no-unused-vars
+				/ Toggle clear date icon.
+				properties.onChange = function( selectedDates, dateStr, instance ) { / eslint-disable-line no-unused-vars
 					element.find( '.wpforms-datepicker-clear' )
 						.css( 'display', dateStr === '' ? 'none' : 'block' );
 				};
@@ -1098,14 +1098,14 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @param {jQuery} $context Container to search for datepicker elements.
 		 */
 		loadTimePicker( $context ) {
-			// Only load if jQuery timepicker library exists.
+			/ Only load if jQuery timepicker library exists.
 			if ( typeof $.fn.timepicker === 'undefined' ) {
 				return;
 			}
 
 			$context = $context?.length ? $context : $( document );
 
-			$context.find( '.wpforms-timepicker' ).each( function() { // eslint-disable-line complexity
+			$context.find( '.wpforms-timepicker' ).each( function() { / eslint-disable-line complexity
 				const element = $( this ),
 					form = element.closest( '.wpforms-form' ),
 					formID = form.data( 'formid' ),
@@ -1132,17 +1132,17 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 					};
 				}
 
-				// Retrieve the value from the input element.
+				/ Retrieve the value from the input element.
 				const inputValue = element.val();
 
 				element.timepicker( properties );
 
-				// Check if a value is available.
+				/ Check if a value is available.
 				if ( inputValue ) {
-					// Set the input element's value to the retrieved value.
+					/ Set the input element's value to the retrieved value.
 					element.val( inputValue );
 
-					// Trigger the 'changeTime' event to update the timepicker after programmatically setting the value.
+					/ Trigger the 'changeTime' event to update the timepicker after programmatically setting the value.
 					element.trigger( 'changeTime' );
 				}
 			} );
@@ -1157,14 +1157,14 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @param {jQuery} $context Container to search for datepicker elements.
 		 */
 		loadInputMask( $context ) {
-			// Only load if jQuery input mask library exists.
+			/ Only load if jQuery input mask library exists.
 			if ( typeof $.fn.inputmask === 'undefined' ) {
 				return;
 			}
 
 			$context = $context?.length ? $context : $( document );
 
-			// This setting has no effect when switching to the "RTL" mode.
+			/ This setting has no effect when switching to the "RTL" mode.
 			$context.find( '.wpforms-masked-input' ).inputmask( { rightAlign: false } );
 		},
 
@@ -1177,7 +1177,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @param {jQuery} $field Phone field element.
 		 */
 		fixPhoneFieldSnippets( $field ) {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Obsolete function called. Function wpforms.fixPhoneFieldSnippets( $field ) has been deprecated, please use the wpforms.repairSmartPhoneHiddenField( $field ) function instead!' );
 
 			$field.siblings( 'input[type="hidden"]' ).each( function() {
@@ -1217,7 +1217,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @param {jQuery} $field Phone field element.
 		 */
 		repairSmartPhoneHiddenField( $field ) {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "wpforms.repairSmartPhoneHiddenField()" has been deprecated, please use the new "WPFormsPhoneField.repairSmartHiddenField()" function instead!' );
 
 			WPFormsPhoneField?.repairSmartHiddenField?.( $field );
@@ -1232,7 +1232,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @return {Object} List of default options.
 		 */
 		getDefaultSmartPhoneFieldOptions() {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "wpforms.getDefaultSmartPhoneFieldOptions()" has been deprecated, please use the new "WPFormsPhoneField.getDefaultSmartFieldOptions()" function instead!' );
 
 			return WPFormsPhoneField?.getDefaultSmartFieldOptions?.();
@@ -1248,7 +1248,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @param {jQuery} $context Context to search for smartphone elements.
 		 */
 		loadSmartPhoneField( $context ) {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "wpforms.loadSmartPhoneField()" has been deprecated, please use the new "WPFormsPhoneField.loadSmartField()" function instead!' );
 
 			WPFormsPhoneField?.loadSmartField?.( $context );
@@ -1262,7 +1262,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @deprecated 1.9.4
 		 */
 		loadJqueryIntlTelInput() {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "wpforms.loadJqueryIntlTelInput()" has been deprecated, please use the new "WPFormsPhoneField.loadJqueryIntlTelInput()" function instead!' );
 
 			WPFormsPhoneField?.loadJqueryIntlTelInput?.();
@@ -1278,7 +1278,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @param {Object} inputOptions Options for intlTelInput.
 		 */
 		initSmartPhoneField( $el, inputOptions ) {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "wpforms.initSmartPhoneField()" has been deprecated, please use the new "WPFormsPhoneField.initSmartField()" function instead!' );
 
 			WPFormsPhoneField?.initSmartField?.( $el, inputOptions );
@@ -1291,7 +1291,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @deprecated 1.9.4
 		 */
 		bindSmartPhoneField() {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "wpforms.bindSmartPhoneField()" has been deprecated, please use the new "WPFormsPhoneField.bindSmartField()" function instead!' );
 
 			WPFormsPhoneField?.bindSmartField?.();
@@ -1303,12 +1303,12 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @since 1.2.6
 		 */
 		loadPayments() {
-			// Update Total field(s) with the latest calculation.
+			/ Update Total field(s) with the latest calculation.
 			$( '.wpforms-payment-total' ).each( function( index, el ) {
 				app.amountTotal( this );
 			} );
 
-			// Credit card validation.
+			/ Credit card validation.
 			if ( typeof $.fn.payment !== 'undefined' ) {
 				$( '.wpforms-field-credit-card-cardnumber' ).payment( 'formatCardNumber' );
 				$( '.wpforms-field-credit-card-cardcvc' ).payment( 'formatCardCVC' );
@@ -1320,13 +1320,13 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 *
 		 * @since 1.5.3
 		 */
-		loadMailcheck() { // eslint-disable-line max-lines-per-function
-			// Skip loading if `wpforms_mailcheck_enabled` filter return false.
+		loadMailcheck() { / eslint-disable-line max-lines-per-function
+			/ Skip loading if `wpforms_mailcheck_enabled` filter return false.
 			if ( ! wpforms_settings.mailcheck_enabled ) {
 				return;
 			}
 
-			// Only load if a library exists.
+			/ Only load if a library exists.
 			if ( typeof $.fn.mailcheck === 'undefined' ) {
 				return;
 			}
@@ -1338,14 +1338,14 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				Mailcheck.defaultTopLevelDomains = Mailcheck.defaultTopLevelDomains.concat( wpforms_settings.mailcheck_toplevel_domains );
 			}
 
-			// Mailcheck suggestion.
+			/ Mailcheck suggestion.
 			$( document ).on( 'blur', '.wpforms-field-email input', function() {
 				const $input = $( this ),
 					id = $input.attr( 'id' );
 
 				$input.mailcheck( {
 					suggested( $el, suggestion ) {
-						// decodeURI() will throw an error if the percent sign is not followed by two hexadecimal digits.
+						/ decodeURI() will throw an error if the percent sign is not followed by two hexadecimal digits.
 						suggestion.full = suggestion.full.replace( /%(?![0-9][0-9a-fA-F]+)/g, '%25' );
 						suggestion.address = suggestion.address.replace( /%(?![0-9][0-9a-fA-F]+)/g, '%25' );
 						suggestion.domain = suggestion.domain.replace( /%(?![0-9][0-9a-fA-F]+)/g, '%25' );
@@ -1378,7 +1378,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				} );
 			} );
 
-			// Apply a Mailcheck suggestion.
+			/ Apply a Mailcheck suggestion.
 			$( document ).on( 'click', '.wpforms-field-email .mailcheck-suggestion', function( e ) {
 				const $suggestion = $( this ),
 					$field = $suggestion.closest( '.wpforms-field' ),
@@ -1398,15 +1398,15 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 *
 		 * @param {jQuery} $context Container to search for ChoicesJS elements.
 		 */
-		loadChoicesJS( $context ) { // eslint-disable-line max-lines-per-function
-			// Loads if function exists.
+		loadChoicesJS( $context ) { / eslint-disable-line max-lines-per-function
+			/ Loads if function exists.
 			if ( typeof window.Choices !== 'function' ) {
 				return;
 			}
 
 			$context = $context?.length ? $context : $( document );
 
-			// eslint-disable-next-line max-lines-per-function, complexity
+			/ eslint-disable-next-line max-lines-per-function, complexity
 			$context.find( '.wpforms-field-select-style-modern .choicesjs-select, .wpforms-field-payment-select .choicesjs-select' ).each( function( idx, el ) {
 				if ( $( el ).data( 'choicesjs' ) ) {
 					return;
@@ -1421,7 +1421,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				 */
 				const event = WPFormsUtils.triggerEvent( $context, 'wpformsBeforeLoadElementChoices', [ el ] );
 
-				// Allow callbacks on `wpformsBeforeLoadElementChoices` to cancel choices initialization by triggering `event.preventDefault()`.
+				/ Allow callbacks on `wpformsBeforeLoadElementChoices` to cancel choices initialization by triggering `event.preventDefault()`.
 				if ( event.isDefaultPrevented() ) {
 					return;
 				}
@@ -1435,8 +1435,8 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				args.removeItemButton = args.removeItems;
 				args.searchEnabled = 'undefined' !== typeof searchEnabled ? searchEnabled : true;
 
-				// We can safely allow HTML in the choices since they are sanitized before rendering.
-				// Allowing HTML in the choices is necessary for support allowed HTML entities, such as `&`.
+				/ We can safely allow HTML in the choices since they are sanitized before rendering.
+				/ Allowing HTML in the choices is necessary for support allowed HTML entities, such as `&`.
 				args.allowHTML = true;
 
 				args.callbackOnInit = function() {
@@ -1445,13 +1445,13 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 						$input = $( self.input.element ),
 						sizeClass = $element.data( 'size-class' );
 
-					// Remove hidden attribute and hide `<select>` like a screen-reader text.
-					// It's important for field validation.
+					/ Remove hidden attribute and hide `<select>` like a screen-reader text.
+					/ It's important for field validation.
 					$element
 						.removeAttr( 'hidden' )
 						.addClass( self.config.classNames.input + '--hidden' );
 
-					// Add CSS-class for size.
+					/ Add CSS-class for size.
 					if ( sizeClass ) {
 						$( self.containerOuter.element ).addClass( sizeClass );
 					}
@@ -1461,7 +1461,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 					 * In case if select is empty - we return placeholder text.
 					 */
 					if ( $element.prop( 'multiple' ) ) {
-						// On init event.
+						/ On init event.
 						$input.data( 'placeholder', $input.attr( 'placeholder' ) ).css( 'width', 'auto' );
 
 						if ( self.getValue( true ).length ) {
@@ -1471,11 +1471,11 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 						$input.css( 'width', '1ch' );
 					}
 
-					// On change event.
+					/ On change event.
 					$element.on( 'change', function() {
-						// Listen if multiple select has choices.
+						/ Listen if multiple select has choices.
 						if ( $element.prop( 'multiple' ) ) {
-							// eslint-disable-next-line no-unused-expressions
+							/ eslint-disable-next-line no-unused-expressions
 							self.getValue( true ).length
 								? $input.removeAttr( 'placeholder' )
 								: $input.attr( 'placeholder', $input.data( 'placeholder' ) ).css( 'width', 'auto' );
@@ -1496,17 +1496,17 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 						$element = $( self.passedElement.element );
 
 					return {
-						// Change default template for option.
+						/ Change default template for option.
 						option( item ) {
 							const opt = Choices.defaults.templates.option.call( this, item );
 
-							// Add a `.placeholder` class for placeholder option - it needs for WPForm CL.
+							/ Add a `.placeholder` class for placeholder option - it needs for WPForm CL.
 							if ( 'undefined' !== typeof item.placeholder && true === item.placeholder ) {
 								opt.classList.add( 'placeholder' );
 							}
 
-							// Add a `data-amount` attribute for payment dropdown.
-							// It will be a copy from a Choices.js `data-custom-properties` attribute.
+							/ Add a `data-amount` attribute for payment dropdown.
+							/ It will be a copy from a Choices.js `data-custom-properties` attribute.
 							if ( $element.hasClass( 'wpforms-payment-price' ) && 'undefined' !== typeof item.customProperties && null !== item.customProperties ) {
 								opt.dataset.amount = item.customProperties;
 							}
@@ -1516,7 +1516,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 					};
 				};
 
-				// Save choicesjs instance for future access.
+				/ Save choicesjs instance for future access.
 				$( el ).data( 'choicesjs', new Choices( el, args ) );
 			} );
 		},
@@ -1527,7 +1527,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @since 1.8.9
 		 */
 		bindChoicesJS() {
-			// Add the ability to close the drop-down menu on the frontend.
+			/ Add the ability to close the drop-down menu on the frontend.
 			$( document ).on( 'click', '.choices', function( e ) {
 				const $choices = $( this ),
 					choicesObj = $choices.find( 'select' ).data( 'choicesjs' );
@@ -1545,40 +1545,40 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 			} );
 		},
 
-		//--------------------------------------------------------------------//
-		// Binds.
-		//--------------------------------------------------------------------//
+		/--------------------------------------------------------------------/
+		/ Binds.
+		/--------------------------------------------------------------------/
 
 		/**
 		 * Element bindings.
 		 *
 		 * @since 1.2.3
 		 */
-		bindUIActions() { // eslint-disable-line max-lines-per-function
+		bindUIActions() { / eslint-disable-line max-lines-per-function
 			const $document = $( document );
 
-			// Pagebreak navigation.
+			/ Pagebreak navigation.
 			$document.on( 'click', '.wpforms-page-button', function( event ) {
 				event.preventDefault();
 				app.pagebreakNav( this );
 			} );
 
-			// Payments: Update Total field(s) when latest calculation.
+			/ Payments: Update Total field(s) when latest calculation.
 			let debounceTimerPrice;
 			$document.on( 'change input', '.wpforms-payment-price', function() {
-				// Using the setTimeout with an interval of 0,
-				// we can defer the execution of the app.amountTotal() function.
+				/ Using the setTimeout with an interval of 0,
+				/ we can defer the execution of the app.amountTotal() function.
 				clearTimeout( debounceTimerPrice );
 				debounceTimerPrice = setTimeout( () => {
 					app.amountTotal( this, true );
 				}, 0 );
 			} );
 
-			// Payments: Update Total field(s) when changing quantity.
+			/ Payments: Update Total field(s) when changing quantity.
 			let debounceTimerQuantity;
 			$document.on( 'change input', 'select.wpforms-payment-quantity', function() {
-				// Using the setTimeout with an interval of 0,
-				// we can defer the execution of the app.amountTotal() function.
+				/ Using the setTimeout with an interval of 0,
+				/ we can defer the execution of the app.amountTotal() function.
 				clearTimeout( debounceTimerQuantity );
 				debounceTimerQuantity = setTimeout( () => {
 					app.amountTotal( this, true );
@@ -1586,14 +1586,14 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				}, 0 );
 			} );
 
-			// Payments: Restrict user input payment fields.
+			/ Payments: Restrict user input payment fields.
 			$document.on( 'input', '.wpforms-payment-user-input', function() {
 				const $this = $( this ),
 					amount = $this.val();
 				$this.val( amount.replace( /[^0-9.,]/g, '' ) );
 			} );
 
-			// Payments: Sanitize/format user input amounts.
+			/ Payments: Sanitize/format user input amounts.
 			$document.on( 'focusout', '.wpforms-payment-user-input', function() {
 				const $this = $( this ),
 					amount = $this.val();
@@ -1608,18 +1608,18 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				$this.val( formatted );
 			} );
 
-			// Payments: Update Total field(s) when conditionals are processed.
+			/ Payments: Update Total field(s) when conditionals are processed.
 			let debounceTimerConditions;
 			$document.on( 'wpformsProcessConditionals', function( e, el ) {
-				// Using the setTimeout with an interval of 0,
-				// we can defer the execution of the app.amountTotal() function.
+				/ Using the setTimeout with an interval of 0,
+				/ we can defer the execution of the app.amountTotal() function.
 				clearTimeout( debounceTimerConditions );
 				debounceTimerConditions = setTimeout( () => {
 					app.amountTotal( el, true );
 				}, 0 );
 			} );
 
-			// Rating field: hover effect.
+			/ Rating field: hover effect.
 			$document.on( 'mouseenter', '.wpforms-field-rating-item', function() {
 				$( this ).parent().find( '.wpforms-field-rating-item' ).removeClass( 'selected hover' );
 				$( this ).prevAll().addBack().addClass( 'hover' );
@@ -1628,22 +1628,22 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				$( this ).parent().find( 'input:checked' ).parent().prevAll().addBack().addClass( 'selected' );
 			} );
 
-			// Rating field: toggle selected state.
+			/ Rating field: toggle selected state.
 			$( document ).on( 'change', '.wpforms-field-rating-item input', function() {
 				const $this = $( this ),
 					$wrap = $this.closest( '.wpforms-field-rating-items' ),
 					$items = $wrap.find( '.wpforms-field-rating-item' );
-				$this.focus(); // Enable keyboard navigation.
+				$this.focus(); / Enable keyboard navigation.
 				$items.removeClass( 'hover selected' );
 				$this.parent().prevAll().addBack().addClass( 'selected' );
 			} );
 
-			// Rating field: preselect the selected rating (from dynamic/fallback population).
+			/ Rating field: preselect the selected rating (from dynamic/fallback population).
 			$( function() {
 				$( '.wpforms-field-rating-item input:checked' ).trigger( 'change' );
 			} );
 
-			// Checkbox/Radio/Payment checkbox: make labels keyboard-accessible.
+			/ Checkbox/Radio/Payment checkbox: make labels keyboard-accessible.
 			$document.on( 'keydown', '.wpforms-image-choices-item label', function( event ) {
 				const $label = $( this ),
 					$field = $label.closest( '.wpforms-field' );
@@ -1653,7 +1653,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 					return false;
 				}
 
-				// Cause the input to be clicked when pressing Space bar on the label.
+				/ Cause the input to be clicked when pressing Space bar on the label.
 				if ( event.keyCode !== 32 ) {
 					return;
 				}
@@ -1662,7 +1662,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				event.preventDefault();
 			} );
 
-			// IE: Click on the `image choice` image should trigger the click event on the input (checkbox or radio) field.
+			/ IE: Click on the `image choice` image should trigger the click event on the input (checkbox or radio) field.
 			if ( window.document.documentMode ) {
 				$document.on( 'click', '.wpforms-image-choices-item img', function() {
 					$( this ).closest( 'label' ).find( 'input' ).trigger( 'click' );
@@ -1698,7 +1698,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				}
 			} );
 
-			// Upload fields: Check combined file size.
+			/ Upload fields: Check combined file size.
 			$document.on( 'input', '.wpforms-field-file-upload', function() {
 				const $this = $( this ),
 					$uploads = $this.closest( 'form.wpforms-form' ).find( '.wpforms-field-file-upload input:not(".dropzone-input")' );
@@ -1712,12 +1712,12 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				const $form = $submitBtn.closest( 'form' ),
 					$btnNext = $form.find( '.wpforms-page-next:visible' );
 
-				// For multi-pages layout, use the "Next" button instead of the primary "Submit" button.
+				/ For multi-pages layout, use the "Next" button instead of the primary "Submit" button.
 				if ( $form.find( '.wpforms-page-indicator' ).length !== 0 && $btnNext.length !== 0 ) {
 					$submitBtn = $btnNext;
 				}
 
-				// Calculating totalSize.
+				/ Calculating totalSize.
 				$uploads.each( function() {
 					const $upload = $( this );
 					let i = 0;
@@ -1728,9 +1728,9 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 					}
 				} );
 
-				// Checking totalSize.
+				/ Checking totalSize.
 				if ( totalSize < postMaxSize ) {
-					// Remove error and release submit button.
+					/ Remove error and release submit button.
 					$errorCnt.find( '.wpforms-error-container-post_max_size' ).remove();
 
 					$submitBtn.prop( 'disabled', false );
@@ -1742,14 +1742,14 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 					return;
 				}
 
-				// Convert sizes to Mb.
+				/ Convert sizes to Mb.
 				totalSize = Number( ( totalSize / 1048576 ).toFixed( 3 ) );
 				postMaxSize = Number( ( postMaxSize / 1048576 ).toFixed( 3 ) );
 
-				// Preparing error message.
+				/ Preparing error message.
 				errorMsg = errorMsg.replace( /{totalSize}/, totalSize ).replace( /{maxSize}/, postMaxSize );
 
-				// Output error message.
+				/ Output error message.
 				if ( $errorCnt.hasClass( 'wpforms-error-container' ) ) {
 					$errorCnt.find( '.wpforms-error-container-post_max_size' ).remove();
 					$errorCnt.append( errorMsg );
@@ -1758,21 +1758,21 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 					$errorCnt = $submitCnt.prev();
 				}
 
-				// Disable submit button.
+				/ Disable submit button.
 				$submitBtn.prop( 'disabled', true );
 				WPFormsUtils.triggerEvent( $form, 'wpformsFormSubmitButtonDisable', [ $form, $submitBtn ] );
 
 				WPFormsUtils.triggerEvent( $form, 'wpformsCombinedUploadsSizeError', [ $form, $errorCnt ] );
 			} );
 
-			// Number Slider field: update hints.
+			/ Number Slider field: update hints.
 			$document.on( 'change input', '.wpforms-field-number-slider input[type=range]', function( event ) {
 				const hintEl = $( event.target ).siblings( '.wpforms-field-number-slider-hint' );
 
 				hintEl.html( hintEl.data( 'hint' ).replaceAll( '{value}', '<b>' + event.target.value + '</b>' ) );
 			} );
 
-			// Enter key event.
+			/ Enter key event.
 			$document.on( 'keydown', '.wpforms-form input', function( e ) {
 				if ( e.keyCode !== 13 ) {
 					return;
@@ -1803,12 +1803,12 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				$page.find( '.wpforms-page-next' ).trigger( 'click' );
 			} );
 
-			// Allow only numbers, minus and decimal point to be entered into the Numbers field.
+			/ Allow only numbers, minus and decimal point to be entered into the Numbers field.
 			$document.on( 'keypress', '.wpforms-field-number input', function( e ) {
 				return /^[-0-9.]+$/.test( String.fromCharCode( e.keyCode || e.which ) );
 			} );
 
-			// Start anti-spam timer on interaction of the form fields.
+			/ Start anti-spam timer on interaction of the form fields.
 			$document
 				.one( 'input', '.wpforms-field input, .wpforms-field textarea, .wpforms-field select', app.formChanged )
 				.one( 'change', '.wpforms-field-select-style-modern, .wpforms-timepicker', app.formChanged )
@@ -1841,8 +1841,8 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 			if ( nextNonEmptyPage === 1 && action === 'prev' ) {
 				const $secondPage = $form.find( '.wpforms-page-2' );
 				const $currentPage = $form.find( '.wpforms-page-' + nextPage );
-				// The previous button is optional. We pass the fallback to the original previous button
-				// in the case when the previous button on the second page does not exist.
+				/ The previous button is optional. We pass the fallback to the original previous button
+				/ in the case when the previous button on the second page does not exist.
 				const $prevButton = $secondPage.find( '.wpforms-page-prev' ).length
 					? $secondPage.find( '.wpforms-page-prev' )
 					: $currentPage.find( '.wpforms-page-prev' );
@@ -1852,9 +1852,9 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				return;
 			}
 
-			// The next page button is always visible.
-			// So we take the previous page before the next non-empty page
-			// and simulate a jump forward from the next page.
+			/ The next page button is always visible.
+			/ So we take the previous page before the next non-empty page
+			/ and simulate a jump forward from the next page.
 			const prevPage = nextNonEmptyPage - 1;
 			const $previousPage = $form.find( '.wpforms-page-' + prevPage );
 
@@ -1897,14 +1897,14 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @return {boolean} True if page is empty.
 		 */
 		isEmptyPage( $form, page ) {
-			// The first page is always visible.
+			/ The first page is always visible.
 			if ( page === 1 ) {
 				return false;
 			}
 
 			const $currentPage = $form.find( '.wpforms-page-' + page );
 
-			// The last page has the "Submit" button, so it's always non-empty.
+			/ The last page has the "Submit" button, so it's always non-empty.
 			if ( $currentPage.hasClass( 'last' ) ) {
 				return false;
 			}
@@ -1998,7 +1998,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @param {jQuery} $form       Current form.
 		 */
 		entryPreviewFieldPageChange( event, currentPage, $form ) {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Obsolete function called. Function wpforms.entryPreviewFieldPageChange has been deprecated, please use the WPFormsEntryPreview.pageChange function instead!' );
 			WPFormsEntryPreview.pageChange( event, currentPage, $form );
 		},
@@ -2013,7 +2013,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @param {jQuery} $form       Current form.
 		 */
 		entryPreviewFieldUpdate( currentPage, $form ) {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Obsolete function called. Function wpforms.entryPreviewFieldUpdate has been deprecated, please use the WPFormsEntryPreview.update function instead!' );
 			WPFormsEntryPreview.update( currentPage, $form );
 		},
@@ -2030,10 +2030,10 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				return;
 			}
 
-			// Look for a field with an error inside an $el.
+			/ Look for a field with an error inside an $el.
 			let $field = $el.find( '.wpforms-field.wpforms-has-error' );
 
-			// Look outside in not found inside.
+			/ Look outside in not found inside.
 			if ( $field.length === 0 ) {
 				$field = $el.closest( '.wpforms-field' );
 			}
@@ -2103,14 +2103,14 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 
 			$page.find( ':input' ).each( function( index, el ) {
 				const $el = $( el );
-				// Skip input fields without `name` attribute, which could have fields.
-				// E.g. `Placeholder` input for Modern dropdown.
+				/ Skip input fields without `name` attribute, which could have fields.
+				/ E.g. `Placeholder` input for Modern dropdown.
 				if ( ! $el.attr( 'name' ) ) {
 					return;
 				}
 
-				// Skip validation for some fields.
-				// E.g., applied coupon hidden field.
+				/ Skip validation for some fields.
+				/ E.g., applied coupon hidden field.
 				if ( $el.hasClass( 'wpforms-field-skip-validation' ) ) {
 					return;
 				}
@@ -2161,7 +2161,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 
 			const event = WPFormsUtils.triggerEvent( $this, 'wpformsBeforePageChange', [ nextPage, $form, action ] );
 
-			// Allow callbacks on `wpformsBeforePageChange` to cancel page changing by triggering `event.preventDefault()`.
+			/ Allow callbacks on `wpformsBeforePageChange` to cancel page changing by triggering `event.preventDefault()`.
 			if ( event.isDefaultPrevented() ) {
 				return;
 			}
@@ -2216,7 +2216,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		checkTurnstileVisibility( $form ) {
 			const $turnstile = $form.find( '.wpforms-recaptcha-container' );
 
-			// Check if Turnstile captcha is enabled.
+			/ Check if Turnstile captcha is enabled.
 			if ( ! $turnstile.hasClass( 'wpforms-is-turnstile' ) ) {
 				return;
 			}
@@ -2246,7 +2246,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				return window.wpform_pageScroll;
 			}
 
-			// Page scroll.
+			/ Page scroll.
 			return $form.find( '.wpforms-page-indicator' ).data( 'scroll' ) !== 0 ? 75 : false;
 		},
 
@@ -2336,25 +2336,25 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @since 1.5.0
 		 */
 		bindOptinMonster() {
-			// OM v5.
+			/ OM v5.
 			document.addEventListener( 'om.Campaign.load', function( event ) {
 				app.ready();
 				app.optinMonsterRecaptchaReset( event.detail.Campaign.data.id );
 			} );
 
 			document.addEventListener( 'om.Campaign.afterShow', function( event ) {
-				// Init Repeater fields.
+				/ Init Repeater fields.
 				if ( 'undefined' !== typeof WPFormsRepeaterField ) {
 					WPFormsRepeaterField.ready();
 				}
 			} );
 
-			// OM Legacy.
+			/ OM Legacy.
 			$( document ).on( 'OptinMonsterOnShow', function( event, data, object ) {
 				app.ready();
 				app.optinMonsterRecaptchaReset( data.optin );
 
-				// Init Repeater fields.
+				/ Init Repeater fields.
 				if ( 'undefined' !== typeof WPFormsRepeaterField ) {
 					WPFormsRepeaterField.ready();
 				}
@@ -2394,9 +2394,9 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 			}
 		},
 
-		//--------------------------------------------------------------------//
-		// Other functions.
-		//--------------------------------------------------------------------//
+		/--------------------------------------------------------------------/
+		/ Other functions.
+		/--------------------------------------------------------------------/
 
 		/**
 		 * Payments: Run amount calculation and update the Total field value.
@@ -2457,7 +2457,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 
 			const type = $el.prop( 'type' );
 
-			// Force re-calculation for choices and dropdown fields.
+			/ Force re-calculation for choices and dropdown fields.
 			if ( type === 'radio' || type === 'select-one' || type === 'checkbox' ) {
 				return true;
 			}
@@ -2531,7 +2531,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @param {jQuery} $paymentField Payment field object.
 		 * @param {jQuery} $summary      Summary object.
 		 */
-		// eslint-disable-next-line complexity
+		/ eslint-disable-next-line complexity
 		updateOrderSummaryItem( $paymentField, $summary ) {
 			if ( ! $paymentField.hasClass( 'wpforms-payment-price' ) ) {
 				return;
@@ -2543,7 +2543,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				isFieldVisible = $field.css( 'display' ) === 'block';
 
 			if ( type === 'checkbox' || type === 'radio' || type === 'select-one' ) {
-				// Show only selected items.
+				/ Show only selected items.
 				$summary.find( `tr[data-field="${ fieldId }"]` ).each( function() {
 					const choiceID = $( this ).data( 'choice' );
 					const isChoiceChecked = type === 'select-one'
@@ -2601,7 +2601,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 
 				$item.toggle( quantity > 0 );
 
-				// Update field quantity and amount.
+				/ Update field quantity and amount.
 				$item.find( '.wpforms-order-summary-item-quantity' ).text( quantity );
 				$item.find( '.wpforms-order-summary-item-price' ).text( app.amountFormatSymbol( amount * quantity ) );
 
@@ -2708,7 +2708,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 *
 		 * @return {number} Sanitized amount.
 		 */
-		// eslint-disable-next-line complexity
+		/ eslint-disable-next-line complexity
 		getPaymentFieldAmount( $field ) {
 			const type = $field.attr( 'type' );
 
@@ -2756,11 +2756,11 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 *
 		 * @return {string} Sanitized amount.
 		 */
-		// eslint-disable-next-line complexity
+		/ eslint-disable-next-line complexity
 		amountSanitize( amount ) {
 			const currency = app.getCurrency();
 
-			// Convert to string, remove a currency symbol, and allow only numbers, dots, and commas.
+			/ Convert to string, remove a currency symbol, and allow only numbers, dots, and commas.
 			amount = amount.toString().replace( currency.symbol, '' ).replace( /[^0-9.,]/g, '' );
 
 			if ( currency.decimal_sep === ',' ) {
@@ -2791,7 +2791,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 
 			amount = String( amount );
 
-			// Format the amount
+			/ Format the amount
 			if ( ',' === currency.decimal_sep && ( amount.indexOf( currency.decimal_sep ) !== -1 ) ) {
 				const sepFound = amount.indexOf( currency.decimal_sep ),
 					whole = amount.substr( 0, sepFound ),
@@ -2799,7 +2799,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				amount = whole + '.' + part;
 			}
 
-			// Strip "," from the amount (if set as thousands separator)
+			/ Strip "," from the amount (if set as thousands separator)
 			if ( ',' === currency.thousands_sep && ( amount.indexOf( currency.thousands_sep ) !== -1 ) ) {
 				amount = amount.replace( /,/g, '' );
 			}
@@ -2838,34 +2838,34 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 *
 		 * @return {Object} Currency data object.
 		 */
-		getCurrency() { // eslint-disable-line complexity
+		getCurrency() { / eslint-disable-line complexity
 			const currency = {
 				code: 'USD',
-				thousands_sep: ',', // eslint-disable-line camelcase
+				thousands_sep: ',', / eslint-disable-line camelcase
 				decimals: 2,
-				decimal_sep: '.', // eslint-disable-line camelcase
+				decimal_sep: '.', / eslint-disable-line camelcase
 				symbol: '$',
-				symbol_pos: 'left', // eslint-disable-line camelcase
+				symbol_pos: 'left', / eslint-disable-line camelcase
 			};
 
-			// Backwards compatibility.
+			/ Backwards compatibility.
 			if ( typeof wpforms_settings.currency_code !== 'undefined' ) {
 				currency.code = wpforms_settings.currency_code;
 			}
 			if ( typeof wpforms_settings.currency_thousands !== 'undefined' ) {
-				currency.thousands_sep = wpforms_settings.currency_thousands; // eslint-disable-line camelcase
+				currency.thousands_sep = wpforms_settings.currency_thousands; / eslint-disable-line camelcase
 			}
 			if ( typeof wpforms_settings.currency_decimals !== 'undefined' ) {
 				currency.decimals = wpforms_settings.currency_decimals;
 			}
 			if ( typeof wpforms_settings.currency_decimal !== 'undefined' ) {
-				currency.decimal_sep = wpforms_settings.currency_decimal; // eslint-disable-line camelcase
+				currency.decimal_sep = wpforms_settings.currency_decimal; / eslint-disable-line camelcase
 			}
 			if ( typeof wpforms_settings.currency_symbol !== 'undefined' ) {
 				currency.symbol = wpforms_settings.currency_symbol;
 			}
 			if ( typeof wpforms_settings.currency_symbol_pos !== 'undefined' ) {
-				currency.symbol_pos = wpforms_settings.currency_symbol_pos; // eslint-disable-line camelcase
+				currency.symbol_pos = wpforms_settings.currency_symbol_pos; / eslint-disable-line camelcase
 			}
 
 			return currency;
@@ -2885,7 +2885,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 *
 		 * @return {string} Formatted number.
 		 */
-		numberFormat( number, decimals, decimalSep, thousandsSep ) { // eslint-disable-line complexity
+		numberFormat( number, decimals, decimalSep, thousandsSep ) { / eslint-disable-line complexity
 			number = ( number + '' ).replace( /[^0-9+\-Ee.]/g, '' );
 
 			const n = ! isFinite( +number ) ? 0 : +number;
@@ -2898,7 +2898,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				return '' + ( Math.round( n * k ) / k ).toFixed( prec );
 			};
 
-			// @todo: for IE parseFloat(0.55).toFixed(0) = 0;
+			/ @todo: for IE parseFloat(0.55).toFixed(0) = 0;
 			const s = ( precision ? toFixedFix( n, precision ) : '' + Math.round( n ) ).split( '.' );
 
 			if ( s[ 0 ].length > 3 ) {
@@ -2954,9 +2954,9 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 *
 		 * @since 1.3.3
 		 */
-		setUserIdentifier() { // eslint-disable-line complexity
+		setUserIdentifier() { / eslint-disable-line complexity
 			if ( ( ( ! window.hasRequiredConsent && typeof wpforms_settings !== 'undefined' && wpforms_settings.uuid_cookie ) || ( window.hasRequiredConsent && window.hasRequiredConsent() ) ) && ! app.getCookie( '_wpfuuid' ) ) {
-				// Generate UUID - http://stackoverflow.com/a/873856/1489528
+				/ Generate UUID - http://stackoverflow.com/a/873856/1489528
 				const s = new Array( 36 ),
 					hexDigits = '0123456789abcdef';
 
@@ -2966,7 +2966,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 
 				s[ 14 ] = '4';
 
-				// eslint-disable-next-line no-bitwise
+				/ eslint-disable-next-line no-bitwise
 				s[ 19 ] = hexDigits.substr( ( s[ 19 ] & 0x3 ) | 0x8, 1 );
 				s[ 8 ] = s[ 13 ] = s[ 18 ] = s[ 23 ] = '-';
 
@@ -2993,9 +2993,9 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				secure = ';secure';
 			}
 
-			// If we have a "days" value, set it in the expiry of the cookie.
+			/ If we have a "days" value, set it in the expiry of the cookie.
 			if ( days ) {
-				// If -1 is our value, set a session-based cookie instead of a persistent cookie.
+				/ If -1 is our value, set a session-based cookie instead of a persistent cookie.
 				if ( -1 === days ) {
 					expires = '';
 				} else {
@@ -3007,7 +3007,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				expires = ';expires=Thu, 01 Jan 1970 00:00:01 GMT';
 			}
 
-			// Write the cookie.
+			/ Write the cookie.
 			document.cookie = name + '=' + value + expires + ';path=/;samesite=strict' + secure;
 		},
 
@@ -3057,7 +3057,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @return {string} Language code.
 		 */
 		getFirstBrowserLanguage() {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "wpforms.getFirstBrowserLanguage()" has been deprecated, please use the new "WPFormsPhoneField.getFirstBrowserLanguage()" function instead!' );
 
 			return WPFormsPhoneField?.getFirstBrowserLanguage?.();
@@ -3074,7 +3074,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @return {string} Language code with ISO.
 		 */
 		mapLanguageToIso( lang ) {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "wpforms.mapLanguageToIso()" has been deprecated, please use the new "WPFormsPhoneField.mapLanguageToIso()" function instead!' );
 
 			return WPFormsPhoneField?.mapLanguageToIso?.( lang );
@@ -3090,7 +3090,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @param {Function} callback Executes once the fetch is completed.
 		 */
 		currentIpToCountry( callback ) {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "wpforms.currentIpToCountry()" has been deprecated, please use the new "WPFormsPhoneField.currentIpToCountry()" function instead!' );
 
 			WPFormsPhoneField?.currentIpToCountry?.( callback );
@@ -3105,7 +3105,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @param {jQuery} $form Form element.
 		 */
 		formSubmit( $form ) {
-			// Form element was passed from vanilla JavaScript.
+			/ Form element was passed from vanilla JavaScript.
 			if ( ! ( $form instanceof jQuery ) ) {
 				$form = $( $form );
 			}
@@ -3114,7 +3114,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 
 			const event = WPFormsUtils.triggerEvent( $form, 'wpformsBeforeFormSubmit', [ $form ] );
 
-			// Allow callbacks on `wpformsBeforeFormSubmit` to cancel form submission by triggering `event.preventDefault()`.
+			/ Allow callbacks on `wpformsBeforeFormSubmit` to cancel form submission by triggering `event.preventDefault()`.
 			if ( event.isDefaultPrevented() ) {
 				app.restoreSubmitButton( $form, $form.closest( '.wpforms-container' ) );
 
@@ -3208,7 +3208,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 *
 		 * @param {jQuery} $form Form element.
 		 */
-		resetFormRecaptcha( $form ) { // eslint-disable-line complexity
+		resetFormRecaptcha( $form ) { / eslint-disable-line complexity
 			if ( ! app.formHasCaptcha( $form ) ) {
 				return;
 			}
@@ -3225,15 +3225,15 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				apiVar = grecaptcha;
 			}
 
-			// Check for invisible recaptcha first.
+			/ Check for invisible recaptcha first.
 			recaptchaID = $form.find( '.wpforms-submit' ).get( 0 ).recaptchaID;
 
-			// Check for hcaptcha/recaptcha v2, if invisible recaptcha is not found.
+			/ Check for hcaptcha/recaptcha v2, if invisible recaptcha is not found.
 			if ( app.empty( recaptchaID ) && recaptchaID !== 0 ) {
 				recaptchaID = $form.find( '.g-recaptcha' ).data( 'recaptcha-id' );
 			}
 
-			// Reset captcha.
+			/ Reset captcha.
 			if ( ! app.empty( recaptchaID ) || recaptchaID === 0 ) {
 				apiVar.reset( recaptchaID );
 			}
@@ -3248,9 +3248,9 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 */
 		consoleLogAjaxError( error ) {
 			if ( error ) {
-				console.error( 'WPForms AJAX submit error:\n%s', error ); // eslint-disable-line no-console
+				console.error( 'WPForms AJAX submit error:\n%s', error ); / eslint-disable-line no-console
 			} else {
-				console.error( 'WPForms AJAX submit error' ); // eslint-disable-line no-console
+				console.error( 'WPForms AJAX submit error' ); / eslint-disable-line no-console
 			}
 		},
 
@@ -3262,7 +3262,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @param {jQuery} $form  Form element.
 		 * @param {Object} errors Errors in format { general: { generalErrors }, field: { fieldErrors } }.
 		 */
-		displayFormAjaxErrors( $form, errors ) { // eslint-disable-line complexity
+		displayFormAjaxErrors( $form, errors ) { / eslint-disable-line complexity
 			if ( 'string' === typeof errors ) {
 				app.displayFormAjaxGeneralErrors( $form, errors );
 				return;
@@ -3292,7 +3292,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @param {jQuery} $form  Form element.
 		 * @param {Object} errors Errors in format { errorType: errorText }.
 		 */
-		displayFormAjaxGeneralErrors( $form, errors ) { // eslint-disable-line complexity
+		displayFormAjaxGeneralErrors( $form, errors ) { / eslint-disable-line complexity
 			if ( ! $form || ! $form.length ) {
 				return;
 			}
@@ -3308,7 +3308,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				} );
 			}
 
-			// Safety net for random errors thrown by a third-party code. Should never be used intentionally.
+			/ Safety net for random errors thrown by a third-party code. Should never be used intentionally.
 			if ( 'string' === typeof errors ) {
 				const roleAttr = app.isModernMarkupEnabled() ? ' role="alert"' : '',
 					errPrefix = app.isModernMarkupEnabled() ? `<span class="wpforms-hidden">${ wpforms_settings.formErrorMessagePrefix }</span>` : '';
@@ -3359,8 +3359,8 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				if ( $form.find( '.wpforms-page-indicator' ).length === 0 ) {
 					$form.find( '.wpforms-submit-container' ).before( html );
 				} else {
-					// Check if it is a multipage form.
-					// If it is a multipage form, we need error only on the first page.
+					/ Check if it is a multipage form.
+					/ If it is a multipage form, we need error only on the first page.
 					$form.find( '.wpforms-page-1' ).append( html );
 				}
 			}
@@ -3413,7 +3413,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 			$form.find( '.wpforms-error-container' ).remove();
 			$form.find( '#wpforms-field_recaptcha-error' ).remove();
 
-			// Clear form accessibility attributes.
+			/ Clear form accessibility attributes.
 			if ( app.isModernMarkupEnabled() ) {
 				$form.attr( {
 					'aria-invalid': 'false',
@@ -3447,14 +3447,14 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 
 			errors = app.splitFieldErrors( errors );
 
-			// Set data attribute for each field with server error.
+			/ Set data attribute for each field with server error.
 			$.each( errors, function( field, message ) {
 				const $field = $( '[name="' + field + '"]', $form );
 
 				if ( $field.length ) {
 					$field.attr( 'data-server-error', message );
 				} else {
-					// unset error, validator.showErrors() will not work if the field is not found.
+					/ unset error, validator.showErrors() will not work if the field is not found.
 					delete errors[ field ];
 				}
 			} );
@@ -3481,11 +3481,11 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 					return;
 				}
 
-				// If errors an object consisting of { subfield: errorMessage }, then iterate each to display error.
+				/ If errors an object consisting of { subfield: errorMessage }, then iterate each to display error.
 				$.each( message, function( subfield, errorMessage ) {
-					// Get the last part of the field (in []) and check if it is the same as subfield.
+					/ Get the last part of the field (in []) and check if it is the same as subfield.
 					const lastPart = field.split( '[' ).pop().replace( ']', '' );
-					// Get from the `field` name all except what we caught in `lastPart`.
+					/ Get from the `field` name all except what we caught in `lastPart`.
 					const fieldNameBase = field.replace( '[' + lastPart + ']', '' );
 
 					if ( lastPart === subfield ) {
@@ -3509,9 +3509,9 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 *
 		 * @return {JQueryXHR|JQueryDeferred} Promise like an object for async callbacks.
 		 */
-		formSubmitAjax: ( $form ) => { // eslint-disable-line max-lines-per-function
+		formSubmitAjax: ( $form ) => { / eslint-disable-line max-lines-per-function
 			if ( ! $form.length ) {
-				return $.Deferred().reject(); // eslint-disable-line new-cap
+				return $.Deferred().reject(); / eslint-disable-line new-cap
 			}
 
 			const $container = $form.closest( '.wpforms-container' ),
@@ -3539,7 +3539,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				processData: false,
 			};
 
-			args.success = function( json ) { // eslint-disable-line complexity
+			args.success = function( json ) { / eslint-disable-line complexity
 				if ( ! json ) {
 					app.consoleLogAjaxError();
 					return;
@@ -3619,11 +3619,11 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 
 			const event = WPFormsUtils.triggerEvent( $form, 'wpformsAjaxBeforeSubmit', [ $form ] );
 
-			// Allow callbacks on `wpformsAjaxBeforeSubmit` to cancel Ajax form submission by triggering `event.preventDefault()`.
+			/ Allow callbacks on `wpformsAjaxBeforeSubmit` to cancel Ajax form submission by triggering `event.preventDefault()`.
 			if ( event.isDefaultPrevented() ) {
 				app.restoreSubmitButton( $form, $container );
 
-				return $.Deferred().reject(); // eslint-disable-line new-cap
+				return $.Deferred().reject(); / eslint-disable-line new-cap
 			}
 
 			return $.ajax( args );
@@ -3637,8 +3637,8 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @param {jQuery} $form Form element.
 		 * @param {Object} $json Error json.
 		 */
-		setCurrentPage( $form, $json ) { // eslint-disable-line complexity
-			// Return for one-page forms.
+		setCurrentPage( $form, $json ) { / eslint-disable-line complexity
+			/ Return for one-page forms.
 			if ( $form.find( '.wpforms-page-indicator' ).length === 0 ) {
 				return;
 			}
@@ -3651,7 +3651,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				}
 			} );
 
-			// Do not change the page if there is a captcha error and there are no other field or footer errors.
+			/ Do not change the page if there is a captcha error and there are no other field or footer errors.
 			if (
 				$errorPages.length === 0 &&
 				$json.errors !== undefined &&
@@ -3662,14 +3662,14 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				return;
 			}
 
-			// Get the first page with error.
+			/ Get the first page with error.
 			const $currentPage = $errorPages.length > 0 ? $errorPages[ 0 ] : $form.find( '.wpforms-page-1' );
 			const currentPage = $currentPage.data( 'page' );
 
 			let $page,
 				action = 'prev';
 
-			// If error is on the first page, or we have general errors among others, go to the first page.
+			/ If error is on the first page, or we have general errors among others, go to the first page.
 			if ( currentPage === 1 || ( $json.errors !== undefined && $json.errors.general.footer !== undefined ) ) {
 				$page = $form.find( '.wpforms-page-1' ).next();
 			} else {
@@ -3677,11 +3677,11 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				action = $currentPage.next().length !== 0 ? 'prev' : 'next';
 			}
 
-			// Take the page from which navigate to error.
+			/ Take the page from which navigate to error.
 			const $nextBtn = $page.find( '.wpforms-page-next' ),
 				page = $page.data( 'page' );
 
-			// Imitate navigation to the page with error.
+			/ Imitate navigation to the page with error.
 			app.navigateToPage( $nextBtn, action, page, $form, $( '.wpforms-page-' + page ) );
 		},
 
@@ -3739,7 +3739,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @return {boolean} True if time1 is greater than time2.
 		 */
 		compareTimesGreaterThan( time1, time2 ) {
-			// Proper format time: add space before AM/PM, make uppercase.
+			/ Proper format time: add space before AM/PM, make uppercase.
 			time1 = time1.replace( /(am|pm)/g, ' $1' ).toUpperCase();
 			time2 = time2.replace( /(am|pm)/g, ' $1' ).toUpperCase();
 
@@ -3768,7 +3768,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 * @since 1.8.8
 		 */
 		initTokenUpdater() {
-			// Attach event handler to all forms with class `wpforms-form`
+			/ Attach event handler to all forms with class `wpforms-form`
 			$( '.wpforms-form' ).on( 'focusin', function( event ) {
 				const $form = $( event.target.closest( 'form' ) );
 				const timestamp = Date.now();
@@ -3777,7 +3777,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 				}
 
 				this.updateToken( timestamp, $form, event );
-			}.bind( this ) ); // Bind `this` to maintain context inside the function
+			}.bind( this ) ); / Bind `this` to maintain context inside the function
 		},
 
 		/**
@@ -3794,7 +3794,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 			const tokenTime = $form.attr( 'data-token-time' ) || 0;
 			const diff = timestamp - ( tokenTime * 1000 );
 
-			// Check if the token is expired.
+			/ Check if the token is expired.
 			return diff >= wpforms_settings.token_cache_lifetime * 1000 && ! this.isUpdatingToken;
 		},
 
@@ -3822,24 +3822,24 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 					$form.attr( 'data-token-time', timestamp );
 					$form.attr( 'data-token', response.data.token );
 
-					// Re-enable the 'submit' button.
+					/ Re-enable the 'submit' button.
 					$submitBtn.prop( 'disabled', false );
 
-					// Trigger form submission if the focus was on the 'submit' button.
+					/ Trigger form submission if the focus was on the 'submit' button.
 					if ( event.target === $submitBtn[ 0 ] ) {
 						$submitBtn.trigger( 'click' );
 					}
 				} else {
-					// eslint-disable-next-line no-console
+					/ eslint-disable-next-line no-console
 					console.error( 'Failed to update token: ', response );
 				}
 			} ).fail( function( jqXHR, textStatus, errorThrown ) {
-				// eslint-disable-next-line no-console
+				/ eslint-disable-next-line no-console
 				console.error( 'AJAX request failed: ', textStatus, errorThrown );
 			} ).always( function() {
 				this.isUpdatingToken = false;
 
-				// Re-enable the 'submit' button.
+				/ Re-enable the 'submit' button.
 				$submitBtn.prop( 'disabled', false );
 			}.bind( this ) );
 		},
@@ -3851,7 +3851,7 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		 */
 		restoreSubmitButtonOnEventPersisted() {
 			window.onpageshow = function( event ) {
-				// If back/forward button has been clicked, restore submit button for all forms on the page.
+				/ If back/forward button has been clicked, restore submit button for all forms on the page.
 				if ( event.persisted ) {
 					$( '.wpforms-form' ).each( function() {
 						const $form = $( this );
@@ -3897,16 +3897,16 @@ var wpforms = window.wpforms || ( function( document, window, $ ) { // eslint-di
 		getDateTimeValidationGroups( $context ) {
 			const groups = {};
 
-			// Create groups for the Date / Time field.
+			/ Create groups for the Date / Time field.
 			$context.find( '.wpforms-field.wpforms-field-date-time' ).each( function() {
 				const $field = $( this );
 
-				// Bail out if the date dropdown is NOT used for this field.
+				/ Bail out if the date dropdown is NOT used for this field.
 				if ( ! $field.find( '.wpforms-field-date-dropdown-wrap' ).length ) {
 					return;
 				}
 
-				// e.g. wpforms-198-field_1
+				/ e.g. wpforms-198-field_1
 				const groupName = $field.attr( 'id' ).replace( '-container', '' );
 
 				$.each( [ 'month', 'day', 'year' ], function( i, subfield ) {

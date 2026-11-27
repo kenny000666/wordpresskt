@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -50,7 +50,7 @@ var __webpack_exports__ = {};
  * import domReady from '@wordpress/dom-ready';
  *
  * domReady( function() {
- * 	//do something after DOM loads.
+ * 	/do something after DOM loads.
  * } );
  * ```
  *
@@ -61,13 +61,13 @@ function domReady(callback) {
     return;
   }
   if (document.readyState === 'complete' ||
-  // DOMContentLoaded + Images/Styles/etc loaded, so we call directly.
-  document.readyState === 'interactive' // DOMContentLoaded fires at this point, so we call directly.
+  / DOMContentLoaded + Images/Styles/etc loaded, so we call directly.
+  document.readyState === 'interactive' / DOMContentLoaded fires at this point, so we call directly.
   ) {
     return void callback();
   }
 
-  // DOMContentLoaded has not fired yet, delay callback until then.
+  / DOMContentLoaded has not fired yet, delay callback until then.
   document.addEventListener('DOMContentLoaded', callback);
 }
 

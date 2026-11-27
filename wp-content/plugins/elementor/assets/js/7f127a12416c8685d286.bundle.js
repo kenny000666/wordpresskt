@@ -84,20 +84,20 @@ function AddSectionArea(props) {
   var addAreaElementRef = (0, _react.useRef)(),
     containerHelper = elementor.helpers.container;
 
-  // Make droppable area.
+  / Make droppable area.
   (0, _react.useEffect)(function () {
     var $addAreaElementRef = jQuery(addAreaElementRef.current),
       defaultDroppableOptions = props.container.view.getDroppableOptions();
 
-    // Make some adjustments to behave like 'AddSectionArea', use default droppable options from container element.
+    / Make some adjustments to behave like 'AddSectionArea', use default droppable options from container element.
     defaultDroppableOptions.placeholder = false;
     defaultDroppableOptions.items = '> .elementor-add-section-inner';
     defaultDroppableOptions.hasDraggingOnChildClass = 'elementor-dragging-on-child';
 
-    // Make element drop-able.
+    / Make element drop-able.
     $addAreaElementRef.html5Droppable(defaultDroppableOptions);
 
-    // Cleanup.
+    / Cleanup.
     return function () {
       $addAreaElementRef.html5Droppable('destroy');
     };
@@ -201,7 +201,7 @@ function SelectPreset(props) {
         createWrapper: false
       };
 
-      // Create new one by selected preset.
+      / Create new one by selected preset.
       containerHelper.createContainerFromPreset(preset, container, options);
     };
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("button", {
@@ -278,23 +278,23 @@ var View = exports.View = /*#__PURE__*/function (_$e$components$get$ex) {
       var _this = this;
       var events = _superPropGet(View, "events", this, 3)([]);
       events.click = function (e) {
-        // If the clicked Nested Element is not within the currently edited document, don't do anything with it.
+        / If the clicked Nested Element is not within the currently edited document, don't do anything with it.
         if (elementor.documents.currentDocument.id.toString() !== e.target.closest('.elementor').dataset.elementorId) {
           return;
         }
         var closest = e.target.closest('.elementor-element');
         var targetContainer = null;
 
-        // For clicks on container/widget.
+        / For clicks on container/widget.
         if (['container', 'widget'].includes(closest === null || closest === void 0 ? void 0 : closest.dataset.element_type)) {
-          // eslint-disable-line camelcase
-          // In case the container empty, click should be handled by the EmptyView.
+          / eslint-disable-line camelcase
+          / In case the container empty, click should be handled by the EmptyView.
           var container = elementor.getContainer(closest.dataset.id);
           if (container.view.isEmpty()) {
             return true;
           }
 
-          // If not empty, open it.
+          / If not empty, open it.
           targetContainer = container;
         }
         e.stopPropagation();

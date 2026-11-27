@@ -36,7 +36,7 @@ wp.customize.navMenusPreview = wp.customize.MenusCustomizerPreview = ( function(
 		} );
 
 		if ( api.selectiveRefresh ) {
-			// Listen for changes to settings related to nav menus.
+			/ Listen for changes to settings related to nav menus.
 			api.each( function( setting ) {
 				self.bindSettingListener( setting );
 			} );
@@ -159,7 +159,7 @@ wp.customize.navMenusPreview = wp.customize.MenusCustomizerPreview = ( function(
 					delete _newValue.type_label;
 					delete _oldValue.type_label;
 
-					// Normalize URL scheme when parent frame is HTTPS to prevent selective refresh upon initial page load.
+					/ Normalize URL scheme when parent frame is HTTPS to prevent selective refresh upon initial page load.
 					if ( 'https' === api.preview.scheme.get() ) {
 						urlParser = document.createElement( 'a' );
 						urlParser.href = _newValue.url;
@@ -170,7 +170,7 @@ wp.customize.navMenusPreview = wp.customize.MenusCustomizerPreview = ( function(
 						_oldValue.url = urlParser.href;
 					}
 
-					// Prevent original_title differences from causing refreshes if title is present.
+					/ Prevent original_title differences from causing refreshes if title is present.
 					if ( newValue.title ) {
 						delete _oldValue.original_title;
 						delete _newValue.original_title;
@@ -215,7 +215,7 @@ wp.customize.navMenusPreview = wp.customize.MenusCustomizerPreview = ( function(
 			refresh: function() {
 				var partial = this, menuId, deferred = $.Deferred();
 
-				// Make sure the fallback behavior is invoked when the partial is no longer associated with a menu.
+				/ Make sure the fallback behavior is invoked when the partial is no longer associated with a menu.
 				if ( _.isNumber( partial.params.navMenuArgs.menu ) ) {
 					menuId = partial.params.navMenuArgs.menu;
 				} else if ( partial.params.navMenuArgs.theme_location && api.has( 'nav_menu_locations[' + partial.params.navMenuArgs.theme_location + ']' ) ) {
@@ -239,17 +239,17 @@ wp.customize.navMenusPreview = wp.customize.MenusCustomizerPreview = ( function(
 			renderContent: function( placement ) {
 				var partial = this, previousContainer = placement.container;
 
-				// Do fallback behavior to refresh preview if menu is now empty.
+				/ Do fallback behavior to refresh preview if menu is now empty.
 				if ( '' === placement.addedContent ) {
 					placement.partial.fallback();
 				}
 
 				if ( api.selectiveRefresh.Partial.prototype.renderContent.call( partial, placement ) ) {
 
-					// Trigger deprecated event.
+					/ Trigger deprecated event.
 					$( document ).trigger( 'customize-preview-menu-refreshed', [ {
-						instanceNumber: null, // @deprecated
-						wpNavArgs: placement.context, // @deprecated
+						instanceNumber: null, / @deprecated
+						wpNavArgs: placement.context, / @deprecated
 						wpNavMenuArgs: placement.context,
 						oldContainer: previousContainer,
 						newContainer: placement.container
@@ -352,7 +352,7 @@ wp.customize.navMenusPreview = wp.customize.MenusCustomizerPreview = ( function(
 				menu: setting._navMenuId
 			} );
 
-			// Ensure all nav menu instances with a theme_location assigned to this menu are handled.
+			/ Ensure all nav menu instances with a theme_location assigned to this menu are handled.
 			api.each( function( otherSetting ) {
 				if ( ! otherSetting._navMenuThemeLocation ) {
 					return;
@@ -395,7 +395,7 @@ wp.customize.navMenusPreview = wp.customize.MenusCustomizerPreview = ( function(
 				theme_location: setting._navMenuThemeLocation
 			} );
 
-			// If there are no wp_nav_menu() instances that refer to the theme location, do full refresh.
+			/ If there are no wp_nav_menu() instances that refer to the theme location, do full refresh.
 			hasNavMenuInstance = !! _.findWhere( _.values( self.data.navMenuInstanceArgs ), {
 				theme_location: setting._navMenuThemeLocation
 			} );
@@ -416,12 +416,12 @@ wp.customize.navMenusPreview = wp.customize.MenusCustomizerPreview = ( function(
 	self.highlightControls = function() {
 		var selector = '.menu-item';
 
-		// Skip adding highlights if not in the customizer preview iframe.
+		/ Skip adding highlights if not in the customizer preview iframe.
 		if ( ! api.settings.channel ) {
 			return;
 		}
 
-		// Focus on the menu item control when shift+clicking the menu item.
+		/ Focus on the menu item control when shift+clicking the menu item.
 		$( document ).on( 'click', selector, function( e ) {
 			var navMenuItemParts;
 			if ( ! e.shiftKey ) {
@@ -431,7 +431,7 @@ wp.customize.navMenusPreview = wp.customize.MenusCustomizerPreview = ( function(
 			navMenuItemParts = $( this ).attr( 'class' ).match( /(?:^|\s)menu-item-(-?\d+)(?:\s|$)/ );
 			if ( navMenuItemParts ) {
 				e.preventDefault();
-				e.stopPropagation(); // Make sure a sub-nav menu item will get focused instead of parent items.
+				e.stopPropagation(); / Make sure a sub-nav menu item will get focused instead of parent items.
 				api.preview.send( 'focus-nav-menu-item-control', parseInt( navMenuItemParts[1], 10 ) );
 			}
 		});

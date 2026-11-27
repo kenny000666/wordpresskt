@@ -41,8 +41,8 @@ window.wp = window.wp || {};
 		initialize: function() {
 			this.body = $( document.body );
 
-			// Ensure the loader is supported.
-			// Check for settings, postMessage support, and whether we require CORS support.
+			/ Ensure the loader is supported.
+			/ Check for settings, postMessage support, and whether we require CORS support.
 			if ( ! Loader.settings || ! $.support.postMessage || ( ! $.support.cors && Loader.settings.isCrossDomain ) ) {
 				return;
 			}
@@ -50,22 +50,22 @@ window.wp = window.wp || {};
 			this.window  = $( window );
 			this.element = $( '<div id="customize-container" />' ).appendTo( this.body );
 
-			// Bind events for opening and closing the overlay.
+			/ Bind events for opening and closing the overlay.
 			this.bind( 'open', this.overlay.show );
 			this.bind( 'close', this.overlay.hide );
 
-			// Any element in the body with the `load-customize` class opens
-			// the Customizer.
+			/ Any element in the body with the `load-customize` class opens
+			/ the Customizer.
 			$('#wpbody').on( 'click', '.load-customize', function( event ) {
 				event.preventDefault();
 
-				// Store a reference to the link that opened the Customizer.
+				/ Store a reference to the link that opened the Customizer.
 				Loader.link = $(this);
-				// Load the theme.
+				/ Load the theme.
 				Loader.open( Loader.link.attr('href') );
 			});
 
-			// Add navigation listeners.
+			/ Add navigation listeners.
 			if ( $.support.history ) {
 				this.window.on( 'popstate', Loader.popstate );
 			}
@@ -114,12 +114,12 @@ window.wp = window.wp || {};
 				return;
 			}
 
-			// Load the full page on mobile devices.
+			/ Load the full page on mobile devices.
 			if ( Loader.settings.browser.mobile ) {
 				return window.location = src;
 			}
 
-			// Store the document title prior to opening the Live Preview.
+			/ Store the document title prior to opening the Live Preview.
 			this.originalDocumentTitle = document.title;
 
 			this.active = true;
@@ -135,14 +135,14 @@ window.wp = window.wp || {};
 			this.iframe = $( '<iframe />', { 'src': src, 'title': Loader.settings.l10n.mainIframeTitle } ).appendTo( this.element );
 			this.iframe.one( 'load', this.loaded );
 
-			// Create a postMessage connection with the iframe.
+			/ Create a postMessage connection with the iframe.
 			this.messenger = new api.Messenger({
 				url: src,
 				channel: 'loader',
 				targetWindow: this.iframe[0].contentWindow
 			});
 
-			// Expose the changeset UUID on the parent window's URL so that the customized state can survive a refresh.
+			/ Expose the changeset UUID on the parent window's URL so that the customized state can survive a refresh.
 			if ( history.replaceState ) {
 				this.messenger.bind( 'changeset-uuid', function( changesetUuid ) {
 					var urlParser = document.createElement( 'a' );
@@ -155,7 +155,7 @@ window.wp = window.wp || {};
 				} );
 			}
 
-			// Wait for the connection from the iframe before sending any postMessage events.
+			/ Wait for the connection from the iframe before sending any postMessage events.
 			this.messenger.bind( 'ready', function() {
 				Loader.messenger.send( 'back' );
 			});
@@ -170,7 +170,7 @@ window.wp = window.wp || {};
 				}
 			});
 
-			// Prompt AYS dialog when navigating away.
+			/ Prompt AYS dialog when navigating away.
 			$( window ).on( 'beforeunload', this.beforeunload );
 
 			this.messenger.bind( 'saved', function () {
@@ -192,7 +192,7 @@ window.wp = window.wp || {};
 		pushState: function ( src ) {
 			var hash = src.split( '?' )[1];
 
-			// Ensure we don't call pushState if the user hit the forward button.
+			/ Ensure we don't call pushState if the user hit the forward button.
 			if ( $.support.history && window.location.href !== src ) {
 				history.pushState( { customize: src }, '', src );
 			} else if ( ! $.support.history && $.support.hashchange && hash ) {
@@ -223,13 +223,13 @@ window.wp = window.wp || {};
 					self.active = false;
 					self.trigger( 'close' );
 
-					// Restore document title prior to opening the Live Preview.
+					/ Restore document title prior to opening the Live Preview.
 					if ( self.originalDocumentTitle ) {
 						document.title = self.originalDocumentTitle;
 					}
 				} else {
 
-					// Go forward since Customizer is exited by history.back().
+					/ Go forward since Customizer is exited by history.back().
 					history.forward();
 				}
 				self.messenger.unbind( 'confirmed-close', onConfirmClose );
@@ -280,12 +280,12 @@ window.wp = window.wp || {};
 		}
 	});
 
-	// Bootstrap the Loader on document#ready.
+	/ Bootstrap the Loader on document#ready.
 	$( function() {
 		Loader.settings = _wpCustomizeLoaderSettings;
 		Loader.initialize();
 	});
 
-	// Expose the API publicly on window.wp.customize.Loader.
+	/ Expose the API publicly on window.wp.customize.Loader.
 	api.Loader = Loader;
 })( wp, jQuery );

@@ -110,7 +110,7 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 		 * @return {URL} The current page URI.
 		 */
 		get currentPageUri() {
-			// eslint-disable-next-line compat/compat
+			/ eslint-disable-next-line compat/compat
 			return new URL( l10n.page_uri );
 		},
 
@@ -160,25 +160,25 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 
 			return {
 
-				total_payments: { // Bahama Blue.
+				total_payments: { / Bahama Blue.
 					hoverBorderColor: '#055f9a',
 					hoverBackgroundColor: '#055f9a',
 					borderColor: '#056aab',
 					backgroundColor: isLine ? '#e6f0f7' : '#056aab',
 				},
-				total_sales: { // Fun Green.
+				total_sales: { / Fun Green.
 					hoverBorderColor: '#00831e',
 					hoverBackgroundColor: '#00831e',
 					borderColor: '#008a20',
 					backgroundColor: isLine ? '#e3f3e4' : '#008a20',
 				},
-				total_refunded: { // Bright Gray.
+				total_refunded: { / Bright Gray.
 					hoverBorderColor: '#373e45',
 					hoverBackgroundColor: '#373e45',
 					borderColor: '#50575e',
 					backgroundColor: isLine ? '#ebebec' : '#50575e',
 				},
-				default: { // Zest - WPForms.
+				default: { / Zest - WPForms.
 					hoverBorderColor: '#cd6622',
 					hoverBackgroundColor: '#cd6622',
 					borderColor: '#e27730',
@@ -320,7 +320,7 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 								minRotation: 25,
 								maxRotation: 25,
 								callback( value, index, values ) {
-									// Distribute the ticks equally starting from the right side of xAxis.
+									/ Distribute the ticks equally starting from the right side of xAxis.
 									const gap = Math.floor( values.length / 7 );
 
 									if ( gap < 1 ) {
@@ -343,12 +343,12 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 									color: '#a7aaad',
 								},
 								callback: ( value ) => {
-									// Update the scales if the dataset returned includes price amounts.
+									/ Update the scales if the dataset returned includes price amounts.
 									if ( this.isAmount ) {
 										return this.amountFormatter.format( value );
 									}
 
-									// Make sure the tick value has no decimals.
+									/ Make sure the tick value has no decimals.
 									if ( Math.floor( value ) === value ) {
 										return value;
 									}
@@ -374,7 +374,7 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 								label: ( { raw: { y: value } } ) => {
 									let label = `${ this.datasetLabel } `;
 
-									// Update the scales if the dataset returned includes price amounts.
+									/ Update the scales if the dataset returned includes price amounts.
 									if ( this.isAmount ) {
 										label += this.amountFormatter.format( value );
 										return label;
@@ -427,7 +427,7 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 		 * @since 1.8.2
 		 */
 		setup() {
-			// Cache DOM elements.
+			/ Cache DOM elements.
 			el.$document = $( document );
 			el.$wrapper = $( '.wpforms-payments-wrap-payments' );
 			el.$form = $( '#wpforms-payments-table' );
@@ -486,25 +486,25 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 				dateFormat: 'Y-m-d',
 				locale: {
 
-					// Localized per-instance, if applicable.
+					/ Localized per-instance, if applicable.
 					...flatpickr.l10ns[ vars.locale ] || {},
 					rangeSeparator: vars.delimiter,
 				},
 				onChange( selectedDates, dateStr, instance ) {
-					// Immediately after a user interacts with the datepicker, ensure that the "Custom" option is chosen.
+					/ Immediately after a user interacts with the datepicker, ensure that the "Custom" option is chosen.
 					const $custom = el.$filterForm.find( 'input[value="custom"]' );
 
 					$custom.prop( 'checked', true );
 					app.selectDatepickerChoice( $custom.parent() );
 
 					if ( dateStr ) {
-						// Update filter button label when date range specified.
+						/ Update filter button label when date range specified.
 						el.$filterBtn.text( instance.altInput.value );
 					}
 				},
 			} );
 
-			// Determine if a custom date range was provided or selected.
+			/ Determine if a custom date range was provided or selected.
 			this.handleOnUpdateDatepicker( {}, el.$filterForm.find( 'input[value="custom"]' ).prop( 'checked' ) );
 		},
 
@@ -514,11 +514,11 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 		 * @since 1.8.2
 		 */
 		handleOnSubmitDatepicker() {
-			// Exclude radio inputs from the form submission.
+			/ Exclude radio inputs from the form submission.
 			$( this ).find( 'input[type="radio"]' ).attr( 'name', '' );
 
-			// Remove the popover from the view.
-			// When the dropdown is closed, aria-expended="false".
+			/ Remove the popover from the view.
+			/ When the dropdown is closed, aria-expended="false".
 			app.hideElm( el.$filterBtn.next() );
 		},
 
@@ -532,28 +532,28 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 		handleOnBulkAction( event ) {
 			event.preventDefault();
 
-			// Get the selected value for the name="action" select element.
+			/ Get the selected value for the name="action" select element.
 			const $action = el.$wrapper.find( 'select[name="action"]' );
 			const selectedAction = $action.val();
 			const actionsToExclude = [ 'trash', 'delete' ];
 
-			// Leave early if delete/trash is not selected.
-			// Trash is happening when you move payment to the trash. Delete is when you delete it permanently.
+			/ Leave early if delete/trash is not selected.
+			/ Trash is happening when you move payment to the trash. Delete is when you delete it permanently.
 			if ( ! actionsToExclude.includes( selectedAction ) ) {
 				el.$form.submit();
 				return;
 			}
 
-			// Get the selected checkboxes.
+			/ Get the selected checkboxes.
 			const $checkboxes = el.$wrapper.find( 'input[name="payment_id[]"]:checked' );
 
-			// Leave early if no checkboxes are selected.
+			/ Leave early if no checkboxes are selected.
 			if ( ! $checkboxes.length ) {
 				el.$form.submit();
 				return;
 			}
 
-			// Determine whether the selected payment has a renewal.
+			/ Determine whether the selected payment has a renewal.
 			const hasRenewal = $checkboxes.closest( 'tr' ).hasClass( 'subscription-has-renewal' );
 
 			if ( ! hasRenewal ) {
@@ -563,7 +563,7 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 
 			const { i18n: { subscription_delete_confirm: message, delete_button: buttonText } } = vars;
 
-			// Warn the user that the selected payment has a renewal.
+			/ Warn the user that the selected payment has a renewal.
 			$.confirm( {
 				title: wpforms_admin.heads_up,
 				content: message,
@@ -595,13 +595,13 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 		 * @since 1.8.4
 		 */
 		handleOnSubmitOverviewTable() {
-			// Leave early if the multi-select element is not present.
+			/ Leave early if the multi-select element is not present.
 			if ( ! el.$multiSelect.length ) {
 				return;
 			}
 
-			// Prevent empty or unspecified values from being submitted.
-			// This is to avoid having empty values in the $_GET array for aesthetic reasons.
+			/ Prevent empty or unspecified values from being submitted.
+			/ This is to avoid having empty values in the $_GET array for aesthetic reasons.
 			$( '.wpforms-multiselect-checkbox-input[value=""]' ).removeAttr( 'name' );
 		},
 
@@ -615,11 +615,11 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 		handleOnResetDatepicker( event ) {
 			event.preventDefault();
 
-			// To return the form to its original state, manually reset it.
+			/ To return the form to its original state, manually reset it.
 			el.$filterForm.get( 0 ).reset();
 
-			// Remove the popover from the view.
-			// When the dropdown is closed, aria-expended="false".
+			/ Remove the popover from the view.
+			/ When the dropdown is closed, aria-expended="false".
 			app.hideElm( el.$filterBtn.next() );
 
 			app.handleOnUpdateDatepicker();
@@ -633,7 +633,7 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 		 * @param {Object}  event         An event which takes place in the DOM.
 		 * @param {boolean} isCustomDates Determine whether a custom date range is provided.
 		 */
-		// eslint-disable-next-line no-unused-vars
+		/ eslint-disable-next-line no-unused-vars
 		handleOnUpdateDatepicker( event = {}, isCustomDates = false ) {
 			const $selected = el.$filterForm.find( 'input:checked' );
 			const $parent = $selected.parent();
@@ -645,12 +645,12 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 			app.selectDatepickerChoice( $parent );
 
 			if ( Array.isArray( dates ) && dates.length === 2 ) {
-				// Sets the current selected date(s).
+				/ Sets the current selected date(s).
 				vars.datepicker.setDate( dates );
 				return;
 			}
 
-			vars.datepicker.clear(); // Reset the datepicker.
+			vars.datepicker.clear(); / Reset the datepicker.
 		},
 
 		/**
@@ -679,12 +679,12 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 		 * @since 1.8.4
 		 */
 		initMultiSelect() {
-			// Check if multi-select elements and required class are present
+			/ Check if multi-select elements and required class are present
 			if ( ! el.$multiSelect.length || ! window.WPFormsMultiSelectCheckbox ) {
 				return;
 			}
 
-			// Initialize each multi-select element.
+			/ Initialize each multi-select element.
 			el.$multiSelect.each( function() {
 				const multiSelectCheckbox = new window.WPFormsMultiSelectCheckbox(
 					this,
@@ -709,7 +709,7 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 
 			const $this = $( this );
 
-			// If the already selected stat card is clicked, don't process the dataset.
+			/ If the already selected stat card is clicked, don't process the dataset.
 			if ( $this.hasClass( vars.classNames.selected ) || $this.hasClass( 'disabled' ) ) {
 				return;
 			}
@@ -722,19 +722,19 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 			el.$reports.find( 'button' ).removeClass( vars.classNames.selected );
 			$this.addClass( vars.classNames.selected );
 
-			// If the `statcard` field is not present, create it.
+			/ If the `statcard` field is not present, create it.
 			if ( ! el.$activeStat.length ) {
-				// Append a hidden input field for the statcard.
+				/ Append a hidden input field for the statcard.
 				el.$filterForm.append( '<input type="hidden" name="statcard">' );
 
-				// Update the reference to the activeStat element.
+				/ Update the reference to the activeStat element.
 				el.$activeStat = el.$filterForm.find( 'input[name="statcard"]' );
 			}
 
-			// Update the value of the statcard field with the selected report.
+			/ Update the value of the statcard field with the selected report.
 			el.$activeStat.val( vars.report );
 
-			// Update the chart stats with consideration to possible form stats being viewed.
+			/ Update the chart stats with consideration to possible form stats being viewed.
 			app.updateChartByReport();
 		},
 
@@ -802,16 +802,16 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 
 			const { data: { selector, hide } } = event;
 
-			// Toggle the visibility of the matched element.
+			/ Toggle the visibility of the matched element.
 			el.$wrapper.find( selector ).toggle( 0, function() {
 				const $selector = $( selector );
 
-				// When the dropdown is open, aria-expended="true".
+				/ When the dropdown is open, aria-expended="true".
 				$selector.attr( 'aria-expanded', $selector.is( ':visible' ) );
 			} );
 
-			// In case the other popover is open, let’s hide it to avoid clutter.
-			// When the dropdown is closed, aria-expended="false".
+			/ In case the other popover is open, let’s hide it to avoid clutter.
+			/ When the dropdown is closed, aria-expended="false".
 			app.hideElm( el.$wrapper.find( hide ) );
 		},
 
@@ -864,7 +864,7 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 
 			const { i18n: { no_dataset: placeholderText } } = vars;
 
-			// If there is a placeholder text for the current report, use it.
+			/ If there is a placeholder text for the current report, use it.
 			if ( placeholderText?.[ vars.report ] ) {
 				el.$notice.find( 'h2' ).text( placeholderText[ vars.report ] );
 			}
@@ -883,7 +883,7 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 				labels.push( date );
 				datasets.push( {
 					x: date,
-					y: Math.floor( Math.random() * ( maxY - minY + 1 ) ) + minY, // NOSONAR not used in secure contexts.
+					y: Math.floor( Math.random() * ( maxY - minY + 1 ) ) + minY, / NOSONAR not used in secure contexts.
 				} );
 			}
 
@@ -916,14 +916,14 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 		 * @param {Object} args Optional. Additional arguments provided for the Ajax request.
 		 */
 		updateChartByReport( args ) {
-			// Cache dataset of payments for the chart stats.
+			/ Cache dataset of payments for the chart stats.
 			if ( vars.report && Object.hasOwn( vars.data, vars.report ) ) {
 				app.updateChart( vars.data[ vars.report ]?.data || [] );
 				return;
 			}
 
-			// Add a class name indicating that the chart is fetching data.
-			// This is mainly to avoid fast clicking on the stat cards to avoid multiple Ajax requests.
+			/ Add a class name indicating that the chart is fetching data.
+			/ This is mainly to avoid fast clicking on the stat cards to avoid multiple Ajax requests.
 			el.$reports.addClass( vars.classNames.fetching );
 
 			$.post(
@@ -960,21 +960,21 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 		 * @param {Object} reports Reports summary stats queried from the database.
 		 */
 		updateReports( reports ) {
-			// Bail early, in case given reports object is empty.
+			/ Bail early, in case given reports object is empty.
 			if ( $.isEmptyObject( reports ) ) {
 				return;
 			}
 
 			el.$reports
 				.find( 'li' ).each(
-					// eslint-disable-next-line complexity
+					/ eslint-disable-next-line complexity
 					function() {
 						const $this = $( this );
 						const $button = $this.find( 'button' );
 
-						// Skip iterating over stat cards that are disabled.
+						/ Skip iterating over stat cards that are disabled.
 						if ( $button.hasClass( 'disabled' ) ) {
-							return true; // This is the same as 'continue'.
+							return true; / This is the same as 'continue'.
 						}
 
 						const stats = $button.data( 'stats' );
@@ -990,12 +990,12 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 							$delta.addClass( Number( delta > 0 ) ? 'is-upward' : 'is-downward' );
 						}
 
-						// Skip iterating over stat cards that do not represent an amount.
+						/ Skip iterating over stat cards that do not represent an amount.
 						if ( ! $button.hasClass( 'is-amount' ) ) {
-							return; // This is the same as 'continue'.
+							return; / This is the same as 'continue'.
 						}
 
-						// Add a title attribute to the stat card value if it does not have one.
+						/ Add a title attribute to the stat card value if it does not have one.
 						$value.attr( 'title', $value.text() );
 					}
 				);
@@ -1034,7 +1034,7 @@ const WPFormsPaymentsOverview = window.WPFormsPaymentsOverview || ( function( do
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery, ajaxurl, wpforms_admin_payments_overview ) );
 

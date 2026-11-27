@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
@@ -74,7 +74,7 @@ module.exports = function equal(a, b) {
     return true;
   }
 
-  // true if both NaN, false otherwise
+  / true if both NaN, false otherwise
   return a!==a && b!==b;
 };
 
@@ -83,34 +83,34 @@ module.exports = function equal(a, b) {
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -122,7 +122,7 @@ module.exports = function equal(a, b) {
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -145,29 +145,29 @@ __webpack_require__.d(__webpack_exports__, {
   "default": () => (/* binding */ build_module)
 });
 
-;// external ["wp","element"]
+;/ external ["wp","element"]
 const external_wp_element_namespaceObject = window["wp"]["element"];
-;// external ["wp","data"]
+;/ external ["wp","data"]
 const external_wp_data_namespaceObject = window["wp"]["data"];
 // EXTERNAL MODULE: ./node_modules/fast-deep-equal/es6/index.js
 var es6 = __webpack_require__(7734);
 var es6_default = /*#__PURE__*/__webpack_require__.n(es6);
-;// external ["wp","compose"]
+;/ external ["wp","compose"]
 const external_wp_compose_namespaceObject = window["wp"]["compose"];
-;// external ["wp","i18n"]
+;/ external ["wp","i18n"]
 const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
-;// external ["wp","apiFetch"]
+;/ external ["wp","apiFetch"]
 const external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
 var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_namespaceObject);
-;// external ["wp","url"]
+;/ external ["wp","url"]
 const external_wp_url_namespaceObject = window["wp"]["url"];
-;// external ["wp","components"]
+;/ external ["wp","components"]
 const external_wp_components_namespaceObject = window["wp"]["components"];
-;// external ["wp","blocks"]
+;/ external ["wp","blocks"]
 const external_wp_blocks_namespaceObject = window["wp"]["blocks"];
-;// external "ReactJSXRuntime"
+;/ external "ReactJSXRuntime"
 const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
-;// ./node_modules/@wordpress/server-side-render/build-module/server-side-render.js
+;/ ./node_modules/@wordpress/server-side-render/build-module/server-side-render.js
 /**
  * External dependencies
  */
@@ -231,7 +231,7 @@ function DefaultErrorResponsePlaceholder({
   className
 }) {
   const errorMessage = (0,external_wp_i18n_namespaceObject.sprintf)(
-  // translators: %s: error message describing the problem
+  / translators: %s: error message describing the problem
   (0,external_wp_i18n_namespaceObject.__)('Error loading block: %s'), response.errorMsg);
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.Placeholder, {
     className: className,
@@ -288,7 +288,7 @@ function ServerSideRender(props) {
     }
     setIsLoading(true);
 
-    // Schedule showing the Spinner after 1 second.
+    / Schedule showing the Spinner after 1 second.
     const timeout = setTimeout(() => {
       setShowLoader(true);
     }, 1000);
@@ -297,8 +297,8 @@ function ServerSideRender(props) {
       sanitizedAttributes = removeBlockSupportAttributes(sanitizedAttributes);
     }
 
-    // If httpMethod is 'POST', send the attributes in the request body instead of the URL.
-    // This allows sending a larger attributes object than in a GET request, where the attributes are in the URL.
+    / If httpMethod is 'POST', send the attributes in the request body instead of the URL.
+    / This allows sending a larger attributes object than in a GET request, where the attributes are in the URL.
     const isPostRequest = 'POST' === httpMethod;
     const urlAttributes = isPostRequest ? null : (_sanitizedAttributes = sanitizedAttributes) !== null && _sanitizedAttributes !== void 0 ? _sanitizedAttributes : null;
     const path = rendererPath(block, urlAttributes, urlQueryArgs);
@@ -306,8 +306,8 @@ function ServerSideRender(props) {
       attributes: (_sanitizedAttributes2 = sanitizedAttributes) !== null && _sanitizedAttributes2 !== void 0 ? _sanitizedAttributes2 : null
     } : null;
 
-    // Store the latest fetch request so that when we process it, we can
-    // check if it is the current request, to avoid race conditions on slow networks.
+    / Store the latest fetch request so that when we process it, we can
+    / check if it is the current request, to avoid race conditions on slow networks.
     const fetchRequest = fetchRequestRef.current = external_wp_apiFetch_default()({
       path,
       data,
@@ -326,7 +326,7 @@ function ServerSideRender(props) {
     }).finally(() => {
       if (isMountedRef.current && fetchRequest === fetchRequestRef.current) {
         setIsLoading(false);
-        // Cancel the timeout to show the Spinner.
+        / Cancel the timeout to show the Spinner.
         setShowLoader(false);
         clearTimeout(timeout);
       }
@@ -335,8 +335,8 @@ function ServerSideRender(props) {
   }
   const debouncedFetchData = (0,external_wp_compose_namespaceObject.useDebounce)(fetchData, 500);
 
-  // When the component unmounts, set isMountedRef to false. This will
-  // let the async fetch callbacks know when to stop.
+  / When the component unmounts, set isMountedRef to false. This will
+  / let the async fetch callbacks know when to stop.
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     isMountedRef.current = true;
     return () => {
@@ -344,8 +344,8 @@ function ServerSideRender(props) {
     };
   }, []);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
-    // Don't debounce the first fetch. This ensures that the first render
-    // shows data as soon as possible.
+    / Don't debounce the first fetch. This ensures that the first render
+    / shows data as soon as possible.
     if (prevProps === undefined) {
       fetchData();
     } else if (!es6_default()(prevProps, props)) {
@@ -382,7 +382,7 @@ function ServerSideRender(props) {
   });
 }
 
-;// ./node_modules/@wordpress/server-side-render/build-module/index.js
+;/ ./node_modules/@wordpress/server-side-render/build-module/index.js
 /**
  * WordPress dependencies
  */
@@ -400,16 +400,16 @@ function ServerSideRender(props) {
 
 const build_module_EMPTY_OBJECT = {};
 const ExportedServerSideRender = (0,external_wp_data_namespaceObject.withSelect)(select => {
-  // FIXME: @wordpress/server-side-render should not depend on @wordpress/editor.
-  // It is used by blocks that can be loaded into a *non-post* block editor.
-  // eslint-disable-next-line @wordpress/data-no-store-string-literals
+  / FIXME: @wordpress/server-side-render should not depend on @wordpress/editor.
+  / It is used by blocks that can be loaded into a *non-post* block editor.
+  / eslint-disable-next-line @wordpress/data-no-store-string-literals
   const coreEditorSelect = select('core/editor');
   if (coreEditorSelect) {
     const currentPostId = coreEditorSelect.getCurrentPostId();
-    // For templates and template parts we use a custom ID format.
-    // Since they aren't real posts, we don't want to use their ID
-    // for server-side rendering. Since they use a string based ID,
-    // we can assume real post IDs are numbers.
+    / For templates and template parts we use a custom ID format.
+    / Since they aren't real posts, we don't want to use their ID
+    / for server-side rendering. Since they use a string based ID,
+    / we can assume real post IDs are numbers.
     if (currentPostId && typeof currentPostId === 'number') {
       return {
         currentPostId

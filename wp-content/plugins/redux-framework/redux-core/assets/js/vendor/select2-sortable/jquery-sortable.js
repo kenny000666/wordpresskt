@@ -29,68 +29,68 @@
 
 !function ( $, window, pluginName, undefined){
 	var containerDefaults = {
-			// If true, items can be dragged from this container
+			/ If true, items can be dragged from this container
 			drag: true,
-			// If true, items can be droped onto this container
+			/ If true, items can be droped onto this container
 			drop: true,
-			// Exclude items from being draggable, if the
-			// selector matches the item
+			/ Exclude items from being draggable, if the
+			/ selector matches the item
 			exclude: "",
-			// If true, search for nested containers within an item.If you nest containers,
-			// either the original selector with which you call the plugin must only match the top containers,
-			// or you need to specify a group (see the bootstrap nav example)
+			/ If true, search for nested containers within an item.If you nest containers,
+			/ either the original selector with which you call the plugin must only match the top containers,
+			/ or you need to specify a group (see the bootstrap nav example)
 			nested: true,
-			// If true, the items are assumed to be arranged vertically
+			/ If true, the items are assumed to be arranged vertically
 			vertical: true
-		}, // end container defaults
+		}, / end container defaults
 		groupDefaults = {
-			// This is executed after the placeholder has been moved.
-			// $closestItemOrContainer contains the closest item, the placeholder
-			// has been put at or the closest empty Container, the placeholder has
-			// been appended to.
+			/ This is executed after the placeholder has been moved.
+			/ $closestItemOrContainer contains the closest item, the placeholder
+			/ has been put at or the closest empty Container, the placeholder has
+			/ been appended to.
 			afterMove: function ($placeholder, container, $closestItemOrContainer) {
 			},
-			// The exact css path between the container and its items, e.g. "> tbody"
+			/ The exact css path between the container and its items, e.g. "> tbody"
 			containerPath: "",
-			// The css selector of the containers
+			/ The css selector of the containers
 			containerSelector: "ol, ul",
-			// Distance the mouse has to travel to start dragging
+			/ Distance the mouse has to travel to start dragging
 			distance: 0,
-			// Time in milliseconds after mousedown until dragging should start.
-			// This option can be used to prevent unwanted drags when clicking on an element.
+			/ Time in milliseconds after mousedown until dragging should start.
+			/ This option can be used to prevent unwanted drags when clicking on an element.
 			delay: 0,
-			// The css selector of the drag handle
+			/ The css selector of the drag handle
 			handle: "",
-			// The exact css path between the item and its subcontainers.
-			// It should only match the immediate items of a container.
-			// No item of a subcontainer should be matched. E.g. for ol>div>li the itemPath is "> div"
+			/ The exact css path between the item and its subcontainers.
+			/ It should only match the immediate items of a container.
+			/ No item of a subcontainer should be matched. E.g. for ol>div>li the itemPath is "> div"
 			itemPath: "",
-			// The css selector of the items
+			/ The css selector of the items
 			itemSelector: "li",
-			// The class given to "body" while an item is being dragged
+			/ The class given to "body" while an item is being dragged
 			bodyClass: "dragging",
-			// The class giving to an item while being dragged
+			/ The class giving to an item while being dragged
 			draggedClass: "dragged",
-			// Check if the dragged item may be inside the container.
-			// Use with care, since the search for a valid container entails a depth first search
-			// and may be quite expensive.
+			/ Check if the dragged item may be inside the container.
+			/ Use with care, since the search for a valid container entails a depth first search
+			/ and may be quite expensive.
 			isValidTarget: function ($item, container) {
 				return true
 			},
-			// Executed before onDrop if placeholder is detached.
-			// This happens if pullPlaceholder is set to false and the drop occurs outside a container.
+			/ Executed before onDrop if placeholder is detached.
+			/ This happens if pullPlaceholder is set to false and the drop occurs outside a container.
 			onCancel: function ($item, container, _super, event) {
 			},
-			// Executed at the beginning of a mouse move event.
-			// The Placeholder has not been moved yet.
+			/ Executed at the beginning of a mouse move event.
+			/ The Placeholder has not been moved yet.
 			onDrag: function ($item, position, _super, event) {
 				$item.css(position)
 			},
-			// Called after the drag has been started,
-			// that is the mouse button is being held down and
-			// the mouse is moving.
-			// The container is the closest initialized container.
-			// Therefore it might not be the container, that actually contains the item.
+			/ Called after the drag has been started,
+			/ that is the mouse button is being held down and
+			/ the mouse is moving.
+			/ The container is the closest initialized container.
+			/ Therefore it might not be the container, that actually contains the item.
 			onDragStart: function ($item, container, _super, event) {
 				$item.css({
 					height: $item.outerHeight(),
@@ -99,30 +99,30 @@
 				$item.addClass(container.group.options.draggedClass)
 				$("body").addClass(container.group.options.bodyClass)
 			},
-			// Called when the mouse button is being released
+			/ Called when the mouse button is being released
 			onDrop: function ($item, container, _super, event) {
 				$item.removeClass(container.group.options.draggedClass).removeAttr("style")
 				$("body").removeClass(container.group.options.bodyClass)
 			},
-			// Called on mousedown. If falsy value is returned, the dragging will not start.
-			// Ignore if element clicked is input, select or textarea
+			/ Called on mousedown. If falsy value is returned, the dragging will not start.
+			/ Ignore if element clicked is input, select or textarea
 			onMousedown: function ($item, _super, event) {
 				if (!event.target.nodeName.match(/^(input|select|textarea)$/i)) {
 					event.preventDefault()
 					return true
 				}
 			},
-			// The class of the placeholder (must match placeholder option markup)
+			/ The class of the placeholder (must match placeholder option markup)
 			placeholderClass: "placeholder",
-			// Template for the placeholder. Can be any valid jQuery input
-			// e.g. a string, a DOM element.
-			// The placeholder must have the class "placeholder"
+			/ Template for the placeholder. Can be any valid jQuery input
+			/ e.g. a string, a DOM element.
+			/ The placeholder must have the class "placeholder"
 			placeholder: '<li class="placeholder"></li>',
-			// If true, the position of the placeholder is calculated on every mousemove.
-			// If false, it is only calculated when the mouse is above a container.
+			/ If true, the position of the placeholder is calculated on every mousemove.
+			/ If false, it is only calculated when the mouse is above a container.
 			pullPlaceholder: true,
-			// Specifies serialization of the container group.
-			// The pair $parent/$children is either container/items or item/subcontainers.
+			/ Specifies serialization of the container group.
+			/ The pair $parent/$children is either container/items or item/subcontainers.
 			serialize: function ($parent, $children, parentIsContainer) {
 				var result = $.extend({}, $parent.data())
 
@@ -137,10 +137,10 @@
 
 				return result
 			},
-			// Set tolerance while dragging. Positive values decrease sensitivity,
-			// negative values increase it.
+			/ Set tolerance while dragging. Positive values decrease sensitivity,
+			/ negative values increase it.
 			tolerance: 0
-		}, // end group defaults
+		}, / end group defaults
 		containerGroups = {},
 		groupCounter = 0,
 		emptyBox = {
@@ -174,7 +174,7 @@
 
 		while(i--){
 			var el = array[i].el ? array[i].el : $(array[i]),
-				// use fitting method
+				/ use fitting method
 				pos = el[offsetMethod]()
 			pos.left += parseInt(el.css('margin-left'), 10)
 			pos.top += parseInt(el.css('margin-top'),10)
@@ -211,7 +211,7 @@
 			return b[1] - a[1] || b[2] - a[2] || b[0] - a[0]
 		})
 
-		// last entry is the closest
+		/ last entry is the closest
 		return distances
 	}
 
@@ -245,10 +245,10 @@
 		dragInit: function  (e, itemContainer) {
 			this.$document = $(itemContainer.el[0].ownerDocument)
 
-			// get item to drag
+			/ get item to drag
 			var closestItem = $(e.target).closest(this.options.itemSelector);
-			// using the length of this item, prevents the plugin from being started if there is no handle being clicked on.
-			// this may also be helpful in instantiating multidrag.
+			/ using the length of this item, prevents the plugin from being started if there is no handle being clicked on.
+			/ this may also be helpful in instantiating multidrag.
 			if (closestItem.length) {
 				this.item = closestItem;
 				this.itemContainer = itemContainer;
@@ -272,7 +272,7 @@
 			}
 
 			this.setPointer(e)
-			// place item under the cursor
+			/ place item under the cursor
 			this.options.onDrag(this.item,
 				getRelativePosition(this.pointer, this.item.offsetParent()),
 				groupDefaults.onDrag,
@@ -294,7 +294,7 @@
 			this.dragInitDone = false
 
 			if(this.dragging){
-				// processing Drop, check if placeholder is detached
+				/ processing Drop, check if placeholder is detached
 				if(this.placeholder.closest("html")[0]){
 					this.placeholder.before(this.item).detach()
 				} else {
@@ -302,7 +302,7 @@
 				}
 				this.options.onDrop(this.item, this.getContainer(this.item), groupDefaults.onDrop, e)
 
-				// cleanup
+				/ cleanup
 				this.clearDimensions()
 				this.clearOffsetParent()
 				this.lastAppendedItem = this.sameResultBox = undefined
@@ -366,10 +366,10 @@
 				if(!this.options.rootGroup){
 					while(i--){
 						if(offsetParent[0] != this.containers[i].getItemOffsetParent()[0]){
-							// If every container has the same offset parent,
-							// use position() which is relative to this parent,
-							// otherwise use offset()
-							// compare #setDimensions
+							/ If every container has the same offset parent,
+							/ use position() which is relative to this parent,
+							/ otherwise use offset()
+							/ compare #setDimensions
 							offsetParent = false
 							break;
 						}
@@ -410,7 +410,7 @@
 			var that = this
 			this.delayMet = !this.options.delay
 
-			// init delay timer if needed
+			/ init delay timer if needed
 			if (!this.delayMet) {
 				clearTimeout(this._mouseDelayTimer);
 				this._mouseDelayTimer = setTimeout(function() {
@@ -420,7 +420,7 @@
 		},
 		scroll: function  (e) {
 			this.clearDimensions()
-			this.clearOffsetParent() // TODO is this needed?
+			this.clearOffsetParent() / TODO is this needed?
 		},
 		toggleListeners: function (method) {
 			var that = this,
@@ -433,7 +433,7 @@
 		clearOffsetParent: function () {
 			this.offsetParent = undefined
 		},
-		// Recursively clear container and item dimensions
+		/ Recursively clear container and item dimensions
 		clearDimensions: function  () {
 			this.traverse(function(object){
 				object._clearDimensions()
@@ -559,8 +559,8 @@
 		getItemOffsetParent: function  () {
 			var offsetParent,
 				el = this.el
-			// Since el might be empty we have to check el itself and
-			// can not do something like el.children().first().offsetParent()
+			/ Since el might be empty we have to check el itself and
+			/ can not do something like el.children().first().offsetParent()
 			if(el.css("position") === "relative" || el.css("position") === "absolute"  || el.css("position") === "fixed")
 				offsetParent = el
 			else

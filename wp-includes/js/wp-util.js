@@ -8,7 +8,7 @@
 window.wp = window.wp || {};
 
 (function ($) {
-	// Check for the utility settings.
+	/ Check for the utility settings.
 	var settings = typeof _wpUtilSettings === 'undefined' ? {} : _wpUtilSettings;
 
 	/**
@@ -98,7 +98,7 @@ window.wp = window.wp || {};
 			});
 
 			deferred = $.Deferred( function( deferred ) {
-				// Transfer success/error callbacks.
+				/ Transfer success/error callbacks.
 				if ( options.success ) {
 					deferred.done( options.success );
 				}
@@ -110,16 +110,16 @@ window.wp = window.wp || {};
 				delete options.success;
 				delete options.error;
 
-				// Use with PHP's wp_send_json_success() and wp_send_json_error().
+				/ Use with PHP's wp_send_json_success() and wp_send_json_error().
 				deferred.jqXHR = $.ajax( options ).done( function( response ) {
-					// Treat a response of 1 as successful for backward compatibility with existing handlers.
+					/ Treat a response of 1 as successful for backward compatibility with existing handlers.
 					if ( response === '1' || response === 1 ) {
 						response = { success: true };
 					}
 
 					if ( _.isObject( response ) && ! _.isUndefined( response.success ) ) {
 
-						// When handling a media attachments request, get the total attachments from response headers.
+						/ When handling a media attachments request, get the total attachments from response headers.
 						var context = this;
 						deferred.done( function() {
 							if (

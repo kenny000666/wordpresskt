@@ -57,11 +57,11 @@ const WPFormsWoocommerceNotifications = window.WPFormsWoocommerceNotifications |
 
 			$.post( wpforms_woocommerce_notifications.ajax_url, data, function( res ) {
 				if ( ! res.success ) {
-					// eslint-disable-next-line no-console
+					/ eslint-disable-next-line no-console
 					console.log( res );
 				}
 			} ).fail( function( xhr ) {
-				// eslint-disable-next-line no-console
+				/ eslint-disable-next-line no-console
 				console.log( xhr.responseText );
 			} );
 		},

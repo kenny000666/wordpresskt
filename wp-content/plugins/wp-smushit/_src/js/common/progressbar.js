@@ -16,14 +16,14 @@ export const scanProgressBar = ( autoSyncDuration ) => {
 	const holdOnNoticeElement = scanProgressBar.querySelector( '.wp-smush-scan-hold-on-notice' );
 	let onCancelCallback = () => {};
 	let intervalProgressAnimation = 0;
-	// It should be smaller than autoSyncDuration.
-	const progressTransitionDuration = autoSyncDuration - 300;//1200
+	/ It should be smaller than autoSyncDuration.
+	const progressTransitionDuration = autoSyncDuration - 300;/1200
 	scanProgressBar.style.setProperty( '--progress-transition-duration', progressTransitionDuration / 1000 + 's' );
 
 	let prevProcessedItems = window.wp_smushit_data?.media_library_scan?.processed_items || 0;
 	const cacheProcessTimePerItem = [];
 	let durationToHaveChangeOnProgress = autoSyncDuration;
-	let timeLimitToShowNotice = 60000;// 60s.
+	let timeLimitToShowNotice = 60000;/ 60s.
 	return {
 		update( processedItems, totalItems ) {
 			this.updateRemainingTime( processedItems, totalItems );
@@ -44,7 +44,7 @@ export const scanProgressBar = ( autoSyncDuration ) => {
 			return new Promise( ( resolve ) => {
 				const delayTime = progressTransitionDuration / ( width - currentWidth );
 				intervalProgressAnimation = setInterval( () => {
-					// Progress bar label.
+					/ Progress bar label.
 					percentElement.innerHTML = currentWidth + '%';
 					currentWidth++;
 					if ( currentWidth > width ) {
@@ -190,12 +190,12 @@ const SmushProgressBar = () => {
 			let width = totalItems && Math.floor( processedItems / totalItems * 100 ) || 0;
 			width = Math.min( width, 100 );
 
-			// Progress bar label.
+			/ Progress bar label.
 			progressBar.querySelector( '.wp-smush-images-percent' ).innerHTML = width + '%';
-			// Progress bar.
+			/ Progress bar.
 			progressBar.querySelector( '.wp-smush-progress-inner' ).style.width = width + '%';
 
-			// Update processed/total.
+			/ Update processed/total.
 			const processStateStats = progressBar.querySelector( '.sui-progress-state-text' );
 			processStateStats.firstElementChild.innerHTML = processedItems;
 			processStateStats.lastElementChild.innerHTML = totalItems;
@@ -212,7 +212,7 @@ const SmushProgressBar = () => {
 			return this;
 		},
 		show() {
-			// Show progress bar.
+			/ Show progress bar.
 			progressBar.classList.remove( 'sui-hidden' );
 			cancelBtn.onclick = this.showStopBulkSmushModal.bind( this );
 			this.hideBulkSmushDescription();
@@ -227,7 +227,7 @@ const SmushProgressBar = () => {
 			const stopBulkSmushButton = stopBulkSmushModal.querySelector( '.smush-stop-bulk-smush-button' );
 			stopBulkSmushButton.addEventListener( 'click', onCancelCallback, { once: true } );
 
-			// Displays the modal with the release's higlights if it exists.
+			/ Displays the modal with the release's higlights if it exists.
 			const modalId = stopBulkSmushModal.id,
 			focusAfterClosed = 'wpbody-content',
 			focusWhenOpen = undefined,

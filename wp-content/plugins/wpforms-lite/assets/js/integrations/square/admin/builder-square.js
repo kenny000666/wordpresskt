@@ -39,7 +39,7 @@ const WPFormsBuilderSquare = window.WPFormsBuilderSquare || ( function( document
 		 * @since 1.9.5
 		 */
 		ready() {
-			// Cache DOM elements.
+			/ Cache DOM elements.
 			el.$singlePaymentControl = $( '#wpforms-panel-field-square-enable_one_time' );
 			el.$recurringPaymentControl = $( '#wpforms-panel-field-square-enable_recurring' );
 			el.$panelContent = $( '#wpforms-panel-content-section-payment-square' );
@@ -220,14 +220,14 @@ const WPFormsBuilderSquare = window.WPFormsBuilderSquare || ( function( document
 		 * @since 1.9.5
 		 */
 		settingsRedirect() {
-			// Open the Square settings tab.
+			/ Open the Square settings tab.
 			$( '.wpforms-panel-payments-button' ).trigger( 'click' );
 			$( '.wpforms-panel-sidebar-section-square' ).trigger( 'click' );
 
-			// Scroll to the Stripe settings.
+			/ Scroll to the Stripe settings.
 			window.location.href = window.location.pathname + window.location.search + '#wpforms-panel-field-square-enable_recurring-wrap';
 
-			// Close the alert.
+			/ Close the alert.
 			$( this ).closest( '.jconfirm-box' ).find( '.btn-confirm' ).trigger( 'click' );
 		},
 
@@ -246,7 +246,7 @@ const WPFormsBuilderSquare = window.WPFormsBuilderSquare || ( function( document
 			$( this ).toggleClass( 'wpforms-required-field-error', ! $( this ).val() );
 		},
 
-		// eslint-disable-next-line jsdoc/require-returns-check
+		/ eslint-disable-next-line jsdoc/require-returns-check
 		/**
 		 * Notify user if Square connection are missing.
 		 *
@@ -355,7 +355,7 @@ const WPFormsBuilderSquare = window.WPFormsBuilderSquare || ( function( document
 			el.$alert.toggleClass( 'wpforms-hidden', display );
 			$( '#wpforms-panel-content-section-payment-square' ).toggleClass( 'wpforms-hidden', ! display );
 
-			// Uncheck the Payments > Square > Enable Square Payments setting.
+			/ Uncheck the Payments > Square > Enable Square Payments setting.
 			if ( ! display ) {
 				el.$singlePaymentControl.prop( 'checked', false ).trigger( 'change' );
 				el.$recurringPaymentControl.prop( 'checked', false ).trigger( 'change' );
@@ -408,7 +408,7 @@ const WPFormsBuilderSquare = window.WPFormsBuilderSquare || ( function( document
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

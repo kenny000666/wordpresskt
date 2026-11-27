@@ -28,10 +28,10 @@ export default class DeactivationSurvey {
 		this.deactivatePluginLink.addEventListener( 'click', ( e ) => {
 			e.preventDefault();
 
-			// Show modal.
+			/ Show modal.
 			this.showModal();
 
-			// Handle survey form.
+			/ Handle survey form.
 			this.handleSurveyForm();
 		} );
 	}
@@ -79,11 +79,11 @@ export default class DeactivationSurvey {
 			e.target.classList.add( 'sui-button-onload' );
 
 			this.modalAction = 'skip';
-			// Close modal and track on closed event.
+			/ Close modal and track on closed event.
 			this.closeModal();
 
-			// Deactivate the plugin when tracking is disabled; otherwise, handle it after tracking.
-			// @see this.trackDeactivate().
+			/ Deactivate the plugin when tracking is disabled; otherwise, handle it after tracking.
+			/ @see this.trackDeactivate().
 			if ( ! tracker.allowToTrack() ) {
 				this.redirectToDeactivateLink();
 			}
@@ -100,11 +100,11 @@ export default class DeactivationSurvey {
 			e.target.classList.add( 'sui-button-onload' );
 
 			this.modalAction = 'submit';
-			// Close modal and track on closed event.
+			/ Close modal and track on closed event.
 			this.closeModal();
 
-			// Plugin deactivation has been handled after tracking.
-			// @see this.trackDeactivate().
+			/ Plugin deactivation has been handled after tracking.
+			/ @see this.trackDeactivate().
 		}, { once: true } );
 	}
 
@@ -113,7 +113,7 @@ export default class DeactivationSurvey {
 			return;
 		}
 
-		// Remove current user message field.
+		/ Remove current user message field.
 		this.userMessageField.remove();
 
 		const placeholder = labelField.dataset?.placeholder;
@@ -121,15 +121,15 @@ export default class DeactivationSurvey {
 			return;
 		}
 
-		// Update placeholder.
+		/ Update placeholder.
 		const textarea = this.userMessageField.querySelector( 'textarea' );
 		textarea.placeholder = placeholder;
 
-		// Append user message field.
+		/ Append user message field.
 		labelField.after( this.userMessageField );
 		this.userMessageField.classList.remove( 'sui-hidden' );
 
-		// Focus on textarea.
+		/ Focus on textarea.
 		textarea.focus();
 	}
 

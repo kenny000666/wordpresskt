@@ -81,7 +81,7 @@ var DupAdminNotifications = window.DupAdminNotifications || (function (document,
                 return;
             }
 
-            // Update counter.
+            / Update counter.
             var count = parseInt(el.$adminBarCounter.text(), 10);
             if (count > 1) {
                 --count;
@@ -91,7 +91,7 @@ var DupAdminNotifications = window.DupAdminNotifications || (function (document,
                 el.$adminBarMenuItem.remove();
             }
 
-            // Remove notification.
+            / Remove notification.
             var $nextMessage = el.$nextMessage.length < 1 ? el.$prevMessage : el.$nextMessage,
                 messageId = el.$currentMessage.data('message-id');
 
@@ -103,7 +103,7 @@ var DupAdminNotifications = window.DupAdminNotifications || (function (document,
                 app.updateNavigation();
             }
 
-            // AJAX call - update option.
+            / AJAX call - update option.
             var data = {
                 action: 'duplicator_notification_dismiss',
                 nonce: dup_admin_notifications.nonce,

@@ -33,7 +33,7 @@ window.wp = window.wp || {};
 	 */
 	Uploader = function( options ) {
 		var self = this,
-			isIE, // Not used, back-compat.
+			isIE, / Not used, back-compat.
 			elements = {
 				container: 'container',
 				browser:   'browse_button',
@@ -55,10 +55,10 @@ window.wp = window.wp || {};
 			return;
 		}
 
-		// Arguments to send to pluplad.Uploader().
-		// Use deep extend to ensure that multipart_params and other objects are cloned.
+		/ Arguments to send to pluplad.Uploader().
+		/ Use deep extend to ensure that multipart_params and other objects are cloned.
 		this.plupload = $.extend( true, { multipart_params: {} }, Uploader.defaults );
-		this.container = document.body; // Set default container.
+		this.container = document.body; / Set default container.
 
 		/*
 		 * Extend the instance with options.
@@ -68,15 +68,15 @@ window.wp = window.wp || {};
 		 */
 		$.extend( true, this, options );
 
-		// Proxy all methods so this always refers to the current instance.
+		/ Proxy all methods so this always refers to the current instance.
 		for ( key in this ) {
 			if ( typeof this[ key ] === 'function' ) {
 				this[ key ] = $.proxy( this[ key ], this );
 			}
 		}
 
-		// Ensure all elements are jQuery elements and have id attributes,
-		// then set the proper plupload arguments to the ids.
+		/ Ensure all elements are jQuery elements and have id attributes,
+		/ then set the proper plupload arguments to the ids.
 		for ( key in elements ) {
 			if ( ! this[ key ] ) {
 				continue;
@@ -96,16 +96,16 @@ window.wp = window.wp || {};
 			this.plupload[ elements[ key ] ] = this[ key ].prop('id');
 		}
 
-		// If the uploader has neither a browse button nor a dropzone, bail.
+		/ If the uploader has neither a browse button nor a dropzone, bail.
 		if ( ! ( this.browser && this.browser.length ) && ! ( this.dropzone && this.dropzone.length ) ) {
 			return;
 		}
 
-		// Initialize the plupload instance.
+		/ Initialize the plupload instance.
 		this.uploader = new plupload.Uploader( this.plupload );
 		delete this.plupload;
 
-		// Set default params and remove this.params alias.
+		/ Set default params and remove this.params alias.
 		this.param( this.params || {} );
 		delete this.params;
 
@@ -166,7 +166,7 @@ window.wp = window.wp || {};
 				tryAgainCount[ file.id ] = ++times;
 			}
 
-			// Another request to try to create the missing image sub-sizes.
+			/ Another request to try to create the missing image sub-sizes.
 			$.ajax({
 				type: 'post',
 				url: ajaxurl,
@@ -187,7 +187,7 @@ window.wp = window.wp || {};
 					error( message, data, file, 'no-retry' );
 				}
 			}).fail( function( jqXHR ) {
-				// If another HTTP 5xx error, try try again...
+				/ If another HTTP 5xx error, try try again...
 				if ( jqXHR.status >= 500 && jqXHR.status < 600 ) {
 					tryAgain( message, data, file );
 					return;
@@ -212,7 +212,7 @@ window.wp = window.wp || {};
 			var isImage = file.type && file.type.indexOf( 'image/' ) === 0,
 				status = data && data.status;
 
-			// If the file is an image and the error is HTTP 5xx try to create sub-sizes again.
+			/ If the file is an image and the error is HTTP 5xx try to create sub-sizes again.
 			if ( retry !== 'no-retry' && isImage && status >= 500 && status < 600 ) {
 				tryAgain( message, data, file );
 				return;
@@ -241,7 +241,7 @@ window.wp = window.wp || {};
 		fileUploaded = function( up, file, response ) {
 			var complete;
 
-			// Remove the "uploading" UI elements.
+			/ Remove the "uploading" UI elements.
 			_.each( ['file','loaded','size','percent'], function( key ) {
 				file.attachment.unset( key );
 			} );
@@ -272,7 +272,7 @@ window.wp = window.wp || {};
 
 			dragdrop = self.supports.dragdrop = uploader.features.dragdrop && ! Uploader.browser.mobile;
 
-			// Generate drag/drop helper classes.
+			/ Generate drag/drop helper classes.
 			if ( ! dropzone ) {
 				return;
 			}
@@ -283,7 +283,7 @@ window.wp = window.wp || {};
 				return dropzone.unbind('.wp-uploader');
 			}
 
-			// 'dragenter' doesn't fire correctly, simulate it with a limited 'dragover'.
+			/ 'dragenter' doesn't fire correctly, simulate it with a limited 'dragover'.
 			dropzone.on( 'dragover.wp-uploader', function() {
 				if ( timer ) {
 					clearTimeout( timer );
@@ -346,31 +346,31 @@ window.wp = window.wp || {};
 			_.each( files, function( file ) {
 				var attributes, image;
 
-				// Ignore failed uploads.
+				/ Ignore failed uploads.
 				if ( plupload.FAILED === file.status ) {
 					return;
 				}
 
 				if ( file.type === 'image/heic' && up.settings.heic_upload_error ) {
-					// Show error but do not block uploading.
+					/ Show error but do not block uploading.
 					Uploader.errors.unshift({
 						message: pluploadL10n.unsupported_image,
 						data:    {},
 						file:    file
 					});
 				} else if ( file.type === 'image/webp' && up.settings.webp_upload_error ) {
-					// Disallow uploading of WebP images if the server cannot edit them.
+					/ Disallow uploading of WebP images if the server cannot edit them.
 					error( pluploadL10n.noneditable_image, {}, file, 'no-retry' );
 					up.removeFile( file );
 					return;
 				} else if ( file.type === 'image/avif' && up.settings.avif_upload_error ) {
-					// Disallow uploading of AVIF images if the server cannot edit them.
+					/ Disallow uploading of AVIF images if the server cannot edit them.
 					error( pluploadL10n.noneditable_image, {}, file, 'no-retry' );
 					up.removeFile( file );
 					return;
 				}
 
-				// Generate attributes for a new `Attachment` model.
+				/ Generate attributes for a new `Attachment` model.
 				attributes = _.extend({
 					file:      file,
 					uploading: true,
@@ -380,20 +380,20 @@ window.wp = window.wp || {};
 					uploadedTo: wp.media.model.settings.post.id
 				}, _.pick( file, 'loaded', 'size', 'percent' ) );
 
-				// Handle early mime type scanning for images.
+				/ Handle early mime type scanning for images.
 				image = /(?:jpe?g|png|gif)$/i.exec( file.name );
 
-				// For images set the model's type and subtype attributes.
+				/ For images set the model's type and subtype attributes.
 				if ( image ) {
 					attributes.type = 'image';
 
-					// `jpeg`, `png` and `gif` are valid subtypes.
-					// `jpg` is not, so map it to `jpeg`.
+					/ `jpeg`, `png` and `gif` are valid subtypes.
+					/ `jpg` is not, so map it to `jpeg`.
 					attributes.subtype = ( 'jpg' === image[0] ) ? 'jpeg' : image[0];
 				}
 
-				// Create a model for the attachment, and add it to the Upload queue collection
-				// so listeners to the upload queue can track and display upload progress.
+				/ Create a model for the attachment, and add it to the Upload queue collection
+				/ so listeners to the upload queue can track and display upload progress.
 				file.attachment = wp.media.model.Attachment.create( attributes );
 				Uploader.queue.add( file.attachment );
 
@@ -431,7 +431,7 @@ window.wp = window.wp || {};
 				return error( response.data && response.data.message, response.data, file );
 			}
 
-			// Success. Update the UI with the new attachment.
+			/ Success. Update the UI with the new attachment.
 			fileUploaded( up, file, response );
 		});
 
@@ -445,7 +445,7 @@ window.wp = window.wp || {};
 			var message = pluploadL10n.default_error,
 				key;
 
-			// Check for plupload errors.
+			/ Check for plupload errors.
 			for ( key in Uploader.errorMap ) {
 				if ( pluploadError.code === plupload[ key ] ) {
 					message = Uploader.errorMap[ key ];
@@ -464,12 +464,12 @@ window.wp = window.wp || {};
 
 	};
 
-	// Adds the 'defaults' and 'browser' properties.
+	/ Adds the 'defaults' and 'browser' properties.
 	$.extend( Uploader, _wpPluploadSettings );
 
 	Uploader.uuid = 0;
 
-	// Map Plupload error codes to user friendly error messages.
+	/ Map Plupload error codes to user friendly error messages.
 	Uploader.errorMap = {
 		'FAILED':                 pluploadL10n.upload_failed,
 		'FILE_EXTENSION_ERROR':   pluploadL10n.invalid_filetype,
@@ -534,7 +534,7 @@ window.wp = window.wp || {};
 			if ( this.browser ) {
 				node = this.browser[0];
 
-				// Check if the browser node is in the DOM.
+				/ Check if the browser node is in the DOM.
 				while ( node ) {
 					if ( node === document.body ) {
 						attached = true;
@@ -570,11 +570,11 @@ window.wp = window.wp || {};
 		}
 	});
 
-	// Create a collection of attachments in the upload queue,
-	// so that other modules can track and display upload progress.
+	/ Create a collection of attachments in the upload queue,
+	/ so that other modules can track and display upload progress.
 	Uploader.queue = new wp.media.model.Attachments( [], { query: false });
 
-	// Create a collection to collect errors incurred while attempting upload.
+	/ Create a collection to collect errors incurred while attempting upload.
 	Uploader.errors = new Backbone.Collection();
 
 	exports.Uploader = Uploader;

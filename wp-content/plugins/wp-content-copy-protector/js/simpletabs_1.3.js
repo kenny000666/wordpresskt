@@ -25,11 +25,11 @@ var kmrSimpleTabs = {
 		for(var i=0; i<containerDiv.length; i++){
 			if (containerDiv[i].className == kmrSimpleTabs.sbContainerClass) {
 				
-				// assign a unique ID for this tab block and then grab it
+				/ assign a unique ID for this tab block and then grab it
 				containerDiv[i].setAttribute("id",kmrSimpleTabs.sbIdPrefix+[i]);		
 				var containerDivId = containerDiv[i].getAttribute("id");
 	
-				// Navigation
+				/ Navigation
 				var ul = containerDiv[i].getElementsByTagName("ul");
 				
 				for(var j=0; j<ul.length; j++){
@@ -38,7 +38,7 @@ var kmrSimpleTabs = {
 						var a = ul[j].getElementsByTagName("a");
 						for(var k=0; k<a.length; k++){
 							a[k].setAttribute("id",containerDivId+"_a_"+k);
-							// get current
+							/ get current
 							if(kmrSimpleTabs.readCookie('simpleTabsCookie')){
 								var cookieElements = kmrSimpleTabs.readCookie('simpleTabsCookie').split("_");
 								var curTabCont = cookieElements[1];
@@ -64,7 +64,7 @@ var kmrSimpleTabs = {
 					}
 				}
 	
-				// Tab Content
+				/ Tab Content
 				var div = containerDiv[i].getElementsByTagName("div");
 				var countDivs = 0;
 				for(var l=0; l<div.length; l++){
@@ -90,31 +90,31 @@ var kmrSimpleTabs = {
 					}
 				}	
 	
-				// End navigation and content block handling	
+				/ End navigation and content block handling	
 			}
 		}
 	},
 	
-	// Function to set the current tab
+	/ Function to set the current tab
 	setCurrent: function(elm,cookie){
 		
 		this.eraseCookie(cookie);
 		
-		//get container ID
+		/get container ID
 		var thisContainerID = elm.parentNode.parentNode.parentNode.getAttribute("id");
 	
-		// get current anchor position
+		/ get current anchor position
 		var regExpAnchor = thisContainerID+"_a_";
 		var thisLinkPosition = elm.getAttribute("id").replace(regExpAnchor,"");
 	
-		// change to clicked anchor
+		/ change to clicked anchor
 		var otherLinks = elm.parentNode.parentNode.getElementsByTagName("a");
 		for(var n=0; n<otherLinks.length; n++){
 			otherLinks[n].className = "";
 		}
 		elm.className = kmrSimpleTabs.sbCurrentNavClass;
 		
-		// change to associated div
+		/ change to associated div
 		var otherDivs = document.getElementById(thisContainerID).getElementsByTagName("div");
 		var RegExpForContentClass = new RegExp(kmrSimpleTabs.sbContentClass);
 		for(var i=0; i<otherDivs.length; i++){
@@ -124,15 +124,15 @@ var kmrSimpleTabs = {
 		}
 		document.getElementById(thisContainerID+"_div_"+thisLinkPosition).className = kmrSimpleTabs.sbContentClass+" "+kmrSimpleTabs.sbCurrentTabClass;
 	
-		// get Tabs container ID
+		/ get Tabs container ID
 		var RegExpForPrefix = new RegExp(kmrSimpleTabs.sbIdPrefix);
 		var thisContainerPosition = thisContainerID.replace(RegExpForPrefix,"");
 		
-		// set cookie
+		/ set cookie
 		this.createCookie(cookie,'simpleTabsCookie_'+thisContainerPosition+'_'+thisLinkPosition,1);
 	},
 	
-	// Cookies
+	/ Cookies
 	createCookie: function(name,value,days) {
 		if (days) {
 			var date = new Date();
@@ -158,7 +158,7 @@ var kmrSimpleTabs = {
 		this.createCookie(name,"",-1);
 	},
 
-	// Loader
+	/ Loader
 	addLoadEvent: function(func) {
 		var oldonload = window.onload;
 		if (typeof window.onload != 'function') {
@@ -173,7 +173,7 @@ var kmrSimpleTabs = {
 		}
 	}
 	
-	// END
+	/ END
 };
 
 // Load SimpleTabs

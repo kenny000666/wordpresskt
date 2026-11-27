@@ -6,7 +6,7 @@
  * @since 1.8.6
  */
 
-var WPForms = window.WPForms || {}; // eslint-disable-line no-var
+var WPForms = window.WPForms || {}; / eslint-disable-line no-var
 
 WPForms.Admin = WPForms.Admin || {};
 WPForms.Admin.Builder = WPForms.Admin.Builder || {};
@@ -66,12 +66,12 @@ WPForms.Admin.Builder.PanelLoader = WPForms.Admin.Builder.PanelLoader || ( funct
 		 * @since 1.8.6
 		 */
 		setup() {
-			// Cache DOM elements.
+			/ Cache DOM elements.
 			el.$builder = $( '#wpforms-builder' );
 			el.$form = $( '#wpforms-builder-form' );
 			el.$panels = el.$builder.find( '.wpforms-panels' );
 
-			// Init vars.
+			/ Init vars.
 			vars.currentPanel = wpf.getQueryString( 'view' );
 		},
 
@@ -81,21 +81,21 @@ WPForms.Admin.Builder.PanelLoader = WPForms.Admin.Builder.PanelLoader || ( funct
 		 * @since 1.8.6
 		 */
 		events() {
-			// Panel switching.
+			/ Panel switching.
 			el.$builder.on( 'wpformsPanelSwitch', function( e, panel ) {
-				// Skip if the panel is still loading.
+				/ Skip if the panel is still loading.
 				if ( el.$builder.find( `.wpforms-panel-${ panel }-button .wpforms-loading-spinner` ).length ) {
 					e.preventDefault();
 
 					return;
 				}
 
-				// Open the panel if it is already loaded.
+				/ Open the panel if it is already loaded.
 				if ( el.$panels.find( '#wpforms-panel-' + panel ).length ) {
 					return;
 				}
 
-				// Load panel.
+				/ Load panel.
 				e.preventDefault();
 				app.loadPanel( panel );
 			} );
@@ -111,36 +111,36 @@ WPForms.Admin.Builder.PanelLoader = WPForms.Admin.Builder.PanelLoader || ( funct
 		loadPanel( panel ) {
 			app.showSpinner( panel );
 
-			// Load panel.
+			/ Load panel.
 			$.post( wpforms_builder.ajax_url, {
 				nonce: wpforms_builder.nonce,
 				action: 'wpforms_builder_load_panel',
 				panel,
-				form_id: wpf.getQueryString( 'form_id' ), // eslint-disable-line camelcase
+				form_id: wpf.getQueryString( 'form_id' ), / eslint-disable-line camelcase
 			} )
 				.done( function( response ) {
 					if ( ! response.success || ! response.data?.length ) {
-						// Show an error message.
+						/ Show an error message.
 						app.displayErrorModal( `<p>${ wpforms_builder.error_load_templates }</p><p>${ wpforms_builder.error_contact_support }</p>` );
 
 						return;
 					}
 
-					// Append panel to the DOM.
+					/ Append panel to the DOM.
 					app.embedPanel( panel, response.data );
 
-					// Finalize switching to the panel.
+					/ Finalize switching to the panel.
 					app.switchPanel( panel );
 
-					// Trigger panel loaded event.
+					/ Trigger panel loaded event.
 					el.$builder.trigger( 'wpformsBuilderPanelLoaded', [ panel ] );
 				} )
 				.fail( function() {
-					// Show an error message.
+					/ Show an error message.
 					app.displayErrorModal( `<p>${ wpforms_builder.something_went_wrong }.</p><p>${ wpforms_builder.error_contact_support }</p>` );
 				} )
 				.always( function() {
-					// Hide loading spinner.
+					/ Hide loading spinner.
 					app.hideSpinner( panel );
 				} );
 		},
@@ -182,7 +182,7 @@ WPForms.Admin.Builder.PanelLoader = WPForms.Admin.Builder.PanelLoader || ( funct
 		 * @param {string} panelHtml Panel HTML.
 		 */
 		embedPanel( panel, panelHtml ) {
-			// Append panel to the DOM.
+			/ Append panel to the DOM.
 			el.$panels.append( panelHtml );
 		},
 
@@ -228,7 +228,7 @@ WPForms.Admin.Builder.PanelLoader = WPForms.Admin.Builder.PanelLoader || ( funct
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

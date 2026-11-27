@@ -49,7 +49,7 @@
 
 				isFiltered = false;
 
-				// Remove the image button.
+				/ Remove the image button.
 				el.find( '.remove-image, .remove-file' ).off( 'click' ).on(
 					'click',
 					function () {
@@ -57,7 +57,7 @@
 					}
 				);
 
-				// Upload media button.
+				/ Upload media button.
 				el.find( '.media_upload_button' ).off().on(
 					'click',
 					function ( event ) {
@@ -68,7 +68,7 @@
 		);
 	};
 
-	// Add a file via the wp.media function.
+	/ Add a file via the wp.media function.
 	redux.field_objects.media.addFile = function ( event, selector ) {
 		let frame;
 		let libFilter;
@@ -83,16 +83,16 @@
 
 		event.preventDefault();
 
-		// If the media frame already exists, reopen it.
+		/ If the media frame already exists, reopen it.
 		if ( frame ) {
 			frame.open();
 			return;
 		}
 
-		// Get library filter data.
+		/ Get library filter data.
 		filter = $( selector ).find( '.library-filter' ).data( 'lib-filter' );
 
-		// Must exist to do decoding.
+		/ Must exist to do decoding.
 		if ( undefined !== filter ) {
 			if ( '' !== filter ) {
 				libFilter  = [];
@@ -110,32 +110,32 @@
 			}
 		}
 
-		// Create the media frame.
+		/ Create the media frame.
 		frame = wp.media(
 			{ multiple: false,
-				library: { type: libFilter },  // Only allow images.
+				library: { type: libFilter },  / Only allow images.
 
-				// Set the title of the modal.
+				/ Set the title of the modal.
 				title: jQueryel.data( 'choose' ),
 
-				// Customize the 'submit' button.
+				/ Customize the 'submit' button.
 				button: {
 
-					// Set the text of the button.
+					/ Set the text of the button.
 					text: jQueryel.data( 'update' )
 
-					// Tell the button not to close the modal, since we're
-					// going to refresh the page when the image is selected.
+					/ Tell the button not to close the modal, since we're
+					/ going to refresh the page when the image is selected.
 				}
 			}
 		);
 
-		// When an image is selected, run a callback.
+		/ When an image is selected, run a callback.
 		frame.on(
 			'select',
 			function () {
 
-				// Grab the selected attachment.
+				/ Grab the selected attachment.
 				const attachment = frame.state().get( 'selection' ).first();
 
 				frame.close();
@@ -202,25 +202,25 @@
 					selector.find( '.screenshot' ).empty().hide().append( '<img alt="" class="redux-option-image" src="' + thumbSrc + '">' ).slideDown( 'fast' );
 				}
 
-				selector.find( '.remove-image' ).removeClass( 'hide' ); // Show "Remove" button.
+				selector.find( '.remove-image' ).removeClass( 'hide' ); / Show "Remove" button.
 				selector.find( '.redux-background-properties' ).slideDown();
 			}
 		);
 
-		// Finally, open the modal.
+		/ Finally, open the modal.
 		frame.open();
 	};
 
-	// Function to remove the image on click. Still requires a save.
+	/ Function to remove the image on click. Still requires a save.
 	redux.field_objects.media.removeFile = function ( selector ) {
 		let screenshot;
 
-		// This shouldn't have been run...
+		/ This shouldn't have been run...
 		if ( ! selector.find( '.remove-image' ).addClass( 'hide' ) ) {
 			return;
 		}
 
-		selector.find( '.remove-image' ).addClass( 'hide' ); // Hide "Remove" button.
+		selector.find( '.remove-image' ).addClass( 'hide' ); / Hide "Remove" button.
 		selector.find( '.upload' ).val( '' );
 		selector.find( '.upload-id' ).val( '' );
 		selector.find( '.upload-height' ).val( '' );
@@ -231,13 +231,13 @@
 
 		screenshot = selector.find( '.screenshot' );
 
-		// Hide the screenshot.
+		/ Hide the screenshot.
 		screenshot.slideUp();
 
 		selector.find( '.remove-file' ).off();
 
-		// We don't display the upload button if .upload-notice is present.
-		// This means the user doesn't have the WordPress 3.5 Media Library Support.
+		/ We don't display the upload button if .upload-notice is present.
+		/ This means the user doesn't have the WordPress 3.5 Media Library Support.
 		if ( selector.find( '.section-upload .upload-notice' ).length > 0 ) {
 			selector.find( '.media_upload_button' ).remove();
 		}

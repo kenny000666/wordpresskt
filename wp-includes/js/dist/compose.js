@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 1933:
@@ -28,7 +28,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
  */
 (function(window, document, undefined) {
 
-    // Check if mousetrap is used inside browser, if not, return
+    / Check if mousetrap is used inside browser, if not, return
     if (!window) {
         return;
     }
@@ -163,11 +163,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
      */
     for (i = 0; i <= 9; ++i) {
 
-        // This needs to use a string cause otherwise since 0 is falsey
-        // mousetrap will never fire for numpad 0 pressed as part of a keydown
-        // event.
-        //
-        // @see https://github.com/ccampbell/mousetrap/pull/258
+        / This needs to use a string cause otherwise since 0 is falsey
+        / mousetrap will never fire for numpad 0 pressed as part of a keydown
+        / event.
+        /
+        / @see https://github.com/ccampbell/mousetrap/pull/258
         _MAP[i + 96] = i.toString();
     }
 
@@ -196,19 +196,19 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
      */
     function _characterFromEvent(e) {
 
-        // for keypress events we should return the character as is
+        / for keypress events we should return the character as is
         if (e.type == 'keypress') {
             var character = String.fromCharCode(e.which);
 
-            // if the shift key is not pressed then it is safe to assume
-            // that we want the character to be lowercase.  this means if
-            // you accidentally have caps lock on then your key bindings
-            // will continue to work
-            //
-            // the only side effect that might not be desired is if you
-            // bind something like 'A' cause you want to trigger an
-            // event when capital A is pressed caps lock will no longer
-            // trigger the event.  shift+a will though.
+            / if the shift key is not pressed then it is safe to assume
+            / that we want the character to be lowercase.  this means if
+            / you accidentally have caps lock on then your key bindings
+            / will continue to work
+            /
+            / the only side effect that might not be desired is if you
+            / bind something like 'A' cause you want to trigger an
+            / event when capital A is pressed caps lock will no longer
+            / trigger the event.  shift+a will though.
             if (!e.shiftKey) {
                 character = character.toLowerCase();
             }
@@ -216,7 +216,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
             return character;
         }
 
-        // for non keypress events the special maps are needed
+        / for non keypress events the special maps are needed
         if (_MAP[e.which]) {
             return _MAP[e.which];
         }
@@ -225,11 +225,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
             return _KEYCODE_MAP[e.which];
         }
 
-        // if it is not in the special map
+        / if it is not in the special map
 
-        // with keydown and keyup events the character seems to always
-        // come in as an uppercase character whether you are pressing shift
-        // or not.  we should make sure it is always lowercase for comparisons
+        / with keydown and keyup events the character seems to always
+        / come in as an uppercase character whether you are pressing shift
+        / or not.  we should make sure it is always lowercase for comparisons
         return String.fromCharCode(e.which).toLowerCase();
     }
 
@@ -323,8 +323,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
             _REVERSE_MAP = {};
             for (var key in _MAP) {
 
-                // pull out the numeric keypad from here cause keypress should
-                // be able to detect the keys from the character
+                / pull out the numeric keypad from here cause keypress should
+                / be able to detect the keys from the character
                 if (key > 95 && key < 112) {
                     continue;
                 }
@@ -346,14 +346,14 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
      */
     function _pickBestAction(key, modifiers, action) {
 
-        // if no action was picked in we should try to pick the one
-        // that we think would work best for this key
+        / if no action was picked in we should try to pick the one
+        / that we think would work best for this key
         if (!action) {
             action = _getReverseMap()[key] ? 'keydown' : 'keypress';
         }
 
-        // modifier keys don't work as expected with keypress,
-        // switch to keydown
+        / modifier keys don't work as expected with keypress,
+        / switch to keydown
         if (action == 'keypress' && modifiers.length) {
             action = 'keydown';
         }
@@ -389,34 +389,34 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
         var i;
         var modifiers = [];
 
-        // take the keys from this pattern and figure out what the actual
-        // pattern is all about
+        / take the keys from this pattern and figure out what the actual
+        / pattern is all about
         keys = _keysFromString(combination);
 
         for (i = 0; i < keys.length; ++i) {
             key = keys[i];
 
-            // normalize key names
+            / normalize key names
             if (_SPECIAL_ALIASES[key]) {
                 key = _SPECIAL_ALIASES[key];
             }
 
-            // if this is not a keypress event then we should
-            // be smart about using shift keys
-            // this will only work for US keyboards however
+            / if this is not a keypress event then we should
+            / be smart about using shift keys
+            / this will only work for US keyboards however
             if (action && action != 'keypress' && _SHIFT_MAP[key]) {
                 key = _SHIFT_MAP[key];
                 modifiers.push('shift');
             }
 
-            // if this key is a modifier then add it to the list of modifiers
+            / if this key is a modifier then add it to the list of modifiers
             if (_isModifier(key)) {
                 modifiers.push(key);
             }
         }
 
-        // depending on what the key combination is
-        // we will try to pick the best event for it
+        / depending on what the key combination is
+        / we will try to pick the best event for it
         action = _pickBestAction(key, modifiers, action);
 
         return {
@@ -548,47 +548,47 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
             var matches = [];
             var action = e.type;
 
-            // if there are no events related to this keycode
+            / if there are no events related to this keycode
             if (!self._callbacks[character]) {
                 return [];
             }
 
-            // if a modifier key is coming up on its own we should allow it
+            / if a modifier key is coming up on its own we should allow it
             if (action == 'keyup' && _isModifier(character)) {
                 modifiers = [character];
             }
 
-            // loop through all callbacks for the key that was pressed
-            // and see if any of them match
+            / loop through all callbacks for the key that was pressed
+            / and see if any of them match
             for (i = 0; i < self._callbacks[character].length; ++i) {
                 callback = self._callbacks[character][i];
 
-                // if a sequence name is not specified, but this is a sequence at
-                // the wrong level then move onto the next match
+                / if a sequence name is not specified, but this is a sequence at
+                / the wrong level then move onto the next match
                 if (!sequenceName && callback.seq && _sequenceLevels[callback.seq] != callback.level) {
                     continue;
                 }
 
-                // if the action we are looking for doesn't match the action we got
-                // then we should keep going
+                / if the action we are looking for doesn't match the action we got
+                / then we should keep going
                 if (action != callback.action) {
                     continue;
                 }
 
-                // if this is a keypress event and the meta key and control key
-                // are not pressed that means that we need to only look at the
-                // character, otherwise check the modifiers as well
-                //
-                // chrome will not fire a keypress if meta or control is down
-                // safari will fire a keypress if meta or meta+shift is down
-                // firefox will fire a keypress if meta or control is down
+                / if this is a keypress event and the meta key and control key
+                / are not pressed that means that we need to only look at the
+                / character, otherwise check the modifiers as well
+                /
+                / chrome will not fire a keypress if meta or control is down
+                / safari will fire a keypress if meta or meta+shift is down
+                / firefox will fire a keypress if meta or control is down
                 if ((action == 'keypress' && !e.metaKey && !e.ctrlKey) || _modifiersMatch(modifiers, callback.modifiers)) {
 
-                    // when you bind a combination or sequence a second time it
-                    // should overwrite the first one.  if a sequenceName or
-                    // combination is specified in this call it does just that
-                    //
-                    // @todo make deleting its own method?
+                    / when you bind a combination or sequence a second time it
+                    / should overwrite the first one.  if a sequenceName or
+                    / combination is specified in this call it does just that
+                    /
+                    / @todo make deleting its own method?
                     var deleteCombo = !sequenceName && callback.combo == combination;
                     var deleteSequence = sequenceName && callback.seq == sequenceName && callback.level == level;
                     if (deleteCombo || deleteSequence) {
@@ -614,7 +614,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
          */
         function _fireCallback(callback, e, combo, sequence) {
 
-            // if this event should not happen stop here
+            / if this event should not happen stop here
             if (self.stopCallback(e, e.target || e.srcElement, combo, sequence)) {
                 return;
             }
@@ -640,71 +640,71 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
             var maxLevel = 0;
             var processedSequenceCallback = false;
 
-            // Calculate the maxLevel for sequences so we can only execute the longest callback sequence
+            / Calculate the maxLevel for sequences so we can only execute the longest callback sequence
             for (i = 0; i < callbacks.length; ++i) {
                 if (callbacks[i].seq) {
                     maxLevel = Math.max(maxLevel, callbacks[i].level);
                 }
             }
 
-            // loop through matching callbacks for this key event
+            / loop through matching callbacks for this key event
             for (i = 0; i < callbacks.length; ++i) {
 
-                // fire for all sequence callbacks
-                // this is because if for example you have multiple sequences
-                // bound such as "g i" and "g t" they both need to fire the
-                // callback for matching g cause otherwise you can only ever
-                // match the first one
+                / fire for all sequence callbacks
+                / this is because if for example you have multiple sequences
+                / bound such as "g i" and "g t" they both need to fire the
+                / callback for matching g cause otherwise you can only ever
+                / match the first one
                 if (callbacks[i].seq) {
 
-                    // only fire callbacks for the maxLevel to prevent
-                    // subsequences from also firing
-                    //
-                    // for example 'a option b' should not cause 'option b' to fire
-                    // even though 'option b' is part of the other sequence
-                    //
-                    // any sequences that do not match here will be discarded
-                    // below by the _resetSequences call
+                    / only fire callbacks for the maxLevel to prevent
+                    / subsequences from also firing
+                    /
+                    / for example 'a option b' should not cause 'option b' to fire
+                    / even though 'option b' is part of the other sequence
+                    /
+                    / any sequences that do not match here will be discarded
+                    / below by the _resetSequences call
                     if (callbacks[i].level != maxLevel) {
                         continue;
                     }
 
                     processedSequenceCallback = true;
 
-                    // keep a list of which sequences were matches for later
+                    / keep a list of which sequences were matches for later
                     doNotReset[callbacks[i].seq] = 1;
                     _fireCallback(callbacks[i].callback, e, callbacks[i].combo, callbacks[i].seq);
                     continue;
                 }
 
-                // if there were no sequence matches but we are still here
-                // that means this is a regular match so we should fire that
+                / if there were no sequence matches but we are still here
+                / that means this is a regular match so we should fire that
                 if (!processedSequenceCallback) {
                     _fireCallback(callbacks[i].callback, e, callbacks[i].combo);
                 }
             }
 
-            // if the key you pressed matches the type of sequence without
-            // being a modifier (ie "keyup" or "keypress") then we should
-            // reset all sequences that were not matched by this event
-            //
-            // this is so, for example, if you have the sequence "h a t" and you
-            // type "h e a r t" it does not match.  in this case the "e" will
-            // cause the sequence to reset
-            //
-            // modifier keys are ignored because you can have a sequence
-            // that contains modifiers such as "enter ctrl+space" and in most
-            // cases the modifier key will be pressed before the next key
-            //
-            // also if you have a sequence such as "ctrl+b a" then pressing the
-            // "b" key will trigger a "keypress" and a "keydown"
-            //
-            // the "keydown" is expected when there is a modifier, but the
-            // "keypress" ends up matching the _nextExpectedAction since it occurs
-            // after and that causes the sequence to reset
-            //
-            // we ignore keypresses in a sequence that directly follow a keydown
-            // for the same character
+            / if the key you pressed matches the type of sequence without
+            / being a modifier (ie "keyup" or "keypress") then we should
+            / reset all sequences that were not matched by this event
+            /
+            / this is so, for example, if you have the sequence "h a t" and you
+            / type "h e a r t" it does not match.  in this case the "e" will
+            / cause the sequence to reset
+            /
+            / modifier keys are ignored because you can have a sequence
+            / that contains modifiers such as "enter ctrl+space" and in most
+            / cases the modifier key will be pressed before the next key
+            /
+            / also if you have a sequence such as "ctrl+b a" then pressing the
+            / "b" key will trigger a "keypress" and a "keydown"
+            /
+            / the "keydown" is expected when there is a modifier, but the
+            / "keypress" ends up matching the _nextExpectedAction since it occurs
+            / after and that causes the sequence to reset
+            /
+            / we ignore keypresses in a sequence that directly follow a keydown
+            / for the same character
             var ignoreThisKeypress = e.type == 'keypress' && _ignoreNextKeypress;
             if (e.type == _nextExpectedAction && !_isModifier(character) && !ignoreThisKeypress) {
                 _resetSequences(doNotReset);
@@ -721,20 +721,20 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
          */
         function _handleKeyEvent(e) {
 
-            // normalize e.which for key events
-            // @see http://stackoverflow.com/questions/4285627/javascript-keycode-vs-charcode-utter-confusion
+            / normalize e.which for key events
+            / @see http://stackoverflow.com/questions/4285627/javascript-keycode-vs-charcode-utter-confusion
             if (typeof e.which !== 'number') {
                 e.which = e.keyCode;
             }
 
             var character = _characterFromEvent(e);
 
-            // no character found then stop
+            / no character found then stop
             if (!character) {
                 return;
             }
 
-            // need to use === for the character check because the character can be 0
+            / need to use === for the character check because the character can be 0
             if (e.type == 'keyup' && _ignoreNextKeyup === character) {
                 _ignoreNextKeyup = false;
                 return;
@@ -767,8 +767,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
          */
         function _bindSequence(combo, keys, callback, action) {
 
-            // start off by adding a sequence level record for this combination
-            // and setting the level to 0
+            / start off by adding a sequence level record for this combination
+            / and setting the level to 0
             _sequenceLevels[combo] = 0;
 
             /**
@@ -796,27 +796,27 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
             function _callbackAndReset(e) {
                 _fireCallback(callback, e, combo);
 
-                // we should ignore the next key up if the action is key down
-                // or keypress.  this is so if you finish a sequence and
-                // release the key the final key will not trigger a keyup
+                / we should ignore the next key up if the action is key down
+                / or keypress.  this is so if you finish a sequence and
+                / release the key the final key will not trigger a keyup
                 if (action !== 'keyup') {
                     _ignoreNextKeyup = _characterFromEvent(e);
                 }
 
-                // weird race condition if a sequence ends with the key
-                // another sequence begins with
+                / weird race condition if a sequence ends with the key
+                / another sequence begins with
                 setTimeout(_resetSequences, 10);
             }
 
-            // loop through keys one at a time and bind the appropriate callback
-            // function.  for any key leading up to the final one it should
-            // increase the sequence. after the final, it should reset all sequences
-            //
-            // if an action is specified in the original bind call then that will
-            // be used throughout.  otherwise we will pass the action that the
-            // next key in the sequence should match.  this allows a sequence
-            // to mix and match keypress and keydown events depending on which
-            // ones are better suited to the key provided
+            / loop through keys one at a time and bind the appropriate callback
+            / function.  for any key leading up to the final one it should
+            / increase the sequence. after the final, it should reset all sequences
+            /
+            / if an action is specified in the original bind call then that will
+            / be used throughout.  otherwise we will pass the action that the
+            / next key in the sequence should match.  this allows a sequence
+            / to mix and match keypress and keydown events depending on which
+            / ones are better suited to the key provided
             for (var i = 0; i < keys.length; ++i) {
                 var isFinal = i + 1 === keys.length;
                 var wrappedCallback = isFinal ? _callbackAndReset : _increaseSequence(action || _getKeyInfo(keys[i + 1]).action);
@@ -836,17 +836,17 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
          */
         function _bindSingle(combination, callback, action, sequenceName, level) {
 
-            // store a direct mapped reference for use with Mousetrap.trigger
+            / store a direct mapped reference for use with Mousetrap.trigger
             self._directMap[combination + ':' + action] = callback;
 
-            // make sure multiple spaces in a row become a single space
+            / make sure multiple spaces in a row become a single space
             combination = combination.replace(/\s+/g, ' ');
 
             var sequence = combination.split(' ');
             var info;
 
-            // if this pattern is a sequence of keys then run through this method
-            // to reprocess each pattern one key at a time
+            / if this pattern is a sequence of keys then run through this method
+            / to reprocess each pattern one key at a time
             if (sequence.length > 1) {
                 _bindSequence(combination, sequence, callback, action);
                 return;
@@ -854,19 +854,19 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
 
             info = _getKeyInfo(combination, action);
 
-            // make sure to initialize array if this is the first time
-            // a callback is added for this key
+            / make sure to initialize array if this is the first time
+            / a callback is added for this key
             self._callbacks[info.key] = self._callbacks[info.key] || [];
 
-            // remove an existing match if there is one
+            / remove an existing match if there is one
             _getMatches(info.key, info.modifiers, {type: info.action}, sequenceName, combination, level);
 
-            // add this call back to the array
-            // if it is a sequence put it at the beginning
-            // if not put it at the end
-            //
-            // this is important because the way these are processed expects
-            // the sequence ones to come first
+            / add this call back to the array
+            / if it is a sequence put it at the beginning
+            / if not put it at the end
+            /
+            / this is important because the way these are processed expects
+            / the sequence ones to come first
             self._callbacks[info.key][sequenceName ? 'unshift' : 'push']({
                 callback: callback,
                 modifiers: info.modifiers,
@@ -891,7 +891,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
             }
         };
 
-        // start!
+        / start!
         _addEvent(targetElement, 'keypress', _handleKeyEvent);
         _addEvent(targetElement, 'keydown', _handleKeyEvent);
         _addEvent(targetElement, 'keyup', _handleKeyEvent);
@@ -979,7 +979,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
     Mousetrap.prototype.stopCallback = function(e, element) {
         var self = this;
 
-        // if the element has the class "mousetrap" then no need to stop
+        / if the element has the class "mousetrap" then no need to stop
         if ((' ' + element.className + ' ').indexOf(' mousetrap ') > -1) {
             return false;
         }
@@ -988,21 +988,21 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
             return false;
         }
 
-        // Events originating from a shadow DOM are re-targetted and `e.target` is the shadow host,
-        // not the initial event target in the shadow tree. Note that not all events cross the
-        // shadow boundary.
-        // For shadow trees with `mode: 'open'`, the initial event target is the first element in
-        // the event’s composed path. For shadow trees with `mode: 'closed'`, the initial event
-        // target cannot be obtained.
+        / Events originating from a shadow DOM are re-targetted and `e.target` is the shadow host,
+        / not the initial event target in the shadow tree. Note that not all events cross the
+        / shadow boundary.
+        / For shadow trees with `mode: 'open'`, the initial event target is the first element in
+        / the event’s composed path. For shadow trees with `mode: 'closed'`, the initial event
+        / target cannot be obtained.
         if ('composedPath' in e && typeof e.composedPath === 'function') {
-            // For open shadow trees, update `element` so that the following check works.
+            / For open shadow trees, update `element` so that the following check works.
             var initialEventTarget = e.composedPath()[0];
             if (initialEventTarget !== e.target) {
                 element = initialEventTarget;
             }
         }
 
-        // stop for input, select, and textarea
+        / stop for input, select, and textarea
         return element.tagName == 'INPUT' || element.tagName == 'SELECT' || element.tagName == 'TEXTAREA' || element.isContentEditable;
     };
 
@@ -1047,15 +1047,15 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
 
     Mousetrap.init();
 
-    // expose mousetrap to the global object
+    / expose mousetrap to the global object
     window.Mousetrap = Mousetrap;
 
-    // expose as a common js module
+    / expose as a common js module
     if ( true && module.exports) {
         module.exports = Mousetrap;
     }
 
-    // expose mousetrap as an AMD module
+    / expose mousetrap as an AMD module
     if (true) {
         !(__WEBPACK_AMD_DEFINE_RESULT__ = (function() {
             return Mousetrap;
@@ -1081,7 +1081,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
 		module.exports = factory();
 	else {}
 })(this, function() {
-return /******/ (function() { // webpackBootstrap
+return /******/ (function() { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 686:
@@ -1103,7 +1103,7 @@ var listen_default = /*#__PURE__*/__nested_webpack_require_623__.n(listen);
 // EXTERNAL MODULE: ./node_modules/select/src/select.js
 var src_select = __nested_webpack_require_623__(817);
 var select_default = /*#__PURE__*/__nested_webpack_require_623__.n(src_select);
-;// CONCATENATED MODULE: ./src/common/command.js
+;/ CONCATENATED MODULE: ./src/common/command.js
 /**
  * Executes a given operation type.
  * @param {String} type
@@ -1116,7 +1116,7 @@ function command(type) {
     return false;
   }
 }
-;// CONCATENATED MODULE: ./src/actions/cut.js
+;/ CONCATENATED MODULE: ./src/actions/cut.js
 
 
 /**
@@ -1132,7 +1132,7 @@ var ClipboardActionCut = function ClipboardActionCut(target) {
 };
 
 /* harmony default export */ var actions_cut = (ClipboardActionCut);
-;// CONCATENATED MODULE: ./src/common/create-fake-element.js
+;/ CONCATENATED MODULE: ./src/common/create-fake-element.js
 /**
  * Creates a fake textarea element with a value.
  * @param {String} value
@@ -1140,16 +1140,16 @@ var ClipboardActionCut = function ClipboardActionCut(target) {
  */
 function createFakeElement(value) {
   var isRTL = document.documentElement.getAttribute('dir') === 'rtl';
-  var fakeElement = document.createElement('textarea'); // Prevent zooming on iOS
+  var fakeElement = document.createElement('textarea'); / Prevent zooming on iOS
 
-  fakeElement.style.fontSize = '12pt'; // Reset box model
+  fakeElement.style.fontSize = '12pt'; / Reset box model
 
   fakeElement.style.border = '0';
   fakeElement.style.padding = '0';
-  fakeElement.style.margin = '0'; // Move element out of screen horizontally
+  fakeElement.style.margin = '0'; / Move element out of screen horizontally
 
   fakeElement.style.position = 'absolute';
-  fakeElement.style[isRTL ? 'right' : 'left'] = '-9999px'; // Move element to the same position vertically
+  fakeElement.style[isRTL ? 'right' : 'left'] = '-9999px'; / Move element to the same position vertically
 
   var yPosition = window.pageYOffset || document.documentElement.scrollTop;
   fakeElement.style.top = "".concat(yPosition, "px");
@@ -1157,7 +1157,7 @@ function createFakeElement(value) {
   fakeElement.value = value;
   return fakeElement;
 }
-;// CONCATENATED MODULE: ./src/actions/copy.js
+;/ CONCATENATED MODULE: ./src/actions/copy.js
 
 
 
@@ -1193,7 +1193,7 @@ var ClipboardActionCopy = function ClipboardActionCopy(target) {
   if (typeof target === 'string') {
     selectedText = fakeCopyAction(target, options);
   } else if (target instanceof HTMLInputElement && !['text', 'search', 'url', 'tel', 'password'].includes(target === null || target === void 0 ? void 0 : target.type)) {
-    // If input type doesn't support `setSelectionRange`. Simulate it. https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/setSelectionRange
+    / If input type doesn't support `setSelectionRange`. Simulate it. https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/setSelectionRange
     selectedText = fakeCopyAction(target.value, options);
   } else {
     selectedText = select_default()(target);
@@ -1204,7 +1204,7 @@ var ClipboardActionCopy = function ClipboardActionCopy(target) {
 };
 
 /* harmony default export */ var actions_copy = (ClipboardActionCopy);
-;// CONCATENATED MODULE: ./src/actions/default.js
+;/ CONCATENATED MODULE: ./src/actions/default.js
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
@@ -1217,16 +1217,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 var ClipboardActionDefault = function ClipboardActionDefault() {
   var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  // Defines base properties passed from constructor.
+  / Defines base properties passed from constructor.
   var _options$action = options.action,
       action = _options$action === void 0 ? 'copy' : _options$action,
       container = options.container,
       target = options.target,
-      text = options.text; // Sets the `action` to be performed which can be either 'copy' or 'cut'.
+      text = options.text; / Sets the `action` to be performed which can be either 'copy' or 'cut'.
 
   if (action !== 'copy' && action !== 'cut') {
     throw new Error('Invalid "action" value, use either "copy" or "cut"');
-  } // Sets the `target` property using an element that will be have its content copied.
+  } / Sets the `target` property using an element that will be have its content copied.
 
 
   if (target !== undefined) {
@@ -1241,14 +1241,14 @@ var ClipboardActionDefault = function ClipboardActionDefault() {
     } else {
       throw new Error('Invalid "target" value, use a valid Element');
     }
-  } // Define selection strategy based on `text` property.
+  } / Define selection strategy based on `text` property.
 
 
   if (text) {
     return actions_copy(text, {
       container: container
     });
-  } // Defines which selection strategy based on `target` property.
+  } / Defines which selection strategy based on `target` property.
 
 
   if (target) {
@@ -1259,7 +1259,7 @@ var ClipboardActionDefault = function ClipboardActionDefault() {
 };
 
 /* harmony default export */ var actions_default = (ClipboardActionDefault);
-;// CONCATENATED MODULE: ./src/clipboard.js
+;/ CONCATENATED MODULE: ./src/clipboard.js
 function clipboard_typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { clipboard_typeof = function _typeof(obj) { return typeof obj; }; } else { clipboard_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return clipboard_typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1375,7 +1375,7 @@ var Clipboard = /*#__PURE__*/function (_Emitter) {
         container: this.container,
         target: this.target(trigger),
         text: this.text(trigger)
-      }); // Fires an event based on the copy operation result.
+      }); / Fires an event based on the copy operation result.
 
       this.emit(text ? 'success' : 'error', {
         action: action,
@@ -1563,24 +1563,24 @@ function _delegate(element, selector, type, callback, useCapture) {
  * @return {Object}
  */
 function delegate(elements, selector, type, callback, useCapture) {
-    // Handle the regular Element usage
+    / Handle the regular Element usage
     if (typeof elements.addEventListener === 'function') {
         return _delegate.apply(null, arguments);
     }
 
-    // Handle Element-less usage, it defaults to global delegation
+    / Handle Element-less usage, it defaults to global delegation
     if (typeof type === 'function') {
-        // Use `document` as the first parameter, then apply arguments
-        // This is a short way to .unshift `arguments` without running into deoptimizations
+        / Use `document` as the first parameter, then apply arguments
+        / This is a short way to .unshift `arguments` without running into deoptimizations
         return _delegate.bind(null, document).apply(null, arguments);
     }
 
-    // Handle Selector-based usage
+    / Handle Selector-based usage
     if (typeof elements === 'string') {
         elements = document.querySelectorAll(elements);
     }
 
-    // Handle Array-like based usage
+    / Handle Array-like based usage
     return Array.prototype.map.call(elements, function (element) {
         return _delegate(element, selector, type, callback, useCapture);
     });
@@ -1822,8 +1822,8 @@ module.exports = select;
 /***/ (function(module) {
 
 function E () {
-  // Keep this empty so it's easier to inherit from
-  // (via https://github.com/lipsmack from https://github.com/scottcorgan/tiny-emitter/issues/3)
+  / Keep this empty so it's easier to inherit from
+  / (via https://github.com/lipsmack from https://github.com/scottcorgan/tiny-emitter/issues/3)
 }
 
 E.prototype = {
@@ -1874,9 +1874,9 @@ E.prototype = {
       }
     }
 
-    // Remove event from queue to prevent memory leak
-    // Suggested by https://github.com/lazd
-    // Ref: https://github.com/scottcorgan/tiny-emitter/commit/c6ebfaa9bc973b33d110a84a307742b7cf94c953#commitcomment-5024910
+    / Remove event from queue to prevent memory leak
+    / Suggested by https://github.com/lazd
+    / Ref: https://github.com/scottcorgan/tiny-emitter/commit/c6ebfaa9bc973b33d110a84a307742b7cf94c953#commitcomment-5024910
 
     (liveEvents.length)
       ? e[name] = liveEvents
@@ -1894,33 +1894,33 @@ module.exports.TinyEmitter = E;
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __nested_webpack_require_24495__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		if(__webpack_module_cache__[moduleId]) {
 /******/ 			return __webpack_module_cache__[moduleId].exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __nested_webpack_require_24495__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	!function() {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__nested_webpack_require_24495__.n = function(module) {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				function() { return module['default']; } :
@@ -1932,7 +1932,7 @@ module.exports.TinyEmitter = E;
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	!function() {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__nested_webpack_require_24495__.d = function(exports, definition) {
 /******/ 			for(var key in definition) {
 /******/ 				if(__nested_webpack_require_24495__.o(definition, key) && !__nested_webpack_require_24495__.o(exports, key)) {
@@ -1948,9 +1948,9 @@ module.exports.TinyEmitter = E;
 /******/ 	}();
 /******/ 	
 /************************************************************************/
-/******/ 	// module exports must be returned from runtime so entry inlining is disabled
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
+/******/ 	/ module exports must be returned from runtime so entry inlining is disabled
+/******/ 	/ startup
+/******/ 	/ Load entry module and return exports
 /******/ 	return __nested_webpack_require_24495__(686);
 /******/ })()
 .default;
@@ -2013,34 +2013,34 @@ module.exports.TinyEmitter = E;
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -2052,7 +2052,7 @@ module.exports.TinyEmitter = E;
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -2069,7 +2069,7 @@ module.exports.TinyEmitter = E;
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -2132,7 +2132,7 @@ __webpack_require__.d(__webpack_exports__, {
   withState: () => (/* reexport */ withState)
 });
 
-;// ./node_modules/tslib/tslib.es6.mjs
+;/ ./node_modules/tslib/tslib.es6.mjs
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -2492,7 +2492,7 @@ function __disposeResources(env) {
 }
 
 function __rewriteRelativeImportExtension(path, preserveJsx) {
-  if (typeof path === "string" && /^\.\.?\//.test(path)) {
+  if (typeof path === "string" && /^\.\.?\/.test(path)) {
       return path.replace(/\.(tsx)$|((?:\.d)?)((?:\.[^./]+?)?)\.([cm]?)ts$/i, function (m, tsx, d, ext, cm) {
           return tsx ? preserveJsx ? ".jsx" : ".js" : d && (!ext || !cm) ? m : (d + ext + "." + cm.toLowerCase() + "js");
       });
@@ -2535,7 +2535,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
   __rewriteRelativeImportExtension,
 });
 
-;// ./node_modules/lower-case/dist.es2015/index.js
+;/ ./node_modules/lower-case/dist.es2015/index.js
 /**
  * Source: ftp://ftp.unicode.org/Public/UCD/latest/ucd/SpecialCasing.txt
  */
@@ -2584,7 +2584,7 @@ function lowerCase(str) {
     return str.toLowerCase();
 }
 
-;// ./node_modules/no-case/dist.es2015/index.js
+;/ ./node_modules/no-case/dist.es2015/index.js
 
 // Support camel case ("camelCase" -> "camel Case" and "CAMELCase" -> "CAMEL Case").
 var DEFAULT_SPLIT_REGEXP = [/([a-z0-9])([A-Z])/g, /([A-Z])([A-Z][a-z])/g];
@@ -2599,12 +2599,12 @@ function noCase(input, options) {
     var result = replace(replace(input, splitRegexp, "$1\0$2"), stripRegexp, "\0");
     var start = 0;
     var end = result.length;
-    // Trim the delimiter from around the output string.
+    / Trim the delimiter from around the output string.
     while (result.charAt(start) === "\0")
         start++;
     while (result.charAt(end - 1) === "\0")
         end--;
-    // Transform each token independently.
+    / Transform each token independently.
     return result.slice(start, end).split("\0").map(transform).join(delimiter);
 }
 /**
@@ -2616,7 +2616,7 @@ function replace(input, re, value) {
     return re.reduce(function (input, re) { return input.replace(re, value); }, input);
 }
 
-;// ./node_modules/pascal-case/dist.es2015/index.js
+;/ ./node_modules/pascal-case/dist.es2015/index.js
 
 
 function pascalCaseTransform(input, index) {
@@ -2635,7 +2635,7 @@ function pascalCase(input, options) {
     return noCase(input, __assign({ delimiter: "", transform: pascalCaseTransform }, options));
 }
 
-;// ./node_modules/@wordpress/compose/build-module/utils/create-higher-order-component/index.js
+;/ ./node_modules/@wordpress/compose/build-module/utils/create-higher-order-component/index.js
 /**
  * External dependencies
  */
@@ -2674,7 +2674,7 @@ const hocName = (name, Inner) => {
   return `${outer}(${inner})`;
 };
 
-;// ./node_modules/@wordpress/compose/build-module/utils/debounce/index.js
+;/ ./node_modules/@wordpress/compose/build-module/utils/debounce/index.js
 /**
  * Parts of this source were derived and modified from lodash,
  * released under the MIT license.
@@ -2781,11 +2781,11 @@ const debounce = (func, wait, options) => {
     }
   }
   function leadingEdge(time) {
-    // Reset any `maxWait` timer.
+    / Reset any `maxWait` timer.
     lastInvokeTime = time;
-    // Start the timer for the trailing edge.
+    / Start the timer for the trailing edge.
     startTimer(timerExpired, wait);
-    // Invoke the leading edge.
+    / Invoke the leading edge.
     return leading ? invokeFunc(time) : result;
   }
   function getTimeSinceLastCall(time) {
@@ -2801,9 +2801,9 @@ const debounce = (func, wait, options) => {
     const timeSinceLastCall = getTimeSinceLastCall(time);
     const timeSinceLastInvoke = time - lastInvokeTime;
 
-    // Either this is the first call, activity has stopped and we're at the
-    // trailing edge, the system time has gone backwards and we're treating
-    // it as the trailing edge, or we've hit the `maxWait` limit.
+    / Either this is the first call, activity has stopped and we're at the
+    / trailing edge, the system time has gone backwards and we're treating
+    / it as the trailing edge, or we've hit the `maxWait` limit.
     return lastCallTime === undefined || timeSinceLastCall >= wait || timeSinceLastCall < 0 || maxing && timeSinceLastInvoke >= maxWait;
   }
   function timerExpired() {
@@ -2811,7 +2811,7 @@ const debounce = (func, wait, options) => {
     if (shouldInvoke(time)) {
       return trailingEdge(time);
     }
-    // Restart the timer.
+    / Restart the timer.
     startTimer(timerExpired, remainingWait(time));
     return undefined;
   }
@@ -2821,8 +2821,8 @@ const debounce = (func, wait, options) => {
   function trailingEdge(time) {
     clearTimer();
 
-    // Only invoke if we have `lastArgs` which means `func` has been
-    // debounced at least once.
+    / Only invoke if we have `lastArgs` which means `func` has been
+    / debounced at least once.
     if (trailing && lastArgs) {
       return invokeFunc(time);
     }
@@ -2852,7 +2852,7 @@ const debounce = (func, wait, options) => {
         return leadingEdge(lastCallTime);
       }
       if (maxing) {
-        // Handle invocations in a tight loop.
+        / Handle invocations in a tight loop.
         startTimer(timerExpired, wait);
         return invokeFunc(lastCallTime);
       }
@@ -2868,7 +2868,7 @@ const debounce = (func, wait, options) => {
   return debounced;
 };
 
-;// ./node_modules/@wordpress/compose/build-module/utils/throttle/index.js
+;/ ./node_modules/@wordpress/compose/build-module/utils/throttle/index.js
 /**
  * Parts of this source were derived and modified from lodash,
  * released under the MIT license.
@@ -2954,7 +2954,7 @@ const throttle = (func, wait, options) => {
   });
 };
 
-;// ./node_modules/@wordpress/compose/build-module/utils/observable-map/index.js
+;/ ./node_modules/@wordpress/compose/build-module/utils/observable-map/index.js
 /**
  * A constructor (factory) for `ObservableMap`, a map-like key/value data structure
  * where the individual entries are observable: using the `subscribe` method, you can
@@ -3007,7 +3007,7 @@ function observableMap() {
   };
 }
 
-;// ./node_modules/@wordpress/compose/build-module/higher-order/pipe.js
+;/ ./node_modules/@wordpress/compose/build-module/higher-order/pipe.js
 /**
  * Parts of this source were derived and modified from lodash,
  * released under the MIT license.
@@ -3077,7 +3077,7 @@ const pipe = basePipe();
 
 /* harmony default export */ const higher_order_pipe = (pipe);
 
-;// ./node_modules/@wordpress/compose/build-module/higher-order/compose.js
+;/ ./node_modules/@wordpress/compose/build-module/higher-order/compose.js
 /**
  * Internal dependencies
  */
@@ -3094,9 +3094,9 @@ const pipe = basePipe();
 const compose = basePipe(true);
 /* harmony default export */ const higher_order_compose = (compose);
 
-;// external "ReactJSXRuntime"
+;/ external "ReactJSXRuntime"
 const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
-;// ./node_modules/@wordpress/compose/build-module/higher-order/if-condition/index.js
+;/ ./node_modules/@wordpress/compose/build-module/higher-order/if-condition/index.js
 /**
  * External dependencies
  */
@@ -3115,8 +3115,8 @@ const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
  * type Props = { foo: string };
  * const Component = ( props: Props ) => <div>{ props.foo }</div>;
  * const ConditionalComponent = ifCondition( ( props: Props ) => props.foo.length !== 0 )( Component );
- * <ConditionalComponent foo="" />; // => null
- * <ConditionalComponent foo="bar" />; // => <div>bar</div>;
+ * <ConditionalComponent foo="" />; / => null
+ * <ConditionalComponent foo="bar" />; / => <div>bar</div>;
  * ```
  *
  * @param predicate Function to test condition.
@@ -3136,12 +3136,12 @@ function ifCondition(predicate) {
 }
 /* harmony default export */ const if_condition = (ifCondition);
 
-;// external ["wp","isShallowEqual"]
+;/ external ["wp","isShallowEqual"]
 const external_wp_isShallowEqual_namespaceObject = window["wp"]["isShallowEqual"];
 var external_wp_isShallowEqual_default = /*#__PURE__*/__webpack_require__.n(external_wp_isShallowEqual_namespaceObject);
-;// external ["wp","element"]
+;/ external ["wp","element"]
 const external_wp_element_namespaceObject = window["wp"]["element"];
-;// ./node_modules/@wordpress/compose/build-module/higher-order/pure/index.js
+;/ ./node_modules/@wordpress/compose/build-module/higher-order/pure/index.js
 /**
  * External dependencies
  */
@@ -3185,10 +3185,10 @@ const pure = createHigherOrderComponent(function (WrappedComponent) {
 }, 'pure');
 /* harmony default export */ const higher_order_pure = (pure);
 
-;// external ["wp","deprecated"]
+;/ external ["wp","deprecated"]
 const external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
 var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_namespaceObject);
-;// ./node_modules/@wordpress/compose/build-module/higher-order/with-global-events/listener.js
+;/ ./node_modules/@wordpress/compose/build-module/higher-order/with-global-events/listener.js
 /**
  * Class responsible for orchestrating event handling on the global window,
  * binding a single event to be shared across all handling instances, and
@@ -3202,7 +3202,7 @@ class Listener {
   }
   add(/** @type {any} */eventType, /** @type {any} */instance) {
     if (!this.listeners[eventType]) {
-      // Adding first listener for this type, so bind event.
+      / Adding first listener for this type, so bind event.
       window.addEventListener(eventType, this.handleEvent);
       this.listeners[eventType] = [];
     }
@@ -3214,7 +3214,7 @@ class Listener {
     }
     this.listeners[eventType] = this.listeners[eventType].filter((/** @type {any} */listener) => listener !== instance);
     if (!this.listeners[eventType].length) {
-      // Removing last listener for this type, so unbind event.
+      / Removing last listener for this type, so unbind event.
       window.removeEventListener(eventType, this.handleEvent);
       delete this.listeners[eventType];
     }
@@ -3227,7 +3227,7 @@ class Listener {
 }
 /* harmony default export */ const listener = (Listener);
 
-;// ./node_modules/@wordpress/compose/build-module/higher-order/with-global-events/index.js
+;/ ./node_modules/@wordpress/compose/build-module/higher-order/with-global-events/index.js
 /**
  * WordPress dependencies
  */
@@ -3272,7 +3272,7 @@ function withGlobalEvents(eventTypesToHandlers) {
     alternative: 'useEffect'
   });
 
-  // @ts-ignore We don't need to fix the type-related issues because this is deprecated.
+  / @ts-ignore We don't need to fix the type-related issues because this is deprecated.
   return createHigherOrderComponent(WrappedComponent => {
     class Wrapper extends external_wp_element_namespaceObject.Component {
       constructor(/** @type {any} */props) {
@@ -3301,9 +3301,9 @@ function withGlobalEvents(eventTypesToHandlers) {
       }
       handleRef(/** @type {any} */el) {
         this.wrappedRef = el;
-        // Any component using `withGlobalEvents` that is not setting a `ref`
-        // will cause `this.props.forwardedRef` to be `null`, so we need this
-        // check.
+        / Any component using `withGlobalEvents` that is not setting a `ref`
+        / will cause `this.props.forwardedRef` to be `null`, so we need this
+        / check.
         if (this.props.forwardedRef) {
           this.props.forwardedRef(el);
         }
@@ -3324,7 +3324,7 @@ function withGlobalEvents(eventTypesToHandlers) {
   }, 'withGlobalEvents');
 }
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-instance-id/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-instance-id/index.js
 /**
  * WordPress dependencies
  */
@@ -3375,7 +3375,7 @@ function useInstanceId(object, prefix, preferredId) {
 }
 /* harmony default export */ const use_instance_id = (useInstanceId);
 
-;// ./node_modules/@wordpress/compose/build-module/higher-order/with-instance-id/index.js
+;/ ./node_modules/@wordpress/compose/build-module/higher-order/with-instance-id/index.js
 /**
  * Internal dependencies
  */
@@ -3389,7 +3389,7 @@ function useInstanceId(object, prefix, preferredId) {
 const withInstanceId = createHigherOrderComponent(WrappedComponent => {
   return props => {
     const instanceId = use_instance_id(WrappedComponent);
-    // @ts-ignore
+    / @ts-ignore
     return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(WrappedComponent, {
       ...props,
       instanceId: instanceId
@@ -3398,7 +3398,7 @@ const withInstanceId = createHigherOrderComponent(WrappedComponent => {
 }, 'instanceId');
 /* harmony default export */ const with_instance_id = (withInstanceId);
 
-;// ./node_modules/@wordpress/compose/build-module/higher-order/with-safe-timeout/index.js
+;/ ./node_modules/@wordpress/compose/build-module/higher-order/with-safe-timeout/index.js
 /**
  * WordPress dependencies
  */
@@ -3449,7 +3449,7 @@ const withSafeTimeout = createHigherOrderComponent(OriginalComponent => {
     render() {
       return (
         /*#__PURE__*/
-        // @ts-ignore
+        / @ts-ignore
         (0,external_ReactJSXRuntime_namespaceObject.jsx)(OriginalComponent, {
           ...this.props,
           setTimeout: this.setTimeout,
@@ -3461,7 +3461,7 @@ const withSafeTimeout = createHigherOrderComponent(OriginalComponent => {
 }, 'withSafeTimeout');
 /* harmony default export */ const with_safe_timeout = (withSafeTimeout);
 
-;// ./node_modules/@wordpress/compose/build-module/higher-order/with-state/index.js
+;/ ./node_modules/@wordpress/compose/build-module/higher-order/with-state/index.js
 /**
  * WordPress dependencies
  */
@@ -3507,9 +3507,9 @@ function withState(initialState = {}) {
   }, 'withState');
 }
 
-;// external ["wp","dom"]
+;/ external ["wp","dom"]
 const external_wp_dom_namespaceObject = window["wp"]["dom"];
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-ref-effect/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-ref-effect/index.js
 /**
  * External dependencies
  */
@@ -3549,7 +3549,7 @@ function useRefEffect(callback, dependencies) {
   }, dependencies);
 }
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-constrained-tabbing/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-constrained-tabbing/index.js
 /**
  * WordPress dependencies
  */
@@ -3595,29 +3595,29 @@ function useConstrainedTabbing() {
       const action = shiftKey ? 'findPrevious' : 'findNext';
       const nextElement = external_wp_dom_namespaceObject.focus.tabbable[action](/** @type {HTMLElement} */target) || null;
 
-      // When the target element contains the element that is about to
-      // receive focus, for example when the target is a tabbable
-      // container, browsers may disagree on where to move focus next.
-      // In this case we can't rely on native browsers behavior. We need
-      // to manage focus instead.
-      // See https://github.com/WordPress/gutenberg/issues/46041.
+      / When the target element contains the element that is about to
+      / receive focus, for example when the target is a tabbable
+      / container, browsers may disagree on where to move focus next.
+      / In this case we can't rely on native browsers behavior. We need
+      / to manage focus instead.
+      / See https://github.com/WordPress/gutenberg/issues/46041.
       if (/** @type {HTMLElement} */target.contains(nextElement)) {
         event.preventDefault();
         nextElement?.focus();
         return;
       }
 
-      // If the element that is about to receive focus is inside the
-      // area, rely on native browsers behavior and let tabbing follow
-      // the native tab sequence.
+      / If the element that is about to receive focus is inside the
+      / area, rely on native browsers behavior and let tabbing follow
+      / the native tab sequence.
       if (node.contains(nextElement)) {
         return;
       }
 
-      // If the element that is about to receive focus is outside the
-      // area, move focus to a div and insert it at the start or end of
-      // the area, depending on the direction. Without preventing default
-      // behaviour, the browser will then move focus to the next element.
+      / If the element that is about to receive focus is outside the
+      / area, move focus to a div and insert it at the start or end of
+      / the area, depending on the direction. Without preventing default
+      / behaviour, the browser will then move focus to the next element.
       const domAction = shiftKey ? 'append' : 'prepend';
       const {
         ownerDocument
@@ -3626,7 +3626,7 @@ function useConstrainedTabbing() {
       trap.tabIndex = -1;
       node[domAction](trap);
 
-      // Remove itself when the trap loses focus.
+      / Remove itself when the trap loses focus.
       trap.addEventListener('blur', () => node.removeChild(trap));
       trap.focus();
     }
@@ -3641,7 +3641,7 @@ function useConstrainedTabbing() {
 // EXTERNAL MODULE: ./node_modules/clipboard/dist/clipboard.js
 var dist_clipboard = __webpack_require__(3758);
 var clipboard_default = /*#__PURE__*/__webpack_require__.n(dist_clipboard);
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-copy-on-click/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-copy-on-click/index.js
 /**
  * External dependencies
  */
@@ -3684,7 +3684,7 @@ function useCopyOnClick(ref, text, timeout = 4000) {
       return;
     }
 
-    // Clipboard listens to click events.
+    / Clipboard listens to click events.
     clipboardRef.current = new (clipboard_default())(ref.current, {
       text: () => typeof text === 'function' ? text() : text
     });
@@ -3692,12 +3692,12 @@ function useCopyOnClick(ref, text, timeout = 4000) {
       clearSelection,
       trigger
     }) => {
-      // Clearing selection will move focus back to the triggering button,
-      // ensuring that it is not reset to the body, and further that it is
-      // kept within the rendered node.
+      / Clearing selection will move focus back to the triggering button,
+      / ensuring that it is not reset to the body, and further that it is
+      / kept within the rendered node.
       clearSelection();
 
-      // Handle ClipboardJS focus bug, see https://github.com/zenorocha/clipboard.js/issues/680
+      / Handle ClipboardJS focus bug, see https://github.com/zenorocha/clipboard.js/issues/680
       if (trigger) {
         /** @type {HTMLElement} */trigger.focus();
       }
@@ -3717,7 +3717,7 @@ function useCopyOnClick(ref, text, timeout = 4000) {
   return hasCopied;
 }
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-copy-to-clipboard/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-copy-to-clipboard/index.js
 /**
  * External dependencies
  */
@@ -3757,12 +3757,12 @@ function useUpdatedRef(value) {
  * @return {import('react').Ref<TElementType>} A ref to assign to the target element.
  */
 function useCopyToClipboard(text, onSuccess) {
-  // Store the dependencies as refs and continuously update them so they're
-  // fresh when the callback is called.
+  / Store the dependencies as refs and continuously update them so they're
+  / fresh when the callback is called.
   const textRef = useUpdatedRef(text);
   const onSuccessRef = useUpdatedRef(onSuccess);
   return useRefEffect(node => {
-    // Clipboard listens to click events.
+    / Clipboard listens to click events.
     const clipboard = new (clipboard_default())(node, {
       text() {
         return typeof textRef.current === 'function' ? textRef.current() : textRef.current || '';
@@ -3771,9 +3771,9 @@ function useCopyToClipboard(text, onSuccess) {
     clipboard.on('success', ({
       clearSelection
     }) => {
-      // Clearing selection will move focus back to the triggering
-      // button, ensuring that it is not reset to the body, and
-      // further that it is kept within the rendered node.
+      / Clearing selection will move focus back to the triggering
+      / button, ensuring that it is not reset to the body, and
+      / further that it is kept within the rendered node.
       clearSelection();
       if (onSuccessRef.current) {
         onSuccessRef.current();
@@ -3785,9 +3785,9 @@ function useCopyToClipboard(text, onSuccess) {
   }, []);
 }
 
-;// external ["wp","keycodes"]
+;/ external ["wp","keycodes"]
 const external_wp_keycodes_namespaceObject = window["wp"]["keycodes"];
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-focus-on-mount/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-focus-on-mount/index.js
 /**
  * WordPress dependencies
  */
@@ -3831,9 +3831,9 @@ function useFocusOnMount(focusOnMount = 'firstElement') {
    */
   const setFocus = target => {
     target.focus({
-      // When focusing newly mounted dialogs,
-      // the position of the popover is often not right on the first render
-      // This prevents the layout shifts when focusing the dialogs.
+      / When focusing newly mounted dialogs,
+      / the position of the popover is often not right on the first render
+      / This prevents the layout shifts when focusing the dialogs.
       preventScroll: true
     });
   };
@@ -3869,7 +3869,7 @@ function useFocusOnMount(focusOnMount = 'firstElement') {
   }, []);
 }
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-focus-return/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-focus-return/index.js
 /**
  * WordPress dependencies
  */
@@ -3912,10 +3912,10 @@ function useFocusReturn(onFocusReturn) {
   return (0,external_wp_element_namespaceObject.useCallback)(node => {
     if (node) {
       var _activeDocument$activ;
-      // Set ref to be used when unmounting.
+      / Set ref to be used when unmounting.
       ref.current = node;
 
-      // Only set when the node mounts.
+      / Only set when the node mounts.
       if (focusedBeforeMount.current) {
         return;
       }
@@ -3929,10 +3929,10 @@ function useFocusReturn(onFocusReturn) {
         return;
       }
 
-      // Defer to the component's own explicit focus return behavior, if
-      // specified. This allows for support that the `onFocusReturn`
-      // decides to allow the default behavior to occur under some
-      // conditions.
+      / Defer to the component's own explicit focus return behavior, if
+      / specified. This allows for support that the `onFocusReturn`
+      / decides to allow the default behavior to occur under some
+      / conditions.
       if (onFocusReturnRef.current) {
         onFocusReturnRef.current();
       } else {
@@ -3944,7 +3944,7 @@ function useFocusReturn(onFocusReturn) {
 }
 /* harmony default export */ const use_focus_return = (useFocusReturn);
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-focus-outside/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-focus-outside/index.js
 /**
  * WordPress dependencies
  */
@@ -4010,12 +4010,12 @@ function useFocusOutside(onFocusOutside) {
     clearTimeout(blurCheckTimeoutIdRef.current);
   }, []);
 
-  // Cancel blur checks on unmount.
+  / Cancel blur checks on unmount.
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     return () => cancelBlurCheck();
   }, []);
 
-  // Cancel a blur check if the callback or ref is no longer provided.
+  / Cancel a blur check if the callback or ref is no longer provided.
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     if (!onFocusOutside) {
       cancelBlurCheck();
@@ -4053,31 +4053,31 @@ function useFocusOutside(onFocusOutside) {
    * move outside the bound element and is still within the document.
    */
   const queueBlurCheck = (0,external_wp_element_namespaceObject.useCallback)(event => {
-    // React does not allow using an event reference asynchronously
-    // due to recycling behavior, except when explicitly persisted.
+    / React does not allow using an event reference asynchronously
+    / due to recycling behavior, except when explicitly persisted.
     event.persist();
 
-    // Skip blur check if clicking button. See `normalizeButtonFocus`.
+    / Skip blur check if clicking button. See `normalizeButtonFocus`.
     if (preventBlurCheckRef.current) {
       return;
     }
 
-    // The usage of this attribute should be avoided. The only use case
-    // would be when we load modals that are not React components and
-    // therefore don't exist in the React tree. An example is opening
-    // the Media Library modal from another dialog.
-    // This attribute should contain a selector of the related target
-    // we want to ignore, because we still need to trigger the blur event
-    // on all other cases.
+    / The usage of this attribute should be avoided. The only use case
+    / would be when we load modals that are not React components and
+    / therefore don't exist in the React tree. An example is opening
+    / the Media Library modal from another dialog.
+    / This attribute should contain a selector of the related target
+    / we want to ignore, because we still need to trigger the blur event
+    / on all other cases.
     const ignoreForRelatedTarget = event.target.getAttribute('data-unstable-ignore-focus-outside-for-relatedtarget');
     if (ignoreForRelatedTarget && event.relatedTarget?.closest(ignoreForRelatedTarget)) {
       return;
     }
     blurCheckTimeoutIdRef.current = setTimeout(() => {
-      // If document is not focused then focus should remain
-      // inside the wrapped component and therefore we cancel
-      // this blur event thereby leaving focus in place.
-      // https://developer.mozilla.org/en-US/docs/Web/API/Document/hasFocus.
+      / If document is not focused then focus should remain
+      / inside the wrapped component and therefore we cancel
+      / this blur event thereby leaving focus in place.
+      / https://developer.mozilla.org/en-US/docs/Web/API/Document/hasFocus.
       if (!document.hasFocus()) {
         event.preventDefault();
         return;
@@ -4097,7 +4097,7 @@ function useFocusOutside(onFocusOutside) {
   };
 }
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-merge-refs/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-merge-refs/index.js
 /**
  * WordPress dependencies
  */
@@ -4178,13 +4178,13 @@ function useMergeRefs(refs) {
   const previousRefsRef = (0,external_wp_element_namespaceObject.useRef)([]);
   const currentRefsRef = (0,external_wp_element_namespaceObject.useRef)(refs);
 
-  // Update on render before the ref callback is called, so the ref callback
-  // always has access to the current refs.
+  / Update on render before the ref callback is called, so the ref callback
+  / always has access to the current refs.
   currentRefsRef.current = refs;
 
-  // If any of the refs change, call the previous ref with `null` and the new
-  // ref with the node, except when the element changes in the same cycle, in
-  // which case the ref callbacks will already have been called.
+  / If any of the refs change, call the previous ref with `null` and the new
+  / ref with the node, except when the element changes in the same cycle, in
+  / which case the ref callbacks will already have been called.
   (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
     if (didElementChangeRef.current === false && isAttachedRef.current === true) {
       refs.forEach((ref, index) => {
@@ -4198,33 +4198,33 @@ function useMergeRefs(refs) {
     previousRefsRef.current = refs;
   }, refs);
 
-  // No dependencies, must be reset after every render so ref callbacks are
-  // correctly called after a ref change.
+  / No dependencies, must be reset after every render so ref callbacks are
+  / correctly called after a ref change.
   (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
     didElementChangeRef.current = false;
   });
 
-  // There should be no dependencies so that `callback` is only called when
-  // the node changes.
+  / There should be no dependencies so that `callback` is only called when
+  / the node changes.
   return (0,external_wp_element_namespaceObject.useCallback)(value => {
-    // Update the element so it can be used when calling ref callbacks on a
-    // dependency change.
+    / Update the element so it can be used when calling ref callbacks on a
+    / dependency change.
     assignRef(element, value);
     didElementChangeRef.current = true;
     isAttachedRef.current = value !== null;
 
-    // When an element changes, the current ref callback should be called
-    // with the new element and the previous one with `null`.
+    / When an element changes, the current ref callback should be called
+    / with the new element and the previous one with `null`.
     const refsToAssign = value ? currentRefsRef.current : previousRefsRef.current;
 
-    // Update the latest refs.
+    / Update the latest refs.
     for (const ref of refsToAssign) {
       assignRef(ref, value);
     }
   }, []);
 }
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-dialog/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-dialog/index.js
 /**
  * External dependencies
  */
@@ -4264,8 +4264,8 @@ function useDialog(options) {
   const focusOnMountRef = useFocusOnMount(options.focusOnMount);
   const focusReturnRef = use_focus_return();
   const focusOutsideProps = useFocusOutside(event => {
-    // This unstable prop  is here only to manage backward compatibility
-    // for the Popover component otherwise, the onClose should be enough.
+    / This unstable prop  is here only to manage backward compatibility
+    / for the Popover component otherwise, the onClose should be enough.
     if (currentOptions.current?.__unstableOnClose) {
       currentOptions.current.__unstableOnClose('focus-outside', event);
     } else if (currentOptions.current?.onClose) {
@@ -4277,7 +4277,7 @@ function useDialog(options) {
       return;
     }
     node.addEventListener('keydown', event => {
-      // Close on escape.
+      / Close on escape.
       if (event.keyCode === external_wp_keycodes_namespaceObject.ESCAPE && !event.defaultPrevented && currentOptions.current?.onClose) {
         event.preventDefault();
         currentOptions.current.onClose();
@@ -4291,7 +4291,7 @@ function useDialog(options) {
 }
 /* harmony default export */ const use_dialog = (useDialog);
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-disabled/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-disabled/index.js
 /**
  * Internal dependencies
  */
@@ -4352,8 +4352,8 @@ function useDisabled({
       });
     };
 
-    // Debounce re-disable since disabling process itself will incur
-    // additional mutations which should be ignored.
+    / Debounce re-disable since disabling process itself will incur
+    / additional mutations which should be ignored.
     const debouncedDisable = debounce(disable, 0, {
       leading: true
     });
@@ -4374,7 +4374,7 @@ function useDisabled({
   }, [isDisabledProp]);
 }
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-event/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-event/index.js
 /**
  * WordPress dependencies
  */
@@ -4398,10 +4398,10 @@ function useDisabled({
  *   const onClick = useEvent( props.onClick );
  *   useEffect( () => {
  *     onClick();
- *     // Won't trigger the effect again when props.onClick is updated.
+ *     / Won't trigger the effect again when props.onClick is updated.
  *   }, [ onClick ] );
- *   // Won't re-render Button when props.onClick is updated (if `Button` is
- *   // wrapped in `React.memo`).
+ *   / Won't re-render Button when props.onClick is updated (if `Button` is
+ *   / wrapped in `React.memo`).
  *   return <Button onClick={ onClick } />;
  * }
  * ```
@@ -4420,7 +4420,7 @@ callback) {
   return (0,external_wp_element_namespaceObject.useCallback)((...args) => ref.current?.(...args), []);
 }
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-isomorphic-layout-effect/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-isomorphic-layout-effect/index.js
 /**
  * WordPress dependencies
  */
@@ -4434,7 +4434,7 @@ callback) {
 const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? external_wp_element_namespaceObject.useLayoutEffect : external_wp_element_namespaceObject.useEffect;
 /* harmony default export */ const use_isomorphic_layout_effect = (useIsomorphicLayoutEffect);
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-dragging/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-dragging/index.js
 /**
  * WordPress dependencies
  */
@@ -4491,7 +4491,7 @@ function useDragging({
     setIsDragging(true);
   }, []);
 
-  // Remove the global events when unmounting if needed.
+  / Remove the global events when unmounting if needed.
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     return () => {
       if (isDragging) {
@@ -4512,7 +4512,7 @@ var mousetrap_mousetrap = __webpack_require__(1933);
 var mousetrap_default = /*#__PURE__*/__webpack_require__.n(mousetrap_mousetrap);
 // EXTERNAL MODULE: ./node_modules/mousetrap/plugins/global-bind/mousetrap-global-bind.js
 var mousetrap_global_bind = __webpack_require__(5760);
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-keyboard-shortcut/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-keyboard-shortcut/index.js
 /**
  * External dependencies
  */
@@ -4551,7 +4551,7 @@ shortcuts, callback, {
   bindGlobal = false,
   eventName = 'keydown',
   isDisabled = false,
-  // This is important for performance considerations.
+  / This is important for performance considerations.
   target
 } = {}) {
   const currentCallbackRef = (0,external_wp_element_namespaceObject.useRef)(callback);
@@ -4563,27 +4563,27 @@ shortcuts, callback, {
       return;
     }
     const mousetrap = new (mousetrap_default())(target && target.current ? target.current :
-    // We were passing `document` here previously, so to successfully cast it to Element we must cast it first to `unknown`.
-    // Not sure if this is a mistake but it was the behavior previous to the addition of types so we're just doing what's
-    // necessary to maintain the existing behavior.
+    / We were passing `document` here previously, so to successfully cast it to Element we must cast it first to `unknown`.
+    / Not sure if this is a mistake but it was the behavior previous to the addition of types so we're just doing what's
+    / necessary to maintain the existing behavior.
     /** @type {Element} */ /** @type {unknown} */
     document);
     const shortcutsArray = Array.isArray(shortcuts) ? shortcuts : [shortcuts];
     shortcutsArray.forEach(shortcut => {
       const keys = shortcut.split('+');
-      // Determines whether a key is a modifier by the length of the string.
-      // E.g. if I add a pass a shortcut Shift+Cmd+M, it'll determine that
-      // the modifiers are Shift and Cmd because they're not a single character.
+      / Determines whether a key is a modifier by the length of the string.
+      / E.g. if I add a pass a shortcut Shift+Cmd+M, it'll determine that
+      / the modifiers are Shift and Cmd because they're not a single character.
       const modifiers = new Set(keys.filter(value => value.length > 1));
       const hasAlt = modifiers.has('alt');
       const hasShift = modifiers.has('shift');
 
-      // This should be better moved to the shortcut registration instead.
+      / This should be better moved to the shortcut registration instead.
       if ((0,external_wp_keycodes_namespaceObject.isAppleOS)() && (modifiers.size === 1 && hasAlt || modifiers.size === 2 && hasAlt && hasShift)) {
         throw new Error(`Cannot bind ${shortcut}. Alt and Shift+Alt modifiers are reserved for character input.`);
       }
       const bindFn = bindGlobal ? 'bindGlobal' : 'bind';
-      // @ts-ignore `bindGlobal` is an undocumented property
+      / @ts-ignore `bindGlobal` is an undocumented property
       mousetrap[bindFn](shortcut, (/* eslint-disable jsdoc/valid-types */
       /** @type {[e: import('mousetrap').ExtendedKeyboardEvent, combo: string]} */...args) => /* eslint-enable jsdoc/valid-types */
       currentCallbackRef.current(...args), eventName);
@@ -4595,7 +4595,7 @@ shortcuts, callback, {
 }
 /* harmony default export */ const use_keyboard_shortcut = (useKeyboardShortcut);
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-media-query/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-media-query/index.js
 /**
  * WordPress dependencies
  */
@@ -4640,7 +4640,7 @@ function useMediaQuery(query) {
           return () => {};
         }
 
-        // Avoid a fatal error when browsers don't support `addEventListener` on MediaQueryList.
+        / Avoid a fatal error when browsers don't support `addEventListener` on MediaQueryList.
         mediaQueryList.addEventListener?.('change', onStoreChange);
         return () => {
           mediaQueryList.removeEventListener?.('change', onStoreChange);
@@ -4655,7 +4655,7 @@ function useMediaQuery(query) {
   return (0,external_wp_element_namespaceObject.useSyncExternalStore)(source.subscribe, source.getValue, () => false);
 }
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-previous/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-previous/index.js
 /**
  * WordPress dependencies
  */
@@ -4672,16 +4672,16 @@ function useMediaQuery(query) {
 function usePrevious(value) {
   const ref = (0,external_wp_element_namespaceObject.useRef)();
 
-  // Store current value in ref.
+  / Store current value in ref.
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     ref.current = value;
-  }, [value]); // Re-run when value changes.
+  }, [value]); / Re-run when value changes.
 
-  // Return previous value (happens before update in useEffect above).
+  / Return previous value (happens before update in useEffect above).
   return ref.current;
 }
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-reduced-motion/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-reduced-motion/index.js
 /**
  * Internal dependencies
  */
@@ -4695,7 +4695,7 @@ function usePrevious(value) {
 const useReducedMotion = () => useMediaQuery('(prefers-reduced-motion: reduce)');
 /* harmony default export */ const use_reduced_motion = (useReducedMotion);
 
-;// ./node_modules/@wordpress/undo-manager/build-module/index.js
+;/ ./node_modules/@wordpress/undo-manager/build-module/index.js
 /**
  * WordPress dependencies
  */
@@ -4748,7 +4748,7 @@ const addHistoryChangesIntoRecord = (record, changes) => {
   });
   const nextRecord = [...record];
   if (existingChangesIndex !== -1) {
-    // If the edit is already in the stack leave the initial "from" value.
+    / If the edit is already in the stack leave the initial "from" value.
     nextRecord[existingChangesIndex] = {
       id: changes.id,
       changes: mergeHistoryChanges(nextRecord[existingChangesIndex].changes, changes.changes)
@@ -4867,7 +4867,7 @@ function createUndoManager() {
   };
 }
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-state-with-history/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-state-with-history/index.js
 /**
  * WordPress dependencies
  */
@@ -4955,7 +4955,7 @@ function useStateWithHistory(initialValue) {
   };
 }
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-viewport-match/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-viewport-match/index.js
 /**
  * WordPress dependencies
  */
@@ -5040,7 +5040,7 @@ const useViewportMatch = (breakpoint, operator = '>=') => {
 useViewportMatch.__experimentalWidthProvider = ViewportMatchWidthContext.Provider;
 /* harmony default export */ const use_viewport_match = (useViewportMatch);
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-resize-observer/use-resize-observer.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-resize-observer/use-resize-observer.js
 /**
  * WordPress dependencies
  */
@@ -5065,18 +5065,18 @@ function useResizeObserver(callback, resizeObserverOptions = {}) {
       return;
     }
 
-    // Set up `ResizeObserver`.
+    / Set up `ResizeObserver`.
     (_resizeObserverRef$cu = resizeObserverRef.current) !== null && _resizeObserverRef$cu !== void 0 ? _resizeObserverRef$cu : resizeObserverRef.current = new ResizeObserver(callbackEvent);
     const {
       current: resizeObserver
     } = resizeObserverRef;
 
-    // Unobserve previous element.
+    / Unobserve previous element.
     if (observedElementRef.current) {
       resizeObserver.unobserve(observedElementRef.current);
     }
 
-    // Observe new element.
+    / Observe new element.
     observedElementRef.current = element;
     if (element) {
       resizeObserver.observe(element, resizeObserverOptions);
@@ -5084,7 +5084,7 @@ function useResizeObserver(callback, resizeObserverOptions = {}) {
   });
 }
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-resize-observer/legacy/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-resize-observer/legacy/index.js
 /**
  * External dependencies
  */
@@ -5126,18 +5126,18 @@ function useResizeObserver(callback, resizeObserverOptions = {}) {
 const extractSize = entry => {
   let entrySize;
   if (!entry.contentBoxSize) {
-    // The dimensions in `contentBoxSize` and `contentRect` are equivalent according to the spec.
-    // See the 6th step in the description for the RO algorithm:
-    // https://drafts.csswg.org/resize-observer/#create-and-populate-resizeobserverentry-h
-    // > Set this.contentRect to logical this.contentBoxSize given target and observedBox of "content-box".
-    // In real browser implementations of course these objects differ, but the width/height values should be equivalent.
+    / The dimensions in `contentBoxSize` and `contentRect` are equivalent according to the spec.
+    / See the 6th step in the description for the RO algorithm:
+    / https://drafts.csswg.org/resize-observer/#create-and-populate-resizeobserverentry-h
+    / > Set this.contentRect to logical this.contentBoxSize given target and observedBox of "content-box".
+    / In real browser implementations of course these objects differ, but the width/height values should be equivalent.
     entrySize = [entry.contentRect.width, entry.contentRect.height];
   } else if (entry.contentBoxSize[0]) {
     const contentBoxSize = entry.contentBoxSize[0];
     entrySize = [contentBoxSize.inlineSize, contentBoxSize.blockSize];
   } else {
-    // TS complains about this, because the RO entry type follows the spec and does not reflect Firefox's buggy
-    // behaviour of returning objects instead of arrays for `borderBoxSize` and `contentBoxSize`.
+    / TS complains about this, because the RO entry type follows the spec and does not reflect Firefox's buggy
+    / behaviour of returning objects instead of arrays for `borderBoxSize` and `contentBoxSize`.
     const contentBoxSize = entry.contentBoxSize;
     entrySize = [contentBoxSize.inlineSize, contentBoxSize.blockSize];
   }
@@ -5162,7 +5162,7 @@ function ResizeElement({
   onResize
 }) {
   const resizeElementRef = useResizeObserver(entries => {
-    const newSize = extractSize(entries.at(-1)); // Entries are never empty.
+    const newSize = extractSize(entries.at(-1)); / Entries are never empty.
     onResize(newSize);
   });
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("div", {
@@ -5201,7 +5201,7 @@ const NULL_SIZE = {
 function useLegacyResizeObserver() {
   const [size, setSize] = (0,external_wp_element_namespaceObject.useState)(NULL_SIZE);
 
-  // Using a ref to track the previous width / height to avoid unnecessary renders.
+  / Using a ref to track the previous width / height to avoid unnecessary renders.
   const previousSizeRef = (0,external_wp_element_namespaceObject.useRef)(NULL_SIZE);
   const handleResize = (0,external_wp_element_namespaceObject.useCallback)(newSize => {
     if (!sizeEquals(previousSizeRef.current, newSize)) {
@@ -5215,7 +5215,7 @@ function useLegacyResizeObserver() {
   return [resizeElement, size];
 }
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-resize-observer/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-resize-observer/index.js
 /**
  * Internal dependencies
  */
@@ -5241,7 +5241,7 @@ function useLegacyResizeObserver() {
  * );
  * <div ref={ setElement } />;
  *
- * // The setter can be used in other ways, for example:
+ * / The setter can be used in other ways, for example:
  * useLayoutEffect( () => {
  * 	setElement( document.querySelector( `data-element-id="${ elementId }"` ) );
  * }, [ elementId ] );
@@ -5279,9 +5279,9 @@ function use_resize_observer_useResizeObserver(callback, options = {}) {
   return callback ? useResizeObserver(callback, options) : useLegacyResizeObserver();
 }
 
-;// external ["wp","priorityQueue"]
+;/ external ["wp","priorityQueue"]
 const external_wp_priorityQueue_namespaceObject = window["wp"]["priorityQueue"];
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-async-list/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-async-list/index.js
 /**
  * WordPress dependencies
  */
@@ -5323,7 +5323,7 @@ function useAsyncList(list, config = {
   } = config;
   const [current, setCurrent] = (0,external_wp_element_namespaceObject.useState)([]);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
-    // On reset, we keep the first items that were previously rendered.
+    / On reset, we keep the first items that were previously rendered.
     let firstItems = getFirstItemsPresentInState(list, current);
     if (firstItems.length < step) {
       firstItems = firstItems.concat(list.slice(firstItems.length, step));
@@ -5343,7 +5343,7 @@ function useAsyncList(list, config = {
 }
 /* harmony default export */ const use_async_list = (useAsyncList);
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-warn-on-change/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-warn-on-change/index.js
 /**
  * Internal dependencies
  */
@@ -5374,7 +5374,7 @@ function useWarnOnChange(object, prefix = 'Change detection') {
   const previousValues = usePrevious(object);
   Object.entries(previousValues !== null && previousValues !== void 0 ? previousValues : []).forEach(([key, value]) => {
     if (value !== object[(/** @type {keyof typeof object} */key)]) {
-      // eslint-disable-next-line no-console
+      / eslint-disable-next-line no-console
       console.warn(`${prefix}: ${key} key changed:`, value, object[(/** @type {keyof typeof object} */key)]
       /* eslint-enable jsdoc/check-types */);
     }
@@ -5382,9 +5382,9 @@ function useWarnOnChange(object, prefix = 'Change detection') {
 }
 /* harmony default export */ const use_warn_on_change = (useWarnOnChange);
 
-;// external "React"
+;/ external "React"
 const external_React_namespaceObject = window["React"];
-;// ./node_modules/use-memo-one/dist/use-memo-one.esm.js
+;/ ./node_modules/use-memo-one/dist/use-memo-one.esm.js
 
 
 function areInputsEqual(newInputs, lastInputs) {
@@ -5431,7 +5431,7 @@ var useCallback = (/* unused pure expression or super */ null && (useCallbackOne
 
 
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-debounce/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-debounce/index.js
 /**
  * External dependencies
  */
@@ -5468,7 +5468,7 @@ function useDebounce(fn, wait, options) {
   return debounced;
 }
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-debounced-input/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-debounced-input/index.js
 /**
  * WordPress dependencies
  */
@@ -5495,7 +5495,7 @@ function useDebouncedInput(defaultValue = '') {
   return [input, setInput, debouncedInput];
 }
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-throttle/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-throttle/index.js
 /**
  * External dependencies
  */
@@ -5532,7 +5532,7 @@ function useThrottle(fn, wait, options) {
   return throttled;
 }
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-drop-zone/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-drop-zone/index.js
 /**
  * Internal dependencies
  */
@@ -5575,9 +5575,9 @@ function useDropZone({
       return;
     }
 
-    // If a custom dropZoneRef is passed, use that instead of the element.
-    // This allows the dropzone to cover an expanded area, rather than
-    // be restricted to the area of the ref returned by this hook.
+    / If a custom dropZoneRef is passed, use that instead of the element.
+    / This allows the dropzone to cover an expanded area, rather than
+    / be restricted to the area of the ref returned by this hook.
     const element = dropZoneElement !== null && dropZoneElement !== void 0 ? dropZoneElement : elem;
     let isDragging = false;
     const {
@@ -5614,10 +5614,10 @@ function useDropZone({
       }
       isDragging = true;
 
-      // Note that `dragend` doesn't fire consistently for file and
-      // HTML drag events where the drag origin is outside the browser
-      // window. In Firefox it may also not fire if the originating
-      // node is removed.
+      / Note that `dragend` doesn't fire consistently for file and
+      / HTML drag events where the drag origin is outside the browser
+      / window. In Firefox it may also not fire if the originating
+      / node is removed.
       ownerDocument.addEventListener('dragend', maybeDragEnd);
       ownerDocument.addEventListener('mousemove', maybeDragEnd);
       if (_onDragStart) {
@@ -5627,10 +5627,10 @@ function useDropZone({
     function onDragEnter(/** @type {DragEvent} */event) {
       event.preventDefault();
 
-      // The `dragenter` event will also fire when entering child
-      // elements, but we only want to call `onDragEnter` when
-      // entering the drop zone, which means the `relatedTarget`
-      // (element that has been left) should be outside the drop zone.
+      / The `dragenter` event will also fire when entering child
+      / elements, but we only want to call `onDragEnter` when
+      / entering the drop zone, which means the `relatedTarget`
+      / (element that has been left) should be outside the drop zone.
       if (element.contains(/** @type {Node} */event.relatedTarget)) {
         return;
       }
@@ -5639,23 +5639,23 @@ function useDropZone({
       }
     }
     function onDragOver(/** @type {DragEvent} */event) {
-      // Only call onDragOver for the innermost hovered drop zones.
+      / Only call onDragOver for the innermost hovered drop zones.
       if (!event.defaultPrevented && _onDragOver) {
         onDragOverEvent(event);
       }
 
-      // Prevent the browser default while also signalling to parent
-      // drop zones that `onDragOver` is already handled.
+      / Prevent the browser default while also signalling to parent
+      / drop zones that `onDragOver` is already handled.
       event.preventDefault();
     }
     function onDragLeave(/** @type {DragEvent} */event) {
-      // The `dragleave` event will also fire when leaving child
-      // elements, but we only want to call `onDragLeave` when
-      // leaving the drop zone, which means the `relatedTarget`
-      // (element that has been entered) should be outside the drop
-      // zone.
-      // Note: This is not entirely reliable in Safari due to this bug
-      // https://bugs.webkit.org/show_bug.cgi?id=66547
+      / The `dragleave` event will also fire when leaving child
+      / elements, but we only want to call `onDragLeave` when
+      / leaving the drop zone, which means the `relatedTarget`
+      / (element that has been entered) should be outside the drop
+      / zone.
+      / Note: This is not entirely reliable in Safari due to this bug
+      / https://bugs.webkit.org/show_bug.cgi?id=66547
 
       if (isElementInZone(event.relatedTarget)) {
         return;
@@ -5665,19 +5665,19 @@ function useDropZone({
       }
     }
     function onDrop(/** @type {DragEvent} */event) {
-      // Don't handle drop if an inner drop zone already handled it.
+      / Don't handle drop if an inner drop zone already handled it.
       if (event.defaultPrevented) {
         return;
       }
 
-      // Prevent the browser default while also signalling to parent
-      // drop zones that `onDrop` is already handled.
+      / Prevent the browser default while also signalling to parent
+      / drop zones that `onDrop` is already handled.
       event.preventDefault();
 
-      // This seemingly useless line has been shown to resolve a
-      // Safari issue where files dragged directly from the dock are
-      // not recognized.
-      // eslint-disable-next-line no-unused-expressions
+      / This seemingly useless line has been shown to resolve a
+      / Safari issue where files dragged directly from the dock are
+      / not recognized.
+      / eslint-disable-next-line no-unused-expressions
       event.dataTransfer && event.dataTransfer.files.length;
       if (_onDrop) {
         onDropEvent(event);
@@ -5700,8 +5700,8 @@ function useDropZone({
     element.addEventListener('dragenter', onDragEnter);
     element.addEventListener('dragover', onDragOver);
     element.addEventListener('dragleave', onDragLeave);
-    // The `dragstart` event doesn't fire if the drag started outside
-    // the document.
+    / The `dragstart` event doesn't fire if the drag started outside
+    / the document.
     ownerDocument.addEventListener('dragenter', maybeDragStart);
     return () => {
       element.removeAttribute('data-is-drop-zone');
@@ -5713,11 +5713,11 @@ function useDropZone({
       ownerDocument.removeEventListener('mousemove', maybeDragEnd);
       ownerDocument.removeEventListener('dragenter', maybeDragStart);
     };
-  }, [isDisabled, dropZoneElement] // Refresh when the passed in dropZoneElement changes.
+  }, [isDisabled, dropZoneElement] / Refresh when the passed in dropZoneElement changes.
   );
 }
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-focusable-iframe/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-focusable-iframe/index.js
 /**
  * External dependencies
  */
@@ -5764,7 +5764,7 @@ function useFocusableIframe() {
   }, []);
 }
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-fixed-window-list/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-fixed-window-list/index.js
 /**
  * WordPress dependencies
  */
@@ -5827,7 +5827,7 @@ function useFixedWindowList(elementRef, itemHeight, totalItems, options) {
         return;
       }
       const visibleItems = Math.ceil(scrollContainer.clientHeight / itemHeight);
-      // Aim to keep opening list view fast, afterward we can optimize for scrolling.
+      / Aim to keep opening list view fast, afterward we can optimize for scrolling.
       const windowOverscan = initRender ? visibleItems : (_options$windowOversc = options?.windowOverscan) !== null && _options$windowOversc !== void 0 ? _options$windowOversc : visibleItems;
       const firstViewableIndex = Math.floor(scrollContainer.scrollTop / itemHeight);
       const start = Math.max(0, firstViewableIndex - windowOverscan);
@@ -5900,7 +5900,7 @@ function useFixedWindowList(elementRef, itemHeight, totalItems, options) {
   return [fixedListWindow, setFixedListWindow];
 }
 
-;// ./node_modules/@wordpress/compose/build-module/hooks/use-observable-value/index.js
+;/ ./node_modules/@wordpress/compose/build-module/hooks/use-observable-value/index.js
 /**
  * WordPress dependencies
  */
@@ -5927,7 +5927,7 @@ function useObservableValue(map, name) {
   return (0,external_wp_element_namespaceObject.useSyncExternalStore)(subscribe, getValue, getValue);
 }
 
-;// ./node_modules/@wordpress/compose/build-module/index.js
+;/ ./node_modules/@wordpress/compose/build-module/index.js
 // The `createHigherOrderComponent` helper and helper types.
 
 // The `debounce` helper and its types.

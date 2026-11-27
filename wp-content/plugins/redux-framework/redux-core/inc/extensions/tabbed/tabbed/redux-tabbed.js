@@ -222,7 +222,7 @@
 					50,
 					function () {
 						$( this ).addClass( 'hide' );
-						//$( this ).prevUntil( '.redux-tab-field' ).addClass( 'hide' );
+						/$( this ).prevUntil( '.redux-tab-field' ).addClass( 'hide' );
 
 						if ( theId.hasClass( 'redux-container-section' ) ) {
 							div = $( '#section-' + id );
@@ -297,10 +297,10 @@
 								300,
 								function () {
 									$( this ).removeClass( 'hide' );
-									//$( this ).prevUntil( 'fieldset' ).removeClass( 'hide' );
+									/$( this ).prevUntil( 'fieldset' ).removeClass( 'hide' );
 									$( this ).parents( '.redux-tab-field' ).removeClass( 'hide' );
-									//console.log($( '#' + reduxObject.args.opt_name + '-' + child ));
-	//console.log($( '#' + reduxObject.args.opt_name + '-' + child ).children().first());
+									/console.log($( '#' + reduxObject.args.opt_name + '-' + child ));
+	/console.log($( '#' + reduxObject.args.opt_name + '-' + child ).children().first());
 									if ( reduxObject.required.hasOwnProperty( child ) ) {
 										$.redux.check_dependencies( $( '#' + reduxObject.args.opt_name + '-' + child ).children().first() );
 									}
@@ -313,7 +313,7 @@
 								100,
 								function () {
 									$( this ).addClass( 'hide' );
-									//$( this ).prevUntil( 'fieldset' ).addClass( 'hide' );
+									/$( this ).prevUntil( 'fieldset' ).addClass( 'hide' );
 									$( this ).parents( '.redux-tab-field' ).addClass( 'hide' );
 
 									if ( reduxObject.required.hasOwnProperty( child ) ) {
@@ -325,7 +325,7 @@
 
 						current.find( 'select, radio, input[type=checkbox]' ).trigger( 'change' );
 
-						//console.log(variable)
+						/console.log(variable)
 						console.log(current.length);
 						console.log(Array.isArray(current));
 						if( current.length > 1 ){
@@ -333,7 +333,7 @@
 								current,
 								function(i,v){
 									console.log(v)
-									//console.log(v.find( 'select, radio, input[type=checkbox]' ));
+									/console.log(v.find( 'select, radio, input[type=checkbox]' ));
 								}
 							);
 						} else {

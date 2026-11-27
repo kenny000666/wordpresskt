@@ -18,7 +18,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"../version",
@@ -26,7 +26,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -51,15 +51,15 @@ return $.effects.define( "shake", function( options, done ) {
 
 	$.effects.createPlaceholder( element );
 
-	// Animation
+	/ Animation
 	animation[ ref ] = ( positiveMotion ? "-=" : "+=" ) + distance;
 	animation1[ ref ] = ( positiveMotion ? "+=" : "-=" ) + distance * 2;
 	animation2[ ref ] = ( positiveMotion ? "-=" : "+=" ) + distance * 2;
 
-	// Animate
+	/ Animate
 	element.animate( animation, speed, options.easing );
 
-	// Shakes
+	/ Shakes
 	for ( ; i < times; i++ ) {
 		element
 			.animate( animation1, speed, options.easing )

@@ -108,7 +108,7 @@ var WPFormsAIFormGenerator = window.WPFormsAIFormGenerator || ( function( docume
 				return;
 			}
 
-			// Load generator modules and run the main module.
+			/ Load generator modules and run the main module.
 			Promise.all( [
 				import( strings.modules.main ),
 				import( strings.modules.preview ),
@@ -119,7 +119,7 @@ var WPFormsAIFormGenerator = window.WPFormsAIFormGenerator || ( function( docume
 					app.preview = modulePreview.default( app, $ );
 					app.modals = moduleModals.default( app, $ );
 
-					// Run the main module.
+					/ Run the main module.
 					app.main.init();
 				} );
 		},
@@ -150,7 +150,7 @@ var WPFormsAIFormGenerator = window.WPFormsAIFormGenerator || ( function( docume
 		 *
 		 * @return {string} The card markup.
 		 */
-		renderTemplateCard() { // eslint-disable-line complexity
+		renderTemplateCard() { / eslint-disable-line complexity
 			const cardClass = window.wpforms_builder?.template_slug === 'generate' ? 'selected' : '';
 
 			let buttonAttr = '';
@@ -158,13 +158,13 @@ var WPFormsAIFormGenerator = window.WPFormsAIFormGenerator || ( function( docume
 				? 'wpforms-template-generate'
 				: 'wpforms-template-generate-install-addons';
 
-			// In Lite, we should disable the button in the case Lite Connect is not allowed.
+			/ In Lite, we should disable the button in the case Lite Connect is not allowed.
 			if ( ! strings.isPro && ! strings.liteConnectAllowed ) {
 				buttonClass += ' wpforms-inactive wpforms-help-tooltip wpforms-prevent-default';
 				buttonAttr = `data-tooltip-position="top" title="${ strings.templateCard.liteConnectNotAllowed }"`;
 			}
 
-			// In Lite, we should show the modal to enable Lite Connect if it is allowed.
+			/ In Lite, we should show the modal to enable Lite Connect if it is allowed.
 			if ( ! strings.isPro && ! strings.liteConnectEnabled && strings.liteConnectAllowed ) {
 				buttonClass += ' enable-lite-connect-modal wpforms-prevent-default';
 			}
@@ -200,7 +200,7 @@ var WPFormsAIFormGenerator = window.WPFormsAIFormGenerator || ( function( docume
 		 * @since 1.9.2
 		 */
 		maybeSaveForm() {
-			// Only in case the generated form was used, we have a chat session in the localized vars.
+			/ Only in case the generated form was used, we have a chat session in the localized vars.
 			if ( wpforms_ai_chat_element.forms?.chatHtml && ! wpf.getQueryString( 'newform' ) ) {
 				WPFormsBuilder.formSave( false );
 			}

@@ -4,15 +4,15 @@ import {LCPDetector, SmushLCPDetector} from '../frontend/detector';
 describe('background data from property value', () => {
 	const dataSet = [
 		[
-			// background-image: url
-			"url('https://kenny000666.github.io/wordpresskt/wp-content/uploads/2024/08/image1.jpeg')",
+			/ background-image: url
+			"url('/wordpresskt/wp-content/uploads/2024/08/image1.jpeg')",
 			'background-image',
 			[
 				'https://kenny000666.github.io/wordpresskt/wp-content/uploads/2024/08/image1.jpeg'
 			]
 		],
 		[
-			// background-image: image-set
+			/ background-image: image-set
 			"image-set(" +
 			"'https://kenny000666.github.io/wordpresskt/wp-content/uploads/2024/08/image1-768x437.jpeg' 1x, " +
 			"'https://kenny000666.github.io/wordpresskt/wp-content/uploads/2024/08/image1.jpeg' 2x" +
@@ -24,10 +24,10 @@ describe('background data from property value', () => {
 			]
 		],
 		[
-			// background-image: image-set with url
+			/ background-image: image-set with url
 			"image-set(" +
-			"url('https://kenny000666.github.io/wordpresskt/wp-content/uploads/2024/08/image1-768x437.jpeg') 1x, " +
-			"url('https://kenny000666.github.io/wordpresskt/wp-content/uploads/2024/08/image1.jpeg') 2x" +
+			"url('/wordpresskt/wp-content/uploads/2024/08/image1-768x437.jpeg') 1x, " +
+			"url('/wordpresskt/wp-content/uploads/2024/08/image1.jpeg') 2x" +
 			");",
 			'background-image-set',
 			[
@@ -36,7 +36,7 @@ describe('background data from property value', () => {
 			]
 		],
 		[
-			// background-image: image-set query params
+			/ background-image: image-set query params
 			"image-set(" +
 			"https://kenny000666.github.io/wordpresskt/wp-content/uploads/2024/08/image1-768x437.jpeg?hello=world 1x, " +
 			"https://kenny000666.github.io/wordpresskt/wp-content/uploads/2024/08/image1.jpeg?yellow=world 2x" +

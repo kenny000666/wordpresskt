@@ -11,13 +11,13 @@
 	var jQuery;
 
 	/* global define, require, module */
-	if ( 'function' === typeof define && define.amd ) { // AMD. Register as an anonymous module.
+	if ( 'function' === typeof define && define.amd ) { / AMD. Register as an anonymous module.
 		define( ['jquery'], factory );
-	} else if ( 'object' === typeof exports ) { // Node/CommonJS.
+	} else if ( 'object' === typeof exports ) { / Node/CommonJS.
 		jQuery         = require( 'jquery' );
 		module.exports = factory( jQuery );
-	} else { // Browser globals (zepto supported).
-		factory( window.jQuery || window.Zepto || window.$ ); // Zepto supported on browsers as well.
+	} else { / Browser globals (zepto supported).
+		factory( window.jQuery || window.Zepto || window.$ ); / Zepto supported on browsers as well.
 	}
 
 }( function( $ ) {
@@ -30,14 +30,14 @@
 
 	$.fn.serializeJSON = function( options ) {
 		var f             = $.serializeJSON;
-		var _this         = this; // NOTE: the set of matched elements is most likely a form, but it could also be a group of inputs.
-		var opts          = f.setupOpts( options ); // Validate options and apply defaults.
+		var _this         = this; / NOTE: the set of matched elements is most likely a form, but it could also be a group of inputs.
+		var opts          = f.setupOpts( options ); / Validate options and apply defaults.
 		var typeFunctions = $.extend( {}, opts.defaultTypes, opts.customTypes );
 
-		// Make a list with {name, value, el} for each input element.
+		/ Make a list with {name, value, el} for each input element.
 		var serializedArray = f.serializeArray( _this, opts );
 
-		// Convert the serializedArray into a serializedObject with nested keys.
+		/ Convert the serializedArray into a serializedObject with nested keys.
 		var serializedObject = {};
 		$.each(
 			serializedArray,
@@ -48,22 +48,22 @@
 				var typedValue;
 				var keys;
 
-				if ( ! type && ! opts.disableColonTypes ) { // Try getting the type from the input name.
-					p            = f.splitType( obj.name ); // "foo:string" => ["foo", "string"].
+				if ( ! type && ! opts.disableColonTypes ) { / Try getting the type from the input name.
+					p            = f.splitType( obj.name ); / "foo:string" => ["foo", "string"].
 					nameSansType = p[0];
 					type         = p[1];
 				}
 				if ( 'skip' === type ) {
-					return; // Ignore fields with type skip.
+					return; / Ignore fields with type skip.
 				}
 				if ( ! type ) {
-					type = opts.defaultType; // "string" by default
+					type = opts.defaultType; / "string" by default
 				}
 
-				typedValue = f.applyTypeFunc( obj.name, obj.value, type, obj.el, typeFunctions ); // Parse type as string, number, etc.
+				typedValue = f.applyTypeFunc( obj.name, obj.value, type, obj.el, typeFunctions ); / Parse type as string, number, etc.
 
 				if ( ! typedValue && f.shouldSkipFalsy( obj.name, nameSansType, type, obj.el, opts ) ) {
-					return; // Ignore falsy inputs if specified in the options.
+					return; / Ignore falsy inputs if specified in the options.
 				}
 
 				keys = f.splitInputNameIntoKeysArray( nameSansType );
@@ -74,20 +74,20 @@
 		return serializedObject;
 	};
 
-	// Use $.serializeJSON as namespace for the auxiliary functions
-	// and to define defaults.
+	/ Use $.serializeJSON as namespace for the auxiliary functions
+	/ and to define defaults.
 	$.serializeJSON = {
-		defaultOptions: {}, // Reassign to override option defaults for all serializeJSON calls.
+		defaultOptions: {}, / Reassign to override option defaults for all serializeJSON calls.
 
-		defaultBaseOptions: { // Do not modify, use defaultOptions instead.
-			checkboxUncheckedValue: undefined, // To include that value for unchecked checkboxes (instead of ignoring them).
-			useIntKeysAsArrayIndex: false, // Tip: name="foo[2]" value="v" => {foo: [null, null, "v"]}, instead of {foo: ["2": "v"]}.
+		defaultBaseOptions: { / Do not modify, use defaultOptions instead.
+			checkboxUncheckedValue: undefined, / To include that value for unchecked checkboxes (instead of ignoring them).
+			useIntKeysAsArrayIndex: false, / Tip: name="foo[2]" value="v" => {foo: [null, null, "v"]}, instead of {foo: ["2": "v"]}.
 
-			skipFalsyValuesForTypes: [], // Skip serialization of falsy values for listed value types.
-			skipFalsyValuesForFields: [], // Skip serialization of falsy values for listed field names.
+			skipFalsyValuesForTypes: [], / Skip serialization of falsy values for listed value types.
+			skipFalsyValuesForFields: [], / Skip serialization of falsy values for listed field names.
 
-			disableColonTypes: false, // Do not interpret ":type" suffix as a type.
-			customTypes: {}, // Extends defaultTypes.
+			disableColonTypes: false, / Do not interpret ":type" suffix as a type.
+			customTypes: {}, / Extends defaultTypes.
 			defaultTypes: {
 				'string': function( str ) {
 					return String( str );
@@ -109,12 +109,12 @@
 				'object': function( str ) {
 					return JSON.parse( str );
 				},
-				'skip': null // Skip is a special type used to ignore fields.
+				'skip': null / Skip is a special type used to ignore fields.
 			},
 			defaultType: 'string'
 		},
 
-		// Validate and set defaults.
+		/ Validate and set defaults.
 		setupOpts: function( options ) {
 			var f;
 			var validOpts;
@@ -126,7 +126,7 @@
 
 			f = $.serializeJSON;
 
-			// Validate.
+			/ Validate.
 			validOpts = [
 				'checkboxUncheckedValue',
 				'useIntKeysAsArrayIndex',
@@ -145,12 +145,12 @@
 				}
 			}
 
-			// Helper to get options or defaults.
+			/ Helper to get options or defaults.
 			return $.extend( {}, f.defaultBaseOptions, f.defaultOptions, options );
 		},
 
-		// Just like jQuery's serializeArray method, returns an array of objects with name and value.
-		// but also includes the dom element (el) and is handles unchecked checkboxes if the option or data attribute are provided.
+		/ Just like jQuery's serializeArray method, returns an array of objects with name and value.
+		/ but also includes the dom element (el) and is handles unchecked checkboxes if the option or data attribute are provided.
 		serializeArray: function( _this, opts ) {
 			var f;
 			var elements;
@@ -163,7 +163,7 @@
 
 			return _this.map(
 				function() {
-					elements = $.prop( this, 'elements' ); // Handle propHook "elements" to filter or add form elements.
+					elements = $.prop( this, 'elements' ); / Handle propHook "elements" to filter or add form elements.
 					return elements ? $.makeArray( elements ) : this;
 
 				}
@@ -172,18 +172,18 @@
 					var $el  = $( this );
 					var type = this.type;
 
-					// Filter with the standard W3C rules for successful controls: http://www.w3.org/TR/html401/interact/forms.html#h-17.13.2.
-					return this.name && // Must contain a name attribute.
-						! $el.is( ':disabled' ) && // Must not be disable (use .is(":disabled") so that fieldset[disabled] works).
-						rsubmittable.test( this.nodeName ) && ! rsubmitterTypes.test( type ) && // only serialize submittable fields (and not buttons).
-						(this.checked || ! rcheckableType.test( type ) || f.getCheckboxUncheckedValue( $el, opts ) != null); // skip unchecked checkboxes (unless using opts).
+					/ Filter with the standard W3C rules for successful controls: http://www.w3.org/TR/html401/interact/forms.html#h-17.13.2.
+					return this.name && / Must contain a name attribute.
+						! $el.is( ':disabled' ) && / Must not be disable (use .is(":disabled") so that fieldset[disabled] works).
+						rsubmittable.test( this.nodeName ) && ! rsubmitterTypes.test( type ) && / only serialize submittable fields (and not buttons).
+						(this.checked || ! rcheckableType.test( type ) || f.getCheckboxUncheckedValue( $el, opts ) != null); / skip unchecked checkboxes (unless using opts).
 
 				}
 			).map(
 				function( _i, el ) {
 					var $el  = $( this );
 					var val  = $el.val();
-					var type = this.type; // "input", "select", "textarea", "checkbox", etc.
+					var type = this.type; / "input", "select", "textarea", "checkbox", etc.
 
 					if ( null == val ) {
 						return null;
@@ -216,10 +216,10 @@
 			return val;
 		},
 
-		// Parse value with type function.
+		/ Parse value with type function.
 		applyTypeFunc: function( name, strVal, type, el, typeFunctions ) {
 			var typeFunc = typeFunctions[type];
-			if ( ! typeFunc ) { // quick feedback to user if there is a typo or missconfiguration.
+			if ( ! typeFunc ) { / quick feedback to user if there is a typo or missconfiguration.
 				throw new Error(
 					'serializeJSON ERROR: Invalid type ' + type + ' found in input name \'' + name + '\', please use one of ' + objectKeys( typeFunctions )
 					.join( ', ' )
@@ -228,10 +228,10 @@
 			return typeFunc( strVal, el );
 		},
 
-		// Splits a field name into the name and the type. Examples:
-		// "foo"           =>  ["foo", ""].
-		// "foo:boolean"   =>  ["foo", "boolean"].
-		// "foo[bar]:null" =>  ["foo[bar]", "null"].
+		/ Splits a field name into the name and the type. Examples:
+		/ "foo"           =>  ["foo", ""].
+		/ "foo:boolean"   =>  ["foo", "boolean"].
+		/ "foo[bar]:null" =>  ["foo[bar]", "null"].
 		splitType: function( name ) {
 			var parts = name.split( ':' );
 			var t;
@@ -244,15 +244,15 @@
 			}
 		},
 
-		// Check if this input should be skipped when it has a falsy value,
-		// depending on the options to skip values by name or type, and the data-skip-falsy attribute.
+		/ Check if this input should be skipped when it has a falsy value,
+		/ depending on the options to skip values by name or type, and the data-skip-falsy attribute.
 		shouldSkipFalsy: function( name, nameSansType, type, el, opts ) {
 			var skipFromDataAttr = $( el ).attr( 'data-skip-falsy' );
 			var optForFields;
 			var optForTypes;
 
 			if ( skipFromDataAttr != null ) {
-				return skipFromDataAttr !== 'false'; // any value is true, except the string "false".
+				return skipFromDataAttr !== 'false'; / any value is true, except the string "false".
 			}
 
 			optForFields = opts.skipFalsyValuesForFields;
@@ -264,47 +264,47 @@
 			return ! ! ( optForTypes && optForTypes.indexOf( type ) !== -1 );
 		},
 
-		// Split the input name in programmatically readable keys.
-		// Examples:
-		// "foo"              => ["foo"]
-		// "[foo]"            => ["foo"]
-		// "foo[inn][bar]"    => ["foo", "inn", "bar"]
-		// "foo[inn[bar]]"    => ["foo", "inn", "bar"]
-		// "foo[inn][arr][0]" => ["foo", "inn", "arr", "0"]
-		// "arr[][val]"       => ["arr", "", "val"].
+		/ Split the input name in programmatically readable keys.
+		/ Examples:
+		/ "foo"              => ["foo"]
+		/ "[foo]"            => ["foo"]
+		/ "foo[inn][bar]"    => ["foo", "inn", "bar"]
+		/ "foo[inn[bar]]"    => ["foo", "inn", "bar"]
+		/ "foo[inn][arr][0]" => ["foo", "inn", "arr", "0"]
+		/ "arr[][val]"       => ["arr", "", "val"].
 		splitInputNameIntoKeysArray: function( nameWithNoType ) {
-			var keys = nameWithNoType.split( '[' ); // split string into array.
+			var keys = nameWithNoType.split( '[' ); / split string into array.
 
 			keys = $.map(
 				keys,
 				function( key ) {
 					return key.replace( /\]/g, '' );
 				}
-			); // Remove closing brackets.
+			); / Remove closing brackets.
 			if ( keys[0] === '' ) {
 				keys.shift();
-			} // Ensure no opening bracket ("[foo][inn]" should be same as "foo[inn]")
+			} / Ensure no opening bracket ("[foo][inn]" should be same as "foo[inn]")
 			return keys;
 		},
 
-		// Set a value in an object or array, using multiple keys to set in a nested object or array.
-		// This is the main function of the script, that allows serializeJSON to use nested keys.
-		// Examples:
-		//
-		// deepSet(obj, ["foo"], v)               // obj["foo"] = v
-		// deepSet(obj, ["foo", "inn"], v)        // obj["foo"]["inn"] = v // Create the inner obj["foo"] object, if needed
-		// deepSet(obj, ["foo", "inn", "123"], v) // obj["foo"]["arr"]["123"] = v //
-		//
-		// deepSet(obj, ["0"], v)                                   // obj["0"] = v
-		// deepSet(arr, ["0"], v, {useIntKeysAsArrayIndex: true})   // arr[0] = v
-		// deepSet(arr, [""], v)                                    // arr.push(v)
-		// deepSet(obj, ["arr", ""], v)                             // obj["arr"].push(v)
-		//
-		// arr = [];
-		// deepSet(arr, ["", v]          // arr => [v]
-		// deepSet(arr, ["", "foo"], v)  // arr => [v, {foo: v}]
-		// deepSet(arr, ["", "bar"], v)  // arr => [v, {foo: v, bar: v}]
-		// deepSet(arr, ["", "bar"], v)  // arr => [v, {foo: v, bar: v}, {bar: v}].
+		/ Set a value in an object or array, using multiple keys to set in a nested object or array.
+		/ This is the main function of the script, that allows serializeJSON to use nested keys.
+		/ Examples:
+		/
+		/ deepSet(obj, ["foo"], v)               / obj["foo"] = v
+		/ deepSet(obj, ["foo", "inn"], v)        / obj["foo"]["inn"] = v / Create the inner obj["foo"] object, if needed
+		/ deepSet(obj, ["foo", "inn", "123"], v) / obj["foo"]["arr"]["123"] = v /
+		/
+		/ deepSet(obj, ["0"], v)                                   / obj["0"] = v
+		/ deepSet(arr, ["0"], v, {useIntKeysAsArrayIndex: true})   / arr[0] = v
+		/ deepSet(arr, [""], v)                                    / arr.push(v)
+		/ deepSet(obj, ["arr", ""], v)                             / obj["arr"].push(v)
+		/
+		/ arr = [];
+		/ deepSet(arr, ["", v]          / arr => [v]
+		/ deepSet(arr, ["", "foo"], v)  / arr => [v, {foo: v}]
+		/ deepSet(arr, ["", "bar"], v)  / arr => [v, {foo: v, bar: v}]
+		/ deepSet(arr, ["", "bar"], v)  / arr => [v, {foo: v, bar: v}, {bar: v}].
 		deepSet: function( o, keys, value, opts ) {
 			if ( null == opts ) {
 				opts = {};
@@ -319,48 +319,48 @@
 
 			var key = keys[0];
 
-			// Only one key, then it's not a deepSet, just assign the value in the object or add it to the array.
+			/ Only one key, then it's not a deepSet, just assign the value in the object or add it to the array.
 			if ( 1 === keys.length ) {
-				if ( key === '' ) { // Push values into an array (o must be an array).
+				if ( key === '' ) { / Push values into an array (o must be an array).
 					o.push( value );
 				} else {
-					o[key] = value; // Keys can be object keys (strings) or array indexes (numbers).
+					o[key] = value; / Keys can be object keys (strings) or array indexes (numbers).
 				}
 				return;
 			}
 
-			var nextKey  = keys[1]; // Nested key.
-			var tailKeys = keys.slice( 1 ); // List of all other nested keys (nextKey is first).
+			var nextKey  = keys[1]; / Nested key.
+			var tailKeys = keys.slice( 1 ); / List of all other nested keys (nextKey is first).
 
-			if ( key === '' ) { // Push nested objects into an array (o must be an array).
+			if ( key === '' ) { / Push nested objects into an array (o must be an array).
 				var lastIdx = o.length - 1;
 				var lastVal = o[lastIdx];
 
-				// if the last value is an object or array, and the new key is not set yet.
+				/ if the last value is an object or array, and the new key is not set yet.
 				if ( isObject( lastVal ) && isUndefined( f.deepGet( lastVal, tailKeys ) ) ) {
-					key = lastIdx; // then set the new value as a new attribute of the same object.
+					key = lastIdx; / then set the new value as a new attribute of the same object.
 				} else {
-					key = lastIdx + 1; // otherwise, add a new element in the array.
+					key = lastIdx + 1; / otherwise, add a new element in the array.
 				}
 			}
 
-			if ( nextKey === '' ) { // "" is used to push values into the nested array "array[]".
+			if ( nextKey === '' ) { / "" is used to push values into the nested array "array[]".
 				if ( isUndefined( o[key] ) || ! isArray( o[key] ) ) {
-					o[key] = []; // define (or override) as array to push values.
+					o[key] = []; / define (or override) as array to push values.
 				}
 			} else {
-				if ( opts.useIntKeysAsArrayIndex && isValidArrayIndex( nextKey ) ) { // if 1, 2, 3 ... then use an array, where nextKey is the index.
+				if ( opts.useIntKeysAsArrayIndex && isValidArrayIndex( nextKey ) ) { / if 1, 2, 3 ... then use an array, where nextKey is the index.
 					if ( isUndefined( o[key] ) || ! isArray( o[key] ) ) {
-						o[key] = []; // Define (or override) as array, to insert values using int keys as array indexes.
+						o[key] = []; / Define (or override) as array, to insert values using int keys as array indexes.
 					}
-				} else { // nextKey is going to be the nested object's attribute.
+				} else { / nextKey is going to be the nested object's attribute.
 					if ( isUndefined( o[key] ) || ! isObject( o[key] ) ) {
-						o[key] = {}; // Define (or override) as object, to set nested properties.
+						o[key] = {}; / Define (or override) as object, to set nested properties.
 					}
 				}
 			}
 
-			// Recursively set the inner object.
+			/ Recursively set the inner object.
 			f.deepSet( o[key], tailKeys, value, opts );
 		},
 
@@ -372,7 +372,7 @@
 				return o;
 			}
 			var key = keys[0];
-			if ( '' === key ) { // "" means next array index (used by deepSet)
+			if ( '' === key ) { / "" means next array index (used by deepSet)
 				return undefined;
 			}
 			if ( 1 === keys.length ) {
@@ -384,7 +384,7 @@
 		}
 	};
 
-	// Polyfill Object.keys to get option keys in IE<9.
+	/ Polyfill Object.keys to get option keys in IE<9.
 	var objectKeys = function( obj ) {
 		if ( Object.keys ) {
 			return Object.keys( obj );
@@ -399,15 +399,15 @@
 
 	var isObject = function( obj ) {
 		return obj === Object( obj );
-	}; // true for Objects and Arrays.
+	}; / true for Objects and Arrays.
 
 	var isUndefined = function( obj ) {
 		return obj === void 0;
-	}; // safe check for undefined values.
+	}; / safe check for undefined values.
 
 	var isValidArrayIndex = function( val ) {
 		return /^[0-9]+$/.test( String( val ) );
-	}; // 1,2,3,4 ... are valid array indexes.
+	}; / 1,2,3,4 ... are valid array indexes.
 
 	var isArray = Array.isArray || function( obj ) {
 		return '[object Array]' === Object.prototype.toString.call( obj );

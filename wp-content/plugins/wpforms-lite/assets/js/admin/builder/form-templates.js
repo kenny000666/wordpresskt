@@ -47,7 +47,7 @@ var WPFormsFormTemplates = window.WPFormsFormTemplates || ( function( document, 
 		init() {
 			$( app.ready );
 			$( window ).on( 'load', function() {
-				// in the case of jQuery 3.+ we need to wait for the `ready` event first.
+				/ in the case of jQuery 3.+ we need to wait for the `ready` event first.
 				if ( typeof $.ready.then === 'function' ) {
 					$.ready.then( app.load );
 				} else {
@@ -80,10 +80,10 @@ var WPFormsFormTemplates = window.WPFormsFormTemplates || ( function( document, 
 		 * @since 1.7.7
 		 */
 		setup() {
-			// Trigger event before initializing the template list.
+			/ Trigger event before initializing the template list.
 			WPFormsUtils.triggerEvent( $( document ), 'wpformsSetupPanelBeforeInitTemplatesList' );
 
-			// Template list object.
+			/ Template list object.
 			vars.templateList = new List( 'wpforms-setup-templates-list', {
 				valueNames: [
 					'wpforms-template-name',
@@ -132,7 +132,7 @@ var WPFormsFormTemplates = window.WPFormsFormTemplates || ( function( document, 
 		 *
 		 * @since 1.7.7
 		 */
-		// eslint-disable-next-line max-lines-per-function
+		/ eslint-disable-next-line max-lines-per-function
 		selectFavorite() {
 			const $heartIcon = $( this ),
 				favorite = $heartIcon.hasClass( 'fa-heart-o' ),
@@ -355,11 +355,11 @@ var WPFormsFormTemplates = window.WPFormsFormTemplates || ( function( document, 
 			const category = $item.parents( 'li' ).data( 'category' );
 			const searchQuery = $( '#wpforms-setup-template-search' ).val();
 
-			// Clear active class from the parent category and current subcategory.
+			/ Clear active class from the parent category and current subcategory.
 			$activeSubcategory.removeClass( 'active' );
 			$activeCategory.removeClass( 'active' );
 
-			// Add active class to the parent category and current subcategory.
+			/ Add active class to the parent category and current subcategory.
 			$item.parents( 'li' ).addClass( 'active' );
 			$item.addClass( 'active' );
 
@@ -405,7 +405,7 @@ var WPFormsFormTemplates = window.WPFormsFormTemplates || ( function( document, 
 				return category === 'all' || item.values().categories.split( ',' ).indexOf( category ) > -1;
 			} );
 
-			// Display/hide User Templates empty state message.
+			/ Display/hide User Templates empty state message.
 			$( '.wpforms-user-templates-empty-state' ).toggleClass( 'wpforms-hidden', category !== 'user' || count !== 0 );
 
 			if ( searchQuery !== '' ) {
@@ -666,7 +666,7 @@ var WPFormsFormTemplates = window.WPFormsFormTemplates || ( function( document, 
 			const ajaxErrors = [];
 			let promiseChain = false;
 
-			// Put each of the ajax call promises to the chain.
+			/ Put each of the ajax call promises to the chain.
 			addons.forEach( function( addon ) {
 				if ( typeof promiseChain.done !== 'function' ) {
 					promiseChain = app.installActivateAddonAjax( addon );
@@ -687,7 +687,7 @@ var WPFormsFormTemplates = window.WPFormsFormTemplates || ( function( document, 
 
 			promiseChain
 
-				// Latest promise result and error.
+				/ Latest promise result and error.
 				.done( function( value ) {
 					ajaxResults.push( value );
 				} )
@@ -695,13 +695,13 @@ var WPFormsFormTemplates = window.WPFormsFormTemplates || ( function( document, 
 					ajaxErrors.push( error );
 				} )
 
-				// Finally, resolve all the promises.
+				/ Finally, resolve all the promises.
 				.always( function() {
 					previousModal.close();
 
 					if (
 						ajaxResults.length > 0 &&
-						wpf.listPluck( ajaxResults, 'success' ).every( Boolean ) && // Check if every `success` is true.
+						wpf.listPluck( ajaxResults, 'success' ).every( Boolean ) && / Check if every `success` is true.
 						ajaxErrors.length === 0
 					) {
 						callback( formName, template );
@@ -780,7 +780,7 @@ var WPFormsFormTemplates = window.WPFormsFormTemplates || ( function( document, 
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

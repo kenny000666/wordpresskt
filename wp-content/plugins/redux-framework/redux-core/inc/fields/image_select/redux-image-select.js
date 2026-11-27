@@ -28,7 +28,7 @@
 					return;
 				}
 
-				// On label click, change the input and class.
+				/ On label click, change the input and class.
 				el.find( '.redux-image-select label img, .redux-image-select label .tiles' ).on(
 					'click',
 					function ( e ) {
@@ -44,7 +44,7 @@
 
 						$( this ).closest( 'label' ).find( 'input[type="radio"]' ).prop( 'checked' );
 
-						if ( $( this ).closest( 'label' ).hasClass( 'redux-image-select-preset-' + id ) ) { // If they clicked on a preset, import!
+						if ( $( this ).closest( 'label' ).hasClass( 'redux-image-select-preset-' + id ) ) { / If they clicked on a preset, import!
 							e.preventDefault();
 
 							presets = $( this ).closest( 'label' ).find( 'input' );
@@ -98,7 +98,7 @@
 					}
 				);
 
-				// Used to display a full image preview of a tile/pattern.
+				/ Used to display a full image preview of a tile/pattern.
 				el.find( '.tiles' ).qtip(
 					{
 						content: {
@@ -106,8 +106,8 @@
 								return '<img src="' + $( this ).attr( 'rel' ) + '" style="max-width:150px;" alt=" />';
 							}
 						}, style: 'qtip-tipsy', position: {
-							my: 'top center', // Position my top left...
-							at: 'bottom center' // At the bottom right of...
+							my: 'top center', / Position my top left...
+							at: 'bottom center' / At the bottom right of...
 						}
 					}
 				);

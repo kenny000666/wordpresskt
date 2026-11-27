@@ -61,7 +61,7 @@ export class SmushLCPDetector {
 		if (!fullBackgroundProp || fullBackgroundProp === "" || fullBackgroundProp.includes("data:image")) {
 			return null;
 		}
-		// IMPORTANT: the following regex is a copy of the one in the PHP function Parser::get_image_urls. Remember to keep them synced.
+		/ IMPORTANT: the following regex is a copy of the one in the PHP function Parser::get_image_urls. Remember to keep them synced.
 		const cssBackgroundUrlRegex = /((?:https?:\/|\.+)?\/[^'",\s()]+\.(jpe?g|png|gif|webp|svg|avif)(?:\?[^\s'",?)]+)?)\b/ig;
 		const matches = [...fullBackgroundProp.matchAll(cssBackgroundUrlRegex)];
 		let backgroundSet = matches.map((match) => match[1].trim());

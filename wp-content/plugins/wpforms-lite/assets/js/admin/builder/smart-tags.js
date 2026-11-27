@@ -25,7 +25,7 @@
  * @since 1.9.5
  */
 
-var WPForms = window.WPForms || {}; // eslint-disable-line no-var
+var WPForms = window.WPForms || {}; / eslint-disable-line no-var
 
 WPForms.Admin = WPForms.Admin || {};
 WPForms.Admin.Builder = WPForms.Admin.Builder || {};
@@ -82,7 +82,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 		 * @since 1.9.5
 		 */
 		setup() {
-			// Cache DOM elements.
+			/ Cache DOM elements.
 			el.$builder = $( '#wpforms-builder' );
 		},
 
@@ -104,7 +104,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 				.on( 'wpformsFieldDuplicated', app.fieldDuplicated )
 				.on( 'change', '.wpforms-field-option-row-label input', app.fieldLabelChangeEvent );
 
-			// Open the dropdown on click.
+			/ Open the dropdown on click.
 			el.$builder.on( 'click', '.wpforms-show-smart-tags, .mce-wpforms-smart-tags-mce-button', function() {
 				app.showSmartTagDropdown( $( this ) );
 			} );
@@ -121,13 +121,13 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 		 *
 		 * @param {jQuery} $scope The scope where the widgets should be initialized.
 		 */
-		// eslint-disable-next-line max-lines-per-function
+		/ eslint-disable-next-line max-lines-per-function
 		initWidgets( $scope = el.$builder ) {
 			const $smartTagsInputs = $scope.find( '.wpforms-smart-tags-enabled' );
 
-			// eslint-disable-next-line max-lines-per-function,complexity
+			/ eslint-disable-next-line max-lines-per-function,complexity
 			$smartTagsInputs.each( function() {
-				// Skip if the element is already initialized.
+				/ Skip if the element is already initialized.
 				if ( $( this ).hasClass( 'wpforms-smart-tags-widget-original' ) ) {
 					return;
 				}
@@ -138,15 +138,15 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 				const isReadonly = $element.prop( 'readonly' ) || $element.prop( 'disabled' );
 				const readonlyClass = isReadonly ? 'wpforms-readonly' : '';
 
-				// Create a new div with the required attributes and content.
+				/ Create a new div with the required attributes and content.
 				const $widgetContainer = $( '<div>', {
 					class: 'wpforms-smart-tags-widget-container',
 				} );
 
-				// Insert the widget container before the current element.
+				/ Insert the widget container before the current element.
 				$element.before( $widgetContainer );
 
-				// Create a new div with the required attributes and content.
+				/ Create a new div with the required attributes and content.
 				const $widget = $( '<div>', {
 					class: [ 'wpforms-smart-tags-widget', widgetTypeClass, readonlyClass ].filter( Boolean ).join( ' ' ),
 					contenteditable: ! isReadonly ? 'true' : 'false',
@@ -154,37 +154,37 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 					text: $element.val(),
 				} );
 
-				// Append the widget to the container.
+				/ Append the widget to the container.
 				$widgetContainer.append( $widget );
 
-				// Append the show smart tags button.
+				/ Append the show smart tags button.
 				$widgetContainer.append( '<span class="wpforms-show-smart-tags"><i class="fa fa-tags"></i></span>' );
 
-				// Add class to the original input field.
+				/ Add class to the original input field.
 				$element.addClass( 'wpforms-smart-tags-widget-original' );
 
-				// Listen for the input disable/readonly state change.
+				/ Listen for the input disable/readonly state change.
 				app.setupOriginalInputObserver( $element );
 
-				// Listen to the sync event to update the widget content when the original input is updated.
+				/ Listen to the sync event to update the widget content when the original input is updated.
 				$element.on( 'wpformsSmartTagsInputSync', function() {
 					app.syncWidgetContent( $element, $widget );
 				} );
 
-				// Attach the input event listener to the newly created widget.
+				/ Attach the input event listener to the newly created widget.
 				$widget.on( 'input', app.renderWidgetContent );
 
-				// Save the caret position on focus, blur, keyup, and mouseup events.
+				/ Save the caret position on focus, blur, keyup, and mouseup events.
 				$widget.on( 'focus blur keyup mouseup', function() {
 					app.saveCaretPosition( $widget[ 0 ] );
 				} );
 
-				// Mimic the focusout event for the original input.
+				/ Mimic the focusout event for the original input.
 				$widget.on( 'focusout', function() {
 					$element.trigger( 'focusout' );
 				} );
 
-				// Prevent the Enter key from creating a new line.
+				/ Prevent the Enter key from creating a new line.
 				$widget.on( 'keydown', function( event ) {
 					if ( widgetType === 'input' && event.key === 'Enter' ) {
 						event.preventDefault();
@@ -196,7 +196,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 					}
 				} );
 
-				// Attach the paste event listener only once.
+				/ Attach the paste event listener only once.
 				if ( ! $widget.data( 'pasteHandlerAttached' ) ) {
 					$widget.on( 'paste', ( event ) => {
 						event.preventDefault();
@@ -205,27 +205,27 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 							return;
 						}
 
-						// Insert the text using Range API.
+						/ Insert the text using Range API.
 						const selection = document.defaultView.getSelection();
 
 						if ( ! selection.rangeCount ) {
 							return;
 						}
 
-						// Get plain text from the clipboard.
+						/ Get plain text from the clipboard.
 						const text = event.originalEvent.clipboardData.getData( 'text/plain' );
 						const range = selection.getRangeAt( 0 );
 
-						// Remove selected content, if any.
+						/ Remove selected content, if any.
 						range.deleteContents();
 
-						// Insert it as a text.
+						/ Insert it as a text.
 						range.insertNode( document.createTextNode( text ) );
 
-						// Place the cursor at the end of the inserted text.
+						/ Place the cursor at the end of the inserted text.
 						range.collapse( false );
 
-						// Trigger the input event for the widget
+						/ Trigger the input event for the widget
 						app.renderWidgetContent( { target: $widget[ 0 ] }, true, 'end' );
 					} );
 
@@ -234,10 +234,10 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 
 				app.renderWidgetContent( { target: $widget[ 0 ] }, true );
 
-				// Trigger custom initialization event
+				/ Trigger custom initialization event
 				WPFormsUtils.triggerEvent( $widget, 'wpformsSmartTagWidgetInitialized' );
 
-				// Init tooltip.
+				/ Init tooltip.
 				app.initTooltip( $widget );
 			} );
 		},
@@ -251,14 +251,14 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 		 * @param {jQuery} $scope Scope where widgets should be reinitialized.
 		 */
 		reinitWidgets( $scope ) {
-			// Destroy Smart Tags widgets.
+			/ Destroy Smart Tags widgets.
 			$scope.find( '.wpforms-smart-tags-widget-container' ).each( function() {
 				const $this = $( this );
 				$this.next( '.wpforms-smart-tags-enabled' ).removeClass( 'wpforms-smart-tags-widget-original' );
 				$this.remove();
 			} );
 
-			// Init Smart Tags widgets again.
+			/ Init Smart Tags widgets again.
 			app.initWidgets( $scope );
 		},
 
@@ -296,19 +296,19 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 		 * @param {boolean} forceUpdate    Force update the widget content.
 		 * @param {string}  cursorPosition Cursor position.
 		 */
-		renderWidgetContent( e, forceUpdate = false, cursorPosition = '' ) { // eslint-disable-line max-lines-per-function, complexity
+		renderWidgetContent( e, forceUpdate = false, cursorPosition = '' ) { / eslint-disable-line max-lines-per-function, complexity
 			const widget = e.target;
 
-			// Skip if cursor located inside the editable tag.
+			/ Skip if cursor located inside the editable tag.
 			if ( widget.classList.contains( 'tag' ) ) {
 				return;
 			}
 
-			// Normalize the widget content.
-			// In a normalized subtree, no text nodes in the subtree are empty and there are no adjacent text nodes.
+			/ Normalize the widget content.
+			/ In a normalized subtree, no text nodes in the subtree are empty and there are no adjacent text nodes.
 			widget.normalize();
 
-			// Save the current cursor position.
+			/ Save the current cursor position.
 			const selection = document.defaultView.getSelection();
 
 			if ( ! selection.rangeCount && ! forceUpdate ) {
@@ -318,7 +318,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 			const nodes = Array.from( widget.childNodes );
 			let lastInsertedTag = null;
 
-			// Process all text nodes.
+			/ Process all text nodes.
 			nodes.forEach( ( node ) => {
 				if ( node.nodeType !== Node.TEXT_NODE ) {
 					return;
@@ -332,7 +332,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 					const tagValue = wpf.sanitizeHTML( match[ 1 ].trim() );
 					const fullMatch = match[ 0 ];
 
-					// If it's an email smart tag, remove the curly braces.
+					/ If it's an email smart tag, remove the curly braces.
 					const result = app.handleEmailTag( fullMatch, tagValue, match, text, node );
 					if ( result.handled ) {
 						text = result.text;
@@ -351,7 +351,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 					removeIcon.classList.add( 'fa', 'fa-times-circle' );
 					removeIcon.setAttribute( 'title', wpforms_builder.smart_tags_delete_button );
 
-					// Remove the tag when the remove icon is clicked.
+					/ Remove the tag when the remove icon is clicked.
 					removeIcon.addEventListener( 'click', () => {
 						tagElement.remove();
 						app.updateOriginalInput( widget );
@@ -380,18 +380,18 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 				}
 			} );
 
-			// Restore cursor position.
+			/ Restore cursor position.
 			if ( lastInsertedTag && ! forceUpdate ) {
 				const restoredRange = document.createRange();
 
-				// Place the cursor after the last inserted tag.
+				/ Place the cursor after the last inserted tag.
 				restoredRange.setStartAfter( lastInsertedTag );
 				restoredRange.collapse( true );
 				selection.removeAllRanges();
 				selection.addRange( restoredRange );
 			}
 
-			// Set the cursor position to the end of the widget.
+			/ Set the cursor position to the end of the widget.
 			if ( cursorPosition === 'end' ) {
 				const range = document.createRange();
 				range.selectNodeContents( widget );
@@ -400,7 +400,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 				selection.addRange( range );
 			}
 
-			// Update the original input with the new content.
+			/ Update the original input with the new content.
 			app.updateOriginalInput( widget );
 		},
 
@@ -423,7 +423,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 
 			$originalInput.val( value );
 
-			// If input is readonly, don't trigger the input event.
+			/ If input is readonly, don't trigger the input event.
 			if ( $widget.hasClass( 'wpforms-readonly' ) ) {
 				return;
 			}
@@ -440,7 +440,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 		 *
 		 * @return {string} The Smart Tag title.
 		 */
-		getSmartTagTitle( value ) { // eslint-disable-line complexity
+		getSmartTagTitle( value ) { / eslint-disable-line complexity
 			if ( ! value ) {
 				return '';
 			}
@@ -463,8 +463,8 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 		 *
 		 * @return {string} The Smart Tag title.
 		 */
-		getSmartTagFieldTitle( value ) { // eslint-disable-line complexity
-			// Parse value for the tags field_id, field_value_id, field_html_id and `="N"` or `="N|subfield"`.
+		getSmartTagFieldTitle( value ) { / eslint-disable-line complexity
+			/ Parse value for the tags field_id, field_value_id, field_html_id and `="N"` or `="N|subfield"`.
 			const matches = value.match( /^(field_id|field_value_id|field_html_id)="(\d+)?(\|[^"]+)?"$/ );
 
 			if ( ! matches || ! matches.length ) {
@@ -475,21 +475,21 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 			const fieldId = matches[ 2 ];
 			const subField = matches[ 3 ] ? matches[ 3 ].replace( '|', '' ) : '';
 
-			// Prepare the `#ID: Field Label` string.
+			/ Prepare the `#ID: Field Label` string.
 			let fieldIdLabelString = `[ ${ wpforms_builder.smart_tags_edit } ID ]`;
 
 			if ( fieldId ) {
 				const subFieldCapitalize = subField.length ? subField.charAt( 0 ).toUpperCase() + subField.slice( 1 ) : '';
 				const subFieldLabel = subField.length ? ` - ${ subFieldCapitalize }` : '';
 
-				// Get the field label.
+				/ Get the field label.
 				let fieldLabel = fieldId ? $( `#wpforms-field-option-${ fieldId }-label` ).val() : '';
 				fieldLabel = ( fieldLabel || wpforms_builder.smart_tags_unknown_field ) + subFieldLabel;
 
 				fieldIdLabelString = `#${ fieldId }: ${ fieldLabel }`;
 			}
 
-			// Return formatted Smart Tag title.
+			/ Return formatted Smart Tag title.
 			return wpforms_builder.smart_tags_templates[ tag ]
 				.replace( '%1$s', fieldIdLabelString );
 		},
@@ -504,7 +504,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 		 * @return {string} The Smart Tag title.
 		 */
 		getSmartTagWithArgsTitle( value ) {
-			// Parse value for the `query_var`, `user_meta`, `date` and `key="foo"` or `format="foo"`.
+			/ Parse value for the `query_var`, `user_meta`, `date` and `key="foo"` or `format="foo"`.
 			const matches = value.match( /^(query_var|user_meta|date|entry_date) (key|format)="([^"]+)?"$/ );
 
 			if ( ! matches || ! matches.length ) {
@@ -515,7 +515,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 			const arg = matches[ 2 ] || wpforms_builder.smart_tags_arg;
 			const key = matches[ 3 ] || `[ ${ wpforms_builder.smart_tags_edit } ${ arg } ]`;
 
-			// Return formatted Smart Tag title.
+			/ Return formatted Smart Tag title.
 			return wpforms_builder.smart_tags_templates[ tag ]
 				.replace( '%1$s', key );
 		},
@@ -563,10 +563,10 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 
 			let content = '';
 
-			// Iterate through all child nodes of the widget.
+			/ Iterate through all child nodes of the widget.
 			widget.childNodes.forEach( ( node ) => {
 				if ( node.nodeType === Node.TEXT_NODE ) {
-					// If it's a text node, add its value to the content
+					/ If it's a text node, add its value to the content
 					content += node.nodeValue.replaceAll( '\u200B', '' );
 					return;
 				}
@@ -577,7 +577,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 				}
 
 				if ( node.nodeType === Node.ELEMENT_NODE && node.classList.contains( 'tag' ) ) {
-					// If it's a "brick" (smart tag), add its {value} to the content.
+					/ If it's a "brick" (smart tag), add its {value} to the content.
 					const tagValue = $( node ).data( 'value' );
 					content += `{${ tagValue }}`;
 				}
@@ -596,7 +596,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 		initTooltip( $widget ) {
 			const $button = $widget.next( '.wpforms-show-smart-tags' );
 
-			//Define the tooltipster args.
+			/Define the tooltipster args.
 			const args = {
 				content: wpforms_builder.smart_tags_button_tooltip,
 				contentAsHTML: true,
@@ -607,12 +607,12 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 				maxWidth: 270,
 				functionBefore( instance, helper ) {
 					if ( $( helper.origin ).hasClass( 'active' ) ) {
-						return false; // Prevent showing the tooltip.
+						return false; / Prevent showing the tooltip.
 					}
 				},
 			};
 
-			// Initialize.
+			/ Initialize.
 			$button.tooltipster( args );
 		},
 
@@ -626,7 +626,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 		smartTagClick( e ) {
 			const $tag = $( this );
 
-			// Skip if the click was on the remove icon.
+			/ Skip if the click was on the remove icon.
 			if ( ! $tag.is( e.target ) || $tag.attr( 'contenteditable' ) === 'true' ) {
 				return;
 			}
@@ -685,8 +685,8 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 		smartTagBlur( $tag, restore = false ) {
 			let value = restore ? $tag.data( 'restore' ) : $tag.text();
 
-			// Remove curly braces from tag value if they exist.
-			// It is necessary to avoid further issues as the value already wrapped by the curly braces.
+			/ Remove curly braces from tag value if they exist.
+			/ It is necessary to avoid further issues as the value already wrapped by the curly braces.
 			value = value.replace( /\{|\}/g, '' ).trim();
 			value = wpf.sanitizeHTML( value );
 
@@ -697,7 +697,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 				.attr( 'style', null )
 				.append( $tag.data( 'close' ) )
 				.attr( 'contenteditable', false )
-				.next( '.tag-edit-ok' ).remove(); // Remove the Ok button (check icon).
+				.next( '.tag-edit-ok' ).remove(); / Remove the Ok button (check icon).
 
 			const $widget = $tag.parent();
 
@@ -720,19 +720,19 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 				return;
 			}
 
-			// Set the caret position after the tag element.
+			/ Set the caret position after the tag element.
 			const selection = document.defaultView.getSelection();
 			const range = document.createRange();
 			const parentNode = $tag[ 0 ].parentNode;
 
-			// Find the position of the tag in the parent's childNodes.
+			/ Find the position of the tag in the parent's childNodes.
 			for ( let i = 0; i < parentNode.childNodes.length; i++ ) {
 				if ( parentNode.childNodes[ i ] === $tag[ 0 ] ) {
-					// Set range position after the tag.
+					/ Set range position after the tag.
 					range.setStart( parentNode, i + 1 );
 					range.collapse( true );
 
-					// Apply the range to selection.
+					/ Apply the range to selection.
 					selection.removeAllRanges();
 					selection.addRange( range );
 					return;
@@ -752,14 +752,14 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 				return;
 			}
 
-			// Set the caret position after the tag element.
+			/ Set the caret position after the tag element.
 			const selection = document.defaultView.getSelection();
 			const range = document.createRange();
 
 			range.selectNodeContents( $tag[ 0 ] );
 			range.collapse( false );
 
-			// Apply the range to selection.
+			/ Apply the range to selection.
 			selection.removeAllRanges();
 			selection.addRange( range );
 		},
@@ -801,12 +801,12 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 				const $button = $( this ),
 					dropdownList = $button.data( 'dropdown-list' );
 
-				// Destroy the dropdown list if it exists.
+				/ Destroy the dropdown list if it exists.
 				if ( dropdownList ) {
 					dropdownList.destroy();
 				}
 
-				// Initialize the dropdown list.
+				/ Initialize the dropdown list.
 				app.getDropdownListInstance( $button );
 
 				$button.removeClass( 'active' );
@@ -825,18 +825,18 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 		getDropdownListInstance( $button ) {
 			let dropdownList = $button.data( 'dropdown-list' );
 
-			// Return the existing DropdownList instance if it exists.
+			/ Return the existing DropdownList instance if it exists.
 			if ( dropdownList ) {
 				return dropdownList;
 			}
 
-			// Check if the button is inside the TinyMCE editor.
+			/ Check if the button is inside the TinyMCE editor.
 			const isMceButton = $button.hasClass( 'mce-wpforms-smart-tags-mce-button' );
 			const originalInput = isMceButton ? $button.closest( '.wp-editor-container' ).find( 'textarea' ) : $button.closest( '.wpforms-smart-tags-widget-container' ).next( '.wpforms-smart-tags-widget-original' );
 			const id = originalInput?.attr( 'id' );
 			const isFieldOption = id ? id.includes( 'wpforms-field-option-' ) : false;
 
-			// Copy the data attributes from the original input to the button.
+			/ Copy the data attributes from the original input to the button.
 			const attributesToCopy = [ 'location', 'type', 'fields', 'allow-repeated-fields' ];
 
 			attributesToCopy.forEach( ( attr ) => {
@@ -846,10 +846,10 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 				}
 			} );
 
-			// Get the Smart Tags list.
+			/ Get the Smart Tags list.
 			const list = app.getSmartTagsList( $button, isFieldOption );
 
-			// Bail and disable the button if there are no variables in the list.
+			/ Bail and disable the button if there are no variables in the list.
 			if ( ! list.length ) {
 				$button.addClass( 'disabled' );
 
@@ -858,10 +858,10 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 
 			$button.removeClass( 'disabled' );
 
-			// Initialize the DropdownList instance.
+			/ Initialize the DropdownList instance.
 			dropdownList = app.initDropdownInstance( $button, list, isMceButton );
 
-			// Save the DropdownList instance to the button.
+			/ Save the DropdownList instance to the button.
 			$button.data( 'dropdown-list', dropdownList );
 
 			return dropdownList;
@@ -902,7 +902,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 						${ item.text }
 				    </span>`;
 
-					// If the item is a heading, add a special class.
+					/ If the item is a heading, add a special class.
 					if ( item?.heading ) {
 						format = `<span class="heading">${ item.text }</span>`;
 					}
@@ -910,12 +910,12 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 					return format;
 				},
 				onSelect( event, value, text, $item, dropdownListInstance ) {
-					// Don't close the dropdown if the heading is clicked.
+					/ Don't close the dropdown if the heading is clicked.
 					if ( $item.find( '.heading' ).length > 0 ) {
 						return;
 					}
 
-					// Insert the selected Smart Tag.
+					/ Insert the selected Smart Tag.
 					app.smartTagInsert( $item, value, dropdownListInstance );
 				},
 			} );
@@ -936,7 +936,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 				? $button.closest( '.wp-editor-wrap' )
 				: $button.closest( '.wpforms-smart-tags-widget-container' );
 
-			// If the button is inside the table cell, get the closest table row.
+			/ If the button is inside the table cell, get the closest table row.
 			if ( $button.closest( 'td' ).length ) {
 				$container = $button.parent().parent().parent();
 			}
@@ -952,15 +952,15 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 		 * @param {jQuery} $button Insert Field button jQuery object.
 		 */
 		showSmartTagDropdown( $button ) {
-			// Close all opened dropdowns.
+			/ Close all opened dropdowns.
 			$( '.insert-smart-tag-dropdown' ).each( function() {
 				$( this ).addClass( 'closed' );
 			} );
 
-			// Get the Dropdown List instance.
+			/ Get the Dropdown List instance.
 			const dropdownList = app.getDropdownListInstance( $button );
 
-			// Bail if the button is disabled and the list is empty.
+			/ Bail if the button is disabled and the list is empty.
 			if ( ! dropdownList ) {
 				return;
 			}
@@ -969,17 +969,17 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 
 			$button.toggleClass( 'active', ! isActive );
 
-			// Close the dropdown and focus back to the editor.
+			/ Close the dropdown and focus back to the editor.
 			if ( isActive ) {
 				dropdownList.close();
 
 				return;
 			}
 
-			// Remove all active classes from the buttons except the current one.
+			/ Remove all active classes from the buttons except the current one.
 			$( '.wpforms-show-smart-tags' ).not( $button ).removeClass( 'active' );
 
-			// Open the dropdown.
+			/ Open the dropdown.
 			dropdownList.open();
 		},
 
@@ -1018,7 +1018,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 
 			const fields = app.getSmartTagsFields( $el );
 
-			// Bail if there are no fields and add a message to the list.
+			/ Bail if there are no fields and add a message to the list.
 			if ( ! fields ) {
 				return [
 					{
@@ -1031,14 +1031,14 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 
 			const smartTagListElements = [];
 
-			// Add a heading for the fields.
+			/ Add a heading for the fields.
 			smartTagListElements.push( {
 				value: 0,
 				text: wpforms_builder.fields_available,
 				heading: true,
 			} );
 
-			// Add fields to the list.
+			/ Add fields to the list.
 			for ( const fieldKey in fields ) {
 				smartTagListElements.push( ...app.getSmartTagsListFieldsElement( fields[ fieldKey ] ) );
 			}
@@ -1085,10 +1085,10 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 
 			const additionalTags = field.additional || [];
 
-			// Add additional tags for `name`, `date/time` and `address` fields.
+			/ Add additional tags for `name`, `date/time` and `address` fields.
 			if ( additionalTags.length > 1 ) {
 				additionalTags.forEach( ( additionalTag ) => {
-					// Capitalize the first letter and add space before numbers.
+					/ Capitalize the first letter and add space before numbers.
 					const additionalTagLabel = additionalTag.charAt( 0 ).toUpperCase() + additionalTag.slice( 1 ).replace( /(\D)(\d)/g, '$1 $2' );
 					item.push( {
 						value: field.id,
@@ -1112,24 +1112,24 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 		 *
 		 * @return {Array} Smart Tags list elements markup.
 		 */
-		// eslint-disable-next-line complexity
+		/ eslint-disable-next-line complexity
 		getSmartTagsListOtherElements( $el, isFieldOption ) {
 			const type = $el.data( 'type' );
 			const smartTagListElements = [];
 
-			// Bail if the type is not 'other' or 'all'.
+			/ Bail if the type is not 'other' or 'all'.
 			if ( type !== 'other' && type !== 'all' ) {
 				return smartTagListElements;
 			}
 
-			// Add a heading for the other Smart Tags.
+			/ Add a heading for the other Smart Tags.
 			smartTagListElements.push( {
 				value: 0,
 				text: wpforms_builder.other,
 				heading: true,
 			} );
 
-			// Add the other Smart Tags to the list.
+			/ Add the other Smart Tags to the list.
 			for ( const smartTagKey in wpforms_builder.smart_tags ) {
 				if (
 					( isFieldOption && wpforms_builder.smart_tags_disabled_for_fields.includes( smartTagKey ) ) ||
@@ -1168,22 +1168,22 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 				type = $this.data( 'type' ),
 				isMCE = dropdownInstance.$button.hasClass( 'mce-wpforms-smart-tags-mce-button' );
 
-			// Prepare the Smart Tag.
+			/ Prepare the Smart Tag.
 			let smartTag = type === 'field' ? '{field_id="' + meta + additional + '"}' : '{' + meta + '}';
 			smartTag = ' ' + smartTag + ' ';
 
 			if ( ! isMCE ) {
-				// Restore the caret position for the widget.
+				/ Restore the caret position for the widget.
 				app.restoreCaretPosition( $widget[ 0 ] );
 
-				// Insert the Smart Tag at the current cursor position.
+				/ Insert the Smart Tag at the current cursor position.
 				app.insertTagAtCaret( $widget[ 0 ], smartTag );
 			} else {
-				// Insert the Smart Tag at the current cursor position.
+				/ Insert the Smart Tag at the current cursor position.
 				app.insertSmartTagToTinyMCE( dropdownInstance, smartTag );
 			}
 
-			// Close the dropdown.
+			/ Close the dropdown.
 			dropdownInstance.$button.removeClass( 'active' );
 			dropdownInstance.close();
 		},
@@ -1201,21 +1201,21 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 				return;
 			}
 
-			// Get the TinyMCE editor instance.
+			/ Get the TinyMCE editor instance.
 			const inputId = dropdownInstance.$button.closest( '.wp-editor-container' ).find( 'textarea' ).attr( 'id' );
 			const editor = tinyMCE.get( inputId );
 
-			// Bail if the editor is not available.
+			/ Bail if the editor is not available.
 			if ( ! editor ) {
 				return;
 			}
 
-			// Focus on the editor.
+			/ Focus on the editor.
 			if ( ! editor.hasFocus() ) {
 				editor.focus( true );
 			}
 
-			// Insert the Smart Tag at the current cursor position.
+			/ Insert the Smart Tag at the current cursor position.
 			editor.insertContent( smartTag );
 		},
 
@@ -1227,7 +1227,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 		 * @since 1.9.5
 		 */
 		saveCaretPosition( widget ) {
-			// eslint-disable-next-line @wordpress/no-global-get-selection
+			/ eslint-disable-next-line @wordpress/no-global-get-selection
 			const selection = window.getSelection();
 
 			if ( ! selection.rangeCount ) {
@@ -1236,7 +1236,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 
 			const range = selection.getRangeAt( 0 );
 
-			// Save the range if the widget contains the start container.
+			/ Save the range if the widget contains the start container.
 			if ( widget.contains( range.startContainer ) ) {
 				savedRanges.set( widget, range );
 			}
@@ -1254,7 +1254,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 
 			const selection = widget.ownerDocument.defaultView.getSelection();
 
-			// Restore the caret position. If the range is not available, set the caret to the end of the widget.
+			/ Restore the caret position. If the range is not available, set the caret to the end of the widget.
 			if ( range ) {
 				selection.removeAllRanges();
 				selection.addRange( range );
@@ -1266,7 +1266,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 				selection.addRange( fallbackRange );
 			}
 
-			// Focus back to the widget.
+			/ Focus back to the widget.
 			widget.focus();
 		},
 
@@ -1279,32 +1279,32 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 		 * @since 1.9.5
 		 */
 		insertTagAtCaret( widget, text ) {
-			// Get the current selection.
+			/ Get the current selection.
 			const selection = document.defaultView.getSelection();
 			const range = selection.getRangeAt( 0 );
 
-			// Create a text node with the provided text.
+			/ Create a text node with the provided text.
 			const textNode = document.createTextNode( text );
 
-			// Insert text into the current cursor position.
+			/ Insert text into the current cursor position.
 			range.deleteContents();
 			range.insertNode( textNode );
 
-			// Move the cursor after the inserted text.
+			/ Move the cursor after the inserted text.
 			range.setStartAfter( textNode );
 			range.setEndAfter( textNode );
 
-			// Set updated range.
+			/ Set updated range.
 			selection.removeAllRanges();
 			selection.addRange( range );
 
-			// Re-render the widget content.
+			/ Re-render the widget content.
 			app.renderWidgetContent( { target: widget }, true );
 
-			// Focus back to the widget.
+			/ Focus back to the widget.
 			widget.focus();
 
-			// Scroll to the cursor position if it's out of view.
+			/ Scroll to the cursor position if it's out of view.
 			this.scrollToCursorPosition( widget );
 		},
 
@@ -1316,61 +1316,61 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 		 * @since 1.9.5
 		 */
 		scrollToCursorPosition( container ) {
-			// Wait for the DOM to update.
-			setTimeout( () => { // eslint-disable-line complexity
-				// Create a temporary marker element.
+			/ Wait for the DOM to update.
+			setTimeout( () => { / eslint-disable-line complexity
+				/ Create a temporary marker element.
 				const tempMarker = document.createElement( 'span' );
 				tempMarker.style.display = 'inline-block';
 				tempMarker.style.width = '0px';
 				tempMarker.style.height = '0px';
 
-				// Get current selection and range.
+				/ Get current selection and range.
 				const selection = document.getSelection();
 
 				if ( ! selection.rangeCount ) {
 					return;
 				}
 
-				// Clone the range to avoid modifying the actual selection.
+				/ Clone the range to avoid modifying the actual selection.
 				const currentRange = selection.getRangeAt( 0 ).cloneRange();
 				currentRange.collapse( true );
 
-				// Insert the marker at the current position.
+				/ Insert the marker at the current position.
 				currentRange.insertNode( tempMarker );
 
-				// Get the marker and container positions.
+				/ Get the marker and container positions.
 				const markerRect = tempMarker.getBoundingClientRect();
 				const containerRect = container.getBoundingClientRect();
 
-				// Check if the marker is outside the visible area horizontally.
+				/ Check if the marker is outside the visible area horizontally.
 				const isMarkerHorizontallyVisible = markerRect.left >= containerRect.left &&
 					markerRect.right <= containerRect.right;
 
-				// Check if the marker is outside the visible area vertically.
+				/ Check if the marker is outside the visible area vertically.
 				const isMarkerAbove = markerRect.top < containerRect.top;
 				const isMarkerBelow = markerRect.bottom > containerRect.bottom;
 
-				// If the marker is not visible horizontally, scroll to make it visible.
+				/ If the marker is not visible horizontally, scroll to make it visible.
 				if ( ! isMarkerHorizontallyVisible && markerRect.left > 0 ) {
-					// Calculate the scroll amount needed to make the marker visible.
+					/ Calculate the scroll amount needed to make the marker visible.
 					const scrollAmount = markerRect.left - containerRect.left - ( containerRect.width / 2 );
 
-					// Scroll the container horizontally.
+					/ Scroll the container horizontally.
 					container.scrollLeft += scrollAmount;
 				}
 
-				// If the marker is not visible vertically, scroll to make it visible.
+				/ If the marker is not visible vertically, scroll to make it visible.
 				if ( isMarkerAbove ) {
 					container.scrollTop -= ( containerRect.top - markerRect.top + 20 );
 				} else if ( isMarkerBelow ) {
 					container.scrollTop += ( markerRect.bottom - containerRect.bottom + 20 );
 				}
 
-				// Remove the temporary marker.
+				/ Remove the temporary marker.
 				if ( tempMarker.parentNode ) {
 					tempMarker.parentNode.removeChild( tempMarker );
 				}
-			}, 50 ); // Small delay to ensure the DOM has updated.
+			}, 50 ); / Small delay to ensure the DOM has updated.
 		},
 
 		/**
@@ -1388,31 +1388,31 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 			const range = selection.getRangeAt( 0 );
 			const br = document.createElement( 'br' );
 
-			// Insert the line break.
+			/ Insert the line break.
 			range.deleteContents();
 			range.insertNode( br );
 
-			// Remove any zero-width spaces in the widget.
+			/ Remove any zero-width spaces in the widget.
 			app.removeZeroWidthSpaces( br.parentNode );
 
-			// Insert a zero-width space after the line break to ensure the cursor can move to the next line.
+			/ Insert a zero-width space after the line break to ensure the cursor can move to the next line.
 			const textNode = document.createTextNode( '\u200B' );
 			range.setStartAfter( br );
 			range.insertNode( textNode );
 
-			// Move the cursor after the inserted line break and zero-width space.
+			/ Move the cursor after the inserted line break and zero-width space.
 			range.setStartAfter( textNode );
 			range.setEndAfter( textNode );
 			selection.removeAllRanges();
 			selection.addRange( range );
 
-			// Scroll to cursor position if it's out of view.
+			/ Scroll to cursor position if it's out of view.
 			this.scrollToCursorPosition( br.parentNode );
 
-			// Get the widget element that contains the cursor.
+			/ Get the widget element that contains the cursor.
 			const widget = br.closest( '.wpforms-smart-tags-widget' );
 
-			// Update the original input with the new content including the line break.
+			/ Update the original input with the new content including the line break.
 			if ( widget ) {
 				this.updateOriginalInput( widget );
 			}
@@ -1498,12 +1498,12 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 			const builder = el.$builder[ 0 ];
 			const element = $element[ 0 ];
 
-			// Check if the element is still in the DOM.
+			/ Check if the element is still in the DOM.
 			if ( ! builder.contains( element ) ) {
 				return;
 			}
 
-			// Create a new observer.
+			/ Create a new observer.
 			const observer = new MutationObserver( ( mutations ) => {
 				if ( mutations.length ) {
 					app.reinitWidgets( $element.parent() );
@@ -1512,7 +1512,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 
 			observer.observe( element, { attributes: true, attributeFilter: [ 'readonly', 'disabled' ] } );
 
-			// Remove the observer when the element is removed from the DOM.
+			/ Remove the observer when the element is removed from the DOM.
 			const parentObserver = new MutationObserver( () => {
 				if ( ! builder.contains( element ) ) {
 					observer.disconnect();
@@ -1545,7 +1545,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 		 * @param {Object} widget Widget object.
 		 */
 		removeZeroWidthSpaces( widget ) {
-			// Use TreeWalker to find all text nodes in the widget.
+			/ Use TreeWalker to find all text nodes in the widget.
 			const walker = document.createTreeWalker(
 				widget,
 				NodeFilter.SHOW_TEXT,
@@ -1555,7 +1555,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 
 			let currentNode;
 
-			// Replace zero-width spaces with empty string.
+			/ Replace zero-width spaces with empty string.
 			while ( ( currentNode = walker.nextNode() ) ) {
 				if ( currentNode.nodeValue.includes( '\u200B' ) ) {
 					currentNode.nodeValue = currentNode.nodeValue.replaceAll( '\u200B', '' );
@@ -1564,7 +1564,7 @@ WPForms.Admin.Builder.SmartTags = WPForms.Admin.Builder.SmartTags || ( function(
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

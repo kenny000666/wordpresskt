@@ -97,12 +97,12 @@ WPForms.Admin.Builder.Providers.ConstantContactV3 = WPForms.Admin.Builder.Provid
 		 * @since 1.9.3
 		 */
 		init() {
-			// We are requesting/loading a Providers panel.
+			/ We are requesting/loading a Providers panel.
 			if ( wpf.getQueryString( 'view' ) === 'providers' ) {
 				app.$elements.$holder.on( 'WPForms.Admin.Builder.Providers.ready', app.ready );
 			}
 
-			// We have switched to a Providers panel.
+			/ We have switched to a Providers panel.
 			$( document ).on( 'wpformsPanelSwitched', function( event, panel ) {
 				if ( panel === 'providers' ) {
 					app.ready();
@@ -124,7 +124,7 @@ WPForms.Admin.Builder.Providers.ConstantContactV3 = WPForms.Admin.Builder.Provid
 			app.Templates = WPForms.Admin.Builder.Templates;
 			app.Cache = app.Providers.cache;
 
-			// Register custom Underscore.js templates.
+			/ Register custom Underscore.js templates.
 			app.Templates.add( [
 				'wpforms-constant-contact-v3-builder-content-connection',
 				'wpforms-constant-contact-v3-builder-content-connection-error',
@@ -132,13 +132,13 @@ WPForms.Admin.Builder.Providers.ConstantContactV3 = WPForms.Admin.Builder.Provid
 				'wpforms-constant-contact-v3-builder-content-connection-conditionals',
 			] );
 
-			// Events registration.
+			/ Events registration.
 			app.bindUIActions();
 			app.bindTriggers();
 
 			app.processInitial();
 
-			// Save a flag for ready state.
+			/ Save a flag for ready state.
 			app.isReady = true;
 		},
 
@@ -179,7 +179,7 @@ WPForms.Admin.Builder.Providers.ConstantContactV3 = WPForms.Admin.Builder.Provid
 				const $connection = app.connection.getById( data.connection.id );
 
 				if ( _.has( data.connection, 'isNew' ) && data.connection.isNew ) {
-					// Run replacing temporary connection ID if it's a new connection.
+					/ Run replacing temporary connection ID if it's a new connection.
 					app.connection.replaceIds( data.connection.id, $connection );
 					return;
 				}
@@ -226,7 +226,7 @@ WPForms.Admin.Builder.Providers.ConstantContactV3 = WPForms.Admin.Builder.Provid
 			 * @param {Object} $connection  jQuery DOM connection element.
 			 */
 			replaceIds( connectionId, $connection ) {
-				// Replace old temporary %connection_id% from PHP code with the new one.
+				/ Replace old temporary %connection_id% from PHP code with the new one.
 				$connection.find( 'input, select, label' ).each( function() {
 					const $this = $( this );
 
@@ -407,7 +407,7 @@ WPForms.Admin.Builder.Providers.ConstantContactV3 = WPForms.Admin.Builder.Provid
 					return false;
 				}
 
-				// New connections that have not been saved don't have the account ID yet.
+				/ New connections that have not been saved don't have the account ID yet.
 				if ( _.isEmpty( accountId ) ) {
 					return true;
 				}
@@ -440,7 +440,7 @@ WPForms.Admin.Builder.Providers.ConstantContactV3 = WPForms.Admin.Builder.Provid
 
 					$actionName.prop( 'selectedIndex', 0 ).trigger( 'change' );
 
-					// If an account is empty.
+					/ If an account is empty.
 					if ( _.isEmpty( $this.val() ) ) {
 						$actionName.prop( 'disabled', true );
 						$( app.selectors.actionData, $connection ).html( '' );
@@ -532,7 +532,7 @@ WPForms.Admin.Builder.Providers.ConstantContactV3 = WPForms.Admin.Builder.Provid
 			 * @return {string} Compiled HTML.
 			 */
 			commonsHTML() {
-				// eslint-disable-next-line no-console
+				/ eslint-disable-next-line no-console
 				console.warn( 'WARNING! Function "WPForms.Admin.Builder.Providers.ConstantContactV3.tmpl.commonsHTML()" has been deprecated!' );
 
 				const tmplError = app.Templates.get( 'wpforms-' + app.provider + '-builder-content-connection-error' );
@@ -595,7 +595,7 @@ WPForms.Admin.Builder.Providers.ConstantContactV3 = WPForms.Admin.Builder.Provid
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

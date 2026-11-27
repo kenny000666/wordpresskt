@@ -16,7 +16,7 @@
 
 		overlay.fadeIn();
 
-		// Add the loading mechanism.
+		/ Add the loading mechanism.
 		$( '.redux-action_bar .spinner' ).addClass( 'is-active' );
 		$( '.redux-action_bar input' ).prop( 'disabled', true );
 
@@ -30,7 +30,7 @@
 			}
 		);
 
-		// Editor field doesn't auto save. Have to call it. Boo.
+		/ Editor field doesn't auto save. Have to call it. Boo.
 		if ( redux.optName.hasOwnProperty( 'editor' ) ) {
 			$.each(
 				redux.optName.editor,
@@ -50,7 +50,7 @@
 
 		$data = $parent.serialize();
 
-		// Add values for checked and unchecked checkboxes fields.
+		/ Add values for checked and unchecked checkboxes fields.
 		$parent.find( 'input[type=checkbox]' ).each(
 			function () {
 				let chkVal;

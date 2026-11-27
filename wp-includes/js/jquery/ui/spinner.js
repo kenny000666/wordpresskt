@@ -21,7 +21,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"./button",
@@ -32,7 +32,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -79,16 +79,16 @@ $.widget( "ui.spinner", {
 
 	_create: function() {
 
-		// handle string values that need to be parsed
+		/ handle string values that need to be parsed
 		this._setOption( "max", this.options.max );
 		this._setOption( "min", this.options.min );
 		this._setOption( "step", this.options.step );
 
-		// Only format if there is a value, prevents the field from being marked
-		// as invalid in Firefox, see #9573.
+		/ Only format if there is a value, prevents the field from being marked
+		/ as invalid in Firefox, see #9573.
 		if ( this.value() !== "" ) {
 
-			// Format the value, but don't constrain.
+			/ Format the value, but don't constrain.
 			this._value( this.element.val(), true );
 		}
 
@@ -96,9 +96,9 @@ $.widget( "ui.spinner", {
 		this._on( this._events );
 		this._refresh();
 
-		// Turning off autocomplete prevents the browser from remembering the
-		// value when navigating through history, so we re-enable autocomplete
-		// if the page is unloaded before the widget is destroyed. #7790
+		/ Turning off autocomplete prevents the browser from remembering the
+		/ value when navigating through history, so we re-enable autocomplete
+		/ if the page is unloaded before the widget is destroyed. #7790
 		this._on( this.window, {
 			beforeunload: function() {
 				this.element.removeAttr( "autocomplete" );
@@ -166,11 +166,11 @@ $.widget( "ui.spinner", {
 		"mousedown .ui-spinner-button": function( event ) {
 			var previous;
 
-			// We never want the buttons to have focus; whenever the user is
-			// interacting with the spinner, the focus should be on the input.
-			// If the input is focused then this.previous is properly set from
-			// when the input first received focus. If the input is not focused
-			// then we need to set this.previous based on the value before spinning.
+			/ We never want the buttons to have focus; whenever the user is
+			/ interacting with the spinner, the focus should be on the input.
+			/ If the input is focused then this.previous is properly set from
+			/ when the input first received focus. If the input is not focused
+			/ then we need to set this.previous based on the value before spinning.
 			previous = this.element[ 0 ] === $.ui.safeActiveElement( this.document[ 0 ] ) ?
 				this.previous : this.element.val();
 			function checkFocus() {
@@ -179,23 +179,23 @@ $.widget( "ui.spinner", {
 					this.element.trigger( "focus" );
 					this.previous = previous;
 
-					// support: IE
-					// IE sets focus asynchronously, so we need to check if focus
-					// moved off of the input because the user clicked on the button.
+					/ support: IE
+					/ IE sets focus asynchronously, so we need to check if focus
+					/ moved off of the input because the user clicked on the button.
 					this._delay( function() {
 						this.previous = previous;
 					} );
 				}
 			}
 
-			// Ensure focus is on (or stays on) the text field
+			/ Ensure focus is on (or stays on) the text field
 			event.preventDefault();
 			checkFocus.call( this );
 
-			// Support: IE
-			// IE doesn't prevent moving focus even with event.preventDefault()
-			// so we set a flag to know when we should ignore the blur event
-			// and check (again) if focus moved off of the input.
+			/ Support: IE
+			/ IE doesn't prevent moving focus even with event.preventDefault()
+			/ so we set a flag to know when we should ignore the blur event
+			/ and check (again) if focus moved off of the input.
 			this.cancelBlur = true;
 			this._delay( function() {
 				delete this.cancelBlur;
@@ -212,7 +212,7 @@ $.widget( "ui.spinner", {
 		"mouseup .ui-spinner-button": "_stop",
 		"mouseenter .ui-spinner-button": function( event ) {
 
-			// button will add ui-state-active if mouse was down while mouseleave and kept down
+			/ button will add ui-state-active if mouse was down while mouseleave and kept down
 			if ( !$( event.currentTarget ).hasClass( "ui-state-active" ) ) {
 				return;
 			}
@@ -224,20 +224,20 @@ $.widget( "ui.spinner", {
 				.hasClass( "ui-spinner-up" ) ? 1 : -1, event );
 		},
 
-		// TODO: do we really want to consider this a stop?
-		// shouldn't we just stop the repeater and wait until mouseup before
-		// we trigger the stop event?
+		/ TODO: do we really want to consider this a stop?
+		/ shouldn't we just stop the repeater and wait until mouseup before
+		/ we trigger the stop event?
 		"mouseleave .ui-spinner-button": "_stop"
 	},
 
-	// Support mobile enhanced option and make backcompat more sane
+	/ Support mobile enhanced option and make backcompat more sane
 	_enhance: function() {
 		this.uiSpinner = this.element
 			.attr( "autocomplete", "off" )
 			.wrap( "<span>" )
 			.parent()
 
-				// Add buttons
+				/ Add buttons
 				.append(
 					"<a></a><a></a>"
 				);
@@ -251,7 +251,7 @@ $.widget( "ui.spinner", {
 
 		this.element.attr( "role", "spinbutton" );
 
-		// Button bindings
+		/ Button bindings
 		this.buttons = this.uiSpinner.children( "a" )
 			.attr( "tabIndex", -1 )
 			.attr( "aria-hidden", true )
@@ -261,7 +261,7 @@ $.widget( "ui.spinner", {
 				}
 			} );
 
-		// TODO: Right now button does not support classes this is already updated in button PR
+		/ TODO: Right now button does not support classes this is already updated in button PR
 		this._removeClass( this.buttons, "ui-corner-all" );
 
 		this._addClass( this.buttons.first(), "ui-spinner-button ui-spinner-up" );
@@ -275,8 +275,8 @@ $.widget( "ui.spinner", {
 			"showLabel": false
 		} );
 
-		// IE 6 doesn't understand height: 50% for the buttons
-		// unless the wrapper has an explicit height
+		/ IE 6 doesn't understand height: 50% for the buttons
+		/ unless the wrapper has an explicit height
 		if ( this.buttons.height() > Math.ceil( this.uiSpinner.height() * 0.5 ) &&
 				this.uiSpinner.height() > 0 ) {
 			this.uiSpinner.height( this.uiSpinner.height() );
@@ -373,21 +373,21 @@ $.widget( "ui.spinner", {
 		var base, aboveMin,
 			options = this.options;
 
-		// Make sure we're at a valid step
-		// - find out where we are relative to the base (min or 0)
+		/ Make sure we're at a valid step
+		/ - find out where we are relative to the base (min or 0)
 		base = options.min !== null ? options.min : 0;
 		aboveMin = value - base;
 
-		// - round to the nearest step
+		/ - round to the nearest step
 		aboveMin = Math.round( aboveMin / options.step ) * options.step;
 
-		// - rounding is based on 0, so adjust back to our base
+		/ - rounding is based on 0, so adjust back to our base
 		value = base + aboveMin;
 
-		// Fix precision from bad JS floating point math
+		/ Fix precision from bad JS floating point math
 		value = parseFloat( value.toFixed( this._precision() ) );
 
-		// Clamp the value
+		/ Clamp the value
 		if ( options.max !== null && value > options.max ) {
 			return options.max;
 		}
@@ -471,7 +471,7 @@ $.widget( "ui.spinner", {
 			"aria-valuemin": this.options.min,
 			"aria-valuemax": this.options.max,
 
-			// TODO: what should we do with values that can't be parsed?
+			/ TODO: what should we do with values that can't be parsed?
 			"aria-valuenow": this._parse( this.element.val() )
 		} );
 	},
@@ -479,16 +479,16 @@ $.widget( "ui.spinner", {
 	isValid: function() {
 		var value = this.value();
 
-		// Null is invalid
+		/ Null is invalid
 		if ( value === null ) {
 			return false;
 		}
 
-		// If value gets adjusted, it's invalid
+		/ If value gets adjusted, it's invalid
 		return value === this._adjustValue( value );
 	},
 
-	// Update the value without triggering change
+	/ Update the value without triggering change
 	_value: function( value, allowAny ) {
 		var parsed;
 		if ( value !== "" ) {
@@ -556,7 +556,7 @@ $.widget( "ui.spinner", {
 // TODO: switch return back to widget declaration at top of file when this is removed
 if ( $.uiBackCompat !== false ) {
 
-	// Backcompat for spinner html extension points
+	/ Backcompat for spinner html extension points
 	$.widget( "ui.spinner", $.ui.spinner, {
 		_enhance: function() {
 			this.uiSpinner = this.element
@@ -564,7 +564,7 @@ if ( $.uiBackCompat !== false ) {
 				.wrap( this._uiSpinnerHtml() )
 				.parent()
 
-					// Add buttons
+					/ Add buttons
 					.append( this._buttonHtml() );
 		},
 		_uiSpinnerHtml: function() {

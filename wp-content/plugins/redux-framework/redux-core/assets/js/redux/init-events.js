@@ -37,10 +37,10 @@
 					'keypress',
 					function ( evt ) {
 
-						// Determine where our character code is coming from within the event.
+						/ Determine where our character code is coming from within the event.
 						const charCode = evt.charCode || evt.keyCode;
 
-						if ( 13 === charCode ) { // Enter key's keycode.
+						if ( 13 === charCode ) { / Enter key's keycode.
 							return false;
 						}
 					}
@@ -114,7 +114,7 @@
 			}
 		}
 
-		// Customizer save hook.
+		/ Customizer save hook.
 		el.find( '#customize-save-button-wrapper #save' ).on(
 			'click',
 			function () {
@@ -147,19 +147,19 @@
 			}
 		);
 
-		// Save button clicked.
+		/ Save button clicked.
 		el.find( '.redux-action_bar input, #redux-import-action input' ).on(
 			'click',
 			function ( e ) {
 				if ( $( this ).attr( 'name' ) === redux.optName.args.opt_name + '[defaults]' ) {
 
-					// Defaults button clicked.
+					/ Defaults button clicked.
 					if ( ! confirm( redux.optName.args.reset_confirm ) ) {
 						return false;
 					}
 				} else if ( $( this ).attr( 'name' ) === redux.optName.args.opt_name + '[defaults-section]' ) {
 
-					// Default section clicked.
+					/ Default section clicked.
 					if ( ! confirm( redux.optName.args.reset_section_confirm ) ) {
 						return false;
 					}
@@ -197,7 +197,7 @@
 						200,
 						function () {
 							if ( 0 !== el.find( '#redux-footer' ).length ) {
-								$.redux.stickyInfo(); // Race condition fix.
+								$.redux.stickyInfo(); / Race condition fix.
 							}
 
 							$.redux.initFields();

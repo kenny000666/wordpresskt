@@ -16,7 +16,7 @@ const WPFormsBuilderPaymentsUtils = window.WPFormsBuilderPaymentsUtils || ( func
 		 *
 		 * @since 1.9.5
 		 */
-		// eslint-disable-next-line complexity
+		/ eslint-disable-next-line complexity
 		toggleContent() {
 			const $input = $( this ),
 				$paymentSettings = $input.closest( '.wpforms-payment-settings' );
@@ -90,7 +90,7 @@ const WPFormsBuilderPaymentsUtils = window.WPFormsBuilderPaymentsUtils || ( func
 		 * @since 1.9.5
 		 */
 		deletePlan() {
-			// Trigger a warning modal when trying to delete a single plan without pro addon.
+			/ Trigger a warning modal when trying to delete a single plan without pro addon.
 			$( this ).closest( '.wpforms-panel-content-section-payment' ).find( '.wpforms-panel-content-section-payment-button-add-plan' ).trigger( 'click' );
 		},
 
@@ -114,6 +114,6 @@ const WPFormsBuilderPaymentsUtils = window.WPFormsBuilderPaymentsUtils || ( func
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );

@@ -124,7 +124,7 @@
 
 						if ( true === split ) {
 							timePickerID = el.find( 'input.redux-time-picker' ).data( 'id' );
-							altField     = '#' + timePickerID + '-time'; // '.redux-time-picker';
+							altField     = '#' + timePickerID + '-time'; / '.redux-time-picker';
 						}
 
 						$( this ).datetimepicker(

@@ -7,16 +7,16 @@
  */
 ( function ( factory ) {
 	if ( typeof define === 'function' && define.amd ) {
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [ 'jquery' ], factory );
 	} else if ( typeof module === 'object' && module.exports ) {
-		// Node/CommonJS
+		/ Node/CommonJS
 		module.exports = function ( root, jQuery ) {
 			if ( jQuery === undefined ) {
-				// require('jQuery') returns a factory that requires window to
-				// build a jQuery instance, we normalize how we use modules
-				// that require this pattern but the window provided is a noop
-				// if it's defined (how jquery works)
+				/ require('jQuery') returns a factory that requires window to
+				/ build a jQuery instance, we normalize how we use modules
+				/ that require this pattern but the window provided is a noop
+				/ if it's defined (how jquery works)
 				if ( typeof window !== 'undefined' ) {
 					jQuery = require( 'jquery' );
 				} else {
@@ -27,16 +27,16 @@
 			return jQuery;
 		};
 	} else {
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function ( jQuery ) {
-	// This is needed so we can catch the AMD loader configuration and use it
-	// The inner file should be wrapped (by `banner.start.js`) in a function that
-	// returns the AMD loader references.
+	/ This is needed so we can catch the AMD loader configuration and use it
+	/ The inner file should be wrapped (by `banner.start.js`) in a function that
+	/ returns the AMD loader references.
 	var S2 = ( function () {
-		// Restore the Select2 AMD loader so it can be used
-		// Needed mostly in the language files, where the loader is not inserted
+		/ Restore the Select2 AMD loader so it can be used
+		/ Needed mostly in the language files, where the loader is not inserted
 		if (
 			jQuery &&
 			jQuery.fn &&
@@ -57,8 +57,8 @@
 				 * @license almond 0.3.3 Copyright jQuery Foundation and other contributors.
 				 * Released under MIT license, http://github.com/requirejs/almond/LICENSE
 				 */
-				//Going sloppy to avoid 'use strict' string cost, but strict practices should
-				//be followed.
+				/Going sloppy to avoid 'use strict' string cost, but strict practices should
+				/be followed.
 				/*global setTimeout: false */
 
 				var requirejs, require, define;
@@ -104,15 +104,15 @@
 							map = config.map,
 							starMap = ( map && map[ '*' ] ) || {};
 
-						//Adjust any relative paths.
+						/Adjust any relative paths.
 						if ( name ) {
 							name = name.split( '/' );
 							lastIndex = name.length - 1;
 
-							// If wanting node ID compatibility, strip .js from end
-							// of IDs. Have to do this here, and not in nameToUrl
-							// because node allows either .js or non .js to map
-							// to same file.
+							/ If wanting node ID compatibility, strip .js from end
+							/ of IDs. Have to do this here, and not in nameToUrl
+							/ because node allows either .js or non .js to map
+							/ to same file.
 							if (
 								config.nodeIdCompat &&
 								jsSuffixRegExp.test( name[ lastIndex ] )
@@ -123,13 +123,13 @@
 								);
 							}
 
-							// Starts with a '.' so need the baseName
+							/ Starts with a '.' so need the baseName
 							if ( name[ 0 ].charAt( 0 ) === '.' && baseParts ) {
-								//Convert baseName to array, and lop off the last part,
-								//so that . matches that 'directory' and not name of the baseName's
-								//module. For instance, baseName of 'one/two/three', maps to
-								//'one/two/three.js', but we want the directory, 'one/two' for
-								//this normalization.
+								/Convert baseName to array, and lop off the last part,
+								/so that . matches that 'directory' and not name of the baseName's
+								/module. For instance, baseName of 'one/two/three', maps to
+								/'one/two/three.js', but we want the directory, 'one/two' for
+								/this normalization.
 								normalizedBaseParts = baseParts.slice(
 									0,
 									baseParts.length - 1
@@ -137,18 +137,18 @@
 								name = normalizedBaseParts.concat( name );
 							}
 
-							//start trimDots
+							/start trimDots
 							for ( i = 0; i < name.length; i++ ) {
 								part = name[ i ];
 								if ( part === '.' ) {
 									name.splice( i, 1 );
 									i -= 1;
 								} else if ( part === '..' ) {
-									// If at the start, or previous value is still ..,
-									// keep them so that when converted to a path it may
-									// still work when converted to a path, even though
-									// as an ID it is less than ideal. In larger point
-									// releases, may be better to just kick out an error.
+									/ If at the start, or previous value is still ..,
+									/ keep them so that when converted to a path it may
+									/ still work when converted to a path, even though
+									/ as an ID it is less than ideal. In larger point
+									/ releases, may be better to just kick out an error.
 									if (
 										i === 0 ||
 										( i === 1 && name[ 2 ] === '..' ) ||
@@ -161,12 +161,12 @@
 									}
 								}
 							}
-							//end trimDots
+							/end trimDots
 
 							name = name.join( '/' );
 						}
 
-						//Apply map config if available.
+						/Apply map config if available.
 						if ( ( baseParts || starMap ) && map ) {
 							nameParts = name.split( '/' );
 
@@ -176,8 +176,8 @@
 									.join( '/' );
 
 								if ( baseParts ) {
-									//Find the longest baseName segment match in the config.
-									//So, do joins on the biggest to smallest lengths of baseParts.
+									/Find the longest baseName segment match in the config.
+									/So, do joins on the biggest to smallest lengths of baseParts.
 									for (
 										j = baseParts.length;
 										j > 0;
@@ -190,12 +190,12 @@
 													.join( '/' )
 											];
 
-										//baseName segment has  config, find if it has one for
-										//this name.
+										/baseName segment has  config, find if it has one for
+										/this name.
 										if ( mapValue ) {
 											mapValue = mapValue[ nameSegment ];
 											if ( mapValue ) {
-												//Match, update name to the new value.
+												/Match, update name to the new value.
 												foundMap = mapValue;
 												foundI = i;
 												break;
@@ -208,9 +208,9 @@
 									break;
 								}
 
-								//Check for a star map match, but just hold on to it,
-								//if there is a shorter segment match later in a matching
-								//config, then favor over this star map.
+								/Check for a star map match, but just hold on to it,
+								/if there is a shorter segment match later in a matching
+								/config, then favor over this star map.
 								if (
 									! foundStarMap &&
 									starMap &&
@@ -237,14 +237,14 @@
 
 					function makeRequire( relName, forceSync ) {
 						return function () {
-							//A version of a require function that passes a moduleName
-							//value for items that may need to
-							//look up paths relative to the moduleName
+							/A version of a require function that passes a moduleName
+							/value for items that may need to
+							/look up paths relative to the moduleName
 							var args = aps.call( arguments, 0 );
 
-							//If first arg is not require('string'), and there is only
-							//one arg, it is the array form without a callback. Insert
-							//a null so that the following concat is correct.
+							/If first arg is not require('string'), and there is only
+							/one arg, it is the array form without a callback. Insert
+							/a null so that the following concat is correct.
 							if (
 								typeof args[ 0 ] !== 'string' &&
 								args.length === 1
@@ -287,9 +287,9 @@
 						return defined[ name ];
 					}
 
-					//Turns a plugin!resource to [plugin, resource]
-					//with the plugin being undefined if the name
-					//did not have a plugin prefix.
+					/Turns a plugin!resource to [plugin, resource]
+					/with the plugin being undefined if the name
+					/did not have a plugin prefix.
 					function splitPrefix( name ) {
 						var prefix,
 							index = name ? name.indexOf( '!' ) : -1;
@@ -300,8 +300,8 @@
 						return [ prefix, name ];
 					}
 
-					//Creates a parts array for a relName where first part is plugin ID,
-					//second part is resource ID. Assumes relName has already been normalized.
+					/Creates a parts array for a relName where first part is plugin ID,
+					/second part is resource ID. Assumes relName has already been normalized.
 					function makeRelParts( relName ) {
 						return relName ? splitPrefix( relName ) : [];
 					}
@@ -324,7 +324,7 @@
 							plugin = callDep( prefix );
 						}
 
-						//Normalize according
+						/Normalize according
 						if ( prefix ) {
 							if ( plugin && plugin.normalize ) {
 								name = plugin.normalize(
@@ -344,9 +344,9 @@
 							}
 						}
 
-						//Using ridiculous property names for space reasons
+						/Using ridiculous property names for space reasons
 						return {
-							f: prefix ? prefix + '!' + name : name, //fullName
+							f: prefix ? prefix + '!' + name : name, /fullName
 							n: name,
 							pr: prefix,
 							p: plugin,
@@ -397,18 +397,18 @@
 							callbackType = typeof callback,
 							usingExports;
 
-						//Use name if no relName
+						/Use name if no relName
 						relName = relName || name;
 						relParts = makeRelParts( relName );
 
-						//Call the callback to define the module, if necessary.
+						/Call the callback to define the module, if necessary.
 						if (
 							callbackType === 'undefined' ||
 							callbackType === 'function'
 						) {
-							//Pull out the defined dependencies and pass the ordered
-							//values to the callback.
-							//Default to [require, exports, module] if no deps
+							/Pull out the defined dependencies and pass the ordered
+							/values to the callback.
+							/Default to [require, exports, module] if no deps
 							deps =
 								! deps.length && callback.length
 									? [ 'require', 'exports', 'module' ]
@@ -417,15 +417,15 @@
 								map = makeMap( deps[ i ], relParts );
 								depName = map.f;
 
-								//Fast path CommonJS standard dependencies.
+								/Fast path CommonJS standard dependencies.
 								if ( depName === 'require' ) {
 									args[ i ] = handlers.require( name );
 								} else if ( depName === 'exports' ) {
-									//CommonJS module spec 1.1
+									/CommonJS module spec 1.1
 									args[ i ] = handlers.exports( name );
 									usingExports = true;
 								} else if ( depName === 'module' ) {
-									//CommonJS module spec 1.1
+									/CommonJS module spec 1.1
 									cjsModule = args[ i ] = handlers.module(
 										name
 									);
@@ -455,9 +455,9 @@
 								: undefined;
 
 							if ( name ) {
-								//If setting exports via "module" is in play,
-								//favor that over return value and exports. After that,
-								//favor a non-undefined return value over exports use.
+								/If setting exports via "module" is in play,
+								/favor that over return value and exports. After that,
+								/favor a non-undefined return value over exports use.
 								if (
 									cjsModule &&
 									cjsModule.exports !== undef &&
@@ -465,13 +465,13 @@
 								) {
 									defined[ name ] = cjsModule.exports;
 								} else if ( ret !== undef || ! usingExports ) {
-									//Use the return value from the function.
+									/Use the return value from the function.
 									defined[ name ] = ret;
 								}
 							}
 						} else if ( name ) {
-							//May just be an object definition for the module. Only
-							//worry about defining if have a module name.
+							/May just be an object definition for the module. Only
+							/worry about defining if have a module name.
 							defined[ name ] = callback;
 						}
 					};
@@ -485,18 +485,18 @@
 					) {
 						if ( typeof deps === 'string' ) {
 							if ( handlers[ deps ] ) {
-								//callback in this case is really relName
+								/callback in this case is really relName
 								return handlers[ deps ]( callback );
 							}
-							//Just return the module wanted. In this scenario, the
-							//deps arg is the module name, and second arg (if passed)
-							//is just the relName.
-							//Normalize module name, if it contains . or ..
+							/Just return the module wanted. In this scenario, the
+							/deps arg is the module name, and second arg (if passed)
+							/is just the relName.
+							/Normalize module name, if it contains . or ..
 							return callDep(
 								makeMap( deps, makeRelParts( callback ) ).f
 							);
 						} else if ( ! deps.splice ) {
-							//deps is a config object, not an array.
+							/deps is a config object, not an array.
 							config = deps;
 							if ( config.deps ) {
 								req( config.deps, config.callback );
@@ -506,8 +506,8 @@
 							}
 
 							if ( callback.splice ) {
-								//callback is an array, which means it is a dependency list.
-								//Adjust args if there are dependencies
+								/callback is an array, which means it is a dependency list.
+								/Adjust args if there are dependencies
 								deps = callback;
 								callback = relName;
 								relName = null;
@@ -516,26 +516,26 @@
 							}
 						}
 
-						//Support require(['a'])
+						/Support require(['a'])
 						callback = callback || function () {};
 
-						//If relName is a function, it is an errback handler,
-						//so remove it.
+						/If relName is a function, it is an errback handler,
+						/so remove it.
 						if ( typeof relName === 'function' ) {
 							relName = forceSync;
 							forceSync = alt;
 						}
 
-						//Simulate async callback;
+						/Simulate async callback;
 						if ( forceSync ) {
 							main( undef, deps, callback, relName );
 						} else {
-							//Using a non-zero value because of concern for what old browsers
-							//do, and latest browsers "upgrade" to 4 if lower value is used:
-							//http://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#dom-windowtimers-settimeout:
-							//If want a value immediately, use require('id') instead -- something
-							//that works in almond on the global level, but not guaranteed and
-							//unlikely to work in other AMD implementations.
+							/Using a non-zero value because of concern for what old browsers
+							/do, and latest browsers "upgrade" to 4 if lower value is used:
+							/http://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#dom-windowtimers-settimeout:
+							/If want a value immediately, use require('id') instead -- something
+							/that works in almond on the global level, but not guaranteed and
+							/unlikely to work in other AMD implementations.
 							setTimeout( function () {
 								main( undef, deps, callback, relName );
 							}, 4 );
@@ -564,11 +564,11 @@
 							);
 						}
 
-						//This module may not have dependencies
+						/This module may not have dependencies
 						if ( ! deps.splice ) {
-							//deps is not an array, so probably means
-							//an object literal or factory function for
-							//the value. Adjust args.
+							/deps is not an array, so probably means
+							/an object literal or factory function for
+							/the value. Adjust args.
 							callback = deps;
 							deps = [];
 						}
@@ -693,7 +693,7 @@
 				}
 
 				var calledMethod = function ( methodName ) {
-					// Stub out the original method if it's not decorating an actual method
+					/ Stub out the original method if it's not decorating an actual method
 					var originalMethod = function () {};
 
 					if ( methodName in DecoratedClass.prototype ) {
@@ -743,17 +743,17 @@
 
 				this.listeners = this.listeners || {};
 
-				// Params should always come in as an array
+				/ Params should always come in as an array
 				if ( params == null ) {
 					params = [];
 				}
 
-				// If there are no arguments to the event, use a temporary object
+				/ If there are no arguments to the event, use a temporary object
 				if ( params.length === 0 ) {
 					params.push( {} );
 				}
 
-				// Set the `_type` of the first object to the event
+				/ Set the `_type` of the first object to the event
 				params[ 0 ]._type = event;
 
 				if ( event in this.listeners ) {
@@ -806,8 +806,8 @@
 					for ( var k = 0; k < keys.length; k++ ) {
 						var key = keys[ k ];
 
-						// Lowercase the first letter
-						// By default, dash-separated becomes camelCase
+						/ Lowercase the first letter
+						/ By default, dash-separated becomes camelCase
 						key =
 							key.substring( 0, 1 ).toLowerCase() +
 							key.substring( 1 );
@@ -830,17 +830,17 @@
 			};
 
 			Utils.hasScroll = function ( index, el ) {
-				// Adapted from the function created by @ShadowScripter
-				// and adapted by @BillBarry on the Stack Exchange Code Review website.
-				// The original code can be found at
-				// http://codereview.stackexchange.com/q/13338
-				// and was designed to be used with the Sizzle selector engine.
+				/ Adapted from the function created by @ShadowScripter
+				/ and adapted by @BillBarry on the Stack Exchange Code Review website.
+				/ The original code can be found at
+				/ http://codereview.stackexchange.com/q/13338
+				/ and was designed to be used with the Sizzle selector engine.
 
 				var $el = $( el );
 				var overflowX = el.style.overflowX;
 				var overflowY = el.style.overflowY;
 
-				//Check both x and y declarations
+				/Check both x and y declarations
 				if (
 					overflowX === overflowY &&
 					( overflowY === 'hidden' || overflowY === 'visible' )
@@ -869,7 +869,7 @@
 					'/': '&#47;',
 				};
 
-				// Do not try to escape the markup if it's not a string
+				/ Do not try to escape the markup if it's not a string
 				if ( typeof markup !== 'string' ) {
 					return markup;
 				}
@@ -882,10 +882,10 @@
 				);
 			};
 
-			// Append an array of jQuery nodes to a given element.
+			/ Append an array of jQuery nodes to a given element.
 			Utils.appendMany = function ( $element, $nodes ) {
-				// jQuery 1.7.x does not support $.fn.append() with an array
-				// Fall back to a jQuery object collection using $.fn.add()
+				/ jQuery 1.7.x does not support $.fn.append() with an array
+				/ Fall back to a jQuery object collection using $.fn.add()
 				if ( $.fn.jquery.substr( 0, 3 ) === '1.7' ) {
 					var $jqNodes = $();
 
@@ -899,19 +899,19 @@
 				$element.append( $nodes );
 			};
 
-			// Cache objects in Utils.__cache instead of $.data (see #4346)
+			/ Cache objects in Utils.__cache instead of $.data (see #4346)
 			Utils.__cache = {};
 
 			var id = 0;
 			Utils.GetUniqueElementId = function ( element ) {
-				// Get a unique element Id. If element has no id,
-				// creates a new unique number, stores it in the id
-				// attribute and returns the new id.
-				// If an id already exists, it simply returns it.
+				/ Get a unique element Id. If element has no id,
+				/ creates a new unique number, stores it in the id
+				/ attribute and returns the new id.
+				/ If an id already exists, it simply returns it.
 
 				var select2Id = element.getAttribute( 'data-select2-id' );
 				if ( select2Id == null ) {
-					// If element has id, use it.
+					/ If element has id, use it.
 					if ( element.id ) {
 						select2Id = element.id;
 						element.setAttribute( 'data-select2-id', select2Id );
@@ -924,8 +924,8 @@
 			};
 
 			Utils.StoreData = function ( element, name, value ) {
-				// Stores an item in the cache for a specified element.
-				// name is the cache key.
+				/ Stores an item in the cache for a specified element.
+				/ name is the cache key.
 				var id = Utils.GetUniqueElementId( element );
 				if ( ! Utils.__cache[ id ] ) {
 					Utils.__cache[ id ] = {};
@@ -935,26 +935,26 @@
 			};
 
 			Utils.GetData = function ( element, name ) {
-				// Retrieves a value from the cache by its key (name)
-				// name is optional. If no name specified, return
-				// all cache items for the specified element.
-				// and for a specified element.
+				/ Retrieves a value from the cache by its key (name)
+				/ name is optional. If no name specified, return
+				/ all cache items for the specified element.
+				/ and for a specified element.
 				var id = Utils.GetUniqueElementId( element );
 				if ( name ) {
 					if ( Utils.__cache[ id ] ) {
 						if ( Utils.__cache[ id ][ name ] != null ) {
 							return Utils.__cache[ id ][ name ];
 						}
-						return $( element ).data( name ); // Fallback to HTML5 data attribs.
+						return $( element ).data( name ); / Fallback to HTML5 data attribs.
 					}
-					return $( element ).data( name ); // Fallback to HTML5 data attribs.
+					return $( element ).data( name ); / Fallback to HTML5 data attribs.
 				} else {
 					return Utils.__cache[ id ];
 				}
 			};
 
 			Utils.RemoveData = function ( element ) {
-				// Removes all cached items for a specified element.
+				/ Removes all cached items for a specified element.
 				var id = Utils.GetUniqueElementId( element );
 				if ( Utils.__cache[ id ] != null ) {
 					delete Utils.__cache[ id ];
@@ -1072,13 +1072,13 @@
 
 					var $selected = $options.filter( '[aria-selected=true]' );
 
-					// Check if there are any selected options
+					/ Check if there are any selected options
 					if ( $selected.length > 0 ) {
-						// If there are selected options, highlight the first
+						/ If there are selected options, highlight the first
 						$selected.first().trigger( 'mouseenter' );
 					} else {
-						// If there are no selected options, highlight the first option
-						// in the dropdown
+						/ If there are no selected options, highlight the first option
+						/ in the dropdown
 						$options.first().trigger( 'mouseenter' );
 					}
 
@@ -1102,7 +1102,7 @@
 
 							var item = Utils.GetData( this, 'data' );
 
-							// id needs to be converted to a string when comparing
+							/ id needs to be converted to a string when comparing
 							var id = '' + item.id;
 
 							if (
@@ -1280,7 +1280,7 @@
 					} );
 
 					container.on( 'open', function () {
-						// When the dropdown is open, aria-expended="true"
+						/ When the dropdown is open, aria-expended="true"
 						self.$results.attr( 'aria-expanded', 'true' );
 						self.$results.attr( 'aria-hidden', 'false' );
 
@@ -1289,7 +1289,7 @@
 					} );
 
 					container.on( 'close', function () {
-						// When the dropdown is closed, aria-expended="false"
+						/ When the dropdown is closed, aria-expended="false"
 						self.$results.attr( 'aria-expanded', 'false' );
 						self.$results.attr( 'aria-hidden', 'true' );
 						self.$results.removeAttr( 'aria-activedescendant' );
@@ -1330,15 +1330,15 @@
 
 						var currentIndex = $options.index( $highlighted );
 
-						// If we are already at the top, don't move further
-						// If no options, currentIndex will be -1
+						/ If we are already at the top, don't move further
+						/ If no options, currentIndex will be -1
 						if ( currentIndex <= 0 ) {
 							return;
 						}
 
 						var nextIndex = currentIndex - 1;
 
-						// If none are highlighted, highlight the first
+						/ If none are highlighted, highlight the first
 						if ( $highlighted.length === 0 ) {
 							nextIndex = 0;
 						}
@@ -1369,7 +1369,7 @@
 
 						var nextIndex = currentIndex + 1;
 
-						// If we are at the last option, stay there
+						/ If we are at the last option, stay there
 						if ( nextIndex >= $options.length ) {
 							return;
 						}
@@ -1647,7 +1647,7 @@
 					} );
 
 					container.on( 'open', function () {
-						// When the dropdown is open, aria-expanded="true"
+						/ When the dropdown is open, aria-expanded="true"
 						self.$selection.attr( 'aria-expanded', 'true' );
 						self.$selection.attr( 'aria-owns', resultsId );
 
@@ -1655,7 +1655,7 @@
 					} );
 
 					container.on( 'close', function () {
-						// When the dropdown is closed, aria-expanded="false"
+						/ When the dropdown is closed, aria-expanded="false"
 						self.$selection.attr( 'aria-expanded', 'false' );
 						self.$selection.removeAttr( 'aria-activedescendant' );
 						self.$selection.removeAttr( 'aria-owns' );
@@ -1679,10 +1679,10 @@
 				BaseSelection.prototype._handleBlur = function ( evt ) {
 					var self = this;
 
-					// This needs to be delayed as the active element is the body when the tab
-					// key is pressed, possibly along with others.
+					/ This needs to be delayed as the active element is the body when the tab
+					/ key is pressed, possibly along with others.
 					window.setTimeout( function () {
-						// Don't trigger `blur` if the focus is still in the selection
+						/ Don't trigger `blur` if the focus is still in the selection
 						if (
 							document.activeElement == self.$selection[ 0 ] ||
 							$.contains(
@@ -1821,7 +1821,7 @@
 					this.$selection.attr( 'aria-labelledby', id );
 
 					this.$selection.on( 'mousedown', function ( evt ) {
-						// Only respond to left clicks
+						/ Only respond to left clicks
 						if ( evt.which !== 1 ) {
 							return;
 						}
@@ -1832,11 +1832,11 @@
 					} );
 
 					this.$selection.on( 'focus', function ( evt ) {
-						// User focuses on the container
+						/ User focuses on the container
 					} );
 
 					this.$selection.on( 'blur', function ( evt ) {
-						// User exits the container
+						/ User exits the container
 					} );
 
 					container.on( 'focus', function ( evt ) {
@@ -1851,7 +1851,7 @@
 						'.select2-selection__rendered'
 					);
 					$rendered.empty();
-					$rendered.removeAttr( 'title' ); // clear tooltip on empty
+					$rendered.removeAttr( 'title' ); / clear tooltip on empty
 				};
 
 				SingleSelection.prototype.display = function (
@@ -1941,7 +1941,7 @@
 						'click',
 						'.select2-selection__choice__remove',
 						function ( evt ) {
-							// Ignore the event if it is disabled
+							/ Ignore the event if it is disabled
 							if ( self.isDisabled() ) {
 								return;
 							}
@@ -2134,7 +2134,7 @@
 				};
 
 				AllowClear.prototype._handleClear = function ( _, evt ) {
-					// Ignore the event if it is disabled
+					/ Ignore the event if it is disabled
 					if ( this.isDisabled() ) {
 						return;
 					}
@@ -2143,7 +2143,7 @@
 						'.select2-selection__clear'
 					);
 
-					// Ignore the event if nothing has been selected
+					/ Ignore the event if nothing has been selected
 					if ( $clear.length === 0 ) {
 						return;
 					}
@@ -2169,11 +2169,11 @@
 							data: data[ d ],
 						};
 
-						// Trigger the `unselect` event, so people can prevent it from being
-						// cleared.
+						/ Trigger the `unselect` event, so people can prevent it from being
+						/ cleared.
 						this.trigger( 'unselect', unselectData );
 
-						// If the event was prevented, don't clear it out.
+						/ If the event was prevented, don't clear it out.
 						if ( unselectData.prevented ) {
 							this.$element.val( previousVal );
 							return;
@@ -2371,24 +2371,24 @@
 						}
 					);
 
-					// Try to detect the IE version should the `documentMode` property that
-					// is stored on the document. This is only implemented in IE and is
-					// slightly cleaner than doing a user agent check.
-					// This property is not available in Edge, but Edge also doesn't have
-					// this bug.
+					/ Try to detect the IE version should the `documentMode` property that
+					/ is stored on the document. This is only implemented in IE and is
+					/ slightly cleaner than doing a user agent check.
+					/ This property is not available in Edge, but Edge also doesn't have
+					/ this bug.
 					var msie = document.documentMode;
 					var disableInputEvents = msie && msie <= 11;
 
-					// Workaround for browsers which do not support the `input` event
-					// This will prevent double-triggering of events for browsers which support
-					// both the `keyup` and `input` events.
+					/ Workaround for browsers which do not support the `input` event
+					/ This will prevent double-triggering of events for browsers which support
+					/ both the `keyup` and `input` events.
 					this.$selection.on(
 						'input.searchcheck',
 						'.select2-search--inline',
 						function ( evt ) {
-							// IE will trigger the `input` event when a placeholder is used on a
-							// search box. To get around this issue, we are forced to ignore all
-							// `input` events in IE and keep using `keyup`.
+							/ IE will trigger the `input` event when a placeholder is used on a
+							/ search box. To get around this issue, we are forced to ignore all
+							/ `input` events in IE and keep using `keyup`.
 							if ( disableInputEvents ) {
 								self.$selection.off(
 									'input.search input.searchcheck'
@@ -2396,7 +2396,7 @@
 								return;
 							}
 
-							// Unbind the duplicated `keyup` event
+							/ Unbind the duplicated `keyup` event
 							self.$selection.off( 'keyup.search' );
 						}
 					);
@@ -2405,9 +2405,9 @@
 						'keyup.search input.search',
 						'.select2-search--inline',
 						function ( evt ) {
-							// IE will trigger the `input` event when a placeholder is used on a
-							// search box. To get around this issue, we are forced to ignore all
-							// `input` events in IE and keep using `keyup`.
+							/ IE will trigger the `input` event when a placeholder is used on a
+							/ search box. To get around this issue, we are forced to ignore all
+							/ `input` events in IE and keep using `keyup`.
 							if ( disableInputEvents && evt.type === 'input' ) {
 								self.$selection.off(
 									'input.search input.searchcheck'
@@ -2417,7 +2417,7 @@
 
 							var key = evt.which;
 
-							// We can freely ignore events from modifier keys
+							/ We can freely ignore events from modifier keys
 							if (
 								key == KEYS.SHIFT ||
 								key == KEYS.CTRL ||
@@ -2426,7 +2426,7 @@
 								return;
 							}
 
-							// Tabbing will be handled during the `keydown` phase
+							/ Tabbing will be handled during the `keydown` phase
 							if ( key == KEYS.TAB ) {
 								return;
 							}
@@ -2560,22 +2560,22 @@
 					decorated.call( this, container, $container );
 
 					container.on( '*', function ( name, params ) {
-						// Ignore events that should not be relayed
+						/ Ignore events that should not be relayed
 						if ( $.inArray( name, relayEvents ) === -1 ) {
 							return;
 						}
 
-						// The parameters should always be an object
+						/ The parameters should always be an object
 						params = params || {};
 
-						// Generate the jQuery event for the Select2 event
+						/ Generate the jQuery event for the Select2 event
 						var evt = $.Event( 'select2:' + name, {
 							params: params,
 						} );
 
 						self.$element.trigger( evt );
 
-						// Only handle preventable events if it was one
+						/ Only handle preventable events if it was one
 						if ( $.inArray( name, preventableEvents ) === -1 ) {
 							return;
 						}
@@ -2608,7 +2608,7 @@
 					this.dict = $.extend( {}, translation.all(), this.dict );
 				};
 
-				// Static functions
+				/ Static functions
 
 				Translation._cache = {};
 
@@ -3495,11 +3495,11 @@
 			};
 
 			BaseAdapter.prototype.bind = function ( container, $container ) {
-				// Can be implemented in subclasses
+				/ Can be implemented in subclasses
 			};
 
 			BaseAdapter.prototype.destroy = function () {
-				// Can be implemented in subclasses
+				/ Can be implemented in subclasses
 			};
 
 			BaseAdapter.prototype.generateResultId = function (
@@ -3554,7 +3554,7 @@
 
 					data.selected = true;
 
-					// If data.element is a DOM node, use it instead
+					/ If data.element is a DOM node, use it instead
 					if ( $( data.element ).is( 'option' ) ) {
 						data.element.selected = true;
 
@@ -3646,9 +3646,9 @@
 				};
 
 				SelectAdapter.prototype.destroy = function () {
-					// Remove anything added to child elements
+					/ Remove anything added to child elements
 					this.$element.find( '*' ).each( function () {
-						// Remove any custom data set by Select2
+						/ Remove any custom data set by Select2
 						Utils.RemoveData( this );
 					} );
 				};
@@ -3724,7 +3724,7 @@
 					var normalizedData = this._normalizeItem( data );
 					normalizedData.element = option;
 
-					// Override the option's data with the combined data
+					/ Override the option's data with the combined data
 					Utils.StoreData( option, 'data', normalizedData );
 
 					return $option;
@@ -3888,7 +3888,7 @@
 
 					var $options = [];
 
-					// Filter out all items except for the one passed in the argument
+					/ Filter out all items except for the one passed in the argument
 					function onlyItem( item ) {
 						return function () {
 							return $( this ).val() == item.id;
@@ -3898,7 +3898,7 @@
 					for ( var d = 0; d < data.length; d++ ) {
 						var item = this._normalizeItem( data[ d ] );
 
-						// Skip items which were pre-loaded, only merge the data
+						/ Skip items which were pre-loaded, only merge the data
 						if ( $.inArray( item.id, existingIds ) >= 0 ) {
 							var $existingOption = $existing.filter(
 								onlyItem( item )
@@ -3990,7 +3990,7 @@
 					var self = this;
 
 					if ( this._request != null ) {
-						// JSONP requests cannot always be aborted
+						/ JSONP requests cannot always be aborted
 						if ( $.isFunction( this._request.abort ) ) {
 							this._request.abort();
 						}
@@ -4030,7 +4030,7 @@
 									window.console &&
 									console.error
 								) {
-									// Check to make sure that the response included a `results` key.
+									/ Check to make sure that the response included a `results` key.
 									if (
 										! results ||
 										! results.results ||
@@ -4046,8 +4046,8 @@
 								callback( results );
 							},
 							function () {
-								// Attempt to detect if a request was aborted
-								// Only works if the transport exposes a status property
+								/ Attempt to detect if a request was aborted
+								/ Only works if the transport exposes a status property
 								if (
 									'status' in $request &&
 									( $request.status === 0 ||
@@ -4242,18 +4242,18 @@
 				var self = this;
 
 				function createAndSelect( data ) {
-					// Normalize the data object so we can use it for checks
+					/ Normalize the data object so we can use it for checks
 					var item = self._normalizeItem( data );
 
-					// Check if the data object already exists as a tag
-					// Select it if it doesn't
+					/ Check if the data object already exists as a tag
+					/ Select it if it doesn't
 					var $existingOptions = self.$element
 						.find( 'option' )
 						.filter( function () {
 							return $( this ).val() === item.id;
 						} );
 
-					// If an existing option wasn't found for it, create the option
+					/ If an existing option wasn't found for it, create the option
 					if ( ! $existingOptions.length ) {
 						var $option = self.option( item );
 						$option.attr( 'data-select2-tag', true );
@@ -4262,7 +4262,7 @@
 						self.addOptions( [ $option ] );
 					}
 
-					// Select the item, now that we know there is an option for it
+					/ Select the item, now that we know there is an option for it
 					select( item );
 				}
 
@@ -4281,7 +4281,7 @@
 				);
 
 				if ( tokenData.term !== params.term ) {
-					// Replace the search term if we have the search box
+					/ Replace the search term if we have the search box
 					if ( this.$search.length ) {
 						this.$search.val( tokenData.term );
 						this.$search.trigger( 'focus' );
@@ -4335,7 +4335,7 @@
 
 					callback( data );
 
-					// Reset the term to not include the tokenized portion
+					/ Reset the term to not include the tokenized portion
 					term = term.substr( i + 1 ) || '';
 					i = 0;
 				}
@@ -4510,18 +4510,18 @@
 				};
 
 				Dropdown.prototype.bind = function () {
-					// Should be implemented in subclasses
+					/ Should be implemented in subclasses
 				};
 
 				Dropdown.prototype.position = function (
 					$dropdown,
 					$container
 				) {
-					// Should be implemented in subclasses
+					/ Should be implemented in subclasses
 				};
 
 				Dropdown.prototype.destroy = function () {
-					// Remove the dropdown from the DOM
+					/ Remove the dropdown from the DOM
 					this.$dropdown.remove();
 				};
 
@@ -4571,11 +4571,11 @@
 						self._keyUpPrevented = evt.isDefaultPrevented();
 					} );
 
-					// Workaround for browsers which do not support the `input` event
-					// This will prevent double-triggering of events for browsers which support
-					// both the `keyup` and `input` events.
+					/ Workaround for browsers which do not support the `input` event
+					/ This will prevent double-triggering of events for browsers which support
+					/ both the `keyup` and `input` events.
 					this.$search.on( 'input', function ( evt ) {
-						// Unbind the duplicated `keyup` event
+						/ Unbind the duplicated `keyup` event
 						$( this ).off( 'keyup' );
 					} );
 
@@ -4850,7 +4850,7 @@
 						self._showDropdown();
 						self._attachPositioningHandler( container );
 
-						// Must bind after the results handlers to ensure correct sizing
+						/ Must bind after the results handlers to ensure correct sizing
 						self._bindContainerResultHandlers( container );
 					} );
 
@@ -4875,7 +4875,7 @@
 					$dropdown,
 					$container
 				) {
-					// Clone all of the container classes
+					/ Clone all of the container classes
 					$dropdown.attr( 'class', $container.attr( 'class' ) );
 
 					$dropdown.removeClass( 'select2' );
@@ -4908,7 +4908,7 @@
 					decorated,
 					container
 				) {
-					// These should only be bound once
+					/ These should only be bound once
 					if ( this._containerResultsHandlersBound ) {
 						return;
 					}
@@ -5047,11 +5047,11 @@
 						top: container.bottom,
 					};
 
-					// Determine what the parent element is to use for calculating the offset
+					/ Determine what the parent element is to use for calculating the offset
 					var $offsetParent = this.$dropdownParent;
 
-					// For statically positioned elements, we need to get the element
-					// that is determining the offset
+					/ For statically positioned elements, we need to get the element
+					/ that is determining the offset
 					if ( $offsetParent.css( 'position' ) === 'static' ) {
 						$offsetParent = $offsetParent.offsetParent();
 					}
@@ -5216,8 +5216,8 @@
 					if ( params && params.originalSelect2Event != null ) {
 						var event = params.originalSelect2Event;
 
-						// Don't select an item if the close event was triggered from a select or
-						// unselect event
+						/ Don't select an item if the close event was triggered from a select or
+						/ unselect event
 						if (
 							event._type === 'select' ||
 							event._type === 'unselect'
@@ -5228,7 +5228,7 @@
 
 					var $highlightedResults = this.getHighlightedResults();
 
-					// Only select highlighted results
+					/ Only select highlighted results
 					if ( $highlightedResults.length < 1 ) {
 						return;
 					}
@@ -5238,7 +5238,7 @@
 						'data'
 					);
 
-					// Don't re-select already selected resulte
+					/ Don't re-select already selected resulte
 					if (
 						( data.element != null && data.element.selected ) ||
 						( data.element == null && data.selected )
@@ -5279,7 +5279,7 @@
 			CloseOnSelect.prototype._selectTriggered = function ( _, evt ) {
 				var originalEvent = evt.originalEvent;
 
-				// Don't close if the control key is being held
+				/ Don't close if the control key is being held
 				if (
 					originalEvent &&
 					( originalEvent.ctrlKey || originalEvent.metaKey )
@@ -5297,7 +5297,7 @@
 		} );
 
 		S2.define( 'select2/i18n/en', [], function () {
-			// English
+			/ English
 			return {
 				errorLoading: function () {
 					return 'The results could not be loaded.';
@@ -5577,7 +5577,7 @@
 							options.selectionAdapter = SingleSelection;
 						}
 
-						// Add the placeholder mixin if a placeholder was specified
+						/ Add the placeholder mixin if a placeholder was specified
 						if ( options.placeholder != null ) {
 							options.selectionAdapter = Utils.Decorate(
 								options.selectionAdapter,
@@ -5619,13 +5619,13 @@
 						);
 					}
 
-					// If the defaults were not previously applied from an element, it is
-					// possible for the language option to have not been resolved
+					/ If the defaults were not previously applied from an element, it is
+					/ possible for the language option to have not been resolved
 					options.language = this._resolveLanguage(
 						options.language
 					);
 
-					// Always fall back to English since it will always be complete
+					/ Always fall back to English since it will always be complete
 					options.language.push( 'en' );
 
 					var uniqueLanguages = [];
@@ -5650,7 +5650,7 @@
 
 				Defaults.prototype.reset = function () {
 					function stripDiacritics( text ) {
-						// Used 'uni range + named function' from http://jsperf.com/diacritics/18
+						/ Used 'uni range + named function' from http://jsperf.com/diacritics/18
 						function match( a ) {
 							return DIACRITICS[ a ] || a;
 						}
@@ -5659,18 +5659,18 @@
 					}
 
 					function matcher( params, data ) {
-						// Always return the object if there is nothing to compare
+						/ Always return the object if there is nothing to compare
 						if ( $.trim( params.term ) === '' ) {
 							return data;
 						}
 
-						// Do a recursive check for options with children
+						/ Do a recursive check for options with children
 						if ( data.children && data.children.length > 0 ) {
-							// Clone the data object if there are children
-							// This is required as we modify the object to remove any non-matches
+							/ Clone the data object if there are children
+							/ This is required as we modify the object to remove any non-matches
 							var match = $.extend( true, {}, data );
 
-							// Check each child of the option
+							/ Check each child of the option
 							for (
 								var c = data.children.length - 1;
 								c >= 0;
@@ -5680,18 +5680,18 @@
 
 								var matches = matcher( params, child );
 
-								// If there wasn't a match, remove the object in the array
+								/ If there wasn't a match, remove the object in the array
 								if ( matches == null ) {
 									match.children.splice( c, 1 );
 								}
 							}
 
-							// If any children matched, return the new object
+							/ If any children matched, return the new object
 							if ( match.children.length > 0 ) {
 								return match;
 							}
 
-							// If there were no matching children, check just the plain object
+							/ If there were no matching children, check just the plain object
 							return matcher( params, match );
 						}
 
@@ -5700,12 +5700,12 @@
 						).toUpperCase();
 						var term = stripDiacritics( params.term ).toUpperCase();
 
-						// Check if the text contains the term
+						/ Check if the text contains the term
 						if ( original.indexOf( term ) > -1 ) {
 							return data;
 						}
 
-						// If it doesn't contain the term, don't return anything
+						/ If it doesn't contain the term, don't return anything
 						return null;
 					}
 
@@ -5791,7 +5791,7 @@
 							typeof languages[ l ] === 'string' &&
 							languages[ l ].indexOf( '-' ) > 0
 						) {
-							// Extract the region information if it is included
+							/ Extract the region information if it is included
 							var languageParts = languages[ l ].split( '-' );
 							var baseLanguage = languageParts[ 0 ];
 
@@ -5815,11 +5815,11 @@
 
 						if ( typeof language === 'string' ) {
 							try {
-								// Try to load it with the original name
+								/ Try to load it with the original name
 								languageData = Translation.loadPath( language );
 							} catch ( e ) {
 								try {
-									// If we couldn't load it, check if it wasn't the full path
+									/ If we couldn't load it, check if it wasn't the full path
 									language =
 										this.defaults.amdLanguageBase +
 										language;
@@ -5827,9 +5827,9 @@
 										language
 									);
 								} catch ( ex ) {
-									// The translation could not be loaded at all. Sometimes this is
-									// because of a configuration problem, other times this can be
-									// because of how Select2 helps load all possible translation files
+									/ The translation could not be loaded at all. Sometimes this is
+									/ because of a configuration problem, other times this can be
+									/ because of how Select2 helps load all possible translation files
 									if (
 										debug &&
 										window.console &&
@@ -5981,7 +5981,7 @@
 						return letter.toUpperCase();
 					}
 
-					// Pre-load all of the attributes which are prefixed with `data-`
+					/ Pre-load all of the attributes which are prefixed with `data-`
 					for (
 						var attr = 0;
 						attr < $e[ 0 ].attributes.length;
@@ -5993,28 +5993,28 @@
 						if (
 							attributeName.substr( 0, prefix.length ) == prefix
 						) {
-							// Get the contents of the attribute after `data-`
+							/ Get the contents of the attribute after `data-`
 							var dataName = attributeName.substring(
 								prefix.length
 							);
 
-							// Get the data contents from the consistent source
-							// This is more than likely the jQuery data helper
+							/ Get the data contents from the consistent source
+							/ This is more than likely the jQuery data helper
 							var dataValue = Utils.GetData( $e[ 0 ], dataName );
 
-							// camelCase the attribute name to match the spec
+							/ camelCase the attribute name to match the spec
 							var camelDataName = dataName.replace(
 								/-([a-z])/g,
 								upperCaseLetter
 							);
 
-							// Store the data attribute contents into the dataset since
+							/ Store the data attribute contents into the dataset since
 							dataset[ camelDataName ] = dataValue;
 						}
 					}
 
-					// Prefer the element's `dataset` attribute if it exists
-					// jQuery 1.x does not correctly handle data attributes with multiple dashes
+					/ Prefer the element's `dataset` attribute if it exists
+					/ jQuery 1.x does not correctly handle data attributes with multiple dashes
 					if (
 						$.fn.jquery &&
 						$.fn.jquery.substr( 0, 2 ) == '1.' &&
@@ -6028,7 +6028,7 @@
 						);
 					}
 
-					// Prefer our internal data cache if it exists
+					/ Prefer our internal data cache if it exists
 					var data = $.extend(
 						true,
 						{},
@@ -6084,13 +6084,13 @@
 
 					Select2.__super__.constructor.call( this );
 
-					// Set up the tabindex
+					/ Set up the tabindex
 
 					var tabindex = $element.attr( 'tabindex' ) || 0;
 					Utils.StoreData( $element[ 0 ], 'old-tabindex', tabindex );
 					$element.attr( 'tabindex', '-1' );
 
-					// Set up containers and adapters
+					/ Set up containers and adapters
 
 					var DataAdapter = this.options.get( 'dataAdapter' );
 					this.dataAdapter = new DataAdapter(
@@ -6132,40 +6132,40 @@
 
 					this.results.position( this.$results, this.$dropdown );
 
-					// Bind events
+					/ Bind events
 
 					var self = this;
 
-					// Bind the container to all of the adapters
+					/ Bind the container to all of the adapters
 					this._bindAdapters();
 
-					// Register any DOM event handlers
+					/ Register any DOM event handlers
 					this._registerDomEvents();
 
-					// Register any internal event handlers
+					/ Register any internal event handlers
 					this._registerDataEvents();
 					this._registerSelectionEvents();
 					this._registerDropdownEvents();
 					this._registerResultsEvents();
 					this._registerEvents();
 
-					// Set the initial state
+					/ Set the initial state
 					this.dataAdapter.current( function ( initialData ) {
 						self.trigger( 'selection:update', {
 							data: initialData,
 						} );
 					} );
 
-					// Hide the original select
+					/ Hide the original select
 					$element.addClass( 'select2-hidden-accessible' );
 					$element.attr( 'aria-hidden', 'true' );
 
-					// Synchronize any monitored attributes
+					/ Synchronize any monitored attributes
 					this._syncAttributes();
 
 					Utils.StoreData( $element[ 0 ], 'select2', this );
 
-					// Ensure backwards compatibility with $element.data('select2').
+					/ Ensure backwards compatibility with $element.data('select2').
 					$element.data( 'select2', this );
 				};
 
@@ -6496,8 +6496,8 @@
 					var changed = false;
 					var self = this;
 
-					// Ignore any mutation events raised for elements that aren't options or
-					// optgroups. This handles the case when the select element is destroyed
+					/ Ignore any mutation events raised for elements that aren't options or
+					/ optgroups. This handles the case when the select element is destroyed
 					if (
 						evt &&
 						evt.target &&
@@ -6508,8 +6508,8 @@
 					}
 
 					if ( ! mutations ) {
-						// If mutation events aren't supported, then we can only assume that the
-						// change affected the selections
+						/ If mutation events aren't supported, then we can only assume that the
+						/ change affected the selections
 						changed = true;
 					} else if (
 						mutations.addedNodes &&
@@ -6534,8 +6534,8 @@
 					} else if ( $.isArray( mutations ) ) {
 						$.each( mutations, function ( evt, mutation ) {
 							if ( self._isChangeMutation( evt, mutation ) ) {
-								// We've found a change mutation.
-								// Let's escape from the loop and continue
+								/ We've found a change mutation.
+								/ Let's escape from the loop and continue
 								changed = true;
 								return false;
 							}
@@ -6548,7 +6548,7 @@
 					var changed = this._isChangeMutation( evt, mutations );
 					var self = this;
 
-					// Only re-pull the data if we think there is a change
+					/ Only re-pull the data if we think there is a change
 					if ( changed ) {
 						this.dataAdapter.current( function ( currentData ) {
 							self.trigger( 'selection:update', {
@@ -6666,7 +6666,7 @@
 				};
 
 				Select2.prototype.focus = function ( data ) {
-					// No need to re-trigger focus events if we are already focused
+					/ No need to re-trigger focus events if we are already focused
 					if ( this.hasFocus() ) {
 						return;
 					}
@@ -6835,7 +6835,7 @@
 		);
 
 		S2.define( 'jquery-mousewheel', [ 'jquery' ], function ( $ ) {
-			// Used to shim jQuery.mousewheel for non-full builds.
+			/ Used to shim jQuery.mousewheel for non-full builds.
 			return $;
 		} );
 
@@ -6851,7 +6851,7 @@
 			],
 			function ( $, _, Select2, Defaults, Utils ) {
 				if ( $.fn.select2 == null ) {
-					// All methods that should return the element
+					/ All methods that should return the element
 					var thisMethods = [ 'open', 'close', 'destroy' ];
 
 					$.fn.select2 = function ( options ) {
@@ -6901,7 +6901,7 @@
 								);
 							} );
 
-							// Check if we should be returning `this`
+							/ Check if we should be returning `this`
 							if ( $.inArray( options, thisMethods ) > -1 ) {
 								return this;
 							}
@@ -6923,22 +6923,22 @@
 			}
 		);
 
-		// Return the AMD loader configuration so it can be used outside of this file
+		/ Return the AMD loader configuration so it can be used outside of this file
 		return {
 			define: S2.define,
 			require: S2.require,
 		};
 	} )();
 
-	// Autoload the jQuery bindings
-	// We know that all of the modules exist above this, so we're safe
+	/ Autoload the jQuery bindings
+	/ We know that all of the modules exist above this, so we're safe
 	var select2 = S2.require( 'jquery.select2' );
 
-	// Hold the AMD module references on the jQuery function that was just loaded
-	// This allows Select2 to use the internal loader outside of this file, such
-	// as in the language files.
+	/ Hold the AMD module references on the jQuery function that was just loaded
+	/ This allows Select2 to use the internal loader outside of this file, such
+	/ as in the language files.
 	jQuery.fn.select2.amd = S2;
 
-	// Return the Select2 instance for anyone who is importing it.
+	/ Return the Select2 instance for anyone who is importing it.
 	return select2;
 } );

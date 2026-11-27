@@ -25,9 +25,9 @@ jQuery(function ($) {
 	 */
 	const disable_links = function (c_element) {
 		const parent = c_element.parent();
-		//reduce parent opacity
+		/reduce parent opacity
 		parent.css({ opacity: '0.5' });
-		//Disable Links
+		/Disable Links
 		parent.find('a').prop('disabled', true);
 	};
 
@@ -39,9 +39,9 @@ jQuery(function ($) {
 	const enable_links = function (c_element) {
 		const parent = c_element.parent();
 
-		//reduce parent opacity
+		/reduce parent opacity
 		parent.css({ opacity: '1' });
-		//Disable Links
+		/Disable Links
 		parent.find('a').prop('disabled', false);
 	};
 
@@ -61,15 +61,15 @@ jQuery(function ($) {
 	) {
 		e.preventDefault();
 
-		// If disabled.
+		/ If disabled.
 		if ( currentButton.attr( 'disabled' ) ) {
 			return;
 		}
 
-		// Remove Error.
+		/ Remove Error.
 		$('.wp-smush-error').remove();
 
-		// Hide stats.
+		/ Hide stats.
 		$('.smush-stats-wrapper').hide();
 
 		let mode = 'grid';
@@ -84,7 +84,7 @@ jQuery(function ($) {
 			}
 		}
 
-		// Get the image ID and nonce.
+		/ Get the image ID and nonce.
 		const params = {
 			action: smushAction,
 			attachment_id: currentButton.data('id'),
@@ -92,7 +92,7 @@ jQuery(function ($) {
 			_nonce: currentButton.data('nonce'),
 		};
 
-		// Reduce the opacity of stats and disable the click.
+		/ Reduce the opacity of stats and disable the click.
 		disable_links(currentButton);
 
 		const oldLabel = currentButton.html();
@@ -103,21 +103,21 @@ jQuery(function ($) {
 				'</span>'
 		);
 
-		// Restore the image.
+		/ Restore the image.
 		$.post(ajaxurl, params, function (r) {
-			// Reset all functionality.
+			/ Reset all functionality.
 			enable_links(currentButton);
 
 			if (r.success && 'undefined' !== typeof r.data) {
-				// Replace in immediate parent for NextGEN.
+				/ Replace in immediate parent for NextGEN.
 				if (
 					'undefined' !== typeof this.data &&
 					this.data.indexOf('nextgen') > -1
 				) {
-					// Show the smush button, and remove stats and restore option.
+					/ Show the smush button, and remove stats and restore option.
 					currentButton.parents().eq(1).html(r.data.stats);
 				} else if ('restore' === action) {
-					// Show the smush button, and remove stats and restore option.
+					/ Show the smush button, and remove stats and restore option.
 					currentButton.parents().eq(1).html(r.data.stats);
 				} else {
 					const wrapper = currentButton.parents().eq(1);
@@ -140,11 +140,11 @@ jQuery(function ($) {
 				) {
 					currentButton.closest( '.smushit' ).find('.smush-status').addClass('smush-warning').html(r.data.error_msg);
 				} else {
-					// Show error.
+					/ Show error.
 					currentButton.parent().append(r.data.error_msg);
 				}
 
-				// Reset label and disable button on error.
+				/ Reset label and disable button on error.
 				currentButton.attr('disabled', true);
 				currentButton.html( oldLabel );
 			}
@@ -218,8 +218,8 @@ jQuery(function ($) {
 
 		const smushed_count = wp_smushit_data.count_total - unsmushed_count;
 
-		//Update the Progress Bar Width
-		// get the progress bar
+		/Update the Progress Bar Width
+		/ get the progress bar
 		const $progress_bar = jQuery(
 			'.bulk-smush-wrapper .wp-smush-progress-inner'
 		);
@@ -229,30 +229,30 @@ jQuery(function ($) {
 
 		const width = (smushed_count / wp_smushit_data.count_total) * 100;
 
-		// increase progress
+		/ increase progress
 		$progress_bar.css('width', width + '%');
 	};
 
 	const runRecheck = function (process_settings) {
 		const button = $('.wp-smush-scan');
 
-		// Add a "loading" state to the button.
+		/ Add a "loading" state to the button.
 		button.addClass('sui-button-onload');
 
-		// Check if type is set in data attributes.
+		/ Check if type is set in data attributes.
 		let scan_type = button.data('type');
 		scan_type = 'undefined' === typeof scan_type ? 'media' : scan_type;
 
-		// Remove the Skip resmush attribute from button.
+		/ Remove the Skip resmush attribute from button.
 		$('.wp-smush-all').removeAttr('data-smush');
 
-		// Disable Bulk smush button and itself.
+		/ Disable Bulk smush button and itself.
 		$('.wp-smush-all').prop('disabled', true);
 
-		// Hide Settings changed Notice.
+		/ Hide Settings changed Notice.
 		$('.wp-smush-settings-changed').hide();
 
-		// Ajax params.
+		/ Ajax params.
 		const params = {
 			action: 'scan_for_resmush',
 			type: scan_type,
@@ -261,7 +261,7 @@ jQuery(function ($) {
 			wp_smush_options_nonce: jQuery('#wp_smush_options_nonce').val(),
 		};
 
-		// Send ajax request and get ids if any.
+		/ Send ajax request and get ids if any.
 		$.get(ajaxurl, params, function (response) {
 			if ( ! response?.success ) {
 				WP_Smush.helpers.showNotice( response, {
@@ -276,12 +276,12 @@ jQuery(function ($) {
 			GlobalStats.renderStats();
 			updateBulkSmushContentAfterReCheck( stats );
 		}).always(function () {
-			// Hide the progress bar.
+			/ Hide the progress bar.
 			jQuery(
 				'.bulk-smush-wrapper .wp-smush-bulk-progress-bar-wrapper'
 			).addClass('sui-hidden');
 
-			// Add check complete status to button.
+			/ Add check complete status to button.
 			button
 				.removeClass('sui-button-onload')
 				.addClass('smush-button-check-success');
@@ -292,7 +292,7 @@ jQuery(function ($) {
 			$defaultText.addClass('sui-hidden-important');
 			$completedText.removeClass('sui-hidden');
 
-			// Remove success message from button.
+			/ Remove success message from button.
 			setTimeout(function () {
 				button.removeClass('smush-button-check-success');
 
@@ -353,12 +353,12 @@ jQuery(function ($) {
 				$pendingImagesWrappers.removeClass('sui-hidden');
 				$allDoneWrappers.addClass('sui-hidden');
 
-				// Update texts mentioning the amount of unsmushed imagesin the summary icon tooltip.
+				/ Update texts mentioning the amount of unsmushed imagesin the summary icon tooltip.
 				const $unsmushedTooltip = jQuery(
 					'.sui-summary-smush .sui-summary-details .sui-tooltip'
 				);
 
-				// The tooltip doesn't exist in the NextGen page.
+				/ The tooltip doesn't exist in the NextGen page.
 				if ($unsmushedTooltip.length) {
 					const textForm = 1 === count ? 'singular' : 'plural',
 						tooltipText = $unsmushedTooltip
@@ -369,13 +369,13 @@ jQuery(function ($) {
 			}
 		}
 
-		// Total count in the progress bar.
+		/ Total count in the progress bar.
 		jQuery('.wp-smush-total-count').text(count);
 	};
 
-	// Scroll the element to top of the page.
+	/ Scroll the element to top of the page.
 	const goToByScroll = function (selector) {
-		// Scroll if element found.
+		/ Scroll if element found.
 		if ($(selector).length > 0) {
 			$('html, body').animate(
 				{
@@ -387,7 +387,7 @@ jQuery(function ($) {
 	};
 
 	const update_cummulative_stats = function (stats) {
-		//Update Directory Smush Stats
+		/Update Directory Smush Stats
 		if ('undefined' !== typeof stats.dir_smush) {
 			const stats_human = $(
 				'li.smush-dir-savings span.wp-smush-stats span.wp-smush-stats-human'
@@ -396,24 +396,24 @@ jQuery(function ($) {
 				'li.smush-dir-savings span.wp-smush-stats span.wp-smush-stats-percent'
 			);
 
-			// Do not replace if 0 savings.
+			/ Do not replace if 0 savings.
 			if (stats.dir_smush.bytes > 0) {
 				$('.wp-smush-dir-link').addClass('sui-hidden');
 
-				// Hide selector.
+				/ Hide selector.
 				$('li.smush-dir-savings .wp-smush-stats-label-message').hide();
-				//Update Savings in bytes
+				/Update Savings in bytes
 				if (stats_human.length > 0) {
 					stats_human.html(stats.dir_smush.human);
 				}
 
-				//Percentage section
+				/Percentage section
 				if (stats.dir_smush.percent > 0) {
-					// Show size and percentage separator.
+					/ Show size and percentage separator.
 					$(
 						'li.smush-dir-savings span.wp-smush-stats span.wp-smush-stats-sep'
 					).removeClass('sui-hidden');
-					//Update Optimisation percentage
+					/Update Optimisation percentage
 					if (stats_percent.length > 0) {
 						stats_percent.html(stats.dir_smush.percent + '%');
 					}
@@ -423,7 +423,7 @@ jQuery(function ($) {
 			}
 		}
 
-		//Update Combined stats
+		/Update Combined stats
 		if (
 			'undefined' !== typeof stats.combined_stats &&
 			stats.combined_stats.length > 0
@@ -433,19 +433,19 @@ jQuery(function ($) {
 			let smush_percent = (c_stats.smushed / c_stats.total_count) * 100;
 			smush_percent = WP_Smush.helpers.precise_round(smush_percent, 1);
 
-			//Smushed Percent
+			/Smushed Percent
 			if (smush_percent) {
 				$('div.wp-smush-count-total span.wp-smush-images-percent').html(
 					smush_percent
 				);
 			}
-			//Update Total Attachment Count
+			/Update Total Attachment Count
 			if (c_stats.total_count) {
 				$(
 					'span.wp-smush-count-total span.wp-smush-total-optimised'
 				).html(c_stats.total_count);
 			}
-			//Update Savings and Percent
+			/Update Savings and Percent
 			if (c_stats.savings) {
 				$('span.wp-smush-savings span.wp-smush-stats-human').html(
 					c_stats.savings
@@ -485,7 +485,7 @@ jQuery(function ($) {
 	$('#update-api-status').on('click', function (e) {
 		e.preventDefault();
 
-		//$(this).prop('disabled', true);
+		/$(this).prop('disabled', true);
 		$(this).addClass('sui-button-onload');
 
 		$.post(ajaxurl, { action: 'recheck_api_status' }, function () {
@@ -530,7 +530,7 @@ jQuery(function ($) {
 		'click',
 		'.wp-smush-send:not(.wp-smush-resmush)',
 		function (e) {
-			// prevent the default action
+			/ prevent the default action
 			e.preventDefault();
 			new Smush($(this), false);
 		}
@@ -544,7 +544,7 @@ jQuery(function ($) {
 
 		const self = $( this );
 
-		// Send ajax request to remove the image from the skip list.
+		/ Send ajax request to remove the image from the skip list.
 		$.post( ajaxurl, {
 			action: 'remove_from_skip_list',
 			id: self.attr( 'data-id' ),
@@ -599,7 +599,7 @@ jQuery(function ($) {
 		}
 	);
 
-	//Scan For resmushing images
+	/Scan For resmushing images
 	$('.wp-smush-scan').on('click', function (e) {
 		e.preventDefault();
 		if ( $(this).hasClass('wp-smush-background-scan') ) {
@@ -608,28 +608,28 @@ jQuery(function ($) {
 		runRecheck(false);
 	});
 
-	//Remove Notice
+	/Remove Notice
 	$('body').on('click', '.wp-smush-notice .icon-fi-close', function (e) {
 		e.preventDefault();
 		const $el = $(this).parent();
 		remove_element($el);
 	});
 
-	// Enable super smush on clicking link from stats area.
+	/ Enable super smush on clicking link from stats area.
 	$('a.wp-smush-lossy-enable').on('click', function (e) {
 		e.preventDefault();
-		// Scroll down to settings area.
+		/ Scroll down to settings area.
 		goToByScroll('#column-lossy');
 	});
 
-	// Enable resize on clicking link from stats area.
+	/ Enable resize on clicking link from stats area.
 	$('.wp-smush-resize-enable').on('click', function (e) {
 		e.preventDefault();
-		// Scroll down to settings area.
+		/ Scroll down to settings area.
 		goToByScroll('#column-resize');
 	});
 
-	// If settings string is found in url, enable and scroll.
+	/ If settings string is found in url, enable and scroll.
 	if ( window.location.hash ) {
 		const setting_hash = window.location.hash.substring( 1 );
 		let scrollTo = '';
@@ -658,11 +658,11 @@ jQuery(function ($) {
 		}
 	}
 
-	//Trigger Bulk
+	/Trigger Bulk
 	$('body').on('click', '.wp-smush-trigger-bulk', function (e) {
 		e.preventDefault();
 
-		//Induce Setting button save click
+		/Induce Setting button save click
 		if (
 			'undefined' !== typeof e.target.dataset.type &&
 			'nextgen' === e.target.dataset.type
@@ -675,15 +675,15 @@ jQuery(function ($) {
 		$('span.sui-notice-dismiss').trigger('click');
 	});
 
-	//Trigger Bulk
+	/Trigger Bulk
 	$('body').on('click', '#bulk-smush-top-notice-close', function (e) {
 		e.preventDefault();
 		$(this).parent().parent().slideUp('slow');
 	});
 
-	//Allow the checkboxes to be Keyboard Accessible
+	/Allow the checkboxes to be Keyboard Accessible
 	$('.wp-smush-setting-row .toggle-checkbox').on('focus', function () {
-		//If Space is pressed
+		/If Space is pressed
 		$(this).keypress(function (e) {
 			if (e.keyCode == 32) {
 				e.preventDefault();
@@ -692,15 +692,15 @@ jQuery(function ($) {
 		});
 	});
 
-	// Re-Validate Resize Width And Height.
+	/ Re-Validate Resize Width And Height.
 	$('body').on('blur', '.wp-smush-resize-input', function () {
 		const resizingWrapper = $(this).closest('#resize-settings-row');
 
-		// Initiate the check.
-		validateResizeSettings(resizingWrapper ); // run the validation.
+		/ Initiate the check.
+		validateResizeSettings(resizingWrapper ); / run the validation.
 	});
 
-	// Handle Resize Checkbox toggle, to show/hide width, height settings.
+	/ Handle Resize Checkbox toggle, to show/hide width, height settings.
 	$('body').on('click', '#resize', function () {
 		const self = $(this);
 		const settings_wrap = $('#smush-resize-settings-wrap');
@@ -712,10 +712,10 @@ jQuery(function ($) {
 		}
 	});
 
-	//Handle Re-check button functionality
+	/Handle Re-check button functionality
 	$('#wp-smush-revalidate-member').on('click', function (e) {
 		e.preventDefault();
-		//Ajax Params
+		/Ajax Params
 		const params = {
 			action: 'smush_show_warning',
 			_ajax_nonce: window.wp_smush_msgs.nonce,
@@ -724,7 +724,7 @@ jQuery(function ($) {
 		const parent = link.parents().eq(1);
 		parent.addClass('loading-notice');
 		$.get(ajaxurl, params, function (r) {
-			//remove the warning
+			/remove the warning
 			parent.removeClass('loading-notice').addClass('loaded-notice');
 			if (0 == r) {
 				parent.attr('data-message', wp_smush_msgs.membership_valid);
@@ -739,16 +739,16 @@ jQuery(function ($) {
 	});
 
 	if ($('li.smush-dir-savings').length > 0) {
-		// Update Directory Smush, as soon as the page loads.
+		/ Update Directory Smush, as soon as the page loads.
 		const stats_param = {
 			action: 'get_dir_smush_stats',
 			_ajax_nonce: window.wp_smush_msgs.nonce,
 		};
 		$.get(ajaxurl, stats_param, function (r) {
-			//Hide the spinner
+			/Hide the spinner
 			$('li.smush-dir-savings .sui-icon-loader').hide();
 
-			//If there are no errors, and we have a message to display
+			/If there are no errors, and we have a message to display
 			if (!r.success && 'undefined' !== typeof r.data.message) {
 				$('div.wp-smush-scan-result div.content').prepend(
 					r.data.message
@@ -756,26 +756,26 @@ jQuery(function ($) {
 				return;
 			}
 
-			//If there is no value in r
+			/If there is no value in r
 			if (
 				'undefined' === typeof r.data ||
 				'undefined' === typeof r.data.dir_smush
 			) {
-				//Append the text
+				/Append the text
 				$('li.smush-dir-savings span.wp-smush-stats').append(
 					wp_smush_msgs.ajax_error
 				);
 				$('li.smush-dir-savings span.wp-smush-stats span').hide();
 			} else {
-				//Update the stats
+				/Update the stats
 				update_cummulative_stats(r.data);
 			}
 		});
 	}
 
-	// Display dialogs that show up with no user action.
+	/ Display dialogs that show up with no user action.
 	if ( $( '#smush-updated-dialog' ).length ) {
-		// Displays the modal with the release's higlights if it exists.
+		/ Displays the modal with the release's higlights if it exists.
 		const modalId = 'smush-updated-dialog',
 			focusAfterClosed = 'wpbody-content',
 			focusWhenOpen = undefined,
@@ -846,17 +846,17 @@ jQuery(function ($) {
 		}
 	});
 
-	// Update Smush mode on lossy level change.
+	/ Update Smush mode on lossy level change.
 	const updateLossyLevelInSummaryBox = () => {
 		const lossyLevelSummaryBox = document.querySelector('.wp-smush-current-compression-level');
 		const currentLossyLevelTab = document.querySelector( '.wp-smush-lossy-level-tabs button.active' );
 		if ( ! lossyLevelSummaryBox || ! currentLossyLevelTab ) {
 			return;
 		}
-		// Update lossy label.
+		/ Update lossy label.
 		lossyLevelSummaryBox.innerText = currentLossyLevelTab.innerText.trim();
 
-		// Toggle Ultra notice/upsell link.
+		/ Toggle Ultra notice/upsell link.
 		const upsellLink = lossyLevelSummaryBox.nextElementSibling;
 		if ( upsellLink ) {
 			if ( currentLossyLevelTab.id.includes('ultra') ) {

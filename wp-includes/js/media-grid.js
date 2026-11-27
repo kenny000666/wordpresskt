@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 659:
@@ -21,9 +21,9 @@ var l10n = wp.media.view.l10n,
 EditAttachmentMetadata = wp.media.controller.State.extend(/** @lends wp.media.controller.EditAttachmentMetadata.prototype */{
 	defaults: {
 		id:      'edit-attachment',
-		// Title string passed to the frame's title region view.
+		/ Title string passed to the frame's title region view.
 		title:   l10n.attachmentDetails,
-		// Region mode defaults.
+		/ Region mode defaults.
 		content: 'edit-metadata',
 		menu:    false,
 		toolbar: false,
@@ -90,7 +90,7 @@ SelectModeToggle = Button.extend(/** @lends wp.media.view.SelectModeToggle.proto
 
 		children = toolbar.$( '.media-toolbar-secondary > *, .media-toolbar-primary > *' );
 
-		// @todo The Frame should be doing all of this.
+		/ @todo The Frame should be doing all of this.
 		if ( this.controller.isModeActive( 'select' ) ) {
 			this.model.set( {
 				size: 'large',
@@ -183,7 +183,7 @@ EditAttachments = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.EditAtta
 	},
 
 	bindHandlers: function() {
-		// Bind default title creation.
+		/ Bind default title creation.
 		this.on( 'title:create:default', this.createTitle, this );
 
 		this.on( 'content:create:edit-metadata', this.editMetadataMode, this );
@@ -197,12 +197,12 @@ EditAttachments = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.EditAtta
 	},
 
 	bindModelHandlers: function() {
-		// Close the modal if the attachment is deleted.
+		/ Close the modal if the attachment is deleted.
 		this.listenTo( this.model, 'change:status destroy', this.close, this );
 	},
 
 	createModal: function() {
-		// Initialize modal container view.
+		/ Initialize modal container view.
 		if ( this.options.modal ) {
 			this.modal = new wp.media.view.Modal({
 				controller:     this,
@@ -214,16 +214,16 @@ EditAttachments = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.EditAtta
 				$( 'body' ).on( 'keydown.media-modal', _.bind( this.keyEvent, this ) );
 			}, this ) );
 
-			// Completely destroy the modal DOM element when closing it.
+			/ Completely destroy the modal DOM element when closing it.
 			this.modal.on( 'close', _.bind( function() {
-				// Remove the keydown event.
+				/ Remove the keydown event.
 				$( 'body' ).off( 'keydown.media-modal' );
-				// Move focus back to the original item in the grid if possible.
+				/ Move focus back to the original item in the grid if possible.
 				$( 'li.attachment[data-id="' + this.model.get( 'id' ) +'"]' ).trigger( 'focus' );
 				this.resetRoute();
 			}, this ) );
 
-			// Set this frame as the modal's content.
+			/ Set this frame as the modal's content.
 			this.modal.content( this );
 			this.modal.open();
 		}
@@ -262,7 +262,7 @@ EditAttachments = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.EditAtta
 			model:      this.model
 		}) );
 
-		// Update browser url when navigating media details, except on load.
+		/ Update browser url when navigating media details, except on load.
 		if ( this.model && ! this.model.get( 'skipHistory' ) ) {
 			this.gridRouter.navigate( this.gridRouter.baseUrl( '?item=' + this.model.id ) );
 		}
@@ -279,7 +279,7 @@ EditAttachments = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.EditAtta
 			model: this.model,
 			frame: this
 		} );
-		// Noop some methods.
+		/ Noop some methods.
 		editImageController._toolbar = function() {};
 		editImageController._router = function() {};
 		editImageController._menu = function() {};
@@ -313,7 +313,7 @@ EditAttachments = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.EditAtta
 
 		this.bindModelHandlers();
 
-		// Only rerender the `content` region.
+		/ Only rerender the `content` region.
 		if ( this.content.mode() !== 'edit-metadata' ) {
 			this.content.mode( 'edit-metadata' );
 		} else {
@@ -332,7 +332,7 @@ EditAttachments = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.EditAtta
 		}
 
 		this.trigger( 'refresh', this.library.at( this.getCurrentIndex() - 1 ) );
-		// Move focus to the Previous button. When there are no more items, to the Next button.
+		/ Move focus to the Previous button. When there are no more items, to the Next button.
 		this.focusNavButton( this.hasPrevious() ? '.left' : '.right' );
 	},
 
@@ -345,7 +345,7 @@ EditAttachments = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.EditAtta
 		}
 
 		this.trigger( 'refresh', this.library.at( this.getCurrentIndex() + 1 ) );
-		// Move focus to the Next button. When there are no more items, to the Previous button.
+		/ Move focus to the Next button. When there are no more items, to the Previous button.
 		this.focusNavButton( this.hasNext() ? '.right' : '.left' );
 	},
 
@@ -380,11 +380,11 @@ EditAttachments = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.EditAtta
 			return;
 		}
 
-		// The right arrow key.
+		/ The right arrow key.
 		if ( 39 === event.keyCode ) {
 			this.nextMediaItem();
 		}
-		// The left arrow key.
+		/ The left arrow key.
 		if ( 37 === event.keyCode ) {
 			this.previousMediaItem();
 		}
@@ -472,7 +472,7 @@ var Router = Backbone.Router.extend(/** @lends wp.media.view.MediaFrame.Manage.R
 		'upload.php':                      'reset'
 	},
 
-	// Map routes against the page URL.
+	/ Map routes against the page URL.
 	baseUrl: function( url ) {
 		return 'upload.php' + url;
 	},
@@ -485,19 +485,19 @@ var Router = Backbone.Router.extend(/** @lends wp.media.view.MediaFrame.Manage.R
 		}
 	},
 
-	// Respond to the search route by filling the search field and triggering the input event.
+	/ Respond to the search route by filling the search field and triggering the input event.
 	search: function( query ) {
 		jQuery( '#media-search-input' ).val( query ).trigger( 'input' );
 	},
 
-	// Show the modal with a specific item.
+	/ Show the modal with a specific item.
 	showItem: function( query ) {
 		var media = wp.media,
 			frame = media.frames.browse,
 			library = frame.state().get('library'),
 			item;
 
-		// Trigger the media frame to open the correct item.
+		/ Trigger the media frame to open the correct item.
 		item = library.findWhere( { id: parseInt( query, 10 ) } );
 
 		if ( item ) {
@@ -513,7 +513,7 @@ var Router = Backbone.Router.extend(/** @lends wp.media.view.MediaFrame.Manage.R
 		}
 	},
 
-	// Show the modal in edit mode with a specific item.
+	/ Show the modal in edit mode with a specific item.
 	editItem: function( query ) {
 		this.showItem( query );
 		wp.media.frames.edit.content.mode( 'edit-details' );
@@ -675,7 +675,7 @@ Manage = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.Manage.prototype 
 			title:     '',
 			modal:     false,
 			selection: [],
-			library:   {}, // Options hash for the query to the media library.
+			library:   {}, / Options hash for the query to the media library.
 			multiple:  'add',
 			state:     'library',
 			uploader:  true,
@@ -685,23 +685,23 @@ Manage = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.Manage.prototype 
 		this.$body = $( document.body );
 		this.$window = $( window );
 		this.$adminBar = $( '#wpadminbar' );
-		// Store the Add New button for later reuse in wp.media.view.UploaderInline.
+		/ Store the Add New button for later reuse in wp.media.view.UploaderInline.
 		this.$uploaderToggler = $( '.page-title-action' )
 			.attr( 'aria-expanded', 'false' )
 			.on( 'click', _.bind( this.addNewClickHandler, this ) );
 
 		this.$window.on( 'scroll resize', _.debounce( _.bind( this.fixPosition, this ), 15 ) );
 
-		// Ensure core and media grid view UI is enabled.
+		/ Ensure core and media grid view UI is enabled.
 		this.$el.addClass('wp-core-ui');
 
-		// Force the uploader off if the upload limit has been exceeded or
-		// if the browser isn't supported.
+		/ Force the uploader off if the upload limit has been exceeded or
+		/ if the browser isn't supported.
 		if ( wp.Uploader.limitExceeded || ! wp.Uploader.browser.supported ) {
 			this.options.uploader = false;
 		}
 
-		// Initialize a window-wide uploader.
+		/ Initialize a window-wide uploader.
 		if ( this.options.uploader ) {
 			this.uploader = new wp.media.view.UploaderWindow({
 				controller: this,
@@ -718,10 +718,10 @@ Manage = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.Manage.prototype 
 
 		this.gridRouter = new wp.media.view.MediaFrame.Manage.Router();
 
-		// Call 'initialize' directly on the parent class.
+		/ Call 'initialize' directly on the parent class.
 		MediaFrame.prototype.initialize.apply( this, arguments );
 
-		// Append the frame view directly the supplied container.
+		/ Append the frame view directly the supplied container.
 		this.$el.appendTo( this.options.container );
 
 		this.createStates();
@@ -747,7 +747,7 @@ Manage = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.Manage.prototype 
 				}
 			}, 1000 );
 
-		// Update the URL when entering search string (at most once per second).
+		/ Update the URL when entering search string (at most once per second).
 		search.on( 'input', _.bind( input, this ) );
 
 		this.gridRouter
@@ -776,7 +776,7 @@ Manage = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.Manage.prototype 
 			return;
 		}
 
-		// Add the default states.
+		/ Add the default states.
 		this.states.add([
 			new Library({
 				library:            wp.media.query( options.library ),
@@ -797,7 +797,7 @@ Manage = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.Manage.prototype 
 	bindRegionModeHandlers: function() {
 		this.on( 'content:create:browse', this.browseContent, this );
 
-		// Handle a frame-level event for editing an attachment.
+		/ Handle a frame-level event for editing an attachment.
 		this.on( 'edit:attachment', this.openEditAttachmentModal, this );
 
 		this.on( 'select:activate', this.bindKeydown, this );
@@ -828,7 +828,7 @@ Manage = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.Manage.prototype 
 		$browser = this.$('.attachments-browser');
 		$toolbar = $browser.find('.media-toolbar');
 
-		// Offset doesn't appear to take top margin into account, hence +16.
+		/ Offset doesn't appear to take top margin into account, hence +16.
 		if ( ( $browser.offset().top + 16 ) < this.$window.scrollTop() + this.$adminBar.height() ) {
 			$browser.addClass( 'fixed' );
 			$toolbar.css('width', $browser.width() + 'px');
@@ -854,7 +854,7 @@ Manage = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.Manage.prototype 
 	 * Open the Edit Attachment modal.
 	 */
 	openEditAttachmentModal: function( model ) {
-		// Create a new EditAttachment frame, passing along the library and the attachment model.
+		/ Create a new EditAttachment frame, passing along the library and the attachment model.
 		if ( wp.media.frames.edit ) {
 			wp.media.frames.edit.open().trigger( 'refresh', model );
 		} else {
@@ -877,7 +877,7 @@ Manage = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.Manage.prototype 
 	browseContent: function( contentRegion ) {
 		var state = this.state();
 
-		// Browse our library of attachments.
+		/ Browse our library of attachments.
 		this.browserView = contentRegion.view = new wp.media.view.AttachmentsBrowser({
 			controller: this,
 			collection: state.get('library'),
@@ -916,7 +916,7 @@ Manage = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.Manage.prototype 
 	},
 
 	startHistory: function() {
-		// Verify pushState support and activate.
+		/ Verify pushState support and activate.
 		if ( window.history && window.history.pushState ) {
 			if ( Backbone.History.started ) {
 				Backbone.history.stop();
@@ -978,27 +978,27 @@ module.exports = Details;
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	

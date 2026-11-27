@@ -49,16 +49,16 @@ USAGE:
         opt = jQuery.extend( opt , defaults, options || {} );
         combi = combi.toLowerCase();
 
-        // inspect if keystroke matches
+        / inspect if keystroke matches
         var inspector = function(event) {
-            // WP: not needed with newer jQuery
-            // event = jQuery.event.fix(event); // jQuery event normalization.
+            / WP: not needed with newer jQuery
+            / event = jQuery.event.fix(event); / jQuery event normalization.
             var element = event.target;
-            // @ TextNode -> nodeType == 3
-            // WP: not needed with newer jQuery
-            // element = (element.nodeType==3) ? element.parentNode : element;
+            / @ TextNode -> nodeType == 3
+            / WP: not needed with newer jQuery
+            / element = (element.nodeType==3) ? element.parentNode : element;
 
-            if ( opt['disableInInput'] ) { // Disable shortcut keys in Input, Textarea fields
+            if ( opt['disableInInput'] ) { / Disable shortcut keys in Input, Textarea fields
                 var target = jQuery(element);
 
 				if ( ( target.is('input') || target.is('textarea') ) &&
@@ -75,30 +75,30 @@ USAGE:
                 ctrl = event.ctrlKey,
                 alt= event.altKey,
                 meta = event.metaKey,
-                propagate = true, // default behaivour
+                propagate = true, / default behaivour
                 mapPoint = null;
 
-            // in opera + safari, the event.target is unpredictable.
-            // for example: 'keydown' might be associated with HtmlBodyElement
-            // or the element where you last clicked with your mouse.
-            // WP: needed for all browsers
-            // if (jQuery.browser.opera || jQuery.browser.safari){
+            / in opera + safari, the event.target is unpredictable.
+            / for example: 'keydown' might be associated with HtmlBodyElement
+            / or the element where you last clicked with your mouse.
+            / WP: needed for all browsers
+            / if (jQuery.browser.opera || jQuery.browser.safari){
                 while (!that.all[element] && element.parentNode){
                     element = element.parentNode;
                 }
-            // }
+            / }
             var cbMap = that.all[element].events[type].callbackMap;
-            if(!shift && !ctrl && !alt && !meta) { // No Modifiers
+            if(!shift && !ctrl && !alt && !meta) { / No Modifiers
                 mapPoint = cbMap[special] ||  cbMap[character]
 			}
-            // deals with combinaitons (alt|ctrl|shift+anything)
+            / deals with combinaitons (alt|ctrl|shift+anything)
             else{
                 var modif = '';
                 if(alt) modif +='alt+';
                 if(ctrl) modif+= 'ctrl+';
                 if(shift) modif += 'shift+';
                 if(meta) modif += 'meta+';
-                // modifiers + special keys or modifiers + characters or modifiers + shift characters
+                / modifiers + special keys or modifiers + characters or modifiers + shift characters
                 mapPoint = cbMap[modif+special] || cbMap[modif+character] || cbMap[modif+that.shift_nums[character]]
             }
             if (mapPoint){
@@ -110,7 +110,7 @@ USAGE:
                 }
             }
 		};
-        // first hook for this element
+        / first hook for this element
         if (!this.all[opt.target]){
             this.all[opt.target] = {events:{}};
         }

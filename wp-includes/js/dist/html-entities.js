@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -23,7 +23,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -51,18 +51,18 @@ let _decodeTextArea;
  * import { decodeEntities } from '@wordpress/html-entities';
  *
  * const result = decodeEntities( '&aacute;' );
- * console.log( result ); // result will be "á"
+ * console.log( result ); / result will be "á"
  * ```
  *
  * @return {string} The decoded string.
  */
 function decodeEntities(html) {
-  // Not a string, or no entities to decode.
+  / Not a string, or no entities to decode.
   if ('string' !== typeof html || -1 === html.indexOf('&')) {
     return html;
   }
 
-  // Create a textarea for decoding entities, that we can reuse.
+  / Create a textarea for decoding entities, that we can reuse.
   if (undefined === _decodeTextArea) {
     if (document.implementation && document.implementation.createHTMLDocument) {
       _decodeTextArea = document.implementation.createHTMLDocument('').createElement('textarea');

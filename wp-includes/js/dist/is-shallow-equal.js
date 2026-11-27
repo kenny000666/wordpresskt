@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -23,7 +23,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -44,7 +44,7 @@ __webpack_require__.d(__webpack_exports__, {
   isShallowEqualObjects: () => (/* reexport */ isShallowEqualObjects)
 });
 
-;// ./node_modules/@wordpress/is-shallow-equal/build-module/objects.js
+;/ ./node_modules/@wordpress/is-shallow-equal/build-module/objects.js
 /**
  * Returns true if the two objects are shallow equal, or false otherwise.
  *
@@ -67,11 +67,11 @@ function isShallowEqualObjects(a, b) {
     const key = aKeys[i];
     const aValue = a[key];
     if (
-    // In iterating only the keys of the first object after verifying
-    // equal lengths, account for the case that an explicit `undefined`
-    // value in the first is implicitly undefined in the second.
-    //
-    // Example: isShallowEqualObjects( { a: undefined }, { b: 5 } )
+    / In iterating only the keys of the first object after verifying
+    / equal lengths, account for the case that an explicit `undefined`
+    / value in the first is implicitly undefined in the second.
+    /
+    / Example: isShallowEqualObjects( { a: undefined }, { b: 5 } )
     aValue === undefined && !b.hasOwnProperty(key) || aValue !== b[key]) {
       return false;
     }
@@ -80,7 +80,7 @@ function isShallowEqualObjects(a, b) {
   return true;
 }
 
-;// ./node_modules/@wordpress/is-shallow-equal/build-module/arrays.js
+;/ ./node_modules/@wordpress/is-shallow-equal/build-module/arrays.js
 /**
  * Returns true if the two arrays are shallow equal, or false otherwise.
  *
@@ -104,7 +104,7 @@ function isShallowEqualArrays(a, b) {
   return true;
 }
 
-;// ./node_modules/@wordpress/is-shallow-equal/build-module/index.js
+;/ ./node_modules/@wordpress/is-shallow-equal/build-module/index.js
 /**
  * Internal dependencies
  */

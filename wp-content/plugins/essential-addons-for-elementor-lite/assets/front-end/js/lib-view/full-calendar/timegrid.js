@@ -57,19 +57,19 @@
         }
         TimeGridEventRenderer.prototype.renderSegs = function (context, segs, mirrorInfo) {
             _super.prototype.renderSegs.call(this, context, segs, mirrorInfo);
-            // TODO: dont do every time. memoize
+            / TODO: dont do every time. memoize
             this.fullTimeFormat = core.createFormatter({
                 hour: 'numeric',
                 minute: '2-digit',
                 separator: this.context.options.defaultRangeSeparator
             });
         };
-        // Given an array of foreground segments, render a DOM element for each, computes position,
-        // and attaches to the column inner-container elements.
+        / Given an array of foreground segments, render a DOM element for each, computes position,
+        / and attaches to the column inner-container elements.
         TimeGridEventRenderer.prototype.attachSegs = function (segs, mirrorInfo) {
             var segsByCol = this.timeGrid.groupSegsByCol(segs);
-            // order the segs within each column
-            // TODO: have groupSegsByCol do this?
+            / order the segs within each column
+            / TODO: have groupSegsByCol do this?
             for (var col = 0; col < segsByCol.length; col++) {
                 segsByCol[col] = this.sortEventSegs(segsByCol[col]);
             }
@@ -85,24 +85,24 @@
         TimeGridEventRenderer.prototype.computeSegSizes = function (allSegs) {
             var _a = this, timeGrid = _a.timeGrid, segsByCol = _a.segsByCol;
             var colCnt = timeGrid.colCnt;
-            timeGrid.computeSegVerticals(allSegs); // horizontals relies on this
+            timeGrid.computeSegVerticals(allSegs); / horizontals relies on this
             if (segsByCol) {
                 for (var col = 0; col < colCnt; col++) {
-                    this.computeSegHorizontals(segsByCol[col]); // compute horizontal coordinates, z-index's, and reorder the array
+                    this.computeSegHorizontals(segsByCol[col]); / compute horizontal coordinates, z-index's, and reorder the array
                 }
             }
         };
         TimeGridEventRenderer.prototype.assignSegSizes = function (allSegs) {
             var _a = this, timeGrid = _a.timeGrid, segsByCol = _a.segsByCol;
             var colCnt = timeGrid.colCnt;
-            timeGrid.assignSegVerticals(allSegs); // horizontals relies on this
+            timeGrid.assignSegVerticals(allSegs); / horizontals relies on this
             if (segsByCol) {
                 for (var col = 0; col < colCnt; col++) {
                     this.assignSegCss(segsByCol[col]);
                 }
             }
         };
-        // Computes a default event time formatting string if `eventTimeFormat` is not explicitly defined
+        / Computes a default event time formatting string if `eventTimeFormat` is not explicitly defined
         TimeGridEventRenderer.prototype.computeEventTimeFormat = function () {
             return {
                 hour: 'numeric',
@@ -110,11 +110,11 @@
                 meridiem: false
             };
         };
-        // Computes a default `displayEventEnd` value if one is not expliclty defined
+        / Computes a default `displayEventEnd` value if one is not expliclty defined
         TimeGridEventRenderer.prototype.computeDisplayEventEnd = function () {
             return true;
         };
-        // Renders the HTML for a single event segment's default rendering
+        / Renders the HTML for a single event segment's default rendering
         TimeGridEventRenderer.prototype.renderSegHtml = function (seg, mirrorInfo) {
             var eventRange = seg.eventRange;
             var eventDef = eventRange.def;
@@ -126,27 +126,27 @@
             var classes = this.getSegClasses(seg, isDraggable, isResizableFromStart || isResizableFromEnd, mirrorInfo);
             var skinCss = core.cssToStr(this.getSkinCss(eventUi));
             var timeText;
-            var fullTimeText; // more verbose time text. for the print stylesheet
-            var startTimeText; // just the start time text
+            var fullTimeText; / more verbose time text. for the print stylesheet
+            var startTimeText; / just the start time text
             classes.unshift('fc-time-grid-event');
-            // if the event appears to span more than one day...
+            / if the event appears to span more than one day...
             if (core.isMultiDayRange(eventRange.range)) {
-                // Don't display time text on segments that run entirely through a day.
-                // That would appear as midnight-midnight and would look dumb.
-                // Otherwise, display the time text for the *segment's* times (like 6pm-midnight or midnight-10am)
+                / Don't display time text on segments that run entirely through a day.
+                / That would appear as midnight-midnight and would look dumb.
+                / Otherwise, display the time text for the *segment's* times (like 6pm-midnight or midnight-10am)
                 if (seg.isStart || seg.isEnd) {
                     var unzonedStart = seg.start;
                     var unzonedEnd = seg.end;
-                    timeText = this._getTimeText(unzonedStart, unzonedEnd, allDay); // TODO: give the timezones
+                    timeText = this._getTimeText(unzonedStart, unzonedEnd, allDay); / TODO: give the timezones
                     fullTimeText = this._getTimeText(unzonedStart, unzonedEnd, allDay, this.fullTimeFormat);
-                    startTimeText = this._getTimeText(unzonedStart, unzonedEnd, allDay, null, false); // displayEnd=false
+                    startTimeText = this._getTimeText(unzonedStart, unzonedEnd, allDay, null, false); / displayEnd=false
                 }
             }
             else {
-                // Display the normal time text for the *event's* times
+                / Display the normal time text for the *event's* times
                 timeText = this.getTimeText(eventRange);
                 fullTimeText = this.getTimeText(eventRange, this.fullTimeFormat);
-                startTimeText = this.getTimeText(eventRange, null, false); // displayEnd=false
+                startTimeText = this.getTimeText(eventRange, null, false); / displayEnd=false
             }
             return '<a class="' + classes.join(' ') + '"' +
                 (eventDef.url ?
@@ -182,9 +182,9 @@
                     '') +
                 '</a>';
         };
-        // Given an array of segments that are all in the same column, sets the backwardCoord and forwardCoord on each.
-        // Assumed the segs are already ordered.
-        // NOTE: Also reorders the given array by date!
+        / Given an array of segments that are all in the same column, sets the backwardCoord and forwardCoord on each.
+        / Assumed the segs are already ordered.
+        / NOTE: Also reorders the given array by date!
         TimeGridEventRenderer.prototype.computeSegHorizontals = function (segs) {
             var levels;
             var level0;
@@ -200,36 +200,36 @@
                 }
             }
         };
-        // Calculate seg.forwardCoord and seg.backwardCoord for the segment, where both values range
-        // from 0 to 1. If the calendar is left-to-right, the seg.backwardCoord maps to "left" and
-        // seg.forwardCoord maps to "right" (via percentage). Vice-versa if the calendar is right-to-left.
-        //
-        // The segment might be part of a "series", which means consecutive segments with the same pressure
-        // who's width is unknown until an edge has been hit. `seriesBackwardPressure` is the number of
-        // segments behind this one in the current series, and `seriesBackwardCoord` is the starting
-        // coordinate of the first segment in the series.
+        / Calculate seg.forwardCoord and seg.backwardCoord for the segment, where both values range
+        / from 0 to 1. If the calendar is left-to-right, the seg.backwardCoord maps to "left" and
+        / seg.forwardCoord maps to "right" (via percentage). Vice-versa if the calendar is right-to-left.
+        /
+        / The segment might be part of a "series", which means consecutive segments with the same pressure
+        / who's width is unknown until an edge has been hit. `seriesBackwardPressure` is the number of
+        / segments behind this one in the current series, and `seriesBackwardCoord` is the starting
+        / coordinate of the first segment in the series.
         TimeGridEventRenderer.prototype.computeSegForwardBack = function (seg, seriesBackwardPressure, seriesBackwardCoord) {
             var forwardSegs = seg.forwardSegs;
             var i;
-            if (seg.forwardCoord === undefined) { // not already computed
+            if (seg.forwardCoord === undefined) { / not already computed
                 if (!forwardSegs.length) {
-                    // if there are no forward segments, this segment should butt up against the edge
+                    / if there are no forward segments, this segment should butt up against the edge
                     seg.forwardCoord = 1;
                 }
                 else {
-                    // sort highest pressure first
+                    / sort highest pressure first
                     this.sortForwardSegs(forwardSegs);
-                    // this segment's forwardCoord will be calculated from the backwardCoord of the
-                    // highest-pressure forward segment.
+                    / this segment's forwardCoord will be calculated from the backwardCoord of the
+                    / highest-pressure forward segment.
                     this.computeSegForwardBack(forwardSegs[0], seriesBackwardPressure + 1, seriesBackwardCoord);
                     seg.forwardCoord = forwardSegs[0].backwardCoord;
                 }
-                // calculate the backwardCoord from the forwardCoord. consider the series
+                / calculate the backwardCoord from the forwardCoord. consider the series
                 seg.backwardCoord = seg.forwardCoord -
-                    (seg.forwardCoord - seriesBackwardCoord) / // available width for series
-                        (seriesBackwardPressure + 1); // # of segments in the series
-                // use this segment's coordinates to computed the coordinates of the less-pressurized
-                // forward segments
+                    (seg.forwardCoord - seriesBackwardCoord) / / available width for series
+                        (seriesBackwardPressure + 1); / # of segments in the series
+                / use this segment's coordinates to computed the coordinates of the less-pressurized
+                / forward segments
                 for (i = 0; i < forwardSegs.length; i++) {
                     this.computeSegForwardBack(forwardSegs[i], 0, seg.forwardCoord);
                 }
@@ -238,9 +238,9 @@
         TimeGridEventRenderer.prototype.sortForwardSegs = function (forwardSegs) {
             var objs = forwardSegs.map(buildTimeGridSegCompareObj);
             var specs = [
-                // put higher-pressure first
+                / put higher-pressure first
                 { field: 'forwardPressure', order: -1 },
-                // put segments that are closer to initial edge first (and favor ones with no coords yet)
+                / put segments that are closer to initial edge first (and favor ones with no coords yet)
                 { field: 'backwardCoord', order: 1 }
             ].concat(this.context.eventOrderSpecs);
             objs.sort(function (obj0, obj1) {
@@ -250,8 +250,8 @@
                 return c._seg;
             });
         };
-        // Given foreground event segments that have already had their position coordinates computed,
-        // assigns position-related CSS values to their elements.
+        / Given foreground event segments that have already had their position coordinates computed,
+        / assigns position-related CSS values to their elements.
         TimeGridEventRenderer.prototype.assignSegCss = function (segs) {
             for (var _i = 0, segs_1 = segs; _i < segs_1.length; _i++) {
                 var seg = segs_1[_i];
@@ -259,25 +259,25 @@
                 if (seg.level > 0) {
                     seg.el.classList.add('fc-time-grid-event-inset');
                 }
-                // if the event is short that the title will be cut off,
-                // attach a className that condenses the title into the time area.
+                / if the event is short that the title will be cut off,
+                / attach a className that condenses the title into the time area.
                 if (seg.eventRange.def.title && seg.bottom - seg.top < 30) {
-                    seg.el.classList.add('fc-short'); // TODO: "condensed" is a better name
+                    seg.el.classList.add('fc-short'); / TODO: "condensed" is a better name
                 }
             }
         };
-        // Generates an object with CSS properties/values that should be applied to an event segment element.
-        // Contains important positioning-related properties that should be applied to any event element, customized or not.
+        / Generates an object with CSS properties/values that should be applied to an event segment element.
+        / Contains important positioning-related properties that should be applied to any event element, customized or not.
         TimeGridEventRenderer.prototype.generateSegCss = function (seg) {
             var shouldOverlap = this.context.options.slotEventOverlap;
-            var backwardCoord = seg.backwardCoord; // the left side if LTR. the right side if RTL. floating-point
-            var forwardCoord = seg.forwardCoord; // the right side if LTR. the left side if RTL. floating-point
-            var props = this.timeGrid.generateSegVerticalCss(seg); // get top/bottom first
+            var backwardCoord = seg.backwardCoord; / the left side if LTR. the right side if RTL. floating-point
+            var forwardCoord = seg.forwardCoord; / the right side if LTR. the left side if RTL. floating-point
+            var props = this.timeGrid.generateSegVerticalCss(seg); / get top/bottom first
             var isRtl = this.context.isRtl;
-            var left; // amount of space from left edge, a fraction of the total width
-            var right; // amount of space from right edge, a fraction of the total width
+            var left; / amount of space from left edge, a fraction of the total width
+            var right; / amount of space from right edge, a fraction of the total width
             if (shouldOverlap) {
-                // double the width, but don't go beyond the maximum forward coordinate (1.0)
+                / double the width, but don't go beyond the maximum forward coordinate (1.0)
                 forwardCoord = Math.min(1, backwardCoord + (forwardCoord - backwardCoord) * 2);
             }
             if (isRtl) {
@@ -288,19 +288,19 @@
                 left = backwardCoord;
                 right = 1 - forwardCoord;
             }
-            props.zIndex = seg.level + 1; // convert from 0-base to 1-based
+            props.zIndex = seg.level + 1; / convert from 0-base to 1-based
             props.left = left * 100 + '%';
             props.right = right * 100 + '%';
             if (shouldOverlap && seg.forwardPressure) {
-                // add padding to the edge so that forward stacked events don't cover the resizer's icon
-                props[isRtl ? 'marginLeft' : 'marginRight'] = 10 * 2; // 10 is a guesstimate of the icon's width
+                / add padding to the edge so that forward stacked events don't cover the resizer's icon
+                props[isRtl ? 'marginLeft' : 'marginRight'] = 10 * 2; / 10 is a guesstimate of the icon's width
             }
             return props;
         };
         return TimeGridEventRenderer;
     }(core.FgEventRenderer));
-    // Builds an array of segments "levels". The first level will be the leftmost tier of segments if the calendar is
-    // left-to-right, or the rightmost if the calendar is right-to-left. Assumes the segments are already ordered by date.
+    / Builds an array of segments "levels". The first level will be the leftmost tier of segments if the calendar is
+    / left-to-right, or the rightmost if the calendar is right-to-left. Assumes the segments are already ordered by date.
     function buildSlotSegLevels(segs) {
         var levels = [];
         var i;
@@ -308,7 +308,7 @@
         var j;
         for (i = 0; i < segs.length; i++) {
             seg = segs[i];
-            // go through all the levels and stop on the first level where there are no collisions
+            / go through all the levels and stop on the first level where there are no collisions
             for (j = 0; j < levels.length; j++) {
                 if (!computeSlotSegCollisions(seg, levels[j]).length) {
                     break;
@@ -319,8 +319,8 @@
         }
         return levels;
     }
-    // For every segment, figure out the other segments that are in subsequent
-    // levels that also occupy the same vertical space. Accumulate in seg.forwardSegs
+    / For every segment, figure out the other segments that are in subsequent
+    / levels that also occupy the same vertical space. Accumulate in seg.forwardSegs
     function computeForwardSlotSegs(levels) {
         var i;
         var level;
@@ -338,27 +338,27 @@
             }
         }
     }
-    // Figure out which path forward (via seg.forwardSegs) results in the longest path until
-    // the furthest edge is reached. The number of segments in this path will be seg.forwardPressure
+    / Figure out which path forward (via seg.forwardSegs) results in the longest path until
+    / the furthest edge is reached. The number of segments in this path will be seg.forwardPressure
     function computeSlotSegPressures(seg) {
         var forwardSegs = seg.forwardSegs;
         var forwardPressure = 0;
         var i;
         var forwardSeg;
-        if (seg.forwardPressure === undefined) { // not already computed
+        if (seg.forwardPressure === undefined) { / not already computed
             for (i = 0; i < forwardSegs.length; i++) {
                 forwardSeg = forwardSegs[i];
-                // figure out the child's maximum forward path
+                / figure out the child's maximum forward path
                 computeSlotSegPressures(forwardSeg);
-                // either use the existing maximum, or use the child's forward pressure
-                // plus one (for the forwardSeg itself)
+                / either use the existing maximum, or use the child's forward pressure
+                / plus one (for the forwardSeg itself)
                 forwardPressure = Math.max(forwardPressure, 1 + forwardSeg.forwardPressure);
             }
             seg.forwardPressure = forwardPressure;
         }
     }
-    // Find all the segments in `otherSegs` that vertically collide with `seg`.
-    // Append into an optionally-supplied `results` array and return.
+    / Find all the segments in `otherSegs` that vertically collide with `seg`.
+    / Append into an optionally-supplied `results` array and return.
     function computeSlotSegCollisions(seg, otherSegs, results) {
         if (results === void 0) { results = []; }
         for (var i = 0; i < otherSegs.length; i++) {
@@ -368,7 +368,7 @@
         }
         return results;
     }
-    // Do these segments occupy the same vertical space?
+    / Do these segments occupy the same vertical space?
     function isSlotSegCollision(seg1, seg2) {
         return seg1.bottom > seg2.top && seg1.top < seg2.bottom;
     }
@@ -414,7 +414,7 @@
         TimeGridFillRenderer.prototype.attachSegs = function (type, segs) {
             var timeGrid = this.timeGrid;
             var containerEls;
-            // TODO: more efficient lookup
+            / TODO: more efficient lookup
             if (type === 'bgEvent') {
                 containerEls = timeGrid.bgContainerEls;
             }
@@ -440,8 +440,8 @@
 
     /* A component that renders one or more columns of vertical time slots
     ----------------------------------------------------------------------------------------------------------------------*/
-    // potential nice values for the slot-duration and interval-duration
-    // from largest to smallest
+    / potential nice values for the slot-duration and interval-duration
+    / from largest to smallest
     var AGENDA_STOCK_SUB_DURATIONS = [
         { hours: 1 },
         { minutes: 30 },
@@ -475,8 +475,8 @@
         }
         /* Options
         ------------------------------------------------------------------------------------------------------------------*/
-        // Parses various options into properties of this object
-        // MUST have context already set
+        / Parses various options into properties of this object
+        / MUST have context already set
         TimeGrid.prototype._processOptions = function (options) {
             var slotDuration = options.slotDuration, snapDuration = options.snapDuration;
             var snapsPerSlot;
@@ -487,13 +487,13 @@
             if (snapsPerSlot === null) {
                 snapDuration = slotDuration;
                 snapsPerSlot = 1;
-                // TODO: say warning?
+                / TODO: say warning?
             }
             this.slotDuration = slotDuration;
             this.snapDuration = snapDuration;
             this.snapsPerSlot = snapsPerSlot;
-            // might be an array value (for TimelineView).
-            // if so, getting the most granular entry (the last one probably).
+            / might be an array value (for TimelineView).
+            / if so, getting the most granular entry (the last one probably).
             input = options.slotLabelFormat;
             if (Array.isArray(input)) {
                 input = input[input.length - 1];
@@ -509,12 +509,12 @@
                 core.createDuration(input) :
                 this.computeLabelInterval(slotDuration);
         };
-        // Computes an automatic value for slotLabelInterval
+        / Computes an automatic value for slotLabelInterval
         TimeGrid.prototype.computeLabelInterval = function (slotDuration) {
             var i;
             var labelInterval;
             var slotsPerLabel;
-            // find the smallest stock label interval that results in more than one slots-per-label
+            / find the smallest stock label interval that results in more than one slots-per-label
             for (i = AGENDA_STOCK_SUB_DURATIONS.length - 1; i >= 0; i--) {
                 labelInterval = core.createDuration(AGENDA_STOCK_SUB_DURATIONS[i]);
                 slotsPerLabel = core.wholeDivideDurations(labelInterval, slotDuration);
@@ -522,7 +522,7 @@
                     return labelInterval;
                 }
             }
-            return slotDuration; // fall back
+            return slotDuration; / fall back
         };
         /* Rendering
         ------------------------------------------------------------------------------------------------------------------*/
@@ -543,7 +543,7 @@
         };
         TimeGrid.prototype.destroy = function () {
             _super.prototype.destroy.call(this);
-            // should unrender everything else too
+            / should unrender everything else too
             this.renderSlats.unrender();
             this.renderColumns.unrender();
             this.renderSkeleton.unrender();
@@ -582,28 +582,28 @@
                     this.renderSlatRowHtml(dateProfile) +
                     '</table>';
             this.slatEls = core.findElements(this.slatContainerEl, 'tr');
-            this.slatPositions = new core.PositionCache(this.el, this.slatEls, false, true // vertical
+            this.slatPositions = new core.PositionCache(this.el, this.slatEls, false, true / vertical
             );
             this.isSlatSizesDirty = true;
         };
-        // Generates the HTML for the horizontal "slats" that run width-wise. Has a time axis on a side. Depends on RTL.
+        / Generates the HTML for the horizontal "slats" that run width-wise. Has a time axis on a side. Depends on RTL.
         TimeGrid.prototype.renderSlatRowHtml = function (dateProfile) {
             var _a = this.context, dateEnv = _a.dateEnv, theme = _a.theme, isRtl = _a.isRtl;
             var html = '';
             var dayStart = core.startOfDay(dateProfile.renderRange.start);
             var slotTime = dateProfile.minTime;
             var slotIterator = core.createDuration(0);
-            var slotDate; // will be on the view's first day, but we only care about its time
+            var slotDate; / will be on the view's first day, but we only care about its time
             var isLabeled;
             var axisHtml;
-            // Calculate the time for each slot
+            / Calculate the time for each slot
             while (core.asRoughMs(slotTime) < core.asRoughMs(dateProfile.maxTime)) {
                 slotDate = dateEnv.add(dayStart, slotTime);
                 isLabeled = core.wholeDivideDurations(slotIterator, this.labelInterval) !== null;
                 axisHtml =
                     '<td class="fc-axis fc-time ' + theme.getClass('widgetContent') + '">' +
                         (isLabeled ?
-                            '<span>' + // for matchCellWidths
+                            '<span>' + / for matchCellWidths
                                 core.htmlEscape(dateEnv.format(slotDate, this.labelFormat)) +
                                 '</span>' :
                             '') +
@@ -645,7 +645,7 @@
             if (isRtl) {
                 this.colEls.reverse();
             }
-            this.colPositions = new core.PositionCache(this.el, this.colEls, true, // horizontal
+            this.colPositions = new core.PositionCache(this.el, this.colEls, true, / horizontal
             false);
             this.renderContentSkeleton();
             this.isColSizesDirty = true;
@@ -655,7 +655,7 @@
         };
         /* Content Skeleton
         ------------------------------------------------------------------------------------------------------------------*/
-        // Renders the DOM that the view's content will live in
+        / Renders the DOM that the view's content will live in
         TimeGrid.prototype.renderContentSkeleton = function () {
             var isRtl = this.context.isRtl;
             var parts = [];
@@ -699,7 +699,7 @@
         TimeGrid.prototype.unrenderContentSkeleton = function () {
             core.removeElement(this.contentSkeletonEl);
         };
-        // Given a flat array of segments, return an array of sub-arrays, grouped by each segment's col
+        / Given a flat array of segments, return an array of sub-arrays, grouped by each segment's col
         TimeGrid.prototype.groupSegsByCol = function (segs) {
             var segsByCol = [];
             var i;
@@ -711,13 +711,13 @@
             }
             return segsByCol;
         };
-        // Given segments grouped by column, insert the segments' elements into a parallel array of container
-        // elements, each living within a column.
+        / Given segments grouped by column, insert the segments' elements into a parallel array of container
+        / elements, each living within a column.
         TimeGrid.prototype.attachSegsByCol = function (segsByCol, containerEls) {
             var col;
             var segs;
             var i;
-            for (col = 0; col < this.colCnt; col++) { // iterate each column grouping
+            for (col = 0; col < this.colCnt; col++) { / iterate each column grouping
                 segs = segsByCol[col];
                 for (i = 0; i < segs.length; i++) {
                     containerEls[col].appendChild(segs[i].el);
@@ -727,25 +727,25 @@
         /* Now Indicator
         ------------------------------------------------------------------------------------------------------------------*/
         TimeGrid.prototype.getNowIndicatorUnit = function () {
-            return 'minute'; // will refresh on the minute
+            return 'minute'; / will refresh on the minute
         };
         TimeGrid.prototype.renderNowIndicator = function (segs, date) {
-            // HACK: if date columns not ready for some reason (scheduler)
+            / HACK: if date columns not ready for some reason (scheduler)
             if (!this.colContainerEls) {
                 return;
             }
             var top = this.computeDateTop(date);
             var nodes = [];
             var i;
-            // render lines within the columns
+            / render lines within the columns
             for (i = 0; i < segs.length; i++) {
                 var lineEl = core.createElement('div', { className: 'fc-now-indicator fc-now-indicator-line' });
                 lineEl.style.top = top + 'px';
                 this.colContainerEls[segs[i].col].appendChild(lineEl);
                 nodes.push(lineEl);
             }
-            // render an arrow over the axis
-            if (segs.length > 0) { // is the current time in view?
+            / render an arrow over the axis
+            if (segs.length > 0) { / is the current time in view?
                 var arrowEl = core.createElement('div', { className: 'fc-now-indicator fc-now-indicator-arrow' });
                 arrowEl.style.top = top + 'px';
                 this.contentSkeletonEl.appendChild(arrowEl);
@@ -764,37 +764,37 @@
         TimeGrid.prototype.getTotalSlatHeight = function () {
             return this.slatContainerEl.getBoundingClientRect().height;
         };
-        // Computes the top coordinate, relative to the bounds of the grid, of the given date.
-        // A `startOfDayDate` must be given for avoiding ambiguity over how to treat midnight.
+        / Computes the top coordinate, relative to the bounds of the grid, of the given date.
+        / A `startOfDayDate` must be given for avoiding ambiguity over how to treat midnight.
         TimeGrid.prototype.computeDateTop = function (when, startOfDayDate) {
             if (!startOfDayDate) {
                 startOfDayDate = core.startOfDay(when);
             }
             return this.computeTimeTop(core.createDuration(when.valueOf() - startOfDayDate.valueOf()));
         };
-        // Computes the top coordinate, relative to the bounds of the grid, of the given time (a Duration).
+        / Computes the top coordinate, relative to the bounds of the grid, of the given time (a Duration).
         TimeGrid.prototype.computeTimeTop = function (duration) {
             var len = this.slatEls.length;
             var dateProfile = this.props.dateProfile;
-            var slatCoverage = (duration.milliseconds - core.asRoughMs(dateProfile.minTime)) / core.asRoughMs(this.slotDuration); // floating-point value of # of slots covered
+            var slatCoverage = (duration.milliseconds - core.asRoughMs(dateProfile.minTime)) / core.asRoughMs(this.slotDuration); / floating-point value of # of slots covered
             var slatIndex;
             var slatRemainder;
-            // compute a floating-point number for how many slats should be progressed through.
-            // from 0 to number of slats (inclusive)
-            // constrained because minTime/maxTime might be customized.
+            / compute a floating-point number for how many slats should be progressed through.
+            / from 0 to number of slats (inclusive)
+            / constrained because minTime/maxTime might be customized.
             slatCoverage = Math.max(0, slatCoverage);
             slatCoverage = Math.min(len, slatCoverage);
-            // an integer index of the furthest whole slat
-            // from 0 to number slats (*exclusive*, so len-1)
+            / an integer index of the furthest whole slat
+            / from 0 to number slats (*exclusive*, so len-1)
             slatIndex = Math.floor(slatCoverage);
             slatIndex = Math.min(slatIndex, len - 1);
-            // how much further through the slatIndex slat (from 0.0-1.0) must be covered in addition.
-            // could be 1.0 if slatCoverage is covering *all* the slots
+            / how much further through the slatIndex slat (from 0.0-1.0) must be covered in addition.
+            / could be 1.0 if slatCoverage is covering *all* the slots
             slatRemainder = slatCoverage - slatIndex;
             return this.slatPositions.tops[slatIndex] +
                 this.slatPositions.getHeight(slatIndex) * slatRemainder;
         };
-        // For each segment in an array, computes and assigns its top and bottom properties
+        / For each segment in an array, computes and assigns its top and bottom properties
         TimeGrid.prototype.computeSegVerticals = function (segs) {
             var options = this.context.options;
             var eventMinHeight = options.timeGridEventMinHeight;
@@ -808,8 +808,8 @@
                 seg.bottom = Math.max(seg.top + eventMinHeight, this.computeDateTop(seg.end, dayDate));
             }
         };
-        // Given segments that already have their top/bottom properties computed, applies those values to
-        // the segments' elements.
+        / Given segments that already have their top/bottom properties computed, applies those values to
+        / the segments' elements.
         TimeGrid.prototype.assignSegVerticals = function (segs) {
             var i;
             var seg;
@@ -818,11 +818,11 @@
                 core.applyStyle(seg.el, this.generateSegVerticalCss(seg));
             }
         };
-        // Generates an object with CSS properties for the top/bottom coordinates of a segment element
+        / Generates an object with CSS properties for the top/bottom coordinates of a segment element
         TimeGrid.prototype.generateSegVerticalCss = function (seg) {
             return {
                 top: seg.top,
-                bottom: -seg.bottom // flipped because needs to be space beyond bottom edge of event container
+                bottom: -seg.bottom / flipped because needs to be space beyond bottom edge of event container
             };
         };
         /* Sizing
@@ -847,8 +847,8 @@
             if (colIndex != null && slatIndex != null) {
                 var slatTop = slatPositions.tops[slatIndex];
                 var slatHeight = slatPositions.getHeight(slatIndex);
-                var partial = (positionTop - slatTop) / slatHeight; // floating point number between 0 and 1
-                var localSnapIndex = Math.floor(partial * snapsPerSlot); // the snap # relative to start of slat
+                var partial = (positionTop - slatTop) / slatHeight; / floating point number between 0 and 1
+                var localSnapIndex = Math.floor(partial * snapsPerSlot); / the snap # relative to start of slat
                 var snapIndex = slatIndex * snapsPerSlot + localSnapIndex;
                 var dayDate = this.props.cells[colIndex].date;
                 var time = core.addDurations(this.props.dateProfile.minTime, core.multiplyDuration(this.snapDuration, snapIndex));
@@ -910,7 +910,7 @@
         };
         /* Selection
         ------------------------------------------------------------------------------------------------------------------*/
-        // Renders a visual indication of a selection. Overrides the default, which was to simply render a highlight.
+        / Renders a visual indication of a selection. Overrides the default, which was to simply render a highlight.
         TimeGrid.prototype._renderDateSelection = function (segs) {
             if (segs) {
                 if (this.context.options.selectMirror) {
@@ -971,8 +971,8 @@
     var WEEK_HEADER_FORMAT = core.createFormatter({ week: 'short' });
     /* An abstract class for all timegrid-related views. Displays one more columns with time slots running vertically.
     ----------------------------------------------------------------------------------------------------------------------*/
-    // Is a manager for the TimeGrid subcomponent and possibly the DayGrid subcomponent (if allDaySlot is on).
-    // Responsible for managing width/height.
+    / Is a manager for the TimeGrid subcomponent and possibly the DayGrid subcomponent (if allDaySlot is on).
+    / Responsible for managing width/height.
     var AbstractTimeGridView = /** @class */ (function (_super) {
         __extends(AbstractTimeGridView, _super);
         function AbstractTimeGridView() {
@@ -981,7 +981,7 @@
             _this.renderSkeleton = core.memoizeRendering(_this._renderSkeleton, _this._unrenderSkeleton);
             /* Header Render Methods
             ------------------------------------------------------------------------------------------------------------------*/
-            // Generates the HTML that will go before the day-of week header cells
+            / Generates the HTML that will go before the day-of week header cells
             _this.renderHeadIntroHtml = function () {
                 var _a = _this.context, theme = _a.theme, dateEnv = _a.dateEnv, options = _a.options;
                 var range = _this.props.dateProfile.renderRange;
@@ -991,8 +991,8 @@
                     weekText = dateEnv.format(range.start, WEEK_HEADER_FORMAT);
                     return '' +
                         '<th class="fc-axis fc-week-number ' + theme.getClass('widgetHeader') + '" ' + _this.axisStyleAttr() + '>' +
-                        core.buildGotoAnchorHtml(// aside from link, important for matchCellWidths
-                        options, dateEnv, { date: range.start, type: 'week', forceOff: dayCnt > 1 }, core.htmlEscape(weekText) // inner HTML
+                        core.buildGotoAnchorHtml(/ aside from link, important for matchCellWidths
+                        options, dateEnv, { date: range.start, type: 'week', forceOff: dayCnt > 1 }, core.htmlEscape(weekText) / inner HTML
                         ) +
                         '</th>';
                 }
@@ -1002,30 +1002,30 @@
             };
             /* Time Grid Render Methods
             ------------------------------------------------------------------------------------------------------------------*/
-            // Generates the HTML that goes before the bg of the TimeGrid slot area. Long vertical column.
+            / Generates the HTML that goes before the bg of the TimeGrid slot area. Long vertical column.
             _this.renderTimeGridBgIntroHtml = function () {
                 var theme = _this.context.theme;
                 return '<td class="fc-axis ' + theme.getClass('widgetContent') + '" ' + _this.axisStyleAttr() + '></td>';
             };
-            // Generates the HTML that goes before all other types of cells.
-            // Affects content-skeleton, mirror-skeleton, highlight-skeleton for both the time-grid and day-grid.
+            / Generates the HTML that goes before all other types of cells.
+            / Affects content-skeleton, mirror-skeleton, highlight-skeleton for both the time-grid and day-grid.
             _this.renderTimeGridIntroHtml = function () {
                 return '<td class="fc-axis" ' + _this.axisStyleAttr() + '></td>';
             };
             /* Day Grid Render Methods
             ------------------------------------------------------------------------------------------------------------------*/
-            // Generates the HTML that goes before the all-day cells
+            / Generates the HTML that goes before the all-day cells
             _this.renderDayGridBgIntroHtml = function () {
                 var _a = _this.context, theme = _a.theme, options = _a.options;
                 return '' +
                     '<td class="fc-axis ' + theme.getClass('widgetContent') + '" ' + _this.axisStyleAttr() + '>' +
-                    '<span>' + // needed for matchCellWidths
+                    '<span>' + / needed for matchCellWidths
                     core.getAllDayHtml(options) +
                     '</span>' +
                     '</td>';
             };
-            // Generates the HTML that goes before all other types of cells.
-            // Affects content-skeleton, mirror-skeleton, highlight-skeleton for both the time-grid and day-grid.
+            / Generates the HTML that goes before all other types of cells.
+            / Affects content-skeleton, mirror-skeleton, highlight-skeleton for both the time-grid and day-grid.
             _this.renderDayGridIntroHtml = function () {
                 return '<td class="fc-axis" ' + _this.axisStyleAttr() + '></td>';
             };
@@ -1042,8 +1042,8 @@
         AbstractTimeGridView.prototype._renderSkeleton = function (context) {
             this.el.classList.add('fc-timeGrid-view');
             this.el.innerHTML = this.renderSkeletonHtml();
-            this.scroller = new core.ScrollComponent('hidden', // overflow x
-            'auto' // overflow y
+            this.scroller = new core.ScrollComponent('hidden', / overflow x
+            'auto' / overflow y
             );
             var timeGridWrapEl = this.scroller.el;
             this.el.querySelector('.fc-body > tr > td').appendChild(timeGridWrapEl);
@@ -1054,8 +1054,8 @@
                 renderBgIntroHtml: this.renderTimeGridBgIntroHtml,
                 renderIntroHtml: this.renderTimeGridIntroHtml
             });
-            if (context.options.allDaySlot) { // should we display the "all-day" area?
-                this.dayGrid = new daygrid.DayGrid(// the all-day subcomponent of this view
+            if (context.options.allDaySlot) { / should we display the "all-day" area?
+                this.dayGrid = new daygrid.DayGrid(/ the all-day subcomponent of this view
                 this.el.querySelector('.fc-day-grid'), {
                     renderNumberIntroHtml: this.renderDayGridIntroHtml,
                     renderBgIntroHtml: this.renderDayGridBgIntroHtml,
@@ -1063,7 +1063,7 @@
                     colWeekNumbersVisible: false,
                     cellWeekNumbersVisible: false
                 });
-                // have the day-grid extend it's coordinate area over the <hr> dividing the two grids
+                / have the day-grid extend it's coordinate area over the <hr> dividing the two grids
                 var dividerEl = this.el.querySelector('.fc-divider');
                 this.dayGrid.bottomCoordPadding = dividerEl.getBoundingClientRect().height;
             }
@@ -1078,8 +1078,8 @@
         };
         /* Rendering
         ------------------------------------------------------------------------------------------------------------------*/
-        // Builds the HTML skeleton for the view.
-        // The day-grid and time-grid components will render inside containers defined by this HTML.
+        / Builds the HTML skeleton for the view.
+        / The day-grid and time-grid components will render inside containers defined by this HTML.
         AbstractTimeGridView.prototype.renderSkeletonHtml = function () {
             var _a = this.context, theme = _a.theme, options = _a.options;
             return '' +
@@ -1108,31 +1108,31 @@
         AbstractTimeGridView.prototype.getNowIndicatorUnit = function () {
             return this.timeGrid.getNowIndicatorUnit();
         };
-        // subclasses should implement
-        // renderNowIndicator(date: DateMarker) {
-        // }
+        / subclasses should implement
+        / renderNowIndicator(date: DateMarker) {
+        / }
         AbstractTimeGridView.prototype.unrenderNowIndicator = function () {
             this.timeGrid.unrenderNowIndicator();
         };
         /* Dimensions
         ------------------------------------------------------------------------------------------------------------------*/
         AbstractTimeGridView.prototype.updateSize = function (isResize, viewHeight, isAuto) {
-            _super.prototype.updateSize.call(this, isResize, viewHeight, isAuto); // will call updateBaseSize. important that executes first
+            _super.prototype.updateSize.call(this, isResize, viewHeight, isAuto); / will call updateBaseSize. important that executes first
             this.timeGrid.updateSize(isResize);
             if (this.dayGrid) {
                 this.dayGrid.updateSize(isResize);
             }
         };
-        // Adjusts the vertical dimensions of the view to the specified values
+        / Adjusts the vertical dimensions of the view to the specified values
         AbstractTimeGridView.prototype.updateBaseSize = function (isResize, viewHeight, isAuto) {
             var _this = this;
             var eventLimit;
             var scrollerHeight;
             var scrollbarWidths;
-            // make all axis cells line up
+            / make all axis cells line up
             this.axisWidth = core.matchCellWidths(core.findElements(this.el, '.fc-axis'));
-            // hack to give the view some height prior to timeGrid's columns being rendered
-            // TODO: separate setting height from scroller VS timeGrid.
+            / hack to give the view some height prior to timeGrid's columns being rendered
+            / TODO: separate setting height from scroller VS timeGrid.
             if (!this.timeGrid.colEls) {
                 if (!isAuto) {
                     scrollerHeight = this.computeScrollerHeight(viewHeight);
@@ -1140,62 +1140,62 @@
                 }
                 return;
             }
-            // set of fake row elements that must compensate when scroller has scrollbars
+            / set of fake row elements that must compensate when scroller has scrollbars
             var noScrollRowEls = core.findElements(this.el, '.fc-row').filter(function (node) {
                 return !_this.scroller.el.contains(node);
             });
-            // reset all dimensions back to the original state
-            this.timeGrid.bottomRuleEl.style.display = 'none'; // will be shown later if this <hr> is necessary
-            this.scroller.clear(); // sets height to 'auto' and clears overflow
+            / reset all dimensions back to the original state
+            this.timeGrid.bottomRuleEl.style.display = 'none'; / will be shown later if this <hr> is necessary
+            this.scroller.clear(); / sets height to 'auto' and clears overflow
             noScrollRowEls.forEach(core.uncompensateScroll);
-            // limit number of events in the all-day area
+            / limit number of events in the all-day area
             if (this.dayGrid) {
-                this.dayGrid.removeSegPopover(); // kill the "more" popover if displayed
+                this.dayGrid.removeSegPopover(); / kill the "more" popover if displayed
                 eventLimit = this.context.options.eventLimit;
                 if (eventLimit && typeof eventLimit !== 'number') {
-                    eventLimit = TIMEGRID_ALL_DAY_EVENT_LIMIT; // make sure "auto" goes to a real number
+                    eventLimit = TIMEGRID_ALL_DAY_EVENT_LIMIT; / make sure "auto" goes to a real number
                 }
                 if (eventLimit) {
                     this.dayGrid.limitRows(eventLimit);
                 }
             }
-            if (!isAuto) { // should we force dimensions of the scroll container?
+            if (!isAuto) { / should we force dimensions of the scroll container?
                 scrollerHeight = this.computeScrollerHeight(viewHeight);
                 this.scroller.setHeight(scrollerHeight);
                 scrollbarWidths = this.scroller.getScrollbarWidths();
-                if (scrollbarWidths.left || scrollbarWidths.right) { // using scrollbars?
-                    // make the all-day and header rows lines up
+                if (scrollbarWidths.left || scrollbarWidths.right) { / using scrollbars?
+                    / make the all-day and header rows lines up
                     noScrollRowEls.forEach(function (rowEl) {
                         core.compensateScroll(rowEl, scrollbarWidths);
                     });
-                    // the scrollbar compensation might have changed text flow, which might affect height, so recalculate
-                    // and reapply the desired height to the scroller.
+                    / the scrollbar compensation might have changed text flow, which might affect height, so recalculate
+                    / and reapply the desired height to the scroller.
                     scrollerHeight = this.computeScrollerHeight(viewHeight);
                     this.scroller.setHeight(scrollerHeight);
                 }
-                // guarantees the same scrollbar widths
+                / guarantees the same scrollbar widths
                 this.scroller.lockOverflow(scrollbarWidths);
-                // if there's any space below the slats, show the horizontal rule.
-                // this won't cause any new overflow, because lockOverflow already called.
+                / if there's any space below the slats, show the horizontal rule.
+                / this won't cause any new overflow, because lockOverflow already called.
                 if (this.timeGrid.getTotalSlatHeight() < scrollerHeight) {
                     this.timeGrid.bottomRuleEl.style.display = '';
                 }
             }
         };
-        // given a desired total height of the view, returns what the height of the scroller should be
+        / given a desired total height of the view, returns what the height of the scroller should be
         AbstractTimeGridView.prototype.computeScrollerHeight = function (viewHeight) {
             return viewHeight -
-                core.subtractInnerElHeight(this.el, this.scroller.el); // everything that's NOT the scroller
+                core.subtractInnerElHeight(this.el, this.scroller.el); / everything that's NOT the scroller
         };
         /* Scroll
         ------------------------------------------------------------------------------------------------------------------*/
-        // Computes the initial pre-configured scroll state prior to allowing the user to change it
+        / Computes the initial pre-configured scroll state prior to allowing the user to change it
         AbstractTimeGridView.prototype.computeDateScroll = function (duration) {
             var top = this.timeGrid.computeTimeTop(duration);
-            // zoom can give weird floating-point values. rather scroll a little bit further
+            / zoom can give weird floating-point values. rather scroll a little bit further
             top = Math.ceil(top);
             if (top) {
-                top++; // to overcome top border that slots beyond the first have. looks better
+                top++; / to overcome top border that slots beyond the first have. looks better
             }
             return { top: top };
         };
@@ -1207,7 +1207,7 @@
                 this.scroller.setScrollTop(scroll.top);
             }
         };
-        // Generates an HTML attribute string for setting the width of the axis, if it is known
+        / Generates an HTML attribute string for setting the width of the axis, if it is known
         AbstractTimeGridView.prototype.axisStyleAttr = function () {
             if (this.axisWidth != null) {
                 return 'style="width:' + this.axisWidth + 'px"';
@@ -1216,7 +1216,7 @@
         };
         return AbstractTimeGridView;
     }(core.View));
-    AbstractTimeGridView.prototype.usesMinMaxTime = true; // indicates that minTime/maxTime affects rendering
+    AbstractTimeGridView.prototype.usesMinMaxTime = true; / indicates that minTime/maxTime affects rendering
 
     var SimpleTimeGrid = /** @class */ (function (_super) {
         __extends(SimpleTimeGrid, _super);
@@ -1310,7 +1310,7 @@
             return _this;
         }
         TimeGridView.prototype.render = function (props, context) {
-            _super.prototype.render.call(this, props, context); // for flags for updateSize. also _renderSkeleton/_unrenderSkeleton
+            _super.prototype.render.call(this, props, context); / for flags for updateSize. also _renderSkeleton/_unrenderSkeleton
             var _a = this.props, dateProfile = _a.dateProfile, dateProfileGenerator = _a.dateProfileGenerator;
             var nextDayThreshold = context.nextDayThreshold;
             var dayTable = this.buildDayTable(dateProfile, dateProfileGenerator);
@@ -1369,7 +1369,7 @@
                 class: TimeGridView,
                 allDaySlot: true,
                 slotDuration: '00:30:00',
-                slotEventOverlap: true // a bad name. confused with overlap/constraint system
+                slotEventOverlap: true / a bad name. confused with overlap/constraint system
             },
             timeGridDay: {
                 type: 'timeGrid',

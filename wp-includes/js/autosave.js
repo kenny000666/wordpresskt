@@ -70,8 +70,8 @@ window.autosave = function() {
 				cats = [],
 				editor = getEditor();
 
-			// Don't run editor.save() more often than every 3 seconds.
-			// It is resource intensive and might slow down typing in long posts on slow devices.
+			/ Don't run editor.save() more often than every 3 seconds.
+			/ It is resource intensive and might slow down typing in long posts on slow devices.
 			if ( editor && editor.isDirty() && ! editor.isHidden() && time - 3000 > lastTriggerSave ) {
 				editor.save();
 				lastTriggerSave = time;
@@ -146,7 +146,7 @@ window.autosave = function() {
 		function disableButtons() {
 			$document.trigger('autosave-disable-buttons');
 
-			// Re-enable 5 sec later. Just gives autosave a head start to avoid collisions.
+			/ Re-enable 5 sec later. Just gives autosave a head start to avoid collisions.
 			setTimeout( enableButtons, 5000 );
 		}
 
@@ -225,7 +225,7 @@ window.autosave = function() {
 			 */
 			function getStorage() {
 				var stored_obj = false;
-				// Separate local storage containers for each blog_id.
+				/ Separate local storage containers for each blog_id.
 				if ( hasStorage && blog_id ) {
 					stored_obj = sessionStorage.getItem( 'wp-autosave-' + blog_id );
 
@@ -360,7 +360,7 @@ window.autosave = function() {
 					lastCompareString = initialCompareString;
 				}
 
-				// If the content, title and excerpt did not change since the last save, don't save again.
+				/ If the content, title and excerpt did not change since the last save, don't save again.
 				if ( compareString === lastCompareString ) {
 					return false;
 				}
@@ -391,7 +391,7 @@ window.autosave = function() {
 			function run() {
 				post_id = $('#post_ID').val() || 0;
 
-				// Check if the local post data is different than the loaded post data.
+				/ Check if the local post data is different than the loaded post data.
 				if ( $( '#wp-content-wrap' ).hasClass( 'tmce-active' ) ) {
 
 					/*
@@ -408,7 +408,7 @@ window.autosave = function() {
 					checkPost();
 				}
 
-				// Save every 15 seconds.
+				/ Save every 15 seconds.
 				intervalTimer = window.setInterval( save, 15000 );
 
 				$( 'form#post' ).on( 'submit.autosave-local', function() {
@@ -417,7 +417,7 @@ window.autosave = function() {
 
 					if ( editor && ! editor.isHidden() ) {
 
-						// Last onSubmit event in the editor, needs to run after the content has been moved to the textarea.
+						/ Last onSubmit event in the editor, needs to run after the content has been moved to the textarea.
 						editor.on( 'submit', function() {
 							save({
 								post_title: $( '#title' ).val() || '',
@@ -474,7 +474,7 @@ window.autosave = function() {
 
 				if ( cookie === post_id + '-saved' ) {
 					wpCookies.remove( 'wp-saving-post' );
-					// The post was saved properly, remove old data and bail.
+					/ The post was saved properly, remove old data and bail.
 					setData( false );
 					return;
 				}
@@ -507,8 +507,8 @@ window.autosave = function() {
 
 				if ( $newerAutosaveNotice.length ) {
 
-					// If there is a "server" autosave notice, hide it.
-					// The data in the session storage is either the same or newer.
+					/ If there is a "server" autosave notice, hide it.
+					/ The data in the session storage is either the same or newer.
 					$newerAutosaveNotice.slideUp( 150, function() {
 						$notice.slideDown( 150 );
 					});
@@ -537,7 +537,7 @@ window.autosave = function() {
 				var editor;
 
 				if ( postData ) {
-					// Set the last saved data.
+					/ Set the last saved data.
 					lastCompareString = getCompareString( postData );
 
 					if ( $( '#title' ).val() !== postData.post_title ) {
@@ -552,18 +552,18 @@ window.autosave = function() {
 							postData.content = switchEditors.wpautop( postData.content );
 						}
 
-						// Make sure there's an undo level in the editor.
+						/ Make sure there's an undo level in the editor.
 						editor.undoManager.transact( function() {
 							editor.setContent( postData.content || '' );
 							editor.nodeChanged();
 						});
 					} else {
 
-						// Make sure the Code editor is selected.
+						/ Make sure the Code editor is selected.
 						$( '#content-html' ).trigger( 'click' );
 						$( '#content' ).trigger( 'focus' );
 
-						// Using document.execCommand() will let the user undo.
+						/ Using document.execCommand() will let the user undo.
 						document.execCommand( 'selectAll' );
 						document.execCommand( 'insertText', false, postData.content || '' );
 					}
@@ -672,7 +672,7 @@ window.autosave = function() {
 				enableButtons();
 
 				if ( data.success ) {
-					// No longer an auto-draft.
+					/ No longer an auto-draft.
 					$( '#auto_draft' ).val('');
 				}
 			}
@@ -704,7 +704,7 @@ window.autosave = function() {
 			function postChanged() {
 				var changed = false;
 
-				// If there are TinyMCE instances, loop through them.
+				/ If there are TinyMCE instances, loop through them.
 				if ( window.tinymce ) {
 					window.tinymce.each( [ 'content', 'excerpt' ], function( field ) {
 						var editor = window.tinymce.get( field );
@@ -712,7 +712,7 @@ window.autosave = function() {
 						if ( ! editor || editor.isHidden() ) {
 							if ( ( $( '#' + field ).val() || '' ) !== initialCompareData[ field ] ) {
 								changed = true;
-								// Break.
+								/ Break.
 								return false;
 							}
 						} else if ( editor.isDirty() ) {
@@ -744,7 +744,7 @@ window.autosave = function() {
 			function save() {
 				var postData, compareString;
 
-				// window.autosave() used for back-compat.
+				/ window.autosave() used for back-compat.
 				if ( isSuspended || _blockSave || ! window.autosave() ) {
 					return false;
 				}
@@ -756,12 +756,12 @@ window.autosave = function() {
 				postData = getPostData();
 				compareString = getCompareString( postData );
 
-				// First check.
+				/ First check.
 				if ( typeof lastCompareString === 'undefined' ) {
 					lastCompareString = initialCompareString;
 				}
 
-				// No change.
+				/ No change.
 				if ( compareString === lastCompareString ) {
 					return false;
 				}
@@ -828,7 +828,7 @@ window.autosave = function() {
 				 */
 			}).on( 'heartbeat-connection-lost.autosave', function( event, error, status ) {
 
-				// When connection is lost, keep user from submitting changes.
+				/ When connection is lost, keep user from submitting changes.
 				if ( 'timeout' === error || 603 === status ) {
 					var $notice = $('#lost-connection-notice');
 
@@ -874,10 +874,10 @@ window.autosave = function() {
 		 * @return {void}
 		 */
 		$( function() {
-			// Set the initial compare string in case TinyMCE is not used or not loaded first.
+			/ Set the initial compare string in case TinyMCE is not used or not loaded first.
 			setInitialCompare();
 		}).on( 'tinymce-editor-init.autosave', function( event, editor ) {
-			// Reset the initialCompare data after the TinyMCE instances have been initialized.
+			/ Reset the initialCompare data after the TinyMCE instances have been initialized.
 			if ( 'content' === editor.id || 'excerpt' === editor.id ) {
 				window.setTimeout( function() {
 					editor.save();

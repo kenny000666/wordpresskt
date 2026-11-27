@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -23,7 +23,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -63,9 +63,9 @@ __webpack_require__.d(selectors_namespaceObject, {
   getNotices: () => (getNotices)
 });
 
-;// external ["wp","data"]
+;/ external ["wp","data"]
 const external_wp_data_namespaceObject = window["wp"]["data"];
-;// ./node_modules/@wordpress/notices/build-module/store/utils/on-sub-key.js
+;/ ./node_modules/@wordpress/notices/build-module/store/utils/on-sub-key.js
 /**
  * Higher-order reducer creator which creates a combined reducer object, keyed
  * by a property on the action object.
@@ -75,15 +75,15 @@ const external_wp_data_namespaceObject = window["wp"]["data"];
  * @return {Function} Higher-order reducer.
  */
 const onSubKey = actionProperty => reducer => (state = {}, action) => {
-  // Retrieve subkey from action. Do not track if undefined; useful for cases
-  // where reducer is scoped by action shape.
+  / Retrieve subkey from action. Do not track if undefined; useful for cases
+  / where reducer is scoped by action shape.
   const key = action[actionProperty];
   if (key === undefined) {
     return state;
   }
 
-  // Avoid updating state if unchanged. Note that this also accounts for a
-  // reducer which returns undefined on a key which is not yet tracked.
+  / Avoid updating state if unchanged. Note that this also accounts for a
+  / reducer which returns undefined on a key which is not yet tracked.
   const nextKeyState = reducer(state[key], action);
   if (nextKeyState === state[key]) {
     return state;
@@ -95,7 +95,7 @@ const onSubKey = actionProperty => reducer => (state = {}, action) => {
 };
 /* harmony default export */ const on_sub_key = (onSubKey);
 
-;// ./node_modules/@wordpress/notices/build-module/store/reducer.js
+;/ ./node_modules/@wordpress/notices/build-module/store/reducer.js
 /**
  * Internal dependencies
  */
@@ -113,7 +113,7 @@ const onSubKey = actionProperty => reducer => (state = {}, action) => {
 const notices = on_sub_key('context')((state = [], action) => {
   switch (action.type) {
     case 'CREATE_NOTICE':
-      // Avoid duplicates on ID.
+      / Avoid duplicates on ID.
       return [...state.filter(({
         id
       }) => id !== action.notice.id), action.notice];
@@ -134,7 +134,7 @@ const notices = on_sub_key('context')((state = [], action) => {
 });
 /* harmony default export */ const reducer = (notices);
 
-;// ./node_modules/@wordpress/notices/build-module/store/constants.js
+;/ ./node_modules/@wordpress/notices/build-module/store/constants.js
 /**
  * Default context to use for notice grouping when not otherwise specified. Its
  * specific value doesn't hold much meaning, but it must be reasonably unique
@@ -151,7 +151,7 @@ const DEFAULT_CONTEXT = 'global';
  */
 const DEFAULT_STATUS = 'info';
 
-;// ./node_modules/@wordpress/notices/build-module/store/actions.js
+;/ ./node_modules/@wordpress/notices/build-module/store/actions.js
 /**
  * Internal dependencies
  */
@@ -234,9 +234,9 @@ function createNotice(status = DEFAULT_STATUS, content, options = {}) {
     onDismiss
   } = options;
 
-  // The supported value shape of content is currently limited to plain text
-  // strings. To avoid setting expectation that e.g. a React Element could be
-  // supported, cast to a string.
+  / The supported value shape of content is currently limited to plain text
+  / strings. To avoid setting expectation that e.g. a React Element could be
+  / supported, cast to a string.
   content = String(content);
   return {
     type: 'CREATE_NOTICE',
@@ -566,7 +566,7 @@ function removeNotices(ids, context = DEFAULT_CONTEXT) {
   };
 }
 
-;// ./node_modules/@wordpress/notices/build-module/store/selectors.js
+;/ ./node_modules/@wordpress/notices/build-module/store/selectors.js
 /**
  * Internal dependencies
  */
@@ -641,7 +641,7 @@ function getNotices(state, context = DEFAULT_CONTEXT) {
   return state[context] || DEFAULT_NOTICES;
 }
 
-;// ./node_modules/@wordpress/notices/build-module/store/index.js
+;/ ./node_modules/@wordpress/notices/build-module/store/index.js
 /**
  * WordPress dependencies
  */
@@ -666,7 +666,7 @@ const store = (0,external_wp_data_namespaceObject.createReduxStore)('core/notice
 });
 (0,external_wp_data_namespaceObject.register)(store);
 
-;// ./node_modules/@wordpress/notices/build-module/index.js
+;/ ./node_modules/@wordpress/notices/build-module/index.js
 
 
 (window.wp = window.wp || {}).notices = __webpack_exports__;

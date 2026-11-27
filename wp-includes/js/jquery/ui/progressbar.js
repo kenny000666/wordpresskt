@@ -23,7 +23,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"../version",
@@ -31,7 +31,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -56,13 +56,13 @@ return $.widget( "ui.progressbar", {
 
 	_create: function() {
 
-		// Constrain initial value
+		/ Constrain initial value
 		this.oldValue = this.options.value = this._constrainedValue();
 
 		this.element.attr( {
 
-			// Only set static values; aria-valuenow and aria-valuemax are
-			// set inside _refreshValue()
+			/ Only set static values; aria-valuenow and aria-valuemax are
+			/ set inside _refreshValue()
 			role: "progressbar",
 			"aria-valuemin": this.min
 		} );
@@ -95,7 +95,7 @@ return $.widget( "ui.progressbar", {
 
 		this.indeterminate = newValue === false;
 
-		// Sanitize value
+		/ Sanitize value
 		if ( typeof newValue !== "number" ) {
 			newValue = 0;
 		}
@@ -106,7 +106,7 @@ return $.widget( "ui.progressbar", {
 
 	_setOptions: function( options ) {
 
-		// Ensure "value" option is set after other values (like max)
+		/ Ensure "value" option is set after other values (like max)
 		var value = options.value;
 		delete options.value;
 
@@ -119,7 +119,7 @@ return $.widget( "ui.progressbar", {
 	_setOption: function( key, value ) {
 		if ( key === "max" ) {
 
-			// Don't allow a max less than min
+			/ Don't allow a max less than min
 			value = Math.max( this.min, value );
 		}
 		this._super( key, value );

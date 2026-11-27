@@ -22,7 +22,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"../form-reset-mixin",
@@ -31,7 +31,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -53,14 +53,14 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 		var disabled, labels, labelContents;
 		var options = this._super() || {};
 
-		// We read the type here, because it makes more sense to throw a element type error first,
-		// rather then the error for lack of a label. Often if its the wrong type, it
-		// won't have a label (e.g. calling on a div, btn, etc)
+		/ We read the type here, because it makes more sense to throw a element type error first,
+		/ rather then the error for lack of a label. Often if its the wrong type, it
+		/ won't have a label (e.g. calling on a div, btn, etc)
 		this._readType();
 
 		labels = this.element.labels();
 
-		// If there are multiple labels, use the last one
+		/ If there are multiple labels, use the last one
 		this.label = $( labels[ labels.length - 1 ] );
 		if ( !this.label.length ) {
 			$.error( "No label found for checkboxradio widget" );
@@ -68,11 +68,11 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 
 		this.originalLabel = "";
 
-		// We need to get the label text but this may also need to make sure it does not contain the
-		// input itself.
-		// The label contents could be text, html, or a mix. We wrap all elements
-		// and read the wrapper's `innerHTML` to get a string representation of
-		// the label, without the input as part of it.
+		/ We need to get the label text but this may also need to make sure it does not contain the
+		/ input itself.
+		/ The label contents could be text, html, or a mix. We wrap all elements
+		/ and read the wrapper's `innerHTML` to get a string representation of
+		/ the label, without the input as part of it.
 		labelContents = this.label.contents().not( this.element[ 0 ] );
 
 		if ( labelContents.length ) {
@@ -83,7 +83,7 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 				.html();
 		}
 
-		// Set the label option if we found label text
+		/ Set the label option if we found label text
 		if ( this.originalLabel ) {
 			options.label = this.originalLabel;
 		}
@@ -144,7 +144,7 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 		}
 	},
 
-	// Support jQuery Mobile enhanced option
+	/ Support jQuery Mobile enhanced option
 	_enhance: function() {
 		this._updateIcon( this.element[ 0 ].checked );
 	},
@@ -166,7 +166,7 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 			group = $( this.form[ 0 ].elements ).filter( nameSelector );
 		} else {
 
-			// Not inside a form, check all inputs that also are not inside a form
+			/ Not inside a form, check all inputs that also are not inside a form
 			group = $( nameSelector ).filter( function() {
 				return $( this )._form().length === 0;
 			} );
@@ -208,7 +208,7 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 
 	_setOption: function( key, value ) {
 
-		// We don't allow the value to be set to nothing
+		/ We don't allow the value to be set to nothing
 		if ( key === "label" && !value ) {
 			return;
 		}
@@ -219,7 +219,7 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 			this._toggleClass( this.label, null, "ui-state-disabled", value );
 			this.element[ 0 ].disabled = value;
 
-			// Don't refresh when setting disabled
+			/ Don't refresh when setting disabled
 			return;
 		}
 		this.refresh();
@@ -255,7 +255,7 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 
 	_updateLabel: function() {
 
-		// Remove the contents of the label ( minus the icon, icon space, and input )
+		/ Remove the contents of the label ( minus the icon, icon space, and input )
 		var contents = this.label.contents().not( this.element[ 0 ] );
 		if ( this.icon ) {
 			contents = contents.not( this.icon[ 0 ] );

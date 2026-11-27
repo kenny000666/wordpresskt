@@ -73,13 +73,13 @@ var WPFormsPagesAnalytics = window.WPFormsPagesAnalytics || ( function( document
 		 */
 		events: function() {
 
-			// Step 'Install' button click.
+			/ Step 'Install' button click.
 			el.$stepInstall.on( 'click', 'button', app.stepInstallClick );
 
-			// Step 'Setup' button click.
+			/ Step 'Setup' button click.
 			el.$stepSetup.on( 'click', 'button', app.gotoURL );
 
-			// Step 'Addon' button click.
+			/ Step 'Addon' button click.
 			el.$stepAddon.on( 'click', 'button', app.gotoURL );
 		},
 
@@ -250,7 +250,7 @@ var WPFormsPagesAnalytics = window.WPFormsPagesAnalytics || ( function( document
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 
 }( document, window, jQuery ) );

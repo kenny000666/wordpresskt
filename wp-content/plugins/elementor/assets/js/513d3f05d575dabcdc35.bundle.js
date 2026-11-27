@@ -172,8 +172,8 @@ var Repeater = exports["default"] = /*#__PURE__*/function (_elementor$modules$co
   return (0, _createClass2.default)(Repeater, [{
     key: "className",
     value: function className() {
-      // Repeater Panel CSS, depends on 'elementor-control-type-repeater` control.
-      // `elementor-control-type-nested-elements-repeater` to `elementor-control-type-repeater`
+      / Repeater Panel CSS, depends on 'elementor-control-type-repeater` control.
+      / `elementor-control-type-nested-elements-repeater` to `elementor-control-type-repeater`
       return _superPropGet(Repeater, "className", this, 3)([]).replace('nested-elements-repeater', 'repeater');
     }
 
@@ -311,7 +311,7 @@ var NestedRepeaterDuplicateContainer = exports.NestedRepeaterDuplicateContainer 
       var result = $e.run('document/elements/duplicate', {
         container: (0, _utils.findChildContainerOrFail)(container, index),
         options: {
-          edit: false // Not losing focus.
+          edit: false / Not losing focus.
         }
       });
       var widgetType = container.settings.get('widgetType');
@@ -388,7 +388,7 @@ var NestedRepeaterCreateContainer = exports.NestedRepeaterCreateContainer = /*#_
   }, {
     key: "getConditions",
     value: function getConditions(args) {
-      // Will only handle when command called directly and not through another command like `duplicate` or `move`.
+      / Will only handle when command called directly and not through another command like `duplicate` or `move`.
       var isCommandCalledDirectly = $e.commands.isCurrentFirstTrace(this.getCommand());
       return _superPropGet(NestedRepeaterCreateContainer, "getConditions", this, 3)([args]) && isCommandCalledDirectly;
     }
@@ -406,7 +406,7 @@ var NestedRepeaterCreateContainer = exports.NestedRepeaterCreateContainer = /*#_
           _title: (0, _utils.extractNestedItemTitle)(container, index)
         },
         options: {
-          edit: false // Not losing focus.
+          edit: false / Not losing focus.
         }
       });
       var widgetType = container.settings.get('widgetType');
@@ -477,7 +477,7 @@ var NestedRepeaterMoveContainer = exports.NestedRepeaterMoveContainer = /*#__PUR
         target: container,
         options: {
           at: targetIndex,
-          edit: false // Not losing focus.
+          edit: false / Not losing focus.
         }
       });
       var widgetType = container.settings.get('widgetType');
@@ -548,7 +548,7 @@ var NestedRepeaterRemoveContainer = exports.NestedRepeaterRemoveContainer = /*#_
   }, {
     key: "getConditions",
     value: function getConditions(args) {
-      // Will only handle when command called directly and not through another command like `duplicate` or `move`.
+      / Will only handle when command called directly and not through another command like `duplicate` or `move`.
       var isCommandCalledDirectly = $e.commands.isCurrentFirstTrace(this.getCommand());
       return _superPropGet(NestedRepeaterRemoveContainer, "getConditions", this, 3)([args]) && isCommandCalledDirectly;
     }
@@ -683,12 +683,12 @@ var NestedRepeaterFocusCurrentEditedContainer = exports.NestedRepeaterFocusCurre
     key: "getConditions",
     value: function getConditions(args) {
       var _this$navigationMap;
-      // Do not select for element creation.
+      / Do not select for element creation.
       if ($e.commands.isCurrentFirstTrace('document/elements/create')) {
         return false;
       }
 
-      // If some of the parents are supporting nested elements, then return true.
+      / If some of the parents are supporting nested elements, then return true.
       var allParents = args.view.container.getParentAncestry(),
         result = allParents.some(function (parent) {
           return (0, _utils.isWidgetSupportNesting)(parent.model.get('widgetType'));
@@ -697,7 +697,7 @@ var NestedRepeaterFocusCurrentEditedContainer = exports.NestedRepeaterFocusCurre
         this.navigationMap = this.getNavigationMapForContainers(allParents.filter(function (container) {
           return 'container' === container.type && 'widget' === container.parent.type;
         })).filter(function (map) {
-          // Filter out paths that are the same as current.
+          / Filter out paths that are the same as current.
           return map.index !== map.current;
         });
       }
@@ -711,7 +711,7 @@ var NestedRepeaterFocusCurrentEditedContainer = exports.NestedRepeaterFocusCurre
         var container = _ref.container,
           index = _ref.index;
         setTimeout(function () {
-          // No history, for focusing on current container.
+          / No history, for focusing on current container.
           $e.run('document/repeater/select', {
             container: container,
             index: index++,
@@ -787,8 +787,8 @@ var NestedModelBase = exports["default"] = /*#__PURE__*/function (_elementor$mod
       var parentElType = this.get('elType'),
         childElType = childModel.get('elType');
       return 'container' === childElType && 'widget' === parentElType && (0, _utils.isWidgetSupportNesting)(this.get('widgetType')) &&
-      // When creating a container for the tabs widget specifically from the repeater, the container should be locked,
-      // so only containers that are locked (created from the repeater) can be inside the tabs widget.
+      / When creating a container for the tabs widget specifically from the repeater, the container should be locked,
+      / so only containers that are locked (created from the repeater) can be inside the tabs widget.
       childModel.get('isLocked');
     }
   }, {
@@ -847,8 +847,8 @@ var NestedViewBase = exports["default"] = /*#__PURE__*/function (_elementor$modu
   return (0, _createClass2.default)(NestedViewBase, [{
     key: "getChildViewContainer",
     value:
-    // Sometimes the children placement is not in the end of the element, but somewhere else, eg: deep inside the element template.
-    // If `defaults_placeholder_selector` is set, it will be used to find the correct place to insert the children.
+    / Sometimes the children placement is not in the end of the element, but somewhere else, eg: deep inside the element template.
+    / If `defaults_placeholder_selector` is set, it will be used to find the correct place to insert the children.
     function getChildViewContainer(containerView, childView) {
       var _this$model$config$de = this.model.config.defaults,
         customSelector = _this$model$config$de.elements_placeholder_selector,
@@ -900,7 +900,7 @@ exports.widgetNodes = widgetNodes;
 function extractNestedItemTitle(container, index) {
   var title = container.view.model.config.defaults.elements_title;
 
-  // Translations comes from server side.
+  / Translations comes from server side.
   return sprintf(title, index);
 }
 function isWidgetSupportNesting(widgetType) {

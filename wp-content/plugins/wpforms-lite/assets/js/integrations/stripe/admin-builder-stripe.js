@@ -69,7 +69,7 @@ var WPFormsStripe = window.WPFormsStripe || ( function( document, window, $ ) {
 			const $alert = $( '#wpforms-stripe-credit-card-alert' );
 			const $content = $( '#stripe-provider' );
 
-			// Check if any Credit Card fields were added to the form.
+			/ Check if any Credit Card fields were added to the form.
 			const ccFieldsAdded = wpforms_builder_stripe.field_slugs.filter( function( fieldSlug ) {
 				const $el = $( '.wpforms-field-option-' + fieldSlug );
 
@@ -182,14 +182,14 @@ var WPFormsStripe = window.WPFormsStripe || ( function( document, window, $ ) {
 		 * @since 1.9.5
 		 */
 		settingsRedirect() {
-			// Open the Stripe settings tab.
+			/ Open the Stripe settings tab.
 			$( '.wpforms-panel-payments-button' ).trigger( 'click' );
 			$( '.wpforms-panel-sidebar-section-stripe' ).trigger( 'click' );
 
-			// Scroll to the Stripe settings.
+			/ Scroll to the Stripe settings.
 			window.location.href = window.location.pathname + window.location.search + '#wpforms-panel-field-stripe-enable_recurring-wrap';
 
-			// Close the alert.
+			/ Close the alert.
 			$( this ).closest( '.jconfirm-box' ).find( '.btn-confirm' ).trigger( 'click' );
 		},
 
@@ -234,7 +234,7 @@ var WPFormsStripe = window.WPFormsStripe || ( function( document, window, $ ) {
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

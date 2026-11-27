@@ -19,7 +19,7 @@ const WPFormsChoicesList = {
 
 		$container.data( 'choices-list-initialized', true );
 
-		// Private variables to store state.
+		/ Private variables to store state.
 		const $selectAllCheckbox = $container.find( 'input[value="select-all"]' );
 		const $itemCheckboxes = $container.find( '.item-checkbox' );
 
@@ -61,10 +61,10 @@ const WPFormsChoicesList = {
 		const handleSelectAllChange = ( event ) => {
 			const isChecked = jQuery( event.target ).prop( 'checked' );
 
-			// Update all item checkboxes.
+			/ Update all item checkboxes.
 			$itemCheckboxes.prop( 'checked', isChecked );
 
-			// Clear indeterminate state.
+			/ Clear indeterminate state.
 			$selectAllCheckbox.prop( 'indeterminate', false );
 		};
 
@@ -74,22 +74,22 @@ const WPFormsChoicesList = {
 		 * @since 1.9.6.1
 		 */
 		const bindEvents = () => {
-			// Add event listener to "select all" checkbox.
+			/ Add event listener to "select all" checkbox.
 			$selectAllCheckbox.on( 'change', handleSelectAllChange );
 
-			// Add event listeners to item checkboxes.
+			/ Add event listeners to item checkboxes.
 			$itemCheckboxes.on( 'change', updateSelectAllState );
 		};
 
-		// Return early if required elements aren't found.
+		/ Return early if required elements aren't found.
 		if ( ! canInitialize( $container ) ) {
 			return;
 		}
 
-		// Initialize event bindings.
+		/ Initialize event bindings.
 		bindEvents();
 
-		// Initialize the state.
+		/ Initialize the state.
 		updateSelectAllState();
 	},
 
@@ -109,19 +109,19 @@ const WPFormsChoicesList = {
 		const checkedItems = $itemCheckboxes.filter( ':checked' ).length;
 
 		if ( checkedItems === 0 ) {
-			// None checked.
+			/ None checked.
 			$selectAllCheckbox.prop( {
 				checked: false,
 				indeterminate: false,
 			} );
 		} else if ( checkedItems === totalItems ) {
-			// All checked.
+			/ All checked.
 			$selectAllCheckbox.prop( {
 				checked: true,
 				indeterminate: false,
 			} );
 		} else {
-			// Some checked.
+			/ Some checked.
 			$selectAllCheckbox.prop( {
 				checked: false,
 				indeterminate: true,

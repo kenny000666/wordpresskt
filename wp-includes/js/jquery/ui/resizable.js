@@ -21,7 +21,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"./mouse",
@@ -32,7 +32,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -61,10 +61,10 @@ $.widget( "ui.resizable", $.ui.mouse, {
 		minHeight: 10,
 		minWidth: 10,
 
-		// See #7960
+		/ See #7960
 		zIndex: 90,
 
-		// Callbacks
+		/ Callbacks
 		resize: null,
 		start: null,
 		stop: null
@@ -91,17 +91,17 @@ $.widget( "ui.resizable", $.ui.mouse, {
 			return true;
 		}
 
-		// TODO: determine which cases actually cause this to happen
-		// if the element doesn't have the scroll set, see if it's possible to
-		// set the scroll
+		/ TODO: determine which cases actually cause this to happen
+		/ if the element doesn't have the scroll set, see if it's possible to
+		/ set the scroll
 		try {
 			el[ scroll ] = 1;
 			has = ( el[ scroll ] > 0 );
 			el[ scroll ] = 0;
 		} catch ( e ) {
 
-			// `el` might be a string, then setting `scroll` will throw
-			// an error in strict mode; ignore it.
+			/ `el` might be a string, then setting `scroll` will throw
+			/ an error in strict mode; ignore it.
 		}
 		return has;
 	},
@@ -121,7 +121,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 			_helper: o.helper || o.ghost || o.animate ? o.helper || "ui-resizable-helper" : null
 		} );
 
-		// Wrap the element if it cannot hold child nodes
+		/ Wrap the element if it cannot hold child nodes
 		if ( this.element[ 0 ].nodeName.match( /^(canvas|textarea|input|select|button|img)$/i ) ) {
 
 			this.element.wrap(
@@ -151,8 +151,8 @@ $.widget( "ui.resizable", $.ui.mouse, {
 			this.element.css( margins );
 			this.originalElement.css( "margin", 0 );
 
-			// support: Safari
-			// Prevent Safari textarea resize
+			/ support: Safari
+			/ Prevent Safari textarea resize
 			this.originalResizeStyle = this.originalElement.css( "resize" );
 			this.originalElement.css( "resize", "none" );
 
@@ -162,8 +162,8 @@ $.widget( "ui.resizable", $.ui.mouse, {
 				display: "block"
 			} ) );
 
-			// Support: IE9
-			// avoid IE jump (hard set the margin)
+			/ Support: IE9
+			/ avoid IE jump (hard set the margin)
 			this.originalElement.css( margins );
 
 			this._proportionallyResize();
@@ -207,7 +207,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 					.off( ".resizable" );
 			};
 
-		// TODO: Unwrap at same DOM position
+		/ TODO: Unwrap at same DOM position
 		if ( this.elementIsWrapper ) {
 			_destroy( this.element );
 			wrapper = this.element;
@@ -326,7 +326,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 			}
 		};
 
-		// TODO: make renderAxis a prototype function
+		/ TODO: make renderAxis a prototype function
 		this._renderAxis( this.element );
 
 		this._handles = this._handles.add( this.element.find( ".ui-resizable-handle" ) );
@@ -658,7 +658,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 			data.top = dh - o.maxHeight;
 		}
 
-		// Fixing jump error on top/left - bug #2330
+		/ Fixing jump error on top/left - bug #2330
 		if ( !data.width && !data.height && !data.left && data.top ) {
 			data.top = null;
 		} else if ( !data.width && !data.height && !data.top && data.left ) {
@@ -709,8 +709,8 @@ $.widget( "ui.resizable", $.ui.mouse, {
 
 			prel = this._proportionallyResizeElements[ i ];
 
-			// TODO: Seems like a bug to cache this.outerDimensions
-			// considering that we are in a loop.
+			/ TODO: Seems like a bug to cache this.outerDimensions
+			/ considering that we are in a loop.
 			if ( !this.outerDimensions ) {
 				this.outerDimensions = this._getPaddingPlusBorderDimensions( prel );
 			}
@@ -740,7 +740,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 				position: "absolute",
 				left: this.elementOffset.left + "px",
 				top: this.elementOffset.top + "px",
-				zIndex: ++o.zIndex //TODO: Don't modify option
+				zIndex: ++o.zIndex /TODO: Don't modify option
 			} );
 
 			this.helper
@@ -848,7 +848,7 @@ $.ui.plugin.add( "resizable", "animate", {
 						$( pr[ 0 ] ).css( { width: data.width, height: data.height } );
 					}
 
-					// Propagating resize, and updating values for each animation step
+					/ Propagating resize, and updating values for each animation step
 					that._updateCache( data );
 					that._propagate( "resize", event );
 
@@ -1111,11 +1111,11 @@ $.ui.plugin.add( "resizable", "ghost", {
 
 		that._addClass( that.ghost, "ui-resizable-ghost" );
 
-		// DEPRECATED
-		// TODO: remove after 1.12
+		/ DEPRECATED
+		/ TODO: remove after 1.12
 		if ( $.uiBackCompat !== false && typeof that.options.ghost === "string" ) {
 
-			// Ghost option
+			/ Ghost option
 			that.ghost.addClass( this.options.ghost );
 		}
 

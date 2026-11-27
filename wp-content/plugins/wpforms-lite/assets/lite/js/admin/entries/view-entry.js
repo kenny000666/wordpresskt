@@ -47,7 +47,7 @@ const WPFormsViewEntry = window.WPFormsViewEntry || ( function( document, window
 		 * @since 1.8.9
 		 */
 		setup() {
-			// Cache DOM elements.
+			/ Cache DOM elements.
 			el = {
 				menuClass: '.wpforms-entries-settings-menu',
 			};
@@ -74,11 +74,11 @@ const WPFormsViewEntry = window.WPFormsViewEntry || ( function( document, window
 			event.preventDefault();
 			event.stopPropagation();
 
-			// Toggle the visibility of the matched element.
+			/ Toggle the visibility of the matched element.
 			$( el.menuClass ).toggle( 0, function() {
 				const $menu = $( this );
 
-				// When the menu is open, aria-expended="true".
+				/ When the menu is open, aria-expended="true".
 				$menu.attr( 'aria-expanded', $menu.is( ':visible' ) );
 			} );
 		},
@@ -91,7 +91,7 @@ const WPFormsViewEntry = window.WPFormsViewEntry || ( function( document, window
 		 * @param {Object} event Event object.
 		 */
 		menuHide( event ) {
-			// Check if the clicked element is not the menu container or a child of it.
+			/ Check if the clicked element is not the menu container or a child of it.
 			if ( ! $( event.target ).closest( `${ el.menuClass }:visible` ).length ) {
 				$( el.menuClass ).attr( 'aria-expanded', 'false' ).hide();
 			}

@@ -1,10 +1,10 @@
-/******/ // The require scope
+/******/ / The require scope
 /******/ var __webpack_require__ = {};
 /******/ 
 /************************************************************************/
 /******/ /* webpack/runtime/define property getters */
 /******/ (() => {
-/******/ 	// define getter functions for harmony exports
+/******/ 	/ define getter functions for harmony exports
 /******/ 	__webpack_require__.d = (exports, definition) => {
 /******/ 		for(var key in definition) {
 /******/ 			if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -28,7 +28,7 @@ __webpack_require__.d(__webpack_exports__, {
   L: () => (/* reexport */ speak)
 });
 
-;// ./node_modules/@wordpress/a11y/build-module/shared/clear.js
+;/ ./node_modules/@wordpress/a11y/build-module/shared/clear.js
 /**
  * Clears the a11y-speak-region elements and hides the explanatory text.
  */
@@ -39,13 +39,13 @@ function clear() {
     regions[i].textContent = '';
   }
 
-  // Make sure the explanatory text is hidden from assistive technologies.
+  / Make sure the explanatory text is hidden from assistive technologies.
   if (introText) {
     introText.setAttribute('hidden', 'hidden');
   }
 }
 
-;// ./node_modules/@wordpress/a11y/build-module/shared/filter-message.js
+;/ ./node_modules/@wordpress/a11y/build-module/shared/filter-message.js
 let previousMessage = '';
 
 /**
@@ -76,7 +76,7 @@ function filterMessage(message) {
   return message;
 }
 
-;// ./node_modules/@wordpress/a11y/build-module/shared/index.js
+;/ ./node_modules/@wordpress/a11y/build-module/shared/index.js
 /**
  * Internal dependencies
  */
@@ -94,10 +94,10 @@ function filterMessage(message) {
  * ```js
  * import { speak } from '@wordpress/a11y';
  *
- * // For polite messages that shouldn't interrupt what screen readers are currently announcing.
+ * / For polite messages that shouldn't interrupt what screen readers are currently announcing.
  * speak( 'The message you want to send to the ARIA live region' );
  *
- * // For assertive messages that should interrupt what screen readers are currently announcing.
+ * / For assertive messages that should interrupt what screen readers are currently announcing.
  * speak( 'The message you want to send to the ARIA live region', 'assertive' );
  * ```
  */
@@ -126,7 +126,7 @@ function speak(message, ariaLive) {
   }
 }
 
-;// ./node_modules/@wordpress/a11y/build-module/module/index.js
+;/ ./node_modules/@wordpress/a11y/build-module/module/index.js
 /**
  * Internal dependencies
  */

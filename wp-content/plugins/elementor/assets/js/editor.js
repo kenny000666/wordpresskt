@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js":
@@ -3141,8 +3141,8 @@ var Widget = exports.Widget = /*#__PURE__*/function (_MediaParser) {
               this.upload(file).then(function (_ref) {
                 var data = _ref.data;
                 $e.internal('document/elements/set-settings', {
-                  // The reason we use the container id and not the container instance itself is that the container
-                  // created above is just a placeholder, which later recreated using the same id.
+                  / The reason we use the container id and not the container instance itself is that the container
+                  / created above is just a placeholder, which later recreated using the same id.
                   container: elementor.getContainer(container.id),
                   settings: {
                     image: {
@@ -3515,8 +3515,8 @@ var Widget = exports.Widget = /*#__PURE__*/function (_MediaParser) {
               this.upload(file).then(function (_ref) {
                 var data = _ref.data;
                 $e.internal('document/elements/set-settings', {
-                  // The reason we use the container id and not the container instance itself is that the container
-                  // created above is just a placeholder, which later recreated using the same id.
+                  / The reason we use the container id and not the container instance itself is that the container
+                  / created above is just a placeholder, which later recreated using the same id.
                   container: elementor.getContainer(container.id),
                   settings: {
                     hosted_url: {
@@ -4012,7 +4012,7 @@ var Item = exports["default"] = /*#__PURE__*/function () {
             type: type || input.type
           };
 
-        // When the input is not a Blob object, use the mime-type from the options to generate the file.
+        / When the input is not a Blob object, use the mime-type from the options to generate the file.
         input = new File(Array.isArray(input) ? input : [input], fileName || this.constructor.createFileName(options), options);
       }
       return input;
@@ -4601,8 +4601,8 @@ var Normalizer = exports["default"] = /*#__PURE__*/function () {
                 subjects = (0, _isInstanceof.default)(subjects, FileList) || (0, _isInstanceof.default)(subjects, DataTransferItemList) ? Array.from(subjects) : [subjects];
               }
               return _context2.abrupt("return", Promise.all(subjects.map(function (subject) {
-                // Creating a ItemCollection can only be made with an array of Item objects. Therefore, unless the
-                // subject is an Item object, we should transform it into one.
+                / Creating a ItemCollection can only be made with an array of Item objects. Therefore, unless the
+                / subject is an Item object, we should transform it into one.
                 if (!(subject instanceof _item.default)) {
                   subject = _this.toItem(subject);
                 }
@@ -4641,8 +4641,8 @@ var Normalizer = exports["default"] = /*#__PURE__*/function () {
                 break;
               }
               _context3.prev = 1;
-              // In order to check whether it's a data url string, we're trying to decode it. If it is a data url,
-              // we can extract the blob later using `fetch`.
+              / In order to check whether it's a data url string, we're trying to decode it. If it is a data url,
+              / we can extract the blob later using `fetch`.
               window.atob(subject.split(',')[1]);
               _context3.next = 15;
               break;
@@ -4927,7 +4927,7 @@ var Session = exports["default"] = /*#__PURE__*/function () {
         this.target = elementor.getPreviewContainer();
       }
 
-      // eslint-disable-next-line array-callback-return
+      / eslint-disable-next-line array-callback-return
       return containers.map(function (element) {
         switch (element.type) {
           case 'container':
@@ -4990,7 +4990,7 @@ var Close = exports.Close = /*#__PURE__*/function (_$e$modules$CommandBa) {
         return _regenerator.default.wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              id = args.id, mode = args.mode, onClose = args.onClose, document = elementor.documents.get(id); // Already closed.
+              id = args.id, mode = args.mode, onClose = args.onClose, document = elementor.documents.get(id); / Already closed.
               if (!('closed' === document.editor.status)) {
                 _context.next = 3;
                 break;
@@ -5071,7 +5071,7 @@ var Close = exports.Close = /*#__PURE__*/function (_$e$modules$CommandBa) {
           cancel: __('Don\'t leave', 'elementor')
         },
         onHide: function onHide() {
-          // If still not action chosen. use `defer` because onHide is called before onConfirm/onCancel.
+          / If still not action chosen. use `defer` because onHide is called before onConfirm/onCancel.
           _.defer(function () {
             if (!_this.args.mode) {
               deferred.reject('Close document has been canceled.');
@@ -5085,7 +5085,7 @@ var Close = exports.Close = /*#__PURE__*/function (_$e$modules$CommandBa) {
         onConfirm: function onConfirm() {
           _this.args.mode = 'save';
 
-          // Re-run with same args.
+          / Re-run with same args.
           $e.run('editor/documents/close', _this.args).then(function () {
             deferred.resolve();
           });
@@ -5221,7 +5221,7 @@ var AttachPreview = exports.AttachPreview = /*#__PURE__*/function (_$e$modules$C
         _args$shouldScroll = args.shouldScroll,
         shouldScroll = _args$shouldScroll === void 0 ? true : _args$shouldScroll;
       return new Promise(function (resolve, reject) {
-        // Not yet loaded.
+        / Not yet loaded.
         if (!document) {
           return reject("Can't attach preview, there is no open document.");
         }
@@ -5339,8 +5339,8 @@ var Load = exports.Load = /*#__PURE__*/function (_$e$modules$CommandIn) {
         _args$shouldNavigateT = args.shouldNavigateToDefaultRoute,
         shouldNavigateToDefaultRoute = _args$shouldNavigateT === void 0 ? true : _args$shouldNavigateT;
       if (elementorCommon.config.experimentalFeatures.additional_custom_breakpoints) {
-        // When the Responsive Optimization experiment is active, the responsive controls are generated on the
-        // JS side instead of the PHP.
+        / When the Responsive Optimization experiment is active, the responsive controls are generated on the
+        / JS side instead of the PHP.
         config.settings.controls = elementor.generateResponsiveControls(config.settings.controls);
       }
       elementor.config.document = config;
@@ -5350,7 +5350,7 @@ var Load = exports.Load = /*#__PURE__*/function (_$e$modules$CommandIn) {
       var document = new _document.default(config);
       elementor.documents.add(document);
 
-      // Must set current before create a container.
+      / Must set current before create a container.
       elementor.documents.setCurrent(document);
       if (setAsInitial) {
         elementor.documents.setInitialById(document.id);
@@ -5358,7 +5358,7 @@ var Load = exports.Load = /*#__PURE__*/function (_$e$modules$CommandIn) {
       elementor.settings.page = new elementor.settings.modules.page(config.settings);
       document.container = elementor.settings.page.getEditedView().getContainer();
 
-      // Reference container back to document.
+      / Reference container back to document.
       document.container.document = document;
       elementor.heartbeat = new _heartbeat.default(document);
       var isOldPageVersion = elementor.config.document.version && elementor.helpers.compareVersions(elementor.config.document.version, '2.5.0', '<');
@@ -5366,12 +5366,12 @@ var Load = exports.Load = /*#__PURE__*/function (_$e$modules$CommandIn) {
         elementor.showFlexBoxAttentionDialog();
       }
       if (elementor.loaded) {
-        // TODO: Find better solution - Fix issue when globals does not render after saving from kit.
-        // The issue is that the css-parser is depends upon cache and cache is not available during this time.
+        / TODO: Find better solution - Fix issue when globals does not render after saving from kit.
+        / The issue is that the css-parser is depends upon cache and cache is not available during this time.
         return $e.data.get('globals/index').then(function () {
           if (setAsInitial) {
-            // There is no need to attach preview when the iframe is reloaded. It will be triggered
-            // automatically after the iframe finishes loading (see `EditorBase.onPreviewLoaded()`).
+            / There is no need to attach preview when the iframe is reloaded. It will be triggered
+            / automatically after the iframe finishes loading (see `EditorBase.onPreviewLoaded()`).
             elementor.reloadPreview();
             return Promise.resolve();
           }
@@ -5499,27 +5499,27 @@ var Open = exports.Open = /*#__PURE__*/function (_$e$modules$CommandBa) {
         setAsInitial = _args$setAsInitial === void 0 ? false : _args$setAsInitial,
         currentDocument = elementor.documents.getCurrent();
 
-      // Already opened.
+      / Already opened.
       if (currentDocument && id === currentDocument.id) {
         return jQuery.Deferred().resolve();
       }
 
-      // TODO: move to $e.hooks.ui.
+      / TODO: move to $e.hooks.ui.
       if (elementor.loaded) {
         elementor.$previewContents.find(".elementor-".concat(id)).addClass('loading');
       }
       if (setAsInitial) {
-        // Set the new initial document id to be sent with all requests.
-        // The next request needs to have the new initial document id in order to have the correct preview URL.
+        / Set the new initial document id to be sent with all requests.
+        / The next request needs to have the new initial document id in order to have the correct preview URL.
         elementorCommon.ajax.addRequestConstant('initial_document_id', id);
 
-        // Because the initial document has changed, we need to clear cached values (e.g. header wp_preview URL),
+        / Because the initial document has changed, we need to clear cached values (e.g. header wp_preview URL),
         elementor.documents.invalidateCache();
       }
       return elementor.documents.request(id).then(function (config) {
         elementorCommon.elements.$body.addClass("elementor-editor-".concat(config.type));
 
-        // Tell the editor to load the document.
+        / Tell the editor to load the document.
         return $e.internal('editor/documents/load', {
           config: config,
           selector: selector,
@@ -5528,7 +5528,7 @@ var Open = exports.Open = /*#__PURE__*/function (_$e$modules$CommandBa) {
           shouldNavigateToDefaultRoute: shouldNavigateToDefaultRoute
         });
       }).always(function () {
-        // TODO: move to $e.hooks.ui.
+        / TODO: move to $e.hooks.ui.
         if (elementor.loaded) {
           elementor.$previewContents.find(".elementor-".concat(id)).removeClass('loading');
         }
@@ -5575,7 +5575,7 @@ var Preview = exports.Preview = /*#__PURE__*/function (_$e$modules$CommandBa) {
       this.requireArgument('id', args);
     }
 
-    // TODO: Check if blocking is required.
+    / TODO: Check if blocking is required.
   }, {
     key: "apply",
     value: function () {
@@ -5594,7 +5594,7 @@ var Preview = exports.Preview = /*#__PURE__*/function (_$e$modules$CommandBa) {
                 force: true
               });
             case 4:
-              // Open immediately in order to avoid popup blockers.
+              / Open immediately in order to avoid popup blockers.
               footerSaver.previewWindow = open(document.config.urls.wp_preview, "wp-preview-".concat(document.id));
             case 5:
             case "end":
@@ -5658,7 +5658,7 @@ var Switch = exports.Switch = /*#__PURE__*/function (_$e$modules$CommandBa) {
         _args$setAsInitial = args.setAsInitial,
         setAsInitial = _args$setAsInitial === void 0 ? false : _args$setAsInitial;
       if (setAsInitial) {
-        // Will be removed by the attach-preview after the iframe has loaded.
+        / Will be removed by the attach-preview after the iframe has loaded.
         jQuery('#elementor-preview-loading').show();
       }
       return $e.run('editor/documents/close', {
@@ -5726,7 +5726,7 @@ var View = exports.View = /*#__PURE__*/function (_$e$modules$CommandBa) {
         return _regenerator.default.wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              id = args.id, document = elementor.documents.get(id); // Open immediately in order to avoid popup blockers.
+              id = args.id, document = elementor.documents.get(id); / Open immediately in order to avoid popup blockers.
               open(document.config.urls.permalink, "wp-view-".concat(document.id));
             case 2:
             case "end":
@@ -5839,7 +5839,7 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
     value: function add(document) {
       var id = document.id;
 
-      // Save the document.
+      / Save the document.
       this.documents[id] = document;
       return document;
     }
@@ -5993,7 +5993,7 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
             message = __('Server Error', 'elementor') + ' ' + data[0].code;
           }
 
-          // eslint-disable-next-line no-alert
+          / eslint-disable-next-line no-alert
           alert(message);
         }
       };
@@ -6454,7 +6454,7 @@ var SetActiveDocumentQueryParam = exports.SetActiveDocumentQueryParam = /*#__PUR
   }, {
     key: "getConditions",
     value: function getConditions(args) {
-      // Don't run for the initial/default document because it's redundant.
+      / Don't run for the initial/default document because it's redundant.
       return parseInt(args.id) !== parseInt(elementor.config.initial_document.id);
     }
   }, {
@@ -6649,7 +6649,7 @@ module.exports = Marionette.Behavior.extend({
       }
     }
 
-    // Add a Tipsy Tooltip to the Dynamic Switcher
+    / Add a Tipsy Tooltip to the Dynamic Switcher
     this.ui.dynamicSwitcher.tipsy({
       title: function title() {
         return this.getAttribute('data-tooltip');
@@ -6703,7 +6703,7 @@ module.exports = Marionette.Behavior.extend({
       });
     });
 
-    // Create and inject pro dynamic teaser template if Pro is not installed
+    / Create and inject pro dynamic teaser template if Pro is not installed
     if (!elementor.helpers.hasPro() && Object.keys(tags).length) {
       var proTeaser = Marionette.Renderer.render('#tmpl-elementor-dynamic-tags-promo', {
         promotionUrl: elementor.config.dynamicPromotionURL.replace('%s', this.view.model.get('name'))
@@ -6813,7 +6813,7 @@ module.exports = Marionette.Behavior.extend({
     var $tag = jQuery(event.currentTarget);
     this.setTagView(elementorCommon.helpers.getUniqueId(), $tag.data('tagName'), {});
 
-    // If an element has an active global value, disable it before applying the dynamic value.
+    / If an element has an active global value, disable it before applying the dynamic value.
     if (this.view.getGlobalKey()) {
       this.view.triggerMethod('unset:global:value');
     }
@@ -7024,7 +7024,7 @@ module.exports = elementorModules.editor.views.ControlsStack.extend({
   template: _.noop,
   emptyView: EmptyView,
   isEmpty: function isEmpty() {
-    // Ignore the section control
+    / Ignore the section control
     return this.collection.length < 2;
   },
   childViewOptions: function childViewOptions() {
@@ -7141,7 +7141,7 @@ module.exports = Marionette.ItemView.extend({
     });
   },
   initialize: function initialize() {
-    // The `model` should always be available.
+    / The `model` should always be available.
     this.initModel();
     if (!this.hasSettings()) {
       return;
@@ -7489,7 +7489,7 @@ var _default = exports["default"] = /*#__PURE__*/function () {
         return _this.runCallback(libraryConfig);
       }
 
-      // Enqueue CSS
+      / Enqueue CSS
       if (libraryConfig.enqueue) {
         libraryConfig.enqueue.forEach(function (assetURL) {
           var versionAddedURL = "".concat(assetURL).concat(libraryConfig !== null && libraryConfig !== void 0 && libraryConfig.ver ? '?ver=' + libraryConfig.ver : '');
@@ -7501,22 +7501,22 @@ var _default = exports["default"] = /*#__PURE__*/function () {
         elementor.helpers.enqueueEditorStylesheet(versionAddedURL);
       }
 
-      // Already saved an stored
+      / Already saved an stored
       if (store.isValid(libraryConfig)) {
         var data = store.get(store.getKey(libraryConfig));
         return _this.normalizeIconList(data);
       }
 
-      // Comes with icons
+      / Comes with icons
       if (libraryConfig.icons && libraryConfig.icons.length) {
         return _this.normalizeIconList(libraryConfig);
       }
 
-      // Get icons from via ajax
+      / Get icons from via ajax
       if (libraryConfig.fetchJson) {
         return _this.fetchIcons(libraryConfig);
       }
-      // @todo: error handling
+      / @todo: error handling
     });
   }
   return (0, _createClass2.default)(_default, [{
@@ -7599,7 +7599,7 @@ var _Store = /*#__PURE__*/function () {
         return false;
       }
       if (saved.ver !== library.ver) {
-        // @todo: delete from localStorage if version is invalid
+        / @todo: delete from localStorage if version is invalid
         return false;
       }
       return saved.icons && saved.icons.length;
@@ -7676,7 +7676,7 @@ var LazyIconList = /*#__PURE__*/function (_Component) {
       if (_this.state.itemSize.width) {
         return;
       }
-      // CSS Item Padding
+      / CSS Item Padding
       var itemPadding = 20,
         testElement = document.querySelector(_this.selectors.item);
       if (!testElement) {
@@ -7743,7 +7743,7 @@ var LazyIconList = /*#__PURE__*/function (_Component) {
         rowsInView = totalRows;
       }
 
-      // Prevent scroll overflow
+      / Prevent scroll overflow
       if (firstRowInView > totalRows - rowsInView) {
         firstRowInView = totalRows - rowsInView;
       }
@@ -7931,7 +7931,7 @@ var IconsManager = /*#__PURE__*/function (_Component) {
         }
         return (
           /*#__PURE__*/
-          // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+          / eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
           _react.default.createElement("div", {
             className: className,
             key: tab.name,
@@ -8189,7 +8189,7 @@ var Icon = exports["default"] = /*#__PURE__*/function (_Component) {
     (0, _defineProperty2.default)(_this, "render", function () {
       return (
         /*#__PURE__*/
-        // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+        / eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
         _react.default.createElement("div", {
           className: _this.props.containerClass,
           key: _this.props.keyID,
@@ -8496,11 +8496,11 @@ var _default = exports["default"] = /*#__PURE__*/function (_elementorModules$Mod
   return (0, _createClass2.default)(_default, [{
     key: "onInit",
     value: function onInit() {
-      // Init icon library helper
+      / Init icon library helper
       this.library = new _iconLibrary.default();
-      // Init Icon library Storage helper
+      / Init Icon library Storage helper
       this.store = new _store.default();
-      // Fetch fa4 to fa5 migration data
+      / Fetch fa4 to fa5 migration data
       elementor.helpers.fetchFa4ToFa5Mapping();
       this.cache = {};
     }
@@ -8602,20 +8602,20 @@ var _default = exports["default"] = /*#__PURE__*/function (_elementorModules$Mod
       iconManagerConfig.loaded = loaded;
       iconManagerConfig.icons = icons;
 
-      // Set active tab
+      / Set active tab
       var activeTab = selected.library || icons[0].name;
       if ('svg' === selected.library) {
         activeTab = icons[0].name;
       }
 
-      // Selected Library exists
+      / Selected Library exists
       if (!Object.keys(icons).some(function (library) {
         return library === activeTab;
       })) {
         activeTab = icons[0].name;
       }
 
-      // Show recommended tab if selected from it
+      / Show recommended tab if selected from it
       if (iconManagerConfig.recommended && '' !== selected.library && '' !== selected.value && Object.prototype.hasOwnProperty.call(iconManagerConfig.recommended, selected.library)) {
         var iconLibrary = icons.filter(function (library) {
           return selected.library === library.name;
@@ -8917,8 +8917,8 @@ var Manager = exports["default"] = /*#__PURE__*/function (_elementorModules$edi)
     (0, _classCallCheck2.default)(this, Manager);
     _this = _callSuper(this, Manager);
 
-    // Using a Proxy in order to use update methods only once on external invocations, but internally the `add` or
-    // `remove` methods may be executed many times, when update methods will be used only once.
+    / Using a Proxy in order to use update methods only once on external invocations, but internally the `add` or
+    / `remove` methods may be executed many times, when update methods will be used only once.
     /**
      * Selected elements.
      *
@@ -8995,7 +8995,7 @@ var Manager = exports["default"] = /*#__PURE__*/function (_elementorModules$edi)
       }
       containers = Array.isArray(containers) ? containers : [containers];
 
-      // If command/ctrl+click not clicked, clear selected elements.
+      / If command/ctrl+click not clicked, clear selected elements.
       if (!append) {
         this.remove([], true);
       }
@@ -9215,7 +9215,7 @@ module.exports = elementorModules.ViewModule.extend({
     elementorDevTools.deprecation.deprecated('getContainerId()', '3.7.0', 'getContainerType()');
     return this.getContainerType();
   },
-  // Emulate an element view/model structure with the parts needed for a container.
+  / Emulate an element view/model structure with the parts needed for a container.
   getEditedView: function getEditedView() {
     var documentElementType = elementor.elementsManager.getElementTypeClass('document'),
       ModelClass = documentElementType.getModel(),
@@ -9259,7 +9259,7 @@ module.exports = elementorModules.ViewModule.extend({
     this.model.handleRepeaterData(this.model.attributes);
     controlsCSS.addStyleRules(this.model.getStyleControls(), this.model.attributes, this.model.controls, [/{{WRAPPER}}/g], [this.getSettings('cssWrapperSelector')]);
     controlsCSS.addStyleToDocument({
-      // Ensures we don't override default global style
+      / Ensures we don't override default global style
       at: 'before',
       of: '#elementor-style-e-global-style'
     });
@@ -9322,7 +9322,7 @@ module.exports = elementorModules.ViewModule.extend({
                 }
               },
               error: function error() {
-                // eslint-disable-next-line no-alert
+                / eslint-disable-next-line no-alert
                 alert('An error occurred.');
               }
             }));
@@ -9496,7 +9496,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_BaseManager) {
   }, {
     key: "onEditButtonsChanged",
     value: function onEditButtonsChanged() {
-      // Let the button change before the high-performance action of rendering the entire page
+      / Let the button change before the high-performance action of rendering the entire page
       setTimeout(function () {
         return elementor.getPreviewView()._renderChildren();
       }, 300);
@@ -9639,7 +9639,7 @@ module.exports = BaseSettings.extend({
     data.id = elementor.config.document.id;
     return data;
   },
-  // Emulate an element view/model structure with the parts needed for a container.
+  / Emulate an element view/model structure with the parts needed for a container.
   getEditedView: function getEditedView() {
     var _this = this;
     if (this.editedView) {
@@ -9663,7 +9663,7 @@ module.exports = BaseSettings.extend({
         controls: this.model.controls,
         children: (0, _construct2.default)(_childrenArray.default, (0, _toConsumableArray2.default)(elementor.elements || [])),
         parent: false,
-        // Emulate a view that can render the style.
+        / Emulate a view that can render the style.
         renderer: {
           view: {
             lookup: function lookup() {
@@ -10019,10 +10019,10 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentModalBase)
       var _elementorCommon$conf;
       _superPropGet(Component, "__construct", this, 3)([args]);
 
-      // When switching documents update defaultTabs.
+      / When switching documents update defaultTabs.
       elementor.on('document:loaded', this.onDocumentLoaded.bind(this));
 
-      // Remove whole component cache data.
+      / Remove whole component cache data.
       $e.data.deleteCache(this, 'library');
       if ((_elementorCommon$conf = elementorCommon.config.experimentalFeatures) !== null && _elementorCommon$conf !== void 0 && _elementorCommon$conf['cloud-library']) {
         elementor.channels.templates.on('quota:update', function () {
@@ -10170,7 +10170,7 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentModalBase)
       }
     }
 
-    // TODO: Move function to 'insert-template' command.
+    / TODO: Move function to 'insert-template' command.
   }, {
     key: "insertTemplate",
     value: function insertTemplate(args) {
@@ -10211,11 +10211,11 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentModalBase)
           with_page_settings: withPageSettings
         },
         success: function success(data) {
-          // Clone the `modalConfig.importOptions` because it deleted during the closing.
+          / Clone the `modalConfig.importOptions` because it deleted during the closing.
           var importOptions = jQuery.extend({}, _this3.manager.modalConfig.importOptions);
           importOptions.withPageSettings = withPageSettings;
 
-          // Hide for next open.
+          / Hide for next open.
           _this3.manager.layout.hideLoadingView();
           _this3.manager.layout.hideModal();
           callback(data, {
@@ -10234,7 +10234,7 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentModalBase)
   }, {
     key: "getImportSettingsDialog",
     value: function getImportSettingsDialog() {
-      // Moved from ./behaviors/insert-template.js
+      / Moved from ./behaviors/insert-template.js
       var InsertTemplateHandler = {
         dialog: null,
         showImportDialog: function showImportDialog(model) {
@@ -10709,7 +10709,7 @@ var TemplateLibraryManager = function TemplateLibraryManager() {
   };
   this.isClickedInLibrary = function (event) {
     if (event.target === document.body) {
-      return true; // When the rename dialog is closed it sets the target to the body.
+      return true; / When the rename dialog is closed it sets the target to the body.
     }
     var libraryElement = document.getElementById('elementor-template-library-modal');
     return libraryElement && event.target === libraryElement;
@@ -10831,7 +10831,7 @@ var TemplateLibraryManager = function TemplateLibraryManager() {
   };
   this.getRenameDialog = function (templateModel) {
     var headerMessage = sprintf(
-    // Translators: %1$s: Folder name, %2$s: Number of templates.
+    / Translators: %1$s: Folder name, %2$s: Number of templates.
     __('Rename "%1$s"', 'elementor'), templateModel.get('title'));
     var originalTitle = templateModel.get('title');
     var $inputArea = jQuery('<input>', {
@@ -11014,7 +11014,7 @@ var TemplateLibraryManager = function TemplateLibraryManager() {
       id: 'elementor-template-library-delete-dialog',
       headerMessage: __('Delete this folder?', 'elementor'),
       message: sprintf(
-      // Translators: %1$s: Folder name, %2$s: Number of templates.
+      / Translators: %1$s: Folder name, %2$s: Number of templates.
       __('This will permanently delete "%1$s" that contains %2$d templates.', 'elementor'), templateModel.get('title'), data.total),
       strings: {
         confirm: __('Delete', 'elementor')
@@ -11033,7 +11033,7 @@ var TemplateLibraryManager = function TemplateLibraryManager() {
       id: 'elementor-template-library-bulk-delete-dialog',
       headerMessage: __('Delete items?', 'elementor'),
       message: sprintf(
-      // Translators: %1$s: Number of selected items.
+      / Translators: %1$s: Number of selected items.
       __('This will permanently remove %1$s selected items.', 'elementor'), bulkSelectedItems.size),
       strings: {
         confirm: __('Delete', 'elementor')
@@ -11194,7 +11194,7 @@ var TemplateLibraryManager = function TemplateLibraryManager() {
         id: 'elementor-template-library-delete-dialog',
         headerMessage: __('Delete this template?', 'elementor'),
         message: sprintf(
-        // Translators: %1$s: Template name.
+        / Translators: %1$s: Template name.
         __('This will permanently remove "%1$s".', 'elementor'), templateModel.get('title')),
         strings: {
           confirm: __('Delete', 'elementor')
@@ -11288,7 +11288,7 @@ var TemplateLibraryManager = function TemplateLibraryManager() {
       },
       options = {};
 
-    // TODO: Remove - it when all the data commands is ready, manage the cache!.
+    / TODO: Remove - it when all the data commands is ready, manage the cache!.
     if ('local' === query.source || 'cloud' === query.source) {
       options.refresh = true;
     }
@@ -11407,7 +11407,7 @@ var TemplateLibraryManager = function TemplateLibraryManager() {
     elementorCommon.ajax.addRequest('load_more_templates', ajaxOptions);
   };
   this.showTemplates = function () {
-    // The tabs should exist in DOM on loading.
+    / The tabs should exist in DOM on loading.
     self.layout.setHeaderDefaultParts();
     self.loadTemplates(function () {
       var templatesToShow = self.filterTemplates();
@@ -11847,7 +11847,7 @@ module.exports = elementorModules.common.views.modal.Layout.extend({
     this.modalContent.currentView.ui.bulkSelectedCount.html("".concat(selectedCount, " Selected"));
     this.modalContent.currentView.ui.bulkSelectionActionBar.css('display', display);
 
-    // TODO: Temporary fix until the bulk action bar will be as separate view.
+    / TODO: Temporary fix until the bulk action bar will be as separate view.
     var displayNavigationContainer = 0 === selectedCount ? 'flex' : 'none';
     this.modalContent.currentView.ui.navigationContainer.css('display', displayNavigationContainer);
   },
@@ -12014,7 +12014,7 @@ module.exports = Marionette.ItemView.extend({
       success: function success() {
         elementor.config.library_connect.is_connected = true;
 
-        // If is connecting during insert template.
+        / If is connecting during insert template.
         if (_this.getOption('model')) {
           $e.run('library/insert-template', {
             model: _this.getOption('model')
@@ -13337,7 +13337,7 @@ var TemplateLibraryCollectionView = Marionette.CompositeView.extend({
   filter: function filter(childModel) {
     var activeSource = elementor.templates.getFilter('source');
     if ('cloud' === activeSource) {
-      return true; // Filtering happens on the backend.
+      return true; / Filtering happens on the backend.
     }
     var filterTerms = elementor.templates.getFilterTerms(),
       passingFilter = true;
@@ -13692,14 +13692,14 @@ var TemplateLibraryTemplateView = Marionette.ItemView.extend({
     var templateAccessTier = this.model.get('accessTier');
     var canDownloadTemplate = isTierAtLeast(userAccessTier, templateAccessTier);
 
-    // User with access to the template shouldn't see the badge.
+    / User with access to the template shouldn't see the badge.
     if (canDownloadTemplate) {
       return {};
     }
     var subscriptionPlans = elementor.config.library_connect.subscription_plans;
     var subscriptionPlan = subscriptionPlans[templateAccessTier];
 
-    // Free user should see a generic "Pro" badge.
+    / Free user should see a generic "Pro" badge.
     if (userAccessTier === TIERS.free) {
       subscriptionPlan = subscriptionPlans.essential;
     }
@@ -13923,7 +13923,7 @@ var TemplateLibraryTemplateLocalView = TemplateLibraryTemplateView.extend({
   handleItemClicked: function handleItemClicked(event) {
     var _this = this;
     if (event.target.closest('.bulk-selection-item-checkbox')) {
-      return; // Ignore clicks from checkbox
+      return; / Ignore clicks from checkbox
     }
     if (!this._clickState) {
       this._clickState = {
@@ -14170,7 +14170,7 @@ var BreakpointValidator = exports["default"] = /*#__PURE__*/function (_NumberVal
     value: function getDefaultSettings() {
       return {
         validationTerms: {
-          // Max width we allow in general
+          / Max width we allow in general
           max: 5120
         }
       };
@@ -14213,7 +14213,7 @@ var BreakpointValidator = exports["default"] = /*#__PURE__*/function (_NumberVal
       var validationTerms = this.getSettings('validationTerms'),
         errors = NumberValidator.prototype.validationMethod.call(this, newValue);
 
-      // Validate both numeric and empty values, since breakpoints utilize default values when empty.
+      / Validate both numeric and empty values, since breakpoints utilize default values when empty.
       if (_.isFinite(newValue) || '' === newValue) {
         if (!this.validateMinMaxForBreakpoint(newValue, validationTerms)) {
           errors.push('Value is not between the breakpoints above or under the edited breakpoint');
@@ -14228,32 +14228,32 @@ var BreakpointValidator = exports["default"] = /*#__PURE__*/function (_NumberVal
       var isValid = true;
       this.initBreakpointProperties();
 
-      // Since the following comparison is <=, allow usage of the 320px value for the mobile breakpoint.
+      / Since the following comparison is <=, allow usage of the 320px value for the mobile breakpoint.
       if ('mobile' === validationTerms.breakpointName && 320 === this.bottomBreakpoint) {
         this.bottomBreakpoint -= 1;
       }
 
-      // If there is a breakpoint below the currently edited breakpoint
+      / If there is a breakpoint below the currently edited breakpoint
       if (this.bottomBreakpoint) {
-        // Check that the new value is not under the bottom breakpoint's value.
+        / Check that the new value is not under the bottom breakpoint's value.
         if ('' !== newValue && newValue <= this.bottomBreakpoint) {
           isValid = false;
         }
 
-        // If the new value is empty, check that the default breakpoint value is not below the bottom breakpoint.
+        / If the new value is empty, check that the default breakpoint value is not below the bottom breakpoint.
         if ('' === newValue && breakpointDefaultValue <= this.bottomBreakpoint) {
           isValid = false;
         }
       }
 
-      // If there is a breakpoint above the currently edited breakpoint.
+      / If there is a breakpoint above the currently edited breakpoint.
       if (this.topBreakpoint) {
-        // Check that the value is not above the top breakpoint's value.
+        / Check that the value is not above the top breakpoint's value.
         if ('' !== newValue && newValue >= this.topBreakpoint) {
           isValid = false;
         }
 
-        // If the new value is empty, check that the default breakpoint value is not above the top breakpoint.
+        / If the new value is empty, check that the default breakpoint value is not above the top breakpoint.
         if ('' === newValue && breakpointDefaultValue >= this.topBreakpoint) {
           isValid = false;
         }
@@ -14518,7 +14518,7 @@ ControlBaseDataView = ControlBaseView.extend({
       this.model.set('inherit_placeholders', true);
     }
 
-    // TODO: this.elementSettingsModel is deprecated since 2.8.0.
+    / TODO: this.elementSettingsModel is deprecated since 2.8.0.
     var settings = this.container ? this.container.settings : this.elementSettingsModel;
     this.listenTo(settings, 'change:external:' + this.model.get('name'), this.onAfterExternalChange);
   },
@@ -14534,7 +14534,7 @@ ControlBaseDataView = ControlBaseView.extend({
   getGlobalDefault: function getGlobalDefault() {
     var controlGlobalArgs = this.model.get('global');
     if (controlGlobalArgs !== null && controlGlobalArgs !== void 0 && controlGlobalArgs.default) {
-      // If the control is a color/typography control and default colors/typography are disabled, don't return the global value.
+      / If the control is a color/typography control and default colors/typography are disabled, don't return the global value.
       if (!elementor.config.globals.defaults_enabled[this.getGlobalMeta().controlType]) {
         return '';
       }
@@ -14545,7 +14545,7 @@ ControlBaseDataView = ControlBaseView.extend({
       return result === null || result === void 0 ? void 0 : result.value;
     }
 
-    // No global default.
+    / No global default.
     return '';
   },
   getCurrentValue: function getCurrentValue() {
@@ -14611,7 +14611,7 @@ ControlBaseDataView = ControlBaseView.extend({
     var parent = this.model.get('parent');
     try {
       return parent && this.container.panel.getControlView(parent);
-      // eslint-disable-next-line no-empty
+      / eslint-disable-next-line no-empty
     } catch (e) {}
   },
   /**
@@ -14630,7 +14630,7 @@ ControlBaseDataView = ControlBaseView.extend({
           var child = _step.value;
           views.push(this.container.panel.getControlView(child));
         }
-        // eslint-disable-next-line no-empty
+        / eslint-disable-next-line no-empty
       } catch (err) {
         _iterator.e(err);
       } finally {
@@ -14729,7 +14729,7 @@ ControlBaseDataView = ControlBaseView.extend({
       return +inputValue;
     }
 
-    // Temp fix for jQuery (< 3.0) that return null instead of empty array
+    / Temp fix for jQuery (< 3.0) that return null instead of empty array
     if ('SELECT' === input.tagName && $input.prop('multiple') && null === inputValue) {
       inputValue = [];
     }
@@ -14836,10 +14836,10 @@ ControlBaseDataView = ControlBaseView.extend({
       return;
     }
 
-    // Create tooltip on controls
+    / Create tooltip on controls
     this.ui.tooltipTargets.tipsy({
       gravity: function gravity() {
-        // `n` for down, `s` for up
+        / `n` for down, `s` for up
         var gravity = jQuery(this).data('tooltip-pos');
         if (undefined !== gravity) {
           return gravity;
@@ -14860,7 +14860,7 @@ ControlBaseDataView = ControlBaseView.extend({
     this.setValue(value);
   }
 }, {
-  // Static methods
+  / Static methods
   getStyleValue: function getStyleValue(placeholder, controlValue, controlData) {
     if ('DEFAULT' === placeholder) {
       return controlData.default;
@@ -14947,10 +14947,10 @@ ControlBaseMultipleItemView = ControlBaseDataView.extend({
     this.setValue(key, value);
   }
 }, {
-  // Static methods
+  / Static methods
   getStyleValue: function getStyleValue(placeholder, controlValue) {
     if (!_.isObject(controlValue)) {
-      return ''; // Invalid
+      return ''; / Invalid
     }
     return controlValue[placeholder.toLowerCase()];
   }
@@ -15004,10 +15004,10 @@ ControlBaseUnitsItemView = ControlBaseMultipleItemView.extend({
       var unit = parent.getControlValue('unit'),
         values = Object.keys(this.getCleanControlValue() || {});
 
-      // Remove `unit` from values, so only control values are indicated.
+      / Remove `unit` from values, so only control values are indicated.
       values.splice(values.indexOf('unit'), 1);
 
-      // Only set the unit when no control values are already specified.
+      / Only set the unit when no control values are already specified.
       if (unit && !values.length) {
         this.setValue('unit', unit);
         this.render();
@@ -15069,7 +15069,7 @@ ControlBaseUnitsItemView = ControlBaseMultipleItemView.extend({
     return 'custom' === this.getControlValue('unit');
   }
 }, {
-  // Static methods
+  / Static methods
   getStyleValue: function getStyleValue(placeholder, controlValue) {
     var returnValue = ControlBaseMultipleItemView.getStyleValue(placeholder, controlValue);
     if ('UNIT' === placeholder && 'custom' === returnValue) {
@@ -15110,7 +15110,7 @@ ControlBaseView = Marionette.CompositeView.extend({
     return this._behaviors[Object.keys(this.behaviors()).indexOf(name)];
   },
   className: function className() {
-    // TODO: Any better classes for that?
+    / TODO: Any better classes for that?
     var classes = 'elementor-control elementor-control-' + this.model.get('name') + ' elementor-control-type-' + this.model.get('type'),
       modelClasses = this.model.get('classes'),
       responsive = this.model.get('responsive');
@@ -15138,14 +15138,14 @@ ControlBaseView = Marionette.CompositeView.extend({
   initialize: function initialize(options) {
     var label = this.model.get('label');
 
-    // TODO: Temp backwards compatibility. since 2.8.0.
+    / TODO: Temp backwards compatibility. since 2.8.0.
     Object.defineProperty(this, 'container', {
       get: function get() {
         if (!options.container) {
           var settingsModel = options.elementSettingsModel,
             view = $e.components.get('document').utils.findViewById(settingsModel.id);
 
-          // Element control.
+          / Element control.
           if (view && view.getContainer) {
             options.container = view.getContainer();
           } else {
@@ -15153,7 +15153,7 @@ ControlBaseView = Marionette.CompositeView.extend({
               settingsModel.id = 'bc-' + elementorCommon.helpers.getUniqueId();
             }
 
-            // Document/General/Other control.
+            / Document/General/Other control.
             options.container = new elementorModules.editor.Container({
               type: 'bc-container',
               id: settingsModel.id,
@@ -15171,7 +15171,7 @@ ControlBaseView = Marionette.CompositeView.extend({
       }
     });
 
-    // Use `defineProperty` because `get elementSettingsModel()` fails during the `Marionette.CompositeView.extend`.
+    / Use `defineProperty` because `get elementSettingsModel()` fails during the `Marionette.CompositeView.extend`.
     Object.defineProperty(this, 'elementSettingsModel', {
       get: function get() {
         elementorDevTools.deprecation.deprecated('elementSettingsModel', '2.8.0', 'container.settings');
@@ -15182,7 +15182,7 @@ ControlBaseView = Marionette.CompositeView.extend({
       controlSettings = jQuery.extend(true, {}, elementor.config.controls[controlType], this.model.attributes);
     this.model.set(controlSettings);
 
-    // TODO: this.elementSettingsModel is deprecated since 2.8.0.
+    / TODO: this.elementSettingsModel is deprecated since 2.8.0.
     var settings = this.container ? this.container.settings : this.elementSettingsModel;
     this.listenTo(settings, 'change', this.onAfterChange);
     if (this.model.attributes.responsive) {
@@ -15200,7 +15200,7 @@ ControlBaseView = Marionette.CompositeView.extend({
     this.toggleControlVisibility();
   },
   toggleControlVisibility: function toggleControlVisibility() {
-    // TODO: this.elementSettingsModel is deprecated since 2.8.0.
+    / TODO: this.elementSettingsModel is deprecated since 2.8.0.
     var settings = this.container ? this.container.settings : this.elementSettingsModel;
     var isVisible = elementor.helpers.isActiveControl(this.model, settings.attributes, settings.controls);
     this.$el.toggleClass('elementor-hidden-control', !isVisible);
@@ -15336,7 +15336,7 @@ var Scrubbing = exports["default"] = /*#__PURE__*/function (_Marionette$Behavior
           break;
       }
 
-      // Fire an input event so other behaviors/validators can handle the new input
+      / Fire an input event so other behaviors/validators can handle the new input
       input.dispatchEvent(new Event('input', {
         bubbles: true
       }));
@@ -15347,8 +15347,8 @@ var Scrubbing = exports["default"] = /*#__PURE__*/function (_Marionette$Behavior
       if (movementEvent.altKey) {
         this.skipperCount++;
 
-        // When ALT key is pressed, skipping x times before updating input value.
-        // 'skipperSteps' defines the exact times to skip, can be changed to any number.
+        / When ALT key is pressed, skipping x times before updating input value.
+        / 'skipperSteps' defines the exact times to skip, can be changed to any number.
         if (this.skipperCount <= this.scrubSettings.skipperSteps) {
           return SKIP_SCRUB;
         }
@@ -15368,7 +15368,7 @@ var Scrubbing = exports["default"] = /*#__PURE__*/function (_Marionette$Behavior
       }
       var newValue = +value + change * modifier;
 
-      // Prevent cases where the value resolves to something like 1.0000000000000001.
+      / Prevent cases where the value resolves to something like 1.0000000000000001.
       return parseFloat(newValue.toFixed(1));
     }
   }, {
@@ -15412,7 +15412,7 @@ var Scrubbing = exports["default"] = /*#__PURE__*/function (_Marionette$Behavior
         _this4.scrub(input, movementEvent);
       };
 
-      // For input, scrubbing effect works only after X time the mouse is down.
+      / For input, scrubbing effect works only after X time the mouse is down.
       var checkIntentTimeout = setTimeout(function () {
         clearTimeout(checkIntentTimeout);
         document.addEventListener('mousemove', trackMovement);
@@ -15608,8 +15608,8 @@ ControlChooseItemView = ControlBaseDataView.extend({
   updatePlaceholder: function updatePlaceholder() {
     var placeholder = this.getControlPlaceholder();
     if (!this.getControlValue() && placeholder) {
-      // Find the input which has value equals to the placeholder (which is the parent's value),
-      // and add it a placeholder class, to indicate which value is selected in the parent.
+      / Find the input which has value equals to the placeholder (which is the parent's value),
+      / and add it a placeholder class, to indicate which value is selected in the parent.
       this.ui.inputs.filter("[value=\"".concat(this.getControlPlaceholder(), "\"]")).addClass('e-choose-placeholder');
     } else {
       this.ui.inputs.removeClass('e-choose-placeholder');
@@ -15680,7 +15680,7 @@ ControlCodeEditorItemView = ControlBaseDataView.extend({
       userPrefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
     self.editor = ace.edit(this.ui.editor[0]);
 
-    // Since the code control is wrapped with a dynamic div, the class elementor-control-tag-area need to be had dynamically to handle the dynamic tag functionality.
+    / Since the code control is wrapped with a dynamic div, the class elementor-control-tag-area need to be had dynamically to handle the dynamic tag functionality.
     jQuery(self.editor.container).addClass('e-input-style elementor-code-editor elementor-control-tag-area');
     self.editor.setOptions({
       mode: 'ace/mode/' + self.model.attributes.language,
@@ -15714,7 +15714,7 @@ ControlCodeEditorItemView = ControlBaseDataView.extend({
       };
       langTools.addCompleter(selectorCompleter);
     }
-    self.editor.setValue(self.getControlValue(), -1); // -1 =  move cursor to the start
+    self.editor.setValue(self.getControlValue(), -1); / -1 =  move cursor to the start
 
     if (this.isEditable()) {
       self.editor.on('change', function () {
@@ -15722,7 +15722,7 @@ ControlCodeEditorItemView = ControlBaseDataView.extend({
       });
     }
     if ('html' === self.model.attributes.language) {
-      // Remove the `doctype` annotation
+      / Remove the `doctype` annotation
       var session = self.editor.getSession();
       session.on('changeAnnotation', function () {
         var annotations = session.getAnnotations() || [],
@@ -15800,13 +15800,13 @@ var _default = exports["default"] = /*#__PURE__*/function (_ControlBaseDataView)
   }, {
     key: "applySavedValue",
     value: function applySavedValue() {
-      // Gets the current OR default value of the control.
+      / Gets the current OR default value of the control.
       var currentValue = this.getCurrentValue();
       if (this.colorPicker) {
-        // When there is a global set on the control but there is no value/it doesn't exist, don't show a value.
+        / When there is a global set on the control but there is no value/it doesn't exist, don't show a value.
         if (currentValue) {
           var _this$colorPicker$pic;
-          // Set the picker color without triggering the 'onChange' event.
+          / Set the picker color without triggering the 'onChange' event.
           var parsedColor = this.colorPicker.picker._parseLocalColor(currentValue);
           (_this$colorPicker$pic = this.colorPicker.picker).setHSVA.apply(_this$colorPicker$pic, (0, _toConsumableArray2.default)(parsedColor.values).concat([false]));
         } else {
@@ -15831,7 +15831,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_ControlBaseDataView)
           },
           defaultRepresentation: 'HEX'
         },
-        // Don't create the add button in the Global Settings color pickers.
+        / Don't create the add button in the Global Settings color pickers.
         addButton: (_this$model$get = this.model.get('global')) === null || _this$model$get === void 0 ? void 0 : _this$model$get.active,
         onChange: function onChange() {
           return _this.onPickerChange();
@@ -15865,7 +15865,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_ControlBaseDataView)
       var picker = this.colorPicker.picker;
       var pickerUtils = picker.constructor.utils;
 
-      // Adding to the eventBindings to unbind in the picker's destroy
+      / Adding to the eventBindings to unbind in the picker's destroy
       picker._eventBindings.push(pickerUtils.on(elementorFrontend.elements.window.document, ['touchstart', 'pointerdown'], function () {
         if (picker.isOpen()) {
           picker.hide();
@@ -15880,7 +15880,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_ControlBaseDataView)
         title: function title() {
           var currentValue = _this2.getCurrentValue();
 
-          // If there is a global enabled for the control, but the global has no value.
+          / If there is a global enabled for the control, but the global has no value.
           if (_this2.getGlobalKey() && !currentValue) {
             currentValue = "".concat(__('Invalid Global Color', 'elementor'));
           }
@@ -15901,12 +15901,12 @@ var _default = exports["default"] = /*#__PURE__*/function (_ControlBaseDataView)
         container = this.getOption('container');
       var kit = null;
 
-      // When it's a kit (i.e "Site Settings").
+      / When it's a kit (i.e "Site Settings").
       if ('kit' === container.document.config.type) {
         kit = container.document;
       }
 
-      // Add a tooltip to the Eye Dropper.
+      / Add a tooltip to the Eye Dropper.
       $colorPicker.tipsy({
         title: function title() {
           return __('Color Sampler', 'elementor');
@@ -15965,7 +15965,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_ControlBaseDataView)
         }).val(colorTitle);
       var messageContent;
 
-      // Check if the color already exists in the global colors, and display an appropriate message.
+      / Check if the color already exists in the global colors, and display an appropriate message.
       for (var _i = 0, _Object$values = Object.values(globalColors); _i < _Object$values.length; _i++) {
         var globalColor = _Object$values[_i];
         if (currentValue === globalColor.value) {
@@ -15989,7 +15989,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_ControlBaseDataView)
       return 'globals/colors';
     }
 
-    // The globalData parameter is received from the Data API.
+    / The globalData parameter is received from the Data API.
   }, {
     key: "createGlobalItemMarkup",
     value: function createGlobalItemMarkup(globalData) {
@@ -16046,7 +16046,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_ControlBaseDataView)
         return _getGlobalsList.apply(this, arguments);
       }
       return getGlobalsList;
-    }() // Create the markup for the colors in the global select dropdown.
+    }() / Create the markup for the colors in the global select dropdown.
   }, {
     key: "buildGlobalsList",
     value: function buildGlobalsList(globalColors, $globalPreviewItemsContainer) {
@@ -16077,10 +16077,10 @@ var _default = exports["default"] = /*#__PURE__*/function (_ControlBaseDataView)
     value: function onPickerClear() {
       this.isCustom = false;
 
-      // Empty the value saved in the control.
+      / Empty the value saved in the control.
       this.setValue('');
 
-      // Adjust the Global select box text according to the cleared value.
+      / Adjust the Global select box text according to the cleared value.
       this.triggerMethod('value:type:change');
       this.applySavedValue();
       this.colorPicker.toggleClearButtonState(false);
@@ -16094,7 +16094,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_ControlBaseDataView)
         this.triggerMethod('unlink:global:default');
       }
 
-      // If there is a value in the control, set the clear button to active, if not, deactivate it.
+      / If there is a value in the control, set the clear button to active, if not, deactivate it.
       this.colorPicker.toggleClearButtonState(!!this.getCurrentValue());
     }
   }, {
@@ -16245,12 +16245,12 @@ ControlDimensionsItemView = ControlBaseUnitsItemView.extend({
       'click @ui.link': 'onLinkDimensionsClicked'
     });
   },
-  // Default value must be 0, because the CSS generator (in dimensions) expects the 4 dimensions to be filled together (or all are empty).
+  / Default value must be 0, because the CSS generator (in dimensions) expects the 4 dimensions to be filled together (or all are empty).
   defaultDimensionValue: 0,
   initialize: function initialize() {
     ControlBaseUnitsItemView.prototype.initialize.apply(this, arguments);
 
-    // TODO: Need to be in helpers, and not in variable
+    / TODO: Need to be in helpers, and not in variable
     this.model.set('allowed_dimensions', this.filterDimensions(this.model.get('allowed_dimensions')));
   },
   getPossibleDimensions: function getPossibleDimensions() {
@@ -16331,9 +16331,9 @@ ControlDimensionsItemView = ControlBaseUnitsItemView.extend({
       return;
     }
 
-    // When using input with type="number" and the user starts typing `-`, the actual value (`event.target.value`) is
-    // an empty string. Since the user probably has the intention to insert a negative value, the methods below will
-    // not be triggered. This will prevent updating the input again with an empty string.
+    / When using input with type="number" and the user starts typing `-`, the actual value (`event.target.value`) is
+    / an empty string. Since the user probably has the intention to insert a negative value, the methods below will
+    / not be triggered. This will prevent updating the input again with an empty string.
     var hasIntentionForNegativeNumber = '-' === (event === null || event === void 0 || (_event$originalEvent = event.originalEvent) === null || _event$originalEvent === void 0 ? void 0 : _event$originalEvent.data) && !event.target.value;
     if (hasIntentionForNegativeNumber) {
       return;
@@ -16350,7 +16350,7 @@ ControlDimensionsItemView = ControlBaseUnitsItemView.extend({
     this.ui.link.toggleClass('unlinked');
     this.setValue('isLinked', !this.ui.link.hasClass('unlinked'));
     if (this.isLinkedDimensions()) {
-      // Set all controls value from the first control.
+      / Set all controls value from the first control.
       this.ui.controls.val(this.ui.controls.eq(0).val());
     }
     this.updateDimensions();
@@ -16395,17 +16395,17 @@ module.exports = ControlSelect2View.extend({
     this.ui.select.select2(this.getSelect2Options());
     this.ui.select.on('select2:open', function () {
       self.$previewContainer = jQuery('.select2-results__options[role="tree"]:visible');
-      // Load initial?
+      / Load initial?
       setTimeout(function () {
         self.enqueueFontsInView();
       }, 100);
 
-      // On search
+      / On search
       jQuery('input.select2-search__field:visible').on('keyup', function () {
         self.typeStopDetection.action.apply(self);
       });
 
-      // On scroll
+      / On scroll
       self.$previewContainer.on('scroll', function () {
         self.scrollStopDetection.onScroll.apply(self);
       });
@@ -16505,8 +16505,8 @@ ControlMediaItemView = ControlBaseDataView.extend({
     ui.clearGallery = '.elementor-control-gallery-clear';
     ui.galleryThumbnails = '.elementor-control-gallery-thumbnails';
     ui.status = '.elementor-control-gallery-status-title';
-    // eslint-disable-next-line capitalized-comments
-    // ui.warnings = '.elementor-control-media__warnings';
+    / eslint-disable-next-line capitalized-comments
+    / ui.warnings = '.elementor-control-media__warnings';
     ui.promotions = '.elementor-control-media__promotions';
     ui.promotions_dismiss = '.elementor-control-media__promotions .elementor-control-notice-dismiss';
     ui.promotions_action = '.elementor-control-media__promotions .elementor-control-notice-main-actions button';
@@ -16561,8 +16561,8 @@ ControlMediaItemView = ControlBaseDataView.extend({
                 var hasAlt = _this.imageHasAlt(attachment);
                 if (!hasAlt) {
                   $thumbnail.addClass('unoptimized__image');
-                  // eslint-disable-next-line capitalized-comments
-                  // imagesWithoutAlt += hasAlt ? 0 : 1;
+                  / eslint-disable-next-line capitalized-comments
+                  / imagesWithoutAlt += hasAlt ? 0 : 1;
                 }
                 if (hasPromotions && _this.imageNotOptimized(attachment)) {
                   imagesWithoutOptimization += 1;
@@ -16571,11 +16571,11 @@ ControlMediaItemView = ControlBaseDataView.extend({
               attachments.push(wp.media.attachment(image.id).fetch().then(handleHints));
             });
 
-            // Ensure all attachments are fetched before updating the warnings
+            / Ensure all attachments are fetched before updating the warnings
             _context.next = 13;
             return Promise.all(attachments).then(function () {
-              // eslint-disable-next-line capitalized-comments
-              // this.ui.warnings.toggle( !! imagesWithoutAlt );
+              / eslint-disable-next-line capitalized-comments
+              / this.ui.warnings.toggle( !! imagesWithoutAlt );
               if (hasPromotions) {
                 var showHints = promotionsAlwaysOn || !!imagesWithoutOptimization;
                 _this.ui.promotions.toggle(showHints);
@@ -16611,7 +16611,7 @@ ControlMediaItemView = ControlBaseDataView.extend({
     this.initFrame(action);
     this.frame.open();
 
-    // Set params to trigger sanitizer
+    / Set params to trigger sanitizer
     if (_filesUploadHandler.default.isUploadEnabled('svg')) {
       _filesUploadHandler.default.setUploadTypeCaller(this.frame);
     }
@@ -16636,7 +16636,7 @@ ControlMediaItemView = ControlBaseDataView.extend({
     this.frame = wp.media(options);
     this.addSvgMimeType();
 
-    // When a file is selected, run a callback.
+    / When a file is selected, run a callback.
     this.frame.on({
       update: this.select,
       'menu:render:default': this.menuRender,
@@ -16648,13 +16648,13 @@ ControlMediaItemView = ControlBaseDataView.extend({
       return;
     }
 
-    // Add the SVG to the currently allowed extensions
+    / Add the SVG to the currently allowed extensions
     var oldExtensions = _wpPluploadSettings.defaults.filters.mime_types[0].extensions;
     this.frame.on('ready', function () {
       _wpPluploadSettings.defaults.filters.mime_types[0].extensions = oldExtensions + ',svg';
     });
 
-    // Restore allowed upload extensions
+    / Restore allowed upload extensions
     this.frame.on('close', function () {
       _wpPluploadSettings.defaults.filters.mime_types[0].extensions = oldExtensions;
     });
@@ -16705,7 +16705,7 @@ ControlMediaItemView = ControlBaseDataView.extend({
     var _$dismissButton$;
     var $promotions = this.ui.promotions;
     var $dismissButton = $promotions.find('.elementor-control-notice-dismiss');
-    // Remove listener
+    / Remove listener
     $dismissButton.off('click');
     return ((_$dismissButton$ = $dismissButton[0]) === null || _$dismissButton$ === void 0 || (_$dismissButton$ = _$dismissButton$.dataset) === null || _$dismissButton$ === void 0 ? void 0 : _$dismissButton$.event) || false;
   },
@@ -16716,7 +16716,7 @@ ControlMediaItemView = ControlBaseDataView.extend({
     if (!eventName) {
       eventName = this.getDismissPromotionEventName();
     }
-    // Prevent opening the same promotion again in current editor session.
+    / Prevent opening the same promotion again in current editor session.
     elementor.config.user.dismissed_editor_notices.push(eventName);
   },
   onPromotionAction: function onPromotionAction(event) {
@@ -16743,7 +16743,7 @@ ControlMediaItemView = ControlBaseDataView.extend({
         }
       });
 
-      // Prevent opening the same promotion again in current editor session.
+      / Prevent opening the same promotion again in current editor session.
       elementor.config.user.dismissed_editor_notices.push(eventName);
     }
   },
@@ -16757,8 +16757,8 @@ ControlMediaItemView = ControlBaseDataView.extend({
     this.setValue([]);
     this.applySavedValue();
 
-    // eslint-disable-next-line capitalized-comments
-    // this.ui.warnings.hide();
+    / eslint-disable-next-line capitalized-comments
+    / this.ui.warnings.hide();
 
     if (this.ui.promotions) {
       this.ui.promotions.hide();
@@ -16821,7 +16821,7 @@ var ControlDimensionsView = __webpack_require__(/*! elementor-controls/dimension
 // eslint-disable-next-line prefer-const
 ControlGapItemView = ControlDimensionsView.extend({
   ui: function ui() {
-    // eslint-disable-next-line prefer-const
+    / eslint-disable-next-line prefer-const
     var ui = ControlDimensionsView.prototype.ui.apply(this, arguments);
     ui.controls = '.elementor-control-gap > input:enabled';
     ui.link = 'button.elementor-link-gaps';
@@ -17033,24 +17033,24 @@ var ControlIconsView = /*#__PURE__*/function (_ControlMultipleBaseI) {
         return valueToMigrate;
       }
 
-      // Bail if no migration flag or no value to migrate
+      / Bail if no migration flag or no value to migrate
       var value = _superPropGet(ControlIconsView, "getControlValue", this, 3)([]);
       if (!valueToMigrate) {
         return value;
       }
       var controlName = model.get('name');
 
-      // Check if migration had been done and is stored locally
+      / Check if migration had been done and is stored locally
       if (this.cache.migratedFlag[controlName]) {
         return this.cache.migratedFlag[controlName];
       }
-      // Check if already migrated
+      / Check if already migrated
       var didMigration = this.elementSettingsModel.get(this.dataKeys.migratedKey);
       if (didMigration && didMigration[controlName]) {
         return value;
       }
 
-      // Do migration
+      / Do migration
       return this.migrateFa4toFa5(valueToMigrate);
     }
   }, {
@@ -17083,7 +17083,7 @@ var ControlIconsView = /*#__PURE__*/function (_ControlMultipleBaseI) {
         return false;
       }
 
-      // Check if there is a value to migrate
+      / Check if there is a value to migrate
       var valueToMigrate = this.container.settings.get(controlToMigrate);
       if (valueToMigrate) {
         return valueToMigrate;
@@ -17094,11 +17094,11 @@ var ControlIconsView = /*#__PURE__*/function (_ControlMultipleBaseI) {
     key: "onReady",
     value: function onReady() {
       var _this2 = this;
-      // Is migration allowed from fa4
+      / Is migration allowed from fa4
       if (!this.isMigrationAllowed()) {
         var migrationPopupTrigger = 'media' === this.model.get('skin') ? this.ui.previewContainer[0] : this.ui.inlineIconContainer[0];
         migrationPopupTrigger.addEventListener('click', function (event) {
-          // Prevent default to prevent marking the inline icons as selected on click when migration is not allowed
+          / Prevent default to prevent marking the inline icons as selected on click when migration is not allowed
           event.preventDefault();
           event.stopPropagation();
           var onConfirm = function onConfirm() {
@@ -17130,7 +17130,7 @@ var ControlIconsView = /*#__PURE__*/function (_ControlMultipleBaseI) {
     key: "initFrame",
     value: function initFrame() {
       var _this3 = this;
-      // Set current doc id to attach uploaded images.
+      / Set current doc id to attach uploaded images.
       wp.media.view.settings.post.id = elementor.config.document.id;
       this.frame = wp.media({
         button: {
@@ -17152,20 +17152,20 @@ var ControlIconsView = /*#__PURE__*/function (_ControlMultipleBaseI) {
         return _this3.selectSvg();
       };
 
-      // When a file is selected, run a callback.
+      / When a file is selected, run a callback.
       this.frame.on('insert select', handleSelect);
       this.setUploadMimeType(this.frame, 'svg');
     }
   }, {
     key: "setUploadMimeType",
     value: function setUploadMimeType(frame, ext) {
-      // Set svg as only allowed upload extensions
+      / Set svg as only allowed upload extensions
       var oldExtensions = _wpPluploadSettings.defaults.filters.mime_types[0].extensions;
       frame.on('ready', function () {
         _wpPluploadSettings.defaults.filters.mime_types[0].extensions = ext;
       });
       this.frame.on('close', function () {
-        // Restore allowed upload extensions
+        / Restore allowed upload extensions
         _wpPluploadSettings.defaults.filters.mime_types[0].extensions = oldExtensions;
       });
     }
@@ -17179,7 +17179,7 @@ var ControlIconsView = /*#__PURE__*/function (_ControlMultipleBaseI) {
     value: function selectSvg() {
       this.trigger('before:select');
 
-      // Get the attachment from the modal frame.
+      / Get the attachment from the modal frame.
       var attachment = this.frame.state().get('selection').first().toJSON();
       if (attachment.url) {
         this.setValue({
@@ -17208,7 +17208,7 @@ var ControlIconsView = /*#__PURE__*/function (_ControlMultipleBaseI) {
       }
       this.frame.open();
 
-      // Set params to trigger sanitizer
+      / Set params to trigger sanitizer
       _filesUploadHandler.default.setUploadTypeCaller(this.frame);
       var selectedId = this.getControlValue('id');
       if (!selectedId) {
@@ -17267,14 +17267,14 @@ var ControlIconsView = /*#__PURE__*/function (_ControlMultipleBaseI) {
   }, {
     key: "setDefaultIconLibraryLabel",
     value: function setDefaultIconLibraryLabel(defaultIcon, iconContainer) {
-      // Check if the control has a default icon
+      / Check if the control has a default icon
       if ('' !== defaultIcon.value && 'svg' !== defaultIcon.library) {
-        // If the default icon is not an SVG, set the icon-library label's icon to the default icon
+        / If the default icon is not an SVG, set the icon-library label's icon to the default icon
         iconContainer.html('<i class="' + defaultIcon.value + '"></i>');
       } else {
-        // If (1) the control does NOT have a default icon,
-        // OR (2) the control DOES have a default icon BUT the default icon is an SVG,
-        // set the default icon-library label's icon to a simple circle
+        / If (1) the control does NOT have a default icon,
+        / OR (2) the control DOES have a default icon BUT the default icon is an SVG,
+        / set the default icon-library label's icon to a simple circle
         var skinOptions = this.model.get('skin_settings');
         iconContainer.html('<i class="' + skinOptions.inline.icon.icon + '"></i>');
       }
@@ -17351,7 +17351,7 @@ ControlImageDimensionsItemView = ControlMultipleBaseItemView.extend({
       btnApply: 'button.elementor-image-dimensions-apply-button'
     };
   },
-  // Override the base events
+  / Override the base events
   events: function events() {
     return {
       'click @ui.btnApply': 'onApplyClicked',
@@ -17405,8 +17405,8 @@ ControlMediaItemView = ControlMultipleBaseItemView.extend({
     ui.mediaVideo = '.elementor-control-media-video';
     ui.frameOpeners = '.elementor-control-preview-area';
     ui.removeButton = '.elementor-control-media__remove';
-    // eslint-disable-next-line capitalized-comments
-    // ui.warnings = '.elementor-control-media__warnings';
+    / eslint-disable-next-line capitalized-comments
+    / ui.warnings = '.elementor-control-media__warnings';
     ui.promotions = '.elementor-control-media__promotions';
     ui.promotions_dismiss = '.elementor-control-media__promotions .elementor-control-notice-dismiss';
     ui.promotions_action = '.elementor-control-media__promotions .elementor-control-notice-main-actions button';
@@ -17424,7 +17424,7 @@ ControlMediaItemView = ControlMultipleBaseItemView.extend({
     });
   },
   getMediaType: function getMediaType() {
-    // `get( 'media_type' )` is for BC.
+    / `get( 'media_type' )` is for BC.
     return this.mediaType || this.model.get('media_type') || this.model.get('media_types')[0];
   },
   /**
@@ -17471,8 +17471,8 @@ ControlMediaItemView = ControlMultipleBaseItemView.extend({
       if (attachmentId) {
         var dismissPromotionEventName = this.getDismissPromotionEventName();
         var handleHints = function handleHints(attachment) {
-          // eslint-disable-next-line capitalized-comments
-          // this.ui.warnings.toggle( ! this.imageHasAlt( attachment ) );
+          / eslint-disable-next-line capitalized-comments
+          / this.ui.warnings.toggle( ! this.imageHasAlt( attachment ) );
           if (_this.ui.promotions.length && !elementor.config.user.dismissed_editor_notices.includes(dismissPromotionEventName)) {
             var alwaysOn = _this.ui.promotions.find('.elementor-control-notice').data('display') || false;
             var showHint = alwaysOn || _this.imageNotOptimized(attachment);
@@ -17481,10 +17481,10 @@ ControlMediaItemView = ControlMultipleBaseItemView.extend({
         };
         wp.media.attachment(attachmentId).fetch().then(handleHints);
       } else {
-        // eslint-disable-next-line capitalized-comments
-        // this.ui.warnings.hide();
+        / eslint-disable-next-line capitalized-comments
+        / this.ui.warnings.hide();
 
-        // eslint-disable-next-line no-lonely-if
+        / eslint-disable-next-line no-lonely-if
         if (this.ui.promotions.length) {
           this.ui.promotions.hide();
         }
@@ -17528,14 +17528,14 @@ ControlMediaItemView = ControlMultipleBaseItemView.extend({
               IntroductionClass: window.elementorModules.editor.utils.Introduction
             });
           case 11:
-            // If there is no frame, or the current initialized frame contains a different library than
-            // the `data-media-type` of the clicked button, (re)initialize the frame.
+            / If there is no frame, or the current initialized frame contains a different library than
+            / the `data-media-type` of the clicked button, (re)initialize the frame.
             if (!_this2.frame || _this2.getLibraryType(mediaType) !== _this2.currentLibraryType) {
               _this2.initFrame();
             }
             _this2.frame.open();
 
-            // Set params to trigger sanitizer
+            / Set params to trigger sanitizer
             _filesUploadHandler.default.setUploadTypeCaller(_this2.frame);
             selectedId = _this2.getControlValue('id');
             if (selectedId) {
@@ -17580,7 +17580,7 @@ ControlMediaItemView = ControlMultipleBaseItemView.extend({
     var _$dismissButton$;
     var $promotions = this.ui.promotions;
     var $dismissButton = $promotions.find('.elementor-control-notice-dismiss');
-    // Remove listener
+    / Remove listener
     $dismissButton.off('click');
     return ((_$dismissButton$ = $dismissButton[0]) === null || _$dismissButton$ === void 0 || (_$dismissButton$ = _$dismissButton$.dataset) === null || _$dismissButton$ === void 0 ? void 0 : _$dismissButton$.event) || false;
   },
@@ -17619,7 +17619,7 @@ ControlMediaItemView = ControlMultipleBaseItemView.extend({
       }
     });
 
-    // Prevent opening the same promotion again in current editor session.
+    / Prevent opening the same promotion again in current editor session.
     elementor.config.user.dismissed_editor_notices.push(eventName);
   },
   onMediaInputImageSizeChange: function onMediaInputImageSizeChange() {
@@ -17641,7 +17641,7 @@ ControlMediaItemView = ControlMultipleBaseItemView.extend({
         size: currentControlValue.size
       }));
       if (this.model.get('responsive')) {
-        // Render is already calls `applySavedValue`, therefore there's no need for it in this case.
+        / Render is already calls `applySavedValue`, therefore there's no need for it in this case.
         this.renderWithChildren();
       } else {
         this.applySavedValue();
@@ -17675,7 +17675,7 @@ ControlMediaItemView = ControlMultipleBaseItemView.extend({
     var mediaType = this.getMediaType();
     this.currentLibraryType = this.getLibraryType(mediaType);
 
-    // Set current doc id to attach uploaded images.
+    / Set current doc id to attach uploaded images.
     wp.media.view.settings.post.id = elementor.config.document.id;
     this.frame = wp.media({
       frame: 'post',
@@ -17691,10 +17691,10 @@ ControlMediaItemView = ControlMultipleBaseItemView.extend({
       })]
     });
 
-    // Remove unwanted elements when frame is opened.
+    / Remove unwanted elements when frame is opened.
     this.frame.on('ready open', this.onFrameReady.bind(this));
 
-    // When a file is selected, run a callback.
+    / When a file is selected, run a callback.
     this.frame.on('insert select', this.select.bind(this));
     if (elementorCommon.config.filesUpload.unfilteredFiles) {
       this.setUploadMimeType(this.frame, mediaType);
@@ -17708,36 +17708,36 @@ ControlMediaItemView = ControlMultipleBaseItemView.extend({
     var elementsToRemove = ['#menu-item-insert', '#menu-item-gallery', '#menu-item-playlist', '#menu-item-video-playlist', '.embed-link-settings'];
     $frame.find(elementsToRemove.join(',')).remove();
 
-    // Change the default button text using CSS by passing the text as a variable.
+    / Change the default button text using CSS by passing the text as a variable.
     $frame.css('--button-text', "'".concat(__('Insert Media', 'elementor'), "'"));
 
-    // Remove elements from the URL upload tab.
+    / Remove elements from the URL upload tab.
     $frame.addClass('e-wp-media-elements-removed');
     if ('url' === this.getControlValue('source')) {
-      // Go to the url tab.
+      / Go to the url tab.
       $frame.find('#menu-item-embed').trigger('click');
 
-      // Hide the top media tabs ( WordPress does that automatically if a real user clicks the url tab ).
+      / Hide the top media tabs ( WordPress does that automatically if a real user clicks the url tab ).
       $frame.addClass('hide-router');
 
-      // Load the image URL.
+      / Load the image URL.
       this.frame.views.get('.media-frame-content')[0].url.model.set({
         url: this.getControlValue('url'),
         alt: this.getControlValue('alt')
       });
     } else {
-      // Go to the upload tab.
+      / Go to the upload tab.
       $frame.find('#menu-item-library').trigger('click');
     }
   },
   setUploadMimeType: function setUploadMimeType(frame, ext) {
-    // Add unfiltered files to the allowed upload extensions
+    / Add unfiltered files to the allowed upload extensions
     var oldExtensions = _wpPluploadSettings.defaults.filters.mime_types[0].extensions;
     frame.on('ready', function () {
       _wpPluploadSettings.defaults.filters.mime_types[0].extensions = 'application/json' === ext ? 'json' : oldExtensions + ',svg';
     });
     this.frame.on('close', function () {
-      // Restore allowed upload extensions
+      / Restore allowed upload extensions
       _wpPluploadSettings.defaults.filters.mime_types[0].extensions = oldExtensions;
     });
   },
@@ -17750,7 +17750,7 @@ ControlMediaItemView = ControlMultipleBaseItemView.extend({
     var state = this.frame.state();
     var attachment;
     if ('embed' === state.get('id')) {
-      // Insert from URL.
+      / Insert from URL.
       attachment = {
         url: state.props.get('url'),
         id: '',
@@ -17758,7 +17758,7 @@ ControlMediaItemView = ControlMultipleBaseItemView.extend({
         source: 'url'
       };
     } else {
-      // Get the attachment from the modal frame.
+      / Get the attachment from the modal frame.
       attachment = this.frame.state().get('selection').first().toJSON();
       attachment.source = 'library';
     }
@@ -17771,7 +17771,7 @@ ControlMediaItemView = ControlMultipleBaseItemView.extend({
         size: this.model.get('default').size
       });
       if (this.model.get('responsive')) {
-        // Render is already calls `applySavedValue`, therefore there's no need for it in this case.
+        / Render is already calls `applySavedValue`, therefore there's no need for it in this case.
         this.renderWithChildren();
       } else {
         this.applySavedValue();
@@ -17955,7 +17955,7 @@ var ControlPopoverStarterView = exports["default"] = /*#__PURE__*/function (_Con
       var _this = this;
       var $popover = this.$el.next('.elementor-controls-popover');
 
-      // Attach the current control as a toggle of its popover.
+      / Attach the current control as a toggle of its popover.
       if ($popover.length) {
         $popover[0].dataset.popoverToggle = "elementor-control-default-".concat(this.model.cid);
         $popover.on('hide', function () {
@@ -17984,7 +17984,7 @@ var ControlPopoverStarterView = exports["default"] = /*#__PURE__*/function (_Con
         return;
       }
 
-      // If the control has a global value, unset the global.
+      / If the control has a global value, unset the global.
       if (this.getGlobalKey()) {
         this.triggerMethod('unset:global:value');
       } else if (this.isGlobalActive()) {
@@ -18030,7 +18030,7 @@ var ControlPopoverStarterView = exports["default"] = /*#__PURE__*/function (_Con
         var _ref2 = (0, _slicedToArray2.default)(_ref, 2),
           property = _ref2[0],
           value = _ref2[1];
-        // If a control value is empty, ignore it.
+        / If a control value is empty, ignore it.
         if (!value || '' === value.size) {
           return;
         }
@@ -18044,7 +18044,7 @@ var ControlPopoverStarterView = exports["default"] = /*#__PURE__*/function (_Con
           var fontSize = 'custom' === value.unit ? value.size : "".concat(value.size).concat(value.unit);
           cssObject.fontSize = "min(".concat(fontSize, ", 28px)");
         } else {
-          // Convert the snake case property names into camel case to match their corresponding CSS property names.
+          / Convert the snake case property names into camel case to match their corresponding CSS property names.
           if (property.includes('_')) {
             property = property.replace(/([_][a-z])/g, function (result) {
               return result.toUpperCase().replace('_', '');
@@ -18126,7 +18126,7 @@ var ControlPopoverStarterView = exports["default"] = /*#__PURE__*/function (_Con
     value: function buildGlobalsList(globalTypographies, $globalPreviewItemsContainer) {
       var _this3 = this;
       Object.values(globalTypographies).forEach(function (typography) {
-        // Only build markup if the typography is valid.
+        / Only build markup if the typography is valid.
         if (typography) {
           var $typographyPreview = _this3.createGlobalItemMarkup(typography);
           $globalPreviewItemsContainer.append($typographyPreview);
@@ -18234,7 +18234,7 @@ module.exports = Marionette.CompositeView.extend({
   initialize: function initialize(options) {
     this.itemIndex = 0;
 
-    // Collection for Controls list
+    / Collection for Controls list
     this.collection = new Backbone.Collection(_.values(elementor.mergeControlsSettings(options.controlFields)));
   },
   onRender: function onRender() {
@@ -18304,20 +18304,20 @@ ControlRepeaterItemView = ControlBaseDataView.extend({
     return new elementorModules.editor.elements.models.BaseSettings(attrs, options);
   },
   fillCollection: function fillCollection() {
-    // TODO: elementSettingsModel is deprecated since 2.8.0.
+    / TODO: elementSettingsModel is deprecated since 2.8.0.
     var settings = this.container ? this.container.settings : this.elementSettingsModel;
     var controlName = this.model.get('name');
     this.collection = settings.get(controlName);
 
-    // Hack for history redo/undo
+    / Hack for history redo/undo
     if (!(this.collection instanceof Backbone.Collection)) {
       this.collection = new Backbone.Collection(this.collection, {
-        // Use `partial` to supply the `this` as an argument, but not as context
-        // the `_` is a place holder for original arguments: `attrs` & `options`
+        / Use `partial` to supply the `this` as an argument, but not as context
+        / the `_` is a place holder for original arguments: `attrs` & `options`
         model: _.partial(this.createItemModel, _, _, this)
       });
 
-      // Set the value silent
+      / Set the value silent
       settings.set(controlName, this.collection, {
         silent: true
       });
@@ -18334,7 +18334,7 @@ ControlRepeaterItemView = ControlBaseDataView.extend({
       var currentEditable = this.currentEditableChild.getChildViewContainer(this.currentEditableChild);
       currentEditable.removeClass('editable');
 
-      // If the repeater contains TinyMCE editors, fire the `hide` trigger to hide floated toolbars
+      / If the repeater contains TinyMCE editors, fire the `hide` trigger to hide floated toolbars
       currentEditable.find('.elementor-wp-editor').each(function () {
         tinymce.get(this.id).fire('hide');
       });
@@ -18393,7 +18393,7 @@ ControlRepeaterItemView = ControlBaseDataView.extend({
       axis: 'y',
       handle: '.elementor-repeater-row-tools',
       items: ' > :not(.elementor-repeater-row--disable-sort)',
-      cancel: '' // Elements that do not allow sorting (by default it includs buttons).
+      cancel: '' / Elements that do not allow sorting (by default it includs buttons).
     };
   },
   onRender: function onRender() {
@@ -18407,7 +18407,7 @@ ControlRepeaterItemView = ControlBaseDataView.extend({
     ui.item.data('oldIndex', ui.item.index());
   },
   onSortStop: function onSortStop(event, ui) {
-    // Reload TinyMCE editors (if exist), it's a bug that TinyMCE content is missing after stop dragging
+    / Reload TinyMCE editors (if exist), it's a bug that TinyMCE content is missing after stop dragging
     var self = this,
       sortedIndex = ui.item.index();
     if (-1 === sortedIndex) {
@@ -18465,7 +18465,7 @@ ControlRepeaterItemView = ControlBaseDataView.extend({
   getDefaults: function getDefaults() {
     var defaults = {};
 
-    // Get default fields.
+    / Get default fields.
     _.each(this.model.get('fields'), function (field) {
       defaults[field.name] = field.default;
     });
@@ -18517,7 +18517,7 @@ ControlRepeaterItemView = ControlBaseDataView.extend({
     this.editRow(childView);
   },
   onAfterExternalChange: function onAfterExternalChange() {
-    // Update the collection with current value
+    / Update the collection with current value
     this.fillCollection();
     ControlBaseDataView.prototype.onAfterExternalChange.apply(this, arguments);
   }
@@ -18570,8 +18570,8 @@ ControlSelectItemView = ControlBaseDataView.extend({
     }
     var selected = select.find('option:selected');
 
-    // When option with an empty value ('') selected, and it's not the placeholder option,
-    // set the selected option to the placeholder.
+    / When option with an empty value ('') selected, and it's not the placeholder option,
+    / set the selected option to the placeholder.
     if ('' === selected.val() && !selected.hasClass('e-option-placeholder')) {
       selected = select.find('.e-option-placeholder');
       selected.prop('selected', true);
@@ -18631,7 +18631,7 @@ ControlSelect2ItemView = ControlBaseDataView.extend({
       },
       lockedOptions = this.model.get('lockedOptions');
 
-    // If any non-deletable options are passed, remove the 'x' element from the template for selected items.
+    / If any non-deletable options are passed, remove the 'x' element from the template for selected items.
     if (lockedOptions) {
       defaultOptions.templateSelection = function (data, container) {
         if (lockedOptions.includes(data.id)) {
@@ -18654,7 +18654,7 @@ ControlSelect2ItemView = ControlBaseDataView.extend({
     ControlBaseDataView.prototype.applySavedValue.apply(this, arguments);
     var elementSelect2Data = this.ui.select.data('select2');
 
-    // Checking if the element itself was initiated with select2 functionality in case of multiple renders.
+    / Checking if the element itself was initiated with select2 functionality in case of multiple renders.
     if (!elementSelect2Data) {
       this.select2Instance = new _select.default({
         $element: this.ui.select,
@@ -18693,7 +18693,7 @@ ControlSelect2ItemView = ControlBaseDataView.extend({
    */
   getInputValue: function getInputValue(input) {
     var _ControlBaseDataView$;
-    // eslint-disable-line no-unused-vars
+    / eslint-disable-line no-unused-vars
     return (_ControlBaseDataView$ = ControlBaseDataView.prototype.getInputValue.apply(this, arguments)) !== null && _ControlBaseDataView$ !== void 0 ? _ControlBaseDataView$ : '';
   },
   onBaseInputChange: function onBaseInputChange() {
@@ -18701,8 +18701,8 @@ ControlSelect2ItemView = ControlBaseDataView.extend({
     this.updatePlaceholder();
   },
   onBeforeDestroy: function onBeforeDestroy() {
-    // We always destroy the select2 instance because there are cases where the DOM element's data cache
-    // itself has been destroyed but the select2 instance on it still exists
+    / We always destroy the select2 instance because there are cases where the DOM element's data cache
+    / itself has been destroyed but the select2 instance on it still exists
     this.select2Instance.destroy();
     this.$el.remove();
   }
@@ -18739,7 +18739,7 @@ ControlSliderItemView = ControlBaseUnitsItemView.extend({
     return !jQuery.isEmptyObject(sizes);
   },
   initSlider: function initSlider() {
-    // Slider does not exist in tests.
+    / Slider does not exist in tests.
     if (!this.ui.slider[0]) {
       return;
     }
@@ -18756,7 +18756,7 @@ ControlSliderItemView = ControlBaseUnitsItemView.extend({
     } else {
       sizes = [sizes];
 
-      // Make sure the value is a number, because the slider can't handle strings.
+      / Make sure the value is a number, because the slider can't handle strings.
       sizes[0] = parseFloat(sizes[0]) || 0;
       this.ui.input.attr(unitRange);
     }
@@ -18792,7 +18792,7 @@ ControlSliderItemView = ControlBaseUnitsItemView.extend({
   },
   applySavedValue: function applySavedValue() {
     ControlBaseUnitsItemView.prototype.applySavedValue.apply(this, arguments);
-    // Slider does not exist in tests.
+    / Slider does not exist in tests.
     if (this.isSliderInitialized()) {
       this.ui.slider[0].noUiSlider.set(this.getSize());
     }
@@ -18815,7 +18815,7 @@ ControlSliderItemView = ControlBaseUnitsItemView.extend({
     this.initSlider();
   },
   destroySlider: function destroySlider() {
-    // Slider does not exist in tests.
+    / Slider does not exist in tests.
     if (this.ui.slider[0] && this.ui.slider[0].noUiSlider) {
       this.ui.slider[0].noUiSlider.destroy();
     }
@@ -19053,7 +19053,7 @@ var URL = /*#__PURE__*/function (_BaseMultiple) {
         positionBase = elementorCommon.config.isRTL ? 'right' : 'left';
       var last, cache;
 
-      // Based on /wp-includes/js/tinymce/plugins/wplink/plugin.js.
+      / Based on /wp-includes/js/tinymce/plugins/wplink/plugin.js.
       $mainInput.autocomplete({
         source: function source(request, response) {
           if (!_this.options.model.attributes.autocomplete) {
@@ -19067,7 +19067,7 @@ var URL = /*#__PURE__*/function (_BaseMultiple) {
             return response();
           }
 
-          // Show Spinner.
+          / Show Spinner.
           $mainInput.prev().show();
           jQuery.post(window.ajaxurl, {
             editor: 'elementor',
@@ -19105,7 +19105,7 @@ var URL = /*#__PURE__*/function (_BaseMultiple) {
         }
       });
 
-      // The `_renderItem` cannot be override via the arguments.
+      / The `_renderItem` cannot be override via the arguments.
       $mainInput.autocomplete('instance')._renderItem = function (ul, item) {
         var fallbackTitle = window.wpLinkL10n ? window.wpLinkL10n.noTitle : '',
           title = item.title ? item.title : fallbackTitle;
@@ -19163,8 +19163,8 @@ ControlVisualChoiceItemView = ControlBaseDataView.extend({
   updatePlaceholder: function updatePlaceholder() {
     var placeholder = this.getControlPlaceholder();
     if (!this.getControlValue() && placeholder) {
-      // Find the input which has value equals to the placeholder (which is the parent's value),
-      // and add it a placeholder class, to indicate which value is selected in the parent.
+      / Find the input which has value equals to the placeholder (which is the parent's value),
+      / and add it a placeholder class, to indicate which value is selected in the parent.
       this.ui.inputs.filter("[value=\"".concat(this.getControlPlaceholder(), "\"]")).addClass('e-visual-choice-placeholder');
     } else {
       this.ui.inputs.removeClass('e-visual-choice-placeholder');
@@ -19241,21 +19241,21 @@ ControlWPWidgetItemView = ControlBaseDataView.extend({
     var self = this;
     elementorCommon.ajax.addRequest('editor_get_wp_widget_form', {
       data: {
-        // Fake Widget ID
+        / Fake Widget ID
         id: self.model.cid,
         widget_type: self.model.get('widget'),
         data: self.container.settings.toJSON()
       },
       success: function success(data) {
         self.ui.form.html(data);
-        // WP >= 4.8
+        / WP >= 4.8
         if (wp.textWidgets) {
           self.ui.form.addClass('open');
           var event = new jQuery.Event('widget-added');
           wp.textWidgets.handleWidgetAdded(event, self.ui.form);
           wp.mediaWidgets.handleWidgetAdded(event, self.ui.form);
 
-          // WP >= 4.9
+          / WP >= 4.9
           if (wp.customHtmlWidgets) {
             wp.customHtmlWidgets.handleWidgetAdded(event, self.ui.form);
           }
@@ -19295,7 +19295,7 @@ ControlWysiwygItemView = ControlBaseDataView.extend({
       'keyup textarea.elementor-wp-editor': 'onBaseInputChange'
     });
   },
-  // List of buttons to move {buttonToMove: afterButton}
+  / List of buttons to move {buttonToMove: afterButton}
   buttons: {
     addToBasic: {
       underline: 'italic'
@@ -19316,13 +19316,13 @@ ControlWysiwygItemView = ControlBaseDataView.extend({
     var self = this;
     self.editorID = 'elementorwpeditor' + self.cid;
 
-    // Wait a cycle before initializing the editors.
+    / Wait a cycle before initializing the editors.
     _.defer(function () {
       if (self.isDestroyed) {
         return;
       }
 
-      // Initialize QuickTags, and set as the default mode.
+      / Initialize QuickTags, and set as the default mode.
       quicktags({
         buttons: 'strong,em,del,link,img,close',
         id: self.editorID
@@ -19355,7 +19355,7 @@ ControlWysiwygItemView = ControlBaseDataView.extend({
     var controlValue = this.getControlValue();
     this.editor.setContent(controlValue);
 
-    // Update also the plain textarea
+    / Update also the plain textarea
     jQuery('#' + this.editorID).val(controlValue);
   },
   saveEditor: function saveEditor() {
@@ -19407,14 +19407,14 @@ ControlWysiwygItemView = ControlBaseDataView.extend({
     }, 100);
   },
   onBeforeDestroy: function onBeforeDestroy() {
-    // Remove TinyMCE and QuickTags instances
+    / Remove TinyMCE and QuickTags instances
     delete QTags.instances[this.editorID];
     if (!elementor.config.rich_editing_enabled) {
       return;
     }
     tinymce.EditorManager.execCommand('mceRemoveEditor', true, this.editorID);
 
-    // Cleanup PreInit data
+    / Cleanup PreInit data
     delete tinyMCEPreInit.mceInit[this.editorID];
     delete tinyMCEPreInit.qtInit[this.editorID];
   }
@@ -19504,7 +19504,7 @@ var Create = exports.Create = /*#__PURE__*/function (_CreateBase) {
         throw new Error("Invalid setting: control '".concat(setting, "', not found."));
       }
 
-      // `args.id` used by tests.
+      / `args.id` used by tests.
       var id = args.id || elementorCommon.helpers.getUniqueId();
       result = $e.data.create("globals/colors?id=".concat(id), {
         title: title,
@@ -19658,7 +19658,7 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 var _colors = __webpack_require__(/*! ./colors */ "../assets/dev/js/editor/data/globals/commands/data/colors.js");
 var _typography = __webpack_require__(/*! ./typography */ "../assets/dev/js/editor/data/globals/commands/data/typography.js");
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
-function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); } // Alphabetical order
+function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); } / Alphabetical order
 // TODO: Remove - Move to into base, Possible to handle using ComponentData.
 var Index = exports.Index = /*#__PURE__*/function (_$e$modules$CommandDa) {
   function Index() {
@@ -19669,7 +19669,7 @@ var Index = exports.Index = /*#__PURE__*/function (_$e$modules$CommandDa) {
   return (0, _createClass2.default)(Index, null, [{
     key: "getEndpointFormat",
     value: function getEndpointFormat() {
-      // Format 'globals/index' to 'globals'.
+      / Format 'globals/index' to 'globals'.
       return 'globals';
     }
   }]);
@@ -19842,7 +19842,7 @@ var Create = exports.Create = /*#__PURE__*/function (_CreateBase) {
           var _ref2 = (0, _slicedToArray2.default)(_ref, 1),
             key = _ref2[0];
           if (key.includes(groupPrefix)) {
-            // Get values but remove defaults.
+            / Get values but remove defaults.
             var value = container.settings.get(key),
               defaultValue = container.controls[key].default;
             if (!_.isEqual(value, defaultValue)) {
@@ -19986,7 +19986,7 @@ var CommandDisableEnable = exports["default"] = /*#__PURE__*/function (_CommandH
        */
       this.type = this.command === this.constructor.getEnableCommand() ? 'enable' : 'disable';
 
-      // Override default logic, since getHistory() depends on `this.type`.
+      / Override default logic, since getHistory() depends on `this.type`.
       _superPropGet(CommandDisableEnable, "initialize", this, 3)([args]);
     }
   }, {
@@ -20028,7 +20028,7 @@ var CommandDisableEnable = exports["default"] = /*#__PURE__*/function (_CommandH
       elementorModules.ForceMethodImplementation();
     }
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * @return {string} Full enable command.
      */
@@ -20038,7 +20038,7 @@ var CommandDisableEnable = exports["default"] = /*#__PURE__*/function (_CommandH
       elementorModules.ForceMethodImplementation();
     }
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * @return {string} Full disable command.
      */
@@ -20053,7 +20053,7 @@ var CommandDisableEnable = exports["default"] = /*#__PURE__*/function (_CommandH
       var data = historyItem.get('data'),
         CommandClass = $e.commands.getCommandClass(data.command);
 
-      // Upon `disable` command toggle `isRedo`.
+      / Upon `disable` command toggle `isRedo`.
       if (CommandClass.getDisableCommand() === data.command) {
         isRedo = !isRedo;
       }
@@ -20128,7 +20128,7 @@ var CommandHistoryBase = exports["default"] = /*#__PURE__*/function (_CommandCon
       }
     }
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Function getHistory().
      *
@@ -20142,7 +20142,7 @@ var CommandHistoryBase = exports["default"] = /*#__PURE__*/function (_CommandCon
     key: "getHistory",
     value: function getHistory() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       elementorModules.ForceMethodImplementation();
     }
 
@@ -20191,7 +20191,7 @@ var CommandHistoryBase = exports["default"] = /*#__PURE__*/function (_CommandCon
   }, {
     key: "onCatchApply",
     value: function onCatchApply(e) {
-      // Rollback history on failure.
+      / Rollback history on failure.
       if (e instanceof $e.modules.HookBreak && this.historyId) {
         $e.internal('document/history/delete-log', {
           id: this.historyId
@@ -20202,7 +20202,7 @@ var CommandHistoryBase = exports["default"] = /*#__PURE__*/function (_CommandCon
   }, {
     key: "isDataChanged",
     value: function isDataChanged() {
-      // All the commands who use history are commands that changing the data.
+      / All the commands who use history are commands that changing the data.
       return true;
     }
   }], [{
@@ -20268,7 +20268,7 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
     key: "defaultCommands",
     value: function defaultCommands() {
       return {
-        // Example: ( args ) => ( new Commands.Example( args ).run() ),
+        / Example: ( args ) => ( new Commands.Example( args ).run() ),
       };
     }
   }, {
@@ -20874,7 +20874,7 @@ var Copy = exports.Copy = /*#__PURE__*/function (_$e$modules$editor$Co) {
       };
       elementorCommon.storage.set(storageKey, storageData);
 
-      // TODO: Use package for clipboard saving
+      / TODO: Use package for clipboard saving
       var clipboard = document.createElement('textarea');
       clipboard.value = JSON.stringify(storageData);
       document.body.appendChild(clipboard);
@@ -20920,7 +20920,7 @@ var Create = exports.Create = /*#__PURE__*/function (_$e$modules$editor$do) {
     value: function validateArgs(args) {
       this.requireContainer(args);
 
-      // Avoid Backbone model & etc.
+      / Avoid Backbone model & etc.
       this.requireArgumentConstructor('model', Object, args);
     }
   }, {
@@ -20980,7 +20980,7 @@ var Create = exports.Create = /*#__PURE__*/function (_$e$modules$editor$do) {
         container = historyItem.get('container'),
         options = historyItem.get('options') || {};
 
-      // No clone when restoring. e.g: duplicate will generate unique ids while restoring.
+      / No clone when restoring. e.g: duplicate will generate unique ids while restoring.
       if (options.clone) {
         options.clone = false;
       }
@@ -21427,7 +21427,7 @@ var Import = exports.Import = /*#__PURE__*/function (_$e$modules$editor$do) {
         result = [];
       var at = isNaN(options.at) ? container.view.collection.length : options.at;
 
-      // Each `data.content`.
+      / Each `data.content`.
       Object.values(data.content).forEach(function (model) {
         result.push($e.run('document/elements/create', {
           container: container,
@@ -21664,7 +21664,7 @@ var Move = exports.Move = /*#__PURE__*/function (_$e$modules$editor$do) {
       var count = 0;
       var result = [];
       reCreate.forEach(function (model) {
-        // If multiple fix position.
+        / If multiple fix position.
         if (Object.prototype.hasOwnProperty.call(options, 'at') && reCreate.length > 1) {
           if (0 !== count) {
             options.at += count;
@@ -21867,7 +21867,7 @@ var PasteStyle = exports.PasteStyle = /*#__PURE__*/function (_$e$modules$editor$
     value: function validateArgs(args) {
       this.requireContainer(args);
 
-      // Validate if storage have data.
+      / Validate if storage have data.
       var _args$storageKey = args.storageKey,
         storageKey = _args$storageKey === void 0 ? 'clipboard' : _args$storageKey,
         storageData = elementorCommon.storage.get(storageKey);
@@ -21880,7 +21880,7 @@ var PasteStyle = exports.PasteStyle = /*#__PURE__*/function (_$e$modules$editor$
     value: function validateControls(source, target) {
       var result = true;
 
-      // Cannot use `_.isEmpty()` does not pass paste style test.
+      / Cannot use `_.isEmpty()` does not pass paste style test.
       if (null === source || null === target || undefined === source || undefined === target || 'object' === (0, _typeof2.default)(source) ^ 'object' === (0, _typeof2.default)(target)) {
         result = false;
       }
@@ -21950,7 +21950,7 @@ var PasteStyle = exports.PasteStyle = /*#__PURE__*/function (_$e$modules$editor$
               return;
             }
             if ('object' === (0, _typeof2.default)(controlSourceValue)) {
-              // eslint-disable-next-line array-callback-return
+              / eslint-disable-next-line array-callback-return
               var isEqual = Object.keys(controlSourceValue).some(function (propertyKey) {
                 if (controlSourceValue[propertyKey] !== controlTargetValue[propertyKey]) {
                   return false;
@@ -22110,7 +22110,7 @@ var Paste = exports.Paste = /*#__PURE__*/function (_$e$modules$editor$do) {
               _context.t0 = _context["catch"](5);
               return _context.abrupt("return", false);
             case 14:
-              result = []; // Paste on "Add Section" area.
+              result = []; / Paste on "Add Section" area.
               if (rebuild) {
                 result = this.rebuild(containers, storageDataElements, at);
               } else {
@@ -22141,7 +22141,7 @@ var Paste = exports.Paste = /*#__PURE__*/function (_$e$modules$editor$do) {
     key: "rebuild",
     value: function rebuild(containers, data, at) {
       var _this = this;
-      // Paste at each target.
+      / Paste at each target.
       var result = [];
       containers.forEach(function (targetContainer) {
         var createNewElementAtTheBottomOfThePage = 'undefined' === typeof at;
@@ -22150,7 +22150,7 @@ var Paste = exports.Paste = /*#__PURE__*/function (_$e$modules$editor$do) {
           switch (model.elType) {
             case 'container':
               {
-                // Push the cloned container to the 'document'.
+                / Push the cloned container to the 'document'.
                 result.push(_this.pasteTo([targetContainer], [model], {
                   at: createNewElementAtTheBottomOfThePage ? ++index : index
                 }));
@@ -22158,7 +22158,7 @@ var Paste = exports.Paste = /*#__PURE__*/function (_$e$modules$editor$do) {
               break;
             case 'section':
               {
-                // If is inner create section for `inner-section`.
+                / If is inner create section for `inner-section`.
                 if (model.isInner) {
                   var section = $e.run('document/elements/create', {
                     container: targetContainer,
@@ -22172,11 +22172,11 @@ var Paste = exports.Paste = /*#__PURE__*/function (_$e$modules$editor$do) {
                     }
                   });
 
-                  // `targetContainer` = first column at `section`.
+                  / `targetContainer` = first column at `section`.
                   targetContainer = section.view.children.findByIndex(0).getContainer();
                 }
 
-                // Will be not affected by hook since it always have `model.elements`.
+                / Will be not affected by hook since it always have `model.elements`.
                 result.push(_this.pasteTo([targetContainer], [model], {
                   at: index,
                   edit: false
@@ -22186,14 +22186,14 @@ var Paste = exports.Paste = /*#__PURE__*/function (_$e$modules$editor$do) {
               break;
             case 'column':
               {
-                // Next code changed from original since `_checkIsEmpty()` was removed.
+                / Next code changed from original since `_checkIsEmpty()` was removed.
                 var _section = $e.run('document/elements/create', {
                   container: targetContainer,
                   model: {
                     elType: 'section'
                   },
                   columns: 0,
-                  // Section with no columns.
+                  / Section with no columns.
                   options: {
                     at: ++index,
                     edit: false
@@ -22204,15 +22204,15 @@ var Paste = exports.Paste = /*#__PURE__*/function (_$e$modules$editor$do) {
               break;
             default:
               {
-                // The 'default' case is widget.
+                / The 'default' case is widget.
                 var target;
                 if ('section' === targetContainer.model.get('elType')) {
-                  // On trying to paste widget on section, the paste should be at the first column.
+                  / On trying to paste widget on section, the paste should be at the first column.
                   target = [targetContainer.view.children.findByIndex(0).getContainer()];
                 } else if ('container' === targetContainer.model.get('elType')) {
                   target = [targetContainer];
                 } else if (elementorCommon.config.experimentalFeatures.container) {
-                  // If the container experiment is active, create a new wrapper container.
+                  / If the container experiment is active, create a new wrapper container.
                   target = $e.run('document/elements/create', {
                     container: targetContainer,
                     model: {
@@ -22224,7 +22224,7 @@ var Paste = exports.Paste = /*#__PURE__*/function (_$e$modules$editor$do) {
                   });
                   target = [target];
                 } else {
-                  // Else, create section with one column for the element.
+                  / Else, create section with one column for the element.
                   var _section2 = $e.run('document/elements/create', {
                     container: targetContainer,
                     model: {
@@ -22236,7 +22236,7 @@ var Paste = exports.Paste = /*#__PURE__*/function (_$e$modules$editor$do) {
                     }
                   });
 
-                  // Create the element inside the column that just was created.
+                  / Create the element inside the column that just was created.
                   target = [_section2.view.children.first().getContainer()];
                 }
                 result.push(_this.pasteTo(target, [model]));
@@ -22262,7 +22262,7 @@ var Paste = exports.Paste = /*#__PURE__*/function (_$e$modules$editor$do) {
           options: options
         }));
 
-        // On paste sections, increase the `at` for every section.
+        / On paste sections, increase the `at` for every section.
         if (null !== options.at) {
           options.at++;
         }
@@ -22337,7 +22337,7 @@ var ResetSettings = exports.ResetSettings = /*#__PURE__*/function (_$e$modules$e
           var _ref2 = (0, _slicedToArray2.default)(_ref, 2),
             controlName = _ref2[0],
             control = _ref2[1];
-          // If settings were specific, restore only them.
+          / If settings were specific, restore only them.
           if (settings && settings.length) {
             if (!settings.find(function (key) {
               return key === controlName;
@@ -22474,8 +22474,8 @@ var SelectAll = exports.SelectAll = /*#__PURE__*/function (_$e$modules$CommandBa
     key: "apply",
     value: function apply() {
       elementor.selection.add(this.flattenContainersList(
-      // The selection mechanism keeps selected elements in a single-dimension object. Therefore, In order to
-      // select all document elements, we should convert them into a flatten, single-dimension array.
+      / The selection mechanism keeps selected elements in a single-dimension object. Therefore, In order to
+      / select all document elements, we should convert them into a flatten, single-dimension array.
       elementor.elementsModel.get('elements').map(function (element) {
         return elementor.getContainer(element.id);
       })));
@@ -22657,15 +22657,15 @@ var Settings = exports.Settings = /*#__PURE__*/function (_$e$modules$editor$do) 
         var newSettings = isMultiSettings ? settings[container.id] : settings,
           oldSettings = container.settings.toJSON();
 
-        // Clear old oldValues.
+        / Clear old oldValues.
         container.oldValues = {};
 
-        // Set oldValues, For each setting is about to change save setting value.
+        / Set oldValues, For each setting is about to change save setting value.
         Object.keys(newSettings).forEach(function (key) {
           container.oldValues[key] = oldSettings[key];
         });
 
-        // If history active, add history transaction with old and new settings.
+        / If history active, add history transaction with old and new settings.
         if (_this.isHistoryActive()) {
           _this.addToHistory(container, newSettings, container.oldValues);
         }
@@ -22875,7 +22875,7 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
           var _storage$elements;
           var storage = elementorCommon.storage.get('clipboard');
 
-          // No storage? no paste.
+          / No storage? no paste.
           if (!storage || !(storage !== null && storage !== void 0 && (_storage$elements = storage.elements) !== null && _storage$elements !== void 0 && _storage$elements.length) || 'elementor' !== (storage === null || storage === void 0 ? void 0 : storage.type)) {
             return false;
           }
@@ -23016,7 +23016,7 @@ var Disable = exports.Disable = /*#__PURE__*/function (_DisableEnable) {
                     while (1) switch (_context2.prev = _context2.next) {
                       case 0:
                         container = container.lookup();
-                        promises = []; // TODO rename `options.restore` => `options.unlink`.
+                        promises = []; / TODO rename `options.restore` => `options.unlink`.
                         if (!options.restore) {
                           _context2.next = 6;
                           break;
@@ -23055,7 +23055,7 @@ var Disable = exports.Disable = /*#__PURE__*/function (_DisableEnable) {
                         _context2.next = 6;
                         return Promise.all(promises);
                       case 6:
-                        // Clear globals.
+                        / Clear globals.
                         Object.keys(settings).forEach(function (setting) {
                           return container.globals.set(setting, '');
                         });
@@ -23145,7 +23145,7 @@ var Enable = exports.Enable = /*#__PURE__*/function (_DisableEnable) {
           }
         });
 
-        // Clear custom local settings.
+        / Clear custom local settings.
         Object.values(container.getGroupRelatedControls(settings)).forEach(function (control) {
           container.settings.set(control.name, control.default);
         });
@@ -23344,7 +23344,7 @@ var Unlink = exports.Unlink = /*#__PURE__*/function (_$e$modules$editor$Co) {
       this.requireArgumentType('setting', 'string', args);
       this.requireArgumentType('globalValue', 'string', args);
 
-      // TODO: validate global value is command format.
+      / TODO: validate global value is command format.
     }
   }, {
     key: "apply",
@@ -23367,7 +23367,7 @@ var Unlink = exports.Unlink = /*#__PURE__*/function (_$e$modules$editor$Co) {
                       case 2:
                         result = _context.sent;
                         if (result) {
-                          // Prepare global value to mapping.
+                          / Prepare global value to mapping.
                           value = result.data.value, groupPrefix = (_container$controls$s = container.controls[setting]) === null || _container$controls$s === void 0 ? void 0 : _container$controls$s.groupPrefix;
                           if (groupPrefix) {
                             Object.entries(value).forEach(function (_ref2) {
@@ -23393,7 +23393,7 @@ var Unlink = exports.Unlink = /*#__PURE__*/function (_$e$modules$editor$Co) {
                 };
               }()));
             case 3:
-              // Restore globals settings as custom local settings.
+              / Restore globals settings as custom local settings.
               if (Object.keys(localSettings).length) {
                 $e.run('document/elements/settings', {
                   containers: containers,
@@ -23770,7 +23770,7 @@ var AddTransaction = exports.AddTransaction = /*#__PURE__*/function (_CommandHis
     value: function apply(args) {
       var currentId = this.history.getCurrentId();
       if (currentId) {
-        // If log already started chain his historyId.
+        / If log already started chain his historyId.
         args.id = currentId;
       }
       args = this.component.normalizeLogTitle(args);
@@ -23945,7 +23945,7 @@ var EndTransaction = exports.EndTransaction = /*#__PURE__*/function (_CommandInt
         _firstItem$subTitle = firstItem.subTitle,
         subTitle = _firstItem$subTitle === void 0 ? '' : _firstItem$subTitle;
 
-      // 'elements' title for multiple containers.
+      / 'elements' title for multiple containers.
       if (transactions.length > 1) {
         title = __('Elements', 'elementor');
         subTitle = '';
@@ -23956,7 +23956,7 @@ var EndTransaction = exports.EndTransaction = /*#__PURE__*/function (_CommandInt
         type: type
       };
 
-      // If firstItem have id already it means that log already started for that transaction.
+      / If firstItem have id already it means that log already started for that transaction.
       if (firstItem.id) {
         history.id = firstItem.id;
       }
@@ -23964,7 +23964,7 @@ var EndTransaction = exports.EndTransaction = /*#__PURE__*/function (_CommandInt
       Object.values(transactions).forEach(function (item) {
         var itemArgs = item;
 
-        // If log already started chain his historyId.
+        / If log already started chain his historyId.
         if (firstItem.id) {
           itemArgs.id = firstItem.id;
         }
@@ -23974,7 +23974,7 @@ var EndTransaction = exports.EndTransaction = /*#__PURE__*/function (_CommandInt
         id: historyId
       });
 
-      // Clear transactions before leave.
+      / Clear transactions before leave.
       $e.internal('document/history/clear-transaction');
     }
   }]);
@@ -24366,7 +24366,7 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
     value: function mergeTransactions(transactions) {
       var result = {};
       transactions.forEach(function (itemArgs) {
-        // If no containers at the current transaction.
+        / If no containers at the current transaction.
         if (!itemArgs.container && !itemArgs.containers) {
           return;
         }
@@ -24378,7 +24378,7 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
               return;
             }
 
-            // Replace new changes by current itemArgs.
+            / Replace new changes by current itemArgs.
             if (result[container.id]) {
               result[container.id].data.changes[container.id].new = itemArgs.data.changes[container.id].new;
               return;
@@ -24433,7 +24433,7 @@ var ResetLayoutBase = exports["default"] = /*#__PURE__*/function (_After) {
   return (0, _createClass2.default)(ResetLayoutBase, [{
     key: "getConditions",
     value: function getConditions() {
-      // On `document/elements/move` do not fire the hook!.
+      / On `document/elements/move` do not fire the hook!.
       return !$e.commands.isCurrentFirstTrace('document/elements/move');
     }
 
@@ -24740,7 +24740,7 @@ var SectionColumnsLimit = exports.SectionColumnsLimit = /*#__PURE__*/function (_
       var _args$containers = args.containers,
         containers = _args$containers === void 0 ? [args.container] : _args$containers;
 
-      // If one of the targets have maximum columns reached break the command.
+      / If one of the targets have maximum columns reached break the command.
       return !containers.some(function (/** Container*/container) {
         return container.view.isCollectionFilled();
       });
@@ -24887,7 +24887,7 @@ var CreateColumnForEmptySection = exports.CreateColumnForEmptySection = /*#__PUR
       var _args$containers = args.containers,
         containers = _args$containers === void 0 ? [args.container] : _args$containers;
 
-      // Validate also that its a section, this is hook should not work with new flex container.
+      / Validate also that its a section, this is hook should not work with new flex container.
       return containers.some(function (container) {
         return 'section' === container.parent.type && 0 === container.parent.children.length;
       });
@@ -24908,7 +24908,7 @@ var CreateColumnForEmptySection = exports.CreateColumnForEmptySection = /*#__PUR
       containers.forEach(function (/** Container*/container) {
         var parent = container.parent;
 
-        // If deleted the last column, should recreate it.
+        / If deleted the last column, should recreate it.
         if (0 === parent.children.length) {
           $e.run('document/elements/create', {
             container: parent,
@@ -25069,7 +25069,7 @@ var Helper = exports["default"] = /*#__PURE__*/function () {
           return container.view.resetLayout();
         });
 
-        // Focus on last container.
+        / Focus on last container.
         containers[containers.length - 1].model.trigger('request:edit');
       }
     }
@@ -25150,7 +25150,7 @@ var SectionColumnsSetStructure = exports.SectionColumnsSetStructure = /*#__PURE_
         containers = _args$containers === void 0 ? [args.container] : _args$containers,
         target = args.target;
 
-      // Fire the hook only when target is not equals to moved container parent.
+      / Fire the hook only when target is not equals to moved container parent.
       return containers.some(function (/* Container */container) {
         return container.parent !== target;
       });
@@ -25532,7 +25532,7 @@ var ResizeColumn = exports.ResizeColumn = /*#__PURE__*/function (_After) {
         currentColumnView = container.view;
       var currentSize = null;
       if (undefined === container.oldValues || null === container.oldValues._inline_size) {
-        // Mean, that it was not set before ( first time ).
+        / Mean, that it was not set before ( first time ).
         currentSize = container.settings.get('_column_size');
       } else {
         var totalWidth = parentView.$el.find(' > .elementor-container')[0].getBoundingClientRect().width;
@@ -25786,7 +25786,7 @@ var ColumnIsPopulated = exports.ColumnIsPopulated = /*#__PURE__*/function (_Afte
       var _args$containers = args.containers,
         containers = _args$containers === void 0 ? [args.container] : _args$containers;
 
-      // If the created element, was created at column.
+      / If the created element, was created at column.
       return containers.some(function (/** Container*/container) {
         return 'column' === container.model.get('elType');
       });
@@ -25945,7 +25945,7 @@ var ColumnIsEmpty = exports.ColumnIsEmpty = /*#__PURE__*/function (_After) {
       var _args$containers = args.containers,
         containers = _args$containers === void 0 ? [args.container] : _args$containers;
 
-      // If the deleted element, was deleted from column.
+      / If the deleted element, was deleted from column.
       return containers.some(function (/** Container*/container) {
         return 'column' === container.parent.model.get('elType');
       });
@@ -26130,7 +26130,7 @@ var MoveResizeableHandle = exports.MoveResizeableHandle = /*#__PURE__*/function 
       var _args$containers = args.containers,
         containers = _args$containers === void 0 ? [args.container] : _args$containers;
 
-      // If the element was created in a Container.
+      / If the element was created in a Container.
       return containers.some(function (/** Container*/container) {
         return 'container' === container.model.get('elType');
       });
@@ -26147,7 +26147,7 @@ var MoveResizeableHandle = exports.MoveResizeableHandle = /*#__PURE__*/function 
           return;
         }
 
-        // Move the handle to the end.
+        / Move the handle to the end.
         $el.append($resizeHandle);
       });
     }
@@ -26573,7 +26573,7 @@ var ReloadPreview = exports.ReloadPreview = /*#__PURE__*/function (_After) {
       }).then(function () {
         elementor.reloadPreview();
 
-        // TODO: Fix the route change.
+        / TODO: Fix the route change.
         elementor.once('preview:loaded', function () {
           $e.route('panel/page-settings/settings');
         });
@@ -26725,7 +26725,7 @@ var SetDirectionMode = exports.SetDirectionMode = /*#__PURE__*/function (_After)
     key: "set",
     value: function set(container) {
       var _view$getCurrentUiSta;
-      // Determine if the direction mode should be set by the parent.
+      / Determine if the direction mode should be set by the parent.
       var useParent = 'panel/editor/advanced' === $e.routes.getCurrent('panel');
       container = useParent ? container.parent : container;
       var view = container.renderer.view,
@@ -26868,7 +26868,7 @@ var Duplicate = exports.Duplicate = /*#__PURE__*/function (_$e$modules$editor$do
           collection = settingsModel.get(name),
           model = collection.at(index).toJSON();
 
-        // Let the insert handle it, do not use the duplicated id.
+        / Let the insert handle it, do not use the duplicated id.
         if (model._id) {
           delete model._id;
         }
@@ -27033,7 +27033,7 @@ var Insert = exports.Insert = /*#__PURE__*/function (_$e$modules$editor$do) {
         var collection = container.settings.get(name);
         options.at = null === options.at ? collection.length : options.at;
 
-        // On `collection.push` the renderer needs a container, the container needs a settingsModel.
+        / On `collection.push` the renderer needs a container, the container needs a settingsModel.
         var rowSettingsModel = collection._prepareModel(model),
           repeaterContainer = container.addRepeaterItem(name, rowSettingsModel, options.at);
         result.push(collection.push(rowSettingsModel, options));
@@ -27053,7 +27053,7 @@ var Insert = exports.Insert = /*#__PURE__*/function (_$e$modules$editor$do) {
               targetNode = targetContainer.children[options.at] || null;
             targetContainer.insertBefore(nodeToInsert, targetNode);
           } else {
-            // Trigger render on widget but with the settings of the control.
+            / Trigger render on widget but with the settings of the control.
             repeaterContainer.render();
           }
         }
@@ -27211,7 +27211,7 @@ var Remove = exports.Remove = /*#__PURE__*/function (_$e$modules$editor$do) {
     value: function validateArgs(args) {
       this.requireContainer(args);
       this.requireArgumentType('name', 'string', args);
-      this.requireArgument('index', args); // Sometimes null.
+      this.requireArgument('index', args); / Sometimes null.
     }
   }, {
     key: "getHistory",
@@ -27253,7 +27253,7 @@ var Remove = exports.Remove = /*#__PURE__*/function (_$e$modules$editor$do) {
           });
         }
 
-        // Remove from container and add to result.
+        / Remove from container and add to result.
         result.push(repeaterContainer.children.splice(index, 1));
         collection.remove(model);
         if ((0, _utils.shouldUseAtomicRepeaters)(widgetType) && !isRestored) {
@@ -27262,7 +27262,7 @@ var Remove = exports.Remove = /*#__PURE__*/function (_$e$modules$editor$do) {
             widgetContainer.querySelector(item).children[index].remove();
           });
         } else {
-          // Trigger render on widget but with the settings of the control.
+          / Trigger render on widget but with the settings of the control.
           repeaterContainer.render();
         }
       });
@@ -27341,7 +27341,7 @@ var Select = exports.Select = /*#__PURE__*/function (_$e$modules$editor$do) {
       this.requireContainer(args);
       this.requireArgumentType('index', 'number', args);
 
-      // When there multiple containers, then its not supported.
+      / When there multiple containers, then its not supported.
       if (args.containers) {
         throw new Error('Multiple containers are not supported.');
       }
@@ -27354,14 +27354,14 @@ var Select = exports.Select = /*#__PURE__*/function (_$e$modules$editor$do) {
         editSettings = container.model.get('editSettings'),
         current = editSettings.get('activeItemIndex') || 1;
 
-      // If the index is the same, then don't save a history item.
+      / If the index is the same, then don't save a history item.
       if (current === index) {
         return false;
       }
       return {
         container: container,
         type: 'selected',
-        // Translators: %s is the current item index.
+        / Translators: %s is the current item index.
         subTitle: wp.i18n.sprintf(__('Item #%d', 'elementor'), index),
         restore: this.constructor.restore,
         data: {
@@ -27693,7 +27693,7 @@ module.exports = /*#__PURE__*/function (_Marionette$Behavior) {
         _this2.setLastEdited(document.config.last_edited);
       });
 
-      // TODO: Temp, footerSaver should be removed.
+      / TODO: Temp, footerSaver should be removed.
       $e.components.get('document/save').footerSaver = this;
     }
   }, {
@@ -27787,9 +27787,9 @@ module.exports = /*#__PURE__*/function (_Marionette$Behavior) {
           }
           this.activateSaveButtons(document, true);
           break;
-        case 'pending': // User cannot change post status
+        case 'pending': / User cannot change post status
         case undefined:
-          // TODO: as a contributor it's undefined instead of 'pending'.
+          / TODO: as a contributor it's undefined instead of 'pending'.
           if (!document.config.user.can_publish) {
             publishLabel = 'update';
           }
@@ -27800,11 +27800,11 @@ module.exports = /*#__PURE__*/function (_Marionette$Behavior) {
   }, {
     key: "addTooltip",
     value: function addTooltip() {
-      // Create tooltip on controls
+      / Create tooltip on controls
       this.$el.find('.tooltip-target').each(function (index, button) {
         var $button = jQuery(button);
         $button.tipsy({
-          // `n` for down, `s` for up
+          / `n` for down, `s` for up
           gravity: 's',
           offset: $button.data('tooltip-offset'),
           title: function title() {
@@ -27814,17 +27814,17 @@ module.exports = /*#__PURE__*/function (_Marionette$Behavior) {
       });
     }
 
-    // TODO: Consider $e.internal( 'editor/documents/preview-refresh' ); ?.
+    / TODO: Consider $e.internal( 'editor/documents/preview-refresh' ); ?.
   }, {
     key: "refreshWpPreview",
     value: function refreshWpPreview() {
       if (this.previewWindow) {
-        // Refresh URL form updated config.
+        / Refresh URL form updated config.
         try {
           this.previewWindow.location.href = elementor.config.document.urls.wp_preview;
         } catch (e) {
-          // If the this.previewWindow is closed or it's domain was changed.
-          // Do nothing.
+          / If the this.previewWindow is closed or it's domain was changed.
+          / Do nothing.
         }
       }
     }
@@ -27979,9 +27979,9 @@ var Default = exports.Default = /*#__PURE__*/function (_Base) {
             });
           }
           break;
-        case 'pending': // User cannot change post status
+        case 'pending': / User cannot change post status
         case undefined:
-          // TODO: as a contributor it's undefined instead of 'pending'.
+          / TODO: as a contributor it's undefined instead of 'pending'.
           if (document.config.user.can_publish) {
             deferred = $e.run('document/save/publish', {
               document: document
@@ -28034,13 +28034,13 @@ var Discard = exports.Discard = /*#__PURE__*/function (_Base) {
       var _args$document = args.document,
         document = _args$document === void 0 ? elementor.documents.getCurrent() : _args$document;
 
-      // Start server request before undo, because the undo can take time.
+      / Start server request before undo, because the undo can take time.
       var deferred = elementorCommon.ajax.addRequest('discard_changes');
       $e.run('document/history/undo-all', {
         document: document
       });
 
-      // Discard autosave revision if exist.
+      / Discard autosave revision if exist.
       return deferred;
     }
   }]);
@@ -28083,7 +28083,7 @@ var Draft = exports.Draft = /*#__PURE__*/function (_Base) {
       var document = this.document,
         postStatus = document.container.settings.get('post_status');
 
-      // If no changes - don't save but allow un-publish.
+      / If no changes - don't save but allow un-publish.
       if (!document.editor.isChanged && 'draft' !== postStatus) {
         return jQuery.Deferred().reject('Document is not editable');
       }
@@ -28096,7 +28096,7 @@ var Draft = exports.Draft = /*#__PURE__*/function (_Base) {
           });
           break;
         default:
-          // Update and create a revision
+          / Update and create a revision
           deferred = $e.run('document/save/update', {
             document: document
           });
@@ -28252,7 +28252,7 @@ var Save = exports.Save = /*#__PURE__*/function (_$e$modules$CommandIn) {
         oldStatus = container.settings.get('post_status');
       this.addPersistentSettingsToPayload(settings, container);
 
-      // TODO: Remove - Backwards compatibility.
+      / TODO: Remove - Backwards compatibility.
       elementor.saver.trigger('before:save', args).trigger('before:save:' + status, args);
       document.editor.isSaving = true;
       document.editor.isChangedDuringSave = false;
@@ -28283,7 +28283,7 @@ var Save = exports.Save = /*#__PURE__*/function (_$e$modules$CommandIn) {
         return _this.onSaveSuccess(data, successArgs, onSuccess);
       });
 
-      // TODO: Remove - Backwards compatibility
+      / TODO: Remove - Backwards compatibility
       elementor.saver.trigger('save', args);
       return deferred;
     }
@@ -28299,7 +28299,7 @@ var Save = exports.Save = /*#__PURE__*/function (_$e$modules$CommandIn) {
       this.onAfterAjax(document);
       document.editor.lastSaveHistoryId = currentHistoryId;
 
-      // Remove document cache.
+      / Remove document cache.
       elementor.documents.invalidateCache(document.id);
       var statusChanged = status !== oldStatus,
         result = {
@@ -28307,7 +28307,7 @@ var Save = exports.Save = /*#__PURE__*/function (_$e$modules$CommandIn) {
           statusChanged: statusChanged
         };
 
-      // Document is switched during the save, do nothing.
+      / Document is switched during the save, do nothing.
       if (document !== elementor.documents.getCurrent()) {
         return result;
       }
@@ -28315,7 +28315,7 @@ var Save = exports.Save = /*#__PURE__*/function (_$e$modules$CommandIn) {
         document.editor.isSaved = true;
       }
 
-      // TODO: Move to hook.
+      / TODO: Move to hook.
       if ('autosave' !== status) {
         if (statusChanged) {
           $e.run('document/elements/settings', {
@@ -28329,7 +28329,7 @@ var Save = exports.Save = /*#__PURE__*/function (_$e$modules$CommandIn) {
           });
         }
 
-        // Notice: Must be after update page.model.post_status to the new status.
+        / Notice: Must be after update page.model.post_status to the new status.
         if (!document.editor.isChangedDuringSave) {
           $e.internal('document/save/set-is-modified', {
             status: false
@@ -28337,20 +28337,20 @@ var Save = exports.Save = /*#__PURE__*/function (_$e$modules$CommandIn) {
         }
       }
       if (data.config) {
-        // TODO: Move to es6.
+        / TODO: Move to es6.
         jQuery.extend(true, document.config, data.config.document);
       }
       if (document.config.elements) {
         document.config.elements = elements;
       }
 
-      // TODO: Remove - Backwards compatibility
+      / TODO: Remove - Backwards compatibility
       elementor.channels.editor.trigger('saved', data);
 
-      // TODO: Remove - Backwards compatibility
+      / TODO: Remove - Backwards compatibility
       elementor.saver.trigger('after:save', data).trigger('after:save:' + status, data);
 
-      // TODO: Remove - Backwards compatibility
+      / TODO: Remove - Backwards compatibility
       if (statusChanged) {
         elementor.saver.trigger('page:status:change', status, oldStatus);
       }
@@ -28364,7 +28364,7 @@ var Save = exports.Save = /*#__PURE__*/function (_$e$modules$CommandIn) {
     value: function onSaveError(data, status, document) {
       this.onAfterAjax(document);
 
-      // TODO: Remove - Backwards compatibility
+      / TODO: Remove - Backwards compatibility
       elementor.saver.trigger('after:saveError', data).trigger('after:saveError:' + status, data);
       var message;
       if (_.isString(data)) {
@@ -28441,7 +28441,7 @@ var SetIsModified = exports.SetIsModified = /*#__PURE__*/function (_$e$modules$C
         _args$document = args.document,
         document = _args$document === void 0 ? elementor.documents.getCurrent() : _args$document;
 
-      // Save document for hooks.
+      / Save document for hooks.
       args.document = document;
       document.editor.isChanged = status;
       if (status && document.editor.isSaving) {
@@ -28451,7 +28451,7 @@ var SetIsModified = exports.SetIsModified = /*#__PURE__*/function (_$e$modules$C
         document.editor.isSaved = false;
       }
 
-      // TODO: BC.
+      / TODO: BC.
       elementor.channels.editor.reply('status', status).trigger('status:change', status);
       if (document.editor.isChanged) {
         this.component.startAutoSave(document);
@@ -28672,7 +28672,7 @@ var Component = exports["default"] = /*#__PURE__*/function (_BackwardsCompatibil
       this.autoSaveInterval = elementor.config.autosave_interval * 1000;
       elementorCommon.elements.$window.on('beforeunload', function () {
         if (_this2.isEditorChanged()) {
-          // Returns a message to confirm dialog.
+          / Returns a message to confirm dialog.
           return __('Please note: All unsaved changes will be lost.', 'elementor');
         }
       });
@@ -29272,7 +29272,7 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 var _uiStateBase = _interopRequireDefault(__webpack_require__(/*! elementor-api/core/states/ui-state-base */ "../modules/web-cli/assets/js/core/states/ui-state-base.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
-function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); } // TODO: Move the `editor` component when it's available, because it's not a document related state.
+function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); } / TODO: Move the `editor` component when it's available, because it's not a document related state.
 var ScrubbingMode = exports.ScrubbingMode = /*#__PURE__*/function (_UiStateBase) {
   function ScrubbingMode() {
     (0, _classCallCheck2.default)(this, ScrubbingMode);
@@ -29287,7 +29287,7 @@ var ScrubbingMode = exports.ScrubbingMode = /*#__PURE__*/function (_UiStateBase)
   }, {
     key: "getOptions",
     value: function getOptions() {
-      // When scrubbing mode is on, body gets class 'e-ui-state--document-scrubbing-mode__on'
+      / When scrubbing mode is on, body gets class 'e-ui-state--document-scrubbing-mode__on'
       return (0, _defineProperty2.default)({}, this.constructor.ON, '');
     }
   }, {
@@ -29598,7 +29598,7 @@ var Paste = exports.Paste = /*#__PURE__*/function (_$e$modules$CommandBa) {
           if (pasteOptions.isSameElement) {
             options.at = container.parent.model.get('elements').findIndex(container.model) + 1;
 
-            // For same element always paste on his parent.
+            / For same element always paste on his parent.
             container = container.parent;
           } else if (pasteOptions.isValidGrandChild) {
             options.rebuild = true;
@@ -29826,10 +29826,10 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
     (0, _defineProperty2.default)(_this, "activeBreakpointsUpdated", false);
     (0, _defineProperty2.default)(_this, "helpers", __webpack_require__(/*! elementor-editor-utils/helpers */ "../assets/dev/js/editor/utils/helpers.js"));
     (0, _defineProperty2.default)(_this, "imagesManager", __webpack_require__(/*! elementor-editor-utils/images-manager */ "../assets/dev/js/editor/utils/images-manager.js"));
-    // TODO: Unused.
+    / TODO: Unused.
     (0, _defineProperty2.default)(_this, "presetsFactory", __webpack_require__(/*! elementor-editor-utils/presets-factory */ "../assets/dev/js/editor/utils/presets-factory.js"));
     (0, _defineProperty2.default)(_this, "templates", __webpack_require__(/*! elementor-templates/manager */ "../assets/dev/js/editor/components/template-library/manager.js"));
-    // TODO = BC Since 2.3.0
+    / TODO = BC Since 2.3.0
     (0, _defineProperty2.default)(_this, "ajax", elementorCommon.ajax);
     (0, _defineProperty2.default)(_this, "conditions", new _controlConditions.default());
     (0, _defineProperty2.default)(_this, "history", __webpack_require__(/*! elementor/modules/history/assets/js/module */ "../modules/history/assets/js/module.js"));
@@ -30077,7 +30077,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
           }
           this.widgetsCache[widgetType].controls = elementor.hooks.applyFilters('elements/widget/controls/common', this.widgetsCache[widgetType].controls, widgetType, this.widgetsCache[widgetType]);
 
-          // TODO: Move this code to own file.
+          / TODO: Move this code to own file.
           if ((_this$widgetsCache$wi = this.widgetsCache[widgetType].controls) !== null && _this$widgetsCache$wi !== void 0 && _this$widgetsCache$wi._element_cache) {
             var _this$widgetsCache$wi2;
             var elementCacheDescription = __('The default cache status for this element:', 'elementor');
@@ -30092,7 +30092,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
             elementCacheDescription += ' <a href="https://go.elementor.com/element-caching-help/" target="_blank">' + __('Learn more', 'elementor') + '</a>.';
             this.widgetsCache[widgetType].controls._element_cache.description = elementCacheDescription;
           }
-          // TODO: End of code to move.
+          / TODO: End of code to move.
 
           this.widgetsCache[widgetType].commonMerged = true;
         }
@@ -30198,7 +30198,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
       this.editorEvents = new _module6.default();
       this.documents = $e.components.register(new _component.default());
 
-      // Adds the Landing Page tab to the Template library modal when editing Landing Pages.
+      / Adds the Landing Page tab to the Template library modal when editing Landing Pages.
       if (elementorCommon.config.experimentalFeatures['landing-pages']) {
         this.modules.landingLibraryPageModule = new _module3.default();
       }
@@ -30213,12 +30213,12 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
         this.modules.cloudLibraryModule = new _module10.default();
       }
 
-      // TODO: Move to elementor:init-data-components
+      / TODO: Move to elementor:init-data-components
       $e.components.register(new _component4.default());
       $e.components.register(new _component3.default());
       $e.components.register(new _component2.default());
 
-      // TODO: Remove, BC Since 2.9.0.
+      / TODO: Remove, BC Since 2.9.0.
       elementor.saver = $e.components.get('document/save');
       new _fontVariables.FontVariables();
       _events.default.dispatch(elementorCommon.elements.$window, 'elementor/init-components', null, 'elementor:init-components');
@@ -30249,7 +30249,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
       }
     }
 
-    // TODO: BC method since 2.3.0
+    / TODO: BC method since 2.3.0
   }, {
     key: "initDialogsManager",
     value: function initDialogsManager() {
@@ -30260,7 +30260,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
     value: function initElements() {
       var config = this.config.document.elements;
 
-      // If it's an reload, use the not-saved data
+      / If it's an reload, use the not-saved data
       if (this.elements && this.elements.length && this.config.document.id === this.config.initial_document.id) {
         config = this.elements.toJSON();
       }
@@ -30288,7 +30288,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
       this.$previewWrapper = $('#elementor-preview');
       this.$previewResponsiveWrapper = $('#elementor-preview-responsive-wrapper');
 
-      // Make sure the iFrame does not exist.
+      / Make sure the iFrame does not exist.
       if (!this.$preview) {
         this.$preview = $('<iframe>', {
           id: previewIframeId,
@@ -30322,7 +30322,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
   }, {
     key: "renderPreview",
     value: function renderPreview(preview) {
-      // In order to force rendering of children
+      / In order to force rendering of children
       preview.isRendered = true;
       preview._renderChildren();
       preview.triggerMethod('render');
@@ -30369,7 +30369,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
   }, {
     key: "getCurrentElement",
     value: function getCurrentElement() {
-      // eslint-disable-next-line @wordpress/no-global-active-element
+      / eslint-disable-next-line @wordpress/no-global-active-element
       var isPreview = -1 !== ['BODY', 'IFRAME'].indexOf(document.activeElement.tagName) && 'BODY' === elementorFrontend.elements.window.document.activeElement.tagName;
       if (!isPreview) {
         return false;
@@ -30463,7 +30463,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
             bottom: '0'
           });
 
-          // Old versions of jQuery don't support custom properties
+          / Old versions of jQuery don't support custom properties
           var style = $responsiveWrapper[0].style;
           style.setProperty('--e-editor-preview-width', ui.size.width + 'px');
           style.setProperty('--e-editor-preview-height', ui.size.height + 'px');
@@ -30494,8 +30494,8 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
         currentBreakpointMaxPoint = 'widescreen' === currentBreakpoint ? 9999 : currentBreakpointData.value;
       var currentBreakpointMinPoint = this.breakpoints.getDeviceMinBreakpoint(currentBreakpoint);
 
-      // If the device under the current device mode's breakpoint has a larger max value - use the current device's
-      // value as the min width point.
+      / If the device under the current device mode's breakpoint has a larger max value - use the current device's
+      / value as the min width point.
       if (currentBreakpointMinPoint > currentBreakpointData.value) {
         currentBreakpointMinPoint = currentBreakpointData.value;
       }
@@ -30556,7 +30556,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
       if ('desktop' === currentBreakpoint) {
         this.destroyPreviewResizable();
 
-        // Old versions of jQuery don't support custom properties
+        / Old versions of jQuery don't support custom properties
         var style = $responsiveWrapper[0].style;
         style.setProperty('--e-editor-preview-width', '');
         style.setProperty('--e-editor-preview-height', '');
@@ -30575,7 +30575,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
         }
         $responsiveWrapper.resizable('option', _objectSpread({}, breakpointResizeOptions));
 
-        // Old versions of jQuery don't support custom properties
+        / Old versions of jQuery don't support custom properties
         var _style = $responsiveWrapper[0].style;
         _style.setProperty('--e-editor-preview-width', widthToShow + 'px');
         _style.setProperty('--e-editor-preview-height', breakpointResizeOptions.height + 'px');
@@ -30588,7 +30588,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
         return event.preventDefault();
       });
 
-      // Cannot use arrow function here since it use `this.contains`.
+      / Cannot use arrow function here since it use `this.contains`.
       this.$previewContents.on('click', function (event) {
         var _elementor$documents$2;
         var $target = jQuery(event.target),
@@ -30601,8 +30601,8 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
           return;
         }
 
-        // It's a click on the preview area, not in the edit area,
-        // and a document is open and has an edit area.
+        / It's a click on the preview area, not in the edit area,
+        / and a document is open and has an edit area.
         if (!isClickInsideElementor && (_elementor$documents$2 = elementor.documents.getCurrent()) !== null && _elementor$documents$2 !== void 0 && _elementor$documents$2.$element) {
           $e.run('document/elements/deselect-all');
         }
@@ -30736,7 +30736,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
   }, {
     key: "updatePreviewSize",
     value: function updatePreviewSize(size) {
-      // Old versions of jQuery don't support custom properties
+      / Old versions of jQuery don't support custom properties
       var style = this.$previewResponsiveWrapper[0].style;
       style.setProperty('--e-editor-preview-width', size.width + 'px');
       style.setProperty('--e-editor-preview-height', size.height + 'px');
@@ -30775,7 +30775,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
   }, {
     key: "reloadPreview",
     value: function reloadPreview() {
-      // TODO: Should be command?
+      / TODO: Should be command?
       jQuery('#elementor-preview-loading').show();
       this.$preview[0].src = this.config.initial_document.urls.preview;
     }
@@ -30805,7 +30805,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
   }, {
     key: "translate",
     value: function translate(stringKey, templateArgs, i18nStack) {
-      // TODO: BC since 2.3.0, it always should be `this.config.i18n`
+      / TODO: BC since 2.3.0, it always should be `this.config.i18n`
       if (!i18nStack) {
         i18nStack = this.config.i18n;
       }
@@ -30878,7 +30878,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
       this.populateActiveBreakpointsConfig();
       this.breakpoints = new _breakpoints.default(this.config.responsive);
       if (elementorCommon.config.experimentalFeatures.additional_custom_breakpoints) {
-        // Duplicate responsive controls for section and column default configs.
+        / Duplicate responsive controls for section and column default configs.
         this.generateResponsiveControlsForElements();
       }
       this.elementsManager = new _manager.default();
@@ -30911,7 +30911,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
         return;
       }
 
-      // Cannot load editor without kit.
+      / Cannot load editor without kit.
       if (!elementor.config.kit_id) {
         this.kitNotExistsError();
         return;
@@ -31018,7 +31018,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
       jQuery.get(debugUrl, function () {
         _this10.showFatalErrorDialog(dialogOptions);
       }).fail(function (response) {
-        // Iframe can't be loaded
+        / Iframe can't be loaded
         _this10.showFatalErrorDialog({
           className: 'elementor-preview-loading-error',
           headerMessage: debugData.header,
@@ -31051,7 +31051,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
     value: function onBackgroundClick(event) {
       jQuery.each(this.backgroundClickListeners, function (index, config) {
         var $clickedTarget = jQuery(event.target);
-        // If it's a label that associated with an input
+        / If it's a label that associated with an input
         if ($clickedTarget[0].control) {
           $clickedTarget = $clickedTarget.add($clickedTarget[0].control);
         }
@@ -31085,8 +31085,8 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
       var _this11 = this;
       jQuery.each(widgets, function (widgetName, widgetConfig) {
         if (elementorCommon.config.experimentalFeatures.additional_custom_breakpoints) {
-          // When the Responsive Optimization experiment is active, the responsive controls are generated on the
-          // JS side instead of the PHP.
+          / When the Responsive Optimization experiment is active, the responsive controls are generated on the
+          / JS side instead of the PHP.
           widgetConfig.controls = _this11.generateResponsiveControls(widgetConfig.controls);
         }
         _this11.widgetsCache[widgetName] = jQuery.extend(true, {}, _this11.widgetsCache[widgetName], widgetConfig);
@@ -31104,29 +31104,29 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
         newControlsStack = {},
         secondDesktopChild = devices[devices.indexOf('desktop') + 1];
 
-      // Set the desktop to be the first device, so desktop will the the parent of all devices.
+      / Set the desktop to be the first device, so desktop will the the parent of all devices.
       devices.unshift(devices.splice(devices.indexOf('desktop'), 1)[0]);
       jQuery.each(controls, function (controlName, controlConfig) {
         var _controlConfig$respon, _controlConfig$popove;
         var responsiveControlName, controlDevices;
 
-        // Handle repeater controls.
+        / Handle repeater controls.
         if ('object' === (0, _typeof2.default)(controlConfig.fields)) {
           controlConfig.fields = _this12.generateResponsiveControls(controlConfig.fields);
         }
 
-        // Only handle responsive controls in this loop.
+        / Only handle responsive controls in this loop.
         if (!controlConfig.is_responsive) {
           newControlsStack[controlName] = controlConfig;
           return;
         }
         if ((_controlConfig$respon = controlConfig.responsive) !== null && _controlConfig$respon !== void 0 && _controlConfig$respon.devices) {
-          // Because of an `array_intersect` that happens on the PHP side, the devices array can become an object.
+          / Because of an `array_intersect` that happens on the PHP side, the devices array can become an object.
           if ('object' === (0, _typeof2.default)(controlConfig.responsive.devices)) {
             controlConfig.responsive.devices = Object.values(controlConfig.responsive.devices);
           }
 
-          // Filter the devices list according to the control's passed devices list.
+          / Filter the devices list according to the control's passed devices list.
           controlDevices = devices.filter(function (device) {
             return controlConfig.responsive.devices.includes(device);
           });
@@ -31134,29 +31134,29 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
         }
         var popoverEndProperty = (_controlConfig$popove = controlConfig.popover) === null || _controlConfig$popove === void 0 ? void 0 : _controlConfig$popove.end;
 
-        // Since the `popoverEndProperty` variable now holds the value, we want to prevent this property from
-        // being duplicated to all responsive control instances. It should only be applied in the LAST responsive
-        // control.
+        / Since the `popoverEndProperty` variable now holds the value, we want to prevent this property from
+        / being duplicated to all responsive control instances. It should only be applied in the LAST responsive
+        / control.
         if (popoverEndProperty) {
           var _controlConfig$popove2;
           (_controlConfig$popove2 = controlConfig.popover) === null || _controlConfig$popove2 === void 0 || delete _controlConfig$popove2.end;
         }
 
-        // Move the control's default to the desktop control
+        / Move the control's default to the desktop control
         if (controlConfig.default) {
           controlConfig.desktop_default = controlConfig.default;
         }
         var multipleDefaultValue = _this12.config.controls[controlConfig.type].default_value;
         var deleteControlDefault = true;
 
-        // For multiple controls that implement get_default_value() in the control class, make sure the duplicated
-        // controls receive that default value.
+        / For multiple controls that implement get_default_value() in the control class, make sure the duplicated
+        / controls receive that default value.
         if (multipleDefaultValue) {
           controlConfig.default = multipleDefaultValue;
           deleteControlDefault = false;
         }
 
-        // If the control passed its own 'devices' array, run through that. Otherwise, use the default devices list.
+        / If the control passed its own 'devices' array, run through that. Otherwise, use the default devices list.
         var devicesArrayToDuplicate = controlDevices || devices;
         devicesArrayToDuplicate.forEach(function (device, index) {
           var _controlArgs$popover;
@@ -31168,14 +31168,14 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
             delete controlArgs.device_args;
           }
 
-          // If there is a prefix class with a device modifier in it, add in the device modifier.
+          / If there is a prefix class with a device modifier in it, add in the device modifier.
           if (controlArgs.prefix_class && -1 !== controlArgs.prefix_class.indexOf('%s')) {
             var deviceModifier = 'desktop' === device ? '' : '-' + device;
             controlArgs.prefix_class = controlArgs.prefix_class.replace('%s', deviceModifier);
           }
 
-          // If the 'responsive' property is empty, it is transferred from the PHP to JS as an array and not an
-          // object.
+          / If the 'responsive' property is empty, it is transferred from the PHP to JS as an array and not an
+          / object.
           if (Array.isArray(controlArgs.responsive)) {
             controlArgs.responsive = {};
           }
@@ -31184,7 +31184,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
           if ('desktop' !== device) {
             direction = activeBreakpoints[device].direction;
 
-            // Set the parent to be the previous device
+            / Set the parent to be the previous device
             controlArgs.parent = device === secondDesktopChild ? controlName : responsiveControlName;
           }
           controlArgs.responsive[direction] = device;
@@ -31201,26 +31201,26 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
               controlArgs.default = controlArgs[device + '_default'];
             }
           } else if (deleteControlDefault) {
-            // In the Editor, controls without default values should have an empty string as the default value.
+            / In the Editor, controls without default values should have an empty string as the default value.
             controlArgs.default = '';
           }
 
-          // If the control is the first inside a popover, only the first device starts the popover,
-          // so the 'start' property has to be deleted from all other devices.
+          / If the control is the first inside a popover, only the first device starts the popover,
+          / so the 'start' property has to be deleted from all other devices.
           if (0 !== index && (_controlArgs$popover = controlArgs.popover) !== null && _controlArgs$popover !== void 0 && _controlArgs$popover.start) {
             delete controlArgs.popover.start;
           }
 
-          // If the control is inside a popover, AND this control is the last one in the popover, AND this is the
-          // last device in the devices array - add the 'popover.end = true' value to it to make sure it closes
-          // the popover.
+          / If the control is inside a popover, AND this control is the last one in the popover, AND this is the
+          / last device in the devices array - add the 'popover.end = true' value to it to make sure it closes
+          / the popover.
           if (index === devicesArrayToDuplicate.length - 1 && popoverEndProperty) {
             controlArgs.popover = {
               end: true
             };
           }
 
-          // For each new responsive control, delete the responsive defaults
+          / For each new responsive control, delete the responsive defaults
           devicesArrayToDuplicate.forEach(function (breakpoint) {
             delete controlArgs[breakpoint + '_default'];
           });
@@ -31243,7 +31243,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
     key: "generateResponsiveControlsForElements",
     value: function generateResponsiveControlsForElements() {
       var _this13 = this;
-      // Handle the default config for section and column.
+      / Handle the default config for section and column.
       var elementNames = Object.keys(this.config.elements);
       elementNames.forEach(function (elementName) {
         _this13.config.elements[elementName].controls = _this13.generateResponsiveControls(_this13.config.elements[elementName].controls);
@@ -31300,12 +31300,12 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
         }
       };
       jQuery.each(map, function (key, data) {
-        // Use `defineProperty` because `get property()` fails during the `Marionette...extend`.
+        / Use `defineProperty` because `get property()` fails during the `Marionette...extend`.
         Object.defineProperty(_this15.config, key, {
           get: function get() {
             var replacement = data.replacement ? 'elementor.config.document.' + data.replacement : '';
             elementorDevTools.deprecation.deprecated('elementor.config.' + key, '2.9.0', replacement);
-            // Return from current document.
+            / Return from current document.
             return data.value();
           },
           set: function set() {
@@ -31438,7 +31438,7 @@ var ElementsManager = exports["default"] = /*#__PURE__*/function () {
     value: function getElementTypeClass(type) {
       var typeClass = this.elementTypes[type];
 
-      // When exact widget is not registered, return widget base instead.
+      / When exact widget is not registered, return widget base instead.
       if (!typeClass && elementor.widgetsCache[type]) {
         typeClass = this.elementTypes.widget;
       }
@@ -31453,7 +31453,7 @@ var ElementsManager = exports["default"] = /*#__PURE__*/function () {
   }, {
     key: "registerElementType",
     value: function registerElementType(element) {
-      // Validate instanceOf `element`.
+      / Validate instanceOf `element`.
       if (!(element instanceof _elementBase.default)) {
         throw new TypeError('The element argument must be an instance of ElementBase.');
       }
@@ -31478,7 +31478,7 @@ var ElementsManager = exports["default"] = /*#__PURE__*/function () {
         _this.registerElementType(element);
       });
 
-      // TODO: Find better place, since container is not module.
+      / TODO: Find better place, since container is not module.
       if (elementorCommon.config.experimentalFeatures.container) {
         var ContainerClass = (__webpack_require__(/*! ./types/container */ "../assets/dev/js/editor/elements/types/container.js")["default"]);
         this.registerElementType(new ContainerClass());
@@ -31525,7 +31525,7 @@ var BaseElementModel = exports["default"] = /*#__PURE__*/function (_Backbone$Mod
   return (0, _createClass2.default)(BaseElementModel, [{
     key: "isValidChild",
     value:
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Function isValidChild().
      *
@@ -31537,7 +31537,7 @@ var BaseElementModel = exports["default"] = /*#__PURE__*/function (_Backbone$Mod
      * @return {boolean} Whether the child model is valid or not.
      */
     function isValidChild(childModel) {
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       elementorModules.ForceMethodImplementation({
         attributes: this.attributes
       });
@@ -31652,7 +31652,7 @@ var Container = exports["default"] = /*#__PURE__*/function (_ElementModel) {
      * @param {*} childModel
      */
     function isValidChild(childModel) {
-      // Get elType.
+      / Get elType.
       var elType = childModel.get('elType');
       return 'section' !== elType && 'column' !== elType;
     }
@@ -31695,7 +31695,7 @@ var Document = exports["default"] = /*#__PURE__*/function (_BaseElementModel) {
     value: function isValidChild(childModel) {
       var childElType = childModel.get('elType');
 
-      // Valid children.
+      / Valid children.
       return (0, _elementTypes.getAllElementTypes)().includes(childElType);
     }
   }]);
@@ -31751,10 +31751,10 @@ ElementModel = _baseElementModel.default.extend({
       this.setHtmlCache(options.htmlCache || '');
     }
 
-    // No need this variable anymore
+    / No need this variable anymore
     delete options.htmlCache;
 
-    // Make call to remote server as throttle function
+    / Make call to remote server as throttle function
     this.renderRemoteServer = _.throttle(this.renderRemoteServer, 1000);
     this.initSettings();
     this.initEditSettings();
@@ -31778,10 +31778,10 @@ ElementModel = _baseElementModel.default.extend({
     }
     settings = _objectSpread(_objectSpread({}, settings), {}, {
       elType: elType
-    }); // Create a shallow copy as elType is sometimes read only when trying to drop a widget preset.
+    }); / Create a shallow copy as elType is sometimes read only when trying to drop a widget preset.
     settings.isInner = this.get('isInner');
 
-    // Allow passing custom `_title` from model.
+    / Allow passing custom `_title` from model.
     var customTitle = this.get('_title');
     if (customTitle) {
       settings._title = customTitle;
@@ -31922,7 +31922,7 @@ ElementModel = _baseElementModel.default.extend({
   toJSON: function toJSON(options) {
     options = options || {};
 
-    // Call parent's toJSON method
+    / Call parent's toJSON method
     var data = Backbone.Model.prototype.toJSON.call(this);
     _.each(data, function (attribute, key) {
       if (attribute && attribute.toJSON) {
@@ -31947,7 +31947,7 @@ ElementModel = _baseElementModel.default.extend({
     }
   },
   onDestroy: function onDestroy() {
-    // Clean the memory for all use instances
+    / Clean the memory for all use instances
     var settings = this.get('settings'),
       elements = this.get('elements');
     if (undefined !== elements) {
@@ -32041,7 +32041,7 @@ var Widget = exports["default"] = /*#__PURE__*/function (_ElementModel) {
   return (0, _createClass2.default)(Widget, [{
     key: "isValidChild",
     value: function isValidChild() {
-      // By default widget cannot contain any element.
+      / By default widget cannot contain any element.
       return false;
     }
   }]);
@@ -32189,7 +32189,7 @@ var _emptyComponent = _interopRequireDefault(__webpack_require__(/*! elementor-e
 var _container = _interopRequireDefault(__webpack_require__(/*! elementor-elements/models/container */ "../assets/dev/js/editor/elements/models/container.js"));
 var _container2 = _interopRequireDefault(__webpack_require__(/*! elementor-elements/views/container */ "../assets/dev/js/editor/elements/views/container.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
-function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); } // TODO: Is this file in use?
+function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); } / TODO: Is this file in use?
 // eslint-disable-next-line import/no-unresolved
 var Container = exports["default"] = /*#__PURE__*/function (_Base) {
   function Container() {
@@ -32568,7 +32568,7 @@ var BaseWidgetView = /*#__PURE__*/function (_BaseElementView) {
       }
       this.$el.removeClass('elementor-loading');
 
-      // If container document has been changed during the remote request, don't render.
+      / If container document has been changed during the remote request, don't render.
       if (this.getContainer().document.id !== elementor.documents.getCurrent().id) {
         return;
       }
@@ -32577,7 +32577,7 @@ var BaseWidgetView = /*#__PURE__*/function (_BaseElementView) {
   }, {
     key: "onBeforeDestroy",
     value: function onBeforeDestroy() {
-      // Remove old style from the DOM.
+      / Remove old style from the DOM.
       elementor.$previewContents.find('#elementor-style-' + this.model.get('id')).remove();
     }
   }]);
@@ -32832,7 +32832,7 @@ BaseElementView = BaseContainer.extend({
         icon: 'eicon-trash',
         title: function title() {
           if (elementor.selection.isMultiple()) {
-            // Translators: %d: Elements count.
+            / Translators: %d: Elements count.
             return sprintf(__('Delete %d items', 'elementor'), elementor.selection.getElements().length);
           }
           return __('Delete', 'elementor');
@@ -32890,7 +32890,7 @@ BaseElementView = BaseContainer.extend({
     var editButtons = this.getEditButtons();
     var shouldShowEditButtons = editButtonsEnabled || 'widget' === elementType;
 
-    // We should only allow external modification to edit buttons if the user enabled edit buttons or it's a widget.
+    / We should only allow external modification to edit buttons if the user enabled edit buttons or it's a widget.
     if (shouldShowEditButtons) {
       /**
        * Filter edit buttons.
@@ -32917,7 +32917,7 @@ BaseElementView = BaseContainer.extend({
       editButtons = elementor.hooks.applyFilters("elements/edit-buttons/".concat(elementType), editButtons);
     }
 
-    // Only sections always have the remove button, even if the Editing Handles preference is off.
+    / Only sections always have the remove button, even if the Editing Handles preference is off.
     if ('section' === elementType || editButtonsEnabled) {
       editButtons.remove = {
         /* Translators: %s: Element Name. */
@@ -32995,11 +32995,11 @@ BaseElementView = BaseContainer.extend({
     } else if ('section' === model.elType) {
       model.isInner = true;
     } else if ('container' !== model.elType) {
-      // Don't allow adding anything other than widget, inner-section or a container.
+      / Don't allow adding anything other than widget, inner-section or a container.
       return;
     }
 
-    // Don't allow adding inner-sections inside inner-sections.
+    / Don't allow adding inner-sections inside inner-sections.
     if ('section' === model.elType && this.isInner()) {
       return;
     }
@@ -33008,7 +33008,7 @@ BaseElementView = BaseContainer.extend({
       jQuery.extend(model, customData);
     }
 
-    // Reset the selected element cache.
+    / Reset the selected element cache.
     elementor.channels.panelElements.reply('element:selected', null);
     return $e.run('document/elements/create', {
       container: this.getContainer(),
@@ -33016,7 +33016,7 @@ BaseElementView = BaseContainer.extend({
       options: options
     });
   },
-  // TODO: Unused function.
+  / TODO: Unused function.
   addControlValidator: function addControlValidator(controlName, validationCallback) {
     validationCallback = validationCallback.bind(this);
     var validator = new Validator({
@@ -33083,7 +33083,7 @@ BaseElementView = BaseContainer.extend({
     var editModel = this.getEditModel(),
       settings = editModel.get('settings');
 
-    // Enqueue Icon Fonts
+    / Enqueue Icon Fonts
     jQuery.each(settings.getIconsControls(), function (index, control) {
       var iconType = editModel.getSetting(control.name);
       if (!iconType || !iconType.library) {
@@ -33105,7 +33105,7 @@ BaseElementView = BaseContainer.extend({
     var settings = self.getEditModel().get('settings'),
       classControls = settings.getClassControls();
 
-    // Remove all previous classes
+    / Remove all previous classes
     _.each(classControls, function (control) {
       var previousClassValue = settings.previous(control.name);
       if (control.classes_dictionary) {
@@ -33116,7 +33116,7 @@ BaseElementView = BaseContainer.extend({
       self.$el.removeClass(control.prefix_class + previousClassValue);
     });
 
-    // Add new classes
+    / Add new classes
     _.each(classControls, function (control) {
       var value = settings.attributes[control.name];
       var classValue = value;
@@ -33153,7 +33153,7 @@ BaseElementView = BaseContainer.extend({
         return;
       }
 
-      // In edit mode - handle an external elements that loaded by another elements like shortcode etc.
+      / In edit mode - handle an external elements that loaded by another elements like shortcode etc.
       self.$el.find('.elementor-element.elementor-' + self.model.get('elType') + ':not(.elementor-element-edit-mode)').each(function () {
         elementorFrontend.elementsHandler.runReadyTrigger(this);
       });
@@ -33177,7 +33177,7 @@ BaseElementView = BaseContainer.extend({
     }
   },
   renderChanges: function renderChanges(settings) {
-    // Make sure is correct model
+    / Make sure is correct model
     if (settings instanceof elementorModules.editor.elements.models.BaseSettings) {
       var hasChanged = settings.hasChanged();
       var isContentChanged = !hasChanged,
@@ -33262,13 +33262,13 @@ BaseElementView = BaseContainer.extend({
    * How to use?
    *  If the element which should be rendered for a setting key is known in advance, it's possible to add the following attributes to the element to avoid full re-render:
    *  Example for repeater item:
-   * 'data-binding-type': 'repeater-item',               // Type of binding (to know how to behave).
-   * 'data-binding-setting': 'tab_title',                // Setting key that effect the binding.
-   * 'data-binding-index': tabCount,                     // Index is required for repeater items.
+   * 'data-binding-type': 'repeater-item',               / Type of binding (to know how to behave).
+   * 'data-binding-setting': 'tab_title',                / Setting key that effect the binding.
+   * 'data-binding-index': tabCount,                     / Index is required for repeater items.
    *
    * Example for content:
-   * 'data-binding-type': 'content',                     // Type of binding.
-   * 'data-binding-setting': 'testimonial_content',      // Setting change to capture, the value will replace the link.
+   * 'data-binding-type': 'content',                     / Type of binding.
+   * 'data-binding-setting': 'testimonial_content',      / Setting change to capture, the value will replace the link.
    *
    * By adding the following example attributes inside the widget the element innerHTML will be linked to the 'testimonial_content' setting value.
    *
@@ -33292,7 +33292,7 @@ BaseElementView = BaseContainer.extend({
       return;
     }
     $dataBinding.each(function (index, current) {
-      // To support nested data-binding bypass nested data-binding that are not part of the current.
+      / To support nested data-binding bypass nested data-binding that are not part of the current.
       if (jQuery(current).closest('.elementor-element').data('id') === id) {
         if (current.dataset.bindingType) {
           _this5.dataBindings.push({
@@ -33326,9 +33326,9 @@ BaseElementView = BaseContainer.extend({
         return _regenerator.default.wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
-              _dataBinding$dataset = dataBinding.dataset, bindingSetting = _dataBinding$dataset.bindingSetting, bindingConfig = _dataBinding$dataset.bindingConfig; // BindingSetting is kept for backward compatibility, should be removed once two versions from ED-17823 has been merged
-              // And use only the bindingConfig which contains all the needed information
-              bindingSettings = bindingSetting.split(' '); // Multiple binding settings can appear
+              _dataBinding$dataset = dataBinding.dataset, bindingSetting = _dataBinding$dataset.bindingSetting, bindingConfig = _dataBinding$dataset.bindingConfig; / BindingSetting is kept for backward compatibility, should be removed once two versions from ED-17823 has been merged
+              / And use only the bindingConfig which contains all the needed information
+              bindingSettings = bindingSetting.split(' '); / Multiple binding settings can appear
               config = JSON.parse(bindingConfig);
               isChangeHandled = false;
               _iteratorAbruptCompletion = false;
@@ -33513,7 +33513,7 @@ BaseElementView = BaseContainer.extend({
       case 'text':
         element.innerHTML = change;
         break;
-      // Backward compatibility should be deleted once two versions from ED-17823 has been merged
+      / Backward compatibility should be deleted once two versions from ED-17823 has been merged
       default:
         element.innerHTML = change;
     }
@@ -33580,7 +33580,7 @@ BaseElementView = BaseContainer.extend({
     if (this.toggleEditTools) {
       var editButton = this.ui.editButton;
 
-      // Since this.ui.tools does not exist while testing.
+      / Since this.ui.tools does not exist while testing.
       if (this.ui.tools) {
         this.ui.tools.hoverIntent(function () {
           editButton.addClass('elementor-active');
@@ -33592,7 +33592,7 @@ BaseElementView = BaseContainer.extend({
       }
     }
 
-    // Defer to wait for all of the children to render.
+    / Defer to wait for all of the children to render.
     setTimeout(function () {
       _this8.initDraggable();
       _this8.dispatchElementLifeCycleEvent('rendered');
@@ -33602,7 +33602,7 @@ BaseElementView = BaseContainer.extend({
   dispatchElementLifeCycleEvent: function dispatchElementLifeCycleEvent(eventType) {
     var event;
 
-    // Event name set like this for maintainability.
+    / Event name set like this for maintainability.
     switch (eventType) {
       case 'rendered':
         event = 'elementor/editor/element-rendered';
@@ -33703,25 +33703,25 @@ BaseElementView = BaseContainer.extend({
     this.getEditModel().get('settings').validators = {};
     elementor.channels.data.trigger('element:destroy', this.model);
 
-    // Defer so the event is fired after the element is removed from the DOM.
+    / Defer so the event is fired after the element is removed from the DOM.
     setTimeout(function () {
       return _this9.dispatchElementLifeCycleEvent('destroyed');
     });
   },
-  // eslint-disable-next-line jsdoc/require-returns-check
+  / eslint-disable-next-line jsdoc/require-returns-check
   /**
    * On `$el` drag start event.
    * Used inside `Draggable` and can be overridden by the extending views.
    */
   onDragStart: function onDragStart() {
-    // TODO: Override if needed.
+    / TODO: Override if needed.
   },
   /**
    * On `$el` drag end event.
    * Used inside `Draggable` and can be overridden by the extending views.
    */
   onDragEnd: function onDragEnd() {
-    // TODO: Override if needed.
+    / TODO: Override if needed.
   },
   /**
    * Create a drag helper element.
@@ -33748,7 +33748,7 @@ BaseElementView = BaseContainer.extend({
       return;
     }
 
-    // Init the draggable only for Containers and their children.
+    / Init the draggable only for Containers and their children.
     if (!this.$el.hasClass('.e-con') && !this.$el.parents('.e-con').length) {
       return;
     }
@@ -33761,19 +33761,19 @@ BaseElementView = BaseContainer.extend({
           return;
         }
 
-        // Need to stop this event when the element is absolute since it clashes with this one.
-        // See `behaviors/widget-draggable.js`.
+        / Need to stop this event when the element is absolute since it clashes with this one.
+        / See `behaviors/widget-draggable.js`.
         if ((_this10$options$dragg = _this10.options.draggable) !== null && _this10$options$dragg !== void 0 && _this10$options$dragg.isActive) {
           return;
         }
         var helper = _this10.getDraggableHelper();
         _this10.$el[0].appendChild(helper);
 
-        // Set the x & y coordinates of the helper the same as the legacy jQuery sortable.
+        / Set the x & y coordinates of the helper the same as the legacy jQuery sortable.
         e.originalEvent.dataTransfer.setDragImage(helper, 25, 20);
 
-        // Remove the helper element as soon as it's set as a drag image, since the element must be
-        // rendered for at least a fraction of a second in order to set it as a drag image.
+        / Remove the helper element as soon as it's set as a drag image, since the element must be
+        / rendered for at least a fraction of a second in order to set it as a drag image.
         setTimeout(function () {
           helper.remove();
         });
@@ -34060,8 +34060,8 @@ module.exports = Marionette.Behavior.extend({
     event.preventDefault();
     event.stopPropagation();
 
-    // Disable sortable when context menu opened
-    // TODO: Should be in UI hook when the context menu will move to command
+    / Disable sortable when context menu opened
+    / TODO: Should be in UI hook when the context menu will move to command
     if (this.view._parent) {
       this.view._parent.triggerMethod('toggleSortMode', false);
     }
@@ -34081,8 +34081,8 @@ module.exports = Marionette.Behavior.extend({
     modal.setSettings('iframe', iframe);
   },
   onContextMenuHide: function onContextMenuHide() {
-    // Enable sortable when context menu closed
-    // TODO: Should be in UI hook when the context menu will move to command
+    / Enable sortable when context menu closed
+    / TODO: Should be in UI hook when the context menu will move to command
     if (this.view._parent) {
       this.view._parent.triggerMethod('toggleSortMode', true);
     }
@@ -34168,7 +34168,7 @@ InlineEditingBehavior = Marionette.Behavior.extend({
     this.editing = true;
     this.view.allowRender = false;
 
-    // Avoid retrieving of old content (e.g. in case of sorting)
+    / Avoid retrieving of old content (e.g. in case of sorting)
     this.view.model.setHtmlCache('');
     this.editor = new ElementorInlineEditor({
       linksInNewWindow: true,
@@ -34428,7 +34428,7 @@ SortableBehavior = Marionette.Behavior.extend({
   createPlaceholder: function createPlaceholder($element) {
     var className = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
     var hide = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-    // Get the actual item size.
+    / Get the actual item size.
     $element.css('display', '');
     var _$element$ = $element[0],
       width = _$element$.clientWidth,
@@ -34454,12 +34454,12 @@ SortableBehavior = Marionette.Behavior.extend({
       start: function start(event, ui) {
         $childViewContainer.sortable('refreshPositions');
 
-        // TODO: Find a better solution than this hack.
-        // Used in order to prevent dragging a container into itself.
+        / TODO: Find a better solution than this hack.
+        / Used in order to prevent dragging a container into itself.
         _this2.createPlaceholder(ui.item, placeholderClass);
       },
       stop: function stop() {
-        // Cleanup.
+        / Cleanup.
         $childViewContainer.find(".".concat(placeholderClass)).remove();
       }
     };
@@ -34484,21 +34484,21 @@ SortableBehavior = Marionette.Behavior.extend({
         },
         helper: this._getSortableHelper.bind(this),
         cancel: 'input, textarea, button, select, option, .elementor-inline-editing, .elementor-tab-title',
-        // Fix: Sortable - Unable to drag and drop sections with huge height.
+        / Fix: Sortable - Unable to drag and drop sections with huge height.
         start: function start() {
           $childViewContainer.sortable('refreshPositions');
         }
       };
     var sortableOptions = _.extend(defaultSortableOptions, this.view.getSortableOptions());
 
-    // Add a swappable behavior (used for flex containers).
+    / Add a swappable behavior (used for flex containers).
     if (this.isSwappable()) {
       $childViewContainer.addClass('e-swappable');
       sortableOptions = _.extend(sortableOptions, this.getSwappableOptions());
     }
 
-    // TODO: Temporary hack for Container.
-    //  Will be removed in the future when the Navigator will use React.
+    / TODO: Temporary hack for Container.
+    /  Will be removed in the future when the Navigator will use React.
     if (sortableOptions.preventInit) {
       return;
     }
@@ -34509,8 +34509,8 @@ SortableBehavior = Marionette.Behavior.extend({
    */
   activate: function activate() {
     if (!this.getChildViewContainer().sortable('instance')) {
-      // Generate sortable instance for this element. Since fresh instances of sortable already allowing sorting,
-      // we can return.
+      / Generate sortable instance for this element. Since fresh instances of sortable already allowing sorting,
+      / we can return.
       this.applySortable();
       return;
     }
@@ -34525,8 +34525,8 @@ SortableBehavior = Marionette.Behavior.extend({
   getChildViewContainer: function getChildViewContainer() {
     return this.view.getChildViewContainer(this.view);
   },
-  // The natural widget index in the column is wrong, since there are other elements
-  // at the beginning of the column (background-overlay, element-overlay, resizeable-handle)
+  / The natural widget index in the column is wrong, since there are other elements
+  / at the beginning of the column (background-overlay, element-overlay, resizeable-handle)
   getSortedElementNewIndex: function getSortedElementNewIndex($element) {
     var widgets = Object.values($element.parent().find('> .elementor-element'));
     return widgets.indexOf($element[0]);
@@ -34554,7 +34554,7 @@ SortableBehavior = Marionette.Behavior.extend({
     var container = elementor.getContainer(ui.item.attr('data-id'));
     elementor.channels.data.reply('dragging:model', container.model).reply('dragging:view', container.view).reply('dragging:parent:view', this.view).trigger('drag:start', container.model).trigger(container.model.get('elType') + ':drag:start');
   },
-  // On sorting element
+  / On sorting element
   updateSort: function updateSort(ui, newIndex) {
     if (undefined === newIndex) {
       newIndex = ui.item.index();
@@ -34565,7 +34565,7 @@ SortableBehavior = Marionette.Behavior.extend({
       jQuery(ui.sender).sortable('cancel');
     }
   },
-  // On receiving element from another container
+  / On receiving element from another container
   receiveSort: function receiveSort(event, ui, newIndex) {
     event.stopPropagation();
     if (this.view.isCollectionFilled()) {
@@ -34696,7 +34696,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_Marionette$Behavior)
       _superPropGet(_default, "initialize", this, 3)([]);
       this.listenTo(elementor.channels.dataEditMode, 'switch', this.toggle);
 
-      // Save this instance for external use eg: ( hooks ).
+      / Save this instance for external use eg: ( hooks ).
       this.view.options.draggable = this;
       this.isActive = false;
     }
@@ -34857,7 +34857,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_Marionette$Behavior)
       _superPropGet(_default, "initialize", this, 3)([]);
       this.listenTo(elementor.channels.dataEditMode, 'switch', this.toggle);
 
-      // Save this instance for external use eg: ( hooks ).
+      / Save this instance for external use eg: ( hooks ).
       this.view.options.resizeable = this;
     }
 
@@ -34869,11 +34869,11 @@ var _default = exports["default"] = /*#__PURE__*/function (_Marionette$Behavior)
   }, {
     key: "getOptions",
     value: function getOptions() {
-      // jQuery UI handles are using Cardinal Directions (n, e, s, w, etc.).
+      / jQuery UI handles are using Cardinal Directions (n, e, s, w, etc.).
       var handles = 'e, w';
 
-      // If it's a container item, add resize handles only at the end of the element in order to prevent UI
-      // glitches when resizing from start.
+      / If it's a container item, add resize handles only at the end of the element in order to prevent UI
+      / glitches when resizing from start.
       if (this.isContainerItem()) {
         handles = elementorCommon.config.isRTL ? 'w' : 'e';
       }
@@ -34997,7 +34997,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_Marionette$Behavior)
         this.view.onResizeStart(event);
       }
 
-      // Don't open edit mode when the item is a Container item ( for UX ).
+      / Don't open edit mode when the item is a Container item ( for UX ).
       if (!this.isContainerItem()) {
         this.view.model.trigger('request:edit');
       }
@@ -35031,7 +35031,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_Marionette$Behavior)
         }
       });
 
-      // Defer to wait for the widget to re-render and prevent UI glitches.
+      / Defer to wait for the widget to re-render and prevent UI glitches.
       setTimeout(function () {
         _this2.$el.css({
           width: '',
@@ -35054,7 +35054,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_Marionette$Behavior)
         return;
       }
 
-      // Set grow & shrink to 0 in order to set a specific size and prevent UI glitches.
+      / Set grow & shrink to 0 in order to set a specific size and prevent UI glitches.
       this.$el.css({
         left: '',
         right: '',
@@ -35217,7 +35217,7 @@ ColumnView = BaseElementView.extend({
     return groups;
   },
   isDroppingAllowed: function isDroppingAllowed() {
-    // Don't allow dragging items to document which is not editable.
+    / Don't allow dragging items to document which is not editable.
     if (!this.getContainer().isEditable()) {
       return false;
     }
@@ -35243,7 +35243,7 @@ ColumnView = BaseElementView.extend({
       columnSize = self.model.getSetting('_column_size');
     self.$el.attr('data-col', columnSize);
     _.defer(function () {
-      // Wait for the column size to be applied
+      / Wait for the column size to be applied
       if (self.ui.percentsTooltip) {
         self.ui.percentsTooltip.text(self.getPercentsForDisplay());
       }
@@ -35304,7 +35304,7 @@ ColumnView = BaseElementView.extend({
       placeholderClass: 'elementor-sortable-placeholder elementor-widget-placeholder',
       hasDraggingOnChildClass: 'elementor-dragging-on-child',
       onDropping: function onDropping(side, event) {
-        // Triggering drag end manually, since it won't fired above iframe
+        / Triggering drag end manually, since it won't fired above iframe
         elementor.getPreviewView().onPanelElementDragEnd();
         _this.onDrop(event, {
           side: side,
@@ -35350,7 +35350,7 @@ var ContainerView = BaseElementView.extend({
   template: Marionette.TemplateCache.get('#tmpl-elementor-container-content'),
   emptyView: _emptyView.default,
   destroyEmptyView: function destroyEmptyView() {
-    // Do not remove the empty view for Grid Containers.
+    / Do not remove the empty view for Grid Containers.
     if (this.isFlexContainer()) {
       return Marionette.CompositeView.prototype.destroyEmptyView.apply(this, arguments);
     }
@@ -35382,7 +35382,7 @@ var ContainerView = BaseElementView.extend({
   tagName: function tagName() {
     return this.model.getSetting('html_tag') || 'div';
   },
-  // TODO: Copied from `views/column.js`.
+  / TODO: Copied from `views/column.js`.
   ui: function ui() {
     var ui = BaseElementView.prototype.ui.apply(this, arguments);
     ui.percentsTooltip = '> .elementor-element-overlay .elementor-column-percents-tooltip';
@@ -35408,7 +35408,7 @@ var ContainerView = BaseElementView.extend({
   behaviors: function behaviors() {
     var behaviors = BaseElementView.prototype.behaviors.apply(this, arguments);
     _.extend(behaviors, {
-      // TODO: Remove. It's a temporary solution for the Navigator sortable.
+      / TODO: Remove. It's a temporary solution for the Navigator sortable.
       Sortable: {
         behaviorClass: __webpack_require__(/*! elementor-behaviors/sortable */ "../assets/dev/js/editor/elements/views/behaviors/sortable.js"),
         elChildType: 'widget'
@@ -35435,7 +35435,7 @@ var ContainerView = BaseElementView.extend({
    * @return {{}} options
    */
   getSortableOptions: function getSortableOptions() {
-    // TODO: Temporary hack.
+    / TODO: Temporary hack.
     return {
       preventInit: true
     };
@@ -35447,13 +35447,13 @@ var ContainerView = BaseElementView.extend({
    * @return {number} nesting level
    */
   getNestingLevel: function getNestingLevel() {
-    // Use the memoized value if present, to prevent too many calculations.
+    / Use the memoized value if present, to prevent too many calculations.
     if (this.nestingLevel) {
       return this.nestingLevel;
     }
     var parent = this.container.parent;
 
-    // Start counting nesting level only from the closest Container parent.
+    / Start counting nesting level only from the closest Container parent.
     if ('container' !== parent.type) {
       return 0;
     }
@@ -35477,7 +35477,7 @@ var ContainerView = BaseElementView.extend({
       items: items,
       groups: ['elementor-element'],
       horizontalThreshold: 5,
-      // TODO: Stop the magic.
+      / TODO: Stop the magic.
       isDroppingAllowed: this.isDroppingAllowed.bind(this),
       currentElementClass: 'elementor-html5dnd-current-element',
       placeholderClass: 'elementor-sortable-placeholder elementor-widget-placeholder',
@@ -35488,7 +35488,7 @@ var ContainerView = BaseElementView.extend({
       onDropping: function onDropping(side, event) {
         event.stopPropagation();
 
-        // Triggering drag end manually, since it won't fired above iframe
+        / Triggering drag end manually, since it won't fired above iframe
         elementor.getPreviewView().onPanelElementDragEnd();
         var draggedView = elementor.channels.editor.request('element:dragged'),
           draggingInSameParent = (draggedView === null || draggedView === void 0 ? void 0 : draggedView.parent) === _this,
@@ -35496,21 +35496,21 @@ var ContainerView = BaseElementView.extend({
           containerSelector = hasInnerContainer ? event.currentTarget.parentElement.parentElement : event.currentTarget.parentElement;
         var $elements = jQuery(containerSelector).find('> .elementor-element');
 
-        // Exclude the dragged element from the indexing calculations.
+        / Exclude the dragged element from the indexing calculations.
         if (draggingInSameParent) {
           $elements = $elements.not(draggedView.$el);
         }
         var widgetsArray = Object.values($elements);
         var newIndex = hasInnerContainer ? widgetsArray.indexOf(event.currentTarget.parentElement) : widgetsArray.indexOf(event.currentTarget);
 
-        // Plus one in order to insert it after the current target element.
+        / Plus one in order to insert it after the current target element.
         if (_this.shouldIncrementIndex(side)) {
           newIndex++;
         }
 
-        // User is sorting inside a Container.
+        / User is sorting inside a Container.
         if (draggedView) {
-          // Prevent the user from dragging a parent container into its own child container
+          / Prevent the user from dragging a parent container into its own child container
           var draggedId = draggedView.getContainer().id;
           var currentTargetParentContainer = _this.container;
           while (currentTargetParentContainer) {
@@ -35520,7 +35520,7 @@ var ContainerView = BaseElementView.extend({
             currentTargetParentContainer = currentTargetParentContainer.parent;
           }
 
-          // Reset the dragged element cache.
+          / Reset the dragged element cache.
           elementor.channels.editor.reply('element:dragged', null);
           $e.run('document/elements/move', {
             container: draggedView.getContainer(),
@@ -35532,7 +35532,7 @@ var ContainerView = BaseElementView.extend({
           return;
         }
 
-        // User is dragging an element from the panel.
+        / User is dragging an element from the panel.
         _this.onDrop(event, {
           at: newIndex
         });
@@ -35609,7 +35609,7 @@ var ContainerView = BaseElementView.extend({
     return groups;
   },
   isDroppingAllowed: function isDroppingAllowed() {
-    // Don't allow dragging items to document which is not editable.
+    / Don't allow dragging items to document which is not editable.
     if (!this.getContainer().isEditable()) {
       return false;
     }
@@ -35675,10 +35675,10 @@ var ContainerView = BaseElementView.extend({
     this.$el.before(addSectionView.$el);
     addSectionView.$el.hide();
 
-    // Delaying the slide down for slow-render browsers (such as FF)
+    / Delaying the slide down for slow-render browsers (such as FF)
     setTimeout(function () {
       addSectionView.$el.slideDown(null, function () {
-        // Remove inline style, for preview mode.
+        / Remove inline style, for preview mode.
         jQuery(this).css('display', '');
       });
     });
@@ -35688,7 +35688,7 @@ var ContainerView = BaseElementView.extend({
     var _this3 = this;
     BaseElementView.prototype.onRender.apply(this, arguments);
 
-    // Defer to wait for everything to render.
+    / Defer to wait for everything to render.
     setTimeout(function () {
       _this3.nestingLevel = _this3.getNestingLevel();
       _this3.$el[0].dataset.nestingLevel = _this3.nestingLevel;
@@ -35696,7 +35696,7 @@ var ContainerView = BaseElementView.extend({
         _this3.model.set('isInner', _this3.isNestedElementContentContainer() || _this3.getNestingLevel() > 0);
       }
 
-      // Add the EmptyView to the end of the Grid Container on initial page load if there are already some widgets.
+      / Add the EmptyView to the end of the Grid Container on initial page load if there are already some widgets.
       if (_this3.isGridContainer()) {
         _this3.reInitEmptyView();
       }
@@ -35719,7 +35719,7 @@ var ContainerView = BaseElementView.extend({
         this.reInitEmptyView();
       }
 
-      // Make sure the Empty view is removed if we changed from grid to flex and there were widgets.
+      / Make sure the Empty view is removed if we changed from grid to flex and there were widgets.
       if (this.isFlexContainer() && !this.isEmpty()) {
         this.getCorrectContainerElement().find('> .elementor-empty-view').remove();
       }
@@ -35754,7 +35754,7 @@ var ContainerView = BaseElementView.extend({
   onDragEnd: function onDragEnd() {
     this.droppableInitialize(this.container.settings);
   },
-  // TODO: Copied from `views/column.js`.
+  / TODO: Copied from `views/column.js`.
   attachElContent: function attachElContent() {
     BaseElementView.prototype.attachElContent.apply(this, arguments);
     var $tooltip = jQuery('<div>', {
@@ -35763,14 +35763,14 @@ var ContainerView = BaseElementView.extend({
     });
     this.$el.children('.elementor-element-overlay').append($tooltip);
   },
-  // TODO: Copied from `views/column.js`.
+  / TODO: Copied from `views/column.js`.
   getPercentSize: function getPercentSize(size) {
     if (!size) {
       size = this.el.getBoundingClientRect().width;
     }
     return +(size / this.$el.parent().width() * 100).toFixed(3);
   },
-  // TODO: Copied from `views/column.js`.
+  / TODO: Copied from `views/column.js`.
   getPercentsForDisplay: function getPercentsForDisplay() {
     var width = +this.model.getSetting('width') || this.getPercentSize();
     return width.toFixed(1) + '%';
@@ -35781,7 +35781,7 @@ var ContainerView = BaseElementView.extend({
     }
   },
   onResize: function onResize() {
-    // TODO: Copied from `views/column.js`.
+    / TODO: Copied from `views/column.js`.
     if (this.ui.percentsTooltip) {
       this.ui.percentsTooltip.text(this.getPercentsForDisplay());
     }
@@ -35844,8 +35844,8 @@ var ContainerView = BaseElementView.extend({
   },
   reInitEmptyView: function reInitEmptyView() {
     if (!this.getCorrectContainerElement().find('> .elementor-empty-view').length) {
-      delete this._showingEmptyView; // Marionette property that needs to be falsy for showEmptyView() to fully execute.
-      this.showEmptyView(); // Marionette function.
+      delete this._showingEmptyView; / Marionette property that needs to be falsy for showEmptyView() to fully execute.
+      this.showEmptyView(); / Marionette function.
       this.handleGridEmptyView();
     }
   },
@@ -35948,8 +35948,8 @@ var EmptyView = exports["default"] = /*#__PURE__*/function (_Marionette$ItemView
       var parent = container.parent;
       var defaultElement;
 
-      // If the emptyView is parent of widget. then the emptyView can be searched for in `elementor.elementsManager`,
-      // according to the `widgetType`.
+      / If the emptyView is parent of widget. then the emptyView can be searched for in `elementor.elementsManager`,
+      / according to the `widgetType`.
       if ('widget' === parent.model.get('elType')) {
         var elementType = elementor.elementsManager.getElementTypeClass(parent.model.get('widgetType'));
         if (elementType) {
@@ -36017,11 +36017,11 @@ var SectionView = BaseElementView.extend({
     this.$el.toggleClass('elementor-section-filled', this.isCollectionFilled());
   },
   addChildModel: function addChildModel(model) {
-    // TODO: maybe should be part of $e.hooks.
+    / TODO: maybe should be part of $e.hooks.
     var isModelInstance = model instanceof Backbone.Model,
       isInner = this.isInner();
     if (isModelInstance) {
-      // TODO: change to command.
+      / TODO: change to command.
       model.set('isInner', isInner);
     } else {
       model.isInner = isInner;
@@ -36217,10 +36217,10 @@ var SectionView = BaseElementView.extend({
     this.$el.before(addSectionView.$el);
     addSectionView.$el.hide();
 
-    // Delaying the slide down for slow-render browsers (such as FF)
+    / Delaying the slide down for slow-render browsers (such as FF)
     setTimeout(function () {
       addSectionView.$el.slideDown(null, function () {
-        // Remove inline style, for preview mode.
+        / Remove inline style, for preview mode.
         jQuery(this).css('display', '');
       });
     });
@@ -36247,7 +36247,7 @@ var SectionView = BaseElementView.extend({
   onChildviewRequestResize: function onChildviewRequestResize(columnView, ui) {
     ui.element.css({
       width: '',
-      left: 'initial' // Fix for RTL resizing
+      left: 'initial' / Fix for RTL resizing
     });
     $e.run('document/elements/settings', {
       container: columnView.getContainer(),
@@ -36359,7 +36359,7 @@ var WidgetView = _baseWidget.default.extend({
     var _this2 = this;
     _.defer(function () {
       elementorFrontend.elements.window.jQuery(_this2.el).empty().append(_this2.getHandlesOverlay(), _this2.getHTMLContent(html));
-      _this2.bindUIElements(); // Build again the UI elements since the content attached just now
+      _this2.bindUIElements(); / Build again the UI elements since the content attached just now
     });
     return this;
   },
@@ -36379,16 +36379,16 @@ var WidgetView = _baseWidget.default.extend({
     _baseWidget.default.prototype.onRender.apply(self, arguments);
     this.normalizeAttributes();
 
-    // TODO: Find a better way to detect if all the images have been loaded
+    / TODO: Find a better way to detect if all the images have been loaded
     self.$el.imagesLoaded().always(function () {
       setTimeout(function () {
-        // Since 'outerHeight' will not handle hidden elements, and mark them as empty (e.g. nested tabs).
+        / Since 'outerHeight' will not handle hidden elements, and mark them as empty (e.g. nested tabs).
         var $widgetContainer = self.$el.children('.elementor-widget-container').length ? self.$el.children('.elementor-widget-container') : self.$el;
         if (self.shouldGetEmptyView($widgetContainer)) {
           self.handleEmptyWidget();
         }
       }, 200);
-      // Is element empty?
+      / Is element empty?
     });
   },
   shouldGetEmptyView: function shouldGetEmptyView($widgetContainer) {
@@ -36536,7 +36536,7 @@ var GlobalColorIntroduction = exports["default"] = /*#__PURE__*/function () {
       var _this = this;
       $e.routes.on('run:after', function (component, route, args) {
         var _controlView$model;
-        // Prevent the Tooltip from appearing when the event is triggered from site-settings.
+        / Prevent the Tooltip from appearing when the event is triggered from site-settings.
         if (!$e.routes.isPartOf('panel/editor')) {
           return;
         }
@@ -36568,7 +36568,7 @@ var GlobalColorIntroduction = exports["default"] = /*#__PURE__*/function () {
         dialogOptions: {
           headerMessage: __('Check out Global Colors', 'elementor'),
           message: sprintf(
-          // eslint-disable-next-line @wordpress/i18n-translator-comments
+          / eslint-disable-next-line @wordpress/i18n-translator-comments
           __('Save time by applying Global Colors to change the style of multiple elements at once. Click %s to see what Global Colors you already have.', 'elementor'), "<i class='eicon-globe'></i>"),
           position: {
             my: (elementorCommon.config.isRTL ? 'left' : 'right') + '0 top0',
@@ -36626,7 +36626,7 @@ var GlobalFontIntroduction = exports["default"] = /*#__PURE__*/function () {
       var _this = this;
       $e.routes.on('run:after', function (component, route, args) {
         var _controlView$model;
-        // Prevent the Tooltip from appearing when the event is triggered from site-settings.
+        / Prevent the Tooltip from appearing when the event is triggered from site-settings.
         if (!$e.routes.isPartOf('panel/editor')) {
           return;
         }
@@ -36658,7 +36658,7 @@ var GlobalFontIntroduction = exports["default"] = /*#__PURE__*/function () {
         dialogOptions: {
           headerMessage: __('Check out Global Fonts', 'elementor'),
           message: sprintf(
-          // eslint-disable-next-line @wordpress/i18n-translator-comments
+          / eslint-disable-next-line @wordpress/i18n-translator-comments
           __('Save time by applying Global Fonts to change the style of multiple elements at once. Click %s to see what Global Fonts you already have.', 'elementor'), "<i class='eicon-globe'></i>"),
           position: {
             my: (elementorCommon.config.isRTL ? 'left' : 'right') + '0 top0',
@@ -37114,8 +37114,8 @@ var _default = exports["default"] = /*#__PURE__*/function (_Marionette$Composite
     key: "getSortableClassName",
     value: function getSortableClassName() {
       var elType = this.model.get('elType');
-      // Excluded nestable elements (section, column) should have their own unique class,
-      // so that they won't be connected with new nestable elements (container, div-block).
+      / Excluded nestable elements (section, column) should have their own unique class,
+      / so that they won't be connected with new nestable elements (container, div-block).
       if (this.isExcludedNestableElement()) {
         return 'elementor-navigator__element-' + elType;
       }
@@ -37285,7 +37285,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_Marionette$Composite
         oldTitle = settingsModel.get('_title'),
         newTitle = this.ui.title.text().trim();
 
-      // When there isn't an old title and a new title, allow backbone to recognize the `set` as a change
+      / When there isn't an old title and a new title, allow backbone to recognize the `set` as a change
       if (!oldTitle) {
         settingsModel.unset('_title', {
           silent: true
@@ -37300,7 +37300,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_Marionette$Composite
         settingsModel.set('_title', newTitle);
       }
 
-      // TODO: Remove - After merge pull request #13605.
+      / TODO: Remove - After merge pull request #13605.
       $e.internal('document/save/set-is-modified', {
         status: true
       });
@@ -37346,7 +37346,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_Marionette$Composite
         }).attr('data-section', indicatorSettings.section).html("<i class=\"eicon-".concat(indicatorSettings.icon, "\"></i>"));
         _this2.ui.indicators.append($indicator);
 
-        // Added delay of 500ms because the indicators bar has a CSS transition attribute of .5s
+        / Added delay of 500ms because the indicators bar has a CSS transition attribute of .5s
         $indicator.tipsy({
           delayIn: 300,
           gravity: 's'
@@ -37740,7 +37740,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_BaseRegion) {
     _this.ensurePosition = _this.ensurePosition.bind(_this);
     _this.listenTo(elementor.channels.dataEditMode, 'switch', _this.onEditModeSwitched);
 
-    // TODO: Move to hook on 'editor/documents/load'.
+    / TODO: Move to hook on 'editor/documents/load'.
     elementor.on('document:loaded', _this.onDocumentLoaded.bind(_this));
     elementor.on('document:unloaded', _this.onDocumentUnloaded.bind(_this));
     return _this;
@@ -37902,7 +37902,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_BaseRegion) {
         this.storage.size.width = this.storage.size.width || elementorCommon.elements.$body.css('--e-editor-navigator-width');
       }
 
-      // Set the navigator size using a CSS variable, and remove the inline CSS that was set by jQuery Resizeable.
+      / Set the navigator size using a CSS variable, and remove the inline CSS that was set by jQuery Resizeable.
       elementorCommon.elements.$body.css('--e-editor-navigator-width', this.storage.size.width);
       this.$el.css('width', '');
     }
@@ -37969,7 +37969,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_BaseRegion) {
   }, {
     key: "onEditModeSwitched",
     value: function onEditModeSwitched(activeMode) {
-      // Determine when the navigator should be visible.
+      / Determine when the navigator should be visible.
       var visibleModes = ['edit', 'picker'];
       if (visibleModes.includes(activeMode) && this.storage.visible) {
         this.open();
@@ -38432,7 +38432,7 @@ var StateReady = exports.StateReady = /*#__PURE__*/function (_$e$modules$Command
     value: function apply() {
       elementorCommon.elements.$body.removeClass('elementor-panel-loading');
 
-      // Cannot be hook because not sure if it affects UI or data.
+      / Cannot be hook because not sure if it affects UI or data.
       if (!this.component.stateReadyOnce) {
         this.component.stateReadyOnce = true;
         $e.extras.hashCommands.runOnce();
@@ -38731,7 +38731,7 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
         },
         exit: {
           keys: 'esc',
-          // TODO: replace dependency with scopes.
+          / TODO: replace dependency with scopes.
           dependency: function dependency() {
             return !jQuery('.dialog-widget:visible').length && isEditMode();
           },
@@ -38932,7 +38932,7 @@ module.exports = Marionette.ItemView.extend({
   onMenuButtonsClick: function onMenuButtonsClick(event) {
     var $tool = jQuery(event.currentTarget);
 
-    // If the tool is not toggleable or the click is inside of a tool
+    / If the tool is not toggleable or the click is inside of a tool
     if (!$tool.hasClass('elementor-toggle-state') || jQuery(event.target).closest('.elementor-panel-footer-sub-menu-item').length) {
       return;
     }
@@ -38949,7 +38949,7 @@ module.exports = Marionette.ItemView.extend({
     if (elementor.isDeviceModeActive()) {
       elementor.changeDeviceMode('desktop');
 
-      // Force exit if device mode is already desktop
+      / Force exit if device mode is already desktop
       elementor.exitDeviceMode();
     } else {
       var deviceView = 'desktop';
@@ -39142,16 +39142,16 @@ PanelLayoutView = Marionette.LayoutView.extend({
     var PanelFooterItemView = __webpack_require__(/*! elementor-regions/panel/footer */ "../assets/dev/js/editor/regions/panel/footer.js"),
       PanelHeaderItemView = __webpack_require__(/*! elementor-regions/panel/header */ "../assets/dev/js/editor/regions/panel/header.js");
 
-    // Edit Mode
+    / Edit Mode
     this.showChildView('modeSwitcher', new EditModeItemView());
 
-    // Header
+    / Header
     this.showChildView('header', new PanelHeaderItemView());
 
-    // Footer
+    / Footer
     this.showChildView('footer', new PanelFooterItemView());
 
-    // Added Editor events
+    / Added Editor events
     this.updateScrollbar = _.throttle(this.updateScrollbar, 100);
     this.getRegion('content').on('before:show', this.onEditorBeforeShow.bind(this)).on('empty', this.onEditorEmpty.bind(this)).on('show', this.updateScrollbar.bind(this));
   },
@@ -39167,7 +39167,7 @@ PanelLayoutView = Marionette.LayoutView.extend({
         suppressScrollX: true
       });
 
-      // The RTL is buggy, so always keep it LTR.
+      / The RTL is buggy, so always keep it LTR.
       this.perfectScrollbar.isRtl = false;
       return;
     }
@@ -39197,7 +39197,7 @@ EditorView = ControlsStack.extend({
     return {
       element: this.getOption('editedElementView'),
       container: this.getOption('editedElementView').getContainer(),
-      // TODO: elementSettingsModel is deprecated since 2.8.0.
+      / TODO: elementSettingsModel is deprecated since 2.8.0.
       elementSettingsModel: this.model.get('settings'),
       elementEditSettings: this.model.get('editSettings')
     };
@@ -39207,10 +39207,10 @@ EditorView = ControlsStack.extend({
     var model = this.getOption('editedElementView').getEditModel(),
       currentElementType = model.get('elType');
 
-    // Element Type: section / column / widget.
+    / Element Type: section / column / widget.
     eventNamespace.push(currentElementType);
     if ('widget' === currentElementType) {
-      // Widget Type: heading / button and etc.
+      / Widget Type: heading / button and etc.
       eventNamespace.push(model.get('widgetType'));
     }
     return eventNamespace;
@@ -39324,15 +39324,15 @@ var Open = exports.Open = /*#__PURE__*/function (_$e$modules$CommandBa) {
         $e.route(this.component.getDefaultRoute(), args);
       }
 
-      // BC: Run hooks after the route render's the view
+      / BC: Run hooks after the route render's the view
 
       var elementType = args.model.get('elType'),
         widgetType = args.model.get('widgetType');
 
-      // Example: panel/open_editor/widget
+      / Example: panel/open_editor/widget
       elementor.hooks.doAction("panel/open_editor/".concat(elementType), this.component.manager, args.model, args.view);
 
-      // Example: panel/open_editor/widget/heading
+      / Example: panel/open_editor/widget/heading
       elementor.hooks.doAction("panel/open_editor/".concat(elementType, "/").concat(widgetType), this.component.manager, args.model, args.view);
     }
   }]);
@@ -39383,7 +39383,7 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
     value: function __construct(args) {
       _superPropGet(Component, "__construct", this, 3)([args]);
 
-      // Remember last used tab.
+      / Remember last used tab.
       this.activeTabs = {};
       this.activeModelId = null;
     }
@@ -39466,10 +39466,10 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
         defaultTab = editSettings.get('defaultEditRoute');
       }
       if (defaultTab) {
-        // Ensure tab is exist.
+        / Ensure tab is exist.
         var controlsTabs = elementor.getElementData(args.model).tabs_controls;
 
-        // Fallback to first tab.
+        / Fallback to first tab.
         if (!controlsTabs[defaultTab]) {
           defaultTab = Object.keys(controlsTabs)[0];
         }
@@ -39706,18 +39706,18 @@ PanelElementsLayoutView = Marionette.LayoutView.extend({
     var _this = this;
     var elementsCollection = new PanelElementsElementsCollection();
 
-    // Deprecated widget handling.
+    / Deprecated widget handling.
     Object.entries(elementor.widgetsCache).forEach(function (_ref) {
       var _ref2 = (0, _slicedToArray2.default)(_ref, 2),
         widgetName = _ref2[0],
         widgetData = _ref2[1];
       if (widgetData.deprecation && elementor.widgetsCache[widgetData.deprecation.replacement]) {
-        // Hide the old version.
+        / Hide the old version.
         elementor.widgetsCache[widgetName].show_in_panel = false;
       }
     });
 
-    // TODO: Change the array from server syntax, and no need each loop for initialize
+    / TODO: Change the array from server syntax, and no need each loop for initialize
     _.each(elementor.widgetsCache, function (widget) {
       if (elementor.config.document.panel.widgets_settings[widget.widget_type]) {
         widget = _.extend(widget, elementor.config.document.panel.widgets_settings[widget.widget_type]);
@@ -39775,7 +39775,7 @@ PanelElementsLayoutView = Marionette.LayoutView.extend({
     var categoriesCollection = new PanelElementsCategoriesCollection();
     _.each(elementor.config.document.panel.elements_categories, function (categoryConfig, categoryName) {
       var _categoryConfig$promo;
-      // Set defaults.
+      / Set defaults.
       if ('undefined' === typeof categoryConfig.active) {
         categoryConfig.active = true;
       }
@@ -40071,7 +40071,7 @@ module.exports = Marionette.ItemView.extend({
     });
     this.ui.element.html5Draggable({
       onDragStart: function onDragStart() {
-        // Reset the sort cache.
+        / Reset the sort cache.
         elementor.channels.editor.reply('element:dragged', null);
         elementor.channels.panelElements.reply('element:selected', _this).trigger('element:drag:start');
       },
@@ -40086,16 +40086,16 @@ module.exports = Marionette.ItemView.extend({
       widgetType = this.model.get('name') || this.model.get('widgetType'),
       promotion = elementor.config.promotion.elements;
     elementor.promotion.showDialog({
-      // eslint-disable-next-line @wordpress/valid-sprintf
+      / eslint-disable-next-line @wordpress/valid-sprintf
       title: sprintf(promotion.title, title),
-      // eslint-disable-next-line @wordpress/valid-sprintf
+      / eslint-disable-next-line @wordpress/valid-sprintf
       content: sprintf(promotion.content, title),
       targetElement: this.el,
       position: {
         blockStart: '-7'
       },
       actionButton: {
-        // eslint-disable-next-line @wordpress/valid-sprintf
+        / eslint-disable-next-line @wordpress/valid-sprintf
         url: sprintf(promotion.action_button.url, widgetType),
         text: promotion.action_button.text,
         classes: promotion.action_button.classes || ['elementor-button', 'go-pro']
@@ -40107,14 +40107,14 @@ module.exports = Marionette.ItemView.extend({
     var selectedElements = this.getSelectedElements();
     var isMultiSelect = selectedElements.length > 1;
 
-    // Currently, we don't support multi-selected elements.
+    / Currently, we don't support multi-selected elements.
     if (isMultiSelect) {
       return;
     }
     var _selectedElements = (0, _slicedToArray2.default)(selectedElements, 1),
       element = _selectedElements[0];
 
-    // Order matters.
+    / Order matters.
     var scenariosMap = {
       addToDocument: {
         check: function check() {
@@ -40193,8 +40193,8 @@ module.exports = Marionette.ItemView.extend({
     return elementor.selection.getElements().filter(function (_ref2) {
       var _elementor$documents$;
       var view = _ref2.view;
-      // Remove elements that don't exist in the current document's DOM, because of a bug in
-      // the selection manager that doesn't deselect elements properly.
+      / Remove elements that don't exist in the current document's DOM, because of a bug in
+      / the selection manager that doesn't deselect elements properly.
       return (_elementor$documents$ = elementor.documents.getCurrent().$element) === null || _elementor$documents$ === void 0 ? void 0 : _elementor$documents$[0].contains(view.$el[0]);
     });
   }
@@ -40225,7 +40225,7 @@ PanelElementsElementsView = Marionette.CollectionView.extend({
       return true;
     }
 
-    // Prevent from wordpress widgets to show in search result.
+    / Prevent from wordpress widgets to show in search result.
     if (childModel.get('hideOnSearch')) {
       return false;
     }
@@ -40233,7 +40233,7 @@ PanelElementsElementsView = Marionette.CollectionView.extend({
       return true;
     }
 
-    // Get the filter input localized value.
+    / Get the filter input localized value.
     var localized = elementor.channels.panelElements.request('filter:localized') || '';
     return _.any(childModel.get('keywords'), function (keyword) {
       keyword = keyword.toLowerCase();
@@ -40299,8 +40299,8 @@ var PanelElementsSearchView = Marionette.ItemView.extend({
   },
   events: {
     'keydown @ui.input': 'onInputChanged',
-    // Used to capture the ctrl+V
-    'input @ui.input': 'onInputChanged' // Will capture the context menu paste
+    / Used to capture the ctrl+V
+    'input @ui.input': 'onInputChanged' / Will capture the context menu paste
   },
   clearInput: function clearInput() {
     this.ui.input.val('');
@@ -40311,7 +40311,7 @@ var PanelElementsSearchView = Marionette.ItemView.extend({
       this.clearInput();
     }
     this.localizedValue = this.localizedValueStore.appendAndParseLocalizedData(event);
-    // Broadcast the localized value.
+    / Broadcast the localized value.
     elementor.channels.panelElements.reply('filter:localized', this.localizedValue);
     this.triggerMethod('search:change:input');
   }
@@ -40369,7 +40369,7 @@ var MenuPageView = exports["default"] = /*#__PURE__*/function (_Marionette$Compo
       return '#elementor-panel-page-menu-content';
     }
 
-    // Remove empty groups that exist for BC.
+    / Remove empty groups that exist for BC.
   }, {
     key: "filter",
     value: function filter(child) {
@@ -40387,7 +40387,7 @@ MenuPageView.addItem = function (groups, itemData, groupName, before) {
   var items = group.get('items'),
     exists = _.findWhere(items, {
       name: itemData.name
-    }); // Remove if exist.
+    }); / Remove if exist.
 
   var beforeItem;
   if (exists) {
@@ -40468,7 +40468,7 @@ PanelMenu.groups = null;
 PanelMenu.initGroups = function () {
   PanelMenu.groups = new Backbone.Collection([]);
 
-  // Keep the old `more` for BC, since 3.0.0.
+  / Keep the old `more` for BC, since 3.0.0.
   PanelMenu.groups.add({
     name: 'more',
     title: __('More', 'elementor'),
@@ -40478,7 +40478,7 @@ PanelMenu.initGroups = function () {
     name: 'navigate_from_page',
     title: __('Navigate From Page', 'elementor'),
     items: [
-    // Todo: internal command.
+    / Todo: internal command.
     {
       name: 'view-page',
       icon: 'eicon-preview-thin',
@@ -40552,7 +40552,7 @@ PanelMenu.clickExitItem = function () {
   var currentValue = elementor.getPreferences('exit_to');
   var defaultValue = elementor.settings.editorPreferences.getEditedView().getContainer().controls.exit_to.default;
 
-  // The modal will pop if the user has not set the exit to preference yet or if the model never showed before.
+  / The modal will pop if the user has not set the exit to preference yet or if the model never showed before.
   if (currentValue !== defaultValue || PanelMenu.exitShouldRedirect) {
     window.location.href = PanelMenu.getExitUrl();
   } else {
@@ -40623,7 +40623,7 @@ PanelMenu.createExitIntroductionDialog = function () {
     }
   });
 
-  // Edit the template inside the dialog
+  / Edit the template inside the dialog
   var messageContainer = introduction.getDialog().getElements().message[0],
     select = messageContainer.querySelector('#exit-to-preferences'),
     link = messageContainer.querySelector('#user-preferences');
@@ -40637,13 +40637,13 @@ PanelMenu.createExitIntroductionDialog = function () {
     select.appendChild(option);
   }
 
-  // Bind click event to the link in the dialog to open the editor preferences.
+  / Bind click event to the link in the dialog to open the editor preferences.
   link.addEventListener('click', function (e) {
     e.preventDefault();
     introduction.getDialog().hide();
     $e.route('panel/editor-preferences');
 
-    // Force the exit button to rerender by creating new exit button.
+    / Force the exit button to rerender by creating new exit button.
     PanelMenu.addExitItem();
   });
   return introduction;
@@ -40783,7 +40783,7 @@ module.exports = BaseRegion.extend({
         elementorCommon.elements.$body.css('--e-editor-panel-width', ui.size.width + 'px');
         self.$el.css({
           width: '',
-          // For RTL
+          / For RTL
           left: ''
         });
       }
@@ -40870,7 +40870,7 @@ var ColorPicker = exports["default"] = /*#__PURE__*/function (_elementorModules$
       pickerSettings.default = pickerSettings.default || null;
       this.picker = new Pickr(pickerSettings);
 
-      // Set a default palette. It doesn't affect the selected value.
+      / Set a default palette. It doesn't affect the selected value.
       this.picker.setColor(pickerSettings.default || '#020101');
       this.color = this.processColor();
       this.picker.on('change', function () {
@@ -40959,7 +40959,7 @@ var ColorPicker = exports["default"] = /*#__PURE__*/function (_elementorModules$
       });
     }
 
-    // Move the clear button from Pickr's default location into the Color Picker header.
+    / Move the clear button from Pickr's default location into the Color Picker header.
   }, {
     key: "createClearButton",
     value: function createClearButton() {
@@ -40980,12 +40980,12 @@ var ColorPicker = exports["default"] = /*#__PURE__*/function (_elementorModules$
       this.picker.destroyAndRemove();
     }
 
-    // TODO: CHECK IF THIS IS STILL NECESSARY
+    / TODO: CHECK IF THIS IS STILL NECESSARY
   }, {
     key: "fixTipsyForFF",
     value: function fixTipsyForFF($button) {
-      // There's a bug in FireFox about hiding the tooltip after the button was clicked,
-      // So let's force it to hide.
+      / There's a bug in FireFox about hiding the tooltip after the button was clicked,
+      / So let's force it to hide.
       $button.data('tipsy').hide();
     }
   }, {
@@ -41171,9 +41171,9 @@ var Conditions = exports["default"] = /*#__PURE__*/function () {
         if (term.terms) {
           comparisonResult = _this.check(term, comparisonObject);
         } else {
-          // A term consists of a condition name (id) to be examined, and a sub key if the condition source is
-          // an object. For example, a term can look like 'image_overlay[url]' (the 'url' is the sub key). Here
-          // we want to isolate the condition name and the sub key, so later it can be retrieved and examined.
+          / A term consists of a condition name (id) to be examined, and a sub key if the condition source is
+          / an object. For example, a term can look like 'image_overlay[url]' (the 'url' is the sub key). Here
+          / we want to isolate the condition name and the sub key, so later it can be retrieved and examined.
           var parsedName = term.name.match(/([\w-]+)(?:\[([\w-]+)])?/),
             conditionRealName = parsedName[1],
             conditionSubKey = parsedName[2];
@@ -41331,16 +41331,16 @@ var ContainerHelper = exports.ContainerHelper = /*#__PURE__*/function () {
           flex_gap: {
             unit: 'px',
             size: 0,
-            // Set the gap to 0 to override the default inherited from `Site Settings`.
+            / Set the gap to 0 to override the default inherited from `Site Settings`.
             column: '0',
             row: '0'
           }
         });
 
-      // Create a parent container to contain all of the sub containers.
+      / Create a parent container to contain all of the sub containers.
       var parentContainer;
 
-      // The `createWrapper` false option is used in nested-modules for creating containers from preset for custom target(s).
+      / The `createWrapper` false option is used in nested-modules for creating containers from preset for custom target(s).
       if (!createWrapper) {
         $e.run('document/elements/settings', {
           container: target,
@@ -41351,8 +41351,8 @@ var ContainerHelper = exports.ContainerHelper = /*#__PURE__*/function () {
         parentContainer = this.createContainer(settings, target, options);
       }
 
-      // Create all sub containers using the sizes array.
-      // Use flex basis to make the sizes explicit.
+      / Create all sub containers using the sizes array.
+      / Use flex basis to make the sizes explicit.
       sizes.forEach(function (size) {
         size = sizesMap[size] || size;
         _this.createContainer({
@@ -41393,21 +41393,21 @@ var ContainerHelper = exports.ContainerHelper = /*#__PURE__*/function () {
       var newContainer, settings;
       try {
         switch (preset) {
-          // Single column Container without sub Containers.
+          / Single column Container without sub Containers.
           case 'c100':
             newContainer = ContainerHelper.createContainer({
               flex_direction: ContainerHelper.DIRECTION_COLUMN
             }, target, options);
             break;
 
-          // Single row Container without sub Containers.
+          / Single row Container without sub Containers.
           case 'r100':
             newContainer = ContainerHelper.createContainer({
               flex_direction: ContainerHelper.DIRECTION_ROW
             }, target, options);
             break;
 
-          // Exceptional preset.
+          / Exceptional preset.
           case 'c100-c50-50':
             {
               settings = {
@@ -41415,7 +41415,7 @@ var ContainerHelper = exports.ContainerHelper = /*#__PURE__*/function () {
                 flex_gap: {
                   unit: 'px',
                   size: 0,
-                  // Set the gap to 0 to override the default inherited from `Site Settings`.
+                  / Set the gap to 0 to override the default inherited from `Site Settings`.
                   column: '0',
                   row: '0'
                 }
@@ -41448,11 +41448,11 @@ var ContainerHelper = exports.ContainerHelper = /*#__PURE__*/function () {
                   left: 0,
                   isLinked: true
                 },
-                // Create the right Container with 0 padding (default is 10px).
+                / Create the right Container with 0 padding (default is 10px).
                 flex_gap: {
                   unit: 'px',
                   size: 0,
-                  // Set the gap to 0 to override the default inherited from `Site Settings`.
+                  / Set the gap to 0 to override the default inherited from `Site Settings`.
                   column: '0',
                   row: '0'
                 }
@@ -41464,7 +41464,7 @@ var ContainerHelper = exports.ContainerHelper = /*#__PURE__*/function () {
               });
               break;
             }
-          // Containers by preset.
+          / Containers by preset.
           default:
             {
               var sizes = preset.split('-');
@@ -41771,23 +41771,23 @@ var ControlConditions = exports["default"] = /*#__PURE__*/function (_Conditions)
      */
     function convertConditionToConditions(conditionName, conditionValue, controlModel, values, controls) {
       var _controlModel$attribu, _controls$conditionNa;
-      // The first step is to isolate the term from the negative operator if exists. For example, a condition format
-      // can look like 'selected_icon[value]!', so we examine this term with a negative connotation.
+      / The first step is to isolate the term from the negative operator if exists. For example, a condition format
+      / can look like 'selected_icon[value]!', so we examine this term with a negative connotation.
       var conditionNameParts = conditionName.match(/([\w-]+(?:\[[\w-]+])?)?(!?)$/i),
         conditionRealName = conditionNameParts[1],
         isNegativeCondition = !!conditionNameParts[2];
       var parsedControlName = conditionRealName.match(/([\w-]+)(?:\[([\w-]+)])?/),
-        // ConditionNameWithoutSubKey example: the condition key 'image[url]' will give the value of 'image'.
+        / ConditionNameWithoutSubKey example: the condition key 'image[url]' will give the value of 'image'.
         conditionNameWithoutSubKey = parsedControlName[1],
-        // ConditionSubKey example: the condition key 'image[url]' will give the value of 'url'.
+        / ConditionSubKey example: the condition key 'image[url]' will give the value of 'url'.
         conditionSubKey = parsedControlName[2],
-        // In some cases the control's attributes will be under the 'attributes' property, and in some
-        // cases they will be directly on the model object.
+        / In some cases the control's attributes will be under the 'attributes' property, and in some
+        / cases they will be directly on the model object.
         controlResponsiveProp = ((_controlModel$attribu = controlModel.attributes) === null || _controlModel$attribu === void 0 ? void 0 : _controlModel$attribu.responsive) || controlModel.responsive;
       var conditionNameToCheck = conditionRealName,
         controlValue;
 
-      // If the conditioning control is responsive, get the appropriate device's value.
+      / If the conditioning control is responsive, get the appropriate device's value.
       if (!!controlResponsiveProp && (_controls$conditionNa = controls[conditionNameWithoutSubKey]) !== null && _controls$conditionNa !== void 0 && _controls$conditionNa.responsive) {
         var deviceSuffix = this.getResponsiveControlDeviceSuffix(controlResponsiveProp);
         conditionNameToCheck = conditionNameWithoutSubKey + deviceSuffix;
@@ -41795,7 +41795,7 @@ var ControlConditions = exports["default"] = /*#__PURE__*/function (_Conditions)
           conditionNameToCheck += "[".concat(conditionSubKey, "]");
         }
 
-        // If the control is not desktop, take the value of the conditioning control of the corresponding device.
+        / If the control is not desktop, take the value of the conditioning control of the corresponding device.
         controlValue = values[conditionNameWithoutSubKey + deviceSuffix];
       } else {
         controlValue = values[conditionRealName];
@@ -41871,9 +41871,9 @@ var ControlConditions = exports["default"] = /*#__PURE__*/function (_Conditions)
         if (term.terms) {
           comparisonResult = _this.check(term, comparisonObject, controls);
         } else {
-          // A term consists of a control name to be examined, and a sub key if needed. For example, a term
-          // can look like 'image_overlay[url]' (the 'url' is the sub key). Here we want to isolate the
-          // condition name and the sub key, so later it can be retrieved and examined.
+          / A term consists of a control name to be examined, and a sub key if needed. For example, a term
+          / can look like 'image_overlay[url]' (the 'url' is the sub key). Here we want to isolate the
+          / condition name and the sub key, so later it can be retrieved and examined.
           var parsedName = term.name.match(/([\w-]+)(?:\[([\w-]+)])?/),
             conditionRealName = parsedName[1],
             conditionSubKey = parsedName[2];
@@ -41957,7 +41957,7 @@ ControlsCSSParser = elementorModules.ViewModule.extend({
   },
   addStyleRules: function addStyleRules(styleControls, values, controls, placeholders, replacements) {
     var _this2 = this;
-    // If the current element contains dynamic values, parse these values
+    / If the current element contains dynamic values, parse these values
     var dynamicParsedValues = this.getSettings('settingsModel').parseDynamicSettings(values, this.getSettings('dynamicParsing'), styleControls);
     _.each(styleControls, function (control) {
       var _control$dynamic, _values$__dynamic__;
@@ -41965,7 +41965,7 @@ ControlsCSSParser = elementorModules.ViewModule.extend({
         _this2.addRepeaterControlsStyleRules(values[control.name], control.styleFields, control.fields, placeholders, replacements);
       }
 
-      // If a dynamic tag includes controls with CSS implementations, Take their CSS and apply it.
+      / If a dynamic tag includes controls with CSS implementations, Take their CSS and apply it.
       if ((_control$dynamic = control.dynamic) !== null && _control$dynamic !== void 0 && _control$dynamic.active && (_values$__dynamic__ = values.__dynamic__) !== null && _values$__dynamic__ !== void 0 && _values$__dynamic__[control.name]) {
         _this2.addDynamicControlStyleRules(values.__dynamic__[control.name], control);
       }
@@ -42008,8 +42008,8 @@ ControlsCSSParser = elementorModules.ViewModule.extend({
             });
           }
 
-          // This regex handles a case where a control's selector property value includes more than one CSS selector.
-          // Example: 'selector' => 'background: {{VALUE}}; background-color: {{VALUE}};'.
+          / This regex handles a case where a control's selector property value includes more than one CSS selector.
+          / Example: 'selector' => 'background: {{VALUE}}; background-color: {{VALUE}};'.
           outputCssProperty = cssProperty.replace(/(:)[^;]+(;?)/g, '$1' + selectorGlobalValue + '$2');
         }
       } else {
@@ -42088,7 +42088,7 @@ ControlsCSSParser = elementorModules.ViewModule.extend({
         });
       }
       _.each(placeholders, function (placeholder, index) {
-        // Check if it's a RegExp
+        / Check if it's a RegExp
         var regexp = placeholder.source ? placeholder.source : placeholder,
           placeholderPattern = new RegExp(regexp, 'g');
         selector = selector.replace(placeholderPattern, replacements[index]);
@@ -42133,9 +42133,9 @@ ControlsCSSParser = elementorModules.ViewModule.extend({
       isGlobalApplied = container === null || container === void 0 ? void 0 : container.isGlobalApplied(control.name),
       globalKey = ((_values$__globals__ = values.__globals__) === null || _values$__globals__ === void 0 ? void 0 : _values$__globals__[control.name]) || ((_control$global = control.global) === null || _control$global === void 0 ? void 0 : _control$global.default);
 
-    // Set a global value only if it is applied.
+    / Set a global value only if it is applied.
     if (isGlobalApplied && globalKey) {
-      // When the control itself has no global value, but it refers to another control global value
+      / When the control itself has no global value, but it refers to another control global value
       return this.getSelectorGlobalValue(control, globalKey);
     }
     var value = values[control.name];
@@ -42156,9 +42156,9 @@ ControlsCSSParser = elementorModules.ViewModule.extend({
     var id = data.id;
     var value;
 
-    // It's a global settings with additional controls in group.
+    / It's a global settings with additional controls in group.
     if (control.groupType) {
-      // A regex containing all of the active breakpoints' prefixes ('_mobile', '_tablet' etc.).
+      / A regex containing all of the active breakpoints' prefixes ('_mobile', '_tablet' etc.).
       var responsivePrefixRegex = elementor.breakpoints.getActiveMatchRegex();
       var propertyName = control.name.replace(control.groupPrefix, '').replace(responsivePrefixRegex, '');
       if (!data.value[elementor.config.kit_config.typography_prefix + propertyName]) {
@@ -42336,7 +42336,7 @@ var FilesUploadHandler = exports["default"] = /*#__PURE__*/function () {
         onConfirm: function onConfirm() {
           elementorCommon.ajax.addRequest('enable_unfiltered_files_upload', {
             success: function success() {
-              // This utility is used in both the admin and the Editor.
+              / This utility is used in both the admin and the Editor.
               elementorCommon.config.filesUpload.unfilteredFiles = true;
               callback();
             }
@@ -42430,7 +42430,7 @@ var FontVariables = exports.FontVariables = /*#__PURE__*/function () {
           return controlKey === model.get('name');
         });
         if (!controlData) {
-          return 1; // continue
+          return 1; / continue
         }
         _this2.applyFontVariableRange([], controlKey, fieldData);
       };
@@ -42578,7 +42578,7 @@ var Heartbeat = exports["default"] = /*#__PURE__*/function () {
     value: function showLockMessage(lockedUser) {
       var modal = this.getModal();
 
-      // Translators: %s is locked username.
+      / Translators: %s is locked username.
       modal.setMessage(sprintf(__('%s has taken over and is currently editing. Do you want to take over this page editing?', 'elementor'), lockedUser)).show();
     }
   }, {
@@ -42756,7 +42756,7 @@ module.exports = {
     var self = this;
     this.fetchInlineSvg(value.url, function (data) {
       if (data) {
-        self._inlineSvg[value.id] = data; // $( data ).find( 'svg' )[ 0 ].outerHTML;
+        self._inlineSvg[value.id] = data; / $( data ).find( 'svg' )[ 0 ].outerHTML;
         if (view) {
           view.render();
         }
@@ -42873,13 +42873,13 @@ module.exports = {
     if (mapping[fa4Value]) {
       return mapping[fa4Value];
     }
-    // Every thing else is converted to solid
+    / Every thing else is converted to solid
     return {
       value: 'fas' + fa4Value.replace('fa ', ' '),
       library: 'fa-solid'
     };
   },
-  // The target parameter = 'editor'/'preview'. Defaults to 'preview' for backwards compatibility.
+  / The target parameter = 'editor'/'preview'. Defaults to 'preview' for backwards compatibility.
   enqueueFont: function enqueueFont(font) {
     var target = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'preview';
     if ($e.devTools) {
@@ -42925,7 +42925,7 @@ module.exports = {
     }
     if (!_.isEmpty(fontUrl)) {
       if ('editor' === target) {
-        // TODO: Find better solution, temporary fix, covering issue: 'fonts does not rendered in global styles'.
+        / TODO: Find better solution, temporary fix, covering issue: 'fonts does not rendered in global styles'.
         this.enqueueCSS(fontUrl, elementorCommon.elements.$document);
       } else {
         this.enqueueCSS(fontUrl, elementor.$previewContents, enqueueOptions);
@@ -43074,7 +43074,7 @@ module.exports = {
     var condition = controlModel.condition || ((_controlModel$get = controlModel.get) === null || _controlModel$get === void 0 ? void 0 : _controlModel$get.call(controlModel, 'condition'));
     var conditions = controlModel.conditions || ((_controlModel$get2 = controlModel.get) === null || _controlModel$get2 === void 0 ? void 0 : _controlModel$get2.call(controlModel, 'conditions'));
 
-    // If there is a 'condition' format, convert it to a 'conditions' format.
+    / If there is a 'condition' format, convert it to a 'conditions' format.
     if (condition) {
       var terms = [];
       Object.entries(condition).forEach(function (_ref) {
@@ -43147,7 +43147,7 @@ module.exports = {
     }
     setTimeout(function () {
       var _$element$;
-      // Sometimes element removed during the timeout.
+      / Sometimes element removed during the timeout.
       if (!((_$element$ = $element[0]) !== null && _$element$ !== void 0 && _$element$.isConnected)) {
         return;
       }
@@ -43357,7 +43357,7 @@ ImagesManager = function ImagesManager() {
   self.updateOnReceiveImage = function () {
     var elementView = elementor.getPanelView().getCurrentPageView().getOption('editedElementView');
     elementView.$el.addClass('elementor-loading');
-    // Add per cid for multiple images in a single view.
+    / Add per cid for multiple images in a single view.
     viewsToUpdate[elementView.cid] = elementView;
     elementor.channels.editor.once('imagesManager:detailsReceived', function () {
       if (!_.isEmpty(viewsToUpdate)) {
@@ -43370,11 +43370,11 @@ ImagesManager = function ImagesManager() {
     });
   };
   self.getImageUrl = function (image) {
-    // Register for AJAX checking
+    / Register for AJAX checking
     self.registerItem(image);
     var imageUrl = self.getItem(image);
 
-    // If it's not in cache, like a new dropped widget or a custom size - get from settings
+    / If it's not in cache, like a new dropped widget or a custom size - get from settings
     if (!imageUrl) {
       if ('custom' === image.size) {
         if ($e.routes.isPartOf('panel/editor') && image.model) {
@@ -43383,7 +43383,7 @@ ImagesManager = function ImagesManager() {
         return;
       }
 
-      // If it's a new dropped widget
+      / If it's a new dropped widget
       imageUrl = image.url;
     }
     return imageUrl;
@@ -43401,11 +43401,11 @@ ImagesManager = function ImagesManager() {
   };
   self.registerItem = function (image) {
     if ('' === image.id) {
-      // It's a new dropped widget
+      / It's a new dropped widget
       return;
     }
     if (self.getItem(image)) {
-      // It's already in cache
+      / It's already in cache
       return;
     }
     registeredItems.push(image);
@@ -43417,7 +43417,7 @@ ImagesManager = function ImagesManager() {
       image,
       index;
 
-    // It's one item, so we can render it from remote server
+    / It's one item, so we can render it from remote server
     if (0 === registeredItemsLength) {
       return;
     }
@@ -43727,9 +43727,9 @@ presetsFactory = {
     var parsedStructure = this.getParsedStructure(structure);
     return this.getPresets(parsedStructure.columnsCount, parsedStructure.presetIndex);
   },
-  // Grid preset looks like 1-2 ( 1 rows, 2 columns )
+  / Grid preset looks like 1-2 ( 1 rows, 2 columns )
   getParsedGridStructure: function getParsedGridStructure(selectedStructure) {
-    selectedStructure += ''; // Make sure this is a string
+    selectedStructure += ''; / Make sure this is a string
 
     var chunks = selectedStructure.split('-');
     return {
@@ -43738,7 +43738,7 @@ presetsFactory = {
     };
   },
   getParsedStructure: function getParsedStructure(structure) {
-    structure += ''; // Make sure this is a string
+    structure += ''; / Make sure this is a string
 
     return {
       columnsCount: structure.slice(0, -1),
@@ -43754,7 +43754,7 @@ presetsFactory = {
     return this._createSVGPreset(presetSVGPath, svgWidth, svgHeight);
   },
   _createSVGPreset: function _createSVGPreset(presetPath, svgWidth, svgHeight) {
-    // This is here to avoid being picked up by https re-write systems
+    / This is here to avoid being picked up by https re-write systems
     var protocol = 'ht' + 'tp';
     var svg = document.createElementNS(protocol + '://www.w3.org/2000/svg', 'svg');
     svg.setAttributeNS(protocol + '://www.w3.org/2000/xmlns/', 'xmlns:xlink', protocol + '://www.w3.org/1999/xlink');
@@ -44033,12 +44033,12 @@ var Select2 = exports["default"] = /*#__PURE__*/function (_elementorModules$Vie)
       return {
         selectors: {
           plusButton: '.select2-selection__e-plus-button',
-          // The select2InlineSearch selector can not be changed.
+          / The select2InlineSearch selector can not be changed.
           select2InlineSearch: '.select2-selection__rendered .select2-search--inline'
         },
         classes: {
           plusButton: 'select2-selection__e-plus-button',
-          // The select2Choice class name can not be changed to get the select2 choice style.
+          / The select2Choice class name can not be changed to get the select2 choice style.
           select2Choice: 'select2-selection__choice'
         }
       };
@@ -44101,7 +44101,7 @@ var Select2 = exports["default"] = /*#__PURE__*/function (_elementorModules$Vie)
     value: function extendBaseFunctionality() {
       var config = this.select2.options.options;
 
-      // When select2 has ajax the selected items re-render multiple times and deletes the injected plus-button.
+      / When select2 has ajax the selected items re-render multiple times and deletes the injected plus-button.
       if (config.multiple && !config.ajax) {
         this.togglePlusButton();
         this.addSelect2Events();
@@ -44165,7 +44165,7 @@ var Select2 = exports["default"] = /*#__PURE__*/function (_elementorModules$Vie)
       var query = {};
       hash = hash.split('-').filter(String);
       hash.forEach(function (singleQuery) {
-        // Split {max}/{min}_{device name} to separate strings
+        / Split {max}/{min}_{device name} to separate strings
         var queryParts = singleQuery.split(/_(.+)/),
           endPoint = queryParts[0],
           deviceName = queryParts[1];
@@ -44180,7 +44180,7 @@ var Select2 = exports["default"] = /*#__PURE__*/function (_elementorModules$Vie)
         return;
       }
 
-      // Sort the devices from narrowest to widest
+      / Sort the devices from narrowest to widest
       hashes.sort(function (a, b) {
         var _aQuery$max, _bQuery$max;
         if ('all' === a) {
@@ -44192,9 +44192,9 @@ var Select2 = exports["default"] = /*#__PURE__*/function (_elementorModules$Vie)
         var aQuery = hashToQuery(a),
           bQuery = hashToQuery(b);
 
-        // Calculation should be either `max - max` or `min - min`.
-        // Caused when the `min_affected_device` is equal to the current responsive control.
-        // (e.g. `min_affected_device = tablet`, and the user is changing a tablet control).
+        / Calculation should be either `max - max` or `min - min`.
+        / Caused when the `min_affected_device` is equal to the current responsive control.
+        / (e.g. `min_affected_device = tablet`, and the user is changing a tablet control).
         if (aQuery.max && bQuery.max) {
           return bQuery.max - aQuery.max;
         }
@@ -44202,7 +44202,7 @@ var Select2 = exports["default"] = /*#__PURE__*/function (_elementorModules$Vie)
           return bQuery.min - aQuery.min;
         }
 
-        // If one of the queries has only `min` and the other has only `max`.
+        / If one of the queries has only `min` and the other has only `max`.
         var aQueryValue = (_aQuery$max = aQuery.max) !== null && _aQuery$max !== void 0 ? _aQuery$max : aQuery.min;
         var bQueryValue = (_bQuery$max = bQuery.max) !== null && _bQuery$max !== void 0 ? _bQuery$max : bQuery.min;
         return bQueryValue - aQueryValue;
@@ -44228,7 +44228,7 @@ var Select2 = exports["default"] = /*#__PURE__*/function (_elementorModules$Vie)
         return self;
       }
 
-      // Sort the devices from narrowest to widest
+      / Sort the devices from narrowest to widest
       deviceNames.sort(function (a, b) {
         return devices[a] - devices[b];
       });
@@ -44272,7 +44272,7 @@ var Select2 = exports["default"] = /*#__PURE__*/function (_elementorModules$Vie)
             orderedRules[property[0].trim()] = property[1].trim().replace(';', '');
           });
         } catch (error) {
-          // At least one of the properties is incorrect
+          / At least one of the properties is incorrect
           return;
         }
         styleRules = orderedRules;
@@ -44880,7 +44880,7 @@ module.exports = Marionette.CompositeView.extend({
       elementor.channels.data.trigger(options.trigger.afterAdd, newItem);
     }
     if (options.edit && elementor.documents.getCurrent().history.getActive()) {
-      // Ensure container is created. TODO: Open editor via UI hook after `document/elements/create`.
+      / Ensure container is created. TODO: Open editor via UI hook after `document/elements/create`.
       newView.getContainer();
       newModel.trigger('request:edit', {
         scrollIntoView: options.scrollIntoView
@@ -44903,7 +44903,7 @@ module.exports = Marionette.CompositeView.extend({
     }
     model = Object.assign(model, model.custom);
 
-    // Check whether the container cannot contain a section, in which case we should use an inner-section.
+    / Check whether the container cannot contain a section, in which case we should use an inner-section.
     if ('section' === model.elType) {
       model.isInner = true;
     }
@@ -44929,13 +44929,13 @@ module.exports = Marionette.CompositeView.extend({
         }
       });
 
-      // Since wrapping an element with container doesn't produce a column, we shouldn't try to access it.
+      / Since wrapping an element with container doesn't produce a column, we shouldn't try to access it.
       if (!containerExperiment) {
         container = container.view.children.findByIndex(0).getContainer();
       }
     }
 
-    // Create the element in column.
+    / Create the element in column.
     var widget = $e.run('document/elements/create', {
       container: container,
       model: model,
@@ -44964,7 +44964,7 @@ module.exports = Marionette.CompositeView.extend({
     }
     var args = {};
     args.model = Object.fromEntries(Object.entries((_elementor$channels$p = elementor.channels.panelElements.request('element:selected')) === null || _elementor$channels$p === void 0 ? void 0 : _elementor$channels$p.model.attributes)
-    // The `custom` property is responsible for storing global-widgets related data.
+    / The `custom` property is responsible for storing global-widgets related data.
     .filter(function (_ref) {
       var _ref2 = (0, _slicedToArray2.default)(_ref, 1),
         key = _ref2[0];
@@ -45034,7 +45034,7 @@ Marionette.CollectionView.prototype.buildChildView = function (child, ChildViewC
     }, childViewOptions),
     childView = new ChildViewClass(options);
 
-  // `ELEMENTOR EDITING`: Fix `_parent` not available on render.
+  / `ELEMENTOR EDITING`: Fix `_parent` not available on render.
   childView._parent = this;
   Marionette.MonitorDOMRefresh(childView);
   return childView;
@@ -45122,7 +45122,7 @@ BaseSectionsContainerView = BaseContainer.extend({
     this.listenTo(elementor.channels.panelElements, 'element:drag:start', this.onPanelElementDragStart).listenTo(elementor.channels.panelElements, 'element:drag:end', this.onPanelElementDragEnd);
   },
   onPanelElementDragStart: function onPanelElementDragStart() {
-    // A temporary workaround in order to fix Chrome's 70+ dragging above nested iframe bug
+    / A temporary workaround in order to fix Chrome's 70+ dragging above nested iframe bug
     this.$el.find('.elementor-background-video-embed').hide();
     elementor.helpers.disableElementEvents(this.$el.find('iframe'));
   },
@@ -45164,7 +45164,7 @@ var ControlsPopover = exports["default"] = /*#__PURE__*/function () {
     this.$popover.append(child.$el);
     this.popoverToggleView = child._parent.children.findByIndex(child._index - 1);
 
-    // Add the "Typography" header to the popover
+    / Add the "Typography" header to the popover
     if ('typography' === this.child.model.attributes.groupType) {
       this.createPopoverHeader();
     }
@@ -45179,7 +45179,7 @@ var ControlsPopover = exports["default"] = /*#__PURE__*/function () {
     value: function createPopoverHeader() {
       var _this = this;
       var $popoverToggleControl = this.$popover.prev(),
-        // Get the existing reset button.
+        / Get the existing reset button.
         $resetLabel = $popoverToggleControl.find('.elementor-control-popover-toggle-reset-label');
       this.$popoverHeader = jQuery('<div>', {
         class: 'e-group-control-header'
@@ -45188,12 +45188,12 @@ var ControlsPopover = exports["default"] = /*#__PURE__*/function () {
         class: 'e-control-tools'
       });
 
-      // Give the reset button the control tool styling, and add a click event so clicking on it closes the popover.
+      / Give the reset button the control tool styling, and add a click event so clicking on it closes the popover.
       $resetLabel.addClass('e-control-tool').on('click', function () {
         return _this.onResetButtonClick();
       });
 
-      // Move the popover toggle reset button into the popover header.
+      / Move the popover toggle reset button into the popover header.
       this.$headerControlsWrapper.append($resetLabel);
       this.$popoverHeader.append(this.$headerControlsWrapper);
       var globalConfig = this.popoverToggleView.model.get('global');
@@ -45212,8 +45212,8 @@ var ControlsPopover = exports["default"] = /*#__PURE__*/function () {
           settings: (0, _defineProperty2.default)({}, groupControlName, '')
         };
       if (this.child.options.container.globals.get(groupControlName)) {
-        // The Disable Globals command applies global settings locally,
-        // so disabling the global shouldn't actually change the appearance of the widget.
+        / The Disable Globals command applies global settings locally,
+        / so disabling the global shouldn't actually change the appearance of the widget.
         $e.run('document/globals/disable', args);
       } else {
         $e.run('document/elements/settings', args);
@@ -45288,7 +45288,7 @@ ControlsStack = Marionette.CompositeView.extend({
   },
   childViewOptions: function childViewOptions() {
     return {
-      // TODO: elementSettingsModel is deprecated since 2.8.0.
+      / TODO: elementSettingsModel is deprecated since 2.8.0.
       elementSettingsModel: this.model
     };
   },
@@ -45571,10 +45571,10 @@ var Preview = BaseSectionsContainerView.extend({
         }, options)
       });
     if (!isContainerActive) {
-      // Create the element in column.
+      / Create the element in column.
       containingElement.view.children.findByIndex(0).addElementFromPanel(options);
     } else if ('container' !== selectedElement.model.get('elType')) {
-      // Create the element in a Container, only if the dragged element is not a Container already.
+      / Create the element in a Container, only if the dragged element is not a Container already.
       containingElement.view.addElementFromPanel(options);
     }
     $e.internal('document/history/end-log', {
@@ -45716,8 +45716,8 @@ var ArgsObject = exports["default"] = /*#__PURE__*/function (_InstanceType) {
       var args = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.args;
       this.requireArgument(property, args);
 
-      // Note: Converting the constructor to string in order to avoid equation issues
-      // due to different memory addresses between iframes (window.Object !== window.top.Object).
+      / Note: Converting the constructor to string in order to avoid equation issues
+      / due to different memory addresses between iframes (window.Object !== window.top.Object).
       if (args[property].constructor.toString() !== type.prototype.constructor.toString()) {
         throw Error("".concat(property, " invalid constructor type."));
       }
@@ -45755,7 +45755,7 @@ var InstanceType = exports["default"] = /*#__PURE__*/function () {
   function InstanceType() {
     var _this = this;
     (0, _classCallCheck2.default)(this, InstanceType);
-    // Since anonymous classes sometimes do not get validated by babel, do it manually.
+    / Since anonymous classes sometimes do not get validated by babel, do it manually.
     var target = this instanceof InstanceType ? this.constructor : void 0;
     var prototypes = [];
     while (target.__proto__ && target.__proto__.name) {
@@ -45776,7 +45776,7 @@ var InstanceType = exports["default"] = /*#__PURE__*/function () {
        */
       var result = _superPropGet(InstanceType, Symbol.hasInstance, this, 2)([target]);
 
-      // Act normal when validate a class, which does not have instance type.
+      / Act normal when validate a class, which does not have instance type.
       if (target && !target.constructor.getInstanceType) {
         return result;
       }
@@ -45797,7 +45797,7 @@ var InstanceType = exports["default"] = /*#__PURE__*/function () {
         }
       }
       if (!result && target) {
-        // Check if the given 'target', is instance of known types.
+        / Check if the given 'target', is instance of known types.
         result = target.instanceTypes && Array.isArray(target.instanceTypes) && -1 !== target.instanceTypes.indexOf(this.getInstanceType());
       }
       return result;
@@ -45901,7 +45901,7 @@ var Module = function Module() {
     return message;
   };
 
-  // TODO: This function should be deleted ?.
+  / TODO: This function should be deleted ?.
   this.forceMethodImplementation = function (functionName) {
     throw new Error(this.getErrorMessage('forceMethodImplementation', functionName));
   };
@@ -45933,7 +45933,7 @@ var Module = function Module() {
     if (-1 !== callbackIndex) {
       delete events[eventName][callbackIndex];
 
-      // Reset array index (for next off on same event).
+      / Reset array index (for next off on same event).
       events[eventName] = events[eventName].filter(function (val) {
         return val;
       });
@@ -46017,7 +46017,7 @@ var Breakpoints = exports["default"] = /*#__PURE__*/function (_elementorModules$
     (0, _classCallCheck2.default)(this, Breakpoints);
     _this = _callSuper(this, Breakpoints);
 
-    // The passed config is either `elementor.config.responsive` or `elementorFrontend.config.responsive`
+    / The passed config is either `elementor.config.responsive` or `elementorFrontend.config.responsive`
     _this.responsiveConfig = responsiveConfig;
     return _this;
   }
@@ -46044,7 +46044,7 @@ var Breakpoints = exports["default"] = /*#__PURE__*/function (_elementorModules$
       args = _objectSpread(_objectSpread({}, defaultArgs), args);
       var breakpointKeys = Object.keys(this.responsiveConfig.activeBreakpoints);
       if (args.withDesktop) {
-        // If there is an active 'widescreen' breakpoint, insert the artificial 'desktop' device below it.
+        / If there is an active 'widescreen' breakpoint, insert the artificial 'desktop' device below it.
         var widescreenIndex = breakpointKeys.indexOf('widescreen'),
           indexToInsertDesktopDevice = -1 === widescreenIndex ? breakpointKeys.length : breakpointKeys.length - 1;
         breakpointKeys.splice(indexToInsertDesktopDevice, 0, 'desktop');
@@ -46090,11 +46090,11 @@ var Breakpoints = exports["default"] = /*#__PURE__*/function (_elementorModules$
         breakpointKeys = Object.keys(activeBreakpoints),
         numOfDevices = breakpointKeys.length;
       if ('min' === activeBreakpoints[breakpointKeys[numOfDevices - 1]].direction) {
-        // If the widescreen breakpoint is active, the device that's previous to desktop is the last one before
-        // widescreen.
+        / If the widescreen breakpoint is active, the device that's previous to desktop is the last one before
+        / widescreen.
         desktopPreviousDevice = breakpointKeys[numOfDevices - 2];
       } else {
-        // If the widescreen breakpoint isn't active, we just take the last device returned by the config.
+        / If the widescreen breakpoint isn't active, we just take the last device returned by the config.
         desktopPreviousDevice = breakpointKeys[numOfDevices - 1];
       }
       return desktopPreviousDevice;
@@ -46141,16 +46141,16 @@ var Breakpoints = exports["default"] = /*#__PURE__*/function (_elementorModules$
         breakpointNames = Object.keys(activeBreakpoints);
       var minBreakpoint;
       if (breakpointNames[0] === device) {
-        // For the lowest breakpoint, the min point is always 320.
+        / For the lowest breakpoint, the min point is always 320.
         minBreakpoint = 320;
       } else if ('widescreen' === device) {
-        // Widescreen only has a minimum point. In this case, the breakpoint
-        // value in the Breakpoints config is itself the device min point.
+        / Widescreen only has a minimum point. In this case, the breakpoint
+        / value in the Breakpoints config is itself the device min point.
         if (activeBreakpoints[device]) {
           minBreakpoint = activeBreakpoints[device].value;
         } else {
-          // If the widescreen breakpoint does not exist in the active breakpoints config (for example, in the
-          // case this method runs as the breakpoint is being added), get the value from the full config.
+          / If the widescreen breakpoint does not exist in the active breakpoints config (for example, in the
+          / case this method runs as the breakpoint is being added), get the value from the full config.
           minBreakpoint = this.responsiveConfig.breakpoints.widescreen;
         }
       } else {
@@ -46219,18 +46219,18 @@ var Events = exports.Events = /*#__PURE__*/function () {
     function dispatch(context, event) {
       var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var bcEvent = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-      // Make sure to use the native context if it's a jQuery instance.
+      / Make sure to use the native context if it's a jQuery instance.
       context = context instanceof jQuery ? context[0] : context;
 
-      // Dispatch the BC event only if exists.
+      / Dispatch the BC event only if exists.
       if (bcEvent) {
         context.dispatchEvent(new CustomEvent(bcEvent, {
           detail: data
         }));
       }
 
-      // jQuery's `.on()` listens also to native custom events, so there is no need
-      // to dispatch also a jQuery event.
+      / jQuery's `.on()` listens also to native custom events, so there is no need
+      / to dispatch also a jQuery event.
       context.dispatchEvent(new CustomEvent(event, {
         detail: data
       }));
@@ -46340,10 +46340,10 @@ var EventManager = function EventManager() {
       context: context
     };
 
-    // Utilize 'prop itself' : http://jsperf.com/hasownproperty-vs-in-vs-undefined/19
+    / Utilize 'prop itself' : http://jsperf.com/hasownproperty-vs-in-vs-undefined/19
     var hooks = STORAGE[type][hook];
     if (hooks) {
-      // TEMP FIX BUG
+      / TEMP FIX BUG
       var hasSameCallback = false;
       jQuery.each(hooks, function () {
         if (this.callback === callback) {
@@ -46354,7 +46354,7 @@ var EventManager = function EventManager() {
       if (hasSameCallback) {
         return;
       }
-      // END TEMP FIX BUG
+      / END TEMP FIX BUG
 
       hooks.push(hookObject);
       hooks = _hookInsertSort(hooks);
@@ -46490,7 +46490,7 @@ var EventManager = function EventManager() {
     addAction: addAction
   };
 
-  // Return all of the publicly available methods
+  / Return all of the publicly available methods
   return MethodsAvailable;
 };
 module.exports = EventManager;
@@ -46534,7 +46534,7 @@ function showJsonUploadWarningMessageIfNeeded(_ref) {
   var dialog = genericWarningModal.getDialog();
   return new Promise(function (resolve, reject) {
     dialog.onHide = function () {
-      // When closing the dialog (esc, click on background, etc.) we need to reject the promise.
+      / When closing the dialog (esc, click on background, etc.) we need to reject the promise.
       reject();
     };
     dialog.onConfirm = /*#__PURE__*/(0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
@@ -46557,8 +46557,8 @@ function showJsonUploadWarningMessageIfNeeded(_ref) {
           case 6:
             genericWarningModal.setViewed();
           case 7:
-            // Hack: we need to resolve the promise and then hide it manually, to avoid rejecting the promise.
-            // this because when closing the dialog (esc, click on background, etc.) it does not trigger `onCancel` method.
+            / Hack: we need to resolve the promise and then hide it manually, to avoid rejecting the promise.
+            / this because when closing the dialog (esc, click on background, etc.) it does not trigger `onCancel` method.
             resolve();
             dialog.hide();
           case 9:
@@ -46607,7 +46607,7 @@ function createGenericWarningModal(IntroductionClass) {
     checkbox = _createCheckboxAndLab.checkbox,
     label = _createCheckboxAndLab.label;
   introduction.getDialog().addElement('checkbox-dont-show-again', checkbox);
-  (_introduction$getDial = introduction.getDialog().getElements('message')) === null || _introduction$getDial === void 0 || (_introduction$getDial2 = _introduction$getDial.append) === null || _introduction$getDial2 === void 0 || _introduction$getDial2.call(_introduction$getDial, label); // `getElements` return JQuery object.
+  (_introduction$getDial = introduction.getDialog().getElements('message')) === null || _introduction$getDial === void 0 || (_introduction$getDial2 = _introduction$getDial.append) === null || _introduction$getDial2 === void 0 || _introduction$getDial2.call(_introduction$getDial, label); / `getElements` return JQuery object.
 
   return introduction;
 }
@@ -46743,7 +46743,7 @@ module.exports = elementorModules.Module.extend({
     var position = _objectSpread(_objectSpread({}, toast.getSettings('position')), {}, {
       my: 'right top',
       at: 'right-10 top+42',
-      // 42px is the default admin bar height + 10px
+      / 42px is the default admin bar height + 10px
       of: ''
     });
     toast.setSettings('position', position);
@@ -46793,10 +46793,10 @@ function render(app, domElement) {
       root.unmount();
     };
   } catch (e) {
-    // eslint-disable-next-line react/no-deprecated
+    / eslint-disable-next-line react/no-deprecated
     ReactDOM.render(app, domElement);
     unmountFunction = function unmountFunction() {
-      // eslint-disable-next-line react/no-deprecated
+      / eslint-disable-next-line react/no-deprecated
       ReactDOM.unmountComponentAtNode(domElement);
     };
   }
@@ -46867,25 +46867,25 @@ var matchUserAgent = function matchUserAgent(UserAgentStr) {
     return userAgent.indexOf(UserAgentStr) >= 0;
   },
   userAgent = navigator.userAgent,
-  // Solution influenced by https://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser
+  / Solution influenced by https://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser
 
-  // Opera 8.0+
+  / Opera 8.0+
   isOpera = !!window.opr && !!opr.addons || !!window.opera || matchUserAgent(' OPR/'),
-  // Firefox 1.0+
+  / Firefox 1.0+
   isFirefox = matchUserAgent('Firefox'),
-  // Safari 3.0+ "[object HTMLElementConstructor]"
+  / Safari 3.0+ "[object HTMLElementConstructor]"
   isSafari = /^((?!chrome|android).)*safari/i.test(userAgent) || /constructor/i.test(window.HTMLElement) || function (p) {
     return '[object SafariRemoteNotification]' === p.toString();
   }(!window.safari || typeof safari !== 'undefined' && safari.pushNotification),
-  // Internet Explorer 6-11
+  / Internet Explorer 6-11
   isIE = /Trident|MSIE/.test(userAgent) && (/* @cc_on!@*/ false || !!document.documentMode),
-  // Edge 20+
+  / Edge 20+
   isEdge = !isIE && !!window.StyleMedia || matchUserAgent('Edg'),
-  // Google Chrome (Not accurate)
+  / Google Chrome (Not accurate)
   isChrome = !!window.chrome && matchUserAgent('Chrome') && !(isEdge || isOpera),
-  // Blink engine
+  / Blink engine
   isBlink = matchUserAgent('Chrome') && !!window.CSS,
-  // Apple Webkit engine
+  / Apple Webkit engine
   isAppleWebkit = matchUserAgent('AppleWebKit') && !isBlink,
   isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0,
   environment = {
@@ -47289,15 +47289,15 @@ var Back = exports.Back = /*#__PURE__*/function (_$e$modules$CommandBa) {
     value: function apply() {
       var panelHistory = $e.routes.getHistory('panel');
 
-      // When there's no more previous pages to navigate back to,
-      // prompt the user with a confirmation dialog asking if they would like to exit.
+      / When there's no more previous pages to navigate back to,
+      / prompt the user with a confirmation dialog asking if they would like to exit.
       if (1 === panelHistory.length) {
         this.getCloseConfirmDialog(event).show();
         return;
       }
 
-      // If the user is on the global colors/typography page, and there are unsaved changes,
-      // prompt the user with a confirmation dialog asking if they would like to save the changes.
+      / If the user is on the global colors/typography page, and there are unsaved changes,
+      / prompt the user with a confirmation dialog asking if they would like to save the changes.
       if (this.isGlobalRoute()) {
         var kit = elementor.config.kit_id;
         this.document = elementor.documents.get(kit);
@@ -47436,7 +47436,7 @@ var Close = exports.Close = /*#__PURE__*/function (_$e$modules$CommandBa) {
       var _this = this;
       var mode = args.mode;
 
-      // The kit is opened directly.
+      / The kit is opened directly.
       if (elementor.config.initial_document.id === parseInt(elementor.config.kit_id)) {
         return $e.run('panel/global/exit');
       }
@@ -47446,14 +47446,14 @@ var Close = exports.Close = /*#__PURE__*/function (_$e$modules$CommandBa) {
         id: elementor.config.initial_document.id,
         onClose: function onClose(document) {
           if (document.isDraft()) {
-            // Restore published style.
+            / Restore published style.
             elementor.toggleDocumentCssFiles(document, true);
             elementor.settings.page.destroyControlsCSS();
           }
           $e.components.get('panel/global').close();
           $e.routes.clearHistory(_this.component.getServiceName());
 
-          // The kit shouldn't be cached for next open. (it may be changed via create colors/typography).
+          / The kit shouldn't be cached for next open. (it may be changed via create colors/typography).
           elementor.documents.invalidateCache(elementor.config.kit_id);
         }
       }).finally(function () {
@@ -47712,7 +47712,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
     key: "renderTab",
     value: function renderTab(tab, args) {
       if (tab !== this.currentTab) {
-        // Prevent re-rendering the same tab (with just different args).
+        / Prevent re-rendering the same tab (with just different args).
         this.currentTab = tab;
         elementor.getPanelView().setPage('kit_settings').content.currentView.activateTab(tab);
       }
@@ -47774,7 +47774,7 @@ var GlobalControlSelect = exports["default"] = /*#__PURE__*/function (_Marionett
       };
     }
 
-    // This method exists because the UI elements are printed after controls are already rendered.
+    / This method exists because the UI elements are printed after controls are already rendered.
   }, {
     key: "registerUiElements",
     value: function registerUiElements() {
@@ -47789,7 +47789,7 @@ var GlobalControlSelect = exports["default"] = /*#__PURE__*/function (_Marionett
       this.ui.globalPreviewItems = popoverWidget.find(".".concat(classes.previewItem));
     }
 
-    // This method exists because the UI elements are printed after controls are already rendered.
+    / This method exists because the UI elements are printed after controls are already rendered.
   }, {
     key: "registerEvents",
     value: function registerEvents() {
@@ -47830,7 +47830,7 @@ var GlobalControlSelect = exports["default"] = /*#__PURE__*/function (_Marionett
         return globalData.data;
       }).catch(function (e) {
         var _e$data;
-        // TODO: Need to be replaced by "e instanceof NotFoundError"
+        / TODO: Need to be replaced by "e instanceof NotFoundError"
         if (404 !== (e === null || e === void 0 || (_e$data = e.data) === null || _e$data === void 0 ? void 0 : _e$data.status)) {
           return Promise.reject(e);
         }
@@ -47846,26 +47846,26 @@ var GlobalControlSelect = exports["default"] = /*#__PURE__*/function (_Marionett
         this.resetActivePreviewItem();
       }
 
-      // If there is an active global on the control, get it.
+      / If there is an active global on the control, get it.
       var globalKey = this.view.getGlobalKey();
 
-      // If the control has no active global and no active custom value, check if there is a default global and use it.
+      / If the control has no active global and no active custom value, check if there is a default global and use it.
       if (!globalKey && !this.view.getControlValue() && defaultGlobalsAreEnabled) {
         var _this$view$model$get;
         globalKey = (_this$view$model$get = this.view.model.get('global')) === null || _this$view$model$get === void 0 ? void 0 : _this$view$model$get.default;
       }
       if (!globalKey) {
-        // If there is no active global or global default, reset the active preview item.
+        / If there is no active global or global default, reset the active preview item.
         this.activePreviewItem = null;
         return;
       }
 
-      // Extract the Global's ID from the Global key
+      / Extract the Global's ID from the Global key
       var _$e$data$commandExtra = $e.data.commandExtractArgs(globalKey),
         args = _$e$data$commandExtra.args,
         globalId = args.query.id;
 
-      // Get the active global's corresponding preview item in the Global Select Popover
+      / Get the active global's corresponding preview item in the Global Select Popover
       var $item = this.ui.globalPreviewItems.filter("[data-global-id=\"".concat(globalId, "\"]"));
       if (!$item) {
         return;
@@ -47889,7 +47889,7 @@ var GlobalControlSelect = exports["default"] = /*#__PURE__*/function (_Marionett
       this.popover.hide();
     }
 
-    // Update the behavior's components.
+    / Update the behavior's components.
   }, {
     key: "onValueTypeChange",
     value: function onValueTypeChange() {
@@ -47911,7 +47911,7 @@ var GlobalControlSelect = exports["default"] = /*#__PURE__*/function (_Marionett
           globalValue = (_this$view$model$get2 = this.view.model.get('global')) === null || _this$view$model$get2 === void 0 ? void 0 : _this$view$model$get2.default;
         }
         if (globalValue) {
-          // If there is a global value saved, get the global's name and display it.
+          / If there is a global value saved, get the global's name and display it.
           $e.data.get(globalValue).then(function (result) {
             var text = '';
             if (result.data.title) {
@@ -47924,23 +47924,23 @@ var GlobalControlSelect = exports["default"] = /*#__PURE__*/function (_Marionett
           this.ui.globalPopoverToggle.addClass(classes.popoverToggleActive);
           return;
         } else if (value) {
-          // If there is a value and it is not a global, set the text to custom.
+          / If there is a value and it is not a global, set the text to custom.
           globalTooltipText = __('Custom', 'elementor');
         } else {
-          // If there is no value, set the text as default.
+          / If there is no value, set the text as default.
           globalTooltipText = __('Default', 'elementor');
         }
 
-        // If there is no value, remove the 'active' class from the Global Toggle button.
+        / If there is no value, remove the 'active' class from the Global Toggle button.
         this.ui.globalPopoverToggle.removeClass(classes.popoverToggleActive);
       }
 
-      // This is used in the Global Toggle Button's tooltip.
+      / This is used in the Global Toggle Button's tooltip.
       this.globalName = globalTooltipText;
     }
 
-    // The Global Control elements are initialized onRender and not with initialize() because their position depends
-    // on elements that are not yet rendered when initialize() is called.
+    / The Global Control elements are initialized onRender and not with initialize() because their position depends
+    / on elements that are not yet rendered when initialize() is called.
   }, {
     key: "onRender",
     value: function onRender() {
@@ -47948,7 +47948,7 @@ var GlobalControlSelect = exports["default"] = /*#__PURE__*/function (_Marionett
       this.printGlobalToggleButton();
       this.initGlobalPopover();
       if (this.view.getGlobalKey()) {
-        // This setTimeout is here to overcome an issue with a requestAnimationFrame that runs in the Pickr library.
+        / This setTimeout is here to overcome an issue with a requestAnimationFrame that runs in the Pickr library.
         setTimeout(function () {
           return _this5.fetchGlobalValue();
         }, 50);
@@ -47965,12 +47965,12 @@ var GlobalControlSelect = exports["default"] = /*#__PURE__*/function (_Marionett
         this.popover.hide();
       } else {
         if (this.ui.$globalPreviewItemsContainer) {
-          // This element is not defined when the controls popover is first loaded.
+          / This element is not defined when the controls popover is first loaded.
           this.ui.$globalPreviewItemsContainer.remove();
         }
         this.view.getGlobalsList().then(function (globalsList) {
-          // We just deleted the existing list of global preview items, so we need to rebuild it
-          // with the updated list of globals, register the elements and re-add the on click listeners.
+          / We just deleted the existing list of global preview items, so we need to rebuild it
+          / with the updated list of globals, register the elements and re-add the on click listeners.
           _this6.addGlobalsListToPopover(globalsList);
           _this6.registerPreviewElements();
           _this6.addPreviewItemsClickListener();
@@ -48026,7 +48026,7 @@ var GlobalControlSelect = exports["default"] = /*#__PURE__*/function (_Marionett
       this.ui.globalPopoverToggleIcon = $globalPopoverToggleIcon;
       this.ui.$globalsLoadingSpinner = $globalsLoadingSpinner;
 
-      // Add tooltip to the Global Popover toggle button, displaying the current Global Name / 'Default' / 'Custom'.
+      / Add tooltip to the Global Popover toggle button, displaying the current Global Name / 'Default' / 'Custom'.
       this.ui.globalPopoverToggleIcon.tipsy({
         title: function title() {
           return _this8.globalName;
@@ -48061,7 +48061,7 @@ var GlobalControlSelect = exports["default"] = /*#__PURE__*/function (_Marionett
         }
       });
 
-      // Add Popover elements to the this.ui object and register click events.
+      / Add Popover elements to the this.ui object and register click events.
       this.registerUiElementsAndEvents();
       this.createGlobalInfoTooltip();
     }
@@ -48074,21 +48074,21 @@ var GlobalControlSelect = exports["default"] = /*#__PURE__*/function (_Marionett
       this.view.buildGlobalsList(globalsList, $globalPreviewItemsContainer);
       this.popover.getElements('widget').find(".".concat(this.getClassNames().globalPopoverTitle)).after($globalPreviewItemsContainer);
 
-      // The populated list is nested under the previews container element.
+      / The populated list is nested under the previews container element.
       this.ui.$globalPreviewItemsContainer = $globalPreviewItemsContainer;
     }
   }, {
     key: "registerUiElementsAndEvents",
     value: function registerUiElementsAndEvents() {
-      // Instead of ui()
+      / Instead of ui()
       this.registerUiElements();
 
-      // Instead of events()
+      / Instead of events()
       this.registerEvents();
     }
 
-    // This method is not called directly, but triggered by Marionette's .triggerMethod(),
-    // in the onAddGlobalButtonClick() method in the color and typography global controls.
+    / This method is not called directly, but triggered by Marionette's .triggerMethod(),
+    / in the onAddGlobalButtonClick() method in the color and typography global controls.
   }, {
     key: "onAddGlobalToList",
     value: function onAddGlobalToList($confirmMessage) {
@@ -48109,7 +48109,7 @@ var GlobalControlSelect = exports["default"] = /*#__PURE__*/function (_Marionett
           return _this9.onConfirmNewGlobal();
         },
         onShow: function onShow() {
-          // Put focus on the naming input.
+          / Put focus on the naming input.
           var modalWidget = _this9.confirmNewGlobalModal.getElements('widget');
           _this9.ui.globalNameInput = modalWidget.find('input').focus();
           _this9.ui.confirmMessageText = modalWidget.find(classes.confirmMessageText);
@@ -48153,7 +48153,7 @@ var GlobalControlSelect = exports["default"] = /*#__PURE__*/function (_Marionett
       $e.run(globalMeta.commandName + '/create', {
         container: this.view.container,
         setting: globalMeta.key,
-        // Group control name
+        / Group control name
         title: globalMeta.title
       }).then(function (result) {
         _this10.applySavedGlobalValue(result.data.id);
@@ -48166,24 +48166,24 @@ var GlobalControlSelect = exports["default"] = /*#__PURE__*/function (_Marionett
       var command = '';
       var settings = {};
       if (this.view.getGlobalKey()) {
-        // If a global setting is already active, switch them without disabling globals.
+        / If a global setting is already active, switch them without disabling globals.
         command = 'document/globals/settings';
       } else {
-        // If the active setting is NOT a global, enable globals and apply the selected global.
+        / If the active setting is NOT a global, enable globals and apply the selected global.
         command = 'document/globals/enable';
       }
 
-      // Colors / typography
+      / Colors / typography
       settings[this.view.model.get('name')] = this.view.getGlobalCommand() + '?id=' + globalId;
 
-      // Trigger async render.
+      / Trigger async render.
       $e.run(command, {
         container: this.view.options.container,
         settings: settings
       });
     }
 
-    // The unset method is triggered from the controls via triggerMethod.
+    / The unset method is triggered from the controls via triggerMethod.
   }, {
     key: "onUnsetGlobalValue",
     value: function onUnsetGlobalValue() {
@@ -48304,7 +48304,7 @@ var BaseGlobalsUpdate = exports.BaseGlobalsUpdate = /*#__PURE__*/function (_$e$m
   }, {
     key: "applyModel",
     value: function applyModel(model, id, value) {
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       elementorModules.ForceMethodImplementation();
     }
   }, {
@@ -48601,28 +48601,28 @@ var KitUpdateBreakpointsPreview = exports.KitUpdateBreakpointsPreview = /*#__PUR
     value: function apply(args) {
       var settings = args.settings;
       if (settings.active_breakpoints) {
-        // Updating the current document config necessary, even if the page has to be reloaded for these settings
-        // to take place, because users can add breakpoints and then immediately choose a value for them, before
-        // saving the site settings. The breakpoint control's validator needs to have the actual active breakpoints
-        // in the panel at that moment breakpoints config in order to validate the user input properly.
+        / Updating the current document config necessary, even if the page has to be reloaded for these settings
+        / to take place, because users can add breakpoints and then immediately choose a value for them, before
+        / saving the site settings. The breakpoint control's validator needs to have the actual active breakpoints
+        / in the panel at that moment breakpoints config in order to validate the user input properly.
         elementor.documents.currentDocument.config.settings.settings.active_breakpoints = settings.active_breakpoints;
 
-        // This flag is used to notify users that if they make a change to the active breakpoints list, they need
-        // to reload the editor for the changes to take effect.
+        / This flag is used to notify users that if they make a change to the active breakpoints list, they need
+        / to reload the editor for the changes to take effect.
         elementor.activeBreakpointsUpdated = true;
 
-        // If this is the modified setting, no need to do further checks.
+        / If this is the modified setting, no need to do further checks.
         return;
       }
 
-      // If a breakpoint value was updated, update the value in the config.
+      / If a breakpoint value was updated, update the value in the config.
       Object.entries(settings).forEach(function (_ref) {
         var _ref2 = (0, _slicedToArray2.default)(_ref, 2),
           key = _ref2[0],
           value = _ref2[1];
         if (key.startsWith('viewport_')) {
           var keyWithoutPrefix = key.replace('viewport_', '');
-          // Update both the config for all breakpoints and the one for active breakpoints.
+          / Update both the config for all breakpoints and the one for active breakpoints.
 
           if (!value) {
             value = elementorFrontend.config.responsive.breakpoints[keyWithoutPrefix].default_value;
@@ -48843,7 +48843,7 @@ var KitRemovePreviewDeletedVariables = exports.KitRemovePreviewDeletedVariables 
     key: "apply",
     value: function apply(args) {
       var _this2 = this;
-      // Store on component in order to use it in undo hook.
+      / Store on component in order to use it in undo hook.
       this.component = $e.components.get('panel/global');
       this.component.tempStyle = this.component.tempStyle || {};
       var _args$containers = args.containers,
@@ -48852,7 +48852,7 @@ var KitRemovePreviewDeletedVariables = exports.KitRemovePreviewDeletedVariables 
       containers.forEach(function (container) {
         var item = container.repeaters[args.name].children[args.index],
           stylesheets = Object.values(elementor.$previewContents[0].styleSheets).filter(function (stylesheet) {
-            // Don't touch the kit CSS itself.
+            / Don't touch the kit CSS itself.
             return kitCSSId !== stylesheet.ownerNode.id && stylesheet.ownerNode.innerHTML.includes(item.id);
           });
         stylesheets.forEach(function (stylesheet) {
@@ -48866,12 +48866,12 @@ var KitRemovePreviewDeletedVariables = exports.KitRemovePreviewDeletedVariables 
       var variablesRules = {};
       Object.values(cssRules).forEach(function (rule) {
         if (!rule.style) {
-          // TODO Handle CSSMediaRule.
+          / TODO Handle CSSMediaRule.
           return;
         }
         variablesRules[rule.selectorText] = {};
 
-        // Get the original properties for undo.
+        / Get the original properties for undo.
         for (var i = 0; i < rule.style.length; i++) {
           var property = rule.style[i],
             value = rule.style[property];
@@ -48880,7 +48880,7 @@ var KitRemovePreviewDeletedVariables = exports.KitRemovePreviewDeletedVariables 
           }
         }
 
-        // Delete in a separated loop, because it changes the `style.length`.
+        / Delete in a separated loop, because it changes the `style.length`.
         Object.keys(variablesRules[rule.selectorText]).forEach(function (property) {
           rule.style[property] = '';
         });
@@ -48942,8 +48942,8 @@ var KitAfterSave = exports.KitAfterSave = /*#__PURE__*/function (_After) {
   }, {
     key: "apply",
     value: function apply(args) {
-      // On save clear cache of all edited documents and dynamic tags.
-      // This is needed because when returning to the editor after saving the kit, it was still displaying the old data.
+      / On save clear cache of all edited documents and dynamic tags.
+      / This is needed because when returning to the editor after saving the kit, it was still displaying the old data.
       this.clearDocumentCache();
       this.clearDynamicTagsCache();
       if ('publish' === args.status) {
@@ -49045,7 +49045,7 @@ var KitDeleteGlobalsCache = exports.KitDeleteGlobalsCache = /*#__PURE__*/functio
   }, {
     key: "apply",
     value: function apply() {
-      // After kit updates - remove globals from cache and force re-request from server.
+      / After kit updates - remove globals from cache and force re-request from server.
       $e.components.get('globals').refreshGlobalData();
     }
   }]);
@@ -49159,7 +49159,7 @@ var KitRemoveEditorActiveCSSDocumentsOpen = exports.KitRemoveEditorActiveCSSDocu
   }, {
     key: "apply",
     value: function apply() {
-      // TODO: Remove - Temporary fix to avoid conflict with `elementor.exitPreviewMode()`.
+      / TODO: Remove - Temporary fix to avoid conflict with `elementor.exitPreviewMode()`.
       setTimeout(function () {
         elementorFrontend.elements.$body.removeClass('elementor-editor-active');
       });
@@ -49268,7 +49268,7 @@ var KitBackToRouteHistory = exports.KitBackToRouteHistory = /*#__PURE__*/functio
        */
       if (historyBeforeOpen.container) {
         $e.data.get('globals/index').then(function () {
-          // Since the container comes from history, its not connected element.
+          / Since the container comes from history, its not connected element.
           historyBeforeOpen.container = historyBeforeOpen.container.lookup();
           historyBeforeOpen.container.model.trigger('request:edit', {
             scrollIntoView: true
@@ -49385,7 +49385,7 @@ var KitRemoveEditorActiveCSSPanelOpen = exports.KitRemoveEditorActiveCSSPanelOpe
   }, {
     key: "apply",
     value: function apply() {
-      // TODO: Remove - Temporary fix to avoid conflict with `elementor.exitPreviewMode()`.
+      / TODO: Remove - Temporary fix to avoid conflict with `elementor.exitPreviewMode()`.
       setTimeout(function () {
         elementorFrontend.elements.$body.removeClass('elementor-editor-active');
       });
@@ -49519,7 +49519,7 @@ var Manager = exports["default"] = /*#__PURE__*/function (_elementorModules$edi)
   }, {
     key: "addGlobalsBehavior",
     value: function addGlobalsBehavior(behaviors, view) {
-      // The view can be a UI control which does not have this method.
+      / The view can be a UI control which does not have this method.
       if (!view.isGlobalActive) {
         return;
       }
@@ -49559,7 +49559,7 @@ var Manager = exports["default"] = /*#__PURE__*/function (_elementorModules$edi)
         });
       }
 
-      // The kit document has its own CSS.
+      / The kit document has its own CSS.
       if ('kit' === elementor.documents.getCurrent().config.type) {
         this.variablesCSS.removeStyleFromDocument();
         return;
@@ -49583,7 +49583,7 @@ var Manager = exports["default"] = /*#__PURE__*/function (_elementorModules$edi)
                 _id: item.id
               }, item.value);
 
-            // Enqueue fonts.
+            / Enqueue fonts.
             if (item.value.typography_font_family) {
               elementor.helpers.enqueueFont(item.value.typography_font_family);
             }
@@ -49594,7 +49594,7 @@ var Manager = exports["default"] = /*#__PURE__*/function (_elementorModules$edi)
       });
     }
 
-    // Use the Controls CSS Parser to add the global defaults CSS to the page.
+    / Use the Controls CSS Parser to add the global defaults CSS to the page.
   }, {
     key: "renderGlobalsDefaultCSS",
     value: function renderGlobalsDefaultCSS() {
@@ -49607,7 +49607,7 @@ var Manager = exports["default"] = /*#__PURE__*/function (_elementorModules$edi)
         defaultColorsEnabled = elementor.config.globals.defaults_enabled.colors,
         defaultTypographyEnabled = elementor.config.globals.defaults_enabled.typography;
 
-      // If both default colors and typography are disabled, there is no need to render schemes and default global css.
+      / If both default colors and typography are disabled, there is no need to render schemes and default global css.
       if (!defaultColorsEnabled && !defaultTypographyEnabled) {
         return;
       }
@@ -49637,9 +49637,9 @@ var Manager = exports["default"] = /*#__PURE__*/function (_elementorModules$edi)
         });
         globalControls.forEach(function (control) {
           cssParser.addControlStyleRules(control, widget.controls,
-          // Values
+          / Values
           widget.controls,
-          // Controls
+          / Controls
           ['{{WRAPPER}}'], ['.elementor-widget-' + widget.widget_type], globalValues);
         });
       });
@@ -50285,7 +50285,7 @@ var DivBlockView = BaseElementView.extend({
   className: function className() {
     return "".concat(BaseElementView.prototype.className.apply(this), " e-con ").concat(this.getClassString());
   },
-  // TODO: Copied from `views/column.js`.
+  / TODO: Copied from `views/column.js`.
   ui: function ui() {
     var ui = BaseElementView.prototype.ui.apply(this, arguments);
     ui.percentsTooltip = '> .elementor-element-overlay .elementor-column-percents-tooltip';
@@ -50304,7 +50304,7 @@ var DivBlockView = BaseElementView.extend({
     }
     return _objectSpread(_objectSpread({}, attr), local);
   },
-  // TODO: Copied from `views/column.js`.
+  / TODO: Copied from `views/column.js`.
   attachElContent: function attachElContent() {
     BaseElementView.prototype.attachElContent.apply(this, arguments);
     var $tooltip = jQuery('<div>', {
@@ -50313,14 +50313,14 @@ var DivBlockView = BaseElementView.extend({
     });
     this.$el.children('.elementor-element-overlay').append($tooltip);
   },
-  // TODO: Copied from `views/column.js`.
+  / TODO: Copied from `views/column.js`.
   getPercentSize: function getPercentSize(size) {
     if (!size) {
       size = this.el.getBoundingClientRect().width;
     }
     return +(size / this.$el.parent().width() * 100).toFixed(3);
   },
-  // TODO: Copied from `views/column.js`.
+  / TODO: Copied from `views/column.js`.
   getPercentsForDisplay: function getPercentsForDisplay() {
     var width = +this.model.getSetting('width') || this.getPercentSize();
     return width.toFixed(1) + '%';
@@ -50332,7 +50332,7 @@ var DivBlockView = BaseElementView.extend({
     }
     BaseElementView.prototype.renderOnChange.apply(this, settings);
     if (changed.classes) {
-      // Rebuild the whole class attribute to remove previous outdated classes
+      / Rebuild the whole class attribute to remove previous outdated classes
       this.$el.attr('class', this.className());
       return;
     }
@@ -50361,7 +50361,7 @@ var DivBlockView = BaseElementView.extend({
     var _this = this;
     BaseElementView.prototype.onRender.apply(this, arguments);
 
-    // Defer to wait for everything to render.
+    / Defer to wait for everything to render.
     setTimeout(function () {
       _this.droppableInitialize();
     });
@@ -50454,7 +50454,7 @@ var DivBlockView = BaseElementView.extend({
       onDropping: function onDropping(side, event) {
         event.stopPropagation();
 
-        // Triggering the drag end manually, since it won't fire above the iframe
+        / Triggering the drag end manually, since it won't fire above the iframe
         elementor.getPreviewView().onPanelElementDragEnd();
         var draggedView = elementor.channels.editor.request('element:dragged'),
           draggedElement = draggedView === null || draggedView === void 0 ? void 0 : draggedView.getContainer().view.el,
@@ -50500,8 +50500,8 @@ var DivBlockView = BaseElementView.extend({
     var isRtl = elementorCommon.config.isRTL;
     var isReverse = isRow ? isFlexReverse !== isRtl : isFlexReverse;
 
-    // The element should be placed BEFORE the current target
-    // if is reversed + side is bottom/right OR not is reversed + side is top/left
+    / The element should be placed BEFORE the current target
+    / if is reversed + side is bottom/right OR not is reversed + side is top/left
     if (isReverse === this.draggingOnBottomOrRightSide(side)) {
       if (-1 === selfIndex || selfIndex >= index - 1) {
         return index;
@@ -50514,7 +50514,7 @@ var DivBlockView = BaseElementView.extend({
     return index + 1;
   },
   moveDroppedItem: function moveDroppedItem(draggedView, dropIndex) {
-    // Reset the dragged element cache.
+    / Reset the dragged element cache.
     elementor.channels.editor.reply('element:dragged', null);
     $e.run('document/elements/move', {
       container: draggedView.getContainer(),
@@ -50575,10 +50575,10 @@ var DivBlockView = BaseElementView.extend({
     this.$el.before(addSectionView.$el);
     addSectionView.$el.hide();
 
-    // Delaying the slide down for slow-render browsers (such as FF)
+    / Delaying the slide down for slow-render browsers (such as FF)
     setTimeout(function () {
       addSectionView.$el.slideDown(null, function () {
-        // Remove inline style, for preview mode.
+        / Remove inline style, for preview mode.
         jQuery(this).css('display', '');
       });
     });
@@ -50909,7 +50909,7 @@ var eventsConfig = {
       launchpadOn: 'top_bar_checklist_icon_show',
       launchpadOff: 'top_bar_checklist_icon_hide'
     },
-    // ChecklistSteps event names are generated dynamically, based on stepId and action type taken: title, action, done, undone, upgrade
+    / ChecklistSteps event names are generated dynamically, based on stepId and action type taken: title, action, done, undone, upgrade
     elementorEditor: {
       checklist: {
         checklistHeaderClose: 'checklist_header_close_icon',
@@ -51067,15 +51067,15 @@ var Apply = exports.Apply = /*#__PURE__*/function (_$e$modules$CommandBa) {
       if (trigger) {
         var prevText = trigger.swatch.dataset.text;
 
-        // Show `Selected!` message.
+        / Show `Selected!` message.
         trigger.swatch.dataset.text = __('Selected', 'elementor');
 
-        // Hide message after a second.
+        / Hide message after a second.
         setTimeout(function () {
           trigger.swatch.dataset.text = prevText;
         }, 1000);
 
-        // End picking only after the user leaves the swatch container.
+        / End picking only after the user leaves the swatch container.
         trigger.palette.addEventListener('mouseleave', function handler(e) {
           e.currentTarget.removeEventListener('mouseleave', handler);
           $e.run('elements-color-picker/end');
@@ -51150,11 +51150,11 @@ var End = exports.End = /*#__PURE__*/function (_$e$modules$CommandBa) {
      */
     function apply() {
       var _this$component$curre;
-      // In-Activate the component since the default behavior will in-activate it only on route change,
-      // but this component doesn't have any routes.
+      / In-Activate the component since the default behavior will in-activate it only on route change,
+      / but this component doesn't have any routes.
       this.component.inactivate();
 
-      // Remove all elements & event listeners.
+      / Remove all elements & event listeners.
       elementor.$previewContents[0].querySelectorAll('.e-element-color-picker').forEach(function (picker) {
         jQuery(picker).tipsy('hide');
         picker.remove();
@@ -51163,14 +51163,14 @@ var End = exports.End = /*#__PURE__*/function (_$e$modules$CommandBa) {
       (0, _utils.removeNamespaceHandler)(elementorElements, 'click.color-picker');
       (0, _utils.removeNamespaceHandler)(elementor.$previewWrapper[0], 'mouseleave.color-picker');
 
-      // Set the picking process trigger to inactive mode.
-      // eslint-disable-next-line no-unused-expressions
+      / Set the picking process trigger to inactive mode.
+      / eslint-disable-next-line no-unused-expressions
       (_this$component$curre = this.component.currentPicker.trigger) === null || _this$component$curre === void 0 || _this$component$curre.classList.remove('e-control-tool-disabled');
 
-      // Reset the current picker.
+      / Reset the current picker.
       this.component.resetPicker();
 
-      // Exit color picking mode.
+      / Exit color picking mode.
       $e.uiStates.remove('elements-color-picker/color-picking');
     }
   }]);
@@ -51419,32 +51419,32 @@ var ShowSwatches = exports.ShowSwatches = /*#__PURE__*/function (_$e$modules$Com
       var e = args.event;
       var id = e.currentTarget.dataset.id;
 
-      // Calculate swatch location.
+      / Calculate swatch location.
       var rect = e.currentTarget.getBoundingClientRect(),
         x = Math.round(e.clientX - rect.left) + 'px',
         y = Math.round(e.clientY - rect.top) + 'px';
       this.container = elementor.getContainer(id);
       var activePicker = elementor.$previewContents[0].querySelector(this.selectors.picker);
 
-      // If there is a picker already, remove it.
+      / If there is a picker already, remove it.
       if (activePicker) {
         this.removeTooltip(activePicker);
         activePicker.remove();
       }
       e.stopPropagation();
 
-      // Hack to wait for the images to load before picking the colors from it
-      // when extracting colors from a background image control.
-      // TODO: Find a better solution.
+      / Hack to wait for the images to load before picking the colors from it
+      / when extracting colors from a background image control.
+      / TODO: Find a better solution.
       setTimeout(function () {
         var isImage = 'img' === e.target.tagName.toLowerCase();
         if (isImage) {
           _this2.extractColorsFromImage(e.target);
         } else {
-          // Colors from the parent container.
+          / Colors from the parent container.
           _this2.extractColorsFromSettings();
 
-          // Colors from repeaters.
+          / Colors from repeaters.
           _this2.extractColorsFromRepeaters();
           _this2.extractColorsFromImages();
         }
@@ -51464,62 +51464,62 @@ var ShowSwatches = exports.ShowSwatches = /*#__PURE__*/function (_$e$modules$Com
     value: function extractColorsFromSettings() {
       var _this3 = this;
       var container = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.container;
-      // Iterate over the widget controls.
-      // eslint-disable-next-line array-callback-return
+      / Iterate over the widget controls.
+      / eslint-disable-next-line array-callback-return
       Object.keys(container.settings.attributes).map(function (control) {
         var _container$controls$c;
-        // Limit colors count.
+        / Limit colors count.
         if (_this3.reachedColorsLimit()) {
-          // eslint-disable-next-line array-callback-return
+          / eslint-disable-next-line array-callback-return
           return;
         }
         if (!(control in container.controls)) {
-          // eslint-disable-next-line array-callback-return
+          / eslint-disable-next-line array-callback-return
           return;
         }
         var isColor = 'color' === ((_container$controls$c = container.controls[control]) === null || _container$controls$c === void 0 ? void 0 : _container$controls$c.type);
         var isBgImage = control.includes('background_image');
 
-        // Determine if the current control is active.
+        / Determine if the current control is active.
         var isActive = function isActive() {
           return elementor.helpers.isActiveControl(container.controls[control], container.settings.attributes, container.settings.controls);
         };
 
-        // Throw non-color and non-background-image controls.
+        / Throw non-color and non-background-image controls.
         if (!isColor && !isBgImage) {
-          // eslint-disable-next-line array-callback-return
+          / eslint-disable-next-line array-callback-return
           return;
         }
 
-        // Throw non-active controls.
+        / Throw non-active controls.
         if (!isActive()) {
-          // eslint-disable-next-line array-callback-return
+          / eslint-disable-next-line array-callback-return
           return;
         }
 
-        // Handle background images.
+        / Handle background images.
         if (isBgImage) {
           _this3.addTempBackgroundImage(container.getSetting(control));
-          // eslint-disable-next-line array-callback-return
+          / eslint-disable-next-line array-callback-return
           return;
         }
         var value = container.getSetting(control);
         var globalValue = container.globals.get(control);
 
-        // Extract global value if present.
+        / Extract global value if present.
         if (globalValue) {
           var matches = globalValue.match(/id=(.+)/i);
 
-          // Build the global color CSS variable & resolve it to a HEX value.
-          // It's used instead of `$e.data.get( globalValue )` in order to avoid async/await hell.
+          / Build the global color CSS variable & resolve it to a HEX value.
+          / It's used instead of `$e.data.get( globalValue )` in order to avoid async/await hell.
           if (matches) {
             var cssVar = "--e-global-color-".concat(matches[1]);
             value = getComputedStyle(container.view.$el[0]).getPropertyValue(cssVar);
           }
         }
         if (value && !Object.values(_this3.colors).includes(value)) {
-          // Create a unique index based on the container ID and the control name.
-          // Used in order to avoid key overriding when used with repeaters (which share the same controls names).
+          / Create a unique index based on the container ID and the control name.
+          / Used in order to avoid key overriding when used with repeaters (which share the same controls names).
           _this3.colors["".concat(container.id, " - ").concat(control)] = value;
         }
       });
@@ -51534,9 +51534,9 @@ var ShowSwatches = exports.ShowSwatches = /*#__PURE__*/function (_$e$modules$Com
     key: "extractColorsFromRepeaters",
     value: function extractColorsFromRepeaters() {
       var _this4 = this;
-      // Iterate over repeaters.
+      / Iterate over repeaters.
       Object.values(this.container.repeaters).forEach(function (repeater) {
-        // Iterate over each repeater items.
+        / Iterate over each repeater items.
         repeater.children.forEach(function (child) {
           _this4.extractColorsFromSettings(child);
         });
@@ -51560,11 +51560,11 @@ var ShowSwatches = exports.ShowSwatches = /*#__PURE__*/function (_$e$modules$Com
         return;
       }
 
-      // Create the image.
+      / Create the image.
       var img = document.createElement('img');
       img.src = url;
 
-      // Push the image to the temporary images array.
+      / Push the image to the temporary images array.
       this.backgroundImages.push(img);
     }
 
@@ -51589,9 +51589,9 @@ var ShowSwatches = exports.ShowSwatches = /*#__PURE__*/function (_$e$modules$Com
         return;
       }
 
-      // Add the palette to the colors array.
+      / Add the palette to the colors array.
       palette.forEach(function (color, index) {
-        // Limit colors count.
+        / Limit colors count.
         if (_this5.reachedColorsLimit()) {
           return;
         }
@@ -51611,7 +51611,7 @@ var ShowSwatches = exports.ShowSwatches = /*#__PURE__*/function (_$e$modules$Com
     key: "extractColorsFromImages",
     value: function extractColorsFromImages() {
       var _this6 = this;
-      // Iterate over all images in the widget.
+      / Iterate over all images in the widget.
       var images = this.backgroundImages;
       images.forEach(function (img, i) {
         _this6.extractColorsFromImage(img, i);
@@ -51678,12 +51678,12 @@ var ShowSwatches = exports.ShowSwatches = /*#__PURE__*/function (_$e$modules$Com
         }
       }).tipsy('show');
 
-      // Hack to move Tipsy to the preview wrapper because it defaults to the editor's `document.body`.
-      // TODO: Use something other than Tipsy.
+      / Hack to move Tipsy to the preview wrapper because it defaults to the editor's `document.body`.
+      / TODO: Use something other than Tipsy.
       var tooltip = document.querySelector(this.selectors.tooltip);
       elementor.$previewWrapper[0].appendChild(tooltip);
 
-      // Hack to prevent hover on tooltip triggering a `mouseleave` event on the preview wrapper.
+      / Hack to prevent hover on tooltip triggering a `mouseleave` event on the preview wrapper.
       tooltip.style.pointerEvents = 'none';
     }
 
@@ -51720,11 +51720,11 @@ var ShowSwatches = exports.ShowSwatches = /*#__PURE__*/function (_$e$modules$Com
       picker.classList.add(this.classes.picker, this.classes.hidden);
       picker.style = "\n\t\t\t--count: ".concat(count, ";\n\t\t\t--left: ").concat(x, ";\n\t\t\t--top: ").concat(y, ";\n\t\t");
 
-      // Append the swatch before adding colors to it in order to avoid the click event of the swatches,
-      // which will fire the `apply` command and will close everything.
+      / Append the swatch before adding colors to it in order to avoid the click event of the swatches,
+      / which will fire the `apply` command and will close everything.
       this.container.view.$el[0].append(picker);
 
-      // Check if the picker is overflowing out of the parent.
+      / Check if the picker is overflowing out of the parent.
       var observer = elementorModules.utils.Scroll.scrollObserver({
         callback: function callback(event) {
           observer.unobserve(picker);
@@ -51739,18 +51739,18 @@ var ShowSwatches = exports.ShowSwatches = /*#__PURE__*/function (_$e$modules$Com
       });
       observer.observe(picker);
       if (0 === count) {
-        // Show a Tipsy tooltip.
+        / Show a Tipsy tooltip.
         this.addTooltip(picker);
       } else {
-        // Add the colors swatches.
+        / Add the colors swatches.
         this.addColorSwatches(picker);
       }
 
-      // Remove the picker on mouse leave.
+      / Remove the picker on mouse leave.
       this.container.view.$el[0].addEventListener('mouseleave', function () {
         _this8.removeTooltip(picker);
 
-        // Remove only after the animation has finished.
+        / Remove only after the animation has finished.
         setTimeout(function () {
           picker.remove();
         }, 300);
@@ -51813,20 +51813,20 @@ var Start = exports.Start = /*#__PURE__*/function (_$e$modules$CommandBa) {
   return (0, _createClass2.default)(Start, [{
     key: "apply",
     value: function apply(args) {
-      // Activate the component since the default behavior will activate it only on route change,
-      // but this component doesn't have any routes.
+      / Activate the component since the default behavior will activate it only on route change,
+      / but this component doesn't have any routes.
       this.component.activate();
 
-      // Enter color picking mode.
+      / Enter color picking mode.
       $e.uiStates.set('elements-color-picker/color-picking', _colorPicking.COLOR_PICKING_ON);
       this.component.currentPicker = _objectSpread(_objectSpread({}, args), {}, {
         initialColor: args.container.getSetting(args.control)
       });
 
-      // Set the picking process trigger to active mode.
+      / Set the picking process trigger to active mode.
       this.component.currentPicker.trigger.classList.add('e-control-tool-disabled');
 
-      // Initialize a swatch on click.
+      / Initialize a swatch on click.
       var elementorElements = elementor.$previewContents[0].querySelectorAll('.elementor-element');
       (0, _utils.addNamespaceHandler)(elementorElements, 'click.color-picker', function (e) {
         e.preventDefault();
@@ -51835,7 +51835,7 @@ var Start = exports.Start = /*#__PURE__*/function (_$e$modules$CommandBa) {
         });
       });
 
-      // Stop the picking process when the user leaves the preview area.
+      / Stop the picking process when the user leaves the preview area.
       (0, _utils.addNamespaceHandler)(elementor.$previewWrapper[0], 'mouseleave.color-picker', function () {
         $e.run('elements-color-picker/end');
       });
@@ -51929,16 +51929,16 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
         control = _this$currentPicker.control,
         kit = _this$currentPicker.kit;
 
-      // Silent.
+      / Silent.
       container.settings.set(control, value);
       var view = container.view;
 
-      // If the container has a View that can be rendered.
+      / If the container has a View that can be rendered.
       if (view !== null && view !== void 0 && view.renderUI) {
         view.renderUI();
       }
 
-      // If it's a kit which uses CSS variables.
+      / If it's a kit which uses CSS variables.
       if (kit) {
         var id = kit.config.id,
           cssVar = "--e-global-color-".concat(container.id);
@@ -52188,7 +52188,7 @@ var addNamespaceHandler = exports.addNamespaceHandler = function addNamespaceHan
     _nsEvent$split2 = (0, _slicedToArray2.default)(_nsEvent$split, 1),
     event = _nsEvent$split2[0];
 
-  // Add support for multi elements.
+  / Add support for multi elements.
   if (!(Symbol.iterator in Object(elements))) {
     elements = [elements];
   }
@@ -52214,7 +52214,7 @@ var removeNamespaceHandler = exports.removeNamespaceHandler = function removeNam
     _nsEvent$split4 = (0, _slicedToArray2.default)(_nsEvent$split3, 1),
     event = _nsEvent$split4[0];
 
-  // Add support for multi elements.
+  / Add support for multi elements.
   if (!(Symbol.iterator in Object(elements))) {
     elements = [elements];
   }
@@ -52536,7 +52536,7 @@ var FavoriteType = exports["default"] = /*#__PURE__*/function () {
   return (0, _createClass2.default)(FavoriteType, [{
     key: "getName",
     value:
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Get the name of the type.
      *
@@ -52544,7 +52544,7 @@ var FavoriteType = exports["default"] = /*#__PURE__*/function () {
      */
     function getName() {}
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Create new user favorite to the type.
      *
@@ -52554,9 +52554,9 @@ var FavoriteType = exports["default"] = /*#__PURE__*/function () {
      */
   }, {
     key: "create",
-    value: function create(slug) {} // eslint-disable-line no-unused-vars
+    value: function create(slug) {} / eslint-disable-line no-unused-vars
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Delete existing favorite from the type.
      *
@@ -52566,9 +52566,9 @@ var FavoriteType = exports["default"] = /*#__PURE__*/function () {
      */
   }, {
     key: "delete",
-    value: function _delete(slug) {} // eslint-disable-line no-unused-vars
+    value: function _delete(slug) {} / eslint-disable-line no-unused-vars
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Toggle favorite of this type.
      *
@@ -52578,7 +52578,7 @@ var FavoriteType = exports["default"] = /*#__PURE__*/function () {
      */
   }, {
     key: "toggle",
-    value: function toggle(slug) {} // eslint-disable-line no-unused-vars
+    value: function toggle(slug) {} / eslint-disable-line no-unused-vars
   }]);
 }();
 
@@ -53644,7 +53644,7 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
   }, {
     key: "activate",
     value: function activate() {
-      // Activate the tab component itself.
+      / Activate the tab component itself.
       $e.components.activate(this.getTabRoute(this.currentTab));
     }
   }, {
@@ -53886,7 +53886,7 @@ var HistoryManager = exports["default"] = /*#__PURE__*/function () {
     }));
     (0, _defineProperty2.default)(this, "active", true);
     (0, _defineProperty2.default)(this, "translations", {
-      // Alphabetical order.
+      / Alphabetical order.
       add: __('Added', 'elementor'),
       change: __('Edited', 'elementor'),
       disable: __('Disabled', 'elementor'),
@@ -53909,7 +53909,7 @@ var HistoryManager = exports["default"] = /*#__PURE__*/function () {
   return (0, _createClass2.default)(HistoryManager, [{
     key: "getActionLabel",
     value: function getActionLabel(itemData) {
-      // TODO: this function should be static.
+      / TODO: this function should be static.
       if (this.translations[itemData.type]) {
         return this.translations[itemData.type];
       }
@@ -53992,7 +53992,7 @@ var HistoryManager = exports["default"] = /*#__PURE__*/function () {
         });
       }
 
-      // Remove old applied items from top of list
+      / Remove old applied items from top of list
       while (this.items.length && 'applied' === this.items.first().get('status')) {
         this.items.shift();
       }
@@ -54023,7 +54023,7 @@ var HistoryManager = exports["default"] = /*#__PURE__*/function () {
   }, {
     key: "doItem",
     value: function doItem(index) {
-      // Don't track while restoring the item
+      / Don't track while restoring the item
       this.setActive(false);
       var item = this.items.at(index);
       if ('not_applied' === item.get('status')) {
@@ -54038,10 +54038,10 @@ var HistoryManager = exports["default"] = /*#__PURE__*/function () {
       var viewToScroll;
       if ($e.routes.isPartOf('panel/editor') && editedElementView) {
         if (editedElementView.isDestroyed) {
-          // If the the element isn't exist - show the history panel
+          / If the the element isn't exist - show the history panel
           $e.route('panel/history/actions');
         } else {
-          // If element exist - render again, maybe the settings has been changed
+          / If element exist - render again, maybe the settings has been changed
           viewToScroll = editedElementView;
         }
       } else if (item instanceof Backbone.Model && item.get('items').length) {
@@ -54100,7 +54100,7 @@ var HistoryManager = exports["default"] = /*#__PURE__*/function () {
   }, {
     key: "updateCurrentItem",
     value: function updateCurrentItem(item) {
-      // Save last selected item.
+      / Save last selected item.
       this.currentItem = item;
       this.updatePanelPageCurrentItem();
     }
@@ -54141,7 +54141,7 @@ module.exports = Marionette.CompositeView.extend({
       return;
     }
     _.defer(function () {
-      // Set current item - the first not applied item
+      / Set current item - the first not applied item
       var currentItem = _this.collection.find(function (model) {
           return 'not_applied' === model.get('status');
         }),
@@ -54859,13 +54859,13 @@ module.exports = Marionette.CompositeView.extend({
         _this.currentPreviewItem = null;
         _this.currentPreviewId = null;
 
-        // eslint-disable-next-line no-alert
+        / eslint-disable-next-line no-alert
         alert(errorMessage);
       }
     });
   },
   setRevisionsButtonsActive: function setRevisionsButtonsActive(active) {
-    // Check the tab is open.
+    / Check the tab is open.
     if (!this.isDestroyed) {
       this.ui.apply.add(this.ui.discard).prop('disabled', !active);
     }
@@ -54883,7 +54883,7 @@ module.exports = Marionette.CompositeView.extend({
       error: function error() {
         revisionView.$el.removeClass('elementor-revision-item-loading');
 
-        // eslint-disable-next-line no-alert
+        / eslint-disable-next-line no-alert
         alert('An error occurred.');
       }
     });
@@ -54949,7 +54949,7 @@ module.exports = Marionette.CompositeView.extend({
       id: this.currentPreviewId
     });
 
-    // Ensure the model is exist and not deleted during a save.
+    / Ensure the model is exist and not deleted during a save.
     if (currentPreviewModel) {
       this.currentPreviewItem = this.children.findByModelCid(currentPreviewModel.cid);
       this.currentPreviewItem.$el.addClass('elementor-revision-current-preview');
@@ -54967,7 +54967,7 @@ module.exports = Marionette.CompositeView.extend({
     childView.$el.addClass('elementor-revision-current-preview elementor-revision-item-loading');
     var revision = null === this.currentPreviewId || elementor.config.document.revisions.current_id === this.currentPreviewId;
     if (revision && elementor.saver.isEditorChanged()) {
-      // TODO: Change to 'document/save/auto' ?.
+      / TODO: Change to 'document/save/auto' ?.
       $e.internal('document/save/save', {
         status: 'autosave',
         onSuccess: function onSuccess() {
@@ -55129,7 +55129,7 @@ var LandingPageRemoveLibraryTab = exports.LandingPageRemoveLibraryTab = /*#__PUR
     value: function apply() {
       $e.components.get('library').removeTab('templates/landing-pages');
 
-      // Pages are replaced by landing pages so when Landing Pages are removed, the Pages have to be re-added.
+      / Pages are replaced by landing pages so when Landing Pages are removed, the Pages have to be re-added.
       $e.components.get('library').addTab('templates/pages');
     }
   }]);
@@ -55193,7 +55193,7 @@ var LandingPageAddLibraryTab = exports.LandingPageAddLibraryTab = /*#__PURE__*/f
         }
       }, 2);
 
-      // Pages are replaced by landing pages so they need to be removed.
+      / Pages are replaced by landing pages so they need to be removed.
       $e.components.get('library').removeTab('templates/pages');
     }
   }]);
@@ -55318,7 +55318,7 @@ exports.widgetNodes = widgetNodes;
 function extractNestedItemTitle(container, index) {
   var title = container.view.model.config.defaults.elements_title;
 
-  // Translations comes from server side.
+  / Translations comes from server side.
   return sprintf(title, index);
 }
 function isWidgetSupportNesting(widgetType) {
@@ -55867,13 +55867,13 @@ var UiStateBase = exports["default"] = /*#__PURE__*/function () {
       var callback = this.options[newValue],
         oldValue = this.currentState;
 
-      // Change the current state.
+      / Change the current state.
       this.currentState = newValue;
 
-      // Trigger the `onChange` method before the option's callback.
+      / Trigger the `onChange` method before the option's callback.
       this.onChange(oldValue, newValue);
 
-      // Run the callback if it's callable.
+      / Run the callback if it's callable.
       if ('function' === typeof callback) {
         callback(oldValue, newValue);
       }
@@ -55890,7 +55890,7 @@ var UiStateBase = exports["default"] = /*#__PURE__*/function () {
       return this.currentState;
     }
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Get state ID.
      *
@@ -55954,8 +55954,8 @@ var UiStateBase = exports["default"] = /*#__PURE__*/function () {
      */
   }, {
     key: "onChange",
-    value: function onChange(oldValue, newValue) {// eslint-disable-line no-unused-vars
-      // Override this method if needed.
+    value: function onChange(oldValue, newValue) {/ eslint-disable-line no-unused-vars
+      / Override this method if needed.
     }
 
     /**
@@ -56194,19 +56194,19 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
       throw RangeError('Doing it wrong: Each command type should have `registerConfig`.');
     }
 
-    // Acknowledge self about which command it run.
+    / Acknowledge self about which command it run.
     _this.command = _this.constructor.getCommand();
 
-    // Assign instance of current component.
+    / Assign instance of current component.
     _this.component = _this.constructor.getComponent();
 
-    // Who ever need do something before without `super` the constructor can use `initialize` method.
+    / Who ever need do something before without `super` the constructor can use `initialize` method.
     _this.initialize(args);
 
-    // Refresh args, maybe the changed via `initialize`.
+    / Refresh args, maybe the changed via `initialize`.
     args = _this.args;
 
-    // Validate args before run.
+    / Validate args before run.
     _this.validateArgs(args);
     return _this;
   }
@@ -56233,7 +56233,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     key: "initialize",
     value: function initialize() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
     /**
      * Function validateArgs().
@@ -56246,9 +56246,9 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     key: "validateArgs",
     value: function validateArgs() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Function apply().
      *
@@ -56262,7 +56262,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     key: "apply",
     value: function apply() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       elementorModules.ForceMethodImplementation();
     }
 
@@ -56290,7 +56290,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     key: "onBeforeRun",
     value: function onBeforeRun() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
     /**
      * Function onAfterRun.
@@ -56305,7 +56305,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     value: function onAfterRun() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var result = arguments.length > 1 ? arguments[1] : undefined;
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
     /**
      * Function onBeforeApply.
@@ -56318,7 +56318,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     key: "onBeforeApply",
     value: function onBeforeApply() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
     /**
      * Function onAfterApply.
@@ -56333,7 +56333,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     value: function onAfterApply() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var result = arguments.length > 1 ? arguments[1] : undefined;
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
     /**
      * Function onCatchApply.
@@ -56344,7 +56344,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
      */
   }, {
     key: "onCatchApply",
-    value: function onCatchApply(e) {} // eslint-disable-line no-unused-vars
+    value: function onCatchApply(e) {} / eslint-disable-line no-unused-vars
   }], [{
     key: "getInstanceType",
     value: function getInstanceType() {
@@ -56656,7 +56656,7 @@ var ComponentBase = exports["default"] = /*#__PURE__*/function (_Module) {
       });
     }
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * @return {string} namespace
      */
@@ -56835,14 +56835,14 @@ var ComponentBase = exports["default"] = /*#__PURE__*/function (_Module) {
           component: this
         };
 
-      // Support pure callback.
+      / Support pure callback.
       if (!instanceType) {
         if ($e.devTools) {
           $e.devTools.log.warn("Attach command-callback-base, on command: '".concat(fullCommand, "', context is unknown type."));
         }
         registerConfig.callback = context;
 
-        // Unique class.
+        / Unique class.
         context = /*#__PURE__*/function (_CommandCallbackBase) {
           function context() {
             (0, _classCallCheck2.default)(this, context);
@@ -57001,14 +57001,14 @@ var ComponentBase = exports["default"] = /*#__PURE__*/function (_Module) {
     value: function addTab(tab, args, position) {
       var _this3 = this;
       this.tabs[tab] = args;
-      // It can be 0.
+      / It can be 0.
       if ('undefined' !== typeof position) {
         var newTabs = {};
         var ids = Object.keys(this.tabs);
-        // Remove new tab
+        / Remove new tab
         ids.pop();
 
-        // Add it to position.
+        / Add it to position.
         ids.splice(position, 0, tab);
         ids.forEach(function (id) {
           newTabs[id] = _this3.tabs[id];
@@ -57029,7 +57029,7 @@ var ComponentBase = exports["default"] = /*#__PURE__*/function (_Module) {
     }
   }, {
     key: "renderTab",
-    value: function renderTab(tab) {} // eslint-disable-line
+    value: function renderTab(tab) {} / eslint-disable-line
   }, {
     key: "activateTab",
     value: function activateTab(tab, args) {
@@ -57047,7 +57047,7 @@ var ComponentBase = exports["default"] = /*#__PURE__*/function (_Module) {
   }, {
     key: "getBodyClass",
     value: function getBodyClass(route) {
-      return 'e-route-' + route.replace(/\//g, '-');
+      return 'e-route-' + route.replace(/\/g, '-');
     }
 
     /**
@@ -57074,7 +57074,7 @@ var ComponentBase = exports["default"] = /*#__PURE__*/function (_Module) {
       var _this5 = this;
       var commands = {};
 
-      // Convert `Commands` to `ComponentBase` workable format.
+      / Convert `Commands` to `ComponentBase` workable format.
       Object.entries(commandsFromImport).forEach(function (_ref11) {
         var _ref12 = (0, _slicedToArray2.default)(_ref11, 2),
           className = _ref12[0],
@@ -57311,7 +57311,7 @@ var HookBase = exports["default"] = /*#__PURE__*/function () {
       (0, _forceMethodImplementation.default)();
     }
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Function getType().
      *
@@ -57327,7 +57327,7 @@ var HookBase = exports["default"] = /*#__PURE__*/function () {
       (0, _forceMethodImplementation.default)();
     }
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Function getCommand().
      *
@@ -57345,7 +57345,7 @@ var HookBase = exports["default"] = /*#__PURE__*/function () {
       (0, _forceMethodImplementation.default)();
     }
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Function getId().
      *
@@ -57361,7 +57361,7 @@ var HookBase = exports["default"] = /*#__PURE__*/function () {
       (0, _forceMethodImplementation.default)();
     }
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Function getContainerType().
      *
@@ -57390,11 +57390,11 @@ var HookBase = exports["default"] = /*#__PURE__*/function () {
     value: function getConditions() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var result = arguments.length > 1 ? arguments[1] : undefined;
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       return true;
     }
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Function apply().
      *
@@ -57407,7 +57407,7 @@ var HookBase = exports["default"] = /*#__PURE__*/function () {
   }, {
     key: "apply",
     value: function apply(args) {
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       (0, _forceMethodImplementation.default)();
     }
 
@@ -57427,7 +57427,7 @@ var HookBase = exports["default"] = /*#__PURE__*/function () {
         _ref$options = _ref.options,
         options = _ref$options === void 0 ? {} : _ref$options;
 
-      // Disable callback if requested by args.options.
+      / Disable callback if requested by args.options.
       if (options.callbacks && false === options.callbacks[this.id]) {
         return true;
       }
@@ -57740,14 +57740,14 @@ var Console = exports["default"] = /*#__PURE__*/function () {
   return (0, _createClass2.default)(Console, null, [{
     key: "error",
     value: function error(message) {
-      // Show an error if devTools is available.
+      / Show an error if devTools is available.
       if ($e.devTools) {
         $e.devTools.log.error(message);
       }
 
-      // If not a 'Hook-Break' then show error.
+      / If not a 'Hook-Break' then show error.
       if (!(message instanceof $e.modules.HookBreak)) {
-        // eslint-disable-next-line no-console
+        / eslint-disable-next-line no-console
         console.error(message);
       }
     }
@@ -57760,7 +57760,7 @@ var Console = exports["default"] = /*#__PURE__*/function () {
         args[_key] = arguments[_key];
       }
       args.unshift('%c  %c', style, '');
-      (_console = console).warn.apply(_console, args); // eslint-disable-line no-console
+      (_console = console).warn.apply(_console, args); / eslint-disable-line no-console
     }
   }]);
 }();
@@ -57990,7 +57990,7 @@ let {
   freeze,
   seal,
   create
-} = Object; // eslint-disable-line import/no-mutable-exports
+} = Object; / eslint-disable-line import/no-mutable-exports
 let {
   apply,
   construct
@@ -58071,9 +58071,9 @@ function unconstruct(func) {
 function addToSet(set, array) {
   let transformCaseFunc = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : stringToLowerCase;
   if (setPrototypeOf) {
-    // Make 'in' and truthy checks like Boolean(set.constructor)
-    // independent of any properties defined on Object.prototype.
-    // Prevent prototype setters from intercepting set as a this value.
+    / Make 'in' and truthy checks like Boolean(set.constructor)
+    / independent of any properties defined on Object.prototype.
+    / Prevent prototype setters from intercepting set as a this value.
     setPrototypeOf(set, null);
   }
   let l = array.length;
@@ -58082,7 +58082,7 @@ function addToSet(set, array) {
     if (typeof element === 'string') {
       const lcElement = transformCaseFunc(element);
       if (lcElement !== element) {
-        // Config presets (e.g. tags.js, attrs.js) are immutable.
+        / Config presets (e.g. tags.js, attrs.js) are immutable.
         if (!isFrozen(array)) {
           array[l] = lcElement;
         }
@@ -58176,15 +58176,15 @@ const mathMl = freeze(['accent', 'accentunder', 'align', 'bevelled', 'close', 'c
 const xml = freeze(['xlink:href', 'xml:id', 'xlink:title', 'xml:space', 'xmlns:xlink']);
 
 // eslint-disable-next-line unicorn/better-regex
-const MUSTACHE_EXPR = seal(/\{\{[\w\W]*|[\w\W]*\}\}/gm); // Specify template detection regex for SAFE_FOR_TEMPLATES mode
+const MUSTACHE_EXPR = seal(/\{\{[\w\W]*|[\w\W]*\}\}/gm); / Specify template detection regex for SAFE_FOR_TEMPLATES mode
 const ERB_EXPR = seal(/<%[\w\W]*|[\w\W]*%>/gm);
-const TMPLIT_EXPR = seal(/\$\{[\w\W]*/gm); // eslint-disable-line unicorn/better-regex
-const DATA_ATTR = seal(/^data-[\-\w.\u00B7-\uFFFF]+$/); // eslint-disable-line no-useless-escape
-const ARIA_ATTR = seal(/^aria-[\-\w]+$/); // eslint-disable-line no-useless-escape
-const IS_ALLOWED_URI = seal(/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp|matrix):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i // eslint-disable-line no-useless-escape
+const TMPLIT_EXPR = seal(/\$\{[\w\W]*/gm); / eslint-disable-line unicorn/better-regex
+const DATA_ATTR = seal(/^data-[\-\w.\u00B7-\uFFFF]+$/); / eslint-disable-line no-useless-escape
+const ARIA_ATTR = seal(/^aria-[\-\w]+$/); / eslint-disable-line no-useless-escape
+const IS_ALLOWED_URI = seal(/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp|matrix):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i / eslint-disable-line no-useless-escape
 );
 const IS_SCRIPT_OR_DATA = seal(/^(?:\w+script|data):/i);
-const ATTR_WHITESPACE = seal(/[\u0000-\u0020\u00A0\u1680\u180E\u2000-\u2029\u205F\u3000]/g // eslint-disable-line no-control-regex
+const ATTR_WHITESPACE = seal(/[\u0000-\u0020\u00A0\u1680\u180E\u2000-\u2029\u205F\u3000]/g / eslint-disable-line no-control-regex
 );
 const DOCTYPE_NAME = seal(/^html$/i);
 const CUSTOM_ELEMENT = seal(/^[a-z][.\w]*(-[.\w]+)+$/i);
@@ -58211,15 +58211,15 @@ const NODE_TYPE = {
   text: 3,
   cdataSection: 4,
   entityReference: 5,
-  // Deprecated
+  / Deprecated
   entityNode: 6,
-  // Deprecated
+  / Deprecated
   progressingInstruction: 7,
   comment: 8,
   document: 9,
   documentType: 10,
   documentFragment: 11,
-  notation: 12 // Deprecated
+  notation: 12 / Deprecated
 };
 const getGlobal = function getGlobal() {
   return typeof window === 'undefined' ? null : window;
@@ -58236,9 +58236,9 @@ const _createTrustedTypesPolicy = function _createTrustedTypesPolicy(trustedType
   if (typeof trustedTypes !== 'object' || typeof trustedTypes.createPolicy !== 'function') {
     return null;
   }
-  // Allow the callers to control the unique policy name
-  // by adding a data-tt-policy-suffix to the script element with the DOMPurify.
-  // Policy creation with duplicate names throws in Trusted Types.
+  / Allow the callers to control the unique policy name
+  / by adding a data-tt-policy-suffix to the script element with the DOMPurify.
+  / Policy creation with duplicate names throws in Trusted Types.
   let suffix = null;
   const ATTR_NAME = 'data-tt-policy-suffix';
   if (purifyHostElement && purifyHostElement.hasAttribute(ATTR_NAME)) {
@@ -58255,9 +58255,9 @@ const _createTrustedTypesPolicy = function _createTrustedTypesPolicy(trustedType
       }
     });
   } catch (_) {
-    // Policy creation failed (most likely another DOMPurify script has
-    // already run). Skip creating the policy, as this will only cause errors
-    // if TT are enforced.
+    / Policy creation failed (most likely another DOMPurify script has
+    / already run). Skip creating the policy, as this will only cause errors
+    / if TT are enforced.
     console.warn('TrustedTypes policy ' + policyName + ' could not be created.');
     return null;
   }
@@ -58281,8 +58281,8 @@ function createDOMPurify() {
   DOMPurify.version = '3.2.6';
   DOMPurify.removed = [];
   if (!window || !window.document || window.document.nodeType !== NODE_TYPE.document || !window.Element) {
-    // Not running in a browser, provide a factory function
-    // so that you can pass your own Window
+    / Not running in a browser, provide a factory function
+    / so that you can pass your own Window
     DOMPurify.isSupported = false;
     return DOMPurify;
   }
@@ -58308,12 +58308,12 @@ function createDOMPurify() {
   const getNextSibling = lookupGetter(ElementPrototype, 'nextSibling');
   const getChildNodes = lookupGetter(ElementPrototype, 'childNodes');
   const getParentNode = lookupGetter(ElementPrototype, 'parentNode');
-  // As per issue #47, the web-components registry is inherited by a
-  // new document created via createHTMLDocument. As per the spec
-  // (http://w3c.github.io/webcomponents/spec/custom/#creating-and-passing-registries)
-  // a new empty registry is used when creating a template contents owner
-  // document, so we use that as our parent document to ensure nothing
-  // is inherited.
+  / As per issue #47, the web-components registry is inherited by a
+  / new document created via createHTMLDocument. As per the spec
+  / (http://w3c.github.io/webcomponents/spec/custom/#creating-and-passing-registries)
+  / a new empty registry is used when creating a template contents owner
+  / document, so we use that as our parent document to ensure nothing
+  / is inherited.
   if (typeof HTMLTemplateElement === 'function') {
     const template = document.createElement('template');
     if (template.content && template.content.ownerDocument) {
@@ -58470,10 +58470,10 @@ function createDOMPurify() {
   const DEFAULT_ALLOWED_NAMESPACES = addToSet({}, [MATHML_NAMESPACE, SVG_NAMESPACE, HTML_NAMESPACE], stringToString);
   let MATHML_TEXT_INTEGRATION_POINTS = addToSet({}, ['mi', 'mo', 'mn', 'ms', 'mtext']);
   let HTML_INTEGRATION_POINTS = addToSet({}, ['annotation-xml']);
-  // Certain elements are allowed in both SVG and HTML
-  // namespace. We need to specify them explicitly
-  // so that they don't get erroneously deleted from
-  // HTML namespace.
+  / Certain elements are allowed in both SVG and HTML
+  / namespace. We need to specify them explicitly
+  / so that they don't get erroneously deleted from
+  / HTML namespace.
   const COMMON_SVG_AND_HTML_ELEMENTS = addToSet({}, ['title', 'style', 'font', 'a', 'script']);
   /* Parsing of strict XHTML documents */
   let PARSER_MEDIA_TYPE = null;
@@ -58493,7 +58493,7 @@ function createDOMPurify() {
    *
    * @param cfg optional config literal
    */
-  // eslint-disable-next-line complexity
+  / eslint-disable-next-line complexity
   const _parseConfig = function _parseConfig() {
     let cfg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     if (CONFIG && CONFIG === cfg) {
@@ -58506,9 +58506,9 @@ function createDOMPurify() {
     /* Shield configuration object from prototype pollution */
     cfg = clone(cfg);
     PARSER_MEDIA_TYPE =
-    // eslint-disable-next-line unicorn/prefer-includes
+    / eslint-disable-next-line unicorn/prefer-includes
     SUPPORTED_PARSER_MEDIA_TYPES.indexOf(cfg.PARSER_MEDIA_TYPE) === -1 ? DEFAULT_PARSER_MEDIA_TYPE : cfg.PARSER_MEDIA_TYPE;
-    // HTML tags and attributes are not case-sensitive, converting to lowercase. Keeping XHTML as is.
+    / HTML tags and attributes are not case-sensitive, converting to lowercase. Keeping XHTML as is.
     transformCaseFunc = PARSER_MEDIA_TYPE === 'application/xhtml+xml' ? stringToString : stringToLowerCase;
     /* Set configuration parameters */
     ALLOWED_TAGS = objectHasOwnProperty(cfg, 'ALLOWED_TAGS') ? addToSet({}, cfg.ALLOWED_TAGS, transformCaseFunc) : DEFAULT_ALLOWED_TAGS;
@@ -58520,21 +58520,21 @@ function createDOMPurify() {
     FORBID_TAGS = objectHasOwnProperty(cfg, 'FORBID_TAGS') ? addToSet({}, cfg.FORBID_TAGS, transformCaseFunc) : clone({});
     FORBID_ATTR = objectHasOwnProperty(cfg, 'FORBID_ATTR') ? addToSet({}, cfg.FORBID_ATTR, transformCaseFunc) : clone({});
     USE_PROFILES = objectHasOwnProperty(cfg, 'USE_PROFILES') ? cfg.USE_PROFILES : false;
-    ALLOW_ARIA_ATTR = cfg.ALLOW_ARIA_ATTR !== false; // Default true
-    ALLOW_DATA_ATTR = cfg.ALLOW_DATA_ATTR !== false; // Default true
-    ALLOW_UNKNOWN_PROTOCOLS = cfg.ALLOW_UNKNOWN_PROTOCOLS || false; // Default false
-    ALLOW_SELF_CLOSE_IN_ATTR = cfg.ALLOW_SELF_CLOSE_IN_ATTR !== false; // Default true
-    SAFE_FOR_TEMPLATES = cfg.SAFE_FOR_TEMPLATES || false; // Default false
-    SAFE_FOR_XML = cfg.SAFE_FOR_XML !== false; // Default true
-    WHOLE_DOCUMENT = cfg.WHOLE_DOCUMENT || false; // Default false
-    RETURN_DOM = cfg.RETURN_DOM || false; // Default false
-    RETURN_DOM_FRAGMENT = cfg.RETURN_DOM_FRAGMENT || false; // Default false
-    RETURN_TRUSTED_TYPE = cfg.RETURN_TRUSTED_TYPE || false; // Default false
-    FORCE_BODY = cfg.FORCE_BODY || false; // Default false
-    SANITIZE_DOM = cfg.SANITIZE_DOM !== false; // Default true
-    SANITIZE_NAMED_PROPS = cfg.SANITIZE_NAMED_PROPS || false; // Default false
-    KEEP_CONTENT = cfg.KEEP_CONTENT !== false; // Default true
-    IN_PLACE = cfg.IN_PLACE || false; // Default false
+    ALLOW_ARIA_ATTR = cfg.ALLOW_ARIA_ATTR !== false; / Default true
+    ALLOW_DATA_ATTR = cfg.ALLOW_DATA_ATTR !== false; / Default true
+    ALLOW_UNKNOWN_PROTOCOLS = cfg.ALLOW_UNKNOWN_PROTOCOLS || false; / Default false
+    ALLOW_SELF_CLOSE_IN_ATTR = cfg.ALLOW_SELF_CLOSE_IN_ATTR !== false; / Default true
+    SAFE_FOR_TEMPLATES = cfg.SAFE_FOR_TEMPLATES || false; / Default false
+    SAFE_FOR_XML = cfg.SAFE_FOR_XML !== false; / Default true
+    WHOLE_DOCUMENT = cfg.WHOLE_DOCUMENT || false; / Default false
+    RETURN_DOM = cfg.RETURN_DOM || false; / Default false
+    RETURN_DOM_FRAGMENT = cfg.RETURN_DOM_FRAGMENT || false; / Default false
+    RETURN_TRUSTED_TYPE = cfg.RETURN_TRUSTED_TYPE || false; / Default false
+    FORCE_BODY = cfg.FORCE_BODY || false; / Default false
+    SANITIZE_DOM = cfg.SANITIZE_DOM !== false; / Default true
+    SANITIZE_NAMED_PROPS = cfg.SANITIZE_NAMED_PROPS || false; / Default false
+    KEEP_CONTENT = cfg.KEEP_CONTENT !== false; / Default true
+    IN_PLACE = cfg.IN_PLACE || false; / Default false
     IS_ALLOWED_URI$1 = cfg.ALLOWED_URI_REGEXP || IS_ALLOWED_URI;
     NAMESPACE = cfg.NAMESPACE || HTML_NAMESPACE;
     MATHML_TEXT_INTEGRATION_POINTS = cfg.MATHML_TEXT_INTEGRATION_POINTS || MATHML_TEXT_INTEGRATION_POINTS;
@@ -58621,22 +58621,22 @@ function createDOMPurify() {
       if (typeof cfg.TRUSTED_TYPES_POLICY.createScriptURL !== 'function') {
         throw typeErrorCreate('TRUSTED_TYPES_POLICY configuration option must provide a "createScriptURL" hook.');
       }
-      // Overwrite existing TrustedTypes policy.
+      / Overwrite existing TrustedTypes policy.
       trustedTypesPolicy = cfg.TRUSTED_TYPES_POLICY;
-      // Sign local variables required by `sanitize`.
+      / Sign local variables required by `sanitize`.
       emptyHTML = trustedTypesPolicy.createHTML('');
     } else {
-      // Uninitialized policy, attempt to initialize the internal dompurify policy.
+      / Uninitialized policy, attempt to initialize the internal dompurify policy.
       if (trustedTypesPolicy === undefined) {
         trustedTypesPolicy = _createTrustedTypesPolicy(trustedTypes, currentScript);
       }
-      // If creating the internal policy succeeded sign internal variables.
+      / If creating the internal policy succeeded sign internal variables.
       if (trustedTypesPolicy !== null && typeof emptyHTML === 'string') {
         emptyHTML = trustedTypesPolicy.createHTML('');
       }
     }
-    // Prevent further manipulation of configuration.
-    // Not available in IE8, Safari 5, etc.
+    / Prevent further manipulation of configuration.
+    / Not available in IE8, Safari 5, etc.
     if (freeze) {
       freeze(cfg);
     }
@@ -58655,8 +58655,8 @@ function createDOMPurify() {
    */
   const _checkValidNamespace = function _checkValidNamespace(element) {
     let parent = getParentNode(element);
-    // In JSDOM, if we're inside shadow DOM, then parentNode
-    // can be null. We just simulate parent in this case.
+    / In JSDOM, if we're inside shadow DOM, then parentNode
+    / can be null. We just simulate parent in this case.
     if (!parent || !parent.tagName) {
       parent = {
         namespaceURI: NAMESPACE,
@@ -58669,60 +58669,60 @@ function createDOMPurify() {
       return false;
     }
     if (element.namespaceURI === SVG_NAMESPACE) {
-      // The only way to switch from HTML namespace to SVG
-      // is via <svg>. If it happens via any other tag, then
-      // it should be killed.
+      / The only way to switch from HTML namespace to SVG
+      / is via <svg>. If it happens via any other tag, then
+      / it should be killed.
       if (parent.namespaceURI === HTML_NAMESPACE) {
         return tagName === 'svg';
       }
-      // The only way to switch from MathML to SVG is via`
-      // svg if parent is either <annotation-xml> or MathML
-      // text integration points.
+      / The only way to switch from MathML to SVG is via`
+      / svg if parent is either <annotation-xml> or MathML
+      / text integration points.
       if (parent.namespaceURI === MATHML_NAMESPACE) {
         return tagName === 'svg' && (parentTagName === 'annotation-xml' || MATHML_TEXT_INTEGRATION_POINTS[parentTagName]);
       }
-      // We only allow elements that are defined in SVG
-      // spec. All others are disallowed in SVG namespace.
+      / We only allow elements that are defined in SVG
+      / spec. All others are disallowed in SVG namespace.
       return Boolean(ALL_SVG_TAGS[tagName]);
     }
     if (element.namespaceURI === MATHML_NAMESPACE) {
-      // The only way to switch from HTML namespace to MathML
-      // is via <math>. If it happens via any other tag, then
-      // it should be killed.
+      / The only way to switch from HTML namespace to MathML
+      / is via <math>. If it happens via any other tag, then
+      / it should be killed.
       if (parent.namespaceURI === HTML_NAMESPACE) {
         return tagName === 'math';
       }
-      // The only way to switch from SVG to MathML is via
-      // <math> and HTML integration points
+      / The only way to switch from SVG to MathML is via
+      / <math> and HTML integration points
       if (parent.namespaceURI === SVG_NAMESPACE) {
         return tagName === 'math' && HTML_INTEGRATION_POINTS[parentTagName];
       }
-      // We only allow elements that are defined in MathML
-      // spec. All others are disallowed in MathML namespace.
+      / We only allow elements that are defined in MathML
+      / spec. All others are disallowed in MathML namespace.
       return Boolean(ALL_MATHML_TAGS[tagName]);
     }
     if (element.namespaceURI === HTML_NAMESPACE) {
-      // The only way to switch from SVG to HTML is via
-      // HTML integration points, and from MathML to HTML
-      // is via MathML text integration points
+      / The only way to switch from SVG to HTML is via
+      / HTML integration points, and from MathML to HTML
+      / is via MathML text integration points
       if (parent.namespaceURI === SVG_NAMESPACE && !HTML_INTEGRATION_POINTS[parentTagName]) {
         return false;
       }
       if (parent.namespaceURI === MATHML_NAMESPACE && !MATHML_TEXT_INTEGRATION_POINTS[parentTagName]) {
         return false;
       }
-      // We disallow tags that are specific for MathML
-      // or SVG and should never appear in HTML namespace
+      / We disallow tags that are specific for MathML
+      / or SVG and should never appear in HTML namespace
       return !ALL_MATHML_TAGS[tagName] && (COMMON_SVG_AND_HTML_ELEMENTS[tagName] || !ALL_SVG_TAGS[tagName]);
     }
-    // For XHTML and XML documents that support custom namespaces
+    / For XHTML and XML documents that support custom namespaces
     if (PARSER_MEDIA_TYPE === 'application/xhtml+xml' && ALLOWED_NAMESPACES[element.namespaceURI]) {
       return true;
     }
-    // The code should never reach this place (this means
-    // that the element somehow got namespace that is not
-    // HTML, SVG, MathML or allowed via ALLOWED_NAMESPACES).
-    // Return false just in case.
+    / The code should never reach this place (this means
+    / that the element somehow got namespace that is not
+    / HTML, SVG, MathML or allowed via ALLOWED_NAMESPACES).
+    / Return false just in case.
     return false;
   };
   /**
@@ -58735,7 +58735,7 @@ function createDOMPurify() {
       element: node
     });
     try {
-      // eslint-disable-next-line unicorn/prefer-dom-node-remove
+      / eslint-disable-next-line unicorn/prefer-dom-node-remove
       getParentNode(node).removeChild(node);
     } catch (_) {
       remove(node);
@@ -58760,7 +58760,7 @@ function createDOMPurify() {
       });
     }
     element.removeAttribute(name);
-    // We void attribute values for unremovable "is" attributes
+    / We void attribute values for unremovable "is" attributes
     if (name === 'is') {
       if (RETURN_DOM || RETURN_DOM_FRAGMENT) {
         try {
@@ -58791,7 +58791,7 @@ function createDOMPurify() {
       leadingWhitespace = matches && matches[0];
     }
     if (PARSER_MEDIA_TYPE === 'application/xhtml+xml' && NAMESPACE === HTML_NAMESPACE) {
-      // Root of XHTML doc must contain xmlns declaration (see https://www.w3.org/TR/xhtml1/normative.html#strict)
+      / Root of XHTML doc must contain xmlns declaration (see https://www.w3.org/TR/xhtml1/normative.html#strict)
       dirty = '<html xmlns="http://www.w3.org/1999/xhtml"><head></head><body>' + dirty + '</body></html>';
     }
     const dirtyPayload = trustedTypesPolicy ? trustedTypesPolicy.createHTML(dirty) : dirty;
@@ -58810,7 +58810,7 @@ function createDOMPurify() {
       try {
         doc.documentElement.innerHTML = IS_EMPTY_INPUT ? emptyHTML : dirtyPayload;
       } catch (_) {
-        // Syntax error if dirtyPayload is invalid xml
+        / Syntax error if dirtyPayload is invalid xml
       }
     }
     const body = doc.body || doc.documentElement;
@@ -58831,7 +58831,7 @@ function createDOMPurify() {
    */
   const _createNodeIterator = function _createNodeIterator(root) {
     return createNodeIterator.call(root.ownerDocument || root, root,
-    // eslint-disable-next-line no-bitwise
+    / eslint-disable-next-line no-bitwise
     NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_COMMENT | NodeFilter.SHOW_TEXT | NodeFilter.SHOW_PROCESSING_INSTRUCTION | NodeFilter.SHOW_CDATA_SECTION, null);
   };
   /**
@@ -58960,7 +58960,7 @@ function createDOMPurify() {
    * @param value Attribute value.
    * @return Returns true if `value` is valid, otherwise false.
    */
-  // eslint-disable-next-line complexity
+  / eslint-disable-next-line complexity
   const _isValidAttribute = function _isValidAttribute(lcTag, lcName, value) {
     /* Make sure attribute cannot clobber */
     if (SANITIZE_DOM && (lcName === 'id' || lcName === 'name') && (value in document || value in formElement)) {
@@ -58972,12 +58972,12 @@ function createDOMPurify() {
         We don't need to check the value; it's always URI safe. */
     if (ALLOW_DATA_ATTR && !FORBID_ATTR[lcName] && regExpTest(DATA_ATTR, lcName)) ; else if (ALLOW_ARIA_ATTR && regExpTest(ARIA_ATTR, lcName)) ; else if (!ALLOWED_ATTR[lcName] || FORBID_ATTR[lcName]) {
       if (
-      // First condition does a very basic check if a) it's basically a valid custom element tagname AND
-      // b) if the tagName passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
-      // and c) if the attribute name passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.attributeNameCheck
+      / First condition does a very basic check if a) it's basically a valid custom element tagname AND
+      / b) if the tagName passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
+      / and c) if the attribute name passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.attributeNameCheck
       _isBasicCustomElement(lcTag) && (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, lcTag) || CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(lcTag)) && (CUSTOM_ELEMENT_HANDLING.attributeNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.attributeNameCheck, lcName) || CUSTOM_ELEMENT_HANDLING.attributeNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.attributeNameCheck(lcName)) ||
-      // Alternative, second condition checks if it's an `is`-attribute, AND
-      // the value passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
+      / Alternative, second condition checks if it's an `is`-attribute, AND
+      / the value passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
       lcName === 'is' && CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements && (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, value) || CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(value))) ; else {
         return false;
       }
@@ -59041,16 +59041,16 @@ function createDOMPurify() {
       hookEvent.attrName = lcName;
       hookEvent.attrValue = value;
       hookEvent.keepAttr = true;
-      hookEvent.forceKeepAttr = undefined; // Allows developers to see this is a property they can set
+      hookEvent.forceKeepAttr = undefined; / Allows developers to see this is a property they can set
       _executeHooks(hooks.uponSanitizeAttribute, currentNode, hookEvent);
       value = hookEvent.attrValue;
       /* Full DOM Clobbering protection via namespace isolation,
        * Prefix id and name attributes with `user-content-`
        */
       if (SANITIZE_NAMED_PROPS && (lcName === 'id' || lcName === 'name')) {
-        // Remove the attribute with this value
+        / Remove the attribute with this value
         _removeAttribute(name, currentNode);
-        // Prefix the value and later re-create the attribute with the sanitized value
+        / Prefix the value and later re-create the attribute with the sanitized value
         value = SANITIZE_NAMED_PROPS_PREFIX + value;
       }
       /* Work around a security issue with comments inside attributes */
@@ -59148,7 +59148,7 @@ function createDOMPurify() {
     /* Execute a hook if present */
     _executeHooks(hooks.afterSanitizeShadowDOM, fragment, null);
   };
-  // eslint-disable-next-line complexity
+  / eslint-disable-next-line complexity
   DOMPurify.sanitize = function (dirty) {
     let cfg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     let body = null;
@@ -59206,13 +59206,13 @@ function createDOMPurify() {
       } else if (importedNode.nodeName === 'HTML') {
         body = importedNode;
       } else {
-        // eslint-disable-next-line unicorn/prefer-dom-node-append
+        / eslint-disable-next-line unicorn/prefer-dom-node-append
         body.appendChild(importedNode);
       }
     } else {
       /* Exit directly if we have nothing to do */
       if (!RETURN_DOM && !SAFE_FOR_TEMPLATES && !WHOLE_DOCUMENT &&
-      // eslint-disable-next-line unicorn/prefer-includes
+      / eslint-disable-next-line unicorn/prefer-includes
       dirty.indexOf('<') === -1) {
         return trustedTypesPolicy && RETURN_TRUSTED_TYPE ? trustedTypesPolicy.createHTML(dirty) : dirty;
       }
@@ -59249,7 +59249,7 @@ function createDOMPurify() {
       if (RETURN_DOM_FRAGMENT) {
         returnNode = createDocumentFragment.call(body.ownerDocument);
         while (body.firstChild) {
-          // eslint-disable-next-line unicorn/prefer-dom-node-append
+          / eslint-disable-next-line unicorn/prefer-dom-node-append
           returnNode.appendChild(body.firstChild);
         }
       } else {
@@ -59382,8 +59382,8 @@ Mime.prototype.define = function(typeMap, force) {
     for (let i = 0; i < extensions.length; i++) {
       const ext = extensions[i];
 
-      // '*' prefix = not the preferred type for this extension.  So fixup the
-      // extension, and skip it.
+      / '*' prefix = not the preferred type for this extension.  So fixup the
+      / extension, and skip it.
       if (ext[0] === '*') {
         continue;
       }
@@ -59400,7 +59400,7 @@ Mime.prototype.define = function(typeMap, force) {
       this._types[ext] = type;
     }
 
-    // Use first extension as default
+    / Use first extension as default
     if (force || !this._extensions[type]) {
       const ext = extensions[0];
       this._extensions[type] = (ext[0] !== '*') ? ext : ext.substr(1);
@@ -59697,7 +59697,7 @@ function getValidTagName(element) {
 }
 function extractOrigin(url) {
     let origin = '';
-    if (url.indexOf('//') > -1) {
+    if (url.indexOf('/') > -1) {
         origin = url.split('/').slice(0, 3).join('/');
     }
     else {
@@ -59709,7 +59709,7 @@ function extractOrigin(url) {
 let canvasService;
 let canvasCtx;
 const URL_IN_CSS_REF = /url\((?:(')([^']*)'|(")(.*?)"|([^)]*))\)/gm;
-const URL_PROTOCOL_MATCH = /^(?:[a-z+]+:)?\/\//i;
+const URL_PROTOCOL_MATCH = /^(?:[a-z+]+:)?\/\/i;
 const URL_WWW_MATCH = /^www\..*/i;
 const DATA_URI = /^(data:)([^,]*),(.*)/i;
 function absoluteToStylesheet(cssText, href) {
@@ -63182,7 +63182,7 @@ var WorkerFactory = createInlineWorkerFactory(/* rollup-plugin-web-worker-loader
      * Released under MIT License
      */
     var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
-    // Use a lookup table to find the index.
+    / Use a lookup table to find the index.
     var lookup = typeof Uint8Array === 'undefined' ? [] : new Uint8Array(256);
     for (var i = 0; i < chars.length; i++) {
         lookup[chars.charCodeAt(i)] = i;
@@ -64015,9 +64015,9 @@ if (typeof(window) === 'undefined') {
 }
 
 // Maximum allowed session recording length
-var MAX_RECORDING_MS = 24 * 60 * 60 * 1000; // 24 hours
+var MAX_RECORDING_MS = 24 * 60 * 60 * 1000; / 24 hours
 // Maximum allowed value for minimum session recording length
-var MAX_VALUE_FOR_MIN_RECORDING_MS = 8 * 1000; // 8 seconds
+var MAX_VALUE_FOR_MIN_RECORDING_MS = 8 * 1000; / 8 seconds
 
 /*
  * Saved references to long variable names, so that closure compiler can
@@ -64046,7 +64046,7 @@ var nativeBind = FuncProto.bind,
 
 var _ = {
     trim: function(str) {
-        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim#Polyfill
+        / https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim#Polyfill
         return str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
     }
 };
@@ -64326,7 +64326,7 @@ _.encodeDates = function(obj) {
         if (_.isDate(v)) {
             obj[k] = _.formatDate(v);
         } else if (_.isObject(v)) {
-            obj[k] = _.encodeDates(v); // recurse
+            obj[k] = _.encodeDates(v); / recurse
         }
     });
     return obj;
@@ -64340,7 +64340,7 @@ _.timestamp = function() {
 };
 
 _.formatDate = function(d) {
-    // YYYY-MM-DDTHH:MM:SS in UTC
+    / YYYY-MM-DDTHH:MM:SS in UTC
     function pad(n) {
         return n < 10 ? '0' + n : n;
     }
@@ -64393,8 +64393,8 @@ _.JSONEncode = (function() {
     return function(mixed_val) {
         var value = mixed_val;
         var quote = function(string) {
-            var escapable = /[\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g; // eslint-disable-line no-control-regex
-            var meta = { // table of character substitutions
+            var escapable = /[\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g; / eslint-disable-line no-control-regex
+            var meta = { / table of character substitutions
                 '\b': '\\b',
                 '\t': '\\t',
                 '\n': '\\n',
@@ -64417,62 +64417,62 @@ _.JSONEncode = (function() {
         var str = function(key, holder) {
             var gap = '';
             var indent = '    ';
-            var i = 0; // The loop counter.
-            var k = ''; // The member key.
-            var v = ''; // The member value.
+            var i = 0; / The loop counter.
+            var k = ''; / The member key.
+            var v = ''; / The member value.
             var length = 0;
             var mind = gap;
             var partial = [];
             var value = holder[key];
 
-            // If the value has a toJSON method, call it to obtain a replacement value.
+            / If the value has a toJSON method, call it to obtain a replacement value.
             if (value && typeof value === 'object' &&
                 typeof value.toJSON === 'function') {
                 value = value.toJSON(key);
             }
 
-            // What happens next depends on the value's type.
+            / What happens next depends on the value's type.
             switch (typeof value) {
                 case 'string':
                     return quote(value);
 
                 case 'number':
-                    // JSON numbers must be finite. Encode non-finite numbers as null.
+                    / JSON numbers must be finite. Encode non-finite numbers as null.
                     return isFinite(value) ? String(value) : 'null';
 
                 case 'boolean':
                 case 'null':
-                    // If the value is a boolean or null, convert it to a string. Note:
-                    // typeof null does not produce 'null'. The case is included here in
-                    // the remote chance that this gets fixed someday.
+                    / If the value is a boolean or null, convert it to a string. Note:
+                    / typeof null does not produce 'null'. The case is included here in
+                    / the remote chance that this gets fixed someday.
 
                     return String(value);
 
                 case 'object':
-                    // If the type is 'object', we might be dealing with an object or an array or
-                    // null.
-                    // Due to a specification blunder in ECMAScript, typeof null is 'object',
-                    // so watch out for that case.
+                    / If the type is 'object', we might be dealing with an object or an array or
+                    / null.
+                    / Due to a specification blunder in ECMAScript, typeof null is 'object',
+                    / so watch out for that case.
                     if (!value) {
                         return 'null';
                     }
 
-                    // Make an array to hold the partial results of stringifying this object value.
+                    / Make an array to hold the partial results of stringifying this object value.
                     gap += indent;
                     partial = [];
 
-                    // Is the value an array?
+                    / Is the value an array?
                     if (toString.apply(value) === '[object Array]') {
-                        // The value is an array. Stringify every element. Use null as a placeholder
-                        // for non-JSON values.
+                        / The value is an array. Stringify every element. Use null as a placeholder
+                        / for non-JSON values.
 
                         length = value.length;
                         for (i = 0; i < length; i += 1) {
                             partial[i] = str(i, value) || 'null';
                         }
 
-                        // Join all of the elements together, separated with commas, and wrap them in
-                        // brackets.
+                        / Join all of the elements together, separated with commas, and wrap them in
+                        / brackets.
                         v = partial.length === 0 ? '[]' :
                             gap ? '[\n' + gap +
                             partial.join(',\n' + gap) + '\n' +
@@ -64482,7 +64482,7 @@ _.JSONEncode = (function() {
                         return v;
                     }
 
-                    // Iterate through all of the keys in the object.
+                    / Iterate through all of the keys in the object.
                     for (k in value) {
                         if (hasOwnProperty.call(value, k)) {
                             v = str(k, value);
@@ -64492,8 +64492,8 @@ _.JSONEncode = (function() {
                         }
                     }
 
-                    // Join all of the member texts together, separated with commas,
-                    // and wrap them in braces.
+                    / Join all of the member texts together, separated with commas,
+                    / and wrap them in braces.
                     v = partial.length === 0 ? '{}' :
                         gap ? '{' + partial.join(',') + '' +
                         mind + '}' : '{' + partial.join(',') + '}';
@@ -64502,8 +64502,8 @@ _.JSONEncode = (function() {
             }
         };
 
-        // Make a fake root object containing our value under the key of ''.
-        // Return the result of stringifying the value.
+        / Make a fake root object containing our value under the key of ''.
+        / Return the result of stringifying the value.
         return str('', {
             '': value
         });
@@ -64515,8 +64515,8 @@ _.JSONEncode = (function() {
  * Slightly modified to throw a real Error rather than a POJO
  */
 _.JSONDecode = (function() {
-    var at, // The index of the current character
-        ch, // The current character
+    var at, / The index of the current character
+        ch, / The current character
         escapee = {
             '"': '"',
             '\\': '\\',
@@ -64535,18 +64535,18 @@ _.JSONDecode = (function() {
             throw e;
         },
         next = function(c) {
-            // If a c parameter is provided, verify that it matches the current character.
+            / If a c parameter is provided, verify that it matches the current character.
             if (c && c !== ch) {
                 error('Expected \'' + c + '\' instead of \'' + ch + '\'');
             }
-            // Get the next character. When there are no more characters,
-            // return the empty string.
+            / Get the next character. When there are no more characters,
+            / return the empty string.
             ch = text.charAt(at);
             at += 1;
             return ch;
         },
         number = function() {
-            // Parse a number value.
+            / Parse a number value.
             var number,
                 string = '';
 
@@ -64585,12 +64585,12 @@ _.JSONDecode = (function() {
         },
 
         string = function() {
-            // Parse a string value.
+            / Parse a string value.
             var hex,
                 i,
                 string = '',
                 uffff;
-            // When parsing for string values, we must look for " and \ characters.
+            / When parsing for string values, we must look for " and \ characters.
             if (ch === '"') {
                 while (next()) {
                     if (ch === '"') {
@@ -64622,13 +64622,13 @@ _.JSONDecode = (function() {
             error('Bad string');
         },
         white = function() {
-            // Skip whitespace.
+            / Skip whitespace.
             while (ch && ch <= ' ') {
                 next();
             }
         },
         word = function() {
-            // true, false, or null.
+            / true, false, or null.
             switch (ch) {
                 case 't':
                     next('t');
@@ -64652,9 +64652,9 @@ _.JSONDecode = (function() {
             }
             error('Unexpected "' + ch + '"');
         },
-        value, // Placeholder for the value function.
+        value, / Placeholder for the value function.
         array = function() {
-            // Parse an array value.
+            / Parse an array value.
             var array = [];
 
             if (ch === '[') {
@@ -64662,7 +64662,7 @@ _.JSONDecode = (function() {
                 white();
                 if (ch === ']') {
                     next(']');
-                    return array; // empty array
+                    return array; / empty array
                 }
                 while (ch) {
                     array.push(value());
@@ -64678,7 +64678,7 @@ _.JSONDecode = (function() {
             error('Bad array');
         },
         object = function() {
-            // Parse an object value.
+            / Parse an object value.
             var key,
                 object = {};
 
@@ -64687,7 +64687,7 @@ _.JSONDecode = (function() {
                 white();
                 if (ch === '}') {
                     next('}');
-                    return object; // empty object
+                    return object; / empty object
                 }
                 while (ch) {
                     key = string();
@@ -64710,8 +64710,8 @@ _.JSONDecode = (function() {
         };
 
     value = function() {
-        // Parse a JSON value. It could be an object, an array, a string,
-        // a number, or a word.
+        / Parse a JSON value. It could be an object, an array, a string,
+        / a number, or a word.
         white();
         switch (ch) {
             case '{':
@@ -64727,8 +64727,8 @@ _.JSONDecode = (function() {
         }
     };
 
-    // Return the json_parse function. It will have access to all of the
-    // above functions and variables.
+    / Return the json_parse function. It will have access to all of the
+    / above functions and variables.
     return function(source) {
         var result;
 
@@ -64758,7 +64758,7 @@ _.base64Encode = function(data) {
 
     data = _.utf8Encode(data);
 
-    do { // pack three octets into four hexets
+    do { / pack three octets into four hexets
         o1 = data.charCodeAt(i++);
         o2 = data.charCodeAt(i++);
         o3 = data.charCodeAt(i++);
@@ -64770,7 +64770,7 @@ _.base64Encode = function(data) {
         h3 = bits >> 6 & 0x3f;
         h4 = bits & 0x3f;
 
-        // use hexets to index into b64, and append result to encoded string
+        / use hexets to index into b64, and append result to encoded string
         tmp_arr[ac++] = b64.charAt(h1) + b64.charAt(h2) + b64.charAt(h3) + b64.charAt(h4);
     } while (i < data.length);
 
@@ -64829,19 +64829,19 @@ _.utf8Encode = function(string) {
 
 _.UUID = (function() {
 
-    // Time-based entropy
+    / Time-based entropy
     var T = function() {
-        var time = 1 * new Date(); // cross-browser version of Date.now()
+        var time = 1 * new Date(); / cross-browser version of Date.now()
         var ticks;
         if (win.performance && win.performance.now) {
             ticks = win.performance.now();
         } else {
-            // fall back to busy loop
+            / fall back to busy loop
             ticks = 0;
 
-            // this while loop figures how many browser ticks go by
-            // before 1*new Date() returns a new number, ie the amount
-            // of ticks that go by per millisecond
+            / this while loop figures how many browser ticks go by
+            / before 1*new Date() returns a new number, ie the amount
+            / of ticks that go by per millisecond
             while (time == 1 * new Date()) {
                 ticks++;
             }
@@ -64849,15 +64849,15 @@ _.UUID = (function() {
         return time.toString(16) + Math.floor(ticks).toString(16);
     };
 
-    // Math.Random entropy
+    / Math.Random entropy
     var R = function() {
         return Math.random().toString(16).replace('.', '');
     };
 
-    // User agent entropy
-    // This function takes the user agent string, and then xors
-    // together each sequence of 8 bytes.  This produces a final
-    // sequence of 8 bytes which it returns as hex.
+    / User agent entropy
+    / This function takes the user agent string, and then xors
+    / together each sequence of 8 bytes.  This produces a final
+    / sequence of 8 bytes which it returns as hex.
     var UA = function() {
         var ua = userAgent,
             i, ch, buffer = [],
@@ -64910,8 +64910,8 @@ var BLOCKED_UA_STRS = [
     'yahoo! slurp',
     'yandexbot',
 
-    // a whole bunch of goog-specific crawlers
-    // https://developers.google.com/search/docs/advanced/crawling/overview-google-crawlers
+    / a whole bunch of goog-specific crawlers
+    / https://developers.google.com/search/docs/advanced/crawling/overview-google-crawlers
     'adsbot-google',
     'apis-google',
     'duplexweb-google',
@@ -64956,7 +64956,7 @@ _.HTTPBuildQuery = function(formdata, arg_separator) {
 };
 
 _.getQueryParam = function(url, param) {
-    // Expects a raw URL
+    / Expects a raw URL
 
     param = param.replace(/[[]/g, '\\[').replace(/[\]]/g, '\\]');
     var regexS = '[\\?&]' + param + '=([^&#]*)',
@@ -64999,7 +64999,7 @@ _.cookie = {
         try {
             cookie = _.JSONDecode(_.cookie.get(name)) || {};
         } catch (err) {
-            // noop
+            / noop
         }
         return cookie;
     },
@@ -65118,7 +65118,7 @@ _.localStorage = {
         try {
             return _.JSONDecode(_.localStorage.get(name)) || {};
         } catch (err) {
-            // noop
+            / noop
         }
         return null;
     },
@@ -65141,12 +65141,12 @@ _.localStorage = {
 };
 
 _.register_event = (function() {
-    // written by Dean Edwards, 2005
-    // with input from Tino Zijdel - crisp@xs4all.nl
-    // with input from Carl Sverre - mail@carlsverre.com
-    // with input from Mixpanel
-    // http://dean.edwards.name/weblog/2005/10/add-event/
-    // https://gist.github.com/1930440
+    / written by Dean Edwards, 2005
+    / with input from Tino Zijdel - crisp@xs4all.nl
+    / with input from Carl Sverre - mail@carlsverre.com
+    / with input from Mixpanel
+    / http://dean.edwards.name/weblog/2005/10/add-event/
+    / https://gist.github.com/1930440
 
     /**
      * @param {Object} element
@@ -65165,7 +65165,7 @@ _.register_event = (function() {
             element.addEventListener(type, handler, !!useCapture);
         } else {
             var ontype = 'on' + type;
-            var old_handler = element[ontype]; // can be undefined
+            var old_handler = element[ontype]; / can be undefined
             element[ontype] = makeHandler(element, handler, old_handler);
         }
     };
@@ -65174,11 +65174,11 @@ _.register_event = (function() {
         var handler = function(event) {
             event = event || fixEvent(window.event);
 
-            // this basically happens in firefox whenever another script
-            // overwrites the onload callback and doesn't pass the event
-            // object to previously defined callbacks.  All the browsers
-            // that don't define window.event implement addEventListener
-            // so the dom_loaded handler will still be fired as usual.
+            / this basically happens in firefox whenever another script
+            / overwrites the onload callback and doesn't pass the event
+            / object to previously defined callbacks.  All the browsers
+            / that don't define window.event implement addEventListener
+            / so the dom_loaded handler will still be fired as usual.
             if (!event) {
                 return undefined;
             }
@@ -65247,7 +65247,7 @@ _.dom_query = (function() {
     */
 
     function getAllChildren(e) {
-        // Returns all children of element. Workaround required for IE5/Windows. Ugh.
+        / Returns all children of element. Workaround required for IE5/Windows. Ugh.
         return e.all ? e.all : e.getElementsByTagName('*');
     }
 
@@ -65259,39 +65259,39 @@ _.dom_query = (function() {
     }
 
     function getElementsBySelector(selector) {
-        // Attempt to fail gracefully in lesser browsers
+        / Attempt to fail gracefully in lesser browsers
         if (!document$1.getElementsByTagName) {
             return [];
         }
-        // Split selector in to tokens
+        / Split selector in to tokens
         var tokens = selector.split(' ');
         var token, bits, tagName, found, foundCount, i, j, k, elements, currentContextIndex;
         var currentContext = [document$1];
         for (i = 0; i < tokens.length; i++) {
             token = tokens[i].replace(/^\s+/, '').replace(/\s+$/, '');
             if (token.indexOf('#') > -1) {
-                // Token is an ID selector
+                / Token is an ID selector
                 bits = token.split('#');
                 tagName = bits[0];
                 var id = bits[1];
                 var element = document$1.getElementById(id);
                 if (!element || (tagName && element.nodeName.toLowerCase() != tagName)) {
-                    // element not found or tag with that ID not found, return false
+                    / element not found or tag with that ID not found, return false
                     return [];
                 }
-                // Set currentContext to contain just this element
+                / Set currentContext to contain just this element
                 currentContext = [element];
-                continue; // Skip to next token
+                continue; / Skip to next token
             }
             if (token.indexOf('.') > -1) {
-                // Token contains a class selector
+                / Token contains a class selector
                 bits = token.split('.');
                 tagName = bits[0];
                 var className = bits[1];
                 if (!tagName) {
                     tagName = '*';
                 }
-                // Get elements matching tag, filter them for class selector
+                / Get elements matching tag, filter them for class selector
                 found = [];
                 foundCount = 0;
                 for (j = 0; j < currentContext.length; j++) {
@@ -65308,15 +65308,15 @@ _.dom_query = (function() {
                 currentContextIndex = 0;
                 for (j = 0; j < found.length; j++) {
                     if (found[j].className &&
-                        _.isString(found[j].className) && // some SVG elements have classNames which are not strings
+                        _.isString(found[j].className) && / some SVG elements have classNames which are not strings
                         hasClass(found[j], className)
                     ) {
                         currentContext[currentContextIndex++] = found[j];
                     }
                 }
-                continue; // Skip to next token
+                continue; / Skip to next token
             }
-            // Code to deal with attribute selectors
+            / Code to deal with attribute selectors
             var token_match = token.match(TOKEN_MATCH_REGEX);
             if (token_match) {
                 tagName = token_match[1];
@@ -65326,7 +65326,7 @@ _.dom_query = (function() {
                 if (!tagName) {
                     tagName = '*';
                 }
-                // Grab all of the tagName elements within current context
+                / Grab all of the tagName elements within current context
                 found = [];
                 foundCount = 0;
                 for (j = 0; j < currentContext.length; j++) {
@@ -65341,40 +65341,40 @@ _.dom_query = (function() {
                 }
                 currentContext = [];
                 currentContextIndex = 0;
-                var checkFunction; // This function will be used to filter the elements
+                var checkFunction; / This function will be used to filter the elements
                 switch (attrOperator) {
-                    case '=': // Equality
+                    case '=': / Equality
                         checkFunction = function(e) {
                             return (e.getAttribute(attrName) == attrValue);
                         };
                         break;
-                    case '~': // Match one of space seperated words
+                    case '~': / Match one of space seperated words
                         checkFunction = function(e) {
                             return (e.getAttribute(attrName).match(new RegExp('\\b' + attrValue + '\\b')));
                         };
                         break;
-                    case '|': // Match start with value followed by optional hyphen
+                    case '|': / Match start with value followed by optional hyphen
                         checkFunction = function(e) {
                             return (e.getAttribute(attrName).match(new RegExp('^' + attrValue + '-?')));
                         };
                         break;
-                    case '^': // Match starts with value
+                    case '^': / Match starts with value
                         checkFunction = function(e) {
                             return (e.getAttribute(attrName).indexOf(attrValue) === 0);
                         };
                         break;
-                    case '$': // Match ends with value - fails with "Warning" in Opera 7
+                    case '$': / Match ends with value - fails with "Warning" in Opera 7
                         checkFunction = function(e) {
                             return (e.getAttribute(attrName).lastIndexOf(attrValue) == e.getAttribute(attrName).length - attrValue.length);
                         };
                         break;
-                    case '*': // Match ends with value
+                    case '*': / Match ends with value
                         checkFunction = function(e) {
                             return (e.getAttribute(attrName).indexOf(attrValue) > -1);
                         };
                         break;
                     default:
-                        // Just test for existence of attribute
+                        / Just test for existence of attribute
                         checkFunction = function(e) {
                             return e.getAttribute(attrName);
                         };
@@ -65386,10 +65386,10 @@ _.dom_query = (function() {
                         currentContext[currentContextIndex++] = found[j];
                     }
                 }
-                // alert('Attribute Selector: '+tagName+' '+attrName+' '+attrOperator+' '+attrValue);
-                continue; // Skip to next token
+                / alert('Attribute Selector: '+tagName+' '+attrName+' '+attrOperator+' '+attrValue);
+                continue; / Skip to next token
             }
-            // If we get here, token is JUST an element (not a class or ID selector)
+            / If we get here, token is JUST an element (not a class or ID selector)
             tagName = token;
             found = [];
             foundCount = 0;
@@ -65488,7 +65488,7 @@ _.info = {
      * include key words used in later checks.
      */
     browser: function(user_agent, vendor, opera) {
-        vendor = vendor || ''; // vendor is undefined for at least IE9
+        vendor = vendor || ''; / vendor is undefined for at least IE9
         if (opera || _.includes(user_agent, ' OPR/')) {
             if (_.includes(user_agent, 'Mini')) {
                 return 'Opera Mini';
@@ -65499,7 +65499,7 @@ _.info = {
         } else if (_.includes(user_agent, 'IEMobile') || _.includes(user_agent, 'WPDesktop')) {
             return 'Internet Explorer Mobile';
         } else if (_.includes(user_agent, 'SamsungBrowser/')) {
-            // https://developer.samsung.com/internet/user-agent-string-format
+            / https://developer.samsung.com/internet/user-agent-string-format
             return 'Samsung Internet';
         } else if (_.includes(user_agent, 'Edge') || _.includes(user_agent, 'Edg/')) {
             return 'Microsoft Edge';
@@ -65641,7 +65641,7 @@ _.info = {
             'mp_lib': 'web',
             '$lib_version': Config.LIB_VERSION,
             '$insert_id': cheap_guid(),
-            'time': _.timestamp() / 1000 // epoch time in seconds
+            'time': _.timestamp() / 1000 / epoch time in seconds
         }, _.strip_empty_properties(extra_props));
     },
 
@@ -65685,7 +65685,7 @@ var DOMAIN_MATCH_REGEX = /[a-z0-9][a-z0-9-]+\.[a-z.]{2,6}$/i;
  * offers the 'cookie_domain' config option to set it explicitly.
  * @example
  * extract_domain('my.sub.example.com')
- * // 'example.com'
+ * / 'example.com'
  */
 var extract_domain = function(hostname) {
     var domain_regex = DOMAIN_MATCH_REGEX;
@@ -65931,7 +65931,7 @@ function _hasDoNotTrackFlagOn(options) {
     var hasDntOn = false;
 
     _.each([
-        nav['doNotTrack'], // standard
+        nav['doNotTrack'], / standard
         nav['msDoNotTrack'],
         win$1['doNotTrack']
     ], function(dntValue) {
@@ -65976,7 +65976,7 @@ function _optInOut(optValue, token, options) {
         options.cookieDomain
     );
 
-    if (options.track && optValue) { // only track event if opting in (optValue=true)
+    if (options.track && optValue) { / only track event if opting in (optValue=true)
         options.track(options.trackEventName || '$opt_in', options.trackProperties, {
             'send_immediately': true
         });
@@ -66000,9 +66000,9 @@ function _addOptOutCheck(method, getConfigValue) {
             var ignoreDnt = getConfigValue.call(this, 'ignore_dnt');
             var persistenceType = getConfigValue.call(this, 'opt_out_tracking_persistence_type');
             var persistencePrefix = getConfigValue.call(this, 'opt_out_tracking_cookie_prefix');
-            var win = getConfigValue.call(this, 'window'); // used to override window during browser tests
+            var win = getConfigValue.call(this, 'window'); / used to override window during browser tests
 
-            if (token) { // if there was an issue getting the token, continue method execution as normal
+            if (token) { / if there was an issue getting the token, continue method execution as normal
                 optedOut = hasOptedOut(token, {
                     ignoreDnt: ignoreDnt,
                     persistenceType: persistenceType,
@@ -66111,7 +66111,7 @@ SharedLock.prototype.withLock = function(lockedCB, errorCB, pid) {
 
     var getSetY = function() {
         var valY = storage.getItem(keyY);
-        if (valY && valY !== i) { // if Y == i then this process already has the lock (useful for test cases)
+        if (valY && valY !== i) { / if Y == i then this process already has the lock (useful for test cases)
             return false;
         } else {
             storage.setItem(keyY, i);
@@ -66201,7 +66201,7 @@ var RequestQueue = function(storageKey, options) {
     }
     this.reportError = options.errorReporter || _.bind(logger$3.error, logger$3);
 
-    this.pid = options.pid || null; // pass pid to test out storage lock contention scenarios
+    this.pid = options.pid || null; / pass pid to test out storage lock contention scenarios
 
     this.memQueue = [];
 };
@@ -66238,7 +66238,7 @@ RequestQueue.prototype.enqueue = function(item, flushInterval, cb) {
                 storedQueue.push(queueEntry);
                 succeeded = this.saveToStorage(storedQueue);
                 if (succeeded) {
-                    // only add to in-memory queue when storage succeeds
+                    / only add to in-memory queue when storage succeeds
                     this.memQueue.push(queueEntry);
                 }
             } catch(err) {
@@ -66266,13 +66266,13 @@ RequestQueue.prototype.enqueue = function(item, flushInterval, cb) {
 RequestQueue.prototype.fillBatch = function(batchSize) {
     var batch = this.memQueue.slice(0, batchSize);
     if (this.usePersistence && batch.length < batchSize) {
-        // don't need lock just to read events; localStorage is thread-safe
-        // and the worst that could happen is a duplicate send of some
-        // orphaned events, which will be deduplicated on the server side
+        / don't need lock just to read events; localStorage is thread-safe
+        / and the worst that could happen is a duplicate send of some
+        / orphaned events, which will be deduplicated on the server side
         var storedQueue = this.readFromStorage();
         if (storedQueue.length) {
-            // item IDs already in batch; don't duplicate out of storage
-            var idsInBatch = {}; // poor man's Set
+            / item IDs already in batch; don't duplicate out of storage
+            var idsInBatch = {}; / poor man's Set
             _.each(batch, function(item) { idsInBatch[item['id']] = true; });
 
             for (var i = 0; i < storedQueue.length; i++) {
@@ -66310,7 +66310,7 @@ var filterOutIDsAndInvalid = function(items, idSet) {
  * and persisted queue
  */
 RequestQueue.prototype.removeItemsByID = function(ids, cb) {
-    var idSet = {}; // poor man's Set
+    var idSet = {}; / poor man's Set
     _.each(ids, function(id) { idSet[id] = true; });
 
     this.memQueue = filterOutIDsAndInvalid(this.memQueue, idSet);
@@ -66326,8 +66326,8 @@ RequestQueue.prototype.removeItemsByID = function(ids, cb) {
                 storedQueue = filterOutIDsAndInvalid(storedQueue, idSet);
                 succeeded = this.saveToStorage(storedQueue);
 
-                // an extra check: did storage report success but somehow
-                // the items are still there?
+                / an extra check: did storage report success but somehow
+                / the items are still there?
                 if (succeeded) {
                     storedQueue = this.readFromStorage();
                     for (var i = 0; i < storedQueue.length; i++) {
@@ -66354,14 +66354,14 @@ RequestQueue.prototype.removeItemsByID = function(ids, cb) {
             var succeeded = false;
             this.reportError('Error acquiring storage lock', err);
             if (!localStorageSupported(this.storage, true)) {
-                // Looks like localStorage writes have stopped working sometime after
-                // initialization (probably full), and so nobody can acquire locks
-                // anymore. Consider it temporarily safe to remove items without the
-                // lock, since nobody's writing successfully anyway.
+                / Looks like localStorage writes have stopped working sometime after
+                / initialization (probably full), and so nobody can acquire locks
+                / anymore. Consider it temporarily safe to remove items without the
+                / lock, since nobody's writing successfully anyway.
                 succeeded = removeFromStorage();
                 if (!succeeded) {
-                    // OK, we couldn't even write out the smaller queue. Try clearing it
-                    // entirely.
+                    / OK, we couldn't even write out the smaller queue. Try clearing it
+                    / entirely.
                     try {
                         this.storage.removeItem(this.storageKey);
                     } catch(err) {
@@ -66389,7 +66389,7 @@ var updatePayloads = function(existingItems, itemsToUpdate) {
                 newItems.push(item);
             }
         } else {
-            // no update
+            / no update
             newItems.push(item);
         }
     });
@@ -66477,7 +66477,7 @@ RequestQueue.prototype.clear = function() {
 };
 
 // maximum interval between request retries after exponential backoff
-var MAX_RETRY_INTERVAL_MS = 10 * 60 * 1000; // 10 minutes
+var MAX_RETRY_INTERVAL_MS = 10 * 60 * 1000; / 10 minutes
 
 var logger$2 = console_with_prefix('batch');
 
@@ -66500,19 +66500,19 @@ var RequestBatcher = function(storageKey, options) {
     this.beforeSendHook = options.beforeSendHook;
     this.stopAllBatching = options.stopAllBatchingFunc;
 
-    // seed variable batch size + flush interval with configured values
+    / seed variable batch size + flush interval with configured values
     this.batchSize = this.libConfig['batch_size'];
     this.flushInterval = this.libConfig['batch_flush_interval_ms'];
 
     this.stopped = !this.libConfig['batch_autostart'];
     this.consecutiveRemovalFailures = 0;
 
-    // extra client-side dedupe
+    / extra client-side dedupe
     this.itemIdsSentSuccessfully = {};
 
-    // Make the flush occur at the interval specified by flushIntervalMs, default behavior will attempt consecutive flushes
-    // as long as the queue is not empty. This is useful for high-frequency events like Session Replay where we might end up
-    // in a request loop and get ratelimited by the server.
+    / Make the flush occur at the interval specified by flushIntervalMs, default behavior will attempt consecutive flushes
+    / as long as the queue is not empty. This is useful for high-frequency events like Session Replay where we might end up
+    / in a request loop and get ratelimited by the server.
     this.flushOnlyOnInterval = options.flushOnlyOnInterval || false;
 };
 
@@ -66570,7 +66570,7 @@ RequestBatcher.prototype.resetFlush = function() {
  */
 RequestBatcher.prototype.scheduleFlush = function(flushMS) {
     this.flushInterval = flushMS;
-    if (!this.stopped) { // don't schedule anymore if batching has been stopped
+    if (!this.stopped) { / don't schedule anymore if batching has been stopped
         this.timeoutID = setTimeout(_.bind(function() {
             if (!this.stopped) {
                 this.flush();
@@ -66602,8 +66602,8 @@ RequestBatcher.prototype.flush = function(options) {
         var startTime = new Date().getTime();
         var currentBatchSize = this.batchSize;
         var batch = this.queue.fillBatch(currentBatchSize);
-        // if there's more items in the queue than the batch size, attempt
-        // to flush again after the current batch is done.
+        / if there's more items in the queue than the batch size, attempt
+        / to flush again after the current batch is done.
         var attemptSecondaryFlush = batch.length === currentBatchSize;
         var dataForRequest = [];
         var transformedItems = {};
@@ -66613,9 +66613,9 @@ RequestBatcher.prototype.flush = function(options) {
                 payload = this.beforeSendHook(payload);
             }
             if (payload) {
-                // mp_sent_by_lib_version prop captures which lib version actually
-                // sends each event (regardless of which version originally queued
-                // it for sending)
+                / mp_sent_by_lib_version prop captures which lib version actually
+                / sends each event (regardless of which version originally queued
+                / it for sending)
                 if (payload['event'] && payload['properties']) {
                     payload['properties'] = _.extend(
                         {},
@@ -66646,7 +66646,7 @@ RequestBatcher.prototype.flush = function(options) {
         }, this);
         if (dataForRequest.length < 1) {
             this.resetFlush();
-            return; // nothing to do
+            return; / nothing to do
         }
 
         this.requestInProgress = true;
@@ -66656,12 +66656,12 @@ RequestBatcher.prototype.flush = function(options) {
 
             try {
 
-                // handle API response in a try-catch to make sure we can reset the
-                // flush operation if something goes wrong
+                / handle API response in a try-catch to make sure we can reset the
+                / flush operation if something goes wrong
 
                 var removeItemsFromQueue = false;
                 if (options.unloading) {
-                    // update persisted data to include hook transformations
+                    / update persisted data to include hook transformations
                     this.queue.updatePayloads(transformedItems);
                 } else if (
                     _.isObject(res) &&
@@ -66679,7 +66679,7 @@ RequestBatcher.prototype.flush = function(options) {
                         || res.error === 'timeout'
                     )
                 ) {
-                    // network or API error, or 429 Too Many Requests, retry
+                    / network or API error, or 429 Too Many Requests, retry
                     var retryMS = this.flushInterval * 2;
                     if (res.retryAfter) {
                         retryMS = (parseInt(res.retryAfter, 10) * 1000) || retryMS;
@@ -66688,7 +66688,7 @@ RequestBatcher.prototype.flush = function(options) {
                     this.reportError('Error; retry in ' + retryMS + ' ms');
                     this.scheduleFlush(retryMS);
                 } else if (_.isObject(res) && res.httpStatusCode === 413) {
-                    // 413 Payload Too Large
+                    / 413 Payload Too Large
                     if (batch.length > 1) {
                         var halvedBatchSize = Math.max(1, Math.floor(currentBatchSize / 2));
                         this.batchSize = Math.min(this.batchSize, halvedBatchSize, batch.length - 1);
@@ -66700,8 +66700,8 @@ RequestBatcher.prototype.flush = function(options) {
                         removeItemsFromQueue = true;
                     }
                 } else {
-                    // successful network request+response; remove each item in batch from queue
-                    // (even if it was e.g. a 400, in which case retrying won't help)
+                    / successful network request+response; remove each item in batch from queue
+                    / (even if it was e.g. a 400, in which case retrying won't help)
                     removeItemsFromQueue = true;
                 }
 
@@ -66712,9 +66712,9 @@ RequestBatcher.prototype.flush = function(options) {
                             if (succeeded) {
                                 this.consecutiveRemovalFailures = 0;
                                 if (this.flushOnlyOnInterval && !attemptSecondaryFlush) {
-                                    this.resetFlush(); // schedule next batch with a delay
+                                    this.resetFlush(); / schedule next batch with a delay
                                 } else {
-                                    this.flush(); // handle next batch if the queue isn't empty
+                                    this.flush(); / handle next batch if the queue isn't empty
                                 }
                             } else {
                                 this.reportError('Failed to remove items from queue');
@@ -66728,7 +66728,7 @@ RequestBatcher.prototype.flush = function(options) {
                         }, this)
                     );
 
-                    // client-side dedupe
+                    / client-side dedupe
                     _.each(batch, _.bind(function(item) {
                         var itemId = item['id'];
                         if (itemId) {
@@ -66755,8 +66755,8 @@ RequestBatcher.prototype.flush = function(options) {
         var requestOptions = {
             method: 'POST',
             verbose: true,
-            ignore_json_errors: true, // eslint-disable-line camelcase
-            timeout_ms: timeoutMS // eslint-disable-line camelcase
+            ignore_json_errors: true, / eslint-disable-line camelcase
+            timeout_ms: timeoutMS / eslint-disable-line camelcase
         };
         if (options.unloading) {
             requestOptions.transport = 'sendBeacon';
@@ -66828,7 +66828,7 @@ var SessionRecording = function(options) {
 
     this.replayId = options.replayId;
 
-    // internal rrweb stopRecording function
+    / internal rrweb stopRecording function
     this._stopRecording = null;
 
     this.seqNo = 0;
@@ -66841,8 +66841,8 @@ var SessionRecording = function(options) {
     this.recordMaxMs = MAX_RECORDING_MS;
     this.recordMinMs = 0;
 
-    // each replay has its own batcher key to avoid conflicts between rrweb events of different recordings
-    // this will be important when persistence is introduced
+    / each replay has its own batcher key to avoid conflicts between rrweb events of different recordings
+    / this will be important when persistence is introduced
     var batcherKey = '__mprec_' + this.getConfig('token') + '_' + this.replayId;
     this.batcher = new RequestBatcher(batcherKey, {
         errorReporter: _.bind(this.reportError, this),
@@ -66886,11 +66886,11 @@ SessionRecording.prototype.startRecording = function (shouldStopBatcher) {
     this.batchStartUrl = _.info.currentUrl();
 
     if (shouldStopBatcher || this.recordMinMs > 0) {
-        // the primary case for shouldStopBatcher is when we're starting recording after a reset
-        // and don't want to send anything over the network until there's
-        // actual user activity
-        // this also applies if the minimum recording length has not been hit yet
-        // so that we don't send data until we know the recording will be long enough
+        / the primary case for shouldStopBatcher is when we're starting recording after a reset
+        / and don't want to send anything over the network until there's
+        / actual user activity
+        / this also applies if the minimum recording length has not been hit yet
+        / so that we don't send data until we know the recording will be long enough
         this.batcher.stop();
     } else {
         this.batcher.start();
@@ -66911,7 +66911,7 @@ SessionRecording.prototype.startRecording = function (shouldStopBatcher) {
             this.batcher.enqueue(ev);
             if (isUserEvent(ev)) {
                 if (this.batcher.stopped && new Date().getTime() - this.replayStartTime >= this.recordMinMs) {
-                    // start flushing again after user activity
+                    / start flushing again after user activity
                     this.batcher.start();
                 }
                 resetIdleTimeout();
@@ -66928,7 +66928,7 @@ SessionRecording.prototype.startRecording = function (shouldStopBatcher) {
     if (typeof this._stopRecording !== 'function') {
         this.reportError('rrweb failed to start, skipping this recording.');
         this._stopRecording = null;
-        this.stopRecording(); // stop batcher looping and any timeouts
+        this.stopRecording(); / stop batcher looping and any timeouts
         return;
     }
 
@@ -66948,10 +66948,10 @@ SessionRecording.prototype.stopRecording = function () {
     }
 
     if (this.batcher.stopped) {
-        // never got user activity to flush after reset, so just clear the batcher
+        / never got user activity to flush after reset, so just clear the batcher
         this.batcher.clear();
     } else {
-        // flush any remaining events from running batcher
+        / flush any remaining events from running batcher
         this.batcher.flush();
         this.batcher.stop();
     }
@@ -66973,7 +66973,7 @@ SessionRecording.prototype.flushEventsWithOptOut = function (data, options, cb) 
 };
 
 SessionRecording.prototype._onOptOut = function (code) {
-    // addOptOutCheckMixpanelLib invokes this function with code=0 when the user has opted out
+    / addOptOutCheckMixpanelLib invokes this function with code=0 when the user has opted out
     if (code === 0) {
         this.stopRecording();
     }
@@ -66981,9 +66981,9 @@ SessionRecording.prototype._onOptOut = function (code) {
 
 SessionRecording.prototype._sendRequest = function(currentReplayId, reqParams, reqBody, callback) {
     var onSuccess = _.bind(function (response, responseBody) {
-        // Update batch specific props only if the request was successful to guarantee ordering.
-        // RequestBatcher will always flush the next batch after the previous one succeeds.
-        // extra check to see if the replay ID has changed so that we don't increment the seqNo on the wrong replay
+        / Update batch specific props only if the request was successful to guarantee ordering.
+        / RequestBatcher will always flush the next batch after the previous one succeeds.
+        / extra check to see if the replay ID has changed so that we don't increment the seqNo on the wrong replay
         if (response.status === 200 && this.replayId === currentReplayId) {
             this.seqNo++;
             this.batchStartUrl = _.info.currentUrl();
@@ -67019,10 +67019,10 @@ SessionRecording.prototype._flushEvents = addOptOutCheckMixpanelLib(function (da
 
     if (numEvents > 0) {
         var replayId = this.replayId;
-        // each rrweb event has a timestamp - leverage those to get time properties
+        / each rrweb event has a timestamp - leverage those to get time properties
         var batchStartTime = data[0].timestamp;
         if (this.seqNo === 0 || !this.replayStartTime) {
-            // extra safety net so that we don't send a null replay start time
+            / extra safety net so that we don't send a null replay start time
             if (this.seqNo !== 0) {
                 this.reportError('Replay start time not set but seqNo is not 0. Using current batch start time as a fallback.');
             }
@@ -67044,7 +67044,7 @@ SessionRecording.prototype._flushEvents = addOptOutCheckMixpanelLib(function (da
         };
         var eventsJson = _.JSONEncode(data);
 
-        // send ID management props if they exist
+        / send ID management props if they exist
         var deviceId = this._mixpanel.get_property('$device_id');
         if (deviceId) {
             reqParams['$device_id'] = deviceId;
@@ -67193,10 +67193,10 @@ DomTracker.prototype.track = function(query, event_name, properties, user_callba
 
             that.event_handler(e, this, options);
 
-            // in case the mixpanel servers don't get back to us in time
+            / in case the mixpanel servers don't get back to us in time
             window.setTimeout(that.track_callback(user_callback, props, options, true), timeout);
 
-            // fire the tracking event
+            / fire the tracking event
             that.mp.track(event_name, props, that.track_callback(user_callback, props, options));
         });
     }, this);
@@ -67214,14 +67214,14 @@ DomTracker.prototype.track_callback = function(user_callback, props, options, ti
     var that = this;
 
     return function() {
-        // options is referenced from both callbacks, so we can have
-        // a 'lock' of sorts to ensure only one fires
+        / options is referenced from both callbacks, so we can have
+        / a 'lock' of sorts to ensure only one fires
         if (options.callback_fired) { return; }
         options.callback_fired = true;
 
         if (user_callback && user_callback(timeout_occured, props) === false) {
-            // user can prevent the default functionality by
-            // returning false from their callback
+            / user can prevent the default functionality by
+            / returning false from their callback
             return;
         }
 
@@ -67444,12 +67444,12 @@ MixpanelGroup.prototype._init = function(mixpanel_instance, group_key, group_id)
  *
  *     mixpanel.get_group('company', 'mixpanel').set('Location', '405 Howard');
  *
- *     // or set multiple properties at once
+ *     / or set multiple properties at once
  *     mixpanel.get_group('company', 'mixpanel').set({
  *          'Location': '405 Howard',
  *          'Founded' : 2009,
  *     });
- *     // properties can be strings, integers, dates, or lists
+ *     / properties can be strings, integers, dates, or lists
  *
  * @param {Object|String} prop If a string, this is the name of the property. If an object, this is an associative array of names and values.
  * @param {*} [to] A value to set on the given property name
@@ -67472,12 +67472,12 @@ MixpanelGroup.prototype.set = addOptOutCheckMixpanelGroup(function(prop, to, cal
  *
  *     mixpanel.get_group('company', 'mixpanel').set_once('Location', '405 Howard');
  *
- *     // or set multiple properties at once
+ *     / or set multiple properties at once
  *     mixpanel.get_group('company', 'mixpanel').set_once({
  *          'Location': '405 Howard',
  *          'Founded' : 2009,
  *     });
- *     // properties can be strings, integers, lists or dates
+ *     / properties can be strings, integers, lists or dates
  *
  * @param {Object|String} prop If a string, this is the name of the property. If an object, this is an associative array of names and values.
  * @param {*} [to] A value to set on the given property name
@@ -67511,7 +67511,7 @@ MixpanelGroup.prototype.unset = addOptOutCheckMixpanelGroup(function(prop, callb
  *
  * ### Usage:
  *
- *     // merge a value to a list, creating it if needed
+ *     / merge a value to a list, creating it if needed
  *     mixpanel.get_group('company', 'mixpanel').union('Location', ['San Francisco', 'London']);
  *
  * @param {String} list_name Name of the property.
@@ -67536,7 +67536,7 @@ MixpanelGroup.prototype.union = addOptOutCheckMixpanelGroup(function(list_name, 
  * @param {Function} [callback] If provided, the callback will be called after the tracking event
  */
 MixpanelGroup.prototype['delete'] = addOptOutCheckMixpanelGroup(function(callback) {
-    // bracket notation above prevents a minification error related to reserved words
+    / bracket notation above prevents a minification error related to reserved words
     var data = this.delete_action();
     return this._send_request(data, callback);
 });
@@ -67612,13 +67612,13 @@ MixpanelPeople.prototype._init = function(mixpanel_instance) {
 *
 *     mixpanel.people.set('gender', 'm');
 *
-*     // or set multiple properties at once
+*     / or set multiple properties at once
 *     mixpanel.people.set({
 *         'Company': 'Acme',
 *         'Plan': 'Premium',
 *         'Upgrade date': new Date()
 *     });
-*     // properties can be strings, integers, dates, or lists
+*     / properties can be strings, integers, dates, or lists
 *
 * @param {Object|String} prop If a string, this is the name of the property. If an object, this is an associative array of names and values.
 * @param {*} [to] A value to set on the given property name
@@ -67629,12 +67629,12 @@ MixpanelPeople.prototype.set = addOptOutCheckMixpanelPeople(function(prop, to, c
     if (_.isObject(prop)) {
         callback = to;
     }
-    // make sure that the referrer info has been updated and saved
+    / make sure that the referrer info has been updated and saved
     if (this._get_config('save_referrer')) {
         this._mixpanel['persistence'].update_referrer_info(document.referrer);
     }
 
-    // update $set object with default people properties
+    / update $set object with default people properties
     data[SET_ACTION] = _.extend(
         {},
         _.info.people_properties(),
@@ -67652,13 +67652,13 @@ MixpanelPeople.prototype.set = addOptOutCheckMixpanelPeople(function(prop, to, c
 *
 *     mixpanel.people.set_once('First Login Date', new Date());
 *
-*     // or set multiple properties at once
+*     / or set multiple properties at once
 *     mixpanel.people.set_once({
 *         'First Login Date': new Date(),
 *         'Starting Plan': 'Premium'
 *     });
 *
-*     // properties can be strings, integers or dates
+*     / properties can be strings, integers or dates
 *
 * @param {Object|String} prop If a string, this is the name of the property. If an object, this is an associative array of names and values.
 * @param {*} [to] A value to set on the given property name
@@ -67679,7 +67679,7 @@ MixpanelPeople.prototype.set_once = addOptOutCheckMixpanelPeople(function(prop, 
 *
 *     mixpanel.people.unset('gender');
 *
-*     // or unset multiple properties at once
+*     / or unset multiple properties at once
 *     mixpanel.people.unset(['gender', 'Company']);
 *
 * @param {Array|String} prop If a string, this is the name of the property. If an array, this is a list of property names.
@@ -67697,15 +67697,15 @@ MixpanelPeople.prototype.unset = addOptOutCheckMixpanelPeople(function(prop, cal
 *
 *     mixpanel.people.increment('page_views', 1);
 *
-*     // or, for convenience, if you're just incrementing a counter by
-*     // 1, you can simply do
+*     / or, for convenience, if you're just incrementing a counter by
+*     / 1, you can simply do
 *     mixpanel.people.increment('page_views');
 *
-*     // to decrement a counter, pass a negative number
+*     / to decrement a counter, pass a negative number
 *     mixpanel.people.increment('credits_left', -1);
 *
-*     // like mixpanel.people.set(), you can increment multiple
-*     // properties at once:
+*     / like mixpanel.people.set(), you can increment multiple
+*     / properties at once:
 *     mixpanel.people.increment({
 *         counter1: 1,
 *         counter2: 6
@@ -67731,8 +67731,8 @@ MixpanelPeople.prototype.increment = addOptOutCheckMixpanelPeople(function(prop,
         }, this);
         callback = by;
     } else {
-        // convenience: mixpanel.people.increment('property'); will
-        // increment 'property' by 1
+        / convenience: mixpanel.people.increment('property'); will
+        / increment 'property' by 1
         if (_.isUndefined(by)) {
             by = 1;
         }
@@ -67748,11 +67748,11 @@ MixpanelPeople.prototype.increment = addOptOutCheckMixpanelPeople(function(prop,
 *
 * ### Usage:
 *
-*     // append a value to a list, creating it if needed
+*     / append a value to a list, creating it if needed
 *     mixpanel.people.append('pages_visited', 'homepage');
 *
-*     // like mixpanel.people.set(), you can append multiple
-*     // properties at once:
+*     / like mixpanel.people.set(), you can append multiple
+*     / properties at once:
 *     mixpanel.people.append({
 *         list1: 'bob',
 *         list2: 123
@@ -67795,18 +67795,18 @@ MixpanelPeople.prototype.remove = addOptOutCheckMixpanelPeople(function(list_nam
 *
 * ### Usage:
 *
-*     // merge a value to a list, creating it if needed
+*     / merge a value to a list, creating it if needed
 *     mixpanel.people.union('pages_visited', 'homepage');
 *
-*     // like mixpanel.people.set(), you can append multiple
-*     // properties at once:
+*     / like mixpanel.people.set(), you can append multiple
+*     / properties at once:
 *     mixpanel.people.union({
 *         list1: 'bob',
 *         list2: 123
 *     });
 *
-*     // like mixpanel.people.append(), you can append multiple
-*     // values to the same list:
+*     / like mixpanel.people.append(), you can append multiple
+*     / values to the same list:
 *     mixpanel.people.union({
 *         list1: ['bob', 'billy']
 *     });
@@ -67830,10 +67830,10 @@ MixpanelPeople.prototype.union = addOptOutCheckMixpanelPeople(function(list_name
  *
  * ### Usage:
  *
- *     // charge a user $50
+ *     / charge a user $50
  *     mixpanel.people.track_charge(50);
  *
- *     // charge a user $30.50 on the 2nd of january
+ *     / charge a user $30.50 on the 2nd of january
  *     mixpanel.people.track_charge(30.50, {
  *         '$time': new Date('jan 1 2012')
  *     });
@@ -67878,7 +67878,7 @@ MixpanelPeople.prototype.clear_charges = function(callback) {
 *
 * ### Usage:
 *
-*     // remove the all data you have stored about the current user
+*     / remove the all data you have stored about the current user
 *     mixpanel.people.delete_user();
 *
 */
@@ -67974,7 +67974,7 @@ MixpanelPeople.prototype._flush_one_queue = function(action, action_method, call
             action_params = queue_to_params_fn(queued_data);
         }
         action_method.call(_this, action_params, function(response, data) {
-            // on bad response, we want to add it back to the queue
+            / on bad response, we want to add it back to the queue
             if (response === 0) {
                 _this._mixpanel['persistence']._add_to_people_queue(action, queued_data);
             }
@@ -67998,8 +67998,8 @@ MixpanelPeople.prototype._flush = function(
     this._flush_one_queue(ADD_ACTION, this.increment, _add_callback);
     this._flush_one_queue(UNION_ACTION, this.union, _union_callback);
 
-    // we have to fire off each $append individually since there is
-    // no concat method server side
+    / we have to fire off each $append individually since there is
+    / no concat method server side
     var $append_queue = this._mixpanel['persistence'].load_queue(APPEND_ACTION);
     if (!_.isUndefined($append_queue) && _.isArray($append_queue) && $append_queue.length) {
         var $append_item;
@@ -68021,7 +68021,7 @@ MixpanelPeople.prototype._flush = function(
         }
     }
 
-    // same for $remove
+    / same for $remove
     var $remove_queue = this._mixpanel['persistence'].load_queue(REMOVE_ACTION);
     if (!_.isUndefined($remove_queue) && _.isArray($remove_queue) && $remove_queue.length) {
         var $remove_item;
@@ -68127,7 +68127,7 @@ MixpanelPersistence.prototype.properties = function() {
 
     this.load();
 
-    // Filter out reserved properties
+    / Filter out reserved properties
     _.each(this['props'], function(v, k) {
         if (!_.include(RESERVED_PROPERTIES, k)) {
             p[k] = v;
@@ -68150,8 +68150,8 @@ MixpanelPersistence.prototype.upgrade = function() {
     var old_cookie,
         old_localstorage;
 
-    // if transferring from cookie to localStorage or vice-versa, copy existing
-    // super properties over to new storage mode
+    / if transferring from cookie to localStorage or vice-versa, copy existing
+    / super properties over to new storage mode
     if (this.storage === _.localStorage) {
         old_cookie = _.cookie.parse(this.name);
 
@@ -68192,7 +68192,7 @@ MixpanelPersistence.prototype.load_prop = function(key) {
 };
 
 MixpanelPersistence.prototype.remove = function() {
-    // remove both domain and subdomain cookies
+    / remove both domain and subdomain cookies
     this.storage.remove(this.name, false, this.cookie_domain);
     this.storage.remove(this.name, true, this.cookie_domain);
 };
@@ -68260,7 +68260,7 @@ MixpanelPersistence.prototype.update_search_keyword = function(referrer) {
 
 // EXPORTED METHOD, we test this directly.
 MixpanelPersistence.prototype.update_referrer_info = function(referrer) {
-    // If referrer doesn't exist, we want to note the fact that it was type-in traffic.
+    / If referrer doesn't exist, we want to note the fact that it was type-in traffic.
     this.register_once({
         '$initial_referrer': referrer || '$direct',
         '$initial_referring_domain': _.info.referringDomain(referrer) || '$direct'
@@ -68340,17 +68340,17 @@ MixpanelPersistence.prototype._add_to_people_queue = function(queue, data) {
         append_q = this._get_or_create_queue(APPEND_ACTION, []);
 
     if (q_key === SET_QUEUE_KEY) {
-        // Update the set queue - we can override any existing values
+        / Update the set queue - we can override any existing values
         _.extend(set_q, q_data);
-        // if there was a pending increment, override it
-        // with the set.
+        / if there was a pending increment, override it
+        / with the set.
         this._pop_from_people_queue(ADD_ACTION, q_data);
-        // if there was a pending union, override it
-        // with the set.
+        / if there was a pending union, override it
+        / with the set.
         this._pop_from_people_queue(UNION_ACTION, q_data);
         this._pop_from_people_queue(UNSET_ACTION, q_data);
     } else if (q_key === SET_ONCE_QUEUE_KEY) {
-        // only queue the data if there is not already a set_once call for it.
+        / only queue the data if there is not already a set_once call for it.
         _.each(q_data, function(v, k) {
             if (!(k in set_once_q)) {
                 set_once_q[k] = v;
@@ -68360,7 +68360,7 @@ MixpanelPersistence.prototype._add_to_people_queue = function(queue, data) {
     } else if (q_key === UNSET_QUEUE_KEY) {
         _.each(q_data, function(prop) {
 
-            // undo previously-queued actions on this key
+            / undo previously-queued actions on this key
             _.each([set_q, set_once_q, add_q, union_q], function(enqueued_obj) {
                 if (prop in enqueued_obj) {
                     delete enqueued_obj[prop];
@@ -68377,13 +68377,13 @@ MixpanelPersistence.prototype._add_to_people_queue = function(queue, data) {
         });
     } else if (q_key === ADD_QUEUE_KEY) {
         _.each(q_data, function(v, k) {
-            // If it exists in the set queue, increment
-            // the value
+            / If it exists in the set queue, increment
+            / the value
             if (k in set_q) {
                 set_q[k] += v;
             } else {
-                // If it doesn't exist, update the add
-                // queue
+                / If it doesn't exist, update the add
+                / queue
                 if (!(k in add_q)) {
                     add_q[k] = 0;
                 }
@@ -68397,7 +68397,7 @@ MixpanelPersistence.prototype._add_to_people_queue = function(queue, data) {
                 if (!(k in union_q)) {
                     union_q[k] = [];
                 }
-                // We may send duplicates, the server will dedup them.
+                / We may send duplicates, the server will dedup them.
                 union_q[k] = union_q[k].concat(v);
             }
         });
@@ -68421,9 +68421,9 @@ MixpanelPersistence.prototype._pop_from_people_queue = function(queue, data) {
     if (!_.isUndefined(q)) {
         _.each(data, function(v, k) {
             if (queue === APPEND_ACTION || queue === REMOVE_ACTION) {
-                // list actions: only remove if both k+v match
-                // e.g. remove should not override append in a case like
-                // append({foo: 'bar'}); remove({foo: 'qux'})
+                / list actions: only remove if both k+v match
+                / e.g. remove should not override append in a case like
+                / append({foo: 'bar'}); remove({foo: 'qux'})
                 _.each(q, function(queued_action) {
                     if (queued_action[k] === v) {
                         delete queued_action[k];
@@ -68512,14 +68512,14 @@ this.__x === private - only use within the class
 Globals should be all caps
 */
 
-var init_type;       // MODULE or SNIPPET loader
+var init_type;       / MODULE or SNIPPET loader
 // allow bundlers to specify how extra code (recorder bundle) should be loaded
 // eslint-disable-next-line no-unused-vars
 var load_extra_bundle = function(src, _onload) {
     throw new Error(src + ' not available in this build.');
 };
 
-var mixpanel_master; // main mixpanel instance / object
+var mixpanel_master; / main mixpanel instance / object
 var INIT_MODULE  = 0;
 var INIT_SNIPPET = 1;
 
@@ -68548,7 +68548,7 @@ var ENQUEUE_REQUESTS = !USE_XHR && (userAgent.indexOf('MSIE') === -1) && (userAg
 var sendBeacon = null;
 if (navigator['sendBeacon']) {
     sendBeacon = function() {
-        // late reference to navigator.sendBeacon to allow patching/spying
+        / late reference to navigator.sendBeacon to allow patching/spying
         return navigator['sendBeacon'].apply(navigator, arguments);
     };
 }
@@ -68602,7 +68602,7 @@ var DEFAULT_CONFIG = {
     'opt_out_tracking_persistence_type': 'localStorage',
     'opt_out_tracking_cookie_prefix':    null,
     'property_blacklist':                [],
-    'xhr_headers':                       {}, // { header: value, header2: value }
+    'xhr_headers':                       {}, / { header: value, header2: value }
     'ignore_dnt':                        false,
     'batch_requests':                    true,
     'batch_size':                        50,
@@ -68613,7 +68613,7 @@ var DEFAULT_CONFIG = {
     'record_block_class':                new RegExp('^(mp-block|fs-exclude|amp-block|rr-block|ph-no-capture)$'),
     'record_block_selector':             'img, video',
     'record_collect_fonts':              false,
-    'record_idle_timeout_ms':            30 * 60 * 1000, // 30 minutes
+    'record_idle_timeout_ms':            30 * 60 * 1000, / 30 minutes
     'record_mask_text_class':            new RegExp('^(mp-mask|fs-mask|amp-mask|rr-mask|ph-mask)$'),
     'record_mask_text_selector':         '*',
     'record_max_ms':                     MAX_RECORDING_MS,
@@ -68653,7 +68653,7 @@ var create_mplib = function(token, config, name) {
         instance = new MixpanelLib();
     }
 
-    instance._cached_groups = {}; // cache groups in a pool
+    instance._cached_groups = {}; / cache groups in a pool
 
     instance._init(token, config, name);
 
@@ -68661,10 +68661,10 @@ var create_mplib = function(token, config, name) {
     instance['people']._init(instance);
 
     if (!instance.get_config('skip_first_touch_marketing')) {
-        // We need null UTM params in the object because
-        // UTM parameters act as a tuple. If any UTM param
-        // is present, then we set all UTM params including
-        // empty ones together
+        / We need null UTM params in the object because
+        / UTM parameters act as a tuple. If any UTM param
+        / is present, then we set all UTM params including
+        / empty ones together
         var utm_params = _.info.campaignParams(null);
         var initial_utm_params = {};
         var has_utm = false;
@@ -68679,15 +68679,15 @@ var create_mplib = function(token, config, name) {
         }
     }
 
-    // if any instance on the page has debug = true, we set the
-    // global debug to be true
+    / if any instance on the page has debug = true, we set the
+    / global debug to be true
     Config.DEBUG = Config.DEBUG || instance.get_config('debug');
 
-    // if target is not defined, we called init after the lib already
-    // loaded, so there won't be an array of things to execute
+    / if target is not defined, we called init after the lib already
+    / loaded, so there won't be an array of things to execute
     if (!_.isUndefined(target) && _.isArray(target)) {
-        // Crunch through the people queue first - we queue this data up &
-        // flush on identify, so it's better to do all these operations first
+        / Crunch through the people queue first - we queue this data up &
+        / flush on identify, so it's better to do all these operations first
         instance._execute_array.call(instance['people'], target['people']);
         instance._execute_array(target);
     }
@@ -68745,7 +68745,7 @@ MixpanelLib.prototype._init = function(token, config, name) {
 
     var variable_features = {};
 
-    // default to JSON payload for standard mixpanel.com API hosts
+    / default to JSON payload for standard mixpanel.com API hosts
     if (!('api_payload_format' in config)) {
         var api_host = config['api_host'] || DEFAULT_CONFIG['api_host'];
         if (api_host.match(/\.mixpanel\.com/)) {
@@ -68769,7 +68769,7 @@ MixpanelLib.prototype._init = function(token, config, name) {
         'identify_called': false
     };
 
-    // set up request queueing/batching
+    / set up request queueing/batching
     this.request_batchers = {};
     this._batch_requests = this.get_config('batch_requests');
     if (this._batch_requests) {
@@ -68783,17 +68783,17 @@ MixpanelLib.prototype._init = function(token, config, name) {
         } else {
             this.init_batchers();
             if (sendBeacon && win.addEventListener) {
-                // Before page closes or hides (user tabs away etc), attempt to flush any events
-                // queued up via navigator.sendBeacon. Since sendBeacon doesn't report success/failure,
-                // events will not be removed from the persistent store; if the site is loaded again,
-                // the events will be flushed again on startup and deduplicated on the Mixpanel server
-                // side.
-                // There is no reliable way to capture only page close events, so we lean on the
-                // visibilitychange and pagehide events as recommended at
-                // https://developer.mozilla.org/en-US/docs/Web/API/Window/unload_event#usage_notes.
-                // These events fire when the user clicks away from the current page/tab, so will occur
-                // more frequently than page unload, but are the only mechanism currently for capturing
-                // this scenario somewhat reliably.
+                / Before page closes or hides (user tabs away etc), attempt to flush any events
+                / queued up via navigator.sendBeacon. Since sendBeacon doesn't report success/failure,
+                / events will not be removed from the persistent store; if the site is loaded again,
+                / the events will be flushed again on startup and deduplicated on the Mixpanel server
+                / side.
+                / There is no reliable way to capture only page close events, so we lean on the
+                / visibilitychange and pagehide events as recommended at
+                / https://developer.mozilla.org/en-US/docs/Web/API/Window/unload_event#usage_notes.
+                / These events fire when the user clicks away from the current page/tab, so will occur
+                / more frequently than page unload, but are the only mechanism currently for capturing
+                / this scenario somewhat reliably.
                 var flush_on_unload = _.bind(function() {
                     if (!this.request_batchers.events.stopped) {
                         this.request_batchers.events.flush({unloading: true});
@@ -68819,9 +68819,9 @@ MixpanelLib.prototype._init = function(token, config, name) {
 
     var uuid = _.UUID();
     if (!this.get_distinct_id()) {
-        // There is no need to set the distinct id
-        // or the device id if something was already stored
-        // in the persitence
+        / There is no need to set the distinct id
+        / or the device id if something was already stored
+        / in the persitence
         this.register_once({
             'distinct_id': DEVICE_ID_PREFIX + uuid,
             '$device_id': uuid
@@ -68902,13 +68902,13 @@ MixpanelLib.prototype._loaded = function() {
     this._set_default_superprops();
     this['people'].set_once(this['persistence'].get_referrer_info());
 
-    // `store_google` is now deprecated and previously stored UTM parameters are cleared
-    // from persistence by default.
+    / `store_google` is now deprecated and previously stored UTM parameters are cleared
+    / from persistence by default.
     if (this.get_config('store_google') && this.get_config('stop_utm_persistence')) {
         var utm_params = _.info.campaignParams(null);
         _.each(utm_params, function(_utm_value, utm_key) {
-            // We need to unregister persisted UTM parameters so old values
-            // are not mixed with the new UTM parameters
+            / We need to unregister persisted UTM parameters so old values
+            / are not mixed with the new UTM parameters
             this.unregister(utm_key);
         }.bind(this));
     }
@@ -68917,7 +68917,7 @@ MixpanelLib.prototype._loaded = function() {
 // update persistence with info on referrer, UTM params, etc
 MixpanelLib.prototype._set_default_superprops = function() {
     this['persistence'].update_search_keyword(document$1.referrer);
-    // Registering super properties for UTM persistence by 'store_google' is deprecated.
+    / Registering super properties for UTM persistence by 'store_google' is deprecated.
     if (this.get_config('store_google') && !this.get_config('stop_utm_persistence')) {
         this.register(_.info.campaignParams());
     }
@@ -69025,9 +69025,9 @@ MixpanelLib.prototype._prepare_callback = function(callback, data) {
         };
         return callback_function;
     } else {
-        // if the user gives us a callback, we store as a random
-        // property on this instances jsc function and update our
-        // callback string to reflect that.
+        / if the user gives us a callback, we store as a random
+        / property on this instances jsc function and update our
+        / callback string to reflect that.
         var jsc = this['_jsc'];
         var randomized_cb = '' + Math.floor(Math.random() * 100000000);
         var callback_string = this.get_config('callback_fn') + '[' + randomized_cb + ']';
@@ -69065,7 +69065,7 @@ MixpanelLib.prototype._send_request = function(url, data, options, callback) {
     var use_post = options.method === 'POST';
     var use_sendBeacon = sendBeacon && use_post && options.transport.toLowerCase() === 'sendbeacon';
 
-    // needed to correctly format responses
+    / needed to correctly format responses
     var verbose_mode = options.verbose;
     if (data['verbose']) { verbose_mode = true; }
 
@@ -69076,10 +69076,10 @@ MixpanelLib.prototype._send_request = function(url, data, options, callback) {
         if (callback) {
             data['callback'] = callback;
         } else if (verbose_mode || this.get_config('test')) {
-            // Verbose output (from verbose mode, or an error in test mode) is a json blob,
-            // which by itself is not valid javascript. Without a callback, this verbose output will
-            // cause an error when returned via jsonp, so we force a no-op callback param.
-            // See the ECMA script spec: http://www.ecma-international.org/ecma-262/5.1/#sec-12.4
+            / Verbose output (from verbose mode, or an error in test mode) is a json blob,
+            / which by itself is not valid javascript. Without a callback, this verbose output will
+            / cause an error when returned via jsonp, so we force a no-op callback param.
+            / See the ECMA script spec: http://www.ecma-international.org/ecma-262/5.1/#sec-12.4
             data['callback'] = '(function(){})';
         }
     }
@@ -69131,11 +69131,11 @@ MixpanelLib.prototype._send_request = function(url, data, options, callback) {
                 var start_time = new Date().getTime();
             }
 
-            // send the mp_optout cookie
-            // withCredentials cannot be modified until after calling .open on Android and Mobile Safari
+            / send the mp_optout cookie
+            / withCredentials cannot be modified until after calling .open on Android and Mobile Safari
             req.withCredentials = true;
             req.onreadystatechange = function () {
-                if (req.readyState === 4) { // XMLHttpRequest.DONE == 4, except in safari 4
+                if (req.readyState === 4) { / XMLHttpRequest.DONE == 4, except in safari 4
                     if (req.status === 200) {
                         if (callback) {
                             if (verbose_mode) {
@@ -69214,7 +69214,7 @@ MixpanelLib.prototype._execute_array = function(array) {
         if (item) {
             fn_name = item[0];
             if (_.isArray(fn_name)) {
-                tracking_calls.push(item); // chained call e.g. mixpanel.get_group().set()
+                tracking_calls.push(item); / chained call e.g. mixpanel.get_group().set()
             } else if (typeof(item) === 'function') {
                 item.call(this);
             } else if (_.isArray(item) && fn_name === 'alias') {
@@ -69230,7 +69230,7 @@ MixpanelLib.prototype._execute_array = function(array) {
     var execute = function(calls, context) {
         _.each(calls, function(item) {
             if (_.isArray(item[0])) {
-                // chained call
+                / chained call
                 var caller = context;
                 _.each(item, function(call) {
                     caller = caller[call[0]].apply(caller, call.slice(1));
@@ -69409,10 +69409,10 @@ MixpanelLib.prototype._track_or_batch = function(options, callback) {
  *
  * ### Usage:
  *
- *     // track an event named 'Registered'
+ *     / track an event named 'Registered'
  *     mixpanel.track('Registered', {'Gender': 'Male', 'Age': 21});
  *
- *     // track an event using navigator.sendBeacon
+ *     / track an event using navigator.sendBeacon
  *     mixpanel.track('Left page', {'duration_seconds': 35}, {transport: 'sendBeacon'});
  *
  * To track link clicks or form submissions, see track_links() or track_forms().
@@ -69432,9 +69432,9 @@ MixpanelLib.prototype.track = addOptOutCheckMixpanelLib(function(event_name, pro
         options = null;
     }
     options = options || {};
-    var transport = options['transport']; // external API, don't minify 'transport' prop
+    var transport = options['transport']; / external API, don't minify 'transport' prop
     if (transport) {
-        options.transport = transport; // 'transport' prop name can be minified internally
+        options.transport = transport; / 'transport' prop name can be minified internally
     }
     var should_send_immediately = options['send_immediately'];
     if (typeof callback !== 'function') {
@@ -69451,11 +69451,11 @@ MixpanelLib.prototype.track = addOptOutCheckMixpanelLib(function(event_name, pro
         return;
     }
 
-    // set defaults
+    / set defaults
     properties = _.extend({}, properties);
     properties['token'] = this.get_config('token');
 
-    // set $duration if time_event was previously called for this event
+    / set $duration if time_event was previously called for this event
     var start_timestamp = this['persistence'].remove_event_timer(event_name);
     if (!_.isUndefined(start_timestamp)) {
         var duration_in_ms = new Date().getTime() - start_timestamp;
@@ -69468,11 +69468,11 @@ MixpanelLib.prototype.track = addOptOutCheckMixpanelLib(function(event_name, pro
         ? _.info.marketingParams()
         : {};
 
-    // note: extend writes to the first object, so lets make sure we
-    // don't write to the persistence properties object and info
-    // properties object by passing in a new object
+    / note: extend writes to the first object, so lets make sure we
+    / don't write to the persistence properties object and info
+    / properties object by passing in a new object
 
-    // update properties with pageview info and super-properties
+    / update properties with pageview info and super-properties
     properties = _.extend(
         {},
         _.info.properties({'mp_loader': this.get_config('mp_loader')}),
@@ -69513,7 +69513,7 @@ MixpanelLib.prototype.track = addOptOutCheckMixpanelLib(function(event_name, pro
  *
  * ### Usage:
  *
- *      mixpanel.set_group('company', ['mixpanel', 'google']) // an array of IDs
+ *      mixpanel.set_group('company', ['mixpanel', 'google']) / an array of IDs
  *      mixpanel.set_group('company', 'mixpanel')
  *      mixpanel.set_group('company', 128746312)
  *
@@ -69572,7 +69572,7 @@ MixpanelLib.prototype.add_group = addOptOutCheckMixpanelLib(function(group_key, 
  */
 MixpanelLib.prototype.remove_group = addOptOutCheckMixpanelLib(function(group_key, group_id, callback) {
     var old_value = this.get_property(group_key);
-    // if the value doesn't exist, the persistent store is unchanged
+    / if the value doesn't exist, the persistent store is unchanged
     if (old_value !== undefined) {
         var idx = old_value.indexOf(group_id);
         if (idx > -1) {
@@ -69644,19 +69644,19 @@ MixpanelLib.prototype.get_group = function (group_key, group_id) {
  *
  * ### Usage:
  *
- *     // track a default $mp_web_page_view event
+ *     / track a default $mp_web_page_view event
  *     mixpanel.track_pageview();
  *
- *     // track a page view event with additional event properties
+ *     / track a page view event with additional event properties
  *     mixpanel.track_pageview({'ab_test_variant': 'card-layout-b'});
  *
- *     // example approach to track page views on different page types as event properties
+ *     / example approach to track page views on different page types as event properties
  *     mixpanel.track_pageview({'page': 'pricing'});
  *     mixpanel.track_pageview({'page': 'homepage'});
  *
- *     // UNCOMMON: Tracking a page view event with a custom event_name option. NOT expected to be used for
- *     // individual pages on the same site or product. Use cases for custom event_name may be page
- *     // views on different products or internal applications that are considered completely separate
+ *     / UNCOMMON: Tracking a page view event with a custom event_name option. NOT expected to be used for
+ *     / individual pages on the same site or product. Use cases for custom event_name may be page
+ *     / views on different products or internal applications that are considered completely separate
  *     mixpanel.track_pageview({'page': 'customer-search'}, {'event_name': '[internal] Admin Page View'});
  *
  * ### Notes:
@@ -69664,16 +69664,16 @@ MixpanelLib.prototype.get_group = function (group_key, group_id) {
  * The `config.track_pageview` option for <a href="#mixpanelinit">mixpanel.init()</a>
  * may be turned on for tracking page loads automatically.
  *
- *     // track only page loads
+ *     / track only page loads
  *     mixpanel.init(PROJECT_TOKEN, {track_pageview: true});
  *
- *     // track when the URL changes in any manner
+ *     / track when the URL changes in any manner
  *     mixpanel.init(PROJECT_TOKEN, {track_pageview: 'full-url'});
  *
- *     // track when the URL changes, ignoring any changes in the hash part
+ *     / track when the URL changes, ignoring any changes in the hash part
  *     mixpanel.init(PROJECT_TOKEN, {track_pageview: 'url-with-path-and-query-string'});
  *
- *     // track when the path changes, ignoring any query parameter or hash changes
+ *     / track when the path changes, ignoring any query parameter or hash changes
  *     mixpanel.init(PROJECT_TOKEN, {track_pageview: 'url-with-path'});
  *
  * @param {Object} [properties] An optional set of additional properties to send with the page view event
@@ -69710,7 +69710,7 @@ MixpanelLib.prototype.track_pageview = addOptOutCheckMixpanelLib(function(proper
  *
  * ### Usage:
  *
- *     // track click for link id #nav
+ *     / track click for link id #nav
  *     mixpanel.track_links('#nav', 'Clicked Nav Link');
  *
  * ### Notes:
@@ -69741,7 +69741,7 @@ MixpanelLib.prototype.track_links = function() {
  *
  * ### Usage:
  *
- *     // track submission for form id 'register'
+ *     / track submission for form id 'register'
  *     mixpanel.track_forms('#register', 'Created Account');
  *
  * ### Notes:
@@ -69774,7 +69774,7 @@ MixpanelLib.prototype.track_forms = function() {
  *
  * ### Usage:
  *
- *     // time an event named 'Registered'
+ *     / time an event named 'Registered'
  *     mixpanel.time_event('Registered');
  *     mixpanel.track('Registered', {'Gender': 'Male', 'Age': 21});
  *
@@ -69824,16 +69824,16 @@ var options_for_register = function(days_or_options) {
  *
  * ### Usage:
  *
- *     // register 'Gender' as a super property
+ *     / register 'Gender' as a super property
  *     mixpanel.register({'Gender': 'Female'});
  *
- *     // register several super properties when a user signs up
+ *     / register several super properties when a user signs up
  *     mixpanel.register({
  *         'Email': 'jdoe@example.com',
  *         'Account Type': 'Free'
  *     });
  *
- *     // register only for the current pageload
+ *     / register only for the current pageload
  *     mixpanel.register({'Name': 'Pat'}, {persistent: false});
  *
  * @param {Object} properties An associative array of properties to store about the user
@@ -69856,12 +69856,12 @@ MixpanelLib.prototype.register = function(props, days_or_options) {
  *
  * ### Usage:
  *
- *     // register a super property for the first time only
+ *     / register a super property for the first time only
  *     mixpanel.register_once({
  *         'First Login Date': new Date().toISOString()
  *     });
  *
- *     // register once, only for the current pageload
+ *     / register once, only for the current pageload
  *     mixpanel.register_once({
  *         'First interaction time': new Date().toISOString()
  *     }, 'None', {persistent: false});
@@ -69942,18 +69942,18 @@ MixpanelLib.prototype._register_single = function(prop, value) {
 MixpanelLib.prototype.identify = function(
     new_distinct_id, _set_callback, _add_callback, _append_callback, _set_once_callback, _union_callback, _unset_callback, _remove_callback
 ) {
-    // Optional Parameters
-    //  _set_callback:function  A callback to be run if and when the People set queue is flushed
-    //  _add_callback:function  A callback to be run if and when the People add queue is flushed
-    //  _append_callback:function  A callback to be run if and when the People append queue is flushed
-    //  _set_once_callback:function  A callback to be run if and when the People set_once queue is flushed
-    //  _union_callback:function  A callback to be run if and when the People union queue is flushed
-    //  _unset_callback:function  A callback to be run if and when the People unset queue is flushed
+    / Optional Parameters
+    /  _set_callback:function  A callback to be run if and when the People set queue is flushed
+    /  _add_callback:function  A callback to be run if and when the People add queue is flushed
+    /  _append_callback:function  A callback to be run if and when the People append queue is flushed
+    /  _set_once_callback:function  A callback to be run if and when the People set_once queue is flushed
+    /  _union_callback:function  A callback to be run if and when the People union queue is flushed
+    /  _unset_callback:function  A callback to be run if and when the People unset queue is flushed
 
     var previous_distinct_id = this.get_distinct_id();
     if (new_distinct_id && previous_distinct_id !== new_distinct_id) {
-        // we allow the following condition if previous distinct_id is same as new_distinct_id
-        // so that you can force flush people updates for anonymous profiles.
+        / we allow the following condition if previous distinct_id is same as new_distinct_id
+        / so that you can force flush people updates for anonymous profiles.
         if (typeof new_distinct_id === 'string' && new_distinct_id.indexOf(DEVICE_ID_PREFIX) === 0) {
             this.report_error('distinct_id cannot have $device: prefix');
             return -1;
@@ -69962,8 +69962,8 @@ MixpanelLib.prototype.identify = function(
     }
 
     if (!this.get_property('$device_id')) {
-        // The persisted distinct id might not actually be a device id at all
-        // it might be a distinct id of the user from before
+        / The persisted distinct id might not actually be a device id at all
+        / it might be a distinct id of the user from before
         var device_id = previous_distinct_id;
         this.register_once({
             '$had_persisted_distinct_id': true,
@@ -69971,18 +69971,18 @@ MixpanelLib.prototype.identify = function(
         }, '');
     }
 
-    // identify only changes the distinct id if it doesn't match either the existing or the alias;
-    // if it's new, blow away the alias as well.
+    / identify only changes the distinct id if it doesn't match either the existing or the alias;
+    / if it's new, blow away the alias as well.
     if (new_distinct_id !== previous_distinct_id && new_distinct_id !== this.get_property(ALIAS_ID_KEY)) {
         this.unregister(ALIAS_ID_KEY);
         this.register({'distinct_id': new_distinct_id});
     }
     this._flags.identify_called = true;
-    // Flush any queued up people requests
+    / Flush any queued up people requests
     this['people']._flush(_set_callback, _add_callback, _append_callback, _set_once_callback, _union_callback, _unset_callback, _remove_callback);
 
-    // send an $identify event any time the distinct_id is changing - logic on the server
-    // will determine whether or not to do anything with it.
+    / send an $identify event any time the distinct_id is changing - logic on the server
+    / will determine whether or not to do anything with it.
     if (new_distinct_id !== previous_distinct_id) {
         this.track('$identify', {
             'distinct_id': new_distinct_id,
@@ -70014,7 +70014,7 @@ MixpanelLib.prototype.reset = function() {
  * get_distinct_id() can only be called after the Mixpanel library has finished loading.
  * init() has a loaded function available to handle this automatically. For example:
  *
- *     // set distinct_id after the mixpanel library has loaded
+ *     / set distinct_id after the mixpanel library has loaded
  *     mixpanel.init('YOUR PROJECT TOKEN', {
  *         loaded: function(mixpanel) {
  *             distinct_id = mixpanel.get_distinct_id();
@@ -70033,20 +70033,20 @@ MixpanelLib.prototype.get_distinct_id = function() {
  * The following is a valid use of alias:
  *
  *     mixpanel.alias('new_id', 'existing_id');
- *     // You can add multiple id aliases to the existing ID
+ *     / You can add multiple id aliases to the existing ID
  *     mixpanel.alias('newer_id', 'existing_id');
  *
  * Aliases can also be chained - the following is a valid example:
  *
  *     mixpanel.alias('new_id', 'existing_id');
- *     // chain newer_id - new_id - existing_id
+ *     / chain newer_id - new_id - existing_id
  *     mixpanel.alias('newer_id', 'new_id');
  *
  * Aliases cannot point to multiple identifiers - the following
  * example will not work:
  *
  *     mixpanel.alias('new_id', 'existing_id');
- *     // this is invalid as 'new_id' already points to 'existing_id'
+ *     / this is invalid as 'new_id' already points to 'existing_id'
  *     mixpanel.alias('new_id', 'newer_id');
  *
  * ### Notes:
@@ -70062,9 +70062,9 @@ MixpanelLib.prototype.get_distinct_id = function() {
  * @param {String} [original] The current identifier being used for this user.
  */
 MixpanelLib.prototype.alias = function(alias, original) {
-    // If the $people_distinct_id key exists in persistence, there has been a previous
-    // mixpanel.people.identify() call made for this user. It is VERY BAD to make an alias with
-    // this ID, as it will duplicate users.
+    / If the $people_distinct_id key exists in persistence, there has been a previous
+    / mixpanel.people.identify() call made for this user. It is VERY BAD to make an alias with
+    / this ID, as it will duplicate users.
     if (alias === this.get_property(PEOPLE_DISTINCT_ID_KEY)) {
         this.report_error('Attempting to create alias for existing People user - aborting.');
         return -2;
@@ -70082,7 +70082,7 @@ MixpanelLib.prototype.alias = function(alias, original) {
         }, {
             skip_hooks: true
         }, function() {
-            // Flush the people queue
+            / Flush the people queue
             _this.identify(alias);
         });
     } else {
@@ -70113,127 +70113,127 @@ MixpanelLib.prototype.name_tag = function(name_tag) {
  * The default config is:
  *
  *     {
- *       // host for requests (customizable for e.g. a local proxy)
+ *       / host for requests (customizable for e.g. a local proxy)
  *       api_host: 'https://api-js.mixpanel.com',
  *
- *       // endpoints for different types of requests
+ *       / endpoints for different types of requests
  *       api_routes: {
  *         track: 'track/',
  *         engage: 'engage/',
  *         groups: 'groups/',
  *       }
  *
- *       // HTTP method for tracking requests
+ *       / HTTP method for tracking requests
  *       api_method: 'POST'
  *
- *       // transport for sending requests ('XHR' or 'sendBeacon')
- *       // NB: sendBeacon should only be used for scenarios such as
- *       // page unload where a "best-effort" attempt to send is
- *       // acceptable; the sendBeacon API does not support callbacks
- *       // or any way to know the result of the request. Mixpanel
- *       // tracking via sendBeacon will not support any event-
- *       // batching or retry mechanisms.
+ *       / transport for sending requests ('XHR' or 'sendBeacon')
+ *       / NB: sendBeacon should only be used for scenarios such as
+ *       / page unload where a "best-effort" attempt to send is
+ *       / acceptable; the sendBeacon API does not support callbacks
+ *       / or any way to know the result of the request. Mixpanel
+ *       / tracking via sendBeacon will not support any event-
+ *       / batching or retry mechanisms.
  *       api_transport: 'XHR'
  *
- *       // request-batching/queueing/retry
+ *       / request-batching/queueing/retry
  *       batch_requests: true,
  *
- *       // maximum number of events/updates to send in a single
- *       // network request
+ *       / maximum number of events/updates to send in a single
+ *       / network request
  *       batch_size: 50,
  *
- *       // milliseconds to wait between sending batch requests
+ *       / milliseconds to wait between sending batch requests
  *       batch_flush_interval_ms: 5000,
  *
- *       // milliseconds to wait for network responses to batch requests
- *       // before they are considered timed-out and retried
+ *       / milliseconds to wait for network responses to batch requests
+ *       / before they are considered timed-out and retried
  *       batch_request_timeout_ms: 90000,
  *
- *       // override value for cookie domain, only useful for ensuring
- *       // correct cross-subdomain cookies on unusual domains like
- *       // subdomain.mainsite.avocat.fr; NB this cannot be used to
- *       // set cookies on a different domain than the current origin
+ *       / override value for cookie domain, only useful for ensuring
+ *       / correct cross-subdomain cookies on unusual domains like
+ *       / subdomain.mainsite.avocat.fr; NB this cannot be used to
+ *       / set cookies on a different domain than the current origin
  *       cookie_domain: ''
  *
- *       // super properties cookie expiration (in days)
+ *       / super properties cookie expiration (in days)
  *       cookie_expiration: 365
  *
- *       // if true, cookie will be set with SameSite=None; Secure
- *       // this is only useful in special situations, like embedded
- *       // 3rd-party iframes that set up a Mixpanel instance
+ *       / if true, cookie will be set with SameSite=None; Secure
+ *       / this is only useful in special situations, like embedded
+ *       / 3rd-party iframes that set up a Mixpanel instance
  *       cross_site_cookie: false
  *
- *       // super properties span subdomains
+ *       / super properties span subdomains
  *       cross_subdomain_cookie: true
  *
- *       // debug mode
+ *       / debug mode
  *       debug: false
  *
- *       // if this is true, the mixpanel cookie or localStorage entry
- *       // will be deleted, and no user persistence will take place
+ *       / if this is true, the mixpanel cookie or localStorage entry
+ *       / will be deleted, and no user persistence will take place
  *       disable_persistence: false
  *
- *       // if this is true, Mixpanel will automatically determine
- *       // City, Region and Country data using the IP address of
- *       //the client
+ *       / if this is true, Mixpanel will automatically determine
+ *       / City, Region and Country data using the IP address of
+ *       /the client
  *       ip: true
  *
- *       // opt users out of tracking by this Mixpanel instance by default
+ *       / opt users out of tracking by this Mixpanel instance by default
  *       opt_out_tracking_by_default: false
  *
- *       // opt users out of browser data storage by this Mixpanel instance by default
+ *       / opt users out of browser data storage by this Mixpanel instance by default
  *       opt_out_persistence_by_default: false
  *
- *       // persistence mechanism used by opt-in/opt-out methods - cookie
- *       // or localStorage - falls back to cookie if localStorage is unavailable
+ *       / persistence mechanism used by opt-in/opt-out methods - cookie
+ *       / or localStorage - falls back to cookie if localStorage is unavailable
  *       opt_out_tracking_persistence_type: 'localStorage'
  *
- *       // customize the name of cookie/localStorage set by opt-in/opt-out methods
+ *       / customize the name of cookie/localStorage set by opt-in/opt-out methods
  *       opt_out_tracking_cookie_prefix: null
  *
- *       // type of persistent store for super properties (cookie/
- *       // localStorage) if set to 'localStorage', any existing
- *       // mixpanel cookie value with the same persistence_name
- *       // will be transferred to localStorage and deleted
+ *       / type of persistent store for super properties (cookie/
+ *       / localStorage) if set to 'localStorage', any existing
+ *       / mixpanel cookie value with the same persistence_name
+ *       / will be transferred to localStorage and deleted
  *       persistence: 'cookie'
  *
- *       // name for super properties persistent store
+ *       / name for super properties persistent store
  *       persistence_name: ''
  *
- *       // names of properties/superproperties which should never
- *       // be sent with track() calls
+ *       / names of properties/superproperties which should never
+ *       / be sent with track() calls
  *       property_blacklist: []
  *
- *       // if this is true, mixpanel cookies will be marked as
- *       // secure, meaning they will only be transmitted over https
+ *       / if this is true, mixpanel cookies will be marked as
+ *       / secure, meaning they will only be transmitted over https
  *       secure_cookie: false
  *
- *       // disables enriching user profiles with first touch marketing data
+ *       / disables enriching user profiles with first touch marketing data
  *       skip_first_touch_marketing: false
  *
- *       // the amount of time track_links will
- *       // wait for Mixpanel's servers to respond
+ *       / the amount of time track_links will
+ *       / wait for Mixpanel's servers to respond
  *       track_links_timeout: 300
  *
- *       // adds any UTM parameters and click IDs present on the page to any events fired
+ *       / adds any UTM parameters and click IDs present on the page to any events fired
  *       track_marketing: true
  *
- *       // enables automatic page view tracking using default page view events through
- *       // the track_pageview() method
+ *       / enables automatic page view tracking using default page view events through
+ *       / the track_pageview() method
  *       track_pageview: false
  *
- *       // if you set upgrade to be true, the library will check for
- *       // a cookie from our old js library and import super
- *       // properties from it, then the old cookie is deleted
- *       // The upgrade config option only works in the initialization,
- *       // so make sure you set it when you create the library.
+ *       / if you set upgrade to be true, the library will check for
+ *       / a cookie from our old js library and import super
+ *       / properties from it, then the old cookie is deleted
+ *       / The upgrade config option only works in the initialization,
+ *       / so make sure you set it when you create the library.
  *       upgrade: false
  *
- *       // extra HTTP request headers to set for each API request, in
- *       // the format {'Header-Name': value}
+ *       / extra HTTP request headers to set for each API request, in
+ *       / the format {'Header-Name': value}
  *       xhr_headers: {}
  *
- *       // whether to ignore or respect the web browser's Do Not Track setting
+ *       / whether to ignore or respect the web browser's Do Not Track setting
  *       ignore_dnt: false
  *     }
  *
@@ -70296,7 +70296,7 @@ MixpanelLib.prototype._run_hook = function(hook_name) {
  * get_property() can only be called after the Mixpanel library has finished loading.
  * init() has a loaded function available to handle this automatically. For example:
  *
- *     // grab value for 'user_id' after the mixpanel library has loaded
+ *     / grab value for 'user_id' after the mixpanel library has loaded
  *     mixpanel.init('YOUR PROJECT TOKEN', {
  *         loaded: function(mixpanel) {
  *             user_id = mixpanel.get_property('user_id');
@@ -70327,7 +70327,7 @@ MixpanelLib.prototype._event_is_disabled = function(event_name) {
 MixpanelLib.prototype._gdpr_init = function() {
     var is_localStorage_requested = this.get_config('opt_out_tracking_persistence_type') === 'localStorage';
 
-    // try to convert opt-in/out cookies to localStorage if possible
+    / try to convert opt-in/out cookies to localStorage if possible
     if (is_localStorage_requested && _.localStorage.is_supported()) {
         if (!this.has_opted_in_tracking() && this.has_opted_in_tracking({'persistence_type': 'cookie'})) {
             this.opt_in_tracking({'enable_persistence': false});
@@ -70341,13 +70341,13 @@ MixpanelLib.prototype._gdpr_init = function() {
         });
     }
 
-    // check whether the user has already opted out - if so, clear & disable persistence
+    / check whether the user has already opted out - if so, clear & disable persistence
     if (this.has_opted_out_tracking()) {
         this._gdpr_update_persistence({'clear_persistence': true});
 
-    // check whether we should opt out by default
-    // note: we don't clear persistence here by default since opt-out default state is often
-    //       used as an initial state while GDPR information is being collected
+    / check whether we should opt out by default
+    / note: we don't clear persistence here by default since opt-out default state is often
+    /       used as an initial state while GDPR information is being collected
     } else if (!this.has_opted_in_tracking() && (
         this.get_config('opt_out_tracking_by_default') || _.cookie.get('mp_optout')
     )) {
@@ -70381,8 +70381,8 @@ MixpanelLib.prototype._gdpr_update_persistence = function(options) {
     if (disabled) {
         this.stop_batch_senders();
     } else {
-        // only start batchers after opt-in if they have previously been started
-        // in order to avoid unintentionally starting up batching for the first time
+        / only start batchers after opt-in if they have previously been started
+        / in order to avoid unintentionally starting up batching for the first time
         if (this._batchers_were_started) {
             this.start_batch_senders();
         }
@@ -70403,7 +70403,7 @@ MixpanelLib.prototype._gdpr_call_func = function(func, options) {
         'ignore_dnt': this.get_config('ignore_dnt')
     }, options);
 
-    // check if localStorage can be used for recording opt out status, fall back to cookie if not
+    / check if localStorage can be used for recording opt out status, fall back to cookie if not
     if (!_.localStorage.is_supported()) {
         options['persistence_type'] = 'cookie';
     }
@@ -70428,10 +70428,10 @@ MixpanelLib.prototype._gdpr_call_func = function(func, options) {
  *
  * ### Usage:
  *
- *     // opt user in
+ *     / opt user in
  *     mixpanel.opt_in_tracking();
  *
- *     // opt user in with specific event name, properties, cookie configuration
+ *     / opt user in with specific event name, properties, cookie configuration
  *     mixpanel.opt_in_tracking({
  *         track_event_name: 'User opted in',
  *         track_event_properties: {
@@ -70468,10 +70468,10 @@ MixpanelLib.prototype.opt_in_tracking = function(options) {
  *
  * ### Usage:
  *
- *     // opt user out
+ *     / opt user out
  *     mixpanel.opt_out_tracking();
  *
- *     // opt user out with different cookie configuration from Mixpanel instance
+ *     / opt user out with different cookie configuration from Mixpanel instance
  *     mixpanel.opt_out_tracking({
  *         cookie_expiration: 30,
  *         secure_cookie: true
@@ -70494,7 +70494,7 @@ MixpanelLib.prototype.opt_out_tracking = function(options) {
         'delete_user': true
     }, options);
 
-    // delete user and clear charges since these methods may be disabled by opt-out
+    / delete user and clear charges since these methods may be disabled by opt-out
     if (options['delete_user'] && this['people'] && this['people']._identify_called()) {
         this['people'].delete_user();
         this['people'].clear_charges();
@@ -70510,7 +70510,7 @@ MixpanelLib.prototype.opt_out_tracking = function(options) {
  * ### Usage:
  *
  *     var has_opted_in = mixpanel.has_opted_in_tracking();
- *     // use has_opted_in value
+ *     / use has_opted_in value
  *
  * @param {Object} [options] A dictionary of config options to override
  * @param {string} [options.persistence_type=localStorage] Persistence mechanism used - cookie or localStorage - falls back to cookie if localStorage is unavailable
@@ -70527,7 +70527,7 @@ MixpanelLib.prototype.has_opted_in_tracking = function(options) {
  * ### Usage:
  *
  *     var has_opted_out = mixpanel.has_opted_out_tracking();
- *     // use has_opted_out value
+ *     / use has_opted_out value
  *
  * @param {Object} [options] A dictionary of config options to override
  * @param {string} [options.persistence_type=localStorage] Persistence mechanism used - cookie or localStorage - falls back to cookie if localStorage is unavailable
@@ -70543,11 +70543,11 @@ MixpanelLib.prototype.has_opted_out_tracking = function(options) {
  *
  * ### Usage:
  *
- *     // clear user's opt-in/out status
+ *     / clear user's opt-in/out status
  *     mixpanel.clear_opt_in_out_tracking();
  *
- *     // clear user's opt-in/out status with specific cookie configuration - should match
- *     // configuration used when opt_in_tracking/opt_out_tracking methods were called.
+ *     / clear user's opt-in/out status with specific cookie configuration - should match
+ *     / configuration used when opt_in_tracking/opt_out_tracking methods were called.
  *     mixpanel.clear_opt_in_out_tracking({
  *         cookie_expiration: 30,
  *         secure_cookie: true
@@ -70634,21 +70634,21 @@ MixpanelPersistence.prototype['clear']                 = MixpanelPersistence.pro
 
 var instances = {};
 var extend_mp = function() {
-    // add all the sub mixpanel instances
+    / add all the sub mixpanel instances
     _.each(instances, function(instance, name) {
         if (name !== PRIMARY_INSTANCE_NAME) { mixpanel_master[name] = instance; }
     });
 
-    // add private functions as _
+    / add private functions as _
     mixpanel_master['_'] = _;
 };
 
 var override_mp_init_func = function() {
-    // we override the snippets init function to handle the case where a
-    // user initializes the mixpanel library after the script loads & runs
+    / we override the snippets init function to handle the case where a
+    / user initializes the mixpanel library after the script loads & runs
     mixpanel_master['init'] = function(token, config, name) {
         if (name) {
-            // initialize a sub library
+            / initialize a sub library
             if (!mixpanel_master[name]) {
                 mixpanel_master[name] = instances[name] = create_mplib(token, config, name);
                 mixpanel_master[name]._loaded();
@@ -70658,10 +70658,10 @@ var override_mp_init_func = function() {
             var instance = mixpanel_master;
 
             if (instances[PRIMARY_INSTANCE_NAME]) {
-                // main mixpanel lib already initialized
+                / main mixpanel lib already initialized
                 instance = instances[PRIMARY_INSTANCE_NAME];
             } else if (token) {
-                // intialize the main mixpanel lib
+                / intialize the main mixpanel lib
                 instance = create_mplib(token, config, PRIMARY_INSTANCE_NAME);
                 instance._loaded();
                 instances[PRIMARY_INSTANCE_NAME] = instance;
@@ -70677,9 +70677,9 @@ var override_mp_init_func = function() {
 };
 
 var add_dom_loaded_handler = function() {
-    // Cross browser DOM Loaded support
+    / Cross browser DOM Loaded support
     function dom_loaded_handler() {
-        // function flag since we only want to execute this once
+        / function flag since we only want to execute this once
         if (dom_loaded_handler.done) { return; }
         dom_loaded_handler.done = true;
 
@@ -70704,24 +70704,24 @@ var add_dom_loaded_handler = function() {
 
     if (document$1.addEventListener) {
         if (document$1.readyState === 'complete') {
-            // safari 4 can fire the DOMContentLoaded event before loading all
-            // external JS (including this file). you will see some copypasta
-            // on the internet that checks for 'complete' and 'loaded', but
-            // 'loaded' is an IE thing
+            / safari 4 can fire the DOMContentLoaded event before loading all
+            / external JS (including this file). you will see some copypasta
+            / on the internet that checks for 'complete' and 'loaded', but
+            / 'loaded' is an IE thing
             dom_loaded_handler();
         } else {
             document$1.addEventListener('DOMContentLoaded', dom_loaded_handler, false);
         }
     } else if (document$1.attachEvent) {
-        // IE
+        / IE
         document$1.attachEvent('onreadystatechange', dom_loaded_handler);
 
-        // check to make sure we arn't in a frame
+        / check to make sure we arn't in a frame
         var toplevel = false;
         try {
             toplevel = win.frameElement === null;
         } catch(e) {
-            // noop
+            / noop
         }
 
         if (document$1.documentElement.doScroll && toplevel) {
@@ -70729,7 +70729,7 @@ var add_dom_loaded_handler = function() {
         }
     }
 
-    // fallback handler, always will work
+    / fallback handler, always will work
     _.register_event(win, 'load', dom_loaded_handler, true);
 };
 
@@ -70794,16 +70794,16 @@ function shouldUseNative() {
 			return false;
 		}
 
-		// Detect buggy property enumeration order in older V8 versions.
+		/ Detect buggy property enumeration order in older V8 versions.
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc');  / eslint-disable-line no-new-wrappers
 		test1[5] = 'de';
 		if (Object.getOwnPropertyNames(test1)[0] === '5') {
 			return false;
 		}
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=3056
 		var test2 = {};
 		for (var i = 0; i < 10; i++) {
 			test2['_' + String.fromCharCode(i)] = i;
@@ -70815,7 +70815,7 @@ function shouldUseNative() {
 			return false;
 		}
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=3056
 		var test3 = {};
 		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
 			test3[letter] = letter;
@@ -70827,7 +70827,7 @@ function shouldUseNative() {
 
 		return true;
 	} catch (err) {
-		// We don't expect any of the above to throw, but better to be safe.
+		/ We don't expect any of the above to throw, but better to be safe.
 		return false;
 	}
 }
@@ -70891,9 +70891,9 @@ if (true) {
       console.error(message);
     }
     try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
+      / --- Welcome to debugging React ---
+      / This error was thrown as a convenience so that you can use this stack
+      / to find the callsite that caused this warning to fire.
       throw new Error(message);
     } catch (x) { /**/ }
   };
@@ -70915,12 +70915,12 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
     for (var typeSpecName in typeSpecs) {
       if (has(typeSpecs, typeSpecName)) {
         var error;
-        // Prop type validation may throw. In case they do, we don't want to
-        // fail the render phase where it didn't fail before. So we log it.
-        // After these have been cleaned up, we'll let them throw.
+        / Prop type validation may throw. In case they do, we don't want to
+        / fail the render phase where it didn't fail before. So we log it.
+        / After these have been cleaned up, we'll let them throw.
         try {
-          // This is intentionally an invariant that gets caught. It's the same
-          // behavior as without this statement except with a better message.
+          / This is intentionally an invariant that gets caught. It's the same
+          / behavior as without this statement except with a better message.
           if (typeof typeSpecs[typeSpecName] !== 'function') {
             var err = Error(
               (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
@@ -70945,8 +70945,8 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
           );
         }
         if (error instanceof Error && !(error.message in loggedTypeFailures)) {
-          // Only monitor this failure once because there tends to be a lot of the
-          // same error.
+          / Only monitor this failure once because there tends to be a lot of the
+          / same error.
           loggedTypeFailures[error.message] = true;
 
           var stack = getStack ? getStack() : '';
@@ -71008,9 +71008,9 @@ if (true) {
       console.error(message);
     }
     try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
+      / --- Welcome to debugging React ---
+      / This error was thrown as a convenience so that you can use this stack
+      / to find the callsite that caused this warning to fire.
       throw new Error(message);
     } catch (x) {}
   };
@@ -71023,7 +71023,7 @@ function emptyFunctionThatReturnsNull() {
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
   var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
-  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+  var FAUX_ITERATOR_SYMBOL = '@@iterator'; / Before Symbol spec.
 
   /**
    * Returns the iterator method function contained on the iterable object.
@@ -71053,13 +71053,13 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    *   var Props = require('ReactPropTypes');
    *   var MyArticle = React.createClass({
    *     propTypes: {
-   *       // An optional string prop named "description".
+   *       / An optional string prop named "description".
    *       description: Props.string,
    *
-   *       // A required enum prop named "category".
+   *       / A required enum prop named "category".
    *       category: Props.oneOf(['News','Photos']).isRequired,
    *
-   *       // A prop named "dialog" that requires an instance of Dialog.
+   *       / A prop named "dialog" that requires an instance of Dialog.
    *       dialog: Props.instanceOf(Dialog).isRequired
    *     },
    *     render: function() { ... }
@@ -71075,7 +71075,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    *
    *  var MyLink = React.createClass({
    *    propTypes: {
-   *      // An optional string or URI prop named "href".
+   *      / An optional string or URI prop named "href".
    *      href: function(props, propName, componentName) {
    *        var propValue = props[propName];
    *        if (propValue != null && typeof propValue !== 'string' &&
@@ -71095,8 +71095,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
   var ANONYMOUS = '<<anonymous>>';
 
-  // Important!
-  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+  / Important!
+  / Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
   var ReactPropTypes = {
     array: createPrimitiveTypeChecker('array'),
     bigint: createPrimitiveTypeChecker('bigint'),
@@ -71126,13 +71126,13 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    */
   /*eslint-disable no-self-compare*/
   function is(x, y) {
-    // SameValue algorithm
+    / SameValue algorithm
     if (x === y) {
-      // Steps 1-5, 7-10
-      // Steps 6.b-6.e: +0 != -0
+      / Steps 1-5, 7-10
+      / Steps 6.b-6.e: +0 != -0
       return x !== 0 || 1 / x === 1 / y;
     } else {
-      // Step 6.a: NaN == NaN
+      / Step 6.a: NaN == NaN
       return x !== x && y !== y;
     }
   }
@@ -71150,7 +71150,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     this.data = data && typeof data === 'object' ? data: {};
     this.stack = '';
   }
-  // Make `instanceof Error` still work for returned errors.
+  / Make `instanceof Error` still work for returned errors.
   PropTypeError.prototype = Error.prototype;
 
   function createChainableTypeChecker(validate) {
@@ -71164,7 +71164,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
       if (secret !== ReactPropTypesSecret) {
         if (throwOnDirectAccess) {
-          // New behavior only for users of `prop-types` package
+          / New behavior only for users of `prop-types` package
           var err = new Error(
             'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
             'Use `PropTypes.checkPropTypes()` to call them. ' +
@@ -71173,11 +71173,11 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
           err.name = 'Invariant Violation';
           throw err;
         } else if ( true && typeof console !== 'undefined') {
-          // Old behavior for people using React.PropTypes
+          / Old behavior for people using React.PropTypes
           var cacheKey = componentName + ':' + propName;
           if (
             !manualPropTypeCallCache[cacheKey] &&
-            // Avoid spamming the console because they are often not actionable except for lib authors
+            / Avoid spamming the console because they are often not actionable except for lib authors
             manualPropTypeWarningCount < 3
           ) {
             printWarning(
@@ -71216,9 +71216,9 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
       var propValue = props[propName];
       var propType = getPropType(propValue);
       if (propType !== expectedType) {
-        // `propValue` being instance of, say, date/regexp, pass the 'object'
-        // check, but we can offer a more precise error message here rather than
-        // 'of type `object`'.
+        / `propValue` being instance of, say, date/regexp, pass the 'object'
+        / check, but we can offer a more precise error message here rather than
+        / 'of type `object`'.
         var preciseType = getPreciseType(propValue);
 
         return new PropTypeError(
@@ -71431,7 +71431,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
       if (propType !== 'object') {
         return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
       }
-      // We need to check all keys in case some are required but missing from props.
+      / We need to check all keys in case some are required but missing from props.
       var allKeys = assign({}, props[propName], shapeTypes);
       for (var key in allKeys) {
         var checker = shapeTypes[key];
@@ -71483,7 +71483,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
               }
             }
           } else {
-            // Iterator will provide entry [k,v] tuples rather than values.
+            / Iterator will provide entry [k,v] tuples rather than values.
             while (!(step = iterator.next()).done) {
               var entry = step.value;
               if (entry) {
@@ -71504,22 +71504,22 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
   }
 
   function isSymbol(propType, propValue) {
-    // Native Symbol.
+    / Native Symbol.
     if (propType === 'symbol') {
       return true;
     }
 
-    // falsy value can't be a Symbol
+    / falsy value can't be a Symbol
     if (!propValue) {
       return false;
     }
 
-    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
+    / 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
     if (propValue['@@toStringTag'] === 'Symbol') {
       return true;
     }
 
-    // Fallback for non-spec compliant Symbols which are polyfilled.
+    / Fallback for non-spec compliant Symbols which are polyfilled.
     if (typeof Symbol === 'function' && propValue instanceof Symbol) {
       return true;
     }
@@ -71527,16 +71527,16 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return false;
   }
 
-  // Equivalent of `typeof` but with special handling for array and regexp.
+  / Equivalent of `typeof` but with special handling for array and regexp.
   function getPropType(propValue) {
     var propType = typeof propValue;
     if (Array.isArray(propValue)) {
       return 'array';
     }
     if (propValue instanceof RegExp) {
-      // Old webkits (at least until Android 4.0) return 'function' rather than
-      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
-      // passes PropTypes.object.
+      / Old webkits (at least until Android 4.0) return 'function' rather than
+      / 'object' for typeof a RegExp. We'll normalize this here so that /bla/
+      / passes PropTypes.object.
       return 'object';
     }
     if (isSymbol(propType, propValue)) {
@@ -71545,8 +71545,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return propType;
   }
 
-  // This handles more types than `getPropType`. Only used for error messages.
-  // See `createPrimitiveTypeChecker`.
+  / This handles more types than `getPropType`. Only used for error messages.
+  / See `createPrimitiveTypeChecker`.
   function getPreciseType(propValue) {
     if (typeof propValue === 'undefined' || propValue === null) {
       return '' + propValue;
@@ -71562,8 +71562,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return propType;
   }
 
-  // Returns a string that is postfixed to a warning about an invalid type.
-  // For example, "undefined" or "of type array"
+  / Returns a string that is postfixed to a warning about an invalid type.
+  / For example, "undefined" or "of type array"
   function getPostfixForTypeWarning(value) {
     var type = getPreciseType(value);
     switch (type) {
@@ -71579,7 +71579,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     }
   }
 
-  // Returns class name of the object, if any.
+  / Returns class name of the object, if any.
   function getClassName(propValue) {
     if (!propValue.constructor || !propValue.constructor.name) {
       return ANONYMOUS;
@@ -71613,8 +71613,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 if (true) {
   var ReactIs = __webpack_require__(/*! react-is */ "../node_modules/prop-types/node_modules/react-is/index.js");
 
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
+  / By explicitly using `prop-types` you are opting into new development behavior.
+  / http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
   module.exports = __webpack_require__(/*! ./factoryWithTypeCheckers */ "../node_modules/prop-types/factoryWithTypeCheckers.js")(ReactIs.isElement, throwOnDirectAccess);
 } else {}
@@ -71689,7 +71689,7 @@ var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
 var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
 var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
 var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
-var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; / TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
 // (unstable) APIs that have been removed. Can we remove the symbols?
 
 var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
@@ -71705,7 +71705,7 @@ var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
 var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
 
 function isValidElementType(type) {
-  return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+  return typeof type === 'string' || typeof type === 'function' || / Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
   type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
 }
 
@@ -71749,7 +71749,7 @@ function typeOf(object) {
   }
 
   return undefined;
-} // AsyncMode is deprecated along with isAsyncMode
+} / AsyncMode is deprecated along with isAsyncMode
 
 var AsyncMode = REACT_ASYNC_MODE_TYPE;
 var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
@@ -71764,12 +71764,12 @@ var Portal = REACT_PORTAL_TYPE;
 var Profiler = REACT_PROFILER_TYPE;
 var StrictMode = REACT_STRICT_MODE_TYPE;
 var Suspense = REACT_SUSPENSE_TYPE;
-var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
+var hasWarnedAboutDeprecatedIsAsyncMode = false; / AsyncMode should be deprecated
 
 function isAsyncMode(object) {
   {
     if (!hasWarnedAboutDeprecatedIsAsyncMode) {
-      hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+      hasWarnedAboutDeprecatedIsAsyncMode = true; / Using console['warn'] to evade Babel and ESLint
 
       console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
     }
@@ -71912,19 +71912,19 @@ __webpack_require__.r(__webpack_exports__);
  * and returns an instance of the thunk middleware that uses that value
  */
 function createThunkMiddleware(extraArgument) {
-  // Standard Redux middleware definition pattern:
-  // See: https://redux.js.org/tutorials/fundamentals/part-4-store#writing-custom-middleware
+  / Standard Redux middleware definition pattern:
+  / See: https://redux.js.org/tutorials/fundamentals/part-4-store#writing-custom-middleware
   var middleware = function middleware(_ref) {
     var dispatch = _ref.dispatch,
         getState = _ref.getState;
     return function (next) {
       return function (action) {
-        // The thunk middleware looks for any functions that were passed to `store.dispatch`.
-        // If this "action" is really a function, call it and return the result.
+        / The thunk middleware looks for any functions that were passed to `store.dispatch`.
+        / If this "action" is really a function, call it and return the result.
         if (typeof action === 'function') {
-          // Inject the store's `dispatch` and `getState` methods, as well as any "extra arg"
+          / Inject the store's `dispatch` and `getState` methods, as well as any "extra arg"
           return action(dispatch, getState, extraArgument);
-        } // Otherwise, pass the action down the middleware chain as usual
+        } / Otherwise, pass the action down the middleware chain as usual
 
 
         return next(action);
@@ -71935,7 +71935,7 @@ function createThunkMiddleware(extraArgument) {
   return middleware;
 }
 
-var thunk = createThunkMiddleware(); // Attach the factory function so users can create a customized version
+var thunk = createThunkMiddleware(); / Attach the factory function so users can create a customized version
 // with whatever "extra arg" they want to inject into their thunks
 
 thunk.withExtraArgument = createThunkMiddleware;
@@ -72042,7 +72042,7 @@ function miniKindOf(val) {
     case 'Map':
     case 'Set':
       return constructorName;
-  } // other
+  } / other
 
 
   return type.slice(8, -1).toLowerCase().replace(/\s/g, '');
@@ -72279,10 +72279,10 @@ function createStore(reducer, preloadedState, enhancer) {
       throw new Error( false ? 0 : "Expected the nextReducer to be a function. Instead, received: '" + kindOf(nextReducer));
     }
 
-    currentReducer = nextReducer; // This action has a similiar effect to ActionTypes.INIT.
-    // Any reducers that existed in both the new and old rootReducer
-    // will receive the previous state. This effectively populates
-    // the new state tree with any relevant data from the old one.
+    currentReducer = nextReducer; / This action has a similiar effect to ActionTypes.INIT.
+    / Any reducers that existed in both the new and old rootReducer
+    / will receive the previous state. This effectively populates
+    / the new state tree with any relevant data from the old one.
 
     dispatch({
       type: ActionTypes.REPLACE
@@ -72329,9 +72329,9 @@ function createStore(reducer, preloadedState, enhancer) {
     }, _ref[$$observable] = function () {
       return this;
     }, _ref;
-  } // When a store is created, an "INIT" action is dispatched so that every
-  // reducer returns their initial state. This effectively populates
-  // the initial state tree.
+  } / When a store is created, an "INIT" action is dispatched so that every
+  / reducer returns their initial state. This effectively populates
+  / the initial state tree.
 
 
   dispatch({
@@ -72392,11 +72392,11 @@ function warning(message) {
 
 
   try {
-    // This error was thrown as a convenience so that if you enable
-    // "break on all exceptions" in your console,
-    // it would pause the execution at this line.
+    / This error was thrown as a convenience so that if you enable
+    / "break on all exceptions" in your console,
+    / it would pause the execution at this line.
     throw new Error(message);
-  } catch (e) {} // eslint-disable-line no-empty
+  } catch (e) {} / eslint-disable-line no-empty
 
 }
 
@@ -72479,8 +72479,8 @@ function combineReducers(reducers) {
     }
   }
 
-  var finalReducerKeys = Object.keys(finalReducers); // This is used to make sure we don't warn about the same
-  // keys multiple times.
+  var finalReducerKeys = Object.keys(finalReducers); / This is used to make sure we don't warn about the same
+  / keys multiple times.
 
   var unexpectedKeyCache;
 
@@ -72718,10 +72718,10 @@ function createLruCache(maxSize, equals) {
   function get(key) {
     var cacheIndex = entries.findIndex(function (entry) {
       return equals(key, entry.key);
-    }); // We found a cached entry
+    }); / We found a cached entry
 
     if (cacheIndex > -1) {
-      var entry = entries[cacheIndex]; // Cached entry not at top of cache, move it to the top
+      var entry = entries[cacheIndex]; / Cached entry not at top of cache, move it to the top
 
       if (cacheIndex > 0) {
         entries.splice(cacheIndex, 1);
@@ -72729,7 +72729,7 @@ function createLruCache(maxSize, equals) {
       }
 
       return entry.value;
-    } // No entry found in cache, return sentinel
+    } / No entry found in cache, return sentinel
 
 
     return NOT_FOUND;
@@ -72737,7 +72737,7 @@ function createLruCache(maxSize, equals) {
 
   function put(key, value) {
     if (get(key) === NOT_FOUND) {
-      // TODO Is unshift slow?
+      / TODO Is unshift slow?
       entries.unshift({
         key: key,
         value: value
@@ -72772,7 +72772,7 @@ function createCacheKeyComparator(equalityCheck) {
   return function areArgumentsShallowlyEqual(prev, next) {
     if (prev === null || next === null || prev.length !== next.length) {
       return false;
-    } // Do this in a for loop (and not a `forEach` or an `every`) so we can determine equality as fast as possible.
+    } / Do this in a for loop (and not a `forEach` or an `every`) so we can determine equality as fast as possible.
 
 
     var length = prev.length;
@@ -72798,13 +72798,13 @@ function defaultMemoize(func, equalityCheckOrOptions) {
       maxSize = _providedOptions$maxS === void 0 ? 1 : _providedOptions$maxS,
       resultEqualityCheck = providedOptions.resultEqualityCheck;
   var comparator = createCacheKeyComparator(equalityCheck);
-  var cache = maxSize === 1 ? createSingletonCache(comparator) : createLruCache(maxSize, comparator); // we reference arguments instead of spreading them for performance reasons
+  var cache = maxSize === 1 ? createSingletonCache(comparator) : createLruCache(maxSize, comparator); / we reference arguments instead of spreading them for performance reasons
 
   function memoized() {
     var value = cache.get(arguments);
 
     if (value === NOT_FOUND) {
-      // @ts-ignore
+      / @ts-ignore
       value = func.apply(null, arguments);
 
       if (resultEqualityCheck) {
@@ -72879,54 +72879,54 @@ function createSelectorCreator(memoize) {
 
     var _recomputations = 0;
 
-    var _lastResult; // Due to the intricacies of rest params, we can't do an optional arg after `...funcs`.
-    // So, start by declaring the default value here.
-    // (And yes, the words 'memoize' and 'options' appear too many times in this next sequence.)
+    var _lastResult; / Due to the intricacies of rest params, we can't do an optional arg after `...funcs`.
+    / So, start by declaring the default value here.
+    / (And yes, the words 'memoize' and 'options' appear too many times in this next sequence.)
 
 
     var directlyPassedOptions = {
       memoizeOptions: undefined
-    }; // Normally, the result func or "output selector" is the last arg
+    }; / Normally, the result func or "output selector" is the last arg
 
-    var resultFunc = funcs.pop(); // If the result func is actually an _object_, assume it's our options object
+    var resultFunc = funcs.pop(); / If the result func is actually an _object_, assume it's our options object
 
     if (typeof resultFunc === 'object') {
-      directlyPassedOptions = resultFunc; // and pop the real result func off
+      directlyPassedOptions = resultFunc; / and pop the real result func off
 
       resultFunc = funcs.pop();
     }
 
     if (typeof resultFunc !== 'function') {
       throw new Error("createSelector expects an output function after the inputs, but received: [" + typeof resultFunc + "]");
-    } // Determine which set of options we're using. Prefer options passed directly,
-    // but fall back to options given to createSelectorCreator.
+    } / Determine which set of options we're using. Prefer options passed directly,
+    / but fall back to options given to createSelectorCreator.
 
 
     var _directlyPassedOption = directlyPassedOptions,
         _directlyPassedOption2 = _directlyPassedOption.memoizeOptions,
-        memoizeOptions = _directlyPassedOption2 === void 0 ? memoizeOptionsFromArgs : _directlyPassedOption2; // Simplifying assumption: it's unlikely that the first options arg of the provided memoizer
-    // is an array. In most libs I've looked at, it's an equality function or options object.
-    // Based on that, if `memoizeOptions` _is_ an array, we assume it's a full
-    // user-provided array of options. Otherwise, it must be just the _first_ arg, and so
-    // we wrap it in an array so we can apply it.
+        memoizeOptions = _directlyPassedOption2 === void 0 ? memoizeOptionsFromArgs : _directlyPassedOption2; / Simplifying assumption: it's unlikely that the first options arg of the provided memoizer
+    / is an array. In most libs I've looked at, it's an equality function or options object.
+    / Based on that, if `memoizeOptions` _is_ an array, we assume it's a full
+    / user-provided array of options. Otherwise, it must be just the _first_ arg, and so
+    / we wrap it in an array so we can apply it.
 
     var finalMemoizeOptions = Array.isArray(memoizeOptions) ? memoizeOptions : [memoizeOptions];
     var dependencies = getDependencies(funcs);
     var memoizedResultFunc = memoize.apply(void 0, [function recomputationWrapper() {
-      _recomputations++; // apply arguments instead of spreading for performance.
+      _recomputations++; / apply arguments instead of spreading for performance.
 
       return resultFunc.apply(null, arguments);
-    }].concat(finalMemoizeOptions)); // If a selector is called with the exact same arguments we don't need to traverse our dependencies again.
+    }].concat(finalMemoizeOptions)); / If a selector is called with the exact same arguments we don't need to traverse our dependencies again.
 
     var selector = memoize(function dependenciesChecker() {
       var params = [];
       var length = dependencies.length;
 
       for (var i = 0; i < length; i++) {
-        // apply arguments instead of spreading and mutate a local list of params for performance.
-        // @ts-ignore
+        / apply arguments instead of spreading and mutate a local list of params for performance.
+        / @ts-ignore
         params.push(dependencies[i].apply(null, arguments));
-      } // apply arguments instead of spreading for performance.
+      } / apply arguments instead of spreading for performance.
 
 
       _lastResult = memoizedResultFunc.apply(null, params);
@@ -72947,7 +72947,7 @@ function createSelectorCreator(memoize) {
       }
     });
     return selector;
-  }; // @ts-ignore
+  }; / @ts-ignore
 
 
   return createSelector;
@@ -72964,7 +72964,7 @@ var createStructuredSelector = function createStructuredSelector(selectors, sele
   }
 
   var objectKeys = Object.keys(selectors);
-  var resultSelector = selectorCreator( // @ts-ignore
+  var resultSelector = selectorCreator( / @ts-ignore
   objectKeys.map(function (key) {
     return selectors[key];
   }), function () {
@@ -74247,34 +74247,34 @@ function n(n){for(var r=arguments.length,t=Array(r>1?r-1:0),e=1;e<r;e++)t[e-1]=a
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -74303,7 +74303,7 @@ function n(n){for(var r=arguments.length,t=Array(r>1?r-1:0),e=1;e<r;e++)t[e-1]=a
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -74494,8 +74494,8 @@ var __webpack_exports__ = {};
           left = _placeholderContext$p.left,
           right = _placeholderContext$p.right;
 
-        // For cases when the event is actually dispatched on the parent element, but
-        // `currentElement` is the actual element that the offset should be calculated by.
+        / For cases when the event is actually dispatched on the parent element, but
+        / `currentElement` is the actual element that the offset should be calculated by.
         if (clientX - threshold <= left) {
           return 'left';
         }
@@ -74640,7 +74640,7 @@ var __webpack_exports__ = {};
         hasLogicalWrapper = _placeholderContext3.hasLogicalWrapper,
         placeholderTarget = _placeholderContext3.placeholderTarget;
 
-      // If we want to use horizontal placeholders inside V3, then we should remove these 3 lines of the code.
+      / If we want to use horizontal placeholders inside V3, then we should remove these 3 lines of the code.
       if (!hasLogicalWrapper) {
         elementsCache.$placeholder.addClass('e-dragging-' + currentSide);
       }
@@ -74695,7 +74695,7 @@ var __webpack_exports__ = {};
       if (settings.groups && hasFullDataTransferSupport(event)) {
         dataTransferTypes = event.originalEvent.dataTransfer.types;
         isGroupMatch = false;
-        dataTransferTypes = Array.prototype.slice.apply(dataTransferTypes); // Convert to array, since Firefox hold it as DOMStringList
+        dataTransferTypes = Array.prototype.slice.apply(dataTransferTypes); / Convert to array, since Firefox hold it as DOMStringList
 
         dataTransferTypes.forEach(function (type) {
           try {
@@ -74706,10 +74706,10 @@ var __webpack_exports__ = {};
             settings.groups.forEach(function (groupName) {
               if (-1 !== draggableGroups.groups.indexOf(groupName)) {
                 isGroupMatch = true;
-                return false; // Stops the forEach from extra loops
+                return false; / Stops the forEach from extra loops
               }
             });
-            // eslint-disable-next-line no-empty
+            / eslint-disable-next-line no-empty
           } catch (e) {}
         });
         if (!isGroupMatch) {
@@ -74731,14 +74731,14 @@ var __webpack_exports__ = {};
       }
       currentElement = this;
 
-      // Get both parents and children and do a drag-leave on them in order to prevent UI glitches
-      // of the placeholder that happen when the user drags from parent to child and vice versa.
+      / Get both parents and children and do a drag-leave on them in order to prevent UI glitches
+      / of the placeholder that happen when the user drags from parent to child and vice versa.
       var $parents = elementsCache.$element.parents(),
         $children = elementsCache.$element.children();
 
-      // Remove all current element classes to take in account nested Droppable instances.
-      // TODO #1: Move to `doDragLeave()`?
-      // TODO #2: Find a better solution.
+      / Remove all current element classes to take in account nested Droppable instances.
+      / TODO #1: Move to `doDragLeave()`?
+      / TODO #2: Find a better solution.
       $children.find('.' + settings.currentElementClass).removeClass(settings.currentElementClass);
       $parents.add($children).each(function () {
         var droppableInstance = $(this).data('html5Droppable');
@@ -74798,7 +74798,7 @@ var __webpack_exports__ = {};
         return;
       }
 
-      // Trigger a Droppable-specific `onDropping` callback.
+      / Trigger a Droppable-specific `onDropping` callback.
       if (settings.onDropping) {
         settings.onDropping(currentSide, event);
       }
@@ -74843,7 +74843,7 @@ var __webpack_exports__ = {};
           }
           return;
         } else if ('destroy' === options) {
-          // Escape the loop when an element is destroyed before initialisation.
+          / Escape the loop when an element is destroyed before initialisation.
           return;
         }
         options.element = this;

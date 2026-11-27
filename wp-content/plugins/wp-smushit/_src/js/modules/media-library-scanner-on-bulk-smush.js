@@ -76,7 +76,7 @@ import { GlobalStats } from '../common/globalStats';
 		}
 
 		setRecheckImagesButtonOnLoad() {
-			// recheckImagesBtn.classList.add( 'sui-button-onload' );
+			/ recheckImagesBtn.classList.add( 'sui-button-onload' );
 			this.disableRecheckImagesButton();
 			this.setInnerText( recheckImagesBtn.querySelector( '.wp-smush-inner-text' ), __( 'Checking Images', 'wp-smushit' ) );
 		}
@@ -86,7 +86,7 @@ import { GlobalStats } from '../common/globalStats';
 		}
 
 		revertRecheckImagesButton() {
-			// recheckImagesBtn.classList.remove( 'sui-button-onload' );
+			/ recheckImagesBtn.classList.remove( 'sui-button-onload' );
 			recheckImagesBtn.removeAttribute( 'disabled' );
 			this.revertInnerText( recheckImagesBtn.querySelector( '.wp-smush-inner-text' ) );
 		}
@@ -288,7 +288,7 @@ import { GlobalStats } from '../common/globalStats';
 	 * Event Listeners.
 	 */
 
-	// Background Scan Media Library.
+	/ Background Scan Media Library.
 	const registerScanMediaLibraryEvent = () => {
 		if ( ! recheckImagesBtn ) {
 			return;
@@ -301,7 +301,7 @@ import { GlobalStats } from '../common/globalStats';
 
 		recheckImagesBtn.addEventListener( 'click', () => mediaLibScanner.startScan() );
 
-		//Check scan is running.
+		/Check scan is running.
 		if ( window.wp_smushit_data.media_library_scan?.in_processing ) {
 			mediaLibScanner.onStart().showProgressBar().autoSyncStatus();
 		}
@@ -379,7 +379,7 @@ import { GlobalStats } from '../common/globalStats';
 		} );
 	};
 
-	// Scan and Bulk Smush.
+	/ Scan and Bulk Smush.
 	const registerScanAndBulkSmushEvent = () => {
 		if ( ! bulkSmushButton ) {
 			return;

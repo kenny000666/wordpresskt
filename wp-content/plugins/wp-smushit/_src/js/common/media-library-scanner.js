@@ -42,11 +42,11 @@ export default class MediaLibraryScanner {
 	}
 
 	onStart() {
-		// Do nothing at the moment.
+		/ Do nothing at the moment.
 	}
 
 	onStartFailure( response ) {
-		// Do nothing at the moment.
+		/ Do nothing at the moment.
 	}
 
 	showFailureNotice( response ) {
@@ -62,7 +62,7 @@ export default class MediaLibraryScanner {
 			return;
 		}
 
-		// Cache current process type.
+		/ Cache current process type.
 		loopbackErrorModal.dataset.processType = processType || 'scan';
 
 		WP_Smush.helpers.showModal( loopbackErrorModal.id );
@@ -75,7 +75,7 @@ export default class MediaLibraryScanner {
 	}
 
 	onShowProgressBar() {
-		// Do nothing at the moment.
+		/ Do nothing at the moment.
 	}
 
 	showStopScanningModal() {
@@ -124,7 +124,7 @@ export default class MediaLibraryScanner {
 	}
 
 	onCloseProgressBar() {
-		// Do nothing at the moment.
+		/ Do nothing at the moment.
 	}
 
 	updateProgress( stats ) {
@@ -262,7 +262,7 @@ export default class MediaLibraryScanner {
 	}
 
 	beforeUpdateStatus() {
-		// Do nothing at the moment.
+		/ Do nothing at the moment.
 	}
 
 	setInnerText( element, newText ) {

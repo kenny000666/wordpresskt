@@ -20,7 +20,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"../version",
@@ -28,7 +28,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -43,15 +43,15 @@ return $.effects.define( "explode", "hide", function( options, done ) {
 		mode = options.mode,
 		show = mode === "show",
 
-		// Show and then visibility:hidden the element before calculating offset
+		/ Show and then visibility:hidden the element before calculating offset
 		offset = element.show().css( "visibility", "hidden" ).offset(),
 
-		// Width and height of a piece
+		/ Width and height of a piece
 		width = Math.ceil( element.outerWidth() / cells ),
 		height = Math.ceil( element.outerHeight() / rows ),
 		pieces = [];
 
-	// Children animate complete:
+	/ Children animate complete:
 	function childComplete() {
 		pieces.push( this );
 		if ( pieces.length === rows * cells ) {
@@ -59,17 +59,17 @@ return $.effects.define( "explode", "hide", function( options, done ) {
 		}
 	}
 
-	// Clone the element for each row and cell.
-	for ( i = 0; i < rows; i++ ) { // ===>
+	/ Clone the element for each row and cell.
+	for ( i = 0; i < rows; i++ ) { / ===>
 		top = offset.top + i * height;
 		my = i - ( rows - 1 ) / 2;
 
-		for ( j = 0; j < cells; j++ ) { // |||
+		for ( j = 0; j < cells; j++ ) { / |||
 			left = offset.left + j * width;
 			mx = j - ( cells - 1 ) / 2;
 
-			// Create a clone of the now hidden main element that will be absolute positioned
-			// within a wrapper div off the -left and -top equal to size of our pieces
+			/ Create a clone of the now hidden main element that will be absolute positioned
+			/ within a wrapper div off the -left and -top equal to size of our pieces
 			element
 				.clone()
 				.appendTo( "body" )
@@ -81,8 +81,8 @@ return $.effects.define( "explode", "hide", function( options, done ) {
 					top: -i * height
 				} )
 
-				// Select the wrapper - make it overflow: hidden and absolute positioned based on
-				// where the original was located +left and +top equal to the size of pieces
+				/ Select the wrapper - make it overflow: hidden and absolute positioned based on
+				/ where the original was located +left and +top equal to the size of pieces
 				.parent()
 					.addClass( "ui-effects-explode" )
 					.css( {

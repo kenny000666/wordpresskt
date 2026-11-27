@@ -90,16 +90,16 @@ function shouldUseNative() {
 			return false;
 		}
 
-		// Detect buggy property enumeration order in older V8 versions.
+		/ Detect buggy property enumeration order in older V8 versions.
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc');  / eslint-disable-line no-new-wrappers
 		test1[5] = 'de';
 		if (Object.getOwnPropertyNames(test1)[0] === '5') {
 			return false;
 		}
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=3056
 		var test2 = {};
 		for (var i = 0; i < 10; i++) {
 			test2['_' + String.fromCharCode(i)] = i;
@@ -111,7 +111,7 @@ function shouldUseNative() {
 			return false;
 		}
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=3056
 		var test3 = {};
 		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
 			test3[letter] = letter;
@@ -123,7 +123,7 @@ function shouldUseNative() {
 
 		return true;
 	} catch (err) {
-		// We don't expect any of the above to throw, but better to be safe.
+		/ We don't expect any of the above to throw, but better to be safe.
 		return false;
 	}
 }
@@ -179,9 +179,9 @@ if (process.env.NODE_ENV !== 'production') {
       console.error(message);
     }
     try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
+      / --- Welcome to debugging React ---
+      / This error was thrown as a convenience so that you can use this stack
+      / to find the callsite that caused this warning to fire.
       throw new Error(message);
     } catch (x) { /**/ }
   };
@@ -203,12 +203,12 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
     for (var typeSpecName in typeSpecs) {
       if (has(typeSpecs, typeSpecName)) {
         var error;
-        // Prop type validation may throw. In case they do, we don't want to
-        // fail the render phase where it didn't fail before. So we log it.
-        // After these have been cleaned up, we'll let them throw.
+        / Prop type validation may throw. In case they do, we don't want to
+        / fail the render phase where it didn't fail before. So we log it.
+        / After these have been cleaned up, we'll let them throw.
         try {
-          // This is intentionally an invariant that gets caught. It's the same
-          // behavior as without this statement except with a better message.
+          / This is intentionally an invariant that gets caught. It's the same
+          / behavior as without this statement except with a better message.
           if (typeof typeSpecs[typeSpecName] !== 'function') {
             var err = Error(
               (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
@@ -233,8 +233,8 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
           );
         }
         if (error instanceof Error && !(error.message in loggedTypeFailures)) {
-          // Only monitor this failure once because there tends to be a lot of the
-          // same error.
+          / Only monitor this failure once because there tends to be a lot of the
+          / same error.
           loggedTypeFailures[error.message] = true;
 
           var stack = getStack ? getStack() : '';
@@ -281,7 +281,7 @@ emptyFunctionWithReset.resetWarningCache = emptyFunction;
 module.exports = function() {
   function shim(props, propName, componentName, location, propFullName, secret) {
     if (secret === ReactPropTypesSecret) {
-      // It is still safe when called from React.
+      / It is still safe when called from React.
       return;
     }
     var err = new Error(
@@ -296,8 +296,8 @@ module.exports = function() {
   function getShim() {
     return shim;
   };
-  // Important!
-  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
+  / Important!
+  / Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
   var ReactPropTypes = {
     array: shim,
     bigint: shim,
@@ -356,9 +356,9 @@ if (process.env.NODE_ENV !== 'production') {
       console.error(message);
     }
     try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
+      / --- Welcome to debugging React ---
+      / This error was thrown as a convenience so that you can use this stack
+      / to find the callsite that caused this warning to fire.
       throw new Error(message);
     } catch (x) {}
   };
@@ -371,7 +371,7 @@ function emptyFunctionThatReturnsNull() {
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
   var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
-  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+  var FAUX_ITERATOR_SYMBOL = '@@iterator'; / Before Symbol spec.
 
   /**
    * Returns the iterator method function contained on the iterable object.
@@ -401,13 +401,13 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    *   var Props = require('ReactPropTypes');
    *   var MyArticle = React.createClass({
    *     propTypes: {
-   *       // An optional string prop named "description".
+   *       / An optional string prop named "description".
    *       description: Props.string,
    *
-   *       // A required enum prop named "category".
+   *       / A required enum prop named "category".
    *       category: Props.oneOf(['News','Photos']).isRequired,
    *
-   *       // A prop named "dialog" that requires an instance of Dialog.
+   *       / A prop named "dialog" that requires an instance of Dialog.
    *       dialog: Props.instanceOf(Dialog).isRequired
    *     },
    *     render: function() { ... }
@@ -423,7 +423,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    *
    *  var MyLink = React.createClass({
    *    propTypes: {
-   *      // An optional string or URI prop named "href".
+   *      / An optional string or URI prop named "href".
    *      href: function(props, propName, componentName) {
    *        var propValue = props[propName];
    *        if (propValue != null && typeof propValue !== 'string' &&
@@ -443,8 +443,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
   var ANONYMOUS = '<<anonymous>>';
 
-  // Important!
-  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+  / Important!
+  / Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
   var ReactPropTypes = {
     array: createPrimitiveTypeChecker('array'),
     bigint: createPrimitiveTypeChecker('bigint'),
@@ -474,13 +474,13 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    */
   /*eslint-disable no-self-compare*/
   function is(x, y) {
-    // SameValue algorithm
+    / SameValue algorithm
     if (x === y) {
-      // Steps 1-5, 7-10
-      // Steps 6.b-6.e: +0 != -0
+      / Steps 1-5, 7-10
+      / Steps 6.b-6.e: +0 != -0
       return x !== 0 || 1 / x === 1 / y;
     } else {
-      // Step 6.a: NaN == NaN
+      / Step 6.a: NaN == NaN
       return x !== x && y !== y;
     }
   }
@@ -498,7 +498,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     this.data = data && typeof data === 'object' ? data: {};
     this.stack = '';
   }
-  // Make `instanceof Error` still work for returned errors.
+  / Make `instanceof Error` still work for returned errors.
   PropTypeError.prototype = Error.prototype;
 
   function createChainableTypeChecker(validate) {
@@ -512,7 +512,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
       if (secret !== ReactPropTypesSecret) {
         if (throwOnDirectAccess) {
-          // New behavior only for users of `prop-types` package
+          / New behavior only for users of `prop-types` package
           var err = new Error(
             'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
             'Use `PropTypes.checkPropTypes()` to call them. ' +
@@ -521,11 +521,11 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
           err.name = 'Invariant Violation';
           throw err;
         } else if (process.env.NODE_ENV !== 'production' && typeof console !== 'undefined') {
-          // Old behavior for people using React.PropTypes
+          / Old behavior for people using React.PropTypes
           var cacheKey = componentName + ':' + propName;
           if (
             !manualPropTypeCallCache[cacheKey] &&
-            // Avoid spamming the console because they are often not actionable except for lib authors
+            / Avoid spamming the console because they are often not actionable except for lib authors
             manualPropTypeWarningCount < 3
           ) {
             printWarning(
@@ -564,9 +564,9 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
       var propValue = props[propName];
       var propType = getPropType(propValue);
       if (propType !== expectedType) {
-        // `propValue` being instance of, say, date/regexp, pass the 'object'
-        // check, but we can offer a more precise error message here rather than
-        // 'of type `object`'.
+        / `propValue` being instance of, say, date/regexp, pass the 'object'
+        / check, but we can offer a more precise error message here rather than
+        / 'of type `object`'.
         var preciseType = getPreciseType(propValue);
 
         return new PropTypeError(
@@ -779,7 +779,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
       if (propType !== 'object') {
         return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
       }
-      // We need to check all keys in case some are required but missing from props.
+      / We need to check all keys in case some are required but missing from props.
       var allKeys = assign({}, props[propName], shapeTypes);
       for (var key in allKeys) {
         var checker = shapeTypes[key];
@@ -831,7 +831,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
               }
             }
           } else {
-            // Iterator will provide entry [k,v] tuples rather than values.
+            / Iterator will provide entry [k,v] tuples rather than values.
             while (!(step = iterator.next()).done) {
               var entry = step.value;
               if (entry) {
@@ -852,22 +852,22 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
   }
 
   function isSymbol(propType, propValue) {
-    // Native Symbol.
+    / Native Symbol.
     if (propType === 'symbol') {
       return true;
     }
 
-    // falsy value can't be a Symbol
+    / falsy value can't be a Symbol
     if (!propValue) {
       return false;
     }
 
-    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
+    / 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
     if (propValue['@@toStringTag'] === 'Symbol') {
       return true;
     }
 
-    // Fallback for non-spec compliant Symbols which are polyfilled.
+    / Fallback for non-spec compliant Symbols which are polyfilled.
     if (typeof Symbol === 'function' && propValue instanceof Symbol) {
       return true;
     }
@@ -875,16 +875,16 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return false;
   }
 
-  // Equivalent of `typeof` but with special handling for array and regexp.
+  / Equivalent of `typeof` but with special handling for array and regexp.
   function getPropType(propValue) {
     var propType = typeof propValue;
     if (Array.isArray(propValue)) {
       return 'array';
     }
     if (propValue instanceof RegExp) {
-      // Old webkits (at least until Android 4.0) return 'function' rather than
-      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
-      // passes PropTypes.object.
+      / Old webkits (at least until Android 4.0) return 'function' rather than
+      / 'object' for typeof a RegExp. We'll normalize this here so that /bla/
+      / passes PropTypes.object.
       return 'object';
     }
     if (isSymbol(propType, propValue)) {
@@ -893,8 +893,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return propType;
   }
 
-  // This handles more types than `getPropType`. Only used for error messages.
-  // See `createPrimitiveTypeChecker`.
+  / This handles more types than `getPropType`. Only used for error messages.
+  / See `createPrimitiveTypeChecker`.
   function getPreciseType(propValue) {
     if (typeof propValue === 'undefined' || propValue === null) {
       return '' + propValue;
@@ -910,8 +910,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return propType;
   }
 
-  // Returns a string that is postfixed to a warning about an invalid type.
-  // For example, "undefined" or "of type array"
+  / Returns a string that is postfixed to a warning about an invalid type.
+  / For example, "undefined" or "of type array"
   function getPostfixForTypeWarning(value) {
     var type = getPreciseType(value);
     switch (type) {
@@ -927,7 +927,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     }
   }
 
-  // Returns class name of the object, if any.
+  / Returns class name of the object, if any.
   function getClassName(propValue) {
     if (!propValue.constructor || !propValue.constructor.name) {
       return ANONYMOUS;
@@ -955,13 +955,13 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 if (process.env.NODE_ENV !== 'production') {
   var ReactIs = require('react-is');
 
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
+  / By explicitly using `prop-types` you are opting into new development behavior.
+  / http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
   module.exports = require('./factoryWithTypeCheckers')(ReactIs.isElement, throwOnDirectAccess);
 } else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
+  / By explicitly using `prop-types` you are opting into new production behavior.
+  / http://fb.me/prop-types-in-prod
   module.exports = require('./factoryWithThrowingShims')();
 }
 
@@ -1011,7 +1011,7 @@ var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
 var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
 var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
 var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
-var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; / TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
 // (unstable) APIs that have been removed. Can we remove the symbols?
 
 var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
@@ -1027,7 +1027,7 @@ var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
 var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
 
 function isValidElementType(type) {
-  return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+  return typeof type === 'string' || typeof type === 'function' || / Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
   type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
 }
 
@@ -1071,7 +1071,7 @@ function typeOf(object) {
   }
 
   return undefined;
-} // AsyncMode is deprecated along with isAsyncMode
+} / AsyncMode is deprecated along with isAsyncMode
 
 var AsyncMode = REACT_ASYNC_MODE_TYPE;
 var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
@@ -1086,12 +1086,12 @@ var Portal = REACT_PORTAL_TYPE;
 var Profiler = REACT_PROFILER_TYPE;
 var StrictMode = REACT_STRICT_MODE_TYPE;
 var Suspense = REACT_SUSPENSE_TYPE;
-var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
+var hasWarnedAboutDeprecatedIsAsyncMode = false; / AsyncMode should be deprecated
 
 function isAsyncMode(object) {
   {
     if (!hasWarnedAboutDeprecatedIsAsyncMode) {
-      hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+      hasWarnedAboutDeprecatedIsAsyncMode = true; / Using console['warn'] to evade Babel and ESLint
 
       console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
     }
@@ -1279,7 +1279,7 @@ var ReactCurrentBatchConfig = {
 
 var ReactCurrentActQueue = {
   current: null,
-  // Used to reproduce behavior of `batchedUpdates` in legacy mode.
+  / Used to reproduce behavior of `batchedUpdates` in legacy mode.
   isBatchingLegacy: false,
   didScheduleLegacyUpdate: false
 };
@@ -1311,17 +1311,17 @@ function setExtraStackFrame(stack) {
     {
       currentExtraStackFrame = stack;
     }
-  }; // Stack implementation injected by the current renderer.
+  }; / Stack implementation injected by the current renderer.
 
 
   ReactDebugCurrentFrame.getCurrentStack = null;
 
   ReactDebugCurrentFrame.getStackAddendum = function () {
-    var stack = ''; // Add an extra top frame while an element is being validated
+    var stack = ''; / Add an extra top frame while an element is being validated
 
     if (currentExtraStackFrame) {
       stack += currentExtraStackFrame;
-    } // Delegate to the injected renderer-specific implementation
+    } / Delegate to the injected renderer-specific implementation
 
 
     var impl = ReactDebugCurrentFrame.getCurrentStack;
@@ -1336,15 +1336,15 @@ function setExtraStackFrame(stack) {
 
 // -----------------------------------------------------------------------------
 
-var enableScopeAPI = false; // Experimental Create Event Handle API.
+var enableScopeAPI = false; / Experimental Create Event Handle API.
 var enableCacheElement = false;
-var enableTransitionTracing = false; // No known bugs, but needs performance testing
+var enableTransitionTracing = false; / No known bugs, but needs performance testing
 
-var enableLegacyHidden = false; // Enables unstable_avoidThisFallback feature in Fiber
+var enableLegacyHidden = false; / Enables unstable_avoidThisFallback feature in Fiber
 // stuff. Intended to enable React core members to more easily debug scheduling
 // issues in DEV builds.
 
-var enableDebugTracing = false; // Track which Fiber(s) schedule render work.
+var enableDebugTracing = false; / Track which Fiber(s) schedule render work.
 
 var ReactSharedInternals = {
   ReactCurrentDispatcher: ReactCurrentDispatcher,
@@ -1386,8 +1386,8 @@ function error(format) {
 }
 
 function printWarning(level, format, args) {
-  // When changing this logic, you might want to also
-  // update consoleWithStackDev.www.js as well.
+  / When changing this logic, you might want to also
+  / update consoleWithStackDev.www.js as well.
   {
     var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
     var stack = ReactDebugCurrentFrame.getStackAddendum();
@@ -1395,16 +1395,16 @@ function printWarning(level, format, args) {
     if (stack !== '') {
       format += '%s';
       args = args.concat([stack]);
-    } // eslint-disable-next-line react-internal/safe-string-coercion
+    } / eslint-disable-next-line react-internal/safe-string-coercion
 
 
     var argsWithFormat = args.map(function (item) {
       return String(item);
-    }); // Careful: RN currently depends on this prefix
+    }); / Careful: RN currently depends on this prefix
 
-    argsWithFormat.unshift('Warning: ' + format); // We intentionally don't use spread (or .apply) directly because it
-    // breaks IE9: https://github.com/facebook/react/issues/13610
-    // eslint-disable-next-line react-internal/no-production-logging
+    argsWithFormat.unshift('Warning: ' + format); / We intentionally don't use spread (or .apply) directly because it
+    / breaks IE9: https://github.com/facebook/react/issues/13610
+    / eslint-disable-next-line react-internal/no-production-logging
 
     Function.prototype.apply.call(console[level], console, argsWithFormat);
   }
@@ -1511,10 +1511,10 @@ var emptyObject = {};
 
 function Component(props, context, updater) {
   this.props = props;
-  this.context = context; // If a component has string refs, we will assign a different object later.
+  this.context = context; / If a component has string refs, we will assign a different object later.
 
-  this.refs = emptyObject; // We initialize the default updater but the real one gets injected by the
-  // renderer.
+  this.refs = emptyObject; / We initialize the default updater but the real one gets injected by the
+  / renderer.
 
   this.updater = updater || ReactNoopUpdateQueue;
 }
@@ -1611,14 +1611,14 @@ ComponentDummy.prototype = Component.prototype;
 
 function PureComponent(props, context, updater) {
   this.props = props;
-  this.context = context; // If a component has string refs, we will assign a different object later.
+  this.context = context; / If a component has string refs, we will assign a different object later.
 
   this.refs = emptyObject;
   this.updater = updater || ReactNoopUpdateQueue;
 }
 
 var pureComponentPrototype = PureComponent.prototype = new ComponentDummy();
-pureComponentPrototype.constructor = PureComponent; // Avoid an extra prototype jump for these methods.
+pureComponentPrototype.constructor = PureComponent; / Avoid an extra prototype jump for these methods.
 
 assign(pureComponentPrototype, Component.prototype);
 pureComponentPrototype.isPureReactComponent = true;
@@ -1636,7 +1636,7 @@ function createRef() {
   return refObject;
 }
 
-var isArrayImpl = Array.isArray; // eslint-disable-next-line no-redeclare
+var isArrayImpl = Array.isArray; / eslint-disable-next-line no-redeclare
 
 function isArray(a) {
   return isArrayImpl(a);
@@ -1654,12 +1654,12 @@ function isArray(a) {
 // $FlowFixMe only called in DEV, so void return is not possible.
 function typeName(value) {
   {
-    // toStringTag is needed for namespaced types like Temporal.Instant
+    / toStringTag is needed for namespaced types like Temporal.Instant
     var hasToStringTag = typeof Symbol === 'function' && Symbol.toStringTag;
     var type = hasToStringTag && value[Symbol.toStringTag] || value.constructor.name || 'Object';
     return type;
   }
-} // $FlowFixMe only called in DEV, so void return is not possible.
+} / $FlowFixMe only called in DEV, so void return is not possible.
 
 
 function willCoercionThrow(value) {
@@ -1674,29 +1674,29 @@ function willCoercionThrow(value) {
 }
 
 function testStringCoercion(value) {
-  // If you ended up here by following an exception call stack, here's what's
-  // happened: you supplied an object or symbol value to React (as a prop, key,
-  // DOM attribute, CSS property, string ref, etc.) and when React tried to
-  // coerce it to a string using `'' + value`, an exception was thrown.
-  //
-  // The most common types that will cause this exception are `Symbol` instances
-  // and Temporal objects like `Temporal.Instant`. But any object that has a
-  // `valueOf` or `[Symbol.toPrimitive]` method that throws will also cause this
-  // exception. (Library authors do this to prevent users from using built-in
-  // numeric operators like `+` or comparison operators like `>=` because custom
-  // methods are needed to perform accurate arithmetic or comparison.)
-  //
-  // To fix the problem, coerce this object or symbol value to a string before
-  // passing it to React. The most reliable way is usually `String(value)`.
-  //
-  // To find which value is throwing, check the browser or debugger console.
-  // Before this exception was thrown, there should be `console.error` output
-  // that shows the type (Symbol, Temporal.PlainDate, etc.) that caused the
-  // problem and how that type was used: key, atrribute, input value prop, etc.
-  // In most cases, this console output also shows the component and its
-  // ancestor components where the exception happened.
-  //
-  // eslint-disable-next-line react-internal/safe-string-coercion
+  / If you ended up here by following an exception call stack, here's what's
+  / happened: you supplied an object or symbol value to React (as a prop, key,
+  / DOM attribute, CSS property, string ref, etc.) and when React tried to
+  / coerce it to a string using `'' + value`, an exception was thrown.
+  /
+  / The most common types that will cause this exception are `Symbol` instances
+  / and Temporal objects like `Temporal.Instant`. But any object that has a
+  / `valueOf` or `[Symbol.toPrimitive]` method that throws will also cause this
+  / exception. (Library authors do this to prevent users from using built-in
+  / numeric operators like `+` or comparison operators like `>=` because custom
+  / methods are needed to perform accurate arithmetic or comparison.)
+  /
+  / To fix the problem, coerce this object or symbol value to a string before
+  / passing it to React. The most reliable way is usually `String(value)`.
+  /
+  / To find which value is throwing, check the browser or debugger console.
+  / Before this exception was thrown, there should be `console.error` output
+  / that shows the type (Symbol, Temporal.PlainDate, etc.) that caused the
+  / problem and how that type was used: key, atrribute, input value prop, etc.
+  / In most cases, this console output also shows the component and its
+  / ancestor components where the exception happened.
+  /
+  / eslint-disable-next-line react-internal/safe-string-coercion
   return '' + value;
 }
 function checkKeyStringCoercion(value) {
@@ -1704,7 +1704,7 @@ function checkKeyStringCoercion(value) {
     if (willCoercionThrow(value)) {
       error('The provided key is an unsupported type %s.' + ' This value must be coerced to a string before before using it here.', typeName(value));
 
-      return testStringCoercion(value); // throw (to help callers find troubleshooting comments)
+      return testStringCoercion(value); / throw (to help callers find troubleshooting comments)
     }
   }
 }
@@ -1718,17 +1718,17 @@ function getWrappedName(outerType, innerType, wrapperName) {
 
   var functionName = innerType.displayName || innerType.name || '';
   return functionName !== '' ? wrapperName + "(" + functionName + ")" : wrapperName;
-} // Keep in sync with react-reconciler/getComponentNameFromFiber
+} / Keep in sync with react-reconciler/getComponentNameFromFiber
 
 
 function getContextName(type) {
   return type.displayName || 'Context';
-} // Note that the reconciler package should generally prefer to use getComponentNameFromFiber() instead.
+} / Note that the reconciler package should generally prefer to use getComponentNameFromFiber() instead.
 
 
 function getComponentNameFromType(type) {
   if (type == null) {
-    // Host root, text node or just invalid type.
+    / Host root, text node or just invalid type.
     return null;
   }
 
@@ -1802,7 +1802,7 @@ function getComponentNameFromType(type) {
           }
         }
 
-      // eslint-disable-next-line no-fallthrough
+      / eslint-disable-next-line no-fallthrough
     }
   }
 
@@ -1924,41 +1924,41 @@ function warnIfStringRefCannotBeAutoConverted(config) {
 
 var ReactElement = function (type, key, ref, self, source, owner, props) {
   var element = {
-    // This tag allows us to uniquely identify this as a React Element
+    / This tag allows us to uniquely identify this as a React Element
     $$typeof: REACT_ELEMENT_TYPE,
-    // Built-in properties that belong on the element
+    / Built-in properties that belong on the element
     type: type,
     key: key,
     ref: ref,
     props: props,
-    // Record the component responsible for creating this element.
+    / Record the component responsible for creating this element.
     _owner: owner
   };
 
   {
-    // The validation flag is currently mutative. We put it on
-    // an external backing store so that we can freeze the whole object.
-    // This can be replaced with a WeakMap once they are implemented in
-    // commonly used development environments.
-    element._store = {}; // To make comparing ReactElements easier for testing purposes, we make
-    // the validation flag non-enumerable (where possible, which should
-    // include every environment we run tests in), so the test framework
-    // ignores it.
+    / The validation flag is currently mutative. We put it on
+    / an external backing store so that we can freeze the whole object.
+    / This can be replaced with a WeakMap once they are implemented in
+    / commonly used development environments.
+    element._store = {}; / To make comparing ReactElements easier for testing purposes, we make
+    / the validation flag non-enumerable (where possible, which should
+    / include every environment we run tests in), so the test framework
+    / ignores it.
 
     Object.defineProperty(element._store, 'validated', {
       configurable: false,
       enumerable: false,
       writable: true,
       value: false
-    }); // self and source are DEV only properties.
+    }); / self and source are DEV only properties.
 
     Object.defineProperty(element, '_self', {
       configurable: false,
       enumerable: false,
       writable: false,
       value: self
-    }); // Two elements created in two different places should be considered
-    // equal for testing purposes and therefore we hide it from enumeration.
+    }); / Two elements created in two different places should be considered
+    / equal for testing purposes and therefore we hide it from enumeration.
 
     Object.defineProperty(element, '_source', {
       configurable: false,
@@ -1981,7 +1981,7 @@ var ReactElement = function (type, key, ref, self, source, owner, props) {
  */
 
 function createElement(type, config, children) {
-  var propName; // Reserved names are extracted
+  var propName; / Reserved names are extracted
 
   var props = {};
   var key = null;
@@ -2007,15 +2007,15 @@ function createElement(type, config, children) {
     }
 
     self = config.__self === undefined ? null : config.__self;
-    source = config.__source === undefined ? null : config.__source; // Remaining properties are added to a new props object
+    source = config.__source === undefined ? null : config.__source; / Remaining properties are added to a new props object
 
     for (propName in config) {
       if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
         props[propName] = config[propName];
       }
     }
-  } // Children can be more than one argument, and those are transferred onto
-  // the newly allocated props object.
+  } / Children can be more than one argument, and those are transferred onto
+  / the newly allocated props object.
 
 
   var childrenLength = arguments.length - 2;
@@ -2036,7 +2036,7 @@ function createElement(type, config, children) {
     }
 
     props.children = childArray;
-  } // Resolve default props
+  } / Resolve default props
 
 
   if (type && type.defaultProps) {
@@ -2079,24 +2079,24 @@ function cloneElement(element, config, children) {
     throw new Error("React.cloneElement(...): The argument must be a React element, but you passed " + element + ".");
   }
 
-  var propName; // Original props are copied
+  var propName; / Original props are copied
 
-  var props = assign({}, element.props); // Reserved names are extracted
+  var props = assign({}, element.props); / Reserved names are extracted
 
   var key = element.key;
-  var ref = element.ref; // Self is preserved since the owner is preserved.
+  var ref = element.ref; / Self is preserved since the owner is preserved.
 
-  var self = element._self; // Source is preserved since cloneElement is unlikely to be targeted by a
-  // transpiler, and the original source is probably a better indicator of the
-  // true owner.
+  var self = element._self; / Source is preserved since cloneElement is unlikely to be targeted by a
+  / transpiler, and the original source is probably a better indicator of the
+  / true owner.
 
-  var source = element._source; // Owner will be preserved, unless ref is overridden
+  var source = element._source; / Owner will be preserved, unless ref is overridden
 
   var owner = element._owner;
 
   if (config != null) {
     if (hasValidRef(config)) {
-      // Silently steal the ref from the parent.
+      / Silently steal the ref from the parent.
       ref = config.ref;
       owner = ReactCurrentOwner.current;
     }
@@ -2107,7 +2107,7 @@ function cloneElement(element, config, children) {
       }
 
       key = '' + config.key;
-    } // Remaining properties override existing props
+    } / Remaining properties override existing props
 
 
     var defaultProps;
@@ -2119,15 +2119,15 @@ function cloneElement(element, config, children) {
     for (propName in config) {
       if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
         if (config[propName] === undefined && defaultProps !== undefined) {
-          // Resolve default props
+          / Resolve default props
           props[propName] = defaultProps[propName];
         } else {
           props[propName] = config[propName];
         }
       }
     }
-  } // Children can be more than one argument, and those are transferred onto
-  // the newly allocated props object.
+  } / Children can be more than one argument, and those are transferred onto
+  / the newly allocated props object.
 
 
   var childrenLength = arguments.length - 2;
@@ -2200,16 +2200,16 @@ function escapeUserProvidedKey(text) {
 
 
 function getElementKey(element, index) {
-  // Do some typechecking here since we call this blindly. We want to ensure
-  // that we don't block potential future ES APIs.
+  / Do some typechecking here since we call this blindly. We want to ensure
+  / that we don't block potential future ES APIs.
   if (typeof element === 'object' && element !== null && element.key != null) {
-    // Explicit key
+    / Explicit key
     {
       checkKeyStringCoercion(element.key);
     }
 
     return escape('' + element.key);
-  } // Implicit key determined by the index in the set
+  } / Implicit key determined by the index in the set
 
 
   return index.toString(36);
@@ -2219,7 +2219,7 @@ function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
   var type = typeof children;
 
   if (type === 'undefined' || type === 'boolean') {
-    // All of the above are perceived as null.
+    / All of the above are perceived as null.
     children = null;
   }
 
@@ -2246,8 +2246,8 @@ function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
 
   if (invokeCallback) {
     var _child = children;
-    var mappedChild = callback(_child); // If it's the only child, treat the name as if it was wrapped in an array
-    // so that it's consistent if the number of children grows:
+    var mappedChild = callback(_child); / If it's the only child, treat the name as if it was wrapped in an array
+    / so that it's consistent if the number of children grows:
 
     var childKey = nameSoFar === '' ? SEPARATOR + getElementKey(_child, 0) : nameSoFar;
 
@@ -2264,19 +2264,19 @@ function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
     } else if (mappedChild != null) {
       if (isValidElement(mappedChild)) {
         {
-          // The `if` statement here prevents auto-disabling of the safe
-          // coercion ESLint rule, so we must manually disable it below.
-          // $FlowFixMe Flow incorrectly thinks React.Portal doesn't have a key
+          / The `if` statement here prevents auto-disabling of the safe
+          / coercion ESLint rule, so we must manually disable it below.
+          / $FlowFixMe Flow incorrectly thinks React.Portal doesn't have a key
           if (mappedChild.key && (!_child || _child.key !== mappedChild.key)) {
             checkKeyStringCoercion(mappedChild.key);
           }
         }
 
-        mappedChild = cloneAndReplaceKey(mappedChild, // Keep both the (mapped) and old keys if they differ, just as
-        // traverseAllChildren used to do for objects as children
-        escapedPrefix + ( // $FlowFixMe Flow incorrectly thinks React.Portal doesn't have a key
-        mappedChild.key && (!_child || _child.key !== mappedChild.key) ? // $FlowFixMe Flow incorrectly thinks existing element's key can be a number
-        // eslint-disable-next-line react-internal/safe-string-coercion
+        mappedChild = cloneAndReplaceKey(mappedChild, / Keep both the (mapped) and old keys if they differ, just as
+        / traverseAllChildren used to do for objects as children
+        escapedPrefix + ( / $FlowFixMe Flow incorrectly thinks React.Portal doesn't have a key
+        mappedChild.key && (!_child || _child.key !== mappedChild.key) ? / $FlowFixMe Flow incorrectly thinks existing element's key can be a number
+        / eslint-disable-next-line react-internal/safe-string-coercion
         escapeUserProvidedKey('' + mappedChild.key) + '/' : '') + childKey);
       }
 
@@ -2288,7 +2288,7 @@ function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
 
   var child;
   var nextName;
-  var subtreeCount = 0; // Count of children found in the current subtree.
+  var subtreeCount = 0; / Count of children found in the current subtree.
 
   var nextNamePrefix = nameSoFar === '' ? SEPARATOR : nameSoFar + SUBSEPARATOR;
 
@@ -2305,7 +2305,7 @@ function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
       var iterableChildren = children;
 
       {
-        // Warn about using Maps as children
+        / Warn about using Maps as children
         if (iteratorFn === iterableChildren.entries) {
           if (!didWarnAboutMaps) {
             warn('Using Maps as children is not supported. ' + 'Use an array of keyed ReactElements instead.');
@@ -2325,7 +2325,7 @@ function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
         subtreeCount += mapIntoArray(child, array, escapedPrefix, nextName, callback);
       }
     } else if (type === 'object') {
-      // eslint-disable-next-line react-internal/safe-string-coercion
+      / eslint-disable-next-line react-internal/safe-string-coercion
       var childrenString = String(children);
       throw new Error("Objects are not valid as a React child (found: " + (childrenString === '[object Object]' ? 'object with keys {' + Object.keys(children).join(', ') + '}' : childrenString) + "). " + 'If you meant to render a collection of children, use an array ' + 'instead.');
     }
@@ -2373,7 +2373,7 @@ function mapChildren(children, func, context) {
 function countChildren(children) {
   var n = 0;
   mapChildren(children, function () {
-    n++; // Don't return anything
+    n++; / Don't return anything
   });
   return n;
 }
@@ -2392,7 +2392,7 @@ function countChildren(children) {
  */
 function forEachChildren(children, forEachFunc, forEachContext) {
   mapChildren(children, function () {
-    forEachFunc.apply(this, arguments); // Don't return anything.
+    forEachFunc.apply(this, arguments); / Don't return anything.
   }, forEachContext);
 }
 /**
@@ -2433,24 +2433,24 @@ function onlyChild(children) {
 }
 
 function createContext(defaultValue) {
-  // TODO: Second argument used to be an optional `calculateChangedBits`
-  // function. Warn to reserve for future use?
+  / TODO: Second argument used to be an optional `calculateChangedBits`
+  / function. Warn to reserve for future use?
   var context = {
     $$typeof: REACT_CONTEXT_TYPE,
-    // As a workaround to support multiple concurrent renderers, we categorize
-    // some renderers as primary and others as secondary. We only expect
-    // there to be two concurrent renderers at most: React Native (primary) and
-    // Fabric (secondary); React DOM (primary) and React ART (secondary).
-    // Secondary renderers store their context values on separate fields.
+    / As a workaround to support multiple concurrent renderers, we categorize
+    / some renderers as primary and others as secondary. We only expect
+    / there to be two concurrent renderers at most: React Native (primary) and
+    / Fabric (secondary); React DOM (primary) and React ART (secondary).
+    / Secondary renderers store their context values on separate fields.
     _currentValue: defaultValue,
     _currentValue2: defaultValue,
-    // Used to track how many concurrent renderers this context currently
-    // supports within in a single renderer. Such as parallel server rendering.
+    / Used to track how many concurrent renderers this context currently
+    / supports within in a single renderer. Such as parallel server rendering.
     _threadCount: 0,
-    // These are circular
+    / These are circular
     Provider: null,
     Consumer: null,
-    // Add these to use same hidden class in VM as ServerContext
+    / Add these to use same hidden class in VM as ServerContext
     _defaultValue: null,
     _globalName: null
   };
@@ -2463,13 +2463,13 @@ function createContext(defaultValue) {
   var hasWarnedAboutDisplayNameOnConsumer = false;
 
   {
-    // A separate object, but proxies back to the original context object for
-    // backwards compatibility. It has a different $$typeof, so we can properly
-    // warn for the incorrect usage of Context as a Consumer.
+    / A separate object, but proxies back to the original context object for
+    / backwards compatibility. It has a different $$typeof, so we can properly
+    / warn for the incorrect usage of Context as a Consumer.
     var Consumer = {
       $$typeof: REACT_CONTEXT_TYPE,
       _context: context
-    }; // $FlowFixMe: Flow complains about not setting a value, which is intentional here
+    }; / $FlowFixMe: Flow complains about not setting a value, which is intentional here
 
     Object.defineProperties(Consumer, {
       Provider: {
@@ -2533,7 +2533,7 @@ function createContext(defaultValue) {
           }
         }
       }
-    }); // $FlowFixMe: Flow complains about missing properties because it doesn't understand defineProperty
+    }); / $FlowFixMe: Flow complains about missing properties because it doesn't understand defineProperty
 
     context.Consumer = Consumer;
   }
@@ -2554,22 +2554,22 @@ var Rejected = 2;
 function lazyInitializer(payload) {
   if (payload._status === Uninitialized) {
     var ctor = payload._result;
-    var thenable = ctor(); // Transition to the next state.
-    // This might throw either because it's missing or throws. If so, we treat it
-    // as still uninitialized and try again next time. Which is the same as what
-    // happens if the ctor or any wrappers processing the ctor throws. This might
-    // end up fixing it if the resolution was a concurrency bug.
+    var thenable = ctor(); / Transition to the next state.
+    / This might throw either because it's missing or throws. If so, we treat it
+    / as still uninitialized and try again next time. Which is the same as what
+    / happens if the ctor or any wrappers processing the ctor throws. This might
+    / end up fixing it if the resolution was a concurrency bug.
 
     thenable.then(function (moduleObject) {
       if (payload._status === Pending || payload._status === Uninitialized) {
-        // Transition to the next state.
+        / Transition to the next state.
         var resolved = payload;
         resolved._status = Resolved;
         resolved._result = moduleObject;
       }
     }, function (error) {
       if (payload._status === Pending || payload._status === Uninitialized) {
-        // Transition to the next state.
+        / Transition to the next state.
         var rejected = payload;
         rejected._status = Rejected;
         rejected._result = error;
@@ -2577,8 +2577,8 @@ function lazyInitializer(payload) {
     });
 
     if (payload._status === Uninitialized) {
-      // In case, we're still uninitialized, then we're waiting for the thenable
-      // to resolve. Set it as pending in the meantime.
+      / In case, we're still uninitialized, then we're waiting for the thenable
+      / to resolve. Set it as pending in the meantime.
       var pending = payload;
       pending._status = Pending;
       pending._result = thenable;
@@ -2590,14 +2590,14 @@ function lazyInitializer(payload) {
 
     {
       if (moduleObject === undefined) {
-        error('lazy: Expected the result of a dynamic imp' + 'ort() call. ' + 'Instead received: %s\n\nYour code should look like: \n  ' + // Break up imports to avoid accidentally parsing them as dependencies.
+        error('lazy: Expected the result of a dynamic imp' + 'ort() call. ' + 'Instead received: %s\n\nYour code should look like: \n  ' + / Break up imports to avoid accidentally parsing them as dependencies.
         'const MyComponent = lazy(() => imp' + "ort('./MyComponent'))\n\n" + 'Did you accidentally put curly braces around the import?', moduleObject);
       }
     }
 
     {
       if (!('default' in moduleObject)) {
-        error('lazy: Expected the result of a dynamic imp' + 'ort() call. ' + 'Instead received: %s\n\nYour code should look like: \n  ' + // Break up imports to avoid accidentally parsing them as dependencies.
+        error('lazy: Expected the result of a dynamic imp' + 'ort() call. ' + 'Instead received: %s\n\nYour code should look like: \n  ' + / Break up imports to avoid accidentally parsing them as dependencies.
         'const MyComponent = lazy(() => imp' + "ort('./MyComponent'))", moduleObject);
       }
     }
@@ -2610,7 +2610,7 @@ function lazyInitializer(payload) {
 
 function lazy(ctor) {
   var payload = {
-    // We use these fields to store the result.
+    / We use these fields to store the result.
     _status: Uninitialized,
     _result: ctor
   };
@@ -2621,9 +2621,9 @@ function lazy(ctor) {
   };
 
   {
-    // In production, this would just set it on the object.
+    / In production, this would just set it on the object.
     var defaultProps;
-    var propTypes; // $FlowFixMe
+    var propTypes; / $FlowFixMe
 
     Object.defineProperties(lazyType, {
       defaultProps: {
@@ -2634,8 +2634,8 @@ function lazy(ctor) {
         set: function (newDefaultProps) {
           error('React.lazy(...): It is not supported to assign `defaultProps` to ' + 'a lazy component import. Either specify them where the component ' + 'is defined, or create a wrapping component around it.');
 
-          defaultProps = newDefaultProps; // Match production behavior more closely:
-          // $FlowFixMe
+          defaultProps = newDefaultProps; / Match production behavior more closely:
+          / $FlowFixMe
 
           Object.defineProperty(lazyType, 'defaultProps', {
             enumerable: true
@@ -2650,8 +2650,8 @@ function lazy(ctor) {
         set: function (newPropTypes) {
           error('React.lazy(...): It is not supported to assign `propTypes` to ' + 'a lazy component import. Either specify them where the component ' + 'is defined, or create a wrapping component around it.');
 
-          propTypes = newPropTypes; // Match production behavior more closely:
-          // $FlowFixMe
+          propTypes = newPropTypes; / Match production behavior more closely:
+          / $FlowFixMe
 
           Object.defineProperty(lazyType, 'propTypes', {
             enumerable: true
@@ -2697,13 +2697,13 @@ function forwardRef(render) {
         return ownName;
       },
       set: function (name) {
-        ownName = name; // The inner component shouldn't inherit this display name in most cases,
-        // because the component may be used elsewhere.
-        // But it's nice for anonymous functions to inherit the name,
-        // so that our component-stack generation logic will display their frames.
-        // An anonymous function generally suggests a pattern like:
-        //   React.forwardRef((props, ref) => {...});
-        // This kind of inner function is not used elsewhere so the side effect is okay.
+        ownName = name; / The inner component shouldn't inherit this display name in most cases,
+        / because the component may be used elsewhere.
+        / But it's nice for anonymous functions to inherit the name,
+        / so that our component-stack generation logic will display their frames.
+        / An anonymous function generally suggests a pattern like:
+        /   React.forwardRef((props, ref) => {...});
+        / This kind of inner function is not used elsewhere so the side effect is okay.
 
         if (!render.name && !render.displayName) {
           render.displayName = name;
@@ -2724,7 +2724,7 @@ var REACT_MODULE_REFERENCE;
 function isValidElementType(type) {
   if (typeof type === 'string' || typeof type === 'function') {
     return true;
-  } // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
+  } / Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
 
 
   if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing  || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden  || type === REACT_OFFSCREEN_TYPE || enableScopeAPI  || enableCacheElement  || enableTransitionTracing ) {
@@ -2732,10 +2732,10 @@ function isValidElementType(type) {
   }
 
   if (typeof type === 'object' && type !== null) {
-    if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
-    // types supported by any Flight configuration anywhere since
-    // we don't know which Flight build this will end up being used
-    // with.
+    if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || / This needs to include all possible module reference object
+    / types supported by any Flight configuration anywhere since
+    / we don't know which Flight build this will end up being used
+    / with.
     type.$$typeof === REACT_MODULE_REFERENCE || type.getModuleId !== undefined) {
       return true;
     }
@@ -2766,13 +2766,13 @@ function memo(type, compare) {
         return ownName;
       },
       set: function (name) {
-        ownName = name; // The inner component shouldn't inherit this display name in most cases,
-        // because the component may be used elsewhere.
-        // But it's nice for anonymous functions to inherit the name,
-        // so that our component-stack generation logic will display their frames.
-        // An anonymous function generally suggests a pattern like:
-        //   React.memo((props) => {...});
-        // This kind of inner function is not used elsewhere so the side effect is okay.
+        ownName = name; / The inner component shouldn't inherit this display name in most cases,
+        / because the component may be used elsewhere.
+        / But it's nice for anonymous functions to inherit the name,
+        / so that our component-stack generation logic will display their frames.
+        / An anonymous function generally suggests a pattern like:
+        /   React.memo((props) => {...});
+        / This kind of inner function is not used elsewhere so the side effect is okay.
 
         if (!type.name && !type.displayName) {
           type.displayName = name;
@@ -2791,9 +2791,9 @@ function resolveDispatcher() {
     if (dispatcher === null) {
       error('Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for' + ' one of the following reasons:\n' + '1. You might have mismatching versions of React and the renderer (such as React DOM)\n' + '2. You might be breaking the Rules of Hooks\n' + '3. You might have more than one copy of React in the same app\n' + 'See https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem.');
     }
-  } // Will result in a null access error if accessed outside render phase. We
-  // intentionally don't throw our own error because this is in a hot path.
-  // Also helps ensure this is inlined.
+  } / Will result in a null access error if accessed outside render phase. We
+  / intentionally don't throw our own error because this is in a hot path.
+  / Also helps ensure this is inlined.
 
 
   return dispatcher;
@@ -2802,10 +2802,10 @@ function useContext(Context) {
   var dispatcher = resolveDispatcher();
 
   {
-    // TODO: add a more generic warning for invalid values.
+    / TODO: add a more generic warning for invalid values.
     if (Context._context !== undefined) {
-      var realContext = Context._context; // Don't deduplicate because this legitimately causes bugs
-      // and nobody should be using this in existing code.
+      var realContext = Context._context; / Don't deduplicate because this legitimately causes bugs
+      / and nobody should be using this in existing code.
 
       if (realContext.Consumer === Context) {
         error('Calling useContext(Context.Consumer) is not supported, may cause bugs, and will be ' + 'removed in a future major release. Did you mean to call useContext(Context) instead?');
@@ -2902,14 +2902,14 @@ function disableLogs() {
       prevError = console.error;
       prevGroup = console.group;
       prevGroupCollapsed = console.groupCollapsed;
-      prevGroupEnd = console.groupEnd; // https://github.com/facebook/react/issues/19099
+      prevGroupEnd = console.groupEnd; / https://github.com/facebook/react/issues/19099
 
       var props = {
         configurable: true,
         enumerable: true,
         value: disabledLog,
         writable: true
-      }; // $FlowFixMe Flow thinks console is immutable.
+      }; / $FlowFixMe Flow thinks console is immutable.
 
       Object.defineProperties(console, {
         info: props,
@@ -2936,7 +2936,7 @@ function reenableLogs() {
         configurable: true,
         enumerable: true,
         writable: true
-      }; // $FlowFixMe Flow thinks console is immutable.
+      }; / $FlowFixMe Flow thinks console is immutable.
 
       Object.defineProperties(console, {
         log: assign({}, props, {
@@ -2975,14 +2975,14 @@ var prefix;
 function describeBuiltInComponentFrame(name, source, ownerFn) {
   {
     if (prefix === undefined) {
-      // Extract the VM specific prefix used by each line.
+      / Extract the VM specific prefix used by each line.
       try {
         throw Error();
       } catch (x) {
         var match = x.stack.trim().match(/\n( *(at )?)/);
         prefix = match && match[1] || '';
       }
-    } // We use the prefix to ensure our stacks line up with native stack frames.
+    } / We use the prefix to ensure our stacks line up with native stack frames.
 
 
     return '\n' + prefix + name;
@@ -2997,7 +2997,7 @@ var componentFrameCache;
 }
 
 function describeNativeComponentFrame(fn, construct) {
-  // If something asked for a stack inside a fake render, it should get ignored.
+  / If something asked for a stack inside a fake render, it should get ignored.
   if ( !fn || reentry) {
     return '';
   }
@@ -3012,39 +3012,39 @@ function describeNativeComponentFrame(fn, construct) {
 
   var control;
   reentry = true;
-  var previousPrepareStackTrace = Error.prepareStackTrace; // $FlowFixMe It does accept undefined.
+  var previousPrepareStackTrace = Error.prepareStackTrace; / $FlowFixMe It does accept undefined.
 
   Error.prepareStackTrace = undefined;
   var previousDispatcher;
 
   {
-    previousDispatcher = ReactCurrentDispatcher$1.current; // Set the dispatcher in DEV because this might be call in the render function
-    // for warnings.
+    previousDispatcher = ReactCurrentDispatcher$1.current; / Set the dispatcher in DEV because this might be call in the render function
+    / for warnings.
 
     ReactCurrentDispatcher$1.current = null;
     disableLogs();
   }
 
   try {
-    // This should throw.
+    / This should throw.
     if (construct) {
-      // Something should be setting the props in the constructor.
+      / Something should be setting the props in the constructor.
       var Fake = function () {
         throw Error();
-      }; // $FlowFixMe
+      }; / $FlowFixMe
 
 
       Object.defineProperty(Fake.prototype, 'props', {
         set: function () {
-          // We use a throwing setter instead of frozen or non-writable props
-          // because that won't throw in a non-strict mode function.
+          / We use a throwing setter instead of frozen or non-writable props
+          / because that won't throw in a non-strict mode function.
           throw Error();
         }
       });
 
       if (typeof Reflect === 'object' && Reflect.construct) {
-        // We construct a different control for this case to include any extra
-        // frames added by the construct call.
+        / We construct a different control for this case to include any extra
+        / frames added by the construct call.
         try {
           Reflect.construct(Fake, []);
         } catch (x) {
@@ -3071,45 +3071,45 @@ function describeNativeComponentFrame(fn, construct) {
       fn();
     }
   } catch (sample) {
-    // This is inlined manually because closure doesn't do it for us.
+    / This is inlined manually because closure doesn't do it for us.
     if (sample && control && typeof sample.stack === 'string') {
-      // This extracts the first frame from the sample that isn't also in the control.
-      // Skipping one frame that we assume is the frame that calls the two.
+      / This extracts the first frame from the sample that isn't also in the control.
+      / Skipping one frame that we assume is the frame that calls the two.
       var sampleLines = sample.stack.split('\n');
       var controlLines = control.stack.split('\n');
       var s = sampleLines.length - 1;
       var c = controlLines.length - 1;
 
       while (s >= 1 && c >= 0 && sampleLines[s] !== controlLines[c]) {
-        // We expect at least one stack frame to be shared.
-        // Typically this will be the root most one. However, stack frames may be
-        // cut off due to maximum stack limits. In this case, one maybe cut off
-        // earlier than the other. We assume that the sample is longer or the same
-        // and there for cut off earlier. So we should find the root most frame in
-        // the sample somewhere in the control.
+        / We expect at least one stack frame to be shared.
+        / Typically this will be the root most one. However, stack frames may be
+        / cut off due to maximum stack limits. In this case, one maybe cut off
+        / earlier than the other. We assume that the sample is longer or the same
+        / and there for cut off earlier. So we should find the root most frame in
+        / the sample somewhere in the control.
         c--;
       }
 
       for (; s >= 1 && c >= 0; s--, c--) {
-        // Next we find the first one that isn't the same which should be the
-        // frame that called our sample function and the control.
+        / Next we find the first one that isn't the same which should be the
+        / frame that called our sample function and the control.
         if (sampleLines[s] !== controlLines[c]) {
-          // In V8, the first line is describing the message but other VMs don't.
-          // If we're about to return the first line, and the control is also on the same
-          // line, that's a pretty good indicator that our sample threw at same line as
-          // the control. I.e. before we entered the sample frame. So we ignore this result.
-          // This can happen if you passed a class to function component, or non-function.
+          / In V8, the first line is describing the message but other VMs don't.
+          / If we're about to return the first line, and the control is also on the same
+          / line, that's a pretty good indicator that our sample threw at same line as
+          / the control. I.e. before we entered the sample frame. So we ignore this result.
+          / This can happen if you passed a class to function component, or non-function.
           if (s !== 1 || c !== 1) {
             do {
               s--;
-              c--; // We may still have similar intermediate frames from the construct call.
-              // The next one that isn't the same should be our match though.
+              c--; / We may still have similar intermediate frames from the construct call.
+              / The next one that isn't the same should be our match though.
 
               if (c < 0 || sampleLines[s] !== controlLines[c]) {
-                // V8 adds a "new" prefix for native classes. Let's remove it to make it prettier.
-                var _frame = '\n' + sampleLines[s].replace(' at new ', ' at '); // If our component frame is labeled "<anonymous>"
-                // but we have a user-provided "displayName"
-                // splice it in to make the stack more readable.
+                / V8 adds a "new" prefix for native classes. Let's remove it to make it prettier.
+                var _frame = '\n' + sampleLines[s].replace(' at new ', ' at '); / If our component frame is labeled "<anonymous>"
+                / but we have a user-provided "displayName"
+                / splice it in to make the stack more readable.
 
 
                 if (fn.displayName && _frame.includes('<anonymous>')) {
@@ -3120,7 +3120,7 @@ function describeNativeComponentFrame(fn, construct) {
                   if (typeof fn === 'function') {
                     componentFrameCache.set(fn, _frame);
                   }
-                } // Return the line we found.
+                } / Return the line we found.
 
 
                 return _frame;
@@ -3141,7 +3141,7 @@ function describeNativeComponentFrame(fn, construct) {
     }
 
     Error.prepareStackTrace = previousPrepareStackTrace;
-  } // Fallback to just using the name if we couldn't make it throw.
+  } / Fallback to just using the name if we couldn't make it throw.
 
 
   var name = fn ? fn.displayName || fn.name : '';
@@ -3196,7 +3196,7 @@ function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
         return describeFunctionComponentFrame(type.render);
 
       case REACT_MEMO_TYPE:
-        // Memo may contain any component type so we recursively resolve it.
+        / Memo may contain any component type so we recursively resolve it.
         return describeUnknownElementTypeFrameInDEV(type.type, source, ownerFn);
 
       case REACT_LAZY_TYPE:
@@ -3206,7 +3206,7 @@ function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
           var init = lazyComponent._init;
 
           try {
-            // Lazy may contain any component type so we recursively resolve it.
+            / Lazy may contain any component type so we recursively resolve it.
             return describeUnknownElementTypeFrameInDEV(init(payload), source, ownerFn);
           } catch (x) {}
         }
@@ -3233,20 +3233,20 @@ function setCurrentlyValidatingElement(element) {
 
 function checkPropTypes(typeSpecs, values, location, componentName, element) {
   {
-    // $FlowFixMe This is okay but Flow doesn't know it.
+    / $FlowFixMe This is okay but Flow doesn't know it.
     var has = Function.call.bind(hasOwnProperty);
 
     for (var typeSpecName in typeSpecs) {
       if (has(typeSpecs, typeSpecName)) {
-        var error$1 = void 0; // Prop type validation may throw. In case they do, we don't want to
-        // fail the render phase where it didn't fail before. So we log it.
-        // After these have been cleaned up, we'll let them throw.
+        var error$1 = void 0; / Prop type validation may throw. In case they do, we don't want to
+        / fail the render phase where it didn't fail before. So we log it.
+        / After these have been cleaned up, we'll let them throw.
 
         try {
-          // This is intentionally an invariant that gets caught. It's the same
-          // behavior as without this statement except with a better message.
+          / This is intentionally an invariant that gets caught. It's the same
+          / behavior as without this statement except with a better message.
           if (typeof typeSpecs[typeSpecName] !== 'function') {
-            // eslint-disable-next-line react-internal/prod-error-codes
+            / eslint-disable-next-line react-internal/prod-error-codes
             var err = Error((componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.' + 'This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.');
             err.name = 'Invariant Violation';
             throw err;
@@ -3266,8 +3266,8 @@ function checkPropTypes(typeSpecs, values, location, componentName, element) {
         }
 
         if (error$1 instanceof Error && !(error$1.message in loggedTypeFailures)) {
-          // Only monitor this failure once because there tends to be a lot of the
-          // same error.
+          / Only monitor this failure once because there tends to be a lot of the
+          / same error.
           loggedTypeFailures[error$1.message] = true;
           setCurrentlyValidatingElement(element);
 
@@ -3374,14 +3374,14 @@ function validateExplicitKey(element, parentType) {
     return;
   }
 
-  ownerHasKeyUseWarning[currentComponentErrorInfo] = true; // Usually the current owner is the offender, but if it accepts children as a
-  // property, it may be the creator of the child that's responsible for
-  // assigning it a key.
+  ownerHasKeyUseWarning[currentComponentErrorInfo] = true; / Usually the current owner is the offender, but if it accepts children as a
+  / property, it may be the creator of the child that's responsible for
+  / assigning it a key.
 
   var childOwner = '';
 
   if (element && element._owner && element._owner !== ReactCurrentOwner.current) {
-    // Give the component that originally created this child.
+    / Give the component that originally created this child.
     childOwner = " It was passed a child from " + getComponentNameFromType(element._owner.type) + ".";
   }
 
@@ -3418,7 +3418,7 @@ function validateChildKeys(node, parentType) {
       }
     }
   } else if (isValidElement(node)) {
-    // This element was passed in a valid location.
+    / This element was passed in a valid location.
     if (node._store) {
       node._store.validated = true;
     }
@@ -3426,8 +3426,8 @@ function validateChildKeys(node, parentType) {
     var iteratorFn = getIteratorFn(node);
 
     if (typeof iteratorFn === 'function') {
-      // Entry iterators used to provide implicit keys,
-      // but now we print a separate warning for them later.
+      / Entry iterators used to provide implicit keys,
+      / but now we print a separate warning for them later.
       if (iteratorFn !== node.entries) {
         var iterator = iteratorFn.call(node);
         var step;
@@ -3461,8 +3461,8 @@ function validatePropTypes(element) {
 
     if (typeof type === 'function') {
       propTypes = type.propTypes;
-    } else if (typeof type === 'object' && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Note: Memo only checks outer props here.
-    // Inner props are checked in the reconciler.
+    } else if (typeof type === 'object' && (type.$$typeof === REACT_FORWARD_REF_TYPE || / Note: Memo only checks outer props here.
+    / Inner props are checked in the reconciler.
     type.$$typeof === REACT_MEMO_TYPE)) {
       propTypes = type.propTypes;
     } else {
@@ -3470,11 +3470,11 @@ function validatePropTypes(element) {
     }
 
     if (propTypes) {
-      // Intentionally inside to avoid triggering lazy initializers:
+      / Intentionally inside to avoid triggering lazy initializers:
       var name = getComponentNameFromType(type);
       checkPropTypes(propTypes, element.props, 'prop', name, element);
     } else if (type.PropTypes !== undefined && !propTypesMisspellWarningShown) {
-      propTypesMisspellWarningShown = true; // Intentionally inside to avoid triggering lazy initializers:
+      propTypesMisspellWarningShown = true; / Intentionally inside to avoid triggering lazy initializers:
 
       var _name = getComponentNameFromType(type);
 
@@ -3519,8 +3519,8 @@ function validateFragmentProps(fragment) {
   }
 }
 function createElementWithValidation(type, props, children) {
-  var validType = isValidElementType(type); // We warn in this case but don't throw. We expect the element creation to
-  // succeed and there will likely be errors in render.
+  var validType = isValidElementType(type); / We warn in this case but don't throw. We expect the element creation to
+  / succeed and there will likely be errors in render.
 
   if (!validType) {
     var info = '';
@@ -3555,16 +3555,16 @@ function createElementWithValidation(type, props, children) {
     }
   }
 
-  var element = createElement.apply(this, arguments); // The result can be nullish if a mock or a custom function is used.
-  // TODO: Drop this when these are no longer allowed as the type argument.
+  var element = createElement.apply(this, arguments); / The result can be nullish if a mock or a custom function is used.
+  / TODO: Drop this when these are no longer allowed as the type argument.
 
   if (element == null) {
     return element;
-  } // Skip key warning if the type isn't valid since our key validation logic
-  // doesn't expect a non-string/function type and can throw confusing errors.
-  // We don't want exception behavior to differ between dev and prod.
-  // (Rendering will throw with a helpful message and as soon as the type is
-  // fixed, the key warnings will appear.)
+  } / Skip key warning if the type isn't valid since our key validation logic
+  / doesn't expect a non-string/function type and can throw confusing errors.
+  / We don't want exception behavior to differ between dev and prod.
+  / (Rendering will throw with a helpful message and as soon as the type is
+  / fixed, the key warnings will appear.)
 
 
   if (validType) {
@@ -3591,7 +3591,7 @@ function createFactoryWithValidation(type) {
       didWarnAboutDeprecatedCreateFactory = true;
 
       warn('React.createFactory() is deprecated and will be removed in ' + 'a future major release. Consider using JSX ' + 'or use React.createElement() directly instead.');
-    } // Legacy hook: remove it
+    } / Legacy hook: remove it
 
 
     Object.defineProperty(validatedFactory, 'type', {
@@ -3653,17 +3653,17 @@ var enqueueTaskImpl = null;
 function enqueueTask(task) {
   if (enqueueTaskImpl === null) {
     try {
-      // read require off the module object to get around the bundlers.
-      // we don't want them to detect a require and bundle a Node polyfill.
+      / read require off the module object to get around the bundlers.
+      / we don't want them to detect a require and bundle a Node polyfill.
       var requireString = ('require' + Math.random()).slice(0, 7);
-      var nodeRequire = module && module[requireString]; // assuming we're in node, let's try to get node's
-      // version of setImmediate, bypassing fake timers if any.
+      var nodeRequire = module && module[requireString]; / assuming we're in node, let's try to get node's
+      / version of setImmediate, bypassing fake timers if any.
 
       enqueueTaskImpl = nodeRequire.call(module, 'timers').setImmediate;
     } catch (_err) {
-      // we're in a browser
-      // we can't use regular timers because they may still be faked
-      // so we try MessageChannel+postMessage instead
+      / we're in a browser
+      / we can't use regular timers because they may still be faked
+      / so we try MessageChannel+postMessage instead
       enqueueTaskImpl = function (callback) {
         {
           if (didWarnAboutMessageChannel === false) {
@@ -3689,14 +3689,14 @@ var actScopeDepth = 0;
 var didWarnNoAwaitAct = false;
 function act(callback) {
   {
-    // `act` calls can be nested, so we track the depth. This represents the
-    // number of `act` scopes on the stack.
+    / `act` calls can be nested, so we track the depth. This represents the
+    / number of `act` scopes on the stack.
     var prevActScopeDepth = actScopeDepth;
     actScopeDepth++;
 
     if (ReactCurrentActQueue.current === null) {
-      // This is the outermost `act` scope. Initialize the queue. The reconciler
-      // will detect the queue and use it instead of Scheduler.
+      / This is the outermost `act` scope. Initialize the queue. The reconciler
+      / will detect the queue and use it instead of Scheduler.
       ReactCurrentActQueue.current = [];
     }
 
@@ -3704,14 +3704,14 @@ function act(callback) {
     var result;
 
     try {
-      // Used to reproduce behavior of `batchedUpdates` in legacy mode. Only
-      // set to `true` while the given callback is executed, not for updates
-      // triggered during an async event, because this is how the legacy
-      // implementation of `act` behaved.
+      / Used to reproduce behavior of `batchedUpdates` in legacy mode. Only
+      / set to `true` while the given callback is executed, not for updates
+      / triggered during an async event, because this is how the legacy
+      / implementation of `act` behaved.
       ReactCurrentActQueue.isBatchingLegacy = true;
-      result = callback(); // Replicate behavior of original `act` implementation in legacy mode,
-      // which flushed updates immediately after the scope function exits, even
-      // if it's an async function.
+      result = callback(); / Replicate behavior of original `act` implementation in legacy mode,
+      / which flushed updates immediately after the scope function exits, even
+      / if it's an async function.
 
       if (!prevIsBatchingLegacy && ReactCurrentActQueue.didScheduleLegacyUpdate) {
         var queue = ReactCurrentActQueue.current;
@@ -3729,8 +3729,8 @@ function act(callback) {
     }
 
     if (result !== null && typeof result === 'object' && typeof result.then === 'function') {
-      var thenableResult = result; // The callback is an async function (i.e. returned a promise). Wait
-      // for it to resolve before exiting the current scope.
+      var thenableResult = result; / The callback is an async function (i.e. returned a promise). Wait
+      / for it to resolve before exiting the current scope.
 
       var wasAwaited = false;
       var thenable = {
@@ -3740,14 +3740,14 @@ function act(callback) {
             popActScope(prevActScopeDepth);
 
             if (actScopeDepth === 0) {
-              // We've exited the outermost act scope. Recursively flush the
-              // queue until there's no remaining work.
+              / We've exited the outermost act scope. Recursively flush the
+              / queue until there's no remaining work.
               recursivelyFlushAsyncActWork(returnValue, resolve, reject);
             } else {
               resolve(returnValue);
             }
           }, function (error) {
-            // The callback threw an error.
+            / The callback threw an error.
             popActScope(prevActScopeDepth);
             reject(error);
           });
@@ -3756,7 +3756,7 @@ function act(callback) {
 
       {
         if (!didWarnNoAwaitAct && typeof Promise !== 'undefined') {
-          // eslint-disable-next-line no-undef
+          / eslint-disable-next-line no-undef
           Promise.resolve().then(function () {}).then(function () {
             if (!wasAwaited) {
               didWarnNoAwaitAct = true;
@@ -3769,29 +3769,29 @@ function act(callback) {
 
       return thenable;
     } else {
-      var returnValue = result; // The callback is not an async function. Exit the current scope
-      // immediately, without awaiting.
+      var returnValue = result; / The callback is not an async function. Exit the current scope
+      / immediately, without awaiting.
 
       popActScope(prevActScopeDepth);
 
       if (actScopeDepth === 0) {
-        // Exiting the outermost act scope. Flush the queue.
+        / Exiting the outermost act scope. Flush the queue.
         var _queue = ReactCurrentActQueue.current;
 
         if (_queue !== null) {
           flushActQueue(_queue);
           ReactCurrentActQueue.current = null;
-        } // Return a thenable. If the user awaits it, we'll flush again in
-        // case additional work was scheduled by a microtask.
+        } / Return a thenable. If the user awaits it, we'll flush again in
+        / case additional work was scheduled by a microtask.
 
 
         var _thenable = {
           then: function (resolve, reject) {
-            // Confirm we haven't re-entered another `act` scope, in case
-            // the user does something weird like await the thenable
-            // multiple times.
+            / Confirm we haven't re-entered another `act` scope, in case
+            / the user does something weird like await the thenable
+            / multiple times.
             if (ReactCurrentActQueue.current === null) {
-              // Recursively flush the queue until there's no remaining work.
+              / Recursively flush the queue until there's no remaining work.
               ReactCurrentActQueue.current = [];
               recursivelyFlushAsyncActWork(returnValue, resolve, reject);
             } else {
@@ -3801,8 +3801,8 @@ function act(callback) {
         };
         return _thenable;
       } else {
-        // Since we're inside a nested `act` scope, the returned thenable
-        // immediately resolves. The outer scope will flush the queue.
+        / Since we're inside a nested `act` scope, the returned thenable
+        / immediately resolves. The outer scope will flush the queue.
         var _thenable2 = {
           then: function (resolve, reject) {
             resolve(returnValue);
@@ -3833,11 +3833,11 @@ function recursivelyFlushAsyncActWork(returnValue, resolve, reject) {
         flushActQueue(queue);
         enqueueTask(function () {
           if (queue.length === 0) {
-            // No additional work was scheduled. Finish.
+            / No additional work was scheduled. Finish.
             ReactCurrentActQueue.current = null;
             resolve(returnValue);
           } else {
-            // Keep flushing work until there's none left.
+            / Keep flushing work until there's none left.
             recursivelyFlushAsyncActWork(returnValue, resolve, reject);
           }
         });
@@ -3855,7 +3855,7 @@ var isFlushing = false;
 function flushActQueue(queue) {
   {
     if (!isFlushing) {
-      // Prevent re-entrance.
+      / Prevent re-entrance.
       isFlushing = true;
       var i = 0;
 
@@ -3870,7 +3870,7 @@ function flushActQueue(queue) {
 
         queue.length = 0;
       } catch (error) {
-        // If something throws, leave the remaining callbacks on the queue.
+        / If something throws, leave the remaining callbacks on the queue.
         queue = queue.slice(i + 1);
         throw error;
       } finally {
@@ -4148,10 +4148,10 @@ var WPFormsSelector = /*#__PURE__*/function (_Component) {
     get: function get() {
       return {
         form_id: _propTypes.default.number,
-        // eslint-disable-line camelcase
+        / eslint-disable-line camelcase
         show_title: _propTypes.default.string,
-        // eslint-disable-line camelcase
-        show_desc: _propTypes.default.string // eslint-disable-line camelcase
+        / eslint-disable-line camelcase
+        show_desc: _propTypes.default.string / eslint-disable-line camelcase
       };
     }
   }]);
@@ -4178,7 +4178,7 @@ jQuery(window)
 jQuery(document).on('wpformsReady', function () {
   var $ = jQuery;
 
-  // Make all the modern dropdowns disabled.
+  / Make all the modern dropdowns disabled.
   $('.choicesjs-select').each(function () {
     var $instance = $(this).data('choicesjs');
     if ($instance && typeof $instance.disable === 'function') {
@@ -4186,7 +4186,7 @@ jQuery(document).on('wpformsReady', function () {
     }
   });
 
-  // Init Repeater fields.
+  / Init Repeater fields.
   if ('undefined' !== typeof WPFormsRepeaterField) {
     WPFormsRepeaterField.ready();
   }

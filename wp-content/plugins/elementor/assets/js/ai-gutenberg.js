@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../node_modules/@wordpress/element/build-module/create-interpolate-element.js":
@@ -132,7 +132,7 @@ const createInterpolateElement = (interpolatedString, conversionMap) => {
     throw new TypeError('The conversionMap provided is not valid. It must be an object with values that are React Elements');
   }
   do {
-    // twiddle our thumbs
+    / twiddle our thumbs
   } while (proceed(conversionMap));
   return (0,_react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, ...output);
 };
@@ -194,7 +194,7 @@ function proceed(conversionMap) {
         return true;
       }
 
-      // Otherwise we found an inner element.
+      / Otherwise we found an inner element.
       addChild(createFrame(conversionMap[name], startOffset, tokenLength));
       offset = startOffset + tokenLength;
       return true;
@@ -203,15 +203,15 @@ function proceed(conversionMap) {
       offset = startOffset + tokenLength;
       return true;
     case 'closer':
-      // If we're not nesting then this is easy - close the block.
+      / If we're not nesting then this is easy - close the block.
       if (1 === stackDepth) {
         closeOuterElement(startOffset);
         offset = startOffset + tokenLength;
         return true;
       }
 
-      // Otherwise we're nested and we have to close out the current
-      // block and add it as a innerBlock to the parent.
+      / Otherwise we're nested and we have to close out the current
+      / block and add it as a innerBlock to the parent.
       const stackTop = stack.pop();
       const text = indoc.substr(stackTop.prevOffset, startOffset - stackTop.prevOffset);
       stackTop.children.push(text);
@@ -236,7 +236,7 @@ function proceed(conversionMap) {
  */
 function nextToken() {
   const matches = tokenizer.exec(indoc);
-  // We have no more tokens.
+  / We have no more tokens.
   if (null === matches) {
     return ['no-more-tokens'];
   }
@@ -486,15 +486,15 @@ function RawHTML({
 }) {
   let rawHtml = '';
 
-  // Cast children as an array, and concatenate each element if it is a string.
+  / Cast children as an array, and concatenate each element if it is a string.
   _react__WEBPACK_IMPORTED_MODULE_0__.Children.toArray(children).forEach(child => {
     if (typeof child === 'string' && child.trim() !== '') {
       rawHtml += child;
     }
   });
 
-  // The `div` wrapper will be stripped by the `renderElement` serializer in
-  // `./serialize.js` unless there are non-children props present.
+  / The `div` wrapper will be stripped by the `renderElement` serializer in
+  / `./serialize.js` unless there are non-children props present.
   return (0,_react__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
     dangerouslySetInnerHTML: {
       __html: rawHtml
@@ -1107,7 +1107,7 @@ function getNormalAttributeValue(attribute, value) {
  * List from: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute.
  */
 const SVG_ATTRIBUTE_WITH_DASHES_LIST = ['accentHeight', 'alignmentBaseline', 'arabicForm', 'baselineShift', 'capHeight', 'clipPath', 'clipRule', 'colorInterpolation', 'colorInterpolationFilters', 'colorProfile', 'colorRendering', 'dominantBaseline', 'enableBackground', 'fillOpacity', 'fillRule', 'floodColor', 'floodOpacity', 'fontFamily', 'fontSize', 'fontSizeAdjust', 'fontStretch', 'fontStyle', 'fontVariant', 'fontWeight', 'glyphName', 'glyphOrientationHorizontal', 'glyphOrientationVertical', 'horizAdvX', 'horizOriginX', 'imageRendering', 'letterSpacing', 'lightingColor', 'markerEnd', 'markerMid', 'markerStart', 'overlinePosition', 'overlineThickness', 'paintOrder', 'panose1', 'pointerEvents', 'renderingIntent', 'shapeRendering', 'stopColor', 'stopOpacity', 'strikethroughPosition', 'strikethroughThickness', 'strokeDasharray', 'strokeDashoffset', 'strokeLinecap', 'strokeLinejoin', 'strokeMiterlimit', 'strokeOpacity', 'strokeWidth', 'textAnchor', 'textDecoration', 'textRendering', 'underlinePosition', 'underlineThickness', 'unicodeBidi', 'unicodeRange', 'unitsPerEm', 'vAlphabetic', 'vHanging', 'vIdeographic', 'vMathematical', 'vectorEffect', 'vertAdvY', 'vertOriginX', 'vertOriginY', 'wordSpacing', 'writingMode', 'xmlnsXlink', 'xHeight'].reduce((map, attribute) => {
-  // The keys are lower-cased for more robust lookup.
+  / The keys are lower-cased for more robust lookup.
   map[attribute.toLowerCase()] = attribute;
   return map;
 }, {});
@@ -1119,7 +1119,7 @@ const SVG_ATTRIBUTE_WITH_DASHES_LIST = ['accentHeight', 'alignmentBaseline', 'ar
  * Lowercase attributes don't need mapping, since we lowercase all attributes by default.
  */
 const CASE_SENSITIVE_SVG_ATTRIBUTES = ['allowReorder', 'attributeName', 'attributeType', 'autoReverse', 'baseFrequency', 'baseProfile', 'calcMode', 'clipPathUnits', 'contentScriptType', 'contentStyleType', 'diffuseConstant', 'edgeMode', 'externalResourcesRequired', 'filterRes', 'filterUnits', 'glyphRef', 'gradientTransform', 'gradientUnits', 'kernelMatrix', 'kernelUnitLength', 'keyPoints', 'keySplines', 'keyTimes', 'lengthAdjust', 'limitingConeAngle', 'markerHeight', 'markerUnits', 'markerWidth', 'maskContentUnits', 'maskUnits', 'numOctaves', 'pathLength', 'patternContentUnits', 'patternTransform', 'patternUnits', 'pointsAtX', 'pointsAtY', 'pointsAtZ', 'preserveAlpha', 'preserveAspectRatio', 'primitiveUnits', 'refX', 'refY', 'repeatCount', 'repeatDur', 'requiredExtensions', 'requiredFeatures', 'specularConstant', 'specularExponent', 'spreadMethod', 'startOffset', 'stdDeviation', 'stitchTiles', 'suppressContentEditableWarning', 'suppressHydrationWarning', 'surfaceScale', 'systemLanguage', 'tableValues', 'targetX', 'targetY', 'textLength', 'viewBox', 'viewTarget', 'xChannelSelector', 'yChannelSelector'].reduce((map, attribute) => {
-  // The keys are lower-cased for more robust lookup.
+  / The keys are lower-cased for more robust lookup.
   map[attribute.toLowerCase()] = attribute;
   return map;
 }, {});
@@ -1272,9 +1272,9 @@ function renderElement(element, context, legacyContext = {}) {
 function renderNativeComponent(type, props, context, legacyContext = {}) {
   let content = '';
   if (type === 'textarea' && props.hasOwnProperty('value')) {
-    // Textarea children can be assigned as value prop. If it is, render in
-    // place of children. Ensure to omit so it is not assigned as attribute
-    // as well.
+    / Textarea children can be assigned as value prop. If it is, render in
+    / place of children. Ensure to omit so it is not assigned as attribute
+    / as well.
     content = renderChildren(props.value, context, legacyContext);
     const {
       value,
@@ -1282,7 +1282,7 @@ function renderNativeComponent(type, props, context, legacyContext = {}) {
     } = props;
     props = restProps;
   } else if (props.dangerouslySetInnerHTML && typeof props.dangerouslySetInnerHTML.__html === 'string') {
-    // Dangerous content is left unescaped.
+    / Dangerous content is left unescaped.
     content = props.dangerouslySetInnerHTML.__html;
   } else if (typeof props.children !== 'undefined') {
     content = renderChildren(props.children, context, legacyContext);
@@ -1313,8 +1313,8 @@ function renderComponent(Component, props, context, legacyContext = {}) {
   const instance = new ( /** @type {import('react').ComponentClass} */
   Component)(props, legacyContext);
   if (typeof
-  // Ignore reason: Current prettier reformats parens and mangles type assertion
-  // prettier-ignore
+  / Ignore reason: Current prettier reformats parens and mangles type assertion
+  / prettier-ignore
   /** @type {{getChildContext?: () => unknown}} */
   instance.getChildContext === 'function') {
     Object.assign(legacyContext, /** @type {{getChildContext?: () => unknown}} */instance.getChildContext());
@@ -1358,31 +1358,31 @@ function renderAttributes(props) {
     }
     let value = getNormalAttributeValue(key, props[key]);
 
-    // If value is not of serializable type, skip.
+    / If value is not of serializable type, skip.
     if (!ATTRIBUTES_TYPES.has(typeof value)) {
       continue;
     }
 
-    // Don't render internal attribute names.
+    / Don't render internal attribute names.
     if (isInternalAttribute(key)) {
       continue;
     }
     const isBooleanAttribute = BOOLEAN_ATTRIBUTES.has(attribute);
 
-    // Boolean attribute should be omitted outright if its value is false.
+    / Boolean attribute should be omitted outright if its value is false.
     if (isBooleanAttribute && value === false) {
       continue;
     }
     const isMeaningfulAttribute = isBooleanAttribute || hasPrefix(key, ['data-', 'aria-']) || ENUMERATED_ATTRIBUTES.has(attribute);
 
-    // Only write boolean value as attribute if meaningful.
+    / Only write boolean value as attribute if meaningful.
     if (typeof value === 'boolean' && !isMeaningfulAttribute) {
       continue;
     }
     result += ' ' + attribute;
 
-    // Boolean attributes should write attribute name, but without value.
-    // Mere presence of attribute name is effective truthiness.
+    / Boolean attributes should write attribute name, but without value.
+    / Mere presence of attribute name is effective truthiness.
     if (isBooleanAttribute) {
       continue;
     }
@@ -1402,7 +1402,7 @@ function renderAttributes(props) {
  * @return {string} Style attribute value.
  */
 function renderStyle(style) {
-  // Only generate from object, e.g. tolerate string value.
+  / Only generate from object, e.g. tolerate string value.
   if (!(0,is_plain_object__WEBPACK_IMPORTED_MODULE_0__.isPlainObject)(style)) {
     return style;
   }
@@ -1713,7 +1713,7 @@ var FilesUploadHandler = exports["default"] = /*#__PURE__*/function () {
         onConfirm: function onConfirm() {
           elementorCommon.ajax.addRequest('enable_unfiltered_files_upload', {
             success: function success() {
-              // This utility is used in both the admin and the Editor.
+              / This utility is used in both the admin and the Editor.
               elementorCommon.config.filesUpload.unfilteredFiles = true;
               callback();
             }
@@ -1766,10 +1766,10 @@ function render(app, domElement) {
       root.unmount();
     };
   } catch (e) {
-    // eslint-disable-next-line react/no-deprecated
+    / eslint-disable-next-line react/no-deprecated
     ReactDOM.render(app, domElement);
     unmountFunction = function unmountFunction() {
-      // eslint-disable-next-line react/no-deprecated
+      / eslint-disable-next-line react/no-deprecated
       ReactDOM.unmountComponentAtNode(domElement);
     };
   }
@@ -2586,7 +2586,7 @@ var PromptActionSelection = function PromptActionSelection(props) {
     onChange: props.onChange,
     disabled: props.disabled,
     sx: {
-      // Fixing global CSS of the editor that targets input[disabled] globally.
+      / Fixing global CSS of the editor that targets input[disabled] globally.
       '&.Mui-disabled .MuiSelect-nativeInput': {
         backgroundColor: 'initial',
         opacity: 0
@@ -2692,7 +2692,7 @@ var DraggablePaper = function DraggablePaper(props) {
   var handlePositionBoundaries = function handlePositionBoundaries() {
     clearTimeout(timeout.current);
 
-    // Ensuring the dialog header, which is used as the dialog dragging handle, does not exceed the screen.
+    / Ensuring the dialog header, which is used as the dialog dragging handle, does not exceed the screen.
     timeout.current = setTimeout(function () {
       var _paperRef$current;
       var dialogTop = (_paperRef$current = paperRef.current) === null || _paperRef$current === void 0 ? void 0 : _paperRef$current.getBoundingClientRect().top;
@@ -2796,7 +2796,7 @@ var PromptErrorMessage = function PromptErrorMessage(_ref) {
       };
     }
     return {
-      // Translators: %s is the feature name.
+      / Translators: %s is the feature name.
       text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, sprintf((0, _i18n.__)('You\'ve used all AI credits for %s.', 'elementor'), featureName.toLowerCase())),
       description: (0, _i18n.__)('Upgrade now to keep using this feature. You still have credits for other AI features (Text, Code, Images, Containers, etc.)', 'elementor'),
       buttonText: (0, _i18n.__)('Upgrade now', 'elementor'),
@@ -3140,7 +3140,7 @@ var usePromptHistoryContext = exports.usePromptHistoryContext = function useProm
     if (showHistory) {
       var currentHeight = getContentHeight();
 
-      // Set initial state
+      / Set initial state
       setContentHeight(currentHeight);
       setTimeout(function () {
         if (currentHeight < (0, _helpers.vh)(61)) {
@@ -3777,7 +3777,7 @@ var PromptHistoryEmpty = function PromptHistoryEmpty(_ref) {
   }, (0, _i18n.__)('Prepare to be amazed', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
     variant: "body1"
   }, sprintf(
-  // Translators: %s: History type.
+  / Translators: %s: History type.
   (0, _i18n.__)('This is where you\'ll find all the %s you\'ve generated using Elementor AI.', 'elementor'), (0, _historyTypes.getTranslatedPromptHistoryType)(historyType))));
 };
 PromptHistoryEmpty.propTypes = {
@@ -4670,7 +4670,7 @@ var StyledTextField = (0, _ui.styled)(_ui.TextField)(function () {
 });
 var SearchField = (0, _react.forwardRef)(function (props, ref) {
   return /*#__PURE__*/_react.default.createElement(StyledTextField
-  // eslint-disable-next-line jsx-a11y/no-autofocus
+  / eslint-disable-next-line jsx-a11y/no-autofocus
   , (0, _extends2.default)({
     autoFocus: true,
     fullWidth: true,
@@ -4791,7 +4791,7 @@ var StyledArrow = (0, _ui.styled)(_ui.Box)(function (_ref2) {
     height: theme.spacing(2.5),
     position: 'absolute',
     overflow: 'hidden',
-    // Override Popper inline styles.
+    / Override Popper inline styles.
     left: '50% !important',
     transform: 'translateX(-50%) rotate(var(--rotate, 0deg)) !important',
     '[data-popper-placement="top"] &': {
@@ -4949,7 +4949,7 @@ var _excluded = ["onClose", "usagePercentage", "hasSubscription", "feature"];
 var KEY_SUBSCRIPTION = 'subscription';
 var KEY_NO_SUBSCRIPTION = 'noSubscription';
 var getUsageTitle = function getUsageTitle(percentage) {
-  // Translators: %s refers to the credits percentage usage
+  / Translators: %s refers to the credits percentage usage
   return sprintf(__('You’ve used %s of credits for this AI feature.', 'elementor'), percentage);
 };
 var CREDITS_95_USAGE_TITLE = getUsageTitle('95%');
@@ -4964,7 +4964,7 @@ var getDescriptionNoSubscription = function getDescriptionNoSubscription(exclude
   var featuresList = filteredFeatures.map(function (feature) {
     return _featuresEnum.FREE_TRIAL_FEATURES_NAMES[feature];
   }).join(', ');
-  // Translators: %s refers to the list of remaining features
+  / Translators: %s refers to the list of remaining features
   return sprintf(__('Upgrade now to keep using this feature. You still have credits for other AI features (%s, etc.)', 'elementor'), featuresList);
 };
 var alertConfigs = [{
@@ -5459,13 +5459,13 @@ var useAnimationPrompt = function useAnimationPrompt(motionEffectType, widgetTyp
     };
   };
   var processMotionEffects = function processMotionEffects(jsonObject) {
-    var result = {}; // See UT for example result
+    var result = {}; / See UT for example result
 
     var firstChildKey = Object.keys(jsonObject)[0];
     var firstChild = jsonObject[firstChildKey];
     var firstEnableControlKey = Object.keys(firstChild)[0];
 
-    // First enabled property under scrolling_effects
+    / First enabled property under scrolling_effects
     result[firstEnableControlKey] = {
       isParent: true,
       label: getControlData(firstEnableControlKey).label,
@@ -5473,7 +5473,7 @@ var useAnimationPrompt = function useAnimationPrompt(motionEffectType, widgetTyp
       tabs: 0
     };
 
-    // Process other properties
+    / Process other properties
     var processOtherProps = function processOtherProps(props) {
       for (var _i = 0, _Object$entries = Object.entries(props); _i < _Object$entries.length; _i++) {
         var _Object$entries$_i = (0, _slicedToArray2.default)(_Object$entries[_i], 2),
@@ -5498,7 +5498,7 @@ var useAnimationPrompt = function useAnimationPrompt(motionEffectType, widgetTyp
       }
     };
 
-    // Process all other inner properties
+    / Process all other inner properties
     for (var _i2 = 0, _Object$entries2 = Object.entries(jsonObject); _i2 < _Object$entries2.length; _i2++) {
       var _Object$entries2$_i = (0, _slicedToArray2.default)(_Object$entries2[_i2], 2),
         propKey = _Object$entries2$_i[0],
@@ -5947,10 +5947,10 @@ var useImagesPreload = function useImagesPreload() {
     })).then(function () {
       return setReady(true);
     })
-    // eslint-disable-next-line no-console
+    / eslint-disable-next-line no-console
     .catch(function (err) {
       return console.log('Failed to load images', err);
-    }); // Todo error better handling
+    }); / Todo error better handling
   };
   return {
     ready: ready,
@@ -7947,7 +7947,7 @@ var PageContent = function PageContent(_ref) {
   var promptDialogStyleProps = {
     sx: {
       zIndex: 170000,
-      // Make sure the dialog is above wp attachment details view
+      / Make sure the dialog is above wp attachment details view
       '& .MuiDialog-container': {
         alignItems: 'flex-start',
         mt: 'media' === type ? '2.5vh' : '18vh'
@@ -8019,7 +8019,7 @@ var PageContent = function PageContent(_ref) {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '100%' // Ensure the box takes the full width
+        width: '100%' / Ensure the box takes the full width
       }
     }, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
       variant: "body1",
@@ -8191,7 +8191,7 @@ var Connect = function Connect(_ref) {
     onSuccess = _ref.onSuccess;
   var approveButtonRef = (0, _react.useRef)();
   (0, _react.useEffect)(function () {
-    // On local dev (as a standalone app), the connect lib is not loaded.
+    / On local dev (as a standalone app), the connect lib is not loaded.
     if (!jQuery.fn.elementorConnect) {
       return;
     }
@@ -8727,9 +8727,9 @@ var FormCode = function FormCode(_ref) {
   var parseCSS = function parseCSS(cssCode) {
     var elementId = additionalOptions === null || additionalOptions === void 0 ? void 0 : additionalOptions.elementId;
     var selector = 'document' === elementId ? elementor.config.document.settings.cssWrapperSelector : ".elementor-element.elementor-element-".concat(elementId);
-    return cssCode && cssCode.replace(/`/g, '') // Remove backticks if any
-    .replace(/^css\s*/i, '') // Remove "css" prefix if any, case-insensitive
-    .replace(/selector/g, selector); // Replace `selector` with the actual selector
+    return cssCode && cssCode.replace(/`/g, '') / Remove backticks if any
+    .replace(/^css\s*/i, '') / Remove "css" prefix if any, case-insensitive
+    .replace(/selector/g, selector); / Replace `selector` with the actual selector
   };
   var isElementorEditor = function isElementorEditor() {
     return window.elementorFrontend;
@@ -9403,7 +9403,7 @@ var Thumbnail = exports.Thumbnail = function Thumbnail(props) {
   var scaleFactor = Math.min(height, width);
   var scale = THUMBNAIL_SIZE / scaleFactor;
 
-  // Center the preview
+  / Center the preview
   var top = height > width ? (THUMBNAIL_SIZE - THUMBNAIL_SIZE * (height / width)) / 2 : 0;
   var left = width > height ? (THUMBNAIL_SIZE - THUMBNAIL_SIZE * (width / height)) / 2 : 0;
   return /*#__PURE__*/_react.default.createElement(_ui.Box, {
@@ -9503,7 +9503,7 @@ var UrlDialog = exports.UrlDialog = function UrlDialog(props) {
         });
         isOpen.current = true;
       } catch (error) {
-        // eslint-disable-next-line no-console
+        / eslint-disable-next-line no-console
         console.error(error);
       }
     }
@@ -9757,7 +9757,7 @@ var StyledArrow = (0, _ui.styled)(_ui.Box)(function (_ref2) {
     width: theme.spacing(5),
     height: theme.spacing(5),
     overflow: 'hidden',
-    // Override Popper inline styles.
+    / Override Popper inline styles.
     left: '100% !important',
     transform: 'translateX(-50%) translateY(-50%) rotate(var(--rotate, 0deg)) !important',
     '&::after': {
@@ -9896,7 +9896,7 @@ function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbol
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0, _defineProperty2.default)(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var TextInput = (0, _react.forwardRef)(function (props, ref) {
   return /*#__PURE__*/_react.default.createElement(_ui.TextField
-  // eslint-disable-next-line jsx-a11y/no-autofocus
+  / eslint-disable-next-line jsx-a11y/no-autofocus
   , (0, _extends2.default)({
     autoFocus: true,
     multiline: true,
@@ -10891,7 +10891,7 @@ var useScreenshots = function useScreenshots(_ref) {
                     content = _ref4.content,
                     label = _ref4.label,
                     source = _ref4.source;
-                  // Send only the data that is needed for the generation.
+                  / Send only the data that is needed for the generation.
                   return {
                     type: type,
                     content: content,
@@ -10987,7 +10987,7 @@ var useSlider = function useSlider() {
   var offsetXPercentage = (slideWidthPercentage + gapPercentage) * slidesPerPage * (currentPage - 1) * -1;
   var pagesCount = Math.ceil(slidesCount / slidesPerPage);
   (0, _react.useEffect)(function () {
-    // In cases when the slidesCount value was reduced, we need to navigate to the last page.
+    / In cases when the slidesCount value was reduced, we need to navigate to the last page.
     if (currentPage > 1 && currentPage > pagesCount) {
       setCurrentPage(pagesCount);
     }
@@ -11146,7 +11146,7 @@ var FormLayout = function FormLayout(_ref) {
   var dialogContentChildren = DialogContentProps.children,
     dialogContentProps = (0, _objectWithoutProperties2.default)(DialogContentProps, _excluded);
 
-  // When there are no screenshots the prompt field should be editable.
+  / When there are no screenshots the prompt field should be editable.
   var shouldFallbackToEditPrompt = !!(error && 0 === screenshots.length);
   var isPromptFormActive = isPromptEditable || shouldFallbackToEditPrompt;
   var abortAndClose = function abortAndClose() {
@@ -11181,7 +11181,7 @@ var FormLayout = function FormLayout(_ref) {
   var handleRegenerate = function handleRegenerate() {
     lastRun.current = function () {
       regenerate(promptInputRef.current.value, attachments);
-      // Changing the current page to the next page number.
+      / Changing the current page to the next page number.
       setCurrentPage(pagesCount + 1);
     };
     lastRun.current();
@@ -11214,7 +11214,7 @@ var FormLayout = function FormLayout(_ref) {
         typeConfig.previewGenerator(item.content).then(function (html) {
           item.previewHTML = html;
           setAttachments(function (prev) {
-            // Replace the attachment with the updated one.
+            / Replace the attachment with the updated one.
             return prev.map(function (attachment) {
               if (attachment.content === item.content) {
                 return item;
@@ -11854,7 +11854,7 @@ var GenerateAgainSubmit = function GenerateAgainSubmit(props) {
     color: "secondary",
     startIcon: /*#__PURE__*/_react.default.createElement(_refreshIcon.default, null),
     sx: {
-      // TODO: Remove on @elementor/ui 1.4.51.
+      / TODO: Remove on @elementor/ui 1.4.51.
       color: 'background.paper'
     }
   }, props), (0, _i18n.__)('Generate again', 'elementor'));
@@ -12348,7 +12348,7 @@ var ImageStyleSelect = function ImageStyleSelect(_ref) {
   var _ref$type = _ref.type,
     type = _ref$type === void 0 ? '' : _ref$type,
     props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
-  // The image styles are determined by the selected type.
+  / The image styles are determined by the selected type.
   var imageStyles = Object.entries(((_IMAGE_PROMPT_CATEGOR = _constants.IMAGE_PROMPT_CATEGORIES[type]) === null || _IMAGE_PROMPT_CATEGOR === void 0 ? void 0 : _IMAGE_PROMPT_CATEGOR.subCategories) || {}).map(function (_ref2) {
     var _ref3 = (0, _slicedToArray2.default)(_ref2, 2),
       value = _ref3[0],
@@ -12891,7 +12891,7 @@ var UnsavedChangesAlert = function UnsavedChangesAlert(_ref) {
   return /*#__PURE__*/_react.default.createElement(_ui.Dialog, (0, _extends2.default)({
     sx: {
       zIndex: 200000
-    } // Make sure the dialog is above the AI dialog
+    } / Make sure the dialog is above the AI dialog
     ,
     "aria-labelledby": "unsaved-changes-alert-title",
     "aria-describedby": "unsaved-changes-alert-description"
@@ -13371,7 +13371,7 @@ var useEditImage = exports.useEditImage = function useEditImage() {
     });
   };
 
-  // Getting the aspect ratio of the image.
+  / Getting the aspect ratio of the image.
   (0, _react.useEffect)(function () {
     if (!id) {
       return;
@@ -13659,7 +13659,7 @@ var useImageActions = function useImageActions() {
               _context.next = 4;
               break;
             }
-            // Removing inner image property to avoid duplicated uploads.
+            / Removing inner image property to avoid duplicated uploads.
             image = editImage.image, _result = (0, _objectWithoutProperties2.default)(editImage, _excluded);
             return _context.abrupt("return", _result);
           case 4:
@@ -13735,7 +13735,7 @@ var useImageActions = function useImageActions() {
                     case 0:
                       _context4.next = 2;
                       return getFinalImage(img, null)
-                      // eslint-disable-next-line no-unused-vars
+                      / eslint-disable-next-line no-unused-vars
                       .catch(function (_) {
                         return null;
                       });
@@ -13824,7 +13824,7 @@ var useImagePrompt = function useImagePrompt() {
   (0, _react.useEffect)(function () {
     var _promptData$data;
     if ((_promptData$data = promptData.data) !== null && _promptData$data !== void 0 && _promptData$data.result) {
-      // Updating the hasUnsavedChanges global state that will trigger the unsaved changes dialog.
+      / Updating the hasUnsavedChanges global state that will trigger the unsaved changes dialog.
       setHasUnsavedChanges(true);
     }
   }, [promptData.data]);
@@ -14115,7 +14115,7 @@ var FormMedia = function FormMedia(_ref2) {
   };
   (0, _react.useEffect)(function () {
     if (state.isAllSaved) {
-      // Closing the app only once the state was updated, to allow registered effects to take place before closing.
+      / Closing the app only once the state was updated, to allow registered effects to take place before closing.
       onClose();
     }
   }, [state.isAllSaved]);
@@ -14412,7 +14412,7 @@ var CleanupContent = function CleanupContent(_ref3) {
   (0, _react.useEffect)(function () {
     var canvas = document.querySelector('.eui-in-painting-canvas');
 
-    // The BrushCursor should follow the mouse position but should stay only inside the canvas.
+    / The BrushCursor should follow the mouse position but should stay only inside the canvas.
     var positionElement = function positionElement(e) {
       var _canvas$getBoundingCl = canvas.getBoundingClientRect(),
         left = _canvas$getBoundingCl.left,
@@ -14792,7 +14792,7 @@ var useSuggestedImages = function useSuggestedImages(_ref7) {
       return checkImageTypeIgnoreStyle(imageType, selectedType);
     });
 
-    // Some categories don't have images, so we TEMPORARILY fallback to the shuffled images.
+    / Some categories don't have images, so we TEMPORARILY fallback to the shuffled images.
     return categoryImages.length ? categoryImages : shuffledImages;
   }, [selectedType, data]);
   var fetchImages = function fetchImages() {
@@ -14802,7 +14802,7 @@ var useSuggestedImages = function useSuggestedImages(_ref7) {
     }).then(function (json) {
       return setImagesState(json);
     })
-    // eslint-disable-next-line no-console
+    / eslint-disable-next-line no-console
     .catch(function (e) {
       return console.log(e.message);
     }).finally(function () {
@@ -14942,7 +14942,7 @@ var Generate = function Generate(_ref) {
     isUploading = _useImageActions.isLoading;
   var isLoading = isPreloading || isGenerating || isUploading;
 
-  // The aspect ratio in the content view should only be updated when the generated images are updated.
+  / The aspect ratio in the content view should only be updated when the generated images are updated.
   var generateAspectRatio = (0, _react.useMemo)(function () {
     return settings[_usePromptSettings2.IMAGE_RATIO];
   }, [generatedImages === null || generatedImages === void 0 ? void 0 : generatedImages.result]);
@@ -15501,7 +15501,7 @@ var InPaintingContent = function InPaintingContent(_ref3) {
   (0, _react.useEffect)(function () {
     var canvas = document.querySelector('.eui-in-painting-canvas');
 
-    // The BrushCursor should follow the mouse position but should stay only inside the canvas.
+    / The BrushCursor should follow the mouse position but should stay only inside the canvas.
     var positionElement = function positionElement(e) {
       var _canvas$getBoundingCl = canvas.getBoundingClientRect(),
         left = _canvas$getBoundingCl.left,
@@ -15741,7 +15741,7 @@ var InPainting = function InPainting() {
           case 0:
             event.preventDefault();
 
-            // The fallback instruction should be hidden for the user.
+            / The fallback instruction should be hidden for the user.
             finalPrompt = prompt || 'Remove object and fill based on the surroundings';
             setGenerate();
             send({
@@ -16489,7 +16489,7 @@ var ProductImageUnification = function ProductImageUnification(_ref) {
               editor_post_id: data.productId,
               unique_id: "ai-product-unification-".concat(data.productId)
             });
-          }); // eslint-disable-next-line react-hooks/rules-of-hooks
+          }); / eslint-disable-next-line react-hooks/rules-of-hooks
           _context.next = 5;
           return useMultipleImages(imagesToSave);
         case 5:
@@ -16563,12 +16563,12 @@ var ProductImageUnification = function ProductImageUnification(_ref) {
     setGenerate();
     setWasGeneratedOnce(true);
     var isLightColor = function isLightColor(color) {
-      var rgb = parseInt(color.slice(1), 16); // Convert hex to decimal
-      // eslint-disable-next-line no-bitwise
+      var rgb = parseInt(color.slice(1), 16); / Convert hex to decimal
+      / eslint-disable-next-line no-bitwise
       var r = rgb >> 16 & 0xff;
-      // eslint-disable-next-line no-bitwise
+      / eslint-disable-next-line no-bitwise
       var g = rgb >> 8 & 0xff;
-      // eslint-disable-next-line no-bitwise
+      / eslint-disable-next-line no-bitwise
       var b = rgb >> 0 & 0xff;
       var luminance = 0.299 * r + 0.587 * g + 0.114 * b;
       return luminance > 128;
@@ -16698,7 +16698,7 @@ var ProductImageUnification = function ProductImageUnification(_ref) {
     variant: "body2",
     color: "secondary"
   },
-  // Translators: %1$d is the number of selected products, %2$d is the total number of products
+  / Translators: %1$d is the number of selected products, %2$d is the total number of products
   (0, _i18n.sprintf)((0, _i18n.__)('%1$d/%2$d selected', 'elementor'), selectedProducts.length, (_products$images$leng3 = products === null || products === void 0 || (_products$images3 = products.images) === null || _products$images3 === void 0 ? void 0 : _products$images3.length) !== null && _products$images$leng3 !== void 0 ? _products$images$leng3 : 0)), /*#__PURE__*/_react.default.createElement(_ui.Button, {
     variant: "text",
     color: "secondary",
@@ -17915,7 +17915,7 @@ var renderLayoutApp = exports.renderLayoutApp = function renderLayoutApp() {
   };
   closePanel();
   var previewContainer = (0, _previewContainer.createPreviewContainer)(options.parentContainer, {
-    // Create the container at the "drag widget here" area position.
+    / Create the container at the "drag widget here" area position.
     at: options.at
   });
   var _getUiConfig = getUiConfig(),
@@ -18191,7 +18191,7 @@ function createContainer(parentContainer, model) {
  */
 function createIdleContainer(parentContainer) {
   var containerOptions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  // Create an empty container that'll be used of UI purposes.
+  / Create an empty container that'll be used of UI purposes.
   var container = createContainer(parentContainer, {
     elType: 'container'
   }, containerOptions);
@@ -18206,7 +18206,7 @@ function hideContainers(containers) {
 function showContainer(container) {
   container.view.$el.removeClass(CLASS_HIDDEN);
 
-  // Delay the scroll to avoid UI jumps when toggling between containers.
+  / Delay the scroll to avoid UI jumps when toggling between containers.
   setTimeout(function () {
     container.view.$el[0].scrollIntoView({
       behavior: 'smooth',
@@ -18256,14 +18256,14 @@ var takeScreenshot = exports.takeScreenshot = /*#__PURE__*/function () {
           }
           return _context.abrupt("return", '');
         case 2:
-          // Disable history so the Editor won't show our hidden container as a user action.
+          / Disable history so the Editor won't show our hidden container as a user action.
           (0, _history.toggleHistory)(false);
           hiddenWrapper = createHiddenWrapper();
           container = createContainer(template);
           wrapContainer(container, hiddenWrapper);
           elementor.getPreviewView().$childViewContainer[0].appendChild(hiddenWrapper);
 
-          // Wait for the container to render.
+          / Wait for the container to render.
           _context.next = 9;
           return waitForContainer(container.id);
         case 9:
@@ -18286,7 +18286,7 @@ var takeScreenshot = exports.takeScreenshot = /*#__PURE__*/function () {
         case 18:
           _context.prev = 18;
           _context.t0 = _context["catch"](12);
-          // Return an empty image url if the screenshot failed.
+          / Return an empty image url if the screenshot failed.
           screenshot = '';
         case 21:
           deleteContainer(container);
@@ -18306,7 +18306,7 @@ var takeScreenshot = exports.takeScreenshot = /*#__PURE__*/function () {
 function screenshotNode(node) {
   return toWebp(node, {
     quality: 0.01,
-    // Transparent 1x1 pixel.
+    / Transparent 1x1 pixel.
     imagePlaceholder: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
   });
 }
@@ -18346,7 +18346,7 @@ function createHiddenWrapper() {
 function createContainer(template) {
   var model = (0, _requestsIds.generateIds)(template);
 
-  // Set a custom ID, so it can be used later on in the backend.
+  / Set a custom ID, so it can be used later on in the backend.
   model.id = "e-ai-screenshot-container-".concat(model.id);
   return $e.run('document/elements/create', {
     container: elementor.getPreviewContainer(),
@@ -18375,7 +18375,7 @@ function waitForContainer(id) {
                 _context2.next = 5;
                 break;
               }
-              images = (0, _toConsumableArray2.default)($element[0].querySelectorAll('img')); // Wait for all images to load.
+              images = (0, _toConsumableArray2.default)($element[0].querySelectorAll('img')); / Wait for all images to load.
               _context2.next = 4;
               return Promise.all(images.map(waitForImage));
             case 4:
@@ -18400,7 +18400,7 @@ function waitForImage(image) {
   return new Promise(function (resolve) {
     image.addEventListener('load', resolve);
     image.addEventListener('error', function () {
-      // Remove the image to make sure it won't break the screenshot.
+      / Remove the image to make sure it won't break the screenshot.
       image.remove();
       resolve();
     });
@@ -19004,30 +19004,30 @@ exports.colors = [
 
 // eslint-disable-next-line complexity
 function useColors() {
-	// NB: In an Electron preload script, document will be defined but not fully
-	// initialized. Since we know we're in Chrome, we'll just detect this case
-	// explicitly
+	/ NB: In an Electron preload script, document will be defined but not fully
+	/ initialized. Since we know we're in Chrome, we'll just detect this case
+	/ explicitly
 	if (typeof window !== 'undefined' && window.process && (window.process.type === 'renderer' || window.process.__nwjs)) {
 		return true;
 	}
 
-	// Internet Explorer and Edge do not support colors.
+	/ Internet Explorer and Edge do not support colors.
 	if (typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/(edge|trident)\/(\d+)/)) {
 		return false;
 	}
 
 	let m;
 
-	// Is webkit? http://stackoverflow.com/a/16459606/376773
-	// document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
-	// eslint-disable-next-line no-return-assign
+	/ Is webkit? http://stackoverflow.com/a/16459606/376773
+	/ document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
+	/ eslint-disable-next-line no-return-assign
 	return (typeof document !== 'undefined' && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance) ||
-		// Is firebug? http://stackoverflow.com/a/398120/376773
+		/ Is firebug? http://stackoverflow.com/a/398120/376773
 		(typeof window !== 'undefined' && window.console && (window.console.firebug || (window.console.exception && window.console.table))) ||
-		// Is firefox >= v31?
-		// https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
+		/ Is firefox >= v31?
+		/ https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
 		(typeof navigator !== 'undefined' && navigator.userAgent && (m = navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/)) && parseInt(m[1], 10) >= 31) ||
-		// Double check webkit in userAgent just in case we are in a worker
+		/ Double check webkit in userAgent just in case we are in a worker
 		(typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/));
 }
 
@@ -19052,9 +19052,9 @@ function formatArgs(args) {
 	const c = 'color: ' + this.color;
 	args.splice(1, 0, c, 'color: inherit');
 
-	// The final "%c" is somewhat tricky, because there could be other
-	// arguments passed either before or after the %c, so we need to
-	// figure out the correct index to insert the CSS into
+	/ The final "%c" is somewhat tricky, because there could be other
+	/ arguments passed either before or after the %c, so we need to
+	/ figure out the correct index to insert the CSS into
 	let index = 0;
 	let lastC = 0;
 	args[0].replace(/%[a-zA-Z%]/g, match => {
@@ -19063,8 +19063,8 @@ function formatArgs(args) {
 		}
 		index++;
 		if (match === '%c') {
-			// We only are interested in the *last* %c
-			// (the user may have provided their own)
+			/ We only are interested in the *last* %c
+			/ (the user may have provided their own)
 			lastC = index;
 		}
 	});
@@ -19096,8 +19096,8 @@ function save(namespaces) {
 			exports.storage.removeItem('debug');
 		}
 	} catch (error) {
-		// Swallow
-		// XXX (@Qix-) should we be logging these?
+		/ Swallow
+		/ XXX (@Qix-) should we be logging these?
 	}
 }
 
@@ -19112,11 +19112,11 @@ function load() {
 	try {
 		r = exports.storage.getItem('debug');
 	} catch (error) {
-		// Swallow
-		// XXX (@Qix-) should we be logging these?
+		/ Swallow
+		/ XXX (@Qix-) should we be logging these?
 	}
 
-	// If debug isn't set in LS, and we're in Electron, try to load $DEBUG
+	/ If debug isn't set in LS, and we're in Electron, try to load $DEBUG
 	if (!r && typeof process !== 'undefined' && 'env' in process) {
 		r = process.env.DEBUG;
 	}
@@ -19137,12 +19137,12 @@ function load() {
 
 function localstorage() {
 	try {
-		// TVMLKit (Apple TV JS Runtime) does not have a window object, just localStorage in the global context
-		// The Browser also has localStorage in the global context.
+		/ TVMLKit (Apple TV JS Runtime) does not have a window object, just localStorage in the global context
+		/ The Browser also has localStorage in the global context.
 		return localStorage;
 	} catch (error) {
-		// Swallow
-		// XXX (@Qix-) should we be logging these?
+		/ Swallow
+		/ XXX (@Qix-) should we be logging these?
 	}
 }
 
@@ -19216,7 +19216,7 @@ function setup(env) {
 
 		for (let i = 0; i < namespace.length; i++) {
 			hash = ((hash << 5) - hash) + namespace.charCodeAt(i);
-			hash |= 0; // Convert to 32bit integer
+			hash |= 0; / Convert to 32bit integer
 		}
 
 		return createDebug.colors[Math.abs(hash) % createDebug.colors.length];
@@ -19237,14 +19237,14 @@ function setup(env) {
 		let enabledCache;
 
 		function debug(...args) {
-			// Disabled?
+			/ Disabled?
 			if (!debug.enabled) {
 				return;
 			}
 
 			const self = debug;
 
-			// Set `diff` timestamp
+			/ Set `diff` timestamp
 			const curr = Number(new Date());
 			const ms = curr - (prevTime || curr);
 			self.diff = ms;
@@ -19255,14 +19255,14 @@ function setup(env) {
 			args[0] = createDebug.coerce(args[0]);
 
 			if (typeof args[0] !== 'string') {
-				// Anything else let's inspect with %O
+				/ Anything else let's inspect with %O
 				args.unshift('%O');
 			}
 
-			// Apply any `formatters` transformations
+			/ Apply any `formatters` transformations
 			let index = 0;
 			args[0] = args[0].replace(/%([a-zA-Z%])/g, (match, format) => {
-				// If we encounter an escaped % then don't increase the array index
+				/ If we encounter an escaped % then don't increase the array index
 				if (match === '%%') {
 					return '%';
 				}
@@ -19272,14 +19272,14 @@ function setup(env) {
 					const val = args[index];
 					match = formatter.call(self, val);
 
-					// Now we need to remove `args[index]` since it's inlined in the `format`
+					/ Now we need to remove `args[index]` since it's inlined in the `format`
 					args.splice(index, 1);
 					index--;
 				}
 				return match;
 			});
 
-			// Apply env-specific formatting (colors, etc.)
+			/ Apply env-specific formatting (colors, etc.)
 			createDebug.formatArgs.call(self, args);
 
 			const logFn = self.log || createDebug.log;
@@ -19290,7 +19290,7 @@ function setup(env) {
 		debug.useColors = createDebug.useColors();
 		debug.color = createDebug.selectColor(namespace);
 		debug.extend = extend;
-		debug.destroy = createDebug.destroy; // XXX Temporary. Will be removed in the next major release.
+		debug.destroy = createDebug.destroy; / XXX Temporary. Will be removed in the next major release.
 
 		Object.defineProperty(debug, 'enabled', {
 			enumerable: true,
@@ -19311,7 +19311,7 @@ function setup(env) {
 			}
 		});
 
-		// Env-specific initialization logic for debug instances
+		/ Env-specific initialization logic for debug instances
 		if (typeof createDebug.init === 'function') {
 			createDebug.init(debug);
 		}
@@ -19370,26 +19370,26 @@ function setup(env) {
 
 		while (searchIndex < search.length) {
 			if (templateIndex < template.length && (template[templateIndex] === search[searchIndex] || template[templateIndex] === '*')) {
-				// Match character or proceed with wildcard
+				/ Match character or proceed with wildcard
 				if (template[templateIndex] === '*') {
 					starIndex = templateIndex;
 					matchIndex = searchIndex;
-					templateIndex++; // Skip the '*'
+					templateIndex++; / Skip the '*'
 				} else {
 					searchIndex++;
 					templateIndex++;
 				}
-			} else if (starIndex !== -1) { // eslint-disable-line no-negated-condition
-				// Backtrack to the last '*' and try to match more characters
+			} else if (starIndex !== -1) { / eslint-disable-line no-negated-condition
+				/ Backtrack to the last '*' and try to match more characters
 				templateIndex = starIndex + 1;
 				matchIndex++;
 				searchIndex = matchIndex;
 			} else {
-				return false; // No match
+				return false; / No match
 			}
 		}
 
-		// Handle trailing '*' in template
+		/ Handle trailing '*' in template
 		while (templateIndex < template.length && template[templateIndex] === '*') {
 			templateIndex++;
 		}
@@ -19519,13 +19519,13 @@ var isPlainObject = function isPlainObject(obj) {
 
 	var hasOwnConstructor = hasOwn.call(obj, 'constructor');
 	var hasIsPrototypeOf = obj.constructor && obj.constructor.prototype && hasOwn.call(obj.constructor.prototype, 'isPrototypeOf');
-	// Not own constructor property must be Object
+	/ Not own constructor property must be Object
 	if (obj.constructor && !hasOwnConstructor && !hasIsPrototypeOf) {
 		return false;
 	}
 
-	// Own properties are enumerated firstly, so to speed up,
-	// if last one is own, then all properties are own.
+	/ Own properties are enumerated firstly, so to speed up,
+	/ if last one is own, then all properties are own.
 	var key;
 	for (key in obj) { /**/ }
 
@@ -19552,8 +19552,8 @@ var getProperty = function getProperty(obj, name) {
 		if (!hasOwn.call(obj, name)) {
 			return void 0;
 		} else if (gOPD) {
-			// In early versions of node, obj['__proto__'] is buggy when obj has
-			// __proto__ as an own property. Object.getOwnPropertyDescriptor() works.
+			/ In early versions of node, obj['__proto__'] is buggy when obj has
+			/ __proto__ as an own property. Object.getOwnPropertyDescriptor() works.
 			return gOPD(obj, name).value;
 		}
 	}
@@ -19568,11 +19568,11 @@ module.exports = function extend() {
 	var length = arguments.length;
 	var deep = false;
 
-	// Handle a deep copy situation
+	/ Handle a deep copy situation
 	if (typeof target === 'boolean') {
 		deep = target;
 		target = arguments[1] || {};
-		// skip the boolean and the target
+		/ skip the boolean and the target
 		i = 2;
 	}
 	if (target == null || (typeof target !== 'object' && typeof target !== 'function')) {
@@ -19581,16 +19581,16 @@ module.exports = function extend() {
 
 	for (; i < length; ++i) {
 		options = arguments[i];
-		// Only deal with non-null/undefined values
+		/ Only deal with non-null/undefined values
 		if (options != null) {
-			// Extend the base object
+			/ Extend the base object
 			for (name in options) {
 				src = getProperty(target, name);
 				copy = getProperty(options, name);
 
-				// Prevent never-ending loop
+				/ Prevent never-ending loop
 				if (target !== copy) {
-					// Recurse if we're merging plain objects or arrays
+					/ Recurse if we're merging plain objects or arrays
 					if (deep && copy && (isPlainObject(copy) || (copyIsArray = isArray(copy)))) {
 						if (copyIsArray) {
 							copyIsArray = false;
@@ -19599,10 +19599,10 @@ module.exports = function extend() {
 							clone = src && isPlainObject(src) ? src : {};
 						}
 
-						// Never move original objects, clone them
+						/ Never move original objects, clone them
 						setProperty(target, { name: name, newValue: extend(deep, clone, copy) });
 
-					// Don't bring in undefined values
+					/ Don't bring in undefined values
 					} else if (typeof copy !== 'undefined') {
 						setProperty(target, { name: name, newValue: copy });
 					}
@@ -19611,7 +19611,7 @@ module.exports = function extend() {
 		}
 	}
 
-	// Return the modified object
+	/ Return the modified object
 	return target;
 };
 
@@ -19701,7 +19701,7 @@ async function cloneIFrameElement(iframe) {
         }
     }
     catch (_b) {
-        // Failed to clone iframe
+        / Failed to clone iframe
     }
     return iframe.cloneNode(false);
 }
@@ -19812,7 +19812,7 @@ async function ensureSVGSymbols(clone, options) {
             const exist = clone.querySelector(id);
             const definition = document.querySelector(id);
             if (!exist && definition && !processedDefs[id]) {
-                // eslint-disable-next-line no-await-in-loop
+                / eslint-disable-next-line no-await-in-loop
                 processedDefs[id] = (await cloneNode(definition, options, true));
             }
         }
@@ -19957,9 +19957,9 @@ function getCacheKey(url, contentType, includeQueryParams) {
     if (includeQueryParams) {
         key = url;
     }
-    // font resource
+    / font resource
     if (/ttf|otf|eot|woff2?/i.test(key)) {
-        key = key.replace(/.*\//, '');
+        key = key.replace(/.*\/, '');
     }
     return contentType ? `[${contentType}]${key}` : key;
 }
@@ -19968,16 +19968,16 @@ async function resourceToDataURL(resourceUrl, contentType, options) {
     if (cache[cacheKey] != null) {
         return cache[cacheKey];
     }
-    // ref: https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#Bypassing_the_cache
+    / ref: https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#Bypassing_the_cache
     if (options.cacheBust) {
-        // eslint-disable-next-line no-param-reassign
+        / eslint-disable-next-line no-param-reassign
         resourceUrl += (/\?/.test(resourceUrl) ? '&' : '?') + new Date().getTime();
     }
     let dataURL;
     try {
         const content = await fetchAsDataURL(resourceUrl, options.fetchRequestInit, ({ res, result }) => {
             if (!contentType) {
-                // eslint-disable-next-line no-param-reassign
+                / eslint-disable-next-line no-param-reassign
                 contentType = res.headers.get('Content-Type') || '';
             }
             return getContentFromDataUrl(result);
@@ -20106,7 +20106,7 @@ const URL_REGEX = /url\((['"]?)([^'"]+?)\1\)/g;
 const URL_WITH_FORMAT_REGEX = /url\([^)]+\)\s*format\((["']?)([^"']+)\1\)/g;
 const FONT_SRC_REGEX = /src:\s*(?:url\([^)]+\)\s*format\([^)]+\)[,;]\s*)+/g;
 function toRegex(url) {
-    // eslint-disable-next-line no-useless-escape
+    / eslint-disable-next-line no-useless-escape
     const escaped = url.replace(/([.*+?^${}()|\[\]\/\\])/g, '\\$1');
     return new RegExp(`(url\\(['"]?)(${escaped})(['"]?\\))`, 'g');
 }
@@ -20133,7 +20133,7 @@ async function embed(cssText, resourceURL, baseURL, options, getContentFromUrl) 
         return cssText.replace(toRegex(resourceURL), `$1${dataURL}$3`);
     }
     catch (error) {
-        // pass
+        / pass
     }
     return cssText;
 }
@@ -20141,7 +20141,7 @@ function filterPreferredFontFormat(str, { preferredFontFormat }) {
     return !preferredFontFormat
         ? str
         : str.replace(FONT_SRC_REGEX, (match) => {
-            // eslint-disable-next-line no-constant-condition
+            / eslint-disable-next-line no-constant-condition
             while (true) {
                 const [src, , format] = URL_WITH_FORMAT_REGEX.exec(match) || [];
                 if (!format) {
@@ -20220,11 +20220,11 @@ function parseCSS(source) {
     }
     const result = [];
     const commentsRegex = /(\/\*[\s\S]*?\*\/)/gi;
-    // strip out comments
+    / strip out comments
     let cssText = source.replace(commentsRegex, '');
-    // eslint-disable-next-line prefer-regex-literals
+    / eslint-disable-next-line prefer-regex-literals
     const keyframesRegex = new RegExp('((@.*?keyframes [\\s\\S]*?){([\\s\\S]*?}\\s*?)})', 'gi');
-    // eslint-disable-next-line no-constant-condition
+    / eslint-disable-next-line no-constant-condition
     while (true) {
         const matches = keyframesRegex.exec(cssText);
         if (matches === null) {
@@ -20234,12 +20234,12 @@ function parseCSS(source) {
     }
     cssText = cssText.replace(keyframesRegex, '');
     const importRegex = /@import[\s\S]*?url\([^)]*\)[\s\S]*?;/gi;
-    // to match css & media queries together
+    / to match css & media queries together
     const combinedCSSRegex = '((\\s*?(?:\\/\\*[\\s\\S]*?\\*\\/)?\\s*?@media[\\s\\S]' +
         '*?){([\\s\\S]*?)}\\s*?})|(([\\s\\S]*?){([\\s\\S]*?)})';
-    // unified regex
+    / unified regex
     const unifiedRegex = new RegExp(combinedCSSRegex, 'gi');
-    // eslint-disable-next-line no-constant-condition
+    / eslint-disable-next-line no-constant-condition
     while (true) {
         let matches = importRegex.exec(cssText);
         if (matches === null) {
@@ -20261,7 +20261,7 @@ function parseCSS(source) {
 async function getCSSRules(styleSheets, options) {
     const ret = [];
     const deferreds = [];
-    // First loop inlines imports
+    / First loop inlines imports
     styleSheets.forEach((sheet) => {
         if ('cssRules' in sheet) {
             try {
@@ -20308,7 +20308,7 @@ async function getCSSRules(styleSheets, options) {
         }
     });
     return Promise.all(deferreds).then(() => {
-        // Second loop parses rules
+        / Second loop parses rules
         styleSheets.forEach((sheet) => {
             if ('cssRules' in sheet) {
                 try {
@@ -20513,15 +20513,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   uuid: () => (/* binding */ uuid)
 /* harmony export */ });
 function resolveUrl(url, baseUrl) {
-    // url is absolute already
-    if (url.match(/^[a-z]+:\/\//i)) {
+    / url is absolute already
+    if (url.match(/^[a-z]+:\/\/i)) {
         return url;
     }
-    // url is absolute already, without protocol
-    if (url.match(/^\/\//)) {
+    / url is absolute already, without protocol
+    if (url.match(/^\/\/)) {
         return window.location.protocol + url;
     }
-    // dataURI, mailto:, tel:, etc.
+    / dataURI, mailto:, tel:, etc.
     if (url.match(/^[a-z]+:/i)) {
         return url;
     }
@@ -20537,12 +20537,12 @@ function resolveUrl(url, baseUrl) {
     return a.href;
 }
 const uuid = (() => {
-    // generate uuid for className of pseudo elements.
-    // We should not use GUIDs, otherwise pseudo elements sometimes cannot be captured.
+    / generate uuid for className of pseudo elements.
+    / We should not use GUIDs, otherwise pseudo elements sometimes cannot be captured.
     let counter = 0;
-    // ref: http://stackoverflow.com/a/6248722/2519373
+    / ref: http://stackoverflow.com/a/6248722/2519373
     const random = () => 
-    // eslint-disable-next-line no-bitwise
+    / eslint-disable-next-line no-bitwise
     `0000${((Math.random() * 36 ** 4) << 0).toString(36)}`.slice(-4);
     return () => {
         counter += 1;
@@ -20588,7 +20588,7 @@ function getPixelRatio() {
         FINAL_PROCESS = process;
     }
     catch (e) {
-        // pass
+        / pass
     }
     const val = FINAL_PROCESS && FINAL_PROCESS.env
         ? FINAL_PROCESS.env.devicePixelRatio
@@ -20701,7 +20701,7 @@ const isInstanceOfElement = (node, instance) => {
 
 // http://www.w3.org/TR/CSS21/grammar.html
 // https://github.com/visionmedia/css-parse/pull/49#issuecomment-30088027
-var COMMENT_REGEX = /\/\*[^*]*\*+([^/*][^*]*\*+)*\//g;
+var COMMENT_REGEX = /\/\*[^*]*\*+([^/*][^*]*\*+)*\/g;
 
 var NEWLINE_REGEX = /\n/g;
 var WHITESPACE_REGEX = /^\s*/;
@@ -20900,15 +20900,15 @@ module.exports = function(style, options) {
   function declaration() {
     var pos = position();
 
-    // prop
+    / prop
     var prop = match(PROPERTY_REGEX);
     if (!prop) return;
     comment();
 
-    // :
+    / :
     if (!match(COLON_REGEX)) return error("property missing ':'");
 
-    // val
+    / val
     var val = match(VALUE_REGEX);
 
     var ret = pos({
@@ -20919,7 +20919,7 @@ module.exports = function(style, options) {
         : EMPTY_STRING
     });
 
-    // ;
+    / ;
     match(SEMICOLON_REGEX);
 
     return ret;
@@ -20935,7 +20935,7 @@ module.exports = function(style, options) {
 
     comments(decls);
 
-    // declarations
+    / declarations
     var decl;
     while ((decl = declaration())) {
       if (decl !== false) {
@@ -21225,12 +21225,12 @@ function noCase(input, options) {
     var result = replace(replace(input, splitRegexp, "$1\0$2"), stripRegexp, "\0");
     var start = 0;
     var end = result.length;
-    // Trim the delimiter from around the output string.
+    / Trim the delimiter from around the output string.
     while (result.charAt(start) === "\0")
         start++;
     while (result.charAt(end - 1) === "\0")
         end--;
-    // Transform each token independently.
+    / Transform each token independently.
     return result.slice(start, end).split("\0").map(transform).join(delimiter);
 }
 /**
@@ -21278,16 +21278,16 @@ function shouldUseNative() {
 			return false;
 		}
 
-		// Detect buggy property enumeration order in older V8 versions.
+		/ Detect buggy property enumeration order in older V8 versions.
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc');  / eslint-disable-line no-new-wrappers
 		test1[5] = 'de';
 		if (Object.getOwnPropertyNames(test1)[0] === '5') {
 			return false;
 		}
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=3056
 		var test2 = {};
 		for (var i = 0; i < 10; i++) {
 			test2['_' + String.fromCharCode(i)] = i;
@@ -21299,7 +21299,7 @@ function shouldUseNative() {
 			return false;
 		}
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=3056
 		var test3 = {};
 		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
 			test3[letter] = letter;
@@ -21311,7 +21311,7 @@ function shouldUseNative() {
 
 		return true;
 	} catch (err) {
-		// We don't expect any of the above to throw, but better to be safe.
+		/ We don't expect any of the above to throw, but better to be safe.
 		return false;
 	}
 }
@@ -21398,9 +21398,9 @@ if (true) {
       console.error(message);
     }
     try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
+      / --- Welcome to debugging React ---
+      / This error was thrown as a convenience so that you can use this stack
+      / to find the callsite that caused this warning to fire.
       throw new Error(message);
     } catch (x) { /**/ }
   };
@@ -21422,12 +21422,12 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
     for (var typeSpecName in typeSpecs) {
       if (has(typeSpecs, typeSpecName)) {
         var error;
-        // Prop type validation may throw. In case they do, we don't want to
-        // fail the render phase where it didn't fail before. So we log it.
-        // After these have been cleaned up, we'll let them throw.
+        / Prop type validation may throw. In case they do, we don't want to
+        / fail the render phase where it didn't fail before. So we log it.
+        / After these have been cleaned up, we'll let them throw.
         try {
-          // This is intentionally an invariant that gets caught. It's the same
-          // behavior as without this statement except with a better message.
+          / This is intentionally an invariant that gets caught. It's the same
+          / behavior as without this statement except with a better message.
           if (typeof typeSpecs[typeSpecName] !== 'function') {
             var err = Error(
               (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
@@ -21452,8 +21452,8 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
           );
         }
         if (error instanceof Error && !(error.message in loggedTypeFailures)) {
-          // Only monitor this failure once because there tends to be a lot of the
-          // same error.
+          / Only monitor this failure once because there tends to be a lot of the
+          / same error.
           loggedTypeFailures[error.message] = true;
 
           var stack = getStack ? getStack() : '';
@@ -21515,9 +21515,9 @@ if (true) {
       console.error(message);
     }
     try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
+      / --- Welcome to debugging React ---
+      / This error was thrown as a convenience so that you can use this stack
+      / to find the callsite that caused this warning to fire.
       throw new Error(message);
     } catch (x) {}
   };
@@ -21530,7 +21530,7 @@ function emptyFunctionThatReturnsNull() {
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
   var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
-  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+  var FAUX_ITERATOR_SYMBOL = '@@iterator'; / Before Symbol spec.
 
   /**
    * Returns the iterator method function contained on the iterable object.
@@ -21560,13 +21560,13 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    *   var Props = require('ReactPropTypes');
    *   var MyArticle = React.createClass({
    *     propTypes: {
-   *       // An optional string prop named "description".
+   *       / An optional string prop named "description".
    *       description: Props.string,
    *
-   *       // A required enum prop named "category".
+   *       / A required enum prop named "category".
    *       category: Props.oneOf(['News','Photos']).isRequired,
    *
-   *       // A prop named "dialog" that requires an instance of Dialog.
+   *       / A prop named "dialog" that requires an instance of Dialog.
    *       dialog: Props.instanceOf(Dialog).isRequired
    *     },
    *     render: function() { ... }
@@ -21582,7 +21582,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    *
    *  var MyLink = React.createClass({
    *    propTypes: {
-   *      // An optional string or URI prop named "href".
+   *      / An optional string or URI prop named "href".
    *      href: function(props, propName, componentName) {
    *        var propValue = props[propName];
    *        if (propValue != null && typeof propValue !== 'string' &&
@@ -21602,8 +21602,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
   var ANONYMOUS = '<<anonymous>>';
 
-  // Important!
-  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+  / Important!
+  / Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
   var ReactPropTypes = {
     array: createPrimitiveTypeChecker('array'),
     bigint: createPrimitiveTypeChecker('bigint'),
@@ -21633,13 +21633,13 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    */
   /*eslint-disable no-self-compare*/
   function is(x, y) {
-    // SameValue algorithm
+    / SameValue algorithm
     if (x === y) {
-      // Steps 1-5, 7-10
-      // Steps 6.b-6.e: +0 != -0
+      / Steps 1-5, 7-10
+      / Steps 6.b-6.e: +0 != -0
       return x !== 0 || 1 / x === 1 / y;
     } else {
-      // Step 6.a: NaN == NaN
+      / Step 6.a: NaN == NaN
       return x !== x && y !== y;
     }
   }
@@ -21657,7 +21657,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     this.data = data && typeof data === 'object' ? data: {};
     this.stack = '';
   }
-  // Make `instanceof Error` still work for returned errors.
+  / Make `instanceof Error` still work for returned errors.
   PropTypeError.prototype = Error.prototype;
 
   function createChainableTypeChecker(validate) {
@@ -21671,7 +21671,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
       if (secret !== ReactPropTypesSecret) {
         if (throwOnDirectAccess) {
-          // New behavior only for users of `prop-types` package
+          / New behavior only for users of `prop-types` package
           var err = new Error(
             'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
             'Use `PropTypes.checkPropTypes()` to call them. ' +
@@ -21680,11 +21680,11 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
           err.name = 'Invariant Violation';
           throw err;
         } else if ( true && typeof console !== 'undefined') {
-          // Old behavior for people using React.PropTypes
+          / Old behavior for people using React.PropTypes
           var cacheKey = componentName + ':' + propName;
           if (
             !manualPropTypeCallCache[cacheKey] &&
-            // Avoid spamming the console because they are often not actionable except for lib authors
+            / Avoid spamming the console because they are often not actionable except for lib authors
             manualPropTypeWarningCount < 3
           ) {
             printWarning(
@@ -21723,9 +21723,9 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
       var propValue = props[propName];
       var propType = getPropType(propValue);
       if (propType !== expectedType) {
-        // `propValue` being instance of, say, date/regexp, pass the 'object'
-        // check, but we can offer a more precise error message here rather than
-        // 'of type `object`'.
+        / `propValue` being instance of, say, date/regexp, pass the 'object'
+        / check, but we can offer a more precise error message here rather than
+        / 'of type `object`'.
         var preciseType = getPreciseType(propValue);
 
         return new PropTypeError(
@@ -21938,7 +21938,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
       if (propType !== 'object') {
         return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
       }
-      // We need to check all keys in case some are required but missing from props.
+      / We need to check all keys in case some are required but missing from props.
       var allKeys = assign({}, props[propName], shapeTypes);
       for (var key in allKeys) {
         var checker = shapeTypes[key];
@@ -21990,7 +21990,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
               }
             }
           } else {
-            // Iterator will provide entry [k,v] tuples rather than values.
+            / Iterator will provide entry [k,v] tuples rather than values.
             while (!(step = iterator.next()).done) {
               var entry = step.value;
               if (entry) {
@@ -22011,22 +22011,22 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
   }
 
   function isSymbol(propType, propValue) {
-    // Native Symbol.
+    / Native Symbol.
     if (propType === 'symbol') {
       return true;
     }
 
-    // falsy value can't be a Symbol
+    / falsy value can't be a Symbol
     if (!propValue) {
       return false;
     }
 
-    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
+    / 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
     if (propValue['@@toStringTag'] === 'Symbol') {
       return true;
     }
 
-    // Fallback for non-spec compliant Symbols which are polyfilled.
+    / Fallback for non-spec compliant Symbols which are polyfilled.
     if (typeof Symbol === 'function' && propValue instanceof Symbol) {
       return true;
     }
@@ -22034,16 +22034,16 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return false;
   }
 
-  // Equivalent of `typeof` but with special handling for array and regexp.
+  / Equivalent of `typeof` but with special handling for array and regexp.
   function getPropType(propValue) {
     var propType = typeof propValue;
     if (Array.isArray(propValue)) {
       return 'array';
     }
     if (propValue instanceof RegExp) {
-      // Old webkits (at least until Android 4.0) return 'function' rather than
-      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
-      // passes PropTypes.object.
+      / Old webkits (at least until Android 4.0) return 'function' rather than
+      / 'object' for typeof a RegExp. We'll normalize this here so that /bla/
+      / passes PropTypes.object.
       return 'object';
     }
     if (isSymbol(propType, propValue)) {
@@ -22052,8 +22052,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return propType;
   }
 
-  // This handles more types than `getPropType`. Only used for error messages.
-  // See `createPrimitiveTypeChecker`.
+  / This handles more types than `getPropType`. Only used for error messages.
+  / See `createPrimitiveTypeChecker`.
   function getPreciseType(propValue) {
     if (typeof propValue === 'undefined' || propValue === null) {
       return '' + propValue;
@@ -22069,8 +22069,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return propType;
   }
 
-  // Returns a string that is postfixed to a warning about an invalid type.
-  // For example, "undefined" or "of type array"
+  / Returns a string that is postfixed to a warning about an invalid type.
+  / For example, "undefined" or "of type array"
   function getPostfixForTypeWarning(value) {
     var type = getPreciseType(value);
     switch (type) {
@@ -22086,7 +22086,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     }
   }
 
-  // Returns class name of the object, if any.
+  / Returns class name of the object, if any.
   function getClassName(propValue) {
     if (!propValue.constructor || !propValue.constructor.name) {
       return ANONYMOUS;
@@ -22120,8 +22120,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 if (true) {
   var ReactIs = __webpack_require__(/*! react-is */ "../node_modules/prop-types/node_modules/react-is/index.js");
 
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
+  / By explicitly using `prop-types` you are opting into new development behavior.
+  / http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
   module.exports = __webpack_require__(/*! ./factoryWithTypeCheckers */ "../node_modules/prop-types/factoryWithTypeCheckers.js")(ReactIs.isElement, throwOnDirectAccess);
 } else {}
@@ -22196,7 +22196,7 @@ var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
 var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
 var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
 var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
-var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; / TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
 // (unstable) APIs that have been removed. Can we remove the symbols?
 
 var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
@@ -22212,7 +22212,7 @@ var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
 var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
 
 function isValidElementType(type) {
-  return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+  return typeof type === 'string' || typeof type === 'function' || / Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
   type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
 }
 
@@ -22256,7 +22256,7 @@ function typeOf(object) {
   }
 
   return undefined;
-} // AsyncMode is deprecated along with isAsyncMode
+} / AsyncMode is deprecated along with isAsyncMode
 
 var AsyncMode = REACT_ASYNC_MODE_TYPE;
 var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
@@ -22271,12 +22271,12 @@ var Portal = REACT_PORTAL_TYPE;
 var Profiler = REACT_PROFILER_TYPE;
 var StrictMode = REACT_STRICT_MODE_TYPE;
 var Suspense = REACT_SUSPENSE_TYPE;
-var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
+var hasWarnedAboutDeprecatedIsAsyncMode = false; / AsyncMode should be deprecated
 
 function isAsyncMode(object) {
   {
     if (!hasWarnedAboutDeprecatedIsAsyncMode) {
-      hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+      hasWarnedAboutDeprecatedIsAsyncMode = true; / Using console['warn'] to evade Babel and ESLint
 
       console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
     }
@@ -22492,8 +22492,8 @@ function _toPrimitive(input, hint) { if (typeof input !== "object" || input === 
 // Define <Draggable>
 //
 class Draggable extends React.Component /*:: <DraggableProps, DraggableState>*/{
-  // React 16.3+
-  // Arity (props, state)
+  / React 16.3+
+  / Arity (props, state)
   static getDerivedStateFromProps(_ref /*:: */, _ref2 /*:: */) /*: ?Partial<DraggableState>*/{
     let {
       position
@@ -22501,7 +22501,7 @@ class Draggable extends React.Component /*:: <DraggableProps, DraggableState>*/{
     let {
       prevPropsPosition
     } /*: DraggableState*/ = _ref2 /*: DraggableState*/;
-    // Set x/y if a new position is provided in props that is different than the previous.
+    / Set x/y if a new position is provided in props that is different than the previous.
     if (position && (!prevPropsPosition || position.x !== prevPropsPosition.x || position.y !== prevPropsPosition.y)) {
       (0, _log.default)('Draggable: getDerivedStateFromProps %j', {
         position,
@@ -22522,9 +22522,9 @@ class Draggable extends React.Component /*:: <DraggableProps, DraggableState>*/{
     _defineProperty(this, "onDragStart", (e, coreData) => {
       (0, _log.default)('Draggable: onDragStart: %j', coreData);
 
-      // Short-circuit if user's callback killed it.
+      / Short-circuit if user's callback killed it.
       const shouldStart = this.props.onStart(e, (0, _positionFns.createDraggableData)(this, coreData));
-      // Kills start event on core as well, so move handlers are never bound.
+      / Kills start event on core as well, so move handlers are never bound.
       if (shouldStart === false) return false;
       this.setState({
         dragging: true,
@@ -22542,37 +22542,37 @@ class Draggable extends React.Component /*:: <DraggableProps, DraggableState>*/{
         slackY: 0
       };
 
-      // Keep within bounds.
+      / Keep within bounds.
       if (this.props.bounds) {
-        // Save original x and y.
+        / Save original x and y.
         const {
           x,
           y
         } = newState;
 
-        // Add slack to the values used to calculate bound position. This will ensure that if
-        // we start removing slack, the element won't react to it right away until it's been
-        // completely removed.
+        / Add slack to the values used to calculate bound position. This will ensure that if
+        / we start removing slack, the element won't react to it right away until it's been
+        / completely removed.
         newState.x += this.state.slackX;
         newState.y += this.state.slackY;
 
-        // Get bound position. This will ceil/floor the x and y within the boundaries.
+        / Get bound position. This will ceil/floor the x and y within the boundaries.
         const [newStateX, newStateY] = (0, _positionFns.getBoundPosition)(this, newState.x, newState.y);
         newState.x = newStateX;
         newState.y = newStateY;
 
-        // Recalculate slack by noting how much was shaved by the boundPosition handler.
+        / Recalculate slack by noting how much was shaved by the boundPosition handler.
         newState.slackX = this.state.slackX + (x - newState.x);
         newState.slackY = this.state.slackY + (y - newState.y);
 
-        // Update the event we fire to reflect what really happened after bounds took effect.
+        / Update the event we fire to reflect what really happened after bounds took effect.
         uiData.x = newState.x;
         uiData.y = newState.y;
         uiData.deltaX = newState.x - this.state.x;
         uiData.deltaY = newState.y - this.state.y;
       }
 
-      // Short-circuit if user's callback killed it.
+      / Short-circuit if user's callback killed it.
       const shouldUpdate = this.props.onDrag(e, uiData);
       if (shouldUpdate === false) return false;
       this.setState(newState);
@@ -22580,7 +22580,7 @@ class Draggable extends React.Component /*:: <DraggableProps, DraggableState>*/{
     _defineProperty(this, "onDragStop", (e, coreData) => {
       if (!this.state.dragging) return false;
 
-      // Short-circuit if user's callback killed it.
+      / Short-circuit if user's callback killed it.
       const shouldContinue = this.props.onStop(e, (0, _positionFns.createDraggableData)(this, coreData));
       if (shouldContinue === false) return false;
       (0, _log.default)('Draggable: onDragStop: %j', coreData);
@@ -22590,8 +22590,8 @@ class Draggable extends React.Component /*:: <DraggableProps, DraggableState>*/{
         slackY: 0
       };
 
-      // If this is a controlled component, the result of this operation will be to
-      // revert back to the old position. We expect a handler on `onDragStop`, at the least.
+      / If this is a controlled component, the result of this operation will be to
+      / revert back to the old position. We expect a handler on `onDragStop`, at the least.
       const controlled = Boolean(this.props.position);
       if (controlled) {
         const {
@@ -22604,29 +22604,29 @@ class Draggable extends React.Component /*:: <DraggableProps, DraggableState>*/{
       this.setState(newState);
     });
     this.state = {
-      // Whether or not we are currently dragging.
+      / Whether or not we are currently dragging.
       dragging: false,
-      // Whether or not we have been dragged before.
+      / Whether or not we have been dragged before.
       dragged: false,
-      // Current transform x and y.
+      / Current transform x and y.
       x: props.position ? props.position.x : props.defaultPosition.x,
       y: props.position ? props.position.y : props.defaultPosition.y,
       prevPropsPosition: {
         ...props.position
       },
-      // Used for compensating for out-of-bounds drags
+      / Used for compensating for out-of-bounds drags
       slackX: 0,
       slackY: 0,
-      // Can only determine if SVG after mounting
+      / Can only determine if SVG after mounting
       isElementSVG: false
     };
     if (props.position && !(props.onDrag || props.onStop)) {
-      // eslint-disable-next-line no-console
+      / eslint-disable-next-line no-console
       console.warn('A `position` was applied to this <Draggable>, without drag handlers. This will make this ' + 'component effectively undraggable. Please attach `onDrag` or `onStop` handlers so you can adjust the ' + '`position` of this element.');
     }
   }
   componentDidMount() {
-    // Check to see if the element passed is an instanceof SVGElement
+    / Check to see if the element passed is an instanceof SVGElement
     if (typeof window.SVGElement !== 'undefined' && this.findDOMNode() instanceof window.SVGElement) {
       this.setState({
         isElementSVG: true
@@ -22636,11 +22636,11 @@ class Draggable extends React.Component /*:: <DraggableProps, DraggableState>*/{
   componentWillUnmount() {
     this.setState({
       dragging: false
-    }); // prevents invariant if unmounted while dragging
+    }); / prevents invariant if unmounted while dragging
   }
 
-  // React Strict Mode compatibility: if `nodeRef` is passed, we will use it instead of trying to find
-  // the underlying DOM node ourselves. See the README for more information.
+  / React Strict Mode compatibility: if `nodeRef` is passed, we will use it instead of trying to find
+  / the underlying DOM node ourselves. See the README for more information.
   findDOMNode() /*: ?HTMLElement*/{
     var _this$props$nodeRef$c, _this$props;
     return (_this$props$nodeRef$c = (_this$props = this.props) === null || _this$props === void 0 || (_this$props = _this$props.nodeRef) === null || _this$props === void 0 ? void 0 : _this$props.current) !== null && _this$props$nodeRef$c !== void 0 ? _this$props$nodeRef$c : _reactDom.default.findDOMNode(this);
@@ -22662,36 +22662,36 @@ class Draggable extends React.Component /*:: <DraggableProps, DraggableState>*/{
     let style = {};
     let svgTransform = null;
 
-    // If this is controlled, we don't want to move it - unless it's dragging.
+    / If this is controlled, we don't want to move it - unless it's dragging.
     const controlled = Boolean(position);
     const draggable = !controlled || this.state.dragging;
     const validPosition = position || defaultPosition;
     const transformOpts = {
-      // Set left if horizontal drag is enabled
+      / Set left if horizontal drag is enabled
       x: (0, _positionFns.canDragX)(this) && draggable ? this.state.x : validPosition.x,
-      // Set top if vertical drag is enabled
+      / Set top if vertical drag is enabled
       y: (0, _positionFns.canDragY)(this) && draggable ? this.state.y : validPosition.y
     };
 
-    // If this element was SVG, we use the `transform` attribute.
+    / If this element was SVG, we use the `transform` attribute.
     if (this.state.isElementSVG) {
       svgTransform = (0, _domFns.createSVGTransform)(transformOpts, positionOffset);
     } else {
-      // Add a CSS transform to move the element around. This allows us to move the element around
-      // without worrying about whether or not it is relatively or absolutely positioned.
-      // If the item you are dragging already has a transform set, wrap it in a <span> so <Draggable>
-      // has a clean slate.
+      / Add a CSS transform to move the element around. This allows us to move the element around
+      / without worrying about whether or not it is relatively or absolutely positioned.
+      / If the item you are dragging already has a transform set, wrap it in a <span> so <Draggable>
+      / has a clean slate.
       style = (0, _domFns.createCSSTransform)(transformOpts, positionOffset);
     }
 
-    // Mark with class while dragging
+    / Mark with class while dragging
     const className = (0, _clsx.default)(children.props.className || '', defaultClassName, {
       [defaultClassNameDragging]: this.state.dragging,
       [defaultClassNameDragged]: this.state.dragged
     });
 
-    // Reuse the child provided
-    // This makes it flexible to use whatever element is wanted (div, ul, etc)
+    / Reuse the child provided
+    / This makes it flexible to use whatever element is wanted (div, ul, etc)
     return /*#__PURE__*/React.createElement(_DraggableCore.default, _extends({}, draggableCoreProps, {
       onStart: this.onDragStart,
       onDrag: this.onDrag,
@@ -22709,7 +22709,7 @@ class Draggable extends React.Component /*:: <DraggableProps, DraggableState>*/{
 exports["default"] = Draggable;
 _defineProperty(Draggable, "displayName", 'Draggable');
 _defineProperty(Draggable, "propTypes", {
-  // Accepts all props <DraggableCore> accepts.
+  / Accepts all props <DraggableCore> accepts.
   ..._DraggableCore.default.propTypes,
   /**
    * `axis` determines which axis the draggable can move.
@@ -22915,19 +22915,19 @@ class DraggableCore extends React.Component /*:: <DraggableCoreProps>*/{
   constructor() {
     super(...arguments);
     _defineProperty(this, "dragging", false);
-    // Used while dragging to determine deltas.
+    / Used while dragging to determine deltas.
     _defineProperty(this, "lastX", NaN);
     _defineProperty(this, "lastY", NaN);
     _defineProperty(this, "touchIdentifier", null);
     _defineProperty(this, "mounted", false);
     _defineProperty(this, "handleDragStart", e => {
-      // Make it possible to attach event handlers on top of this one.
+      / Make it possible to attach event handlers on top of this one.
       this.props.onMouseDown(e);
 
-      // Only accept left-clicks.
+      / Only accept left-clicks.
       if (!this.props.allowAnyClick && typeof e.button === 'number' && e.button !== 0) return false;
 
-      // Get nodes. Be sure to grab relative document (could be iframed)
+      / Get nodes. Be sure to grab relative document (could be iframed)
       const thisNode = this.findDOMNode();
       if (!thisNode || !thisNode.ownerDocument || !thisNode.ownerDocument.body) {
         throw new Error('<DraggableCore> not mounted on DragStart!');
@@ -22936,57 +22936,57 @@ class DraggableCore extends React.Component /*:: <DraggableCoreProps>*/{
         ownerDocument
       } = thisNode;
 
-      // Short circuit if handle or cancel prop was provided and selector doesn't match.
+      / Short circuit if handle or cancel prop was provided and selector doesn't match.
       if (this.props.disabled || !(e.target instanceof ownerDocument.defaultView.Node) || this.props.handle && !(0, _domFns.matchesSelectorAndParentsTo)(e.target, this.props.handle, thisNode) || this.props.cancel && (0, _domFns.matchesSelectorAndParentsTo)(e.target, this.props.cancel, thisNode)) {
         return;
       }
 
-      // Prevent scrolling on mobile devices, like ipad/iphone.
-      // Important that this is after handle/cancel.
+      / Prevent scrolling on mobile devices, like ipad/iphone.
+      / Important that this is after handle/cancel.
       if (e.type === 'touchstart') e.preventDefault();
 
-      // Set touch identifier in component state if this is a touch event. This allows us to
-      // distinguish between individual touches on multitouch screens by identifying which
-      // touchpoint was set to this element.
+      / Set touch identifier in component state if this is a touch event. This allows us to
+      / distinguish between individual touches on multitouch screens by identifying which
+      / touchpoint was set to this element.
       const touchIdentifier = (0, _domFns.getTouchIdentifier)(e);
       this.touchIdentifier = touchIdentifier;
 
-      // Get the current drag point from the event. This is used as the offset.
+      / Get the current drag point from the event. This is used as the offset.
       const position = (0, _positionFns.getControlPosition)(e, touchIdentifier, this);
-      if (position == null) return; // not possible but satisfies flow
+      if (position == null) return; / not possible but satisfies flow
       const {
         x,
         y
       } = position;
 
-      // Create an event object with all the data parents need to make a decision here.
+      / Create an event object with all the data parents need to make a decision here.
       const coreEvent = (0, _positionFns.createCoreData)(this, x, y);
       (0, _log.default)('DraggableCore: handleDragStart: %j', coreEvent);
 
-      // Call event handler. If it returns explicit false, cancel.
+      / Call event handler. If it returns explicit false, cancel.
       (0, _log.default)('calling', this.props.onStart);
       const shouldUpdate = this.props.onStart(e, coreEvent);
       if (shouldUpdate === false || this.mounted === false) return;
 
-      // Add a style to the body to disable user-select. This prevents text from
-      // being selected all over the page.
+      / Add a style to the body to disable user-select. This prevents text from
+      / being selected all over the page.
       if (this.props.enableUserSelectHack) (0, _domFns.addUserSelectStyles)(ownerDocument);
 
-      // Initiate dragging. Set the current x and y as offsets
-      // so we know how much we've moved during the drag. This allows us
-      // to drag elements around even if they have been moved, without issue.
+      / Initiate dragging. Set the current x and y as offsets
+      / so we know how much we've moved during the drag. This allows us
+      / to drag elements around even if they have been moved, without issue.
       this.dragging = true;
       this.lastX = x;
       this.lastY = y;
 
-      // Add events to the document directly so we catch when the user's mouse/touch moves outside of
-      // this element. We use different events depending on whether or not we have detected that this
-      // is a touch-capable device.
+      / Add events to the document directly so we catch when the user's mouse/touch moves outside of
+      / this element. We use different events depending on whether or not we have detected that this
+      / is a touch-capable device.
       (0, _domFns.addEvent)(ownerDocument, dragEventFor.move, this.handleDrag);
       (0, _domFns.addEvent)(ownerDocument, dragEventFor.stop, this.handleDragStop);
     });
     _defineProperty(this, "handleDrag", e => {
-      // Get the current drag point from the event. This is used as the offset.
+      / Get the current drag point from the event. This is used as the offset.
       const position = (0, _positionFns.getControlPosition)(e, this.touchIdentifier, this);
       if (position == null) return;
       let {
@@ -22994,28 +22994,28 @@ class DraggableCore extends React.Component /*:: <DraggableCoreProps>*/{
         y
       } = position;
 
-      // Snap to grid if prop has been provided
+      / Snap to grid if prop has been provided
       if (Array.isArray(this.props.grid)) {
         let deltaX = x - this.lastX,
           deltaY = y - this.lastY;
         [deltaX, deltaY] = (0, _positionFns.snapToGrid)(this.props.grid, deltaX, deltaY);
-        if (!deltaX && !deltaY) return; // skip useless drag
+        if (!deltaX && !deltaY) return; / skip useless drag
         x = this.lastX + deltaX, y = this.lastY + deltaY;
       }
       const coreEvent = (0, _positionFns.createCoreData)(this, x, y);
       (0, _log.default)('DraggableCore: handleDrag: %j', coreEvent);
 
-      // Call event handler. If it returns explicit false, trigger end.
+      / Call event handler. If it returns explicit false, trigger end.
       const shouldUpdate = this.props.onDrag(e, coreEvent);
       if (shouldUpdate === false || this.mounted === false) {
         try {
-          // $FlowIgnore
+          / $FlowIgnore
           this.handleDragStop(new MouseEvent('mouseup'));
         } catch (err) {
-          // Old browsers
+          / Old browsers
           const event = ((document.createEvent('MouseEvents') /*: any*/) /*: MouseTouchEvent*/);
-          // I see why this insanity was deprecated
-          // $FlowIgnore
+          / I see why this insanity was deprecated
+          / $FlowIgnore
           event.initMouseEvent('mouseup', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
           this.handleDragStop(event);
         }
@@ -23033,7 +23033,7 @@ class DraggableCore extends React.Component /*:: <DraggableCoreProps>*/{
         y
       } = position;
 
-      // Snap to grid if prop has been provided
+      / Snap to grid if prop has been provided
       if (Array.isArray(this.props.grid)) {
         let deltaX = x - this.lastX || 0;
         let deltaY = y - this.lastY || 0;
@@ -23042,29 +23042,29 @@ class DraggableCore extends React.Component /*:: <DraggableCoreProps>*/{
       }
       const coreEvent = (0, _positionFns.createCoreData)(this, x, y);
 
-      // Call event handler
+      / Call event handler
       const shouldContinue = this.props.onStop(e, coreEvent);
       if (shouldContinue === false || this.mounted === false) return false;
       const thisNode = this.findDOMNode();
       if (thisNode) {
-        // Remove user-select hack
+        / Remove user-select hack
         if (this.props.enableUserSelectHack) (0, _domFns.removeUserSelectStyles)(thisNode.ownerDocument);
       }
       (0, _log.default)('DraggableCore: handleDragStop: %j', coreEvent);
 
-      // Reset the el.
+      / Reset the el.
       this.dragging = false;
       this.lastX = NaN;
       this.lastY = NaN;
       if (thisNode) {
-        // Remove event handlers
+        / Remove event handlers
         (0, _log.default)('DraggableCore: Removing handlers');
         (0, _domFns.removeEvent)(thisNode.ownerDocument, dragEventFor.move, this.handleDrag);
         (0, _domFns.removeEvent)(thisNode.ownerDocument, dragEventFor.stop, this.handleDragStop);
       }
     });
     _defineProperty(this, "onMouseDown", e => {
-      dragEventFor = eventsFor.mouse; // on touchscreen laptops we could switch back to mouse
+      dragEventFor = eventsFor.mouse; / on touchscreen laptops we could switch back to mouse
 
       return this.handleDragStart(e);
     });
@@ -23072,22 +23072,22 @@ class DraggableCore extends React.Component /*:: <DraggableCoreProps>*/{
       dragEventFor = eventsFor.mouse;
       return this.handleDragStop(e);
     });
-    // Same as onMouseDown (start drag), but now consider this a touch device.
+    / Same as onMouseDown (start drag), but now consider this a touch device.
     _defineProperty(this, "onTouchStart", e => {
-      // We're on a touch device now, so change the event handlers
+      / We're on a touch device now, so change the event handlers
       dragEventFor = eventsFor.touch;
       return this.handleDragStart(e);
     });
     _defineProperty(this, "onTouchEnd", e => {
-      // We're on a touch device now, so change the event handlers
+      / We're on a touch device now, so change the event handlers
       dragEventFor = eventsFor.touch;
       return this.handleDragStop(e);
     });
   }
   componentDidMount() {
     this.mounted = true;
-    // Touch handlers must be added with {passive: false} to be cancelable.
-    // https://developers.google.com/web/updates/2017/01/scrolling-intervention
+    / Touch handlers must be added with {passive: false} to be cancelable.
+    / https://developers.google.com/web/updates/2017/01/scrolling-intervention
     const thisNode = this.findDOMNode();
     if (thisNode) {
       (0, _domFns.addEvent)(thisNode, eventsFor.touch.start, this.onTouchStart, {
@@ -23097,8 +23097,8 @@ class DraggableCore extends React.Component /*:: <DraggableCoreProps>*/{
   }
   componentWillUnmount() {
     this.mounted = false;
-    // Remove any leftover event handlers. Remove both touch and mouse handlers in case
-    // some browser quirk caused a touch event to fire during a mouse move, or vice versa.
+    / Remove any leftover event handlers. Remove both touch and mouse handlers in case
+    / some browser quirk caused a touch event to fire during a mouse move, or vice versa.
     const thisNode = this.findDOMNode();
     if (thisNode) {
       const {
@@ -23115,23 +23115,23 @@ class DraggableCore extends React.Component /*:: <DraggableCoreProps>*/{
     }
   }
 
-  // React Strict Mode compatibility: if `nodeRef` is passed, we will use it instead of trying to find
-  // the underlying DOM node ourselves. See the README for more information.
+  / React Strict Mode compatibility: if `nodeRef` is passed, we will use it instead of trying to find
+  / the underlying DOM node ourselves. See the README for more information.
   findDOMNode() /*: ?HTMLElement*/{
     var _this$props, _this$props2;
     return (_this$props = this.props) !== null && _this$props !== void 0 && _this$props.nodeRef ? (_this$props2 = this.props) === null || _this$props2 === void 0 || (_this$props2 = _this$props2.nodeRef) === null || _this$props2 === void 0 ? void 0 : _this$props2.current : _reactDom.default.findDOMNode(this);
   }
   render() /*: React.Element<any>*/{
-    // Reuse the child provided
-    // This makes it flexible to use whatever element is wanted (div, ul, etc)
+    / Reuse the child provided
+    / This makes it flexible to use whatever element is wanted (div, ul, etc)
     return /*#__PURE__*/React.cloneElement(React.Children.only(this.props.children), {
-      // Note: mouseMove handler is attached to document so it will still function
-      // when the user drags quickly and leaves the bounds of the element.
+      / Note: mouseMove handler is attached to document so it will still function
+      / when the user drags quickly and leaves the bounds of the element.
       onMouseDown: this.onMouseDown,
       onMouseUp: this.onMouseUp,
-      // onTouchStart is added on `componentDidMount` so they can be added with
-      // {passive: false}, which allows it to cancel. See
-      // https://developers.google.com/web/updates/2017/01/scrolling-intervention
+      / onTouchStart is added on `componentDidMount` so they can be added with
+      / {passive: false}, which allows it to cancel. See
+      / https://developers.google.com/web/updates/2017/01/scrolling-intervention
       onTouchEnd: this.onTouchEnd
     });
   }
@@ -23264,7 +23264,7 @@ _defineProperty(DraggableCore, "propTypes", {
 });
 _defineProperty(DraggableCore, "defaultProps", {
   allowAnyClick: false,
-  // by default only accept left click
+  / by default only accept left click
   disabled: false,
   enableUserSelectHack: true,
   onStart: function () {},
@@ -23290,7 +23290,7 @@ const {
   DraggableCore
 } = __webpack_require__(/*! ./Draggable */ "../node_modules/react-draggable/build/cjs/Draggable.js");
 
-// Previous versions of this lib exported <Draggable> as the root export. As to no-// them, or TypeScript, we export *both* as the root and as 'default'.
+// Previous versions of this lib exported <Draggable> as the root export. As to no-/ them, or TypeScript, we export *both* as the root and as 'default'.
 // See https://github.com/mzabriskie/react-draggable/pull/254
 // and https://github.com/mzabriskie/react-draggable/issues/266
 module.exports = Draggable;
@@ -23338,16 +23338,16 @@ let matchesSelectorFunc = '';
 function matchesSelector(el /*: Node*/, selector /*: string*/) /*: boolean*/{
   if (!matchesSelectorFunc) {
     matchesSelectorFunc = (0, _shims.findInArray)(['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'], function (method) {
-      // $FlowIgnore: Doesn't think elements are indexable
+      / $FlowIgnore: Doesn't think elements are indexable
       return (0, _shims.isFunction)(el[method]);
     });
   }
 
-  // Might not be found entirely (not an Element?) - in that case, bail
-  // $FlowIgnore: Doesn't think elements are indexable
+  / Might not be found entirely (not an Element?) - in that case, bail
+  / $FlowIgnore: Doesn't think elements are indexable
   if (!(0, _shims.isFunction)(el[matchesSelectorFunc])) return false;
 
-  // $FlowIgnore: Doesn't think elements are indexable
+  / $FlowIgnore: Doesn't think elements are indexable
   return el[matchesSelectorFunc](selector);
 }
 
@@ -23357,7 +23357,7 @@ function matchesSelectorAndParentsTo(el /*: Node*/, selector /*: string*/, baseN
   do {
     if (matchesSelector(node, selector)) return true;
     if (node === baseNode) return false;
-    // $FlowIgnore[incompatible-type]
+    / $FlowIgnore[incompatible-type]
     node = node.parentNode;
   } while (node);
   return false;
@@ -23368,13 +23368,13 @@ function addEvent(el /*: ?Node*/, event /*: string*/, handler /*: Function*/, in
     capture: true,
     ...inputOptions
   };
-  // $FlowIgnore[method-unbinding]
+  / $FlowIgnore[method-unbinding]
   if (el.addEventListener) {
     el.addEventListener(event, handler, options);
   } else if (el.attachEvent) {
     el.attachEvent('on' + event, handler);
   } else {
-    // $FlowIgnore: Doesn't think elements are indexable
+    / $FlowIgnore: Doesn't think elements are indexable
     el['on' + event] = handler;
   }
 }
@@ -23384,19 +23384,19 @@ function removeEvent(el /*: ?Node*/, event /*: string*/, handler /*: Function*/,
     capture: true,
     ...inputOptions
   };
-  // $FlowIgnore[method-unbinding]
+  / $FlowIgnore[method-unbinding]
   if (el.removeEventListener) {
     el.removeEventListener(event, handler, options);
   } else if (el.detachEvent) {
     el.detachEvent('on' + event, handler);
   } else {
-    // $FlowIgnore: Doesn't think elements are indexable
+    / $FlowIgnore: Doesn't think elements are indexable
     el['on' + event] = null;
   }
 }
 function outerHeight(node /*: HTMLElement*/) /*: number*/{
-  // This is deliberately excluding margin for our calculations, since we are using
-  // offsetTop which is including margin. See getBoundPosition
+  / This is deliberately excluding margin for our calculations, since we are using
+  / offsetTop which is including margin. See getBoundPosition
   let height = node.clientHeight;
   const computedStyle = node.ownerDocument.defaultView.getComputedStyle(node);
   height += (0, _shims.int)(computedStyle.borderTopWidth);
@@ -23404,8 +23404,8 @@ function outerHeight(node /*: HTMLElement*/) /*: number*/{
   return height;
 }
 function outerWidth(node /*: HTMLElement*/) /*: number*/{
-  // This is deliberately excluding margin for our calculations, since we are using
-  // offsetLeft which is including margin. See getBoundPosition
+  / This is deliberately excluding margin for our calculations, since we are using
+  / offsetLeft which is including margin. See getBoundPosition
   let width = node.clientWidth;
   const computedStyle = node.ownerDocument.defaultView.getComputedStyle(node);
   width += (0, _shims.int)(computedStyle.borderLeftWidth);
@@ -23496,20 +23496,20 @@ function removeUserSelectStyles(doc /*: ?Document*/) {
   if (!doc) return;
   try {
     if (doc.body) removeClassName(doc.body, 'react-draggable-transparent-selection');
-    // $FlowIgnore: IE
+    / $FlowIgnore: IE
     if (doc.selection) {
-      // $FlowIgnore: IE
+      / $FlowIgnore: IE
       doc.selection.empty();
     } else {
-      // Remove selection caused by scroll, unless it's a focused input
-      // (we use doc.defaultView in case we're in an iframe)
+      / Remove selection caused by scroll, unless it's a focused input
+      / (we use doc.defaultView in case we're in an iframe)
       const selection = (doc.defaultView || window).getSelection();
       if (selection && selection.type !== 'Caret') {
         selection.removeAllRanges();
       }
     }
   } catch (e) {
-    // probably IE
+    / probably IE
   }
 }
 function addClassName(el /*: HTMLElement*/, className /*: string*/) {
@@ -23551,12 +23551,12 @@ const prefixes = ['Moz', 'Webkit', 'O', 'ms'];
 function getPrefix() /*: string*/{
   var _window$document;
   let prop /*: string*/ = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'transform';
-  // Ensure we're running in an environment where there is actually a global
-  // `window` obj
+  / Ensure we're running in an environment where there is actually a global
+  / `window` obj
   if (typeof window === 'undefined') return '';
 
-  // If we're in a pseudo-browser server-side environment, this access
-  // path may not exist, so bail out if it doesn't.
+  / If we're in a pseudo-browser server-side environment, this access
+  / path may not exist, so bail out if it doesn't.
   const style = (_window$document = window.document) === null || _window$document === void 0 || (_window$document = _window$document.documentElement) === null || _window$document === void 0 ? void 0 : _window$document.style;
   if (!style) return '';
   if (prop in style) return '';
@@ -23639,10 +23639,10 @@ var _domFns = __webpack_require__(/*! ./domFns */ "../node_modules/react-draggab
 /*:: import type {Bounds, ControlPosition, DraggableData, MouseTouchEvent} from './types';*/
 /*:: import type DraggableCore from '../DraggableCore';*/
 function getBoundPosition(draggable /*: Draggable*/, x /*: number*/, y /*: number*/) /*: [number, number]*/{
-  // If no bounds, short-circuit and move on
+  / If no bounds, short-circuit and move on
   if (!draggable.props.bounds) return [x, y];
 
-  // Clone new bounds
+  / Clone new bounds
   let {
     bounds
   } = draggable.props;
@@ -23662,10 +23662,10 @@ function getBoundPosition(draggable /*: Draggable*/, x /*: number*/, y /*: numbe
     if (!(boundNode instanceof ownerWindow.HTMLElement)) {
       throw new Error('Bounds selector "' + bounds + '" could not find an element.');
     }
-    const boundNodeEl /*: HTMLElement*/ = boundNode; // for Flow, can't seem to refine correctly
+    const boundNodeEl /*: HTMLElement*/ = boundNode; / for Flow, can't seem to refine correctly
     const nodeStyle = ownerWindow.getComputedStyle(node);
     const boundNodeStyle = ownerWindow.getComputedStyle(boundNodeEl);
-    // Compute bounds. This is a pain with padding and offsets but this gets it exactly right.
+    / Compute bounds. This is a pain with padding and offsets but this gets it exactly right.
     bounds = {
       left: -node.offsetLeft + (0, _shims.int)(boundNodeStyle.paddingLeft) + (0, _shims.int)(nodeStyle.marginLeft),
       top: -node.offsetTop + (0, _shims.int)(boundNodeStyle.paddingTop) + (0, _shims.int)(nodeStyle.marginTop),
@@ -23674,11 +23674,11 @@ function getBoundPosition(draggable /*: Draggable*/, x /*: number*/, y /*: numbe
     };
   }
 
-  // Keep x and y below right and bottom limits...
+  / Keep x and y below right and bottom limits...
   if ((0, _shims.isNum)(bounds.right)) x = Math.min(x, bounds.right);
   if ((0, _shims.isNum)(bounds.bottom)) y = Math.min(y, bounds.bottom);
 
-  // But above left and top limits.
+  / But above left and top limits.
   if ((0, _shims.isNum)(bounds.left)) x = Math.max(x, bounds.left);
   if ((0, _shims.isNum)(bounds.top)) y = Math.max(y, bounds.top);
   return [x, y];
@@ -23698,9 +23698,9 @@ function canDragY(draggable /*: Draggable*/) /*: boolean*/{
 // Get {x, y} positions from event.
 function getControlPosition(e /*: MouseTouchEvent*/, touchIdentifier /*: ?number*/, draggableCore /*: DraggableCore*/) /*: ?ControlPosition*/{
   const touchObj = typeof touchIdentifier === 'number' ? (0, _domFns.getTouch)(e, touchIdentifier) : null;
-  if (typeof touchIdentifier === 'number' && !touchObj) return null; // not the right touch
+  if (typeof touchIdentifier === 'number' && !touchObj) return null; / not the right touch
   const node = findDOMNode(draggableCore);
-  // User can provide an offsetParent if desired.
+  / User can provide an offsetParent if desired.
   const offsetParent = draggableCore.props.offsetParent || node.offsetParent || node.ownerDocument.body;
   return (0, _domFns.offsetXYFromParent)(touchObj || e, offsetParent, draggableCore.props.scale);
 }
@@ -23710,7 +23710,7 @@ function createCoreData(draggable /*: DraggableCore*/, x /*: number*/, y /*: num
   const isStart = !(0, _shims.isNum)(draggable.lastX);
   const node = findDOMNode(draggable);
   if (isStart) {
-    // If this is our first move, use the x and y as last coords.
+    / If this is our first move, use the x and y as last coords.
     return {
       node,
       deltaX: 0,
@@ -23721,7 +23721,7 @@ function createCoreData(draggable /*: DraggableCore*/, x /*: number*/, y /*: num
       y
     };
   } else {
-    // Otherwise calculate proper values.
+    / Otherwise calculate proper values.
     return {
       node,
       deltaX: x - draggable.lastX,
@@ -23762,7 +23762,7 @@ function findDOMNode(draggable /*: Draggable | DraggableCore*/) /*: HTMLElement*
   if (!node) {
     throw new Error('<DraggableCore>: Unmounted during event!');
   }
-  // $FlowIgnore we can't assert on HTMLElement due to tests... FIXME
+  / $FlowIgnore we can't assert on HTMLElement due to tests... FIXME
   return node;
 }
 
@@ -23792,7 +23792,7 @@ function findInArray(array /*: Array<any> | TouchList*/, callback /*: Function*/
   }
 }
 function isFunction(func /*: any*/) /*: boolean %checks*/{
-  // $FlowIgnore[method-unbinding]
+  / $FlowIgnore[method-unbinding]
   return typeof func === 'function' || Object.prototype.toString.call(func) === '[object Function]';
 }
 function isNum(num /*: any*/) /*: boolean %checks*/{
@@ -23910,7 +23910,7 @@ var InfiniteScroll = function (_Component) {
         document.addEventListener('test', null, testOptions);
         document.removeEventListener('test', null, testOptions);
       } catch (e) {
-        // ignore
+        / ignore
       }
       return passive;
     }
@@ -23932,7 +23932,7 @@ var InfiniteScroll = function (_Component) {
       return options;
     }
 
-    // Set a defaut loader for all your `InfiniteScroll` components
+    / Set a defaut loader for all your `InfiniteScroll` components
 
   }, {
     key: 'setDefaultLoader',
@@ -23999,8 +23999,8 @@ var InfiniteScroll = function (_Component) {
   }, {
     key: 'mousewheelListener',
     value: function mousewheelListener(e) {
-      // Prevents Chrome hangups
-      // See: https://stackoverflow.com/questions/47524205/random-high-content-download-time-in-chrome/47684257#47684257
+      / Prevents Chrome hangups
+      / See: https://stackoverflow.com/questions/47524205/random-high-content-download-time-in-chrome/47684257#47684257
       if (e.deltaY === 1 && !this.isPassiveSupported()) {
         e.preventDefault();
       }
@@ -24027,12 +24027,12 @@ var InfiniteScroll = function (_Component) {
         offset = el.scrollHeight - parentNode.scrollTop - parentNode.clientHeight;
       }
 
-      // Here we make sure the element is visible as well as checking the offset
+      / Here we make sure the element is visible as well as checking the offset
       if (offset < Number(this.props.threshold) && el && el.offsetParent !== null) {
         this.detachScrollListener();
         this.beforeScrollHeight = parentNode.scrollHeight;
         this.beforeScrollTop = parentNode.scrollTop;
-        // Call loadMore after detachScrollListener to allow for non-async loadMore functions
+        / Call loadMore after detachScrollListener to allow for non-async loadMore functions
         if (typeof this.props.loadMore === 'function') {
           this.props.loadMore(this.pageLoaded += 1);
           this.loadMore = true;
@@ -24189,15 +24189,15 @@ var REACT_OFFSCREEN_TYPE = Symbol.for('react.offscreen');
 
 // -----------------------------------------------------------------------------
 
-var enableScopeAPI = false; // Experimental Create Event Handle API.
+var enableScopeAPI = false; / Experimental Create Event Handle API.
 var enableCacheElement = false;
-var enableTransitionTracing = false; // No known bugs, but needs performance testing
+var enableTransitionTracing = false; / No known bugs, but needs performance testing
 
-var enableLegacyHidden = false; // Enables unstable_avoidThisFallback feature in Fiber
+var enableLegacyHidden = false; / Enables unstable_avoidThisFallback feature in Fiber
 // stuff. Intended to enable React core members to more easily debug scheduling
 // issues in DEV builds.
 
-var enableDebugTracing = false; // Track which Fiber(s) schedule render work.
+var enableDebugTracing = false; / Track which Fiber(s) schedule render work.
 
 var REACT_MODULE_REFERENCE;
 
@@ -24208,7 +24208,7 @@ var REACT_MODULE_REFERENCE;
 function isValidElementType(type) {
   if (typeof type === 'string' || typeof type === 'function') {
     return true;
-  } // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
+  } / Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
 
 
   if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing  || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden  || type === REACT_OFFSCREEN_TYPE || enableScopeAPI  || enableCacheElement  || enableTransitionTracing ) {
@@ -24216,10 +24216,10 @@ function isValidElementType(type) {
   }
 
   if (typeof type === 'object' && type !== null) {
-    if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
-    // types supported by any Flight configuration anywhere since
-    // we don't know which Flight build this will end up being used
-    // with.
+    if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || / This needs to include all possible module reference object
+    / types supported by any Flight configuration anywhere since
+    / we don't know which Flight build this will end up being used
+    / with.
     type.$$typeof === REACT_MODULE_REFERENCE || type.getModuleId !== undefined) {
       return true;
     }
@@ -24282,12 +24282,12 @@ var StrictMode = REACT_STRICT_MODE_TYPE;
 var Suspense = REACT_SUSPENSE_TYPE;
 var SuspenseList = REACT_SUSPENSE_LIST_TYPE;
 var hasWarnedAboutDeprecatedIsAsyncMode = false;
-var hasWarnedAboutDeprecatedIsConcurrentMode = false; // AsyncMode should be deprecated
+var hasWarnedAboutDeprecatedIsConcurrentMode = false; / AsyncMode should be deprecated
 
 function isAsyncMode(object) {
   {
     if (!hasWarnedAboutDeprecatedIsAsyncMode) {
-      hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+      hasWarnedAboutDeprecatedIsAsyncMode = true; / Using console['warn'] to evade Babel and ESLint
 
       console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 18+.');
     }
@@ -24298,7 +24298,7 @@ function isAsyncMode(object) {
 function isConcurrentMode(object) {
   {
     if (!hasWarnedAboutDeprecatedIsConcurrentMode) {
-      hasWarnedAboutDeprecatedIsConcurrentMode = true; // Using console['warn'] to evade Babel and ESLint
+      hasWarnedAboutDeprecatedIsConcurrentMode = true; / Using console['warn'] to evade Babel and ESLint
 
       console['warn']('The ReactIs.isConcurrentMode() alias has been deprecated, ' + 'and will be removed in React 18+.');
     }
@@ -24477,7 +24477,7 @@ var runtime = (function (exports) {
 
   var Op = Object.prototype;
   var hasOwn = Op.hasOwnProperty;
-  var undefined$1; // More compressible than void 0.
+  var undefined$1; / More compressible than void 0.
   var $Symbol = typeof Symbol === "function" ? Symbol : {};
   var iteratorSymbol = $Symbol.iterator || "@@iterator";
   var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
@@ -24493,7 +24493,7 @@ var runtime = (function (exports) {
     return obj[key];
   }
   try {
-    // IE 8 has a broken Object.defineProperty that only works on DOM objects.
+    / IE 8 has a broken Object.defineProperty that only works on DOM objects.
     define({}, "");
   } catch (err) {
     define = function(obj, key, value) {
@@ -24502,29 +24502,29 @@ var runtime = (function (exports) {
   }
 
   function wrap(innerFn, outerFn, self, tryLocsList) {
-    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    / If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
     var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
     var generator = Object.create(protoGenerator.prototype);
     var context = new Context(tryLocsList || []);
 
-    // The ._invoke method unifies the implementations of the .next,
-    // .throw, and .return methods.
+    / The ._invoke method unifies the implementations of the .next,
+    / .throw, and .return methods.
     generator._invoke = makeInvokeMethod(innerFn, self, context);
 
     return generator;
   }
   exports.wrap = wrap;
 
-  // Try/catch helper to minimize deoptimizations. Returns a completion
-  // record like context.tryEntries[i].completion. This interface could
-  // have been (and was previously) designed to take a closure to be
-  // invoked without arguments, but in all the cases we care about we
-  // already have an existing method we want to call, so there's no need
-  // to create a new function object. We can even get away with assuming
-  // the method takes exactly one argument, since that happens to be true
-  // in every case, so we don't have to touch the arguments object. The
-  // only additional allocation required is the completion record, which
-  // has a stable shape and so hopefully should be cheap to allocate.
+  / Try/catch helper to minimize deoptimizations. Returns a completion
+  / record like context.tryEntries[i].completion. This interface could
+  / have been (and was previously) designed to take a closure to be
+  / invoked without arguments, but in all the cases we care about we
+  / already have an existing method we want to call, so there's no need
+  / to create a new function object. We can even get away with assuming
+  / the method takes exactly one argument, since that happens to be true
+  / in every case, so we don't have to touch the arguments object. The
+  / only additional allocation required is the completion record, which
+  / has a stable shape and so hopefully should be cheap to allocate.
   function tryCatch(fn, obj, arg) {
     try {
       return { type: "normal", arg: fn.call(obj, arg) };
@@ -24538,20 +24538,20 @@ var runtime = (function (exports) {
   var GenStateExecuting = "executing";
   var GenStateCompleted = "completed";
 
-  // Returning this object from the innerFn has the same effect as
-  // breaking out of the dispatch switch statement.
+  / Returning this object from the innerFn has the same effect as
+  / breaking out of the dispatch switch statement.
   var ContinueSentinel = {};
 
-  // Dummy constructor functions that we use as the .constructor and
-  // .constructor.prototype properties for functions that return Generator
-  // objects. For full spec compliance, you may wish to configure your
-  // minifier not to mangle the names of these two functions.
+  / Dummy constructor functions that we use as the .constructor and
+  / .constructor.prototype properties for functions that return Generator
+  / objects. For full spec compliance, you may wish to configure your
+  / minifier not to mangle the names of these two functions.
   function Generator() {}
   function GeneratorFunction() {}
   function GeneratorFunctionPrototype() {}
 
-  // This is a polyfill for %IteratorPrototype% for environments that
-  // don't natively support it.
+  / This is a polyfill for %IteratorPrototype% for environments that
+  / don't natively support it.
   var IteratorPrototype = {};
   define(IteratorPrototype, iteratorSymbol, function () {
     return this;
@@ -24562,8 +24562,8 @@ var runtime = (function (exports) {
   if (NativeIteratorPrototype &&
       NativeIteratorPrototype !== Op &&
       hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
-    // This environment has a native %IteratorPrototype%; use it instead
-    // of the polyfill.
+    / This environment has a native %IteratorPrototype%; use it instead
+    / of the polyfill.
     IteratorPrototype = NativeIteratorPrototype;
   }
 
@@ -24578,8 +24578,8 @@ var runtime = (function (exports) {
     "GeneratorFunction"
   );
 
-  // Helper for defining the .next, .throw, and .return methods of the
-  // Iterator interface in terms of a single ._invoke method.
+  / Helper for defining the .next, .throw, and .return methods of the
+  / Iterator interface in terms of a single ._invoke method.
   function defineIteratorMethods(prototype) {
     ["next", "throw", "return"].forEach(function(method) {
       define(prototype, method, function(arg) {
@@ -24592,8 +24592,8 @@ var runtime = (function (exports) {
     var ctor = typeof genFun === "function" && genFun.constructor;
     return ctor
       ? ctor === GeneratorFunction ||
-        // For the native GeneratorFunction constructor, the best we can
-        // do is to check its .name property.
+        / For the native GeneratorFunction constructor, the best we can
+        / do is to check its .name property.
         (ctor.displayName || ctor.name) === "GeneratorFunction"
       : false;
   };
@@ -24609,10 +24609,10 @@ var runtime = (function (exports) {
     return genFun;
   };
 
-  // Within the body of any async function, `await x` is transformed to
-  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
-  // `hasOwn.call(value, "__await")` to determine if the yielded value is
-  // meant to be awaited.
+  / Within the body of any async function, `await x` is transformed to
+  / `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  / `hasOwn.call(value, "__await")` to determine if the yielded value is
+  / meant to be awaited.
   exports.awrap = function(arg) {
     return { __await: arg };
   };
@@ -24636,14 +24636,14 @@ var runtime = (function (exports) {
         }
 
         return PromiseImpl.resolve(value).then(function(unwrapped) {
-          // When a yielded Promise is resolved, its final value becomes
-          // the .value of the Promise<{value,done}> result for the
-          // current iteration.
+          / When a yielded Promise is resolved, its final value becomes
+          / the .value of the Promise<{value,done}> result for the
+          / current iteration.
           result.value = unwrapped;
           resolve(result);
         }, function(error) {
-          // If a rejected Promise was yielded, throw the rejection back
-          // into the async generator function so it can be handled there.
+          / If a rejected Promise was yielded, throw the rejection back
+          / into the async generator function so it can be handled there.
           return invoke("throw", error, resolve, reject);
         });
       }
@@ -24659,28 +24659,28 @@ var runtime = (function (exports) {
       }
 
       return previousPromise =
-        // If enqueue has been called before, then we want to wait until
-        // all previous Promises have been resolved before calling invoke,
-        // so that results are always delivered in the correct order. If
-        // enqueue has not been called before, then it is important to
-        // call invoke immediately, without waiting on a callback to fire,
-        // so that the async generator function has the opportunity to do
-        // any necessary setup in a predictable way. This predictability
-        // is why the Promise constructor synchronously invokes its
-        // executor callback, and why async functions synchronously
-        // execute code before the first await. Since we implement simple
-        // async functions in terms of async generators, it is especially
-        // important to get this right, even though it requires care.
+        / If enqueue has been called before, then we want to wait until
+        / all previous Promises have been resolved before calling invoke,
+        / so that results are always delivered in the correct order. If
+        / enqueue has not been called before, then it is important to
+        / call invoke immediately, without waiting on a callback to fire,
+        / so that the async generator function has the opportunity to do
+        / any necessary setup in a predictable way. This predictability
+        / is why the Promise constructor synchronously invokes its
+        / executor callback, and why async functions synchronously
+        / execute code before the first await. Since we implement simple
+        / async functions in terms of async generators, it is especially
+        / important to get this right, even though it requires care.
         previousPromise ? previousPromise.then(
           callInvokeWithMethodAndArg,
-          // Avoid propagating failures to Promises returned by later
-          // invocations of the iterator.
+          / Avoid propagating failures to Promises returned by later
+          / invocations of the iterator.
           callInvokeWithMethodAndArg
         ) : callInvokeWithMethodAndArg();
     }
 
-    // Define the unified helper method that is used to implement .next,
-    // .throw, and .return (see defineIteratorMethods).
+    / Define the unified helper method that is used to implement .next,
+    / .throw, and .return (see defineIteratorMethods).
     this._invoke = enqueue;
   }
 
@@ -24690,9 +24690,9 @@ var runtime = (function (exports) {
   });
   exports.AsyncIterator = AsyncIterator;
 
-  // Note that simple async functions are implemented on top of
-  // AsyncIterator objects; they just return a Promise for the value of
-  // the final result produced by the iterator.
+  / Note that simple async functions are implemented on top of
+  / AsyncIterator objects; they just return a Promise for the value of
+  / the final result produced by the iterator.
   exports.async = function(innerFn, outerFn, self, tryLocsList, PromiseImpl) {
     if (PromiseImpl === void 0) PromiseImpl = Promise;
 
@@ -24702,7 +24702,7 @@ var runtime = (function (exports) {
     );
 
     return exports.isGeneratorFunction(outerFn)
-      ? iter // If outerFn is a generator, return the full iterator.
+      ? iter / If outerFn is a generator, return the full iterator.
       : iter.next().then(function(result) {
           return result.done ? result.value : iter.next();
         });
@@ -24721,8 +24721,8 @@ var runtime = (function (exports) {
           throw arg;
         }
 
-        // Be forgiving, per 25.3.3.3.3 of the spec:
-        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        / Be forgiving, per 25.3.3.3.3 of the spec:
+        / https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
         return doneResult();
       }
 
@@ -24740,8 +24740,8 @@ var runtime = (function (exports) {
         }
 
         if (context.method === "next") {
-          // Setting context._sent for legacy support of Babel's
-          // function.sent implementation.
+          / Setting context._sent for legacy support of Babel's
+          / function.sent implementation.
           context.sent = context._sent = context.arg;
 
         } else if (context.method === "throw") {
@@ -24760,8 +24760,8 @@ var runtime = (function (exports) {
 
         var record = tryCatch(innerFn, self, context);
         if (record.type === "normal") {
-          // If an exception is thrown from innerFn, we leave state ===
-          // GenStateExecuting and loop back for another invocation.
+          / If an exception is thrown from innerFn, we leave state ===
+          / GenStateExecuting and loop back for another invocation.
           state = context.done
             ? GenStateCompleted
             : GenStateSuspendedYield;
@@ -24777,8 +24777,8 @@ var runtime = (function (exports) {
 
         } else if (record.type === "throw") {
           state = GenStateCompleted;
-          // Dispatch the exception by looping back around to the
-          // context.dispatchException(context.arg) call above.
+          / Dispatch the exception by looping back around to the
+          / context.dispatchException(context.arg) call above.
           context.method = "throw";
           context.arg = record.arg;
         }
@@ -24786,29 +24786,29 @@ var runtime = (function (exports) {
     };
   }
 
-  // Call delegate.iterator[context.method](context.arg) and handle the
-  // result, either by returning a { value, done } result from the
-  // delegate iterator, or by modifying context.method and context.arg,
-  // setting context.delegate to null, and returning the ContinueSentinel.
+  / Call delegate.iterator[context.method](context.arg) and handle the
+  / result, either by returning a { value, done } result from the
+  / delegate iterator, or by modifying context.method and context.arg,
+  / setting context.delegate to null, and returning the ContinueSentinel.
   function maybeInvokeDelegate(delegate, context) {
     var method = delegate.iterator[context.method];
     if (method === undefined$1) {
-      // A .throw or .return when the delegate iterator has no .throw
-      // method always terminates the yield* loop.
+      / A .throw or .return when the delegate iterator has no .throw
+      / method always terminates the yield* loop.
       context.delegate = null;
 
       if (context.method === "throw") {
-        // Note: ["return"] must be used for ES3 parsing compatibility.
+        / Note: ["return"] must be used for ES3 parsing compatibility.
         if (delegate.iterator["return"]) {
-          // If the delegate iterator has a return method, give it a
-          // chance to clean up.
+          / If the delegate iterator has a return method, give it a
+          / chance to clean up.
           context.method = "return";
           context.arg = undefined$1;
           maybeInvokeDelegate(delegate, context);
 
           if (context.method === "throw") {
-            // If maybeInvokeDelegate(context) changed context.method from
-            // "return" to "throw", let that override the TypeError below.
+            / If maybeInvokeDelegate(context) changed context.method from
+            / "return" to "throw", let that override the TypeError below.
             return ContinueSentinel;
           }
         }
@@ -24840,46 +24840,46 @@ var runtime = (function (exports) {
     }
 
     if (info.done) {
-      // Assign the result of the finished delegate to the temporary
-      // variable specified by delegate.resultName (see delegateYield).
+      / Assign the result of the finished delegate to the temporary
+      / variable specified by delegate.resultName (see delegateYield).
       context[delegate.resultName] = info.value;
 
-      // Resume execution at the desired location (see delegateYield).
+      / Resume execution at the desired location (see delegateYield).
       context.next = delegate.nextLoc;
 
-      // If context.method was "throw" but the delegate handled the
-      // exception, let the outer generator proceed normally. If
-      // context.method was "next", forget context.arg since it has been
-      // "consumed" by the delegate iterator. If context.method was
-      // "return", allow the original .return call to continue in the
-      // outer generator.
+      / If context.method was "throw" but the delegate handled the
+      / exception, let the outer generator proceed normally. If
+      / context.method was "next", forget context.arg since it has been
+      / "consumed" by the delegate iterator. If context.method was
+      / "return", allow the original .return call to continue in the
+      / outer generator.
       if (context.method !== "return") {
         context.method = "next";
         context.arg = undefined$1;
       }
 
     } else {
-      // Re-yield the result returned by the delegate method.
+      / Re-yield the result returned by the delegate method.
       return info;
     }
 
-    // The delegate iterator is finished, so forget it and continue with
-    // the outer generator.
+    / The delegate iterator is finished, so forget it and continue with
+    / the outer generator.
     context.delegate = null;
     return ContinueSentinel;
   }
 
-  // Define Generator.prototype.{next,throw,return} in terms of the
-  // unified ._invoke helper method.
+  / Define Generator.prototype.{next,throw,return} in terms of the
+  / unified ._invoke helper method.
   defineIteratorMethods(Gp);
 
   define(Gp, toStringTagSymbol, "Generator");
 
-  // A Generator should always return itself as the iterator object when the
-  // @@iterator function is called on it. Some browsers' implementations of the
-  // iterator prototype chain incorrectly implement this, causing the Generator
-  // object to not be returned from this call. This ensures that doesn't happen.
-  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  / A Generator should always return itself as the iterator object when the
+  / @@iterator function is called on it. Some browsers' implementations of the
+  / iterator prototype chain incorrectly implement this, causing the Generator
+  / object to not be returned from this call. This ensures that doesn't happen.
+  / See https://github.com/facebook/regenerator/issues/274 for more details.
   define(Gp, iteratorSymbol, function() {
     return this;
   });
@@ -24911,9 +24911,9 @@ var runtime = (function (exports) {
   }
 
   function Context(tryLocsList) {
-    // The root entry object (effectively a try statement without a catch
-    // or a finally block) gives us a place to store values thrown from
-    // locations where there is no enclosing try statement.
+    / The root entry object (effectively a try statement without a catch
+    / or a finally block) gives us a place to store values thrown from
+    / locations where there is no enclosing try statement.
     this.tryEntries = [{ tryLoc: "root" }];
     tryLocsList.forEach(pushTryEntry, this);
     this.reset(true);
@@ -24926,8 +24926,8 @@ var runtime = (function (exports) {
     }
     keys.reverse();
 
-    // Rather than returning an object with a next method, we keep
-    // things simple and return the next function itself.
+    / Rather than returning an object with a next method, we keep
+    / things simple and return the next function itself.
     return function next() {
       while (keys.length) {
         var key = keys.pop();
@@ -24938,9 +24938,9 @@ var runtime = (function (exports) {
         }
       }
 
-      // To avoid creating an additional object, we just hang the .value
-      // and .done properties off the next function object itself. This
-      // also ensures that the minifier will not anonymize the function.
+      / To avoid creating an additional object, we just hang the .value
+      / and .done properties off the next function object itself. This
+      / also ensures that the minifier will not anonymize the function.
       next.done = true;
       return next;
     };
@@ -24977,7 +24977,7 @@ var runtime = (function (exports) {
       }
     }
 
-    // Return an iterator with no values.
+    / Return an iterator with no values.
     return { next: doneResult };
   }
   exports.values = values;
@@ -24992,8 +24992,8 @@ var runtime = (function (exports) {
     reset: function(skipTempReset) {
       this.prev = 0;
       this.next = 0;
-      // Resetting context._sent for legacy support of Babel's
-      // function.sent implementation.
+      / Resetting context._sent for legacy support of Babel's
+      / function.sent implementation.
       this.sent = this._sent = undefined$1;
       this.done = false;
       this.delegate = null;
@@ -25005,7 +25005,7 @@ var runtime = (function (exports) {
 
       if (!skipTempReset) {
         for (var name in this) {
-          // Not sure about the optimal order of these conditions:
+          / Not sure about the optimal order of these conditions:
           if (name.charAt(0) === "t" &&
               hasOwn.call(this, name) &&
               !isNaN(+name.slice(1))) {
@@ -25039,8 +25039,8 @@ var runtime = (function (exports) {
         context.next = loc;
 
         if (caught) {
-          // If the dispatched exception was caught by a catch block,
-          // then let that catch block handle the exception normally.
+          / If the dispatched exception was caught by a catch block,
+          / then let that catch block handle the exception normally.
           context.method = "next";
           context.arg = undefined$1;
         }
@@ -25053,9 +25053,9 @@ var runtime = (function (exports) {
         var record = entry.completion;
 
         if (entry.tryLoc === "root") {
-          // Exception thrown outside of any try block that could handle
-          // it, so set the completion value of the entire function to
-          // throw the exception.
+          / Exception thrown outside of any try block that could handle
+          / it, so set the completion value of the entire function to
+          / throw the exception.
           return handle("end");
         }
 
@@ -25103,8 +25103,8 @@ var runtime = (function (exports) {
            type === "continue") &&
           finallyEntry.tryLoc <= arg &&
           arg <= finallyEntry.finallyLoc) {
-        // Ignore the finally entry if control is not jumping to a
-        // location outside the try/catch block.
+        / Ignore the finally entry if control is not jumping to a
+        / location outside the try/catch block.
         finallyEntry = null;
       }
 
@@ -25164,8 +25164,8 @@ var runtime = (function (exports) {
         }
       }
 
-      // The context.catch method must only be called with a location
-      // argument that corresponds to a known catch block.
+      / The context.catch method must only be called with a location
+      / argument that corresponds to a known catch block.
       throw new Error("illegal catch attempt");
     },
 
@@ -25177,8 +25177,8 @@ var runtime = (function (exports) {
       };
 
       if (this.method === "next") {
-        // Deliberately forget the last sent value so that we don't
-        // accidentally pass it on to the delegate.
+        / Deliberately forget the last sent value so that we don't
+        / accidentally pass it on to the delegate.
         this.arg = undefined$1;
       }
 
@@ -25186,33 +25186,33 @@ var runtime = (function (exports) {
     }
   };
 
-  // Regardless of whether this script is executing as a CommonJS module
-  // or not, return the runtime object so that we can declare the variable
-  // regeneratorRuntime in the outer scope, which allows this module to be
-  // injected easily by `bin/regenerator --include-runtime script.js`.
+  / Regardless of whether this script is executing as a CommonJS module
+  / or not, return the runtime object so that we can declare the variable
+  / regeneratorRuntime in the outer scope, which allows this module to be
+  / injected easily by `bin/regenerator --include-runtime script.js`.
   return exports;
 
 }(
-  // If this script is executing as a CommonJS module, use module.exports
-  // as the regeneratorRuntime namespace. Otherwise create a new empty
-  // object. Either way, the resulting object will be used to initialize
-  // the regeneratorRuntime variable at the top of this file.
+  / If this script is executing as a CommonJS module, use module.exports
+  / as the regeneratorRuntime namespace. Otherwise create a new empty
+  / object. Either way, the resulting object will be used to initialize
+  / the regeneratorRuntime variable at the top of this file.
   module.exports 
 ));
 
 try {
   regeneratorRuntime = runtime;
 } catch (accidentalStrictMode) {
-  // This module should not be running in strict mode, so the above
-  // assignment should always work unless something is misconfigured. Just
-  // in case runtime.js accidentally runs in strict mode, in modern engines
-  // we can explicitly access globalThis. In older engines we can escape
-  // strict mode using a global Function call. This could conceivably fail
-  // if a Content Security Policy forbids using Function, but in that case
-  // the proper solution is to fix the accidental strict mode problem. If
-  // you've misconfigured your bundler to force strict mode and applied a
-  // CSP to forbid Function, and you're not willing to fix either of those
-  // problems, please detail your unique predicament in a GitHub issue.
+  / This module should not be running in strict mode, so the above
+  / assignment should always work unless something is misconfigured. Just
+  / in case runtime.js accidentally runs in strict mode, in modern engines
+  / we can explicitly access globalThis. In older engines we can escape
+  / strict mode using a global Function call. This could conceivably fail
+  / if a Content Security Policy forbids using Function, but in that case
+  / the proper solution is to fix the accidental strict mode problem. If
+  / you've misconfigured your bundler to force strict mode and applied a
+  / CSP to forbid Function, and you're not willing to fix either of those
+  / problems, please detail your unique predicament in a GitHub issue.
   if (typeof globalThis === "object") {
     globalThis.regeneratorRuntime = runtime;
   } else {
@@ -25417,7 +25417,7 @@ var Canvas = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function
   } : _props$style,
       _props$svgStyle = props.svgStyle,
       svgStyle = _props$svgStyle === void 0 ? {} : _props$svgStyle;
-  var canvasRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null); // Converts mouse coordinates to relative coordinate based on the absolute position of svg
+  var canvasRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null); / Converts mouse coordinates to relative coordinate based on the absolute position of svg
 
   var getCoordinates = function getCoordinates(pointerEvent) {
     var _canvasRef$current, _window$scrollX, _window$scrollY;
@@ -25443,7 +25443,7 @@ var Canvas = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function
 
 
   var handlePointerDown = function handlePointerDown(event) {
-    // Allow only chosen pointer type
+    / Allow only chosen pointer type
     if (allowOnlyPointerType !== 'all' && event.pointerType !== allowOnlyPointerType) {
       return;
     }
@@ -25454,7 +25454,7 @@ var Canvas = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function
   };
 
   var handlePointerMove = function handlePointerMove(event) {
-    if (!isDrawing) return; // Allow only chosen pointer type
+    if (!isDrawing) return; / Allow only chosen pointer type
 
     if (allowOnlyPointerType !== 'all' && event.pointerType !== allowOnlyPointerType) {
       return;
@@ -25465,7 +25465,7 @@ var Canvas = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function
   };
 
   var handlePointerUp = function handlePointerUp(event) {
-    if (event.pointerType === 'mouse' && event.button !== 0) return; // Allow only chosen pointer type
+    if (event.pointerType === 'mouse' && event.button !== 0) return; / Allow only chosen pointer type
 
     if (allowOnlyPointerType !== 'all' && event.pointerType !== allowOnlyPointerType) {
       return;
@@ -25804,7 +25804,7 @@ var ReactSketchCanvas = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardR
         setCurrentPaths([]);
       },
       undo: function undo() {
-        // If there was a last reset then
+        / If there was a last reset then
         if (resetStack.length !== 0) {
           setCurrentPaths([].concat(resetStack));
           setResetStack([]);
@@ -25819,7 +25819,7 @@ var ReactSketchCanvas = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardR
         });
       },
       redo: function redo() {
-        // Nothing to Redo
+        / Nothing to Redo
         if (undoStack.length === 0) return;
         setCurrentPaths(function (currentPaths) {
           return [].concat(currentPaths, undoStack.slice(-1));
@@ -26000,7 +26000,7 @@ var parse = __webpack_require__(/*! inline-style-parser */ "../node_modules/inli
  * Parses inline style to object.
  *
  * @example
- * // returns { 'line-height': '42' }
+ * / returns { 'line-height': '42' }
  * StyleToObject('line-height: 42;');
  *
  * @param  {String}      style      - The inline style.
@@ -26036,7 +26036,7 @@ function StyleToObject(style, iterator) {
 }
 
 module.exports = StyleToObject;
-module.exports["default"] = StyleToObject; // ESM support
+module.exports["default"] = StyleToObject; / ESM support
 
 
 /***/ }),
@@ -26102,7 +26102,7 @@ function isFQDN(str, options) {
   var parts = str.split('.');
   var tld = parts[parts.length - 1];
   if (options.require_tld) {
-    // disallow fqdns without tld
+    / disallow fqdns without tld
     if (parts.length < 2) {
       return false;
     }
@@ -26110,13 +26110,13 @@ function isFQDN(str, options) {
       return false;
     }
 
-    // disallow spaces
+    / disallow spaces
     if (/\s/.test(tld)) {
       return false;
     }
   }
 
-  // reject numeric TLDs
+  / reject numeric TLDs
   if (!options.allow_numeric_tld && /^\d+$/.test(tld)) {
     return false;
   }
@@ -26128,12 +26128,12 @@ function isFQDN(str, options) {
       return false;
     }
 
-    // disallow full-width chars
+    / disallow full-width chars
     if (/[\uff01-\uff5e]/.test(part)) {
       return false;
     }
 
-    // disallow parts starting or ending with hyphen
+    / disallow parts starting or ending with hyphen
     if (/^-|-$/.test(part)) {
       return false;
     }
@@ -26312,7 +26312,7 @@ function isURL(url, options) {
     }
   } else if (options.require_protocol) {
     return false;
-  } else if (url.slice(0, 2) === '//') {
+  } else if (url.slice(0, 2) === '/') {
     if (!options.allow_protocol_relative_urls) {
       return false;
     }
@@ -27379,7 +27379,7 @@ function parse(value) {
 function stringify(values, options) {
   const settings = options || {}
 
-  // Ensure the last empty entry is seen.
+  / Ensure the last empty entry is seen.
   const input = values[values.length - 1] === '' ? [...values, ''] : values
 
   return input
@@ -27405,7 +27405,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   decodeNamedCharacterReference: () => (/* binding */ decodeNamedCharacterReference)
 /* harmony export */ });
-/// <reference lib="dom" />
+// <reference lib="dom" />
 
 /* eslint-env browser */
 
@@ -27420,22 +27420,22 @@ function decodeNamedCharacterReference(value) {
   element.innerHTML = characterReference
   const char = element.textContent
 
-  // Some named character references do not require the closing semicolon
-  // (`&not`, for instance), which leads to situations where parsing the assumed
-  // named reference of `&notit;` will result in the string `¬it;`.
-  // When we encounter a trailing semicolon after parsing, and the character
-  // reference to decode was not a semicolon (`&semi;`), we can assume that the
-  // matching was not complete.
-  // @ts-expect-error: TypeScript is wrong that `textContent` on elements can
-  // yield `null`.
+  / Some named character references do not require the closing semicolon
+  / (`&not`, for instance), which leads to situations where parsing the assumed
+  / named reference of `&notit;` will result in the string `¬it;`.
+  / When we encounter a trailing semicolon after parsing, and the character
+  / reference to decode was not a semicolon (`&semi;`), we can assume that the
+  / matching was not complete.
+  / @ts-expect-error: TypeScript is wrong that `textContent` on elements can
+  / yield `null`.
   if (char.charCodeAt(char.length - 1) === 59 /* `;` */ && value !== 'semi') {
     return false
   }
 
-  // If the decoded string is equal to the input, the character reference was
-  // not valid.
-  // @ts-expect-error: TypeScript is wrong that `textContent` on elements can
-  // yield `null`.
+  / If the decoded string is equal to the input, the character reference was
+  / not valid.
+  / @ts-expect-error: TypeScript is wrong that `textContent` on elements can
+  / yield `null`.
   return char === characterReference ? false : char
 }
 
@@ -27598,7 +27598,7 @@ Diff.prototype = {
       } else {
         return value;
       }
-    } // Allow subclasses to massage the input prior to running
+    } / Allow subclasses to massage the input prior to running
 
 
     oldString = this.castInput(oldString);
@@ -27619,37 +27619,37 @@ Diff.prototype = {
     var bestPath = [{
       oldPos: -1,
       lastComponent: undefined
-    }]; // Seed editLength = 0, i.e. the content starts with the same values
+    }]; / Seed editLength = 0, i.e. the content starts with the same values
 
     var newPos = this.extractCommon(bestPath[0], newString, oldString, 0);
 
     if (bestPath[0].oldPos + 1 >= oldLen && newPos + 1 >= newLen) {
-      // Identity per the equality and tokenizer
+      / Identity per the equality and tokenizer
       return done([{
         value: this.join(newString),
         count: newString.length
       }]);
-    } // Once we hit the right edge of the edit graph on some diagonal k, we can
-    // definitely reach the end of the edit graph in no more than k edits, so
-    // there's no point in considering any moves to diagonal k+1 any more (from
-    // which we're guaranteed to need at least k+1 more edits).
-    // Similarly, once we've reached the bottom of the edit graph, there's no
-    // point considering moves to lower diagonals.
-    // We record this fact by setting minDiagonalToConsider and
-    // maxDiagonalToConsider to some finite value once we've hit the edge of
-    // the edit graph.
-    // This optimization is not faithful to the original algorithm presented in
-    // Myers's paper, which instead pointlessly extends D-paths off the end of
-    // the edit graph - see page 7 of Myers's paper which notes this point
-    // explicitly and illustrates it with a diagram. This has major performance
-    // implications for some common scenarios. For instance, to compute a diff
-    // where the new text simply appends d characters on the end of the
-    // original text of length n, the true Myers algorithm will take O(n+d^2)
-    // time while this optimization needs only O(n+d) time.
+    } / Once we hit the right edge of the edit graph on some diagonal k, we can
+    / definitely reach the end of the edit graph in no more than k edits, so
+    / there's no point in considering any moves to diagonal k+1 any more (from
+    / which we're guaranteed to need at least k+1 more edits).
+    / Similarly, once we've reached the bottom of the edit graph, there's no
+    / point considering moves to lower diagonals.
+    / We record this fact by setting minDiagonalToConsider and
+    / maxDiagonalToConsider to some finite value once we've hit the edge of
+    / the edit graph.
+    / This optimization is not faithful to the original algorithm presented in
+    / Myers's paper, which instead pointlessly extends D-paths off the end of
+    / the edit graph - see page 7 of Myers's paper which notes this point
+    / explicitly and illustrates it with a diagram. This has major performance
+    / implications for some common scenarios. For instance, to compute a diff
+    / where the new text simply appends d characters on the end of the
+    / original text of length n, the true Myers algorithm will take O(n+d^2)
+    / time while this optimization needs only O(n+d) time.
 
 
     var minDiagonalToConsider = -Infinity,
-        maxDiagonalToConsider = Infinity; // Main worker method. checks all permutations of a given edit length for acceptance.
+        maxDiagonalToConsider = Infinity; / Main worker method. checks all permutations of a given edit length for acceptance.
 
     function execEditLength() {
       for (var diagonalPath = Math.max(minDiagonalToConsider, -editLength); diagonalPath <= Math.min(maxDiagonalToConsider, editLength); diagonalPath += 2) {
@@ -27658,14 +27658,14 @@ Diff.prototype = {
             addPath = bestPath[diagonalPath + 1];
 
         if (removePath) {
-          // No one else is going to attempt to use this value, clear it
+          / No one else is going to attempt to use this value, clear it
           bestPath[diagonalPath - 1] = undefined;
         }
 
         var canAdd = false;
 
         if (addPath) {
-          // what newPos will be after we do an insertion:
+          / what newPos will be after we do an insertion:
           var addPathNewPos = addPath.oldPos - diagonalPath;
           canAdd = addPath && 0 <= addPathNewPos && addPathNewPos < newLen;
         }
@@ -27673,14 +27673,14 @@ Diff.prototype = {
         var canRemove = removePath && removePath.oldPos + 1 < oldLen;
 
         if (!canAdd && !canRemove) {
-          // If this path is a terminal then prune
+          / If this path is a terminal then prune
           bestPath[diagonalPath] = undefined;
           continue;
-        } // Select the diagonal that we want to branch from. We select the prior
-        // path whose position in the old string is the farthest from the origin
-        // and does not pass the bounds of the diff graph
-        // TODO: Remove the `+ 1` here to make behavior match Myers algorithm
-        //       and prefer to order removals before insertions.
+        } / Select the diagonal that we want to branch from. We select the prior
+        / path whose position in the old string is the farthest from the origin
+        / and does not pass the bounds of the diff graph
+        / TODO: Remove the `+ 1` here to make behavior match Myers algorithm
+        /       and prefer to order removals before insertions.
 
 
         if (!canRemove || canAdd && removePath.oldPos + 1 < addPath.oldPos) {
@@ -27692,7 +27692,7 @@ Diff.prototype = {
         newPos = self.extractCommon(basePath, newString, oldString, diagonalPath);
 
         if (basePath.oldPos + 1 >= oldLen && newPos + 1 >= newLen) {
-          // If we have hit the end of both strings, then we are done
+          / If we have hit the end of both strings, then we are done
           return done(buildValues(self, basePath.lastComponent, newString, oldString, self.useLongestToken));
         } else {
           bestPath[diagonalPath] = basePath;
@@ -27708,10 +27708,10 @@ Diff.prototype = {
       }
 
       editLength++;
-    } // Performs the length of edit iteration. Is a bit fugly as this has to support the
-    // sync and async mode which is never fun. Loops over execEditLength until a value
-    // is produced, or until the edit length exceeds options.maxEditLength (if given),
-    // in which case it will return undefined.
+    } / Performs the length of edit iteration. Is a bit fugly as this has to support the
+    / sync and async mode which is never fun. Loops over execEditLength until a value
+    / is produced, or until the edit length exceeds options.maxEditLength (if given),
+    / in which case it will return undefined.
 
 
     if (callback) {
@@ -27814,8 +27814,8 @@ Diff.prototype = {
 };
 
 function buildValues(diff, lastComponent, newString, oldString, useLongestToken) {
-  // First we convert our linked list of components in reverse order to an
-  // array in the right order:
+  / First we convert our linked list of components in reverse order to an
+  / array in the right order:
   var components = [];
   var nextComponent;
 
@@ -27847,16 +27847,16 @@ function buildValues(diff, lastComponent, newString, oldString, useLongestToken)
         component.value = diff.join(newString.slice(newPos, newPos + component.count));
       }
 
-      newPos += component.count; // Common case
+      newPos += component.count; / Common case
 
       if (!component.added) {
         oldPos += component.count;
       }
     } else {
       component.value = diff.join(oldString.slice(oldPos, oldPos + component.count));
-      oldPos += component.count; // Reverse add and remove so removes are output first to match common convention
-      // The diffing algorithm is tied to add then remove output and this is the simplest
-      // route to get the desired output with minimal overhead.
+      oldPos += component.count; / Reverse add and remove so removes are output first to match common convention
+      / The diffing algorithm is tied to add then remove output and this is the simplest
+      / route to get the desired output with minimal overhead.
 
       if (componentPos && components[componentPos - 1].added) {
         var tmp = components[componentPos - 1];
@@ -27864,9 +27864,9 @@ function buildValues(diff, lastComponent, newString, oldString, useLongestToken)
         components[componentPos] = tmp;
       }
     }
-  } // Special case handle for when one terminal is ignored (i.e. whitespace).
-  // For this case we merge the terminal into the prior string and drop the change.
-  // This is only available for string mode.
+  } / Special case handle for when one terminal is ignored (i.e. whitespace).
+  / For this case we merge the terminal into the prior string and drop the change.
+  / This is only available for string mode.
 
 
   var finalComponent = components[componentLen - 1];
@@ -27931,11 +27931,11 @@ wordDiff.equals = function (left, right) {
 };
 
 wordDiff.tokenize = function (value) {
-  // All whitespace symbols except newline group into one token, each newline - in separate token
-  var tokens = value.split(/([^\S\r\n]+|[()[\]{}'"\r\n]|\b)/); // Join the boundary splits that we do not consider to be boundaries. This is primarily the extended Latin character set.
+  / All whitespace symbols except newline group into one token, each newline - in separate token
+  var tokens = value.split(/([^\S\r\n]+|[()[\]{}'"\r\n]|\b)/); / Join the boundary splits that we do not consider to be boundaries. This is primarily the extended Latin character set.
 
   for (var i = 0; i < tokens.length - 1; i++) {
-    // If we have an empty string in the next field and we have only word chars before and after, merge
+    / If we have an empty string in the next field and we have only word chars before and after, merge
     if (!tokens[i + 1] && tokens[i + 2] && extendedWordChars.test(tokens[i]) && extendedWordChars.test(tokens[i + 2])) {
       tokens[i] += tokens[i + 2];
       tokens.splice(i + 1, 2);
@@ -27960,16 +27960,16 @@ var lineDiff = new Diff();
 
 lineDiff.tokenize = function (value) {
   if (this.options.stripTrailingCr) {
-    // remove one \r before \n to match GNU diff's --strip-trailing-cr behavior
+    / remove one \r before \n to match GNU diff's --strip-trailing-cr behavior
     value = value.replace(/\r\n/g, '\n');
   }
 
   var retLines = [],
-      linesAndNewlines = value.split(/(\n|\r\n)/); // Ignore the final empty token that occurs if the string ends with a new line
+      linesAndNewlines = value.split(/(\n|\r\n)/); / Ignore the final empty token that occurs if the string ends with a new line
 
   if (!linesAndNewlines[linesAndNewlines.length - 1]) {
     linesAndNewlines.pop();
-  } // Merge the content and line separators into single tokens
+  } / Merge the content and line separators into single tokens
 
 
   for (var i = 0; i < linesAndNewlines.length; i++) {
@@ -28118,7 +28118,7 @@ function _nonIterableSpread() {
 }
 
 var objectPrototypeToString = Object.prototype.toString;
-var jsonDiff = new Diff(); // Discriminate between two lines of pretty-printed, serialized JSON where one of them has a
+var jsonDiff = new Diff(); / Discriminate between two lines of pretty-printed, serialized JSON where one of them has a
 // dangling comma and the other doesn't. Turns out including the dangling comma yields the nicest output:
 
 jsonDiff.useLongestToken = true;
@@ -28140,7 +28140,7 @@ jsonDiff.equals = function (left, right) {
 
 function diffJson(oldObj, newObj, options) {
   return jsonDiff.diff(oldObj, newObj, options);
-} // This function handles the presence of circular references by bailing out when encountering an
+} / This function handles the presence of circular references by bailing out when encountering an
 // object that is already on the "stack" of items being processed. Accepts an optional replacer
 
 function canonicalize(obj, stack, replacementStack, replacer, key) {
@@ -28233,14 +28233,14 @@ function parsePatch(uniDiff) {
 
   function parseIndex() {
     var index = {};
-    list.push(index); // Parse diff metadata
+    list.push(index); / Parse diff metadata
 
     while (i < diffstr.length) {
-      var line = diffstr[i]; // File header found, end parsing diff metadata
+      var line = diffstr[i]; / File header found, end parsing diff metadata
 
       if (/^(\-\-\-|\+\+\+|@@)\s/.test(line)) {
         break;
-      } // Diff index
+      } / Diff index
 
 
       var header = /^(?:Index:|diff(?: -r \w+)+)\s+(.+?)\s*$/.exec(line);
@@ -28250,12 +28250,12 @@ function parsePatch(uniDiff) {
       }
 
       i++;
-    } // Parse file headers if they are defined. Unified diff requires them, but
-    // there's no technical issues to have an isolated hunk without file header
+    } / Parse file headers if they are defined. Unified diff requires them, but
+    / there's no technical issues to have an isolated hunk without file header
 
 
     parseFileHeader(index);
-    parseFileHeader(index); // Parse hunks
+    parseFileHeader(index); / Parse hunks
 
     index.hunks = [];
 
@@ -28267,14 +28267,14 @@ function parsePatch(uniDiff) {
       } else if (/^@@/.test(_line)) {
         index.hunks.push(parseHunk());
       } else if (_line && options.strict) {
-        // Ignore unexpected content unless in strict mode
+        / Ignore unexpected content unless in strict mode
         throw new Error('Unknown line ' + (i + 1) + ' ' + JSON.stringify(_line));
       } else {
         i++;
       }
     }
-  } // Parses the --- and +++ headers, if none are found, no lines
-  // are consumed.
+  } / Parses the --- and +++ headers, if none are found, no lines
+  / are consumed.
 
 
   function parseFileHeader(index) {
@@ -28293,8 +28293,8 @@ function parsePatch(uniDiff) {
       index[keyPrefix + 'Header'] = (data[1] || '').trim();
       i++;
     }
-  } // Parses a hunk
-  // This assumes that we are at the start of a hunk.
+  } / Parses a hunk
+  / This assumes that we are at the start of a hunk.
 
 
   function parseHunk() {
@@ -28308,9 +28308,9 @@ function parsePatch(uniDiff) {
       newLines: typeof chunkHeader[4] === 'undefined' ? 1 : +chunkHeader[4],
       lines: [],
       linedelimiters: []
-    }; // Unified Diff Format quirk: If the chunk size is 0,
-    // the first number is one lower than one would expect.
-    // https://www.artima.com/weblogs/viewpost.jsp?thread=164293
+    }; / Unified Diff Format quirk: If the chunk size is 0,
+    / the first number is one lower than one would expect.
+    / https://www.artima.com/weblogs/viewpost.jsp?thread=164293
 
     if (hunk.oldLines === 0) {
       hunk.oldStart += 1;
@@ -28324,8 +28324,8 @@ function parsePatch(uniDiff) {
         removeCount = 0;
 
     for (; i < diffstr.length; i++) {
-      // Lines starting with '---' could be mistaken for the "remove line" operation
-      // But they could be the header for the next file. Therefore prune such cases out.
+      / Lines starting with '---' could be mistaken for the "remove line" operation
+      / But they could be the header for the next file. Therefore prune such cases out.
       if (diffstr[i].indexOf('--- ') === 0 && i + 2 < diffstr.length && diffstr[i + 1].indexOf('+++ ') === 0 && diffstr[i + 2].indexOf('@@') === 0) {
         break;
       }
@@ -28347,7 +28347,7 @@ function parsePatch(uniDiff) {
       } else {
         break;
       }
-    } // Handle the empty block count case
+    } / Handle the empty block count case
 
 
     if (!addCount && hunk.newLines === 1) {
@@ -28356,7 +28356,7 @@ function parsePatch(uniDiff) {
 
     if (!removeCount && hunk.oldLines === 1) {
       hunk.oldLines = 0;
-    } // Perform optional sanity checking
+    } / Perform optional sanity checking
 
 
     if (options.strict) {
@@ -28393,8 +28393,8 @@ function distanceIterator (start, minLine, maxLine) {
         localOffset++;
       } else {
         wantForward = false;
-      } // Check if trying to fit beyond text length, and if not, check it fits
-      // after offset location (or desired location on first iteration)
+      } / Check if trying to fit beyond text length, and if not, check it fits
+      / after offset location (or desired location on first iteration)
 
 
       if (start + localOffset <= maxLine) {
@@ -28407,8 +28407,8 @@ function distanceIterator (start, minLine, maxLine) {
     if (!backwardExhausted) {
       if (!forwardExhausted) {
         wantForward = true;
-      } // Check if trying to fit before text beginning, and if not, check it fits
-      // before offset location
+      } / Check if trying to fit before text beginning, and if not, check it fits
+      / before offset location
 
 
       if (minLine <= start - localOffset) {
@@ -28417,8 +28417,8 @@ function distanceIterator (start, minLine, maxLine) {
 
       backwardExhausted = true;
       return iterator();
-    } // We tried to fit hunk before text beginning and beyond text length, then
-    // hunk can't fit on the text. Return undefined
+    } / We tried to fit hunk before text beginning and beyond text length, then
+    / hunk can't fit on the text. Return undefined
 
   };
 }
@@ -28436,7 +28436,7 @@ function applyPatch(source, uniDiff) {
     }
 
     uniDiff = uniDiff[0];
-  } // Apply the diff to the input
+  } / Apply the diff to the input
 
 
   var lines = source.split(/\r\n|[\n\v\f\r\x85]/),
@@ -28463,7 +28463,7 @@ function applyPatch(source, uniDiff) {
           content = line.length > 0 ? line.substr(1) : line;
 
       if (operation === ' ' || operation === '-') {
-        // Context sanity check
+        / Context sanity check
         if (!compareLine(toPos + 1, lines[toPos], operation, content)) {
           errorCount++;
 
@@ -28477,7 +28477,7 @@ function applyPatch(source, uniDiff) {
     }
 
     return true;
-  } // Search best fit offsets for each hunk based on the previous ones
+  } / Search best fit offsets for each hunk based on the previous ones
 
 
   for (var i = 0; i < hunks.length; i++) {
@@ -28496,12 +28496,12 @@ function applyPatch(source, uniDiff) {
 
     if (localOffset === undefined) {
       return false;
-    } // Set lower text limit to end of the current hunk, so next ones don't try
-    // to fit over already patched text
+    } / Set lower text limit to end of the current hunk, so next ones don't try
+    / to fit over already patched text
 
 
     minLine = hunk.offset + hunk.oldStart + hunk.oldLines;
-  } // Apply patch hunks
+  } / Apply patch hunks
 
 
   var diffOffset = 0;
@@ -28538,7 +28538,7 @@ function applyPatch(source, uniDiff) {
         }
       }
     }
-  } // Handle EOFNL insertion/removal
+  } / Handle EOFNL insertion/removal
 
 
   if (removeEOFNL) {
@@ -28556,7 +28556,7 @@ function applyPatch(source, uniDiff) {
   }
 
   return lines.join('');
-} // Wrapper that supports multiple file patches via callbacks.
+} / Wrapper that supports multiple file patches via callbacks.
 
 function applyPatches(uniDiff, options) {
   if (typeof uniDiff === 'string') {
@@ -28609,7 +28609,7 @@ function structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, ne
   diff.push({
     value: '',
     lines: []
-  }); // Append an empty value to make cleanup easier
+  }); / Append an empty value to make cleanup easier
 
   function contextLines(lines) {
     return lines.map(function (entry) {
@@ -28632,7 +28632,7 @@ function structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, ne
     if (current.added || current.removed) {
       var _curRange;
 
-      // If we have previous context, start with that
+      / If we have previous context, start with that
       if (!oldRangeStart) {
         var prev = diff[i - 1];
         oldRangeStart = oldLine;
@@ -28643,12 +28643,12 @@ function structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, ne
           oldRangeStart -= curRange.length;
           newRangeStart -= curRange.length;
         }
-      } // Output our changes
+      } / Output our changes
 
 
       (_curRange = curRange).push.apply(_curRange, _toConsumableArray(lines.map(function (entry) {
         return (current.added ? '+' : '-') + entry;
-      }))); // Track the updated file position
+      }))); / Track the updated file position
 
 
       if (current.added) {
@@ -28657,18 +28657,18 @@ function structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, ne
         oldLine += lines.length;
       }
     } else {
-      // Identical context lines. Track line changes
+      / Identical context lines. Track line changes
       if (oldRangeStart) {
-        // Close out any changes that have been output (or join overlapping)
+        / Close out any changes that have been output (or join overlapping)
         if (lines.length <= options.context * 2 && i < diff.length - 2) {
           var _curRange2;
 
-          // Overlapping
+          / Overlapping
           (_curRange2 = curRange).push.apply(_curRange2, _toConsumableArray(contextLines(lines)));
         } else {
           var _curRange3;
 
-          // end the range and output
+          / end the range and output
           var contextSize = Math.min(lines.length, options.context);
 
           (_curRange3 = curRange).push.apply(_curRange3, _toConsumableArray(contextLines(lines.slice(0, contextSize))));
@@ -28682,14 +28682,14 @@ function structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, ne
           };
 
           if (i >= diff.length - 2 && lines.length <= options.context) {
-            // EOF is inside this hunk
+            / EOF is inside this hunk
             var oldEOFNewline = /\n$/.test(oldStr);
             var newEOFNewline = /\n$/.test(newStr);
             var noNlBeforeAdds = lines.length == 0 && curRange.length > hunk.oldLines;
 
             if (!oldEOFNewline && noNlBeforeAdds && oldStr.length > 0) {
-              // special case: old has no eol and no trailing context; no-nl can end up before adds
-              // however, if the old file is empty, do not output the no-nl line
+              / special case: old has no eol and no trailing context; no-nl can end up before adds
+              / however, if the old file is empty, do not output the no-nl line
               curRange.splice(hunk.oldLines, 0, '\\ No newline at end of file');
             }
 
@@ -28738,9 +28738,9 @@ function formatPatch(diff) {
   ret.push('+++ ' + diff.newFileName + (typeof diff.newHeader === 'undefined' ? '' : '\t' + diff.newHeader));
 
   for (var i = 0; i < diff.hunks.length; i++) {
-    var hunk = diff.hunks[i]; // Unified Diff Format quirk: If the chunk size is 0,
-    // the first number is one lower than one would expect.
-    // https://www.artima.com/weblogs/viewpost.jsp?thread=164293
+    var hunk = diff.hunks[i]; / Unified Diff Format quirk: If the chunk size is 0,
+    / the first number is one lower than one would expect.
+    / https://www.artima.com/weblogs/viewpost.jsp?thread=164293
 
     if (hunk.oldLines === 0) {
       hunk.oldStart -= 1;
@@ -28804,9 +28804,9 @@ function calcLineCount(hunk) {
 function merge(mine, theirs, base) {
   mine = loadPatch(mine, base);
   theirs = loadPatch(theirs, base);
-  var ret = {}; // For index we just let it pass through as it doesn't have any necessary meaning.
-  // Leaving sanity checks on this to the API consumer that may know more about the
-  // meaning in their own context.
+  var ret = {}; / For index we just let it pass through as it doesn't have any necessary meaning.
+  / Leaving sanity checks on this to the API consumer that may know more about the
+  / meaning in their own context.
 
   if (mine.index || theirs.index) {
     ret.index = mine.index || theirs.index;
@@ -28814,19 +28814,19 @@ function merge(mine, theirs, base) {
 
   if (mine.newFileName || theirs.newFileName) {
     if (!fileNameChanged(mine)) {
-      // No header or no change in ours, use theirs (and ours if theirs does not exist)
+      / No header or no change in ours, use theirs (and ours if theirs does not exist)
       ret.oldFileName = theirs.oldFileName || mine.oldFileName;
       ret.newFileName = theirs.newFileName || mine.newFileName;
       ret.oldHeader = theirs.oldHeader || mine.oldHeader;
       ret.newHeader = theirs.newHeader || mine.newHeader;
     } else if (!fileNameChanged(theirs)) {
-      // No header or no change in theirs, use ours
+      / No header or no change in theirs, use ours
       ret.oldFileName = mine.oldFileName;
       ret.newFileName = mine.newFileName;
       ret.oldHeader = mine.oldHeader;
       ret.newHeader = mine.newHeader;
     } else {
-      // Both changed... figure it out
+      / Both changed... figure it out
       ret.oldFileName = selectField(ret, mine.oldFileName, theirs.oldFileName);
       ret.newFileName = selectField(ret, mine.newFileName, theirs.newFileName);
       ret.oldHeader = selectField(ret, mine.oldHeader, theirs.oldHeader);
@@ -28849,17 +28849,17 @@ function merge(mine, theirs, base) {
     };
 
     if (hunkBefore(mineCurrent, theirsCurrent)) {
-      // This patch does not overlap with any of the others, yay.
+      / This patch does not overlap with any of the others, yay.
       ret.hunks.push(cloneHunk(mineCurrent, mineOffset));
       mineIndex++;
       theirsOffset += mineCurrent.newLines - mineCurrent.oldLines;
     } else if (hunkBefore(theirsCurrent, mineCurrent)) {
-      // This patch does not overlap with any of the others, yay.
+      / This patch does not overlap with any of the others, yay.
       ret.hunks.push(cloneHunk(theirsCurrent, theirsOffset));
       theirsIndex++;
       mineOffset += theirsCurrent.newLines - theirsCurrent.oldLines;
     } else {
-      // Overlap, merge as best we can
+      / Overlap, merge as best we can
       var mergedHunk = {
         oldStart: Math.min(mineCurrent.oldStart, theirsCurrent.oldStart),
         oldLines: 0,
@@ -28924,8 +28924,8 @@ function cloneHunk(hunk, offset) {
 }
 
 function mergeLines(hunk, mineOffset, mineLines, theirOffset, theirLines) {
-  // This will generally result in a conflicted hunk, but there are cases where the context
-  // is the only overlap where we can successfully merge the content here.
+  / This will generally result in a conflicted hunk, but there are cases where the context
+  / is the only overlap where we can successfully merge the content here.
   var mine = {
     offset: mineOffset,
     lines: mineLines,
@@ -28935,44 +28935,44 @@ function mergeLines(hunk, mineOffset, mineLines, theirOffset, theirLines) {
     offset: theirOffset,
     lines: theirLines,
     index: 0
-  }; // Handle any leading content
+  }; / Handle any leading content
 
   insertLeading(hunk, mine, their);
-  insertLeading(hunk, their, mine); // Now in the overlap content. Scan through and select the best changes from each.
+  insertLeading(hunk, their, mine); / Now in the overlap content. Scan through and select the best changes from each.
 
   while (mine.index < mine.lines.length && their.index < their.lines.length) {
     var mineCurrent = mine.lines[mine.index],
         theirCurrent = their.lines[their.index];
 
     if ((mineCurrent[0] === '-' || mineCurrent[0] === '+') && (theirCurrent[0] === '-' || theirCurrent[0] === '+')) {
-      // Both modified ...
+      / Both modified ...
       mutualChange(hunk, mine, their);
     } else if (mineCurrent[0] === '+' && theirCurrent[0] === ' ') {
       var _hunk$lines;
 
-      // Mine inserted
+      / Mine inserted
       (_hunk$lines = hunk.lines).push.apply(_hunk$lines, _toConsumableArray(collectChange(mine)));
     } else if (theirCurrent[0] === '+' && mineCurrent[0] === ' ') {
       var _hunk$lines2;
 
-      // Theirs inserted
+      / Theirs inserted
       (_hunk$lines2 = hunk.lines).push.apply(_hunk$lines2, _toConsumableArray(collectChange(their)));
     } else if (mineCurrent[0] === '-' && theirCurrent[0] === ' ') {
-      // Mine removed or edited
+      / Mine removed or edited
       removal(hunk, mine, their);
     } else if (theirCurrent[0] === '-' && mineCurrent[0] === ' ') {
-      // Their removed or edited
+      / Their removed or edited
       removal(hunk, their, mine, true);
     } else if (mineCurrent === theirCurrent) {
-      // Context identity
+      / Context identity
       hunk.lines.push(mineCurrent);
       mine.index++;
       their.index++;
     } else {
-      // Context mismatch
+      / Context mismatch
       conflict(hunk, collectChange(mine), collectChange(their));
     }
-  } // Now push anything that may be remaining
+  } / Now push anything that may be remaining
 
 
   insertTrailing(hunk, mine);
@@ -28985,7 +28985,7 @@ function mutualChange(hunk, mine, their) {
       theirChanges = collectChange(their);
 
   if (allRemoves(myChanges) && allRemoves(theirChanges)) {
-    // Special case for remove changes that are supersets of one another
+    / Special case for remove changes that are supersets of one another
     if (arrayStartsWith(myChanges, theirChanges) && skipRemoveSuperset(their, myChanges, myChanges.length - theirChanges.length)) {
       var _hunk$lines3;
 
@@ -29052,7 +29052,7 @@ function collectChange(state) {
       operation = state.lines[state.index][0];
 
   while (state.index < state.lines.length) {
-    var line = state.lines[state.index]; // Group additions that are immediately after subtractions and treat them as one "atomic" modify change.
+    var line = state.lines[state.index]; / Group additions that are immediately after subtractions and treat them as one "atomic" modify change.
 
     if (operation === '-' && line[0] === '+') {
       operation = '+';
@@ -29078,7 +29078,7 @@ function collectContext(state, matchChanges) {
 
   while (matchIndex < matchChanges.length && state.index < state.lines.length) {
     var change = state.lines[state.index],
-        match = matchChanges[matchIndex]; // Once we've hit our add, then we are done
+        match = matchChanges[matchIndex]; / Once we've hit our add, then we are done
 
     if (match[0] === '+') {
       break;
@@ -29086,8 +29086,8 @@ function collectContext(state, matchChanges) {
 
     contextChanges = contextChanges || change[0] !== ' ';
     merged.push(match);
-    matchIndex++; // Consume any additions in the other block as a conflict to attempt
-    // to pull in the remaining context after this
+    matchIndex++; / Consume any additions in the other block as a conflict to attempt
+    / to pull in the remaining context after this
 
     if (change[0] === '+') {
       conflicted = true;
@@ -29302,14 +29302,14 @@ __webpack_require__.r(__webpack_exports__);
 function whitespace(thing) {
   /** @type {string} */
   const value =
-    // @ts-expect-error looks like a node.
+    / @ts-expect-error looks like a node.
     thing && typeof thing === 'object' && thing.type === 'text'
-      ? // @ts-expect-error looks like a text.
+      ? / @ts-expect-error looks like a text.
         thing.value || ''
       : thing
 
-  // HTML whitespace expression.
-  // See <https://infra.spec.whatwg.org/#ascii-whitespace>.
+  / HTML whitespace expression.
+  / See <https://infra.spec.whatwg.org/#ascii-whitespace>.
   return typeof value === 'string' && value.replace(/[ \t\n\f\r]/g, '') === ''
 }
 
@@ -29366,20 +29366,20 @@ function isPlainObject(o) {
 
   if (isObject(o) === false) return false;
 
-  // If has modified constructor
+  / If has modified constructor
   ctor = o.constructor;
   if (ctor === undefined) return true;
 
-  // If has modified prototype
+  / If has modified prototype
   prot = ctor.prototype;
   if (isObject(prot) === false) return false;
 
-  // If constructor does not have an Object-specific method
+  / If constructor does not have an Object-specific method
   if (prot.hasOwnProperty('isPrototypeOf') === false) {
     return false;
   }
 
-  // Most likely a plain Object
+  / Most likely a plain Object
   return true;
 }
 
@@ -29452,7 +29452,7 @@ function definitions(tree) {
   /** @type {GetDefinition} */
   function definition(identifier) {
     const id = clean(identifier)
-    // To do: next major: return `undefined` when not found.
+    / To do: next major: return `undefined` when not found.
     return id && own.call(cache, id) ? cache[id] : null
   }
 }
@@ -29832,8 +29832,8 @@ function compiler(options) {
     let index = -1
 
     while (++index < events.length) {
-      // We preprocess lists to add `listItem` tokens, and to infer whether
-      // items the list itself are spread out.
+      / We preprocess lists to add `listItem` tokens, and to infer whether
+      / items the list itself are spread out.
       if (
         events[index][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.listOrdered ||
         events[index][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.listUnordered
@@ -29864,14 +29864,14 @@ function compiler(options) {
       }
     }
 
-    // Handle tokens still being open.
+    / Handle tokens still being open.
     if (context.tokenStack.length > 0) {
       const tail = context.tokenStack[context.tokenStack.length - 1]
       const handler = tail[1] || defaultOnError
       handler.call(context, undefined, tail[0])
     }
 
-    // Figure out `root` position.
+    / Figure out `root` position.
     tree.position = {
       start: point(
         events.length > 0 ? events[0][1].start : {line: 1, column: 1, offset: 0}
@@ -29883,7 +29883,7 @@ function compiler(options) {
       )
     }
 
-    // Call transforms.
+    / Call transforms.
     index = -1
     while (++index < config.transforms.length) {
       tree = config.transforms[index](tree) || tree
@@ -29946,7 +29946,7 @@ function compiler(options) {
         event[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.listItemPrefix ||
         event[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.listItemPrefixWhitespace
       ) {
-        // Empty.
+        / Empty.
       } else {
         atMarker = undefined
       }
@@ -29987,7 +29987,7 @@ function compiler(options) {
               tailEvent[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.blockQuoteMarker ||
               tailEvent[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.listItemIndent
             ) {
-              // Empty
+              / Empty
             } else {
               break
             }
@@ -30000,7 +30000,7 @@ function compiler(options) {
             listItem._spread = true
           }
 
-          // Fix position.
+          / Fix position.
           listItem.end = Object.assign(
             {},
             lineIndex ? events[lineIndex][1].start : event[1].end
@@ -30011,16 +30011,16 @@ function compiler(options) {
           length++
         }
 
-        // Create a new list item.
+        / Create a new list item.
         if (event[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.listItemPrefix) {
           listItem = {
             type: 'listItem',
             _spread: false,
             start: Object.assign({}, event[1].start),
-            // @ts-expect-error: we’ll add `end` in a second.
+            / @ts-expect-error: we’ll add `end` in a second.
             end: undefined
           }
-          // @ts-expect-error: `listItem` is most definitely defined, TS...
+          / @ts-expect-error: `listItem` is most definitely defined, TS...
           events.splice(index, 0, ['enter', listItem, event[2]])
           index++
           length++
@@ -30114,11 +30114,11 @@ function compiler(options) {
     const parent = this.stack[this.stack.length - 1]
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(parent, 'expected `parent`')
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)('children' in parent, 'expected `parent`')
-    // @ts-expect-error: Assume `Node` can exist as a child of `parent`.
+    / @ts-expect-error: Assume `Node` can exist as a child of `parent`.
     parent.children.push(node)
     this.stack.push(node)
     this.tokenStack.push([token, errorHandler])
-    // @ts-expect-error: `end` will be patched later.
+    / @ts-expect-error: `end` will be patched later.
     node.position = {start: point(token.start)}
     return node
   }
@@ -30191,9 +30191,9 @@ function compiler(options) {
     return (0,mdast_util_to_string__WEBPACK_IMPORTED_MODULE_6__.toString)(this.stack.pop())
   }
 
-  //
-  // Handlers.
-  //
+  /
+  / Handlers.
+  /
 
   /**
    * @this {CompileContext}
@@ -30249,7 +30249,7 @@ function compiler(options) {
    * @type {Handle}
    */
   function onexitcodefencedfence() {
-    // Exit if this is the closing fence.
+    / Exit if this is the closing fence.
     if (getData('flowCodeInside')) return
     this.buffer()
     setData('flowCodeInside', true)
@@ -30392,11 +30392,11 @@ function compiler(options) {
     let tail = node.children[node.children.length - 1]
 
     if (!tail || tail.type !== 'text') {
-      // Add a new text node.
+      / Add a new text node.
       tail = text()
-      // @ts-expect-error: we’ll add `end` later.
+      / @ts-expect-error: we’ll add `end` later.
       tail.position = {start: point(token.start)}
-      // @ts-expect-error: Assume `parent` accepts `text`.
+      / @ts-expect-error: Assume `parent` accepts `text`.
       node.children.push(tail)
     }
 
@@ -30426,7 +30426,7 @@ function compiler(options) {
     const context = this.stack[this.stack.length - 1]
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(context, 'expected `node`')
 
-    // If we’re at a hard break, include the line ending in there.
+    / If we’re at a hard break, include the line ending in there.
     if (getData('atHardBreak')) {
       (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)('children' in context, 'expected `parent`')
       const tail = context.children[context.children.length - 1]
@@ -30506,24 +30506,24 @@ function compiler(options) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(node, 'expected node on stack')
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(node.type === 'link', 'expected link on stack')
 
-    // Note: there are also `identifier` and `label` fields on this link node!
-    // These are used / cleaned here.
+    / Note: there are also `identifier` and `label` fields on this link node!
+    / These are used / cleaned here.
 
-    // To do: clean.
+    / To do: clean.
     if (getData('inReference')) {
       /** @type {ReferenceType} */
       const referenceType = getData('referenceType') || 'shortcut'
 
       node.type += 'Reference'
-      // @ts-expect-error: mutate.
+      / @ts-expect-error: mutate.
       node.referenceType = referenceType
-      // @ts-expect-error: mutate.
+      / @ts-expect-error: mutate.
       delete node.url
       delete node.title
     } else {
-      // @ts-expect-error: mutate.
+      / @ts-expect-error: mutate.
       delete node.identifier
-      // @ts-expect-error: mutate.
+      / @ts-expect-error: mutate.
       delete node.label
     }
 
@@ -30540,24 +30540,24 @@ function compiler(options) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(node, 'expected node on stack')
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(node.type === 'image', 'expected image on stack')
 
-    // Note: there are also `identifier` and `label` fields on this link node!
-    // These are used / cleaned here.
+    / Note: there are also `identifier` and `label` fields on this link node!
+    / These are used / cleaned here.
 
-    // To do: clean.
+    / To do: clean.
     if (getData('inReference')) {
       /** @type {ReferenceType} */
       const referenceType = getData('referenceType') || 'shortcut'
 
       node.type += 'Reference'
-      // @ts-expect-error: mutate.
+      / @ts-expect-error: mutate.
       node.referenceType = referenceType
-      // @ts-expect-error: mutate.
+      / @ts-expect-error: mutate.
       delete node.url
       delete node.title
     } else {
-      // @ts-expect-error: mutate.
+      / @ts-expect-error: mutate.
       delete node.identifier
-      // @ts-expect-error: mutate.
+      / @ts-expect-error: mutate.
       delete node.label
     }
 
@@ -30578,10 +30578,10 @@ function compiler(options) {
       'expected image or link on stack'
     )
 
-    // @ts-expect-error: stash this on the node, as it might become a reference
-    // later.
+    / @ts-expect-error: stash this on the node, as it might become a reference
+    / later.
     ancestor.label = (0,micromark_util_decode_string__WEBPACK_IMPORTED_MODULE_10__.decodeString)(string)
-    // @ts-expect-error: same as above.
+    / @ts-expect-error: same as above.
     ancestor.identifier = (0,micromark_util_normalize_identifier__WEBPACK_IMPORTED_MODULE_8__.normalizeIdentifier)(string).toLowerCase()
   }
 
@@ -30602,12 +30602,12 @@ function compiler(options) {
       'expected image or link on stack'
     )
 
-    // Assume a reference.
+    / Assume a reference.
     setData('inReference', true)
 
     if (node.type === 'link') {
       /** @type {Array<StaticPhrasingContent>} */
-      // @ts-expect-error: Assume static phrasing content.
+      / @ts-expect-error: Assume static phrasing content.
       const children = fragment.children
 
       node.children = children
@@ -30680,10 +30680,10 @@ function compiler(options) {
       'expected image reference or link reference on stack'
     )
 
-    // @ts-expect-error: stash this on the node, as it might become a reference
-    // later.
+    / @ts-expect-error: stash this on the node, as it might become a reference
+    / later.
     node.label = label
-    // @ts-expect-error: same as above.
+    / @ts-expect-error: same as above.
     node.identifier = (0,micromark_util_normalize_identifier__WEBPACK_IMPORTED_MODULE_8__.normalizeIdentifier)(
       this.sliceSerialize(token)
     ).toLowerCase()
@@ -30761,9 +30761,9 @@ function compiler(options) {
     node.url = 'mailto:' + this.sliceSerialize(token)
   }
 
-  //
-  // Creaters.
-  //
+  /
+  / Creaters.
+  /
 
   /** @returns {Blockquote} */
   function blockQuote() {
@@ -30798,7 +30798,7 @@ function compiler(options) {
 
   /** @returns {Heading} */
   function heading() {
-    // @ts-expect-error `depth` will be set later.
+    / @ts-expect-error `depth` will be set later.
     return {type: 'heading', depth: undefined, children: []}
   }
 
@@ -31083,7 +31083,7 @@ function footer(state) {
         type: 'element',
         tagName: state.footnoteLabelTagName,
         properties: {
-          // To do: use structured clone.
+          / To do: use structured clone.
           ...JSON.parse(JSON.stringify(state.footnoteLabelProperties)),
           id: 'footnote-label'
         },
@@ -31215,8 +31215,8 @@ __webpack_require__.r(__webpack_exports__);
  */
 function code(state, node) {
   const value = node.value ? node.value + '\n' : ''
-  // To do: next major, use `node.lang` w/o regex, the splitting’s been going
-  // on for years in remark now.
+  / To do: next major, use `node.lang` w/o regex, the splitting’s been going
+  / on for years in remark now.
   const lang = node.lang ? node.lang.match(/^[^ \t]+(?=[ \t]|$)/) : null
   /** @type {Properties} */
   const properties = {}
@@ -31225,7 +31225,7 @@ function code(state, node) {
     properties.className = ['language-' + lang]
   }
 
-  // Create `<code>`.
+  / Create `<code>`.
   /** @type {Element} */
   let result = {
     type: 'element',
@@ -31241,7 +31241,7 @@ function code(state, node) {
   state.patch(node, result)
   result = state.applyData(node, result)
 
-  // Create `<pre>`.
+  / Create `<pre>`.
   result = {type: 'element', tagName: 'pre', properties: {}, children: [result]}
   state.patch(node, result)
   return result
@@ -31555,7 +31555,7 @@ function html(state, node) {
     return state.applyData(node, result)
   }
 
-  // To do: next major: return `undefined`.
+  / To do: next major: return `undefined`.
   return null
 }
 
@@ -31767,7 +31767,7 @@ const handlers = {
 
 // Return nothing for nodes that are ignored.
 function ignore() {
-  // To do: next major: return `undefined`.
+  / To do: next major: return `undefined`.
   return null
 }
 
@@ -32006,8 +32006,8 @@ function listItem(state, node, parent) {
       children: []
     })
 
-    // According to github-markdown-css, this class hides bullet.
-    // See: <https://github.com/sindresorhus/github-markdown-css>.
+    / According to github-markdown-css, this class hides bullet.
+    / See: <https://github.com/sindresorhus/github-markdown-css>.
     properties.className = ['task-list-item']
   }
 
@@ -32016,7 +32016,7 @@ function listItem(state, node, parent) {
   while (++index < results.length) {
     const child = results[index]
 
-    // Add eols before nodes, except if this is a loose, first paragraph.
+    / Add eols before nodes, except if this is a loose, first paragraph.
     if (
       loose ||
       index !== 0 ||
@@ -32035,7 +32035,7 @@ function listItem(state, node, parent) {
 
   const tail = results[results.length - 1]
 
-  // Add a final eol.
+  / Add a final eol.
   if (tail && (loose || tail.type !== 'element' || tail.tagName !== 'p')) {
     children.push({type: 'text', value: '\n'})
   }
@@ -32118,7 +32118,7 @@ function list(state, node) {
     properties.start = node.start
   }
 
-  // Like GitHub, add a class for custom styling.
+  / Like GitHub, add a class for custom styling.
   while (++index < results.length) {
     const child = results[index]
 
@@ -32298,12 +32298,12 @@ __webpack_require__.r(__webpack_exports__);
  *   hast node.
  */
 function tableCell(state, node) {
-  // Note: this function is normally not called: see `table-row` for how rows
-  // and their cells are compiled.
+  / Note: this function is normally not called: see `table-row` for how rows
+  / and their cells are compiled.
   /** @type {Element} */
   const result = {
     type: 'element',
-    tagName: 'td', // Assume body cell.
+    tagName: 'td', / Assume body cell.
     properties: {},
     children: state.all(node)
   }
@@ -32355,7 +32355,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 function tableRow(state, node, parent) {
   const siblings = parent ? parent.children : undefined
-  // Generate a body row when without parent.
+  / Generate a body row when without parent.
   const rowIndex = siblings ? siblings.indexOf(node) : 1
   const tagName = rowIndex === 0 ? 'th' : 'td'
   const align = parent && parent.type === 'table' ? parent.align : undefined
@@ -32365,7 +32365,7 @@ function tableRow(state, node, parent) {
   const cells = []
 
   while (++cellIndex < length) {
-    // Note: can also be undefined.
+    / Note: can also be undefined.
     const cell = node.children[cellIndex]
     /** @type {Properties} */
     const properties = {}
@@ -32639,7 +32639,7 @@ __webpack_require__.r(__webpack_exports__);
  *
  * ```html
  * <p id=x></p>
- * <script>alert(x) // `x` now refers to the DOM `p#x` element</script>
+ * <script>alert(x) / `x` now refers to the DOM `p#x` element</script>
  * ```
  *
  * Elements by their ID are made available by browsers on the `window` object,
@@ -32676,13 +32676,13 @@ function toHast(tree, options) {
   const foot = (0,_footer_js__WEBPACK_IMPORTED_MODULE_1__.footer)(state)
 
   if (foot) {
-    // @ts-expect-error If there’s a footer, there were definitions, meaning block
-    // content.
-    // So assume `node` is a parent node.
+    / @ts-expect-error If there’s a footer, there were definitions, meaning block
+    / content.
+    / So assume `node` is a parent node.
     node.children.push({type: 'text', value: '\n'}, foot)
   }
 
-  // To do: next major: always return root?
+  / To do: next major: always return root?
   return Array.isArray(node) ? {type: 'root', children: node} : node
 }
 
@@ -32968,37 +32968,37 @@ function createState(tree, options) {
   /** @type {Record<string, MdastFootnoteDefinition>} */
   const footnoteById = {}
 
-  // To do: next major: add `options` to state, remove:
-  // `dangerous`, `clobberPrefix`, `footnoteLabel`, `footnoteLabelTagName`,
-  // `footnoteLabelProperties`, `footnoteBackLabel`, `passThrough`,
-  // `unknownHandler`.
+  / To do: next major: add `options` to state, remove:
+  / `dangerous`, `clobberPrefix`, `footnoteLabel`, `footnoteLabelTagName`,
+  / `footnoteLabelProperties`, `footnoteBackLabel`, `passThrough`,
+  / `unknownHandler`.
 
-  // To do: next major: move to `state.options.allowDangerousHtml`.
+  / To do: next major: move to `state.options.allowDangerousHtml`.
   state.dangerous = dangerous
-  // To do: next major: move to `state.options`.
+  / To do: next major: move to `state.options`.
   state.clobberPrefix =
     settings.clobberPrefix === undefined || settings.clobberPrefix === null
       ? 'user-content-'
       : settings.clobberPrefix
-  // To do: next major: move to `state.options`.
+  / To do: next major: move to `state.options`.
   state.footnoteLabel = settings.footnoteLabel || 'Footnotes'
-  // To do: next major: move to `state.options`.
+  / To do: next major: move to `state.options`.
   state.footnoteLabelTagName = settings.footnoteLabelTagName || 'h2'
-  // To do: next major: move to `state.options`.
+  / To do: next major: move to `state.options`.
   state.footnoteLabelProperties = settings.footnoteLabelProperties || {
     className: ['sr-only']
   }
-  // To do: next major: move to `state.options`.
+  / To do: next major: move to `state.options`.
   state.footnoteBackLabel = settings.footnoteBackLabel || 'Back to content'
-  // To do: next major: move to `state.options`.
+  / To do: next major: move to `state.options`.
   state.unknownHandler = settings.unknownHandler
-  // To do: next major: move to `state.options`.
+  / To do: next major: move to `state.options`.
   state.passThrough = settings.passThrough
 
   state.handlers = {..._handlers_index_js__WEBPACK_IMPORTED_MODULE_0__.handlers, ...settings.handlers}
 
-  // To do: next major: replace utility with `definitionById` object, so we
-  // only walk once (as we need footnotes too).
+  / To do: next major: replace utility with `definitionById` object, so we
+  / only walk once (as we need footnotes too).
   state.definition = (0,mdast_util_definitions__WEBPACK_IMPORTED_MODULE_1__.definitions)(tree)
   state.footnoteById = footnoteById
   /** @type {Array<string>} */
@@ -33011,20 +33011,20 @@ function createState(tree, options) {
   state.one = oneBound
   state.all = allBound
   state.wrap = wrap
-  // To do: next major: remove `augment`.
+  / To do: next major: remove `augment`.
   state.augment = augment
 
   ;(0,unist_util_visit__WEBPACK_IMPORTED_MODULE_2__.visit)(tree, 'footnoteDefinition', (definition) => {
     const id = String(definition.identifier).toUpperCase()
 
-    // Mimick CM behavior of link definitions.
-    // See: <https://github.com/syntax-tree/mdast-util-definitions/blob/8290999/index.js#L26>.
+    / Mimick CM behavior of link definitions.
+    / See: <https://github.com/syntax-tree/mdast-util-definitions/blob/8290999/index.js#L26>.
     if (!own.call(footnoteById, id)) {
       footnoteById[id] = definition
     }
   })
 
-  // @ts-expect-error Hush, it’s fine!
+  / @ts-expect-error Hush, it’s fine!
   return state
 
   /**
@@ -33035,9 +33035,9 @@ function createState(tree, options) {
    * @returns {HastElementContent}
    */
   /* c8 ignore start */
-  // To do: next major: remove.
+  / To do: next major: remove.
   function augment(left, right) {
-    // Handle `data.hName`, `data.hProperties, `data.hChildren`.
+    / Handle `data.hName`, `data.hProperties, `data.hChildren`.
     if (left && 'data' in left && left.data) {
       /** @type {MdastData} */
       const data = left.data
@@ -33068,7 +33068,7 @@ function createState(tree, options) {
       const ctx = 'type' in left ? left : {position: left}
 
       if (!(0,unist_util_generated__WEBPACK_IMPORTED_MODULE_3__.generated)(ctx)) {
-        // @ts-expect-error: fine.
+        / @ts-expect-error: fine.
         right.position = {start: (0,unist_util_position__WEBPACK_IMPORTED_MODULE_4__.pointStart)(ctx), end: (0,unist_util_position__WEBPACK_IMPORTED_MODULE_4__.pointEnd)(ctx)}
       }
     }
@@ -33083,14 +33083,14 @@ function createState(tree, options) {
    * @type {HFunctionProps}
    */
   /* c8 ignore start */
-  // To do: next major: remove.
+  / To do: next major: remove.
   function state(node, tagName, props, children) {
     if (Array.isArray(props)) {
       children = props
       props = {}
     }
 
-    // @ts-expect-error augmenting an element yields an element.
+    / @ts-expect-error augmenting an element yields an element.
     return augment(node, {
       type: 'element',
       tagName,
@@ -33111,7 +33111,7 @@ function createState(tree, options) {
    *   Resulting hast node.
    */
   function oneBound(node, parent) {
-    // @ts-expect-error: that’s a state :)
+    / @ts-expect-error: that’s a state :)
     return one(state, node, parent)
   }
 
@@ -33124,7 +33124,7 @@ function createState(tree, options) {
    *   Resulting hast nodes.
    */
   function allBound(parent) {
-    // @ts-expect-error: that’s a state :)
+    / @ts-expect-error: that’s a state :)
     return all(state, parent)
   }
 }
@@ -33159,22 +33159,22 @@ function applyData(from, to) {
   /** @type {Type | HastElement} */
   let result = to
 
-  // Handle `data.hName`, `data.hProperties, `data.hChildren`.
+  / Handle `data.hName`, `data.hProperties, `data.hChildren`.
   if (from && from.data) {
     const hName = from.data.hName
     const hChildren = from.data.hChildren
     const hProperties = from.data.hProperties
 
     if (typeof hName === 'string') {
-      // Transforming the node resulted in an element with a different name
-      // than wanted:
+      / Transforming the node resulted in an element with a different name
+      / than wanted:
       if (result.type === 'element') {
         result.tagName = hName
       }
-      // Transforming the node resulted in a non-element, which happens for
-      // raw, text, and root nodes (unless custom handlers are passed).
-      // The intent is likely to keep the content around (otherwise: pass
-      // `hChildren`).
+      / Transforming the node resulted in a non-element, which happens for
+      / raw, text, and root nodes (unless custom handlers are passed).
+      / The intent is likely to keep the content around (otherwise: pass
+      / `hChildren`).
       else {
         result = {
           type: 'element',
@@ -33183,15 +33183,15 @@ function applyData(from, to) {
           children: []
         }
 
-        // To do: next major: take the children from the `root`, or inject the
-        // raw/text/comment or so into the element?
-        // if ('children' in node) {
-        //   // @ts-expect-error: assume `children` are allowed in elements.
-        //   result.children = node.children
-        // } else {
-        //   // @ts-expect-error: assume `node` is allowed in elements.
-        //   result.children.push(node)
-        // }
+        / To do: next major: take the children from the `root`, or inject the
+        / raw/text/comment or so into the element?
+        / if ('children' in node) {
+        /   / @ts-expect-error: assume `children` are allowed in elements.
+        /   result.children = node.children
+        / } else {
+        /   / @ts-expect-error: assume `node` is allowed in elements.
+        /   result.children.push(node)
+        / }
       }
     }
 
@@ -33205,7 +33205,7 @@ function applyData(from, to) {
       hChildren !== null &&
       hChildren !== undefined
     ) {
-      // @ts-expect-error: assume valid children are defined.
+      / @ts-expect-error: assume valid children are defined.
       result.children = hChildren
     }
   }
@@ -33229,7 +33229,7 @@ function applyData(from, to) {
 function one(state, node, parent) {
   const type = node && node.type
 
-  // Fail on non-nodes.
+  / Fail on non-nodes.
   if (!type) {
     throw new Error('Expected node, got `' + node + '`')
   }
@@ -33239,8 +33239,8 @@ function one(state, node, parent) {
   }
 
   if (state.passThrough && state.passThrough.includes(type)) {
-    // To do: next major: deep clone.
-    // @ts-expect-error: types of passed through nodes are expected to be added manually.
+    / To do: next major: deep clone.
+    / @ts-expect-error: types of passed through nodes are expected to be added manually.
     return 'children' in node ? {...node, children: all(state, node)} : node
   }
 
@@ -33272,7 +33272,7 @@ function all(state, parent) {
     while (++index < nodes.length) {
       const result = one(state, nodes[index], parent)
 
-      // To do: see if we van clean this? Can we merge texts?
+      / To do: see if we van clean this? Can we merge texts?
       if (result) {
         if (index && nodes[index - 1].type === 'break') {
           if (!Array.isArray(result) && result.type === 'text') {
@@ -33556,12 +33556,12 @@ function resolveAllAttention(events, context) {
   /** @type {number} */
   let offset
 
-  // Walk through all events.
-  //
-  // Note: performance of this is fine on an mb of normal markdown, but it’s
-  // a bottleneck for malicious stuff.
+  / Walk through all events.
+  /
+  / Note: performance of this is fine on an mb of normal markdown, but it’s
+  / a bottleneck for malicious stuff.
   while (++index < events.length) {
-    // Find a token that can close.
+    / Find a token that can close.
     if (
       events[index][0] === 'enter' &&
       events[index][1].type === 'attentionSequence' &&
@@ -33569,21 +33569,21 @@ function resolveAllAttention(events, context) {
     ) {
       open = index
 
-      // Now walk back to find an opener.
+      / Now walk back to find an opener.
       while (open--) {
-        // Find a token that can open the closer.
+        / Find a token that can open the closer.
         if (
           events[open][0] === 'exit' &&
           events[open][1].type === 'attentionSequence' &&
           events[open][1]._open &&
-          // If the markers are the same:
+          / If the markers are the same:
           context.sliceSerialize(events[open][1]).charCodeAt(0) ===
             context.sliceSerialize(events[index][1]).charCodeAt(0)
         ) {
-          // If the opening can close or the closing can open,
-          // and the close size *is not* a multiple of three,
-          // but the sum of the opening and closing size *is* multiple of three,
-          // then don’t match.
+          / If the opening can close or the closing can open,
+          / and the close size *is not* a multiple of three,
+          / but the sum of the opening and closing size *is* multiple of three,
+          / then don’t match.
           if (
             (events[open][1]._close || events[index][1]._open) &&
             (events[index][1].end.offset - events[index][1].start.offset) % 3 &&
@@ -33598,7 +33598,7 @@ function resolveAllAttention(events, context) {
             continue
           }
 
-          // Number of markers to use from the sequence.
+          / Number of markers to use from the sequence.
           use =
             events[open][1].end.offset - events[open][1].start.offset > 1 &&
             events[index][1].end.offset - events[index][1].start.offset > 1
@@ -33636,7 +33636,7 @@ function resolveAllAttention(events, context) {
 
           nextEvents = []
 
-          // If there are more markers in the opening, add them before.
+          / If there are more markers in the opening, add them before.
           if (events[open][1].end.offset - events[open][1].start.offset) {
             nextEvents = (0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.push)(nextEvents, [
               ['enter', events[open][1], context],
@@ -33644,7 +33644,7 @@ function resolveAllAttention(events, context) {
             ])
           }
 
-          // Opening.
+          / Opening.
           nextEvents = (0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.push)(nextEvents, [
             ['enter', group, context],
             ['enter', openingSequence, context],
@@ -33652,13 +33652,13 @@ function resolveAllAttention(events, context) {
             ['enter', text, context]
           ])
 
-          // Always populated by defaults.
+          / Always populated by defaults.
           ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
             context.parser.constructs.insideSpan.null,
             'expected `insideSpan` to be populated'
           )
 
-          // Between.
+          / Between.
           nextEvents = (0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.push)(
             nextEvents,
             (0,micromark_util_resolve_all__WEBPACK_IMPORTED_MODULE_3__.resolveAll)(
@@ -33668,7 +33668,7 @@ function resolveAllAttention(events, context) {
             )
           )
 
-          // Closing.
+          / Closing.
           nextEvents = (0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.push)(nextEvents, [
             ['exit', text, context],
             ['enter', closingSequence, context],
@@ -33676,7 +33676,7 @@ function resolveAllAttention(events, context) {
             ['exit', group, context]
           ])
 
-          // If there are more markers in the closing, add them after.
+          / If there are more markers in the closing, add them after.
           if (events[index][1].end.offset - events[index][1].start.offset) {
             offset = 2
             nextEvents = (0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.push)(nextEvents, [
@@ -33696,7 +33696,7 @@ function resolveAllAttention(events, context) {
     }
   }
 
-  // Remove remaining sequences.
+  / Remove remaining sequences.
   index = -1
 
   while (++index < events.length) {
@@ -33760,10 +33760,10 @@ function tokenizeAttention(effects, ok) {
 
     const token = effects.exit('attentionSequence')
 
-    // To do: next major: move this to resolver, just like `markdown-rs`.
+    / To do: next major: move this to resolver, just like `markdown-rs`.
     const after = (0,micromark_util_classify_character__WEBPACK_IMPORTED_MODULE_4__.classifyCharacter)(code)
 
-    // Always populated by defaults.
+    / Always populated by defaults.
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(attentionMarkers, 'expected `attentionMarkers` to be populated')
 
     const open =
@@ -33901,14 +33901,14 @@ function tokenizeAutolink(effects, ok, nok) {
    * @type {State}
    */
   function schemeOrEmailAtext(code) {
-    // ASCII alphanumeric and `+`, `-`, and `.`.
+    / ASCII alphanumeric and `+`, `-`, and `.`.
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.plusSign ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dot ||
       (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlphanumeric)(code)
     ) {
-      // Count the previous alphabetical from `open` too.
+      / Count the previous alphabetical from `open` too.
       size = 1
       return schemeInsideOrEmailAtext(code)
     }
@@ -33935,7 +33935,7 @@ function tokenizeAutolink(effects, ok, nok) {
       return urlInside
     }
 
-    // ASCII alphanumeric and `+`, `-`, and `.`.
+    / ASCII alphanumeric and `+`, `-`, and `.`.
     if (
       (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.plusSign ||
         code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash ||
@@ -33971,7 +33971,7 @@ function tokenizeAutolink(effects, ok, nok) {
       return ok
     }
 
-    // ASCII control, space, or `<`.
+    / ASCII control, space, or `<`.
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.space ||
@@ -34041,7 +34041,7 @@ function tokenizeAutolink(effects, ok, nok) {
     }
 
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan) {
-      // Exit, then change the token type.
+      / Exit, then change the token type.
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkProtocol).type = micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkEmail
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkMarker)
       effects.consume(code)
@@ -34066,7 +34066,7 @@ function tokenizeAutolink(effects, ok, nok) {
    * @type {State}
    */
   function emailValue(code) {
-    // ASCII alphanumeric or `-`.
+    / ASCII alphanumeric or `-`.
     if (
       (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlphanumeric)(code)) &&
       size++ < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.autolinkDomainSizeMax
@@ -34298,7 +34298,7 @@ function tokenizeBlockQuoteContinuation(effects, ok, nok) {
    */
   function contStart(code) {
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)) {
-      // Always populated by defaults.
+      / Always populated by defaults.
       (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
         self.parser.constructs.disable.null,
         'expected `disable.null` to be populated'
@@ -34413,7 +34413,7 @@ function tokenizeCharacterEscape(effects, ok, nok) {
    * @type {State}
    */
   function inside(code) {
-    // ASCII punctuation.
+    / ASCII punctuation.
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiPunctuation)(code)) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterEscapeValue)
       effects.consume(code)
@@ -34590,8 +34590,8 @@ function tokenizeCharacterReference(effects, ok, nok) {
         return nok(code)
       }
 
-      // To do: `markdown-rs` uses a different name:
-      // `CharacterReferenceMarkerSemi`.
+      / To do: `markdown-rs` uses a different name:
+      / `CharacterReferenceMarkerSemi`.
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterReferenceMarker)
       effects.consume(code)
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterReferenceMarker)
@@ -34684,7 +34684,7 @@ function tokenizeCodeFenced(effects, ok, nok) {
    * @type {State}
    */
   function start(code) {
-    // To do: parse whitespace like `markdown-rs`.
+    / To do: parse whitespace like `markdown-rs`.
     return beforeSequenceOpen(code)
   }
 
@@ -35011,13 +35011,13 @@ function tokenizeCodeFenced(effects, ok, nok) {
      * @type {State}
      */
     function start(code) {
-      // Always populated by defaults.
+      / Always populated by defaults.
       (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
         self.parser.constructs.disable.null,
         'expected `disable.null` to be populated'
       )
 
-      // To do: `enter` here or in next state?
+      / To do: `enter` here or in next state?
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFence)
       return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownSpace)(code)
         ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__.factorySpace)(
@@ -35206,11 +35206,11 @@ function tokenizeCodeIndented(effects, ok, nok) {
    * @type {State}
    */
   function start(code) {
-    // To do: manually check if interrupting like `markdown-rs`.
+    / To do: manually check if interrupting like `markdown-rs`.
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.markdownSpace)(code))
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeIndented)
-    // To do: use an improved `space_or_tab` function like `markdown-rs`,
-    // so that we can drop the next state.
+    / To do: use an improved `space_or_tab` function like `markdown-rs`,
+    / so that we can drop the next state.
     return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_3__.factorySpace)(
       effects,
       afterPrefix,
@@ -35284,9 +35284,9 @@ function tokenizeCodeIndented(effects, ok, nok) {
   /** @type {State} */
   function after(code) {
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeIndented)
-    // To do: allow interrupting like `markdown-rs`.
-    // Feel free to interrupt.
-    // tokenizer.interrupt = false
+    / To do: allow interrupting like `markdown-rs`.
+    / Feel free to interrupt.
+    / tokenizer.interrupt = false
     return ok(code)
   }
 }
@@ -35312,8 +35312,8 @@ function tokenizeFurtherStart(effects, ok, nok) {
    * @type {State}
    */
   function furtherStart(code) {
-    // To do: improve `lazy` / `pierce` handling.
-    // If this is a lazy line, it can’t be code.
+    / To do: improve `lazy` / `pierce` handling.
+    / If this is a lazy line, it can’t be code.
     if (self.parser.lazy[self.now().line]) {
       return nok(code)
     }
@@ -35325,12 +35325,12 @@ function tokenizeFurtherStart(effects, ok, nok) {
       return furtherStart
     }
 
-    // To do: the code here in `micromark-js` is a bit different from
-    // `markdown-rs` because there it can attempt spaces.
-    // We can’t yet.
-    //
-    // To do: use an improved `space_or_tab` function like `markdown-rs`,
-    // so that we can drop the next state.
+    / To do: the code here in `micromark-js` is a bit different from
+    / `markdown-rs` because there it can attempt spaces.
+    / We can’t yet.
+    /
+    / To do: use an improved `space_or_tab` function like `markdown-rs`,
+    / so that we can drop the next state.
     return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_3__.factorySpace)(
       effects,
       afterPrefix,
@@ -35412,7 +35412,7 @@ function resolveCodeText(events) {
   /** @type {number | undefined} */
   let enter
 
-  // If we start and end with an EOL or a space.
+  / If we start and end with an EOL or a space.
   if (
     (events[headEnterIndex][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding ||
       events[headEnterIndex][1].type === 'space') &&
@@ -35421,10 +35421,10 @@ function resolveCodeText(events) {
   ) {
     index = headEnterIndex
 
-    // And we have data.
+    / And we have data.
     while (++index < tailExitIndex) {
       if (events[index][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeTextData) {
-        // Then we have padding.
+        / Then we have padding.
         events[headEnterIndex][1].type = micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeTextPadding
         events[tailExitIndex][1].type = micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeTextPadding
         headEnterIndex += 2
@@ -35434,7 +35434,7 @@ function resolveCodeText(events) {
     }
   }
 
-  // Merge adjacent spaces and data.
+  / Merge adjacent spaces and data.
   index = headEnterIndex - 1
   tailExitIndex++
 
@@ -35471,7 +35471,7 @@ function resolveCodeText(events) {
  * @type {Previous}
  */
 function previous(code) {
-  // If there is a previous code, there will always be a tail.
+  / If there is a previous code, there will always be a tail.
   return (
     code !== micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.graveAccent ||
     this.events[this.events.length - 1][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.characterEscape
@@ -35544,14 +35544,14 @@ function tokenizeCodeText(effects, ok, nok) {
    * @type {State}
    */
   function between(code) {
-    // EOF.
+    / EOF.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof) {
       return nok(code)
     }
 
-    // To do: next major: don’t do spaces in resolve, but when compiling,
-    // like `markdown-rs`.
-    // Tabs don’t work, and virtual spaces don’t make sense.
+    / To do: next major: don’t do spaces in resolve, but when compiling,
+    / like `markdown-rs`.
+    / Tabs don’t work, and virtual spaces don’t make sense.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.space) {
       effects.enter('space')
       effects.consume(code)
@@ -35559,7 +35559,7 @@ function tokenizeCodeText(effects, ok, nok) {
       return between
     }
 
-    // Closing fence? Could also be data.
+    / Closing fence? Could also be data.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.graveAccent) {
       token = effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeTextSequence)
       size = 0
@@ -35573,7 +35573,7 @@ function tokenizeCodeText(effects, ok, nok) {
       return between
     }
 
-    // Data.
+    / Data.
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeTextData)
     return data(code)
   }
@@ -35614,21 +35614,21 @@ function tokenizeCodeText(effects, ok, nok) {
    * @type {State}
    */
   function sequenceClose(code) {
-    // More.
+    / More.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.graveAccent) {
       effects.consume(code)
       size++
       return sequenceClose
     }
 
-    // Done!
+    / Done!
     if (size === sizeOpen) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeTextSequence)
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeText)
       return ok(code)
     }
 
-    // More or less accents: mark as data.
+    / More or less accents: mark as data.
     token.type = micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeTextData
     return data(code)
   }
@@ -35740,8 +35740,8 @@ function tokenizeContent(effects, ok) {
       return contentEnd(code)
     }
 
-    // To do: in `markdown-rs`, each line is parsed on its own, and everything
-    // is stitched together resolving.
+    / To do: in `markdown-rs`, each line is parsed on its own, and everything
+    / is stitched together resolving.
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       return effects.check(
         continuationConstruct,
@@ -35750,7 +35750,7 @@ function tokenizeContent(effects, ok) {
       )(code)
     }
 
-    // Data.
+    / Data.
     effects.consume(code)
     return chunkInside
   }
@@ -35818,7 +35818,7 @@ function tokenizeContinuation(effects, ok, nok) {
       return nok(code)
     }
 
-    // Always populated by defaults.
+    / Always populated by defaults.
     (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
       self.parser.constructs.disable.null,
       'expected `disable.null` to be populated'
@@ -35909,9 +35909,9 @@ function tokenizeDefinition(effects, ok, nok) {
    * @type {State}
    */
   function start(code) {
-    // Do not interrupt paragraphs (but do follow definitions).
-    // To do: do `interrupt` the way `markdown-rs` does.
-    // To do: parse whitespace the way `markdown-rs` does.
+    / Do not interrupt paragraphs (but do follow definitions).
+    / To do: do `interrupt` the way `markdown-rs` does.
+    / To do: parse whitespace the way `markdown-rs` does.
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definition)
     return before(code)
   }
@@ -35927,13 +35927,13 @@ function tokenizeDefinition(effects, ok, nok) {
    * @type {State}
    */
   function before(code) {
-    // To do: parse whitespace the way `markdown-rs` does.
+    / To do: parse whitespace the way `markdown-rs` does.
     (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.leftSquareBracket, 'expected `[`')
     return micromark_factory_label__WEBPACK_IMPORTED_MODULE_3__.factoryLabel.call(
       self,
       effects,
       labelAfter,
-      // Note: we don’t need to reset the way `markdown-rs` does.
+      / Note: we don’t need to reset the way `markdown-rs` does.
       nok,
       micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionLabel,
       micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionLabelMarker,
@@ -35977,7 +35977,7 @@ function tokenizeDefinition(effects, ok, nok) {
    * @type {State}
    */
   function markerAfter(code) {
-    // Note: whitespace is optional.
+    / Note: whitespace is optional.
     return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEndingOrSpace)(code)
       ? (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_6__.factoryWhitespace)(effects, destinationBefore)(code)
       : destinationBefore(code)
@@ -35997,7 +35997,7 @@ function tokenizeDefinition(effects, ok, nok) {
     return (0,micromark_factory_destination__WEBPACK_IMPORTED_MODULE_7__.factoryDestination)(
       effects,
       destinationAfter,
-      // Note: we don’t need to reset the way `markdown-rs` does.
+      / Note: we don’t need to reset the way `markdown-rs` does.
       nok,
       micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionDestination,
       micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionDestinationLiteral,
@@ -36055,14 +36055,14 @@ function tokenizeDefinition(effects, ok, nok) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code)) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definition)
 
-      // Note: we don’t care about uniqueness.
-      // It’s likely that that doesn’t happen very frequently.
-      // It is more likely that it wastes precious time.
+      / Note: we don’t care about uniqueness.
+      / It’s likely that that doesn’t happen very frequently.
+      / It is more likely that it wastes precious time.
       self.parser.defined.push(identifier)
 
-      // To do: `markdown-rs` interrupt.
-      // // You’d be interrupting.
-      // tokenizer.interrupt = true
+      / To do: `markdown-rs` interrupt.
+      / / You’d be interrupting.
+      / tokenizer.interrupt = true
       return ok(code)
     }
 
@@ -36288,12 +36288,12 @@ function resolveHeadingAtx(events, context) {
   /** @type {Token} */
   let text
 
-  // Prefix whitespace, part of the opening.
+  / Prefix whitespace, part of the opening.
   if (events[contentStart][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.whitespace) {
     contentStart += 2
   }
 
-  // Suffix whitespace, part of the closing.
+  / Suffix whitespace, part of the closing.
   if (
     contentEnd - 2 > contentStart &&
     events[contentEnd][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.whitespace
@@ -36354,7 +36354,7 @@ function tokenizeHeadingAtx(effects, ok, nok) {
    * @type {State}
    */
   function start(code) {
-    // To do: parse indent like `markdown-rs`.
+    / To do: parse indent like `markdown-rs`.
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeading)
     return before(code)
   }
@@ -36394,7 +36394,7 @@ function tokenizeHeadingAtx(effects, ok, nok) {
       return sequenceOpen
     }
 
-    // Always at least one `#`.
+    / Always at least one `#`.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEndingOrSpace)(code)) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeadingSequence)
       return atBreak(code)
@@ -36421,9 +36421,9 @@ function tokenizeHeadingAtx(effects, ok, nok) {
 
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code)) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeading)
-      // To do: interrupt like `markdown-rs`.
-      // // Feel free to interrupt.
-      // tokenizer.interrupt = false
+      / To do: interrupt like `markdown-rs`.
+      / / Feel free to interrupt.
+      / tokenizer.interrupt = false
       return ok(code)
     }
 
@@ -36431,8 +36431,8 @@ function tokenizeHeadingAtx(effects, ok, nok) {
       return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_6__.factorySpace)(effects, atBreak, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.whitespace)(code)
     }
 
-    // To do: generate `data` tokens, add the `text` token later.
-    // Needs edit map, see: `markdown.rs`.
+    / To do: generate `data` tokens, add the `text` token later.
+    / Needs edit map, see: `markdown.rs`.
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeadingText)
     return data(code)
   }
@@ -36551,11 +36551,11 @@ function resolveToHtmlFlow(events) {
   }
 
   if (index > 1 && events[index - 2][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.linePrefix) {
-    // Add the prefix start to the HTML token.
+    / Add the prefix start to the HTML token.
     events[index][1].start = events[index - 2][1].start
-    // Add the prefix start to the HTML line token.
+    / Add the prefix start to the HTML line token.
     events[index + 1][1].start = events[index - 2][1].start
-    // Remove the line prefix.
+    / Remove the line prefix.
     events.splice(index - 2, 2)
   }
 
@@ -36592,7 +36592,7 @@ function tokenizeHtmlFlow(effects, ok, nok) {
    * @type {State}
    */
   function start(code) {
-    // To do: parse indent like `markdown-rs`.
+    / To do: parse indent like `markdown-rs`.
     return before(code)
   }
 
@@ -36643,18 +36643,18 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.questionMark) {
       effects.consume(code)
       marker = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlInstruction
-      // To do:
-      // tokenizer.concrete = true
-      // To do: use `markdown-rs` style interrupt.
-      // While we’re in an instruction instead of a declaration, we’re on a `?`
-      // right now, so we do need to search for `>`, similar to declarations.
+      / To do:
+      / tokenizer.concrete = true
+      / To do: use `markdown-rs` style interrupt.
+      / While we’re in an instruction instead of a declaration, we’re on a `?`
+      / right now, so we do need to search for `>`, similar to declarations.
       return self.interrupt ? ok : continuationDeclarationInside
     }
 
-    // ASCII alphabetical.
+    / ASCII alphabetical.
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.asciiAlpha)(code)) {
       effects.consume(code)
-      // @ts-expect-error: not null.
+      / @ts-expect-error: not null.
       buffer = String.fromCharCode(code)
       return tagName
     }
@@ -36690,12 +36690,12 @@ function tokenizeHtmlFlow(effects, ok, nok) {
       return cdataOpenInside
     }
 
-    // ASCII alphabetical.
+    / ASCII alphabetical.
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.asciiAlpha)(code)) {
       effects.consume(code)
       marker = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlDeclaration
-      // // Do not form containers.
-      // tokenizer.concrete = true
+      / / Do not form containers.
+      / tokenizer.concrete = true
       return self.interrupt ? ok : continuationDeclarationInside
     }
 
@@ -36715,8 +36715,8 @@ function tokenizeHtmlFlow(effects, ok, nok) {
   function commentOpenInside(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash) {
       effects.consume(code)
-      // // Do not form containers.
-      // tokenizer.concrete = true
+      / / Do not form containers.
+      / tokenizer.concrete = true
       return self.interrupt ? ok : continuationDeclarationInside
     }
 
@@ -36740,8 +36740,8 @@ function tokenizeHtmlFlow(effects, ok, nok) {
       effects.consume(code)
 
       if (index === value.length) {
-        // // Do not form containers.
-        // tokenizer.concrete = true
+        / / Do not form containers.
+        / tokenizer.concrete = true
         return self.interrupt ? ok : continuation
       }
 
@@ -36764,7 +36764,7 @@ function tokenizeHtmlFlow(effects, ok, nok) {
   function tagCloseStart(code) {
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.asciiAlpha)(code)) {
       effects.consume(code)
-      // @ts-expect-error: not null.
+      / @ts-expect-error: not null.
       buffer = String.fromCharCode(code)
       return tagName
     }
@@ -36796,8 +36796,8 @@ function tokenizeHtmlFlow(effects, ok, nok) {
 
       if (!slash && !closingTag && micromark_util_html_tag_name__WEBPACK_IMPORTED_MODULE_5__.htmlRawNames.includes(name)) {
         marker = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlRaw
-        // // Do not form containers.
-        // tokenizer.concrete = true
+        / / Do not form containers.
+        / tokenizer.concrete = true
         return self.interrupt ? ok(code) : continuation(code)
       }
 
@@ -36809,13 +36809,13 @@ function tokenizeHtmlFlow(effects, ok, nok) {
           return basicSelfClosing
         }
 
-        // // Do not form containers.
-        // tokenizer.concrete = true
+        / / Do not form containers.
+        / tokenizer.concrete = true
         return self.interrupt ? ok(code) : continuation(code)
       }
 
       marker = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComplete
-      // Do not support complete HTML when interrupting.
+      / Do not support complete HTML when interrupting.
       return self.interrupt && !self.parser.lazy[self.now().line]
         ? nok(code)
         : closingTag
@@ -36823,7 +36823,7 @@ function tokenizeHtmlFlow(effects, ok, nok) {
         : completeAttributeNameBefore(code)
     }
 
-    // ASCII alphanumerical and `-`.
+    / ASCII alphanumerical and `-`.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.asciiAlphanumeric)(code)) {
       effects.consume(code)
       buffer += String.fromCharCode(code)
@@ -36846,8 +36846,8 @@ function tokenizeHtmlFlow(effects, ok, nok) {
   function basicSelfClosing(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.greaterThan) {
       effects.consume(code)
-      // // Do not form containers.
-      // tokenizer.concrete = true
+      / / Do not form containers.
+      / tokenizer.concrete = true
       return self.interrupt ? ok : continuation
     }
 
@@ -36902,7 +36902,7 @@ function tokenizeHtmlFlow(effects, ok, nok) {
       return completeEnd
     }
 
-    // ASCII alphanumerical and `:` and `_`.
+    / ASCII alphanumerical and `:` and `_`.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.colon || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.underscore || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.asciiAlpha)(code)) {
       effects.consume(code)
       return completeAttributeName
@@ -36931,7 +36931,7 @@ function tokenizeHtmlFlow(effects, ok, nok) {
    * @type {State}
    */
   function completeAttributeName(code) {
-    // ASCII alphanumerical and `-`, `.`, `:`, and `_`.
+    / ASCII alphanumerical and `-`, `.`, `:`, and `_`.
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dot ||
@@ -37121,8 +37121,8 @@ function tokenizeHtmlFlow(effects, ok, nok) {
    */
   function completeAfter(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
-      // // Do not form containers.
-      // tokenizer.concrete = true
+      / / Do not form containers.
+      / tokenizer.concrete = true
       return continuation(code)
     }
 
@@ -37312,7 +37312,7 @@ function tokenizeHtmlFlow(effects, ok, nok) {
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.asciiAlpha)(code) && buffer.length < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlRawSizeMax) {
       effects.consume(code)
-      // @ts-expect-error: not null.
+      / @ts-expect-error: not null.
       buffer += String.fromCharCode(code)
       return continuationRawEndTag
     }
@@ -37363,7 +37363,7 @@ function tokenizeHtmlFlow(effects, ok, nok) {
       return continuationClose
     }
 
-    // More dashes.
+    / More dashes.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash && marker === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComment) {
       effects.consume(code)
       return continuationDeclarationInside
@@ -37404,10 +37404,10 @@ function tokenizeHtmlFlow(effects, ok, nok) {
    */
   function continuationAfter(code) {
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.htmlFlow)
-    // // Feel free to interrupt.
-    // tokenizer.interrupt = false
-    // // No longer concrete.
-    // tokenizer.concrete = false
+    / / Feel free to interrupt.
+    / tokenizer.interrupt = false
+    / / No longer concrete.
+    / tokenizer.concrete = false
     return ok(code)
   }
 }
@@ -37587,7 +37587,7 @@ function tokenizeHtmlText(effects, ok, nok) {
       return instruction
     }
 
-    // ASCII alphabetical.
+    / ASCII alphabetical.
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlpha)(code)) {
       effects.consume(code)
       return tagOpen
@@ -37885,7 +37885,7 @@ function tokenizeHtmlText(effects, ok, nok) {
    * @type {State}
    */
   function tagCloseStart(code) {
-    // ASCII alphabetical.
+    / ASCII alphabetical.
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlpha)(code)) {
       effects.consume(code)
       return tagClose
@@ -37905,7 +37905,7 @@ function tokenizeHtmlText(effects, ok, nok) {
    * @type {State}
    */
   function tagClose(code) {
-    // ASCII alphanumerical and `-`.
+    / ASCII alphanumerical and `-`.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlphanumeric)(code)) {
       effects.consume(code)
       return tagClose
@@ -37949,7 +37949,7 @@ function tokenizeHtmlText(effects, ok, nok) {
    * @type {State}
    */
   function tagOpen(code) {
-    // ASCII alphanumerical and `-`.
+    / ASCII alphanumerical and `-`.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlphanumeric)(code)) {
       effects.consume(code)
       return tagOpen
@@ -37982,7 +37982,7 @@ function tokenizeHtmlText(effects, ok, nok) {
       return end
     }
 
-    // ASCII alphabetical and `:` and `_`.
+    / ASCII alphabetical and `:` and `_`.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.colon || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.underscore || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlpha)(code)) {
       effects.consume(code)
       return tagOpenAttributeName
@@ -38012,7 +38012,7 @@ function tokenizeHtmlText(effects, ok, nok) {
    * @type {State}
    */
   function tagOpenAttributeName(code) {
-    // ASCII alphabetical and `-`, `.`, `:`, and `_`.
+    / ASCII alphabetical and `-`, `.`, `:`, and `_`.
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dot ||
@@ -38246,7 +38246,7 @@ function tokenizeHtmlText(effects, ok, nok) {
    * @type {State}
    */
   function lineEndingAfter(code) {
-    // Always populated by defaults.
+    / Always populated by defaults.
     (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
       self.parser.constructs.disable.null,
       'expected `disable.null` to be populated'
@@ -38359,7 +38359,7 @@ function resolveAllLabelEnd(events) {
       token.type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.labelLink ||
       token.type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.labelEnd
     ) {
-      // Remove the marker.
+      / Remove the marker.
       events.splice(index + 1, token.type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.labelImage ? 4 : 2)
       token.type = micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.data
       index++
@@ -38382,12 +38382,12 @@ function resolveToLabelEnd(events, context) {
   /** @type {Array<Event>} */
   let media
 
-  // Find an opening.
+  / Find an opening.
   while (index--) {
     token = events[index][1]
 
     if (open) {
-      // If we see another link, or inactive link label, we’ve been here before.
+      / If we see another link, or inactive link label, we’ve been here before.
       if (
         token.type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.link ||
         (token.type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.labelLink && token._inactive)
@@ -38395,8 +38395,8 @@ function resolveToLabelEnd(events, context) {
         break
       }
 
-      // Mark other link openings as inactive, as we can’t have links in
-      // links.
+      / Mark other link openings as inactive, as we can’t have links in
+      / links.
       if (events[index][0] === 'enter' && token.type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.labelLink) {
         token._inactive = true
       }
@@ -38444,18 +38444,18 @@ function resolveToLabelEnd(events, context) {
     ['enter', label, context]
   ]
 
-  // Opening marker.
+  / Opening marker.
   media = (0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.push)(media, events.slice(open + 1, open + offset + 3))
 
-  // Text open.
+  / Text open.
   media = (0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.push)(media, [['enter', text, context]])
 
-  // Always populated by defaults.
+  / Always populated by defaults.
   ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
     context.parser.constructs.insideSpan.null,
     'expected `insideSpan.null` to be populated'
   )
-  // Between.
+  / Between.
   media = (0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.push)(
     media,
     (0,micromark_util_resolve_all__WEBPACK_IMPORTED_MODULE_3__.resolveAll)(
@@ -38465,7 +38465,7 @@ function resolveToLabelEnd(events, context) {
     )
   )
 
-  // Text close, marker close, label close.
+  / Text close, marker close, label close.
   media = (0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.push)(media, [
     ['exit', text, context],
     events[close - 2],
@@ -38473,10 +38473,10 @@ function resolveToLabelEnd(events, context) {
     ['exit', label, context]
   ])
 
-  // Reference, resource, or so.
+  / Reference, resource, or so.
   media = (0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.push)(media, events.slice(close + 1))
 
-  // Media close.
+  / Media close.
   media = (0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.push)(media, [['exit', group, context]])
 
   ;(0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.splice)(events, open, events.length, media)
@@ -38496,7 +38496,7 @@ function tokenizeLabelEnd(effects, ok, nok) {
   /** @type {boolean} */
   let defined
 
-  // Find an opening.
+  / Find an opening.
   while (index--) {
     if (
       (self.events[index][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.labelImage ||
@@ -38528,20 +38528,20 @@ function tokenizeLabelEnd(effects, ok, nok) {
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.rightSquareBracket, 'expected `]`')
 
-    // If there is not an okay opening.
+    / If there is not an okay opening.
     if (!labelStart) {
       return nok(code)
     }
 
-    // If the corresponding label (link) start is marked as inactive,
-    // it means we’d be wrapping a link, like this:
-    //
-    // ```markdown
-    // > | a [b [c](d) e](f) g.
-    //                  ^
-    // ```
-    //
-    // We can’t have that, so it’s just balanced brackets.
+    / If the corresponding label (link) start is marked as inactive,
+    / it means we’d be wrapping a link, like this:
+    /
+    / ```markdown
+    / > | a [b [c](d) e](f) g.
+    /                  ^
+    / ```
+    /
+    / We can’t have that, so it’s just balanced brackets.
     if (labelStart._inactive) {
       return labelEndNok(code)
     }
@@ -38576,10 +38576,10 @@ function tokenizeLabelEnd(effects, ok, nok) {
    * @type {State}
    */
   function after(code) {
-    // Note: `markdown-rs` also parses GFM footnotes here, which for us is in
-    // an extension.
+    / Note: `markdown-rs` also parses GFM footnotes here, which for us is in
+    / an extension.
 
-    // Resource (`[asd](fgh)`)?
+    / Resource (`[asd](fgh)`)?
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.leftParenthesis) {
       return effects.attempt(
         resourceConstruct,
@@ -38588,7 +38588,7 @@ function tokenizeLabelEnd(effects, ok, nok) {
       )(code)
     }
 
-    // Full (`[asd][fgh]`) or collapsed (`[asd][]`) reference?
+    / Full (`[asd][fgh]`) or collapsed (`[asd][]`) reference?
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.leftSquareBracket) {
       return effects.attempt(
         referenceFullConstruct,
@@ -38597,7 +38597,7 @@ function tokenizeLabelEnd(effects, ok, nok) {
       )(code)
     }
 
-    // Shortcut (`[asd]`) reference?
+    / Shortcut (`[asd]`) reference?
     return defined ? labelEndOk(code) : labelEndNok(code)
   }
 
@@ -38640,7 +38640,7 @@ function tokenizeLabelEnd(effects, ok, nok) {
    * @type {State}
    */
   function labelEndOk(code) {
-    // Note: `markdown-rs` does a bunch of stuff here.
+    / Note: `markdown-rs` does a bunch of stuff here.
     return ok(code)
   }
 
@@ -38921,7 +38921,7 @@ function tokenizeReferenceCollapsed(effects, ok, nok) {
    * @type {State}
    */
   function referenceCollapsedStart(code) {
-    // We only attempt a collapsed label if there’s a `[`.
+    / We only attempt a collapsed label if there’s a `[`.
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.leftSquareBracket, 'expected left bracket')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.reference)
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.referenceMarker)
@@ -39070,10 +39070,10 @@ function tokenizeLabelStartImage(effects, ok, nok) {
    * @type {State}
    */
   function after(code) {
-    // To do: use a new field to do this, this is still needed for
-    // `micromark-extension-gfm-footnote`, but the `label-start-link`
-    // behavior isn’t.
-    // Hidden footnotes hook.
+    / To do: use a new field to do this, this is still needed for
+    / `micromark-extension-gfm-footnote`, but the `label-start-link`
+    / behavior isn’t.
+    / Hidden footnotes hook.
     /* c8 ignore next 3 */
     return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.caret &&
       '_hiddenFootnoteSupport' in self.parser.constructs
@@ -39150,9 +39150,9 @@ function tokenizeLabelStartLink(effects, ok, nok) {
 
   /** @type {State} */
   function after(code) {
-    // To do: this isn’t needed in `micromark-extension-gfm-footnote`,
-    // remove.
-    // Hidden footnotes hook.
+    / To do: this isn’t needed in `micromark-extension-gfm-footnote`,
+    / remove.
+    / Hidden footnotes hook.
     /* c8 ignore next 3 */
     return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.caret &&
       '_hiddenFootnoteSupport' in self.parser.constructs
@@ -39356,7 +39356,7 @@ function tokenizeListStart(effects, ok, nok) {
     self.containerState.marker = self.containerState.marker || code
     return effects.check(
       _blank_line_js__WEBPACK_IMPORTED_MODULE_6__.blankLine,
-      // Can’t be empty when interrupting.
+      / Can’t be empty when interrupting.
       self.interrupt ? nok : onBlank,
       effects.attempt(
         listItemPrefixWhitespaceConstruct,
@@ -39416,8 +39416,8 @@ function tokenizeListContinuation(effects, ok, nok) {
       self.containerState.furtherBlankLines ||
       self.containerState.initialBlankLine
 
-    // We have a blank line.
-    // Still, try to consume at most the items size.
+    / We have a blank line.
+    / Still, try to consume at most the items size.
     return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_7__.factorySpace)(
       effects,
       ok,
@@ -39443,11 +39443,11 @@ function tokenizeListContinuation(effects, ok, nok) {
   /** @type {State} */
   function notInCurrentItem(code) {
     (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
-    // While we do continue, we signal that the flow should be closed.
+    / While we do continue, we signal that the flow should be closed.
     self.containerState._closeFlow = true
-    // As we’re closing flow, we’re no longer interrupting.
+    / As we’re closing flow, we’re no longer interrupting.
     self.interrupt = undefined
-    // Always populated by defaults.
+    / Always populated by defaults.
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
       self.parser.constructs.disable.null,
       'expected `disable.null` to be populated'
@@ -39509,7 +39509,7 @@ function tokenizeListEnd(effects) {
 function tokenizeListItemPrefixWhitespace(effects, ok, nok) {
   const self = this
 
-  // Always populated by defaults.
+  / Always populated by defaults.
   ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
     self.parser.constructs.disable.null,
     'expected `disable.null` to be populated'
@@ -39579,7 +39579,7 @@ const setextUnderline = {
 
 /** @type {Resolver} */
 function resolveToSetextUnderline(events, context) {
-  // To do: resolve like `markdown-rs`.
+  / To do: resolve like `markdown-rs`.
   let index = events.length
   /** @type {number | undefined} */
   let content
@@ -39588,8 +39588,8 @@ function resolveToSetextUnderline(events, context) {
   /** @type {number | undefined} */
   let definition
 
-  // Find the opening of the content.
-  // It’ll always exist: we don’t tokenize if it isn’t there.
+  / Find the opening of the content.
+  / It’ll always exist: we don’t tokenize if it isn’t there.
   while (index--) {
     if (events[index][0] === 'enter') {
       if (events[index][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.content) {
@@ -39601,10 +39601,10 @@ function resolveToSetextUnderline(events, context) {
         text = index
       }
     }
-    // Exit
+    / Exit
     else {
       if (events[index][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.content) {
-        // Remove the content end (if needed we’ll add it later)
+        / Remove the content end (if needed we’ll add it later)
         events.splice(index, 1)
       }
 
@@ -39623,11 +39623,11 @@ function resolveToSetextUnderline(events, context) {
     end: Object.assign({}, events[events.length - 1][1].end)
   }
 
-  // Change the paragraph to setext heading text.
+  / Change the paragraph to setext heading text.
   events[text][1].type = micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.setextHeadingText
 
-  // If we have definitions in the content, we’ll keep on having content,
-  // but we need move it.
+  / If we have definitions in the content, we’ll keep on having content,
+  / but we need move it.
   if (definition) {
     events.splice(text, 0, ['enter', heading, context])
     events.splice(definition + 1, 0, ['exit', events[content][1], context])
@@ -39636,7 +39636,7 @@ function resolveToSetextUnderline(events, context) {
     events[content][1] = heading
   }
 
-  // Add the heading exit at the end.
+  / Add the heading exit at the end.
   events.push(['exit', heading, context])
 
   return events
@@ -39674,10 +39674,10 @@ function tokenizeSetextUnderline(effects, ok, nok) {
       'expected `=` or `-`'
     )
 
-    // Find an opening.
+    / Find an opening.
     while (index--) {
-      // Skip enter/exit of line ending, line prefix, and content.
-      // We can now either have a definition or a paragraph.
+      / Skip enter/exit of line ending, line prefix, and content.
+      / We can now either have a definition or a paragraph.
       if (
         self.events[index][1].type !== micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding &&
         self.events[index][1].type !== micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.linePrefix &&
@@ -39688,8 +39688,8 @@ function tokenizeSetextUnderline(effects, ok, nok) {
       }
     }
 
-    // To do: handle lazy/pierce like `markdown-rs`.
-    // To do: parse indent like `markdown-rs`.
+    / To do: handle lazy/pierce like `markdown-rs`.
+    / To do: parse indent like `markdown-rs`.
     if (!self.parser.lazy[self.now().line] && (self.interrupt || paragraph)) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.setextHeadingLine)
       marker = code
@@ -39824,7 +39824,7 @@ function tokenizeThematicBreak(effects, ok, nok) {
    */
   function start(code) {
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.thematicBreak)
-    // To do: parse indent like `markdown-rs`.
+    / To do: parse indent like `markdown-rs`.
     return before(code)
   }
 
@@ -40005,7 +40005,7 @@ function factoryDestination(
       return enclosedBefore
     }
 
-    // ASCII control, space, closing paren.
+    / ASCII control, space, closing paren.
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.eof ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.space ||
@@ -40135,9 +40135,9 @@ function factoryDestination(
       return raw
     }
 
-    // ASCII control (but *not* `\0`) and space and `(`.
-    // Note: in `markdown-rs`, `\0` exists in codes, in `micromark-js` it
-    // doesn’t.
+    / ASCII control (but *not* `\0`) and space and `(`.
+    / Note: in `markdown-rs`, `\0` exists in codes, in `micromark-js` it
+    / doesn’t.
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.eof ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.space ||
@@ -40283,10 +40283,10 @@ function factoryLabel(effects, ok, nok, type, markerType, stringType) {
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.leftSquareBracket ||
       (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.rightSquareBracket && !seen) ||
-      // To do: remove in the future once we’ve switched from
-      // `micromark-extension-footnote` to `micromark-extension-gfm-footnote`,
-      // which doesn’t need this.
-      // Hidden footnotes hook.
+      / To do: remove in the future once we’ve switched from
+      / `micromark-extension-footnote` to `micromark-extension-gfm-footnote`,
+      / which doesn’t need this.
+      / Hidden footnotes hook.
       /* c8 ignore next 3 */
       (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.caret &&
         !size &&
@@ -40304,7 +40304,7 @@ function factoryLabel(effects, ok, nok, type, markerType, stringType) {
       return ok
     }
 
-    // To do: indent? Link chunks and EOLs together?
+    / To do: indent? Link chunks and EOLs together?
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.lineEnding)
       effects.consume(code)
@@ -40595,9 +40595,9 @@ function factoryTitle(effects, ok, nok, type, markerType, stringType) {
       return nok(code)
     }
 
-    // Note: blank lines can’t exist in content.
+    / Note: blank lines can’t exist in content.
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.markdownLineEnding)(code)) {
-      // To do: use `space_or_tab_eol_with_options`, connect.
+      / To do: use `space_or_tab_eol_with_options`, connect.
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
       effects.consume(code)
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
@@ -40818,8 +40818,8 @@ const asciiAtext = regexCheck(/[#-'*+\--9=?A-Z^-~]/)
  */
 function asciiControl(code) {
   return (
-    // Special whitespace codes (which have negative values), C0 and Control
-    // character DEL
+    / Special whitespace codes (which have negative values), C0 and Control
+    / character DEL
     code !== null && (code < micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.space || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.del)
   )
 }
@@ -41067,7 +41067,7 @@ function splice(list, start, remove, items) {
   /** @type {Array<unknown>} */
   let parameters
 
-  // Make start between zero and `end` (included).
+  / Make start between zero and `end` (included).
   if (start < 0) {
     start = -start > end ? 0 : end + start
   } else {
@@ -41076,24 +41076,24 @@ function splice(list, start, remove, items) {
 
   remove = remove > 0 ? remove : 0
 
-  // No need to chunk the items if there’s only a couple (10k) items.
+  / No need to chunk the items if there’s only a couple (10k) items.
   if (items.length < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_0__.constants.v8MaxSafeChunkSize) {
     parameters = Array.from(items)
     parameters.unshift(start, remove)
-    // @ts-expect-error Hush, it’s fine.
+    / @ts-expect-error Hush, it’s fine.
     list.splice(...parameters)
   } else {
-    // Delete `remove` items starting from `start`
+    / Delete `remove` items starting from `start`
     if (remove) list.splice(start, remove)
 
-    // Insert the items in chunks to not cause stack overflows.
+    / Insert the items in chunks to not cause stack overflows.
     while (chunkStart < items.length) {
       parameters = items.slice(
         chunkStart,
         chunkStart + micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_0__.constants.v8MaxSafeChunkSize
       )
       parameters.unshift(start, 0)
-      // @ts-expect-error Hush, it’s fine.
+      / @ts-expect-error Hush, it’s fine.
       list.splice(...parameters)
 
       chunkStart += micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_0__.constants.v8MaxSafeChunkSize
@@ -41254,7 +41254,7 @@ function syntaxExtension(all, extension) {
         if (!hasOwnProperty.call(left, code)) left[code] = []
         const value = right[code]
         constructs(
-          // @ts-expect-error Looks like a list.
+          / @ts-expect-error Looks like a list.
           left[code],
           Array.isArray(value) ? value : value ? [value] : []
         )
@@ -41277,7 +41277,7 @@ function constructs(existing, list) {
   const before = []
 
   while (++index < list.length) {
-    // @ts-expect-error Looks like an object.
+    / @ts-expect-error Looks like an object.
     ;(list[index].add === 'after' ? existing : before).push(list[index])
   }
 
@@ -41326,7 +41326,7 @@ function htmlExtension(all, extension) {
 
     if (right) {
       for (type in right) {
-        // @ts-expect-error assume document vs regular handler are managed correctly.
+        / @ts-expect-error assume document vs regular handler are managed correctly.
         left[type] = right[type]
       }
     }
@@ -41370,21 +41370,21 @@ function decodeNumericCharacterReference(value, base) {
   const code = Number.parseInt(value, base)
 
   if (
-    // C0 except for HT, LF, FF, CR, space.
+    / C0 except for HT, LF, FF, CR, space.
     code < micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.ht ||
     code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.vt ||
     (code > micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.cr && code < micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.space) ||
-    // Control character (DEL) of C0, and C1 controls.
+    / Control character (DEL) of C0, and C1 controls.
     (code > micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.tilde && code < 160) ||
-    // Lone high surrogates and low surrogates.
+    / Lone high surrogates and low surrogates.
     (code > 55295 && code < 57344) ||
-    // Noncharacters.
+    / Noncharacters.
     (code > 64975 && code < 65008) ||
     /* eslint-disable no-bitwise */
     (code & 65535) === 65535 ||
     (code & 65535) === 65534 ||
     /* eslint-enable no-bitwise */
-    // Out of range
+    / Out of range
     code > 1114111
   ) {
     return micromark_util_symbol_values_js__WEBPACK_IMPORTED_MODULE_1__.values.replacementCharacter
@@ -41443,11 +41443,11 @@ function decodeString(value) {
  */
 function decode($0, $1, $2) {
   if ($1) {
-    // Escape.
+    / Escape.
     return $1
   }
 
-  // Reference.
+  / Reference.
   const head = $2.charCodeAt(0)
 
   if (head === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.numberSign) {
@@ -41498,7 +41498,7 @@ function encode(value) {
    * @returns {string}
    */
   function replace(value) {
-    // @ts-expect-error Hush, it’s fine.
+    / @ts-expect-error Hush, it’s fine.
     return '&' + characterReferences[value] + ';'
   }
 }
@@ -41651,16 +41651,16 @@ __webpack_require__.r(__webpack_exports__);
 function normalizeIdentifier(value) {
   return (
     value
-      // Collapse markdown whitespace.
+      / Collapse markdown whitespace.
       .replace(/[\t\n\r ]+/g, micromark_util_symbol_values_js__WEBPACK_IMPORTED_MODULE_0__.values.space)
-      // Trim.
+      / Trim.
       .replace(/^ | $/g, '')
-      // Some characters are considered “uppercase”, but if their lowercase
-      // counterpart is uppercased will result in a different uppercase
-      // character.
-      // Hence, to get that form, we perform both lower- and uppercase.
-      // Upper case makes sure keys will not interact with default prototypal
-      // methods: no method is uppercase.
+      / Some characters are considered “uppercase”, but if their lowercase
+      / counterpart is uppercased will result in a different uppercase
+      / character.
+      / Hence, to get that form, we perform both lower- and uppercase.
+      / Upper case makes sure keys will not interact with default prototypal
+      / methods: no method is uppercase.
       .toLowerCase()
       .toUpperCase()
   )
@@ -41774,13 +41774,13 @@ function sanitizeUri(url, protocol) {
   const slash = value.indexOf('/')
 
   if (
-    // If there is no protocol, it’s relative.
+    / If there is no protocol, it’s relative.
     colon < 0 ||
-    // If the first colon is after a `?`, `#`, or `/`, it’s not a protocol.
+    / If the first colon is after a `?`, `#`, or `/`, it’s not a protocol.
     (slash > -1 && colon > slash) ||
     (questionMark > -1 && colon > questionMark) ||
     (numberSign > -1 && colon > numberSign) ||
-    // It is a protocol, it should be allowed.
+    / It is a protocol, it should be allowed.
     protocol.test(value.slice(0, colon))
   ) {
     return value
@@ -41812,7 +41812,7 @@ function normalizeUri(value) {
     /** @type {string} */
     let replace = ''
 
-    // A correct percent encoded value.
+    / A correct percent encoded value.
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.percentSign &&
       (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_2__.asciiAlphanumeric)(value.charCodeAt(index + 1)) &&
@@ -41820,27 +41820,27 @@ function normalizeUri(value) {
     ) {
       skip = 2
     }
-    // ASCII.
+    / ASCII.
     else if (code < 128) {
       if (!/[!#$&-;=?-Z_a-z~]/.test(String.fromCharCode(code))) {
         replace = String.fromCharCode(code)
       }
     }
-    // Astral.
+    / Astral.
     else if (code > 55295 && code < 57344) {
       const next = value.charCodeAt(index + 1)
 
-      // A correct surrogate pair.
+      / A correct surrogate pair.
       if (code < 56320 && next > 56319 && next < 57344) {
         replace = String.fromCharCode(code, next)
         skip = 1
       }
-      // Lone surrogate.
+      / Lone surrogate.
       else {
         replace = micromark_util_symbol_values_js__WEBPACK_IMPORTED_MODULE_3__.values.replacementCharacter
       }
     }
-    // Unicode.
+    / Unicode.
     else {
       replace = String.fromCharCode(code)
     }
@@ -41923,8 +41923,8 @@ function subtokenize(events) {
 
     event = events[index]
 
-    // Add a hook for the GFM tasklist extension, which needs to know if text
-    // is in the first content of a list item.
+    / Add a hook for the GFM tasklist extension, which needs to know if text
+    / is in the first content of a list item.
     if (
       index &&
       event[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.chunkFlow &&
@@ -41958,7 +41958,7 @@ function subtokenize(events) {
       }
     }
 
-    // Enter.
+    / Enter.
     if (event[0] === 'enter') {
       if (event[1].contentType) {
         Object.assign(jumps, subcontent(events, index))
@@ -41966,7 +41966,7 @@ function subtokenize(events) {
         more = true
       }
     }
-    // Exit.
+    / Exit.
     else if (event[1]._container) {
       otherIndex = index
       lineIndex = undefined
@@ -41992,10 +41992,10 @@ function subtokenize(events) {
       }
 
       if (lineIndex) {
-        // Fix position.
+        / Fix position.
         event[1].end = Object.assign({}, events[lineIndex][1].start)
 
-        // Switch container exit w/ line endings.
+        / Switch container exit w/ line endings.
         parameters = events.slice(lineIndex, index)
         parameters.unshift(event)
         ;(0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.splice)(events, lineIndex, index - lineIndex + 1, parameters)
@@ -42038,12 +42038,12 @@ function subcontent(events, eventIndex) {
   let start = 0
   const breaks = [start]
 
-  // Loop forward through the linked tokens to pass them in order to the
-  // subtokenizer.
+  / Loop forward through the linked tokens to pass them in order to the
+  / subtokenizer.
   while (current) {
-    // Find the position of the event for this token.
+    / Find the position of the event for this token.
     while (events[++startPosition][1] !== current) {
-      // Empty.
+      / Empty.
     }
 
     (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
@@ -42076,18 +42076,18 @@ function subcontent(events, eventIndex) {
       }
     }
 
-    // Unravel the next token.
+    / Unravel the next token.
     previous = current
     current = current.next
   }
 
-  // Now, loop back through all events (and linked tokens), to figure out which
-  // parts belong where.
+  / Now, loop back through all events (and linked tokens), to figure out which
+  / parts belong where.
   current = token
 
   while (++index < childEvents.length) {
     if (
-      // Find a void token that includes a break.
+      / Find a void token that includes a break.
       childEvents[index][0] === 'exit' &&
       childEvents[index - 1][0] === 'enter' &&
       childEvents[index][1].type === childEvents[index - 1][1].type &&
@@ -42096,21 +42096,21 @@ function subcontent(events, eventIndex) {
       (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(current, 'expected a current token')
       start = index + 1
       breaks.push(start)
-      // Help GC.
+      / Help GC.
       current._tokenizer = undefined
       current.previous = undefined
       current = current.next
     }
   }
 
-  // Help GC.
+  / Help GC.
   tokenizer.events = []
 
-  // If there’s one more token (which is the cases for lines that end in an
-  // EOF), that’s perfect: the last point we found starts it.
-  // If there isn’t then make sure any remaining content is added to it.
+  / If there’s one more token (which is the cases for lines that end in an
+  / EOF), that’s perfect: the last point we found starts it.
+  / If there isn’t then make sure any remaining content is added to it.
   if (current) {
-    // Help GC.
+    / Help GC.
     current._tokenizer = undefined
     current.previous = undefined
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(!current.next, 'expected no next token')
@@ -42118,8 +42118,8 @@ function subcontent(events, eventIndex) {
     breaks.pop()
   }
 
-  // Now splice the events from the subtokenizer into the current events,
-  // moving back to front so that splice indices aren’t affected.
+  / Now splice the events from the subtokenizer into the current events,
+  / moving back to front so that splice indices aren’t affected.
   index = breaks.length
 
   while (index--) {
@@ -42188,11 +42188,11 @@ const codes = /** @type {const} */ ({
   ack: 6,
   bel: 7,
   bs: 8,
-  ht: 9, // `\t`
-  lf: 10, // `\n`
-  vt: 11, // `\v`
-  ff: 12, // `\f`
-  cr: 13, // `\r`
+  ht: 9, / `\t`
+  lf: 10, / `\n`
+  vt: 11, / `\v`
+  ff: 12, / `\f`
+  cr: 13, / `\r`
   so: 14,
   si: 15,
   dle: 16,
@@ -42212,105 +42212,105 @@ const codes = /** @type {const} */ ({
   rs: 30,
   us: 31,
   space: 32,
-  exclamationMark: 33, // `!`
-  quotationMark: 34, // `"`
-  numberSign: 35, // `#`
-  dollarSign: 36, // `$`
-  percentSign: 37, // `%`
-  ampersand: 38, // `&`
-  apostrophe: 39, // `'`
-  leftParenthesis: 40, // `(`
-  rightParenthesis: 41, // `)`
-  asterisk: 42, // `*`
-  plusSign: 43, // `+`
-  comma: 44, // `,`
-  dash: 45, // `-`
-  dot: 46, // `.`
-  slash: 47, // `/`
-  digit0: 48, // `0`
-  digit1: 49, // `1`
-  digit2: 50, // `2`
-  digit3: 51, // `3`
-  digit4: 52, // `4`
-  digit5: 53, // `5`
-  digit6: 54, // `6`
-  digit7: 55, // `7`
-  digit8: 56, // `8`
-  digit9: 57, // `9`
-  colon: 58, // `:`
-  semicolon: 59, // `;`
-  lessThan: 60, // `<`
-  equalsTo: 61, // `=`
-  greaterThan: 62, // `>`
-  questionMark: 63, // `?`
-  atSign: 64, // `@`
-  uppercaseA: 65, // `A`
-  uppercaseB: 66, // `B`
-  uppercaseC: 67, // `C`
-  uppercaseD: 68, // `D`
-  uppercaseE: 69, // `E`
-  uppercaseF: 70, // `F`
-  uppercaseG: 71, // `G`
-  uppercaseH: 72, // `H`
-  uppercaseI: 73, // `I`
-  uppercaseJ: 74, // `J`
-  uppercaseK: 75, // `K`
-  uppercaseL: 76, // `L`
-  uppercaseM: 77, // `M`
-  uppercaseN: 78, // `N`
-  uppercaseO: 79, // `O`
-  uppercaseP: 80, // `P`
-  uppercaseQ: 81, // `Q`
-  uppercaseR: 82, // `R`
-  uppercaseS: 83, // `S`
-  uppercaseT: 84, // `T`
-  uppercaseU: 85, // `U`
-  uppercaseV: 86, // `V`
-  uppercaseW: 87, // `W`
-  uppercaseX: 88, // `X`
-  uppercaseY: 89, // `Y`
-  uppercaseZ: 90, // `Z`
-  leftSquareBracket: 91, // `[`
-  backslash: 92, // `\`
-  rightSquareBracket: 93, // `]`
-  caret: 94, // `^`
-  underscore: 95, // `_`
-  graveAccent: 96, // `` ` ``
-  lowercaseA: 97, // `a`
-  lowercaseB: 98, // `b`
-  lowercaseC: 99, // `c`
-  lowercaseD: 100, // `d`
-  lowercaseE: 101, // `e`
-  lowercaseF: 102, // `f`
-  lowercaseG: 103, // `g`
-  lowercaseH: 104, // `h`
-  lowercaseI: 105, // `i`
-  lowercaseJ: 106, // `j`
-  lowercaseK: 107, // `k`
-  lowercaseL: 108, // `l`
-  lowercaseM: 109, // `m`
-  lowercaseN: 110, // `n`
-  lowercaseO: 111, // `o`
-  lowercaseP: 112, // `p`
-  lowercaseQ: 113, // `q`
-  lowercaseR: 114, // `r`
-  lowercaseS: 115, // `s`
-  lowercaseT: 116, // `t`
-  lowercaseU: 117, // `u`
-  lowercaseV: 118, // `v`
-  lowercaseW: 119, // `w`
-  lowercaseX: 120, // `x`
-  lowercaseY: 121, // `y`
-  lowercaseZ: 122, // `z`
-  leftCurlyBrace: 123, // `{`
-  verticalBar: 124, // `|`
-  rightCurlyBrace: 125, // `}`
-  tilde: 126, // `~`
+  exclamationMark: 33, / `!`
+  quotationMark: 34, / `"`
+  numberSign: 35, / `#`
+  dollarSign: 36, / `$`
+  percentSign: 37, / `%`
+  ampersand: 38, / `&`
+  apostrophe: 39, / `'`
+  leftParenthesis: 40, / `(`
+  rightParenthesis: 41, / `)`
+  asterisk: 42, / `*`
+  plusSign: 43, / `+`
+  comma: 44, / `,`
+  dash: 45, / `-`
+  dot: 46, / `.`
+  slash: 47, / `/`
+  digit0: 48, / `0`
+  digit1: 49, / `1`
+  digit2: 50, / `2`
+  digit3: 51, / `3`
+  digit4: 52, / `4`
+  digit5: 53, / `5`
+  digit6: 54, / `6`
+  digit7: 55, / `7`
+  digit8: 56, / `8`
+  digit9: 57, / `9`
+  colon: 58, / `:`
+  semicolon: 59, / `;`
+  lessThan: 60, / `<`
+  equalsTo: 61, / `=`
+  greaterThan: 62, / `>`
+  questionMark: 63, / `?`
+  atSign: 64, / `@`
+  uppercaseA: 65, / `A`
+  uppercaseB: 66, / `B`
+  uppercaseC: 67, / `C`
+  uppercaseD: 68, / `D`
+  uppercaseE: 69, / `E`
+  uppercaseF: 70, / `F`
+  uppercaseG: 71, / `G`
+  uppercaseH: 72, / `H`
+  uppercaseI: 73, / `I`
+  uppercaseJ: 74, / `J`
+  uppercaseK: 75, / `K`
+  uppercaseL: 76, / `L`
+  uppercaseM: 77, / `M`
+  uppercaseN: 78, / `N`
+  uppercaseO: 79, / `O`
+  uppercaseP: 80, / `P`
+  uppercaseQ: 81, / `Q`
+  uppercaseR: 82, / `R`
+  uppercaseS: 83, / `S`
+  uppercaseT: 84, / `T`
+  uppercaseU: 85, / `U`
+  uppercaseV: 86, / `V`
+  uppercaseW: 87, / `W`
+  uppercaseX: 88, / `X`
+  uppercaseY: 89, / `Y`
+  uppercaseZ: 90, / `Z`
+  leftSquareBracket: 91, / `[`
+  backslash: 92, / `\`
+  rightSquareBracket: 93, / `]`
+  caret: 94, / `^`
+  underscore: 95, / `_`
+  graveAccent: 96, / `` ` ``
+  lowercaseA: 97, / `a`
+  lowercaseB: 98, / `b`
+  lowercaseC: 99, / `c`
+  lowercaseD: 100, / `d`
+  lowercaseE: 101, / `e`
+  lowercaseF: 102, / `f`
+  lowercaseG: 103, / `g`
+  lowercaseH: 104, / `h`
+  lowercaseI: 105, / `i`
+  lowercaseJ: 106, / `j`
+  lowercaseK: 107, / `k`
+  lowercaseL: 108, / `l`
+  lowercaseM: 109, / `m`
+  lowercaseN: 110, / `n`
+  lowercaseO: 111, / `o`
+  lowercaseP: 112, / `p`
+  lowercaseQ: 113, / `q`
+  lowercaseR: 114, / `r`
+  lowercaseS: 115, / `s`
+  lowercaseT: 116, / `t`
+  lowercaseU: 117, / `u`
+  lowercaseV: 118, / `v`
+  lowercaseW: 119, / `w`
+  lowercaseX: 120, / `x`
+  lowercaseY: 121, / `y`
+  lowercaseZ: 122, / `z`
+  leftCurlyBrace: 123, / `{`
+  verticalBar: 124, / `|`
+  rightCurlyBrace: 125, / `}`
+  tilde: 126, / `~`
   del: 127,
-  // Unicode Specials block.
+  / Unicode Specials block.
   byteOrderMarker: 65279,
-  // Unicode Specials block.
-  replacementCharacter: 65533 // ``
+  / Unicode Specials block.
+  replacementCharacter: 65533 / ``
 })
 
 
@@ -42336,40 +42336,40 @@ __webpack_require__.r(__webpack_exports__);
  * These are all defined here, but compiled away by scripts.
  */
 const constants = /** @type {const} */ ({
-  attentionSideBefore: 1, // Symbol to mark an attention sequence as before content: `*a`
-  attentionSideAfter: 2, // Symbol to mark an attention sequence as after content: `a*`
-  atxHeadingOpeningFenceSizeMax: 6, // 6 number signs is fine, 7 isn’t.
-  autolinkDomainSizeMax: 63, // 63 characters is fine, 64 is too many.
-  autolinkSchemeSizeMax: 32, // 32 characters is fine, 33 is too many.
-  cdataOpeningString: 'CDATA[', // And preceded by `<![`.
-  characterGroupWhitespace: 1, // Symbol used to indicate a character is whitespace
-  characterGroupPunctuation: 2, // Symbol used to indicate a character is punctuation
-  characterReferenceDecimalSizeMax: 7, // `&#9999999;`.
-  characterReferenceHexadecimalSizeMax: 6, // `&#xff9999;`.
-  characterReferenceNamedSizeMax: 31, // `&CounterClockwiseContourIntegral;`.
-  codeFencedSequenceSizeMin: 3, // At least 3 ticks or tildes are needed.
+  attentionSideBefore: 1, / Symbol to mark an attention sequence as before content: `*a`
+  attentionSideAfter: 2, / Symbol to mark an attention sequence as after content: `a*`
+  atxHeadingOpeningFenceSizeMax: 6, / 6 number signs is fine, 7 isn’t.
+  autolinkDomainSizeMax: 63, / 63 characters is fine, 64 is too many.
+  autolinkSchemeSizeMax: 32, / 32 characters is fine, 33 is too many.
+  cdataOpeningString: 'CDATA[', / And preceded by `<![`.
+  characterGroupWhitespace: 1, / Symbol used to indicate a character is whitespace
+  characterGroupPunctuation: 2, / Symbol used to indicate a character is punctuation
+  characterReferenceDecimalSizeMax: 7, / `&#9999999;`.
+  characterReferenceHexadecimalSizeMax: 6, / `&#xff9999;`.
+  characterReferenceNamedSizeMax: 31, / `&CounterClockwiseContourIntegral;`.
+  codeFencedSequenceSizeMin: 3, / At least 3 ticks or tildes are needed.
   contentTypeDocument: 'document',
   contentTypeFlow: 'flow',
   contentTypeContent: 'content',
   contentTypeString: 'string',
   contentTypeText: 'text',
-  hardBreakPrefixSizeMin: 2, // At least 2 trailing spaces are needed.
-  htmlRaw: 1, // Symbol for `<script>`
-  htmlComment: 2, // Symbol for `<!---->`
-  htmlInstruction: 3, // Symbol for `<?php?>`
-  htmlDeclaration: 4, // Symbol for `<!doctype>`
-  htmlCdata: 5, // Symbol for `<![CDATA[]]>`
-  htmlBasic: 6, // Symbol for `<div`
-  htmlComplete: 7, // Symbol for `<x>`
-  htmlRawSizeMax: 8, // Length of `textarea`.
-  linkResourceDestinationBalanceMax: 32, // See: <https://spec.commonmark.org/0.30/#link-destination>, <https://github.com/remarkjs/react-markdown/issues/658#issuecomment-984345577>
-  linkReferenceSizeMax: 999, // See: <https://spec.commonmark.org/0.30/#link-label>
-  listItemValueSizeMax: 10, // See: <https://spec.commonmark.org/0.30/#ordered-list-marker>
+  hardBreakPrefixSizeMin: 2, / At least 2 trailing spaces are needed.
+  htmlRaw: 1, / Symbol for `<script>`
+  htmlComment: 2, / Symbol for `<!---->`
+  htmlInstruction: 3, / Symbol for `<?php?>`
+  htmlDeclaration: 4, / Symbol for `<!doctype>`
+  htmlCdata: 5, / Symbol for `<![CDATA[]]>`
+  htmlBasic: 6, / Symbol for `<div`
+  htmlComplete: 7, / Symbol for `<x>`
+  htmlRawSizeMax: 8, / Length of `textarea`.
+  linkResourceDestinationBalanceMax: 32, / See: <https://spec.commonmark.org/0.30/#link-destination>, <https://github.com/remarkjs/react-markdown/issues/658#issuecomment-984345577>
+  linkReferenceSizeMax: 999, / See: <https://spec.commonmark.org/0.30/#link-label>
+  listItemValueSizeMax: 10, / See: <https://spec.commonmark.org/0.30/#ordered-list-marker>
   numericBaseDecimal: 10,
   numericBaseHexadecimal: 0x10,
-  tabSize: 4, // Tabs have a hard-coded size of 4, per CommonMark.
-  thematicBreakMarkerCountMin: 3, // At least 3 asterisks, dashes, or underscores are needed.
-  v8MaxSafeChunkSize: 10000 // V8 (and potentially others) have problems injecting giant arrays into other arrays, hence we operate in chunks.
+  tabSize: 4, / Tabs have a hard-coded size of 4, per CommonMark.
+  thematicBreakMarkerCountMin: 3, / At least 3 asterisks, dashes, or underscores are needed.
+  v8MaxSafeChunkSize: 10000 / V8 (and potentially others) have problems injecting giant arrays into other arrays, hence we operate in chunks.
 })
 
 
@@ -42400,439 +42400,439 @@ __webpack_require__.r(__webpack_exports__);
 // Note: when changing the next record, you must also change `TokenTypeMap`
 // in `micromark-util-types/index.d.ts`.
 const types = /** @type {const} */ ({
-  // Generic type for data, such as in a title, a destination, etc.
+  / Generic type for data, such as in a title, a destination, etc.
   data: 'data',
 
-  // Generic type for syntactic whitespace (tabs, virtual spaces, spaces).
-  // Such as, between a fenced code fence and an info string.
+  / Generic type for syntactic whitespace (tabs, virtual spaces, spaces).
+  / Such as, between a fenced code fence and an info string.
   whitespace: 'whitespace',
 
-  // Generic type for line endings (line feed, carriage return, carriage return +
-  // line feed).
+  / Generic type for line endings (line feed, carriage return, carriage return +
+  / line feed).
   lineEnding: 'lineEnding',
 
-  // A line ending, but ending a blank line.
+  / A line ending, but ending a blank line.
   lineEndingBlank: 'lineEndingBlank',
 
-  // Generic type for whitespace (tabs, virtual spaces, spaces) at the start of a
-  // line.
+  / Generic type for whitespace (tabs, virtual spaces, spaces) at the start of a
+  / line.
   linePrefix: 'linePrefix',
 
-  // Generic type for whitespace (tabs, virtual spaces, spaces) at the end of a
-  // line.
+  / Generic type for whitespace (tabs, virtual spaces, spaces) at the end of a
+  / line.
   lineSuffix: 'lineSuffix',
 
-  // Whole ATX heading:
-  //
-  // ```markdown
-  // #
-  // ## Alpha
-  // ### Bravo ###
-  // ```
-  //
-  // Includes `atxHeadingSequence`, `whitespace`, `atxHeadingText`.
+  / Whole ATX heading:
+  /
+  / ```markdown
+  / #
+  / ## Alpha
+  / ### Bravo ###
+  / ```
+  /
+  / Includes `atxHeadingSequence`, `whitespace`, `atxHeadingText`.
   atxHeading: 'atxHeading',
 
-  // Sequence of number signs in an ATX heading (`###`).
+  / Sequence of number signs in an ATX heading (`###`).
   atxHeadingSequence: 'atxHeadingSequence',
 
-  // Content in an ATX heading (`alpha`).
-  // Includes text.
+  / Content in an ATX heading (`alpha`).
+  / Includes text.
   atxHeadingText: 'atxHeadingText',
 
-  // Whole autolink (`<https://example.com>` or `<admin@example.com>`)
-  // Includes `autolinkMarker` and `autolinkProtocol` or `autolinkEmail`.
+  / Whole autolink (`<https://example.com>` or `<admin@example.com>`)
+  / Includes `autolinkMarker` and `autolinkProtocol` or `autolinkEmail`.
   autolink: 'autolink',
 
-  // Email autolink w/o markers (`admin@example.com`)
+  / Email autolink w/o markers (`admin@example.com`)
   autolinkEmail: 'autolinkEmail',
 
-  // Marker around an `autolinkProtocol` or `autolinkEmail` (`<` or `>`).
+  / Marker around an `autolinkProtocol` or `autolinkEmail` (`<` or `>`).
   autolinkMarker: 'autolinkMarker',
 
-  // Protocol autolink w/o markers (`https://example.com`)
+  / Protocol autolink w/o markers (`https://example.com`)
   autolinkProtocol: 'autolinkProtocol',
 
-  // A whole character escape (`\-`).
-  // Includes `escapeMarker` and `characterEscapeValue`.
+  / A whole character escape (`\-`).
+  / Includes `escapeMarker` and `characterEscapeValue`.
   characterEscape: 'characterEscape',
 
-  // The escaped character (`-`).
+  / The escaped character (`-`).
   characterEscapeValue: 'characterEscapeValue',
 
-  // A whole character reference (`&amp;`, `&#8800;`, or `&#x1D306;`).
-  // Includes `characterReferenceMarker`, an optional
-  // `characterReferenceMarkerNumeric`, in which case an optional
-  // `characterReferenceMarkerHexadecimal`, and a `characterReferenceValue`.
+  / A whole character reference (`&amp;`, `&#8800;`, or `&#x1D306;`).
+  / Includes `characterReferenceMarker`, an optional
+  / `characterReferenceMarkerNumeric`, in which case an optional
+  / `characterReferenceMarkerHexadecimal`, and a `characterReferenceValue`.
   characterReference: 'characterReference',
 
-  // The start or end marker (`&` or `;`).
+  / The start or end marker (`&` or `;`).
   characterReferenceMarker: 'characterReferenceMarker',
 
-  // Mark reference as numeric (`#`).
+  / Mark reference as numeric (`#`).
   characterReferenceMarkerNumeric: 'characterReferenceMarkerNumeric',
 
-  // Mark reference as numeric (`x` or `X`).
+  / Mark reference as numeric (`x` or `X`).
   characterReferenceMarkerHexadecimal: 'characterReferenceMarkerHexadecimal',
 
-  // Value of character reference w/o markers (`amp`, `8800`, or `1D306`).
+  / Value of character reference w/o markers (`amp`, `8800`, or `1D306`).
   characterReferenceValue: 'characterReferenceValue',
 
-  // Whole fenced code:
-  //
-  // ````markdown
-  // ```js
-  // alert(1)
-  // ```
-  // ````
+  / Whole fenced code:
+  /
+  / ````markdown
+  / ```js
+  / alert(1)
+  / ```
+  / ````
   codeFenced: 'codeFenced',
 
-  // A fenced code fence, including whitespace, sequence, info, and meta
-  // (` ```js `).
+  / A fenced code fence, including whitespace, sequence, info, and meta
+  / (` ```js `).
   codeFencedFence: 'codeFencedFence',
 
-  // Sequence of grave accent or tilde characters (` ``` `) in a fence.
+  / Sequence of grave accent or tilde characters (` ``` `) in a fence.
   codeFencedFenceSequence: 'codeFencedFenceSequence',
 
-  // Info word (`js`) in a fence.
-  // Includes string.
+  / Info word (`js`) in a fence.
+  / Includes string.
   codeFencedFenceInfo: 'codeFencedFenceInfo',
 
-  // Meta words (`highlight="1"`) in a fence.
-  // Includes string.
+  / Meta words (`highlight="1"`) in a fence.
+  / Includes string.
   codeFencedFenceMeta: 'codeFencedFenceMeta',
 
-  // A line of code.
+  / A line of code.
   codeFlowValue: 'codeFlowValue',
 
-  // Whole indented code:
-  //
-  // ```markdown
-  //     alert(1)
-  // ```
-  //
-  // Includes `lineEnding`, `linePrefix`, and `codeFlowValue`.
+  / Whole indented code:
+  /
+  / ```markdown
+  /     alert(1)
+  / ```
+  /
+  / Includes `lineEnding`, `linePrefix`, and `codeFlowValue`.
   codeIndented: 'codeIndented',
 
-  // A text code (``` `alpha` ```).
-  // Includes `codeTextSequence`, `codeTextData`, `lineEnding`, and can include
-  // `codeTextPadding`.
+  / A text code (``` `alpha` ```).
+  / Includes `codeTextSequence`, `codeTextData`, `lineEnding`, and can include
+  / `codeTextPadding`.
   codeText: 'codeText',
 
   codeTextData: 'codeTextData',
 
-  // A space or line ending right after or before a tick.
+  / A space or line ending right after or before a tick.
   codeTextPadding: 'codeTextPadding',
 
-  // A text code fence (` `` `).
+  / A text code fence (` `` `).
   codeTextSequence: 'codeTextSequence',
 
-  // Whole content:
-  //
-  // ```markdown
-  // [a]: b
-  // c
-  // =
-  // d
-  // ```
-  //
-  // Includes `paragraph` and `definition`.
+  / Whole content:
+  /
+  / ```markdown
+  / [a]: b
+  / c
+  / =
+  / d
+  / ```
+  /
+  / Includes `paragraph` and `definition`.
   content: 'content',
-  // Whole definition:
-  //
-  // ```markdown
-  // [micromark]: https://github.com/micromark/micromark
-  // ```
-  //
-  // Includes `definitionLabel`, `definitionMarker`, `whitespace`,
-  // `definitionDestination`, and optionally `lineEnding` and `definitionTitle`.
+  / Whole definition:
+  /
+  / ```markdown
+  / [micromark]: https://github.com/micromark/micromark
+  / ```
+  /
+  / Includes `definitionLabel`, `definitionMarker`, `whitespace`,
+  / `definitionDestination`, and optionally `lineEnding` and `definitionTitle`.
   definition: 'definition',
 
-  // Destination of a definition (`https://github.com/micromark/micromark` or
-  // `<https://github.com/micromark/micromark>`).
-  // Includes `definitionDestinationLiteral` or `definitionDestinationRaw`.
+  / Destination of a definition (`https://github.com/micromark/micromark` or
+  / `<https://github.com/micromark/micromark>`).
+  / Includes `definitionDestinationLiteral` or `definitionDestinationRaw`.
   definitionDestination: 'definitionDestination',
 
-  // Enclosed destination of a definition
-  // (`<https://github.com/micromark/micromark>`).
-  // Includes `definitionDestinationLiteralMarker` and optionally
-  // `definitionDestinationString`.
+  / Enclosed destination of a definition
+  / (`<https://github.com/micromark/micromark>`).
+  / Includes `definitionDestinationLiteralMarker` and optionally
+  / `definitionDestinationString`.
   definitionDestinationLiteral: 'definitionDestinationLiteral',
 
-  // Markers of an enclosed definition destination (`<` or `>`).
+  / Markers of an enclosed definition destination (`<` or `>`).
   definitionDestinationLiteralMarker: 'definitionDestinationLiteralMarker',
 
-  // Unenclosed destination of a definition
-  // (`https://github.com/micromark/micromark`).
-  // Includes `definitionDestinationString`.
+  / Unenclosed destination of a definition
+  / (`https://github.com/micromark/micromark`).
+  / Includes `definitionDestinationString`.
   definitionDestinationRaw: 'definitionDestinationRaw',
 
-  // Text in an destination (`https://github.com/micromark/micromark`).
-  // Includes string.
+  / Text in an destination (`https://github.com/micromark/micromark`).
+  / Includes string.
   definitionDestinationString: 'definitionDestinationString',
 
-  // Label of a definition (`[micromark]`).
-  // Includes `definitionLabelMarker` and `definitionLabelString`.
+  / Label of a definition (`[micromark]`).
+  / Includes `definitionLabelMarker` and `definitionLabelString`.
   definitionLabel: 'definitionLabel',
 
-  // Markers of a definition label (`[` or `]`).
+  / Markers of a definition label (`[` or `]`).
   definitionLabelMarker: 'definitionLabelMarker',
 
-  // Value of a definition label (`micromark`).
-  // Includes string.
+  / Value of a definition label (`micromark`).
+  / Includes string.
   definitionLabelString: 'definitionLabelString',
 
-  // Marker between a label and a destination (`:`).
+  / Marker between a label and a destination (`:`).
   definitionMarker: 'definitionMarker',
 
-  // Title of a definition (`"x"`, `'y'`, or `(z)`).
-  // Includes `definitionTitleMarker` and optionally `definitionTitleString`.
+  / Title of a definition (`"x"`, `'y'`, or `(z)`).
+  / Includes `definitionTitleMarker` and optionally `definitionTitleString`.
   definitionTitle: 'definitionTitle',
 
-  // Marker around a title of a definition (`"`, `'`, `(`, or `)`).
+  / Marker around a title of a definition (`"`, `'`, `(`, or `)`).
   definitionTitleMarker: 'definitionTitleMarker',
 
-  // Data without markers in a title (`z`).
-  // Includes string.
+  / Data without markers in a title (`z`).
+  / Includes string.
   definitionTitleString: 'definitionTitleString',
 
-  // Emphasis (`*alpha*`).
-  // Includes `emphasisSequence` and `emphasisText`.
+  / Emphasis (`*alpha*`).
+  / Includes `emphasisSequence` and `emphasisText`.
   emphasis: 'emphasis',
 
-  // Sequence of emphasis markers (`*` or `_`).
+  / Sequence of emphasis markers (`*` or `_`).
   emphasisSequence: 'emphasisSequence',
 
-  // Emphasis text (`alpha`).
-  // Includes text.
+  / Emphasis text (`alpha`).
+  / Includes text.
   emphasisText: 'emphasisText',
 
-  // The character escape marker (`\`).
+  / The character escape marker (`\`).
   escapeMarker: 'escapeMarker',
 
-  // A hard break created with a backslash (`\\n`).
-  // Note: does not include the line ending.
+  / A hard break created with a backslash (`\\n`).
+  / Note: does not include the line ending.
   hardBreakEscape: 'hardBreakEscape',
 
-  // A hard break created with trailing spaces (`  \n`).
-  // Does not include the line ending.
+  / A hard break created with trailing spaces (`  \n`).
+  / Does not include the line ending.
   hardBreakTrailing: 'hardBreakTrailing',
 
-  // Flow HTML:
-  //
-  // ```markdown
-  // <div
-  // ```
-  //
-  // Inlcudes `lineEnding`, `htmlFlowData`.
+  / Flow HTML:
+  /
+  / ```markdown
+  / <div
+  / ```
+  /
+  / Inlcudes `lineEnding`, `htmlFlowData`.
   htmlFlow: 'htmlFlow',
 
   htmlFlowData: 'htmlFlowData',
 
-  // HTML in text (the tag in `a <i> b`).
-  // Includes `lineEnding`, `htmlTextData`.
+  / HTML in text (the tag in `a <i> b`).
+  / Includes `lineEnding`, `htmlTextData`.
   htmlText: 'htmlText',
 
   htmlTextData: 'htmlTextData',
 
-  // Whole image (`![alpha](bravo)`, `![alpha][bravo]`, `![alpha][]`, or
-  // `![alpha]`).
-  // Includes `label` and an optional `resource` or `reference`.
+  / Whole image (`![alpha](bravo)`, `![alpha][bravo]`, `![alpha][]`, or
+  / `![alpha]`).
+  / Includes `label` and an optional `resource` or `reference`.
   image: 'image',
 
-  // Whole link label (`[*alpha*]`).
-  // Includes `labelLink` or `labelImage`, `labelText`, and `labelEnd`.
+  / Whole link label (`[*alpha*]`).
+  / Includes `labelLink` or `labelImage`, `labelText`, and `labelEnd`.
   label: 'label',
 
-  // Text in an label (`*alpha*`).
-  // Includes text.
+  / Text in an label (`*alpha*`).
+  / Includes text.
   labelText: 'labelText',
 
-  // Start a link label (`[`).
-  // Includes a `labelMarker`.
+  / Start a link label (`[`).
+  / Includes a `labelMarker`.
   labelLink: 'labelLink',
 
-  // Start an image label (`![`).
-  // Includes `labelImageMarker` and `labelMarker`.
+  / Start an image label (`![`).
+  / Includes `labelImageMarker` and `labelMarker`.
   labelImage: 'labelImage',
 
-  // Marker of a label (`[` or `]`).
+  / Marker of a label (`[` or `]`).
   labelMarker: 'labelMarker',
 
-  // Marker to start an image (`!`).
+  / Marker to start an image (`!`).
   labelImageMarker: 'labelImageMarker',
 
-  // End a label (`]`).
-  // Includes `labelMarker`.
+  / End a label (`]`).
+  / Includes `labelMarker`.
   labelEnd: 'labelEnd',
 
-  // Whole link (`[alpha](bravo)`, `[alpha][bravo]`, `[alpha][]`, or `[alpha]`).
-  // Includes `label` and an optional `resource` or `reference`.
+  / Whole link (`[alpha](bravo)`, `[alpha][bravo]`, `[alpha][]`, or `[alpha]`).
+  / Includes `label` and an optional `resource` or `reference`.
   link: 'link',
 
-  // Whole paragraph:
-  //
-  // ```markdown
-  // alpha
-  // bravo.
-  // ```
-  //
-  // Includes text.
+  / Whole paragraph:
+  /
+  / ```markdown
+  / alpha
+  / bravo.
+  / ```
+  /
+  / Includes text.
   paragraph: 'paragraph',
 
-  // A reference (`[alpha]` or `[]`).
-  // Includes `referenceMarker` and an optional `referenceString`.
+  / A reference (`[alpha]` or `[]`).
+  / Includes `referenceMarker` and an optional `referenceString`.
   reference: 'reference',
 
-  // A reference marker (`[` or `]`).
+  / A reference marker (`[` or `]`).
   referenceMarker: 'referenceMarker',
 
-  // Reference text (`alpha`).
-  // Includes string.
+  / Reference text (`alpha`).
+  / Includes string.
   referenceString: 'referenceString',
 
-  // A resource (`(https://example.com "alpha")`).
-  // Includes `resourceMarker`, an optional `resourceDestination` with an optional
-  // `whitespace` and `resourceTitle`.
+  / A resource (`(https://example.com "alpha")`).
+  / Includes `resourceMarker`, an optional `resourceDestination` with an optional
+  / `whitespace` and `resourceTitle`.
   resource: 'resource',
 
-  // A resource destination (`https://example.com`).
-  // Includes `resourceDestinationLiteral` or `resourceDestinationRaw`.
+  / A resource destination (`https://example.com`).
+  / Includes `resourceDestinationLiteral` or `resourceDestinationRaw`.
   resourceDestination: 'resourceDestination',
 
-  // A literal resource destination (`<https://example.com>`).
-  // Includes `resourceDestinationLiteralMarker` and optionally
-  // `resourceDestinationString`.
+  / A literal resource destination (`<https://example.com>`).
+  / Includes `resourceDestinationLiteralMarker` and optionally
+  / `resourceDestinationString`.
   resourceDestinationLiteral: 'resourceDestinationLiteral',
 
-  // A resource destination marker (`<` or `>`).
+  / A resource destination marker (`<` or `>`).
   resourceDestinationLiteralMarker: 'resourceDestinationLiteralMarker',
 
-  // A raw resource destination (`https://example.com`).
-  // Includes `resourceDestinationString`.
+  / A raw resource destination (`https://example.com`).
+  / Includes `resourceDestinationString`.
   resourceDestinationRaw: 'resourceDestinationRaw',
 
-  // Resource destination text (`https://example.com`).
-  // Includes string.
+  / Resource destination text (`https://example.com`).
+  / Includes string.
   resourceDestinationString: 'resourceDestinationString',
 
-  // A resource marker (`(` or `)`).
+  / A resource marker (`(` or `)`).
   resourceMarker: 'resourceMarker',
 
-  // A resource title (`"alpha"`, `'alpha'`, or `(alpha)`).
-  // Includes `resourceTitleMarker` and optionally `resourceTitleString`.
+  / A resource title (`"alpha"`, `'alpha'`, or `(alpha)`).
+  / Includes `resourceTitleMarker` and optionally `resourceTitleString`.
   resourceTitle: 'resourceTitle',
 
-  // A resource title marker (`"`, `'`, `(`, or `)`).
+  / A resource title marker (`"`, `'`, `(`, or `)`).
   resourceTitleMarker: 'resourceTitleMarker',
 
-  // Resource destination title (`alpha`).
-  // Includes string.
+  / Resource destination title (`alpha`).
+  / Includes string.
   resourceTitleString: 'resourceTitleString',
 
-  // Whole setext heading:
-  //
-  // ```markdown
-  // alpha
-  // bravo
-  // =====
-  // ```
-  //
-  // Includes `setextHeadingText`, `lineEnding`, `linePrefix`, and
-  // `setextHeadingLine`.
+  / Whole setext heading:
+  /
+  / ```markdown
+  / alpha
+  / bravo
+  / =====
+  / ```
+  /
+  / Includes `setextHeadingText`, `lineEnding`, `linePrefix`, and
+  / `setextHeadingLine`.
   setextHeading: 'setextHeading',
 
-  // Content in a setext heading (`alpha\nbravo`).
-  // Includes text.
+  / Content in a setext heading (`alpha\nbravo`).
+  / Includes text.
   setextHeadingText: 'setextHeadingText',
 
-  // Underline in a setext heading, including whitespace suffix (`==`).
-  // Includes `setextHeadingLineSequence`.
+  / Underline in a setext heading, including whitespace suffix (`==`).
+  / Includes `setextHeadingLineSequence`.
   setextHeadingLine: 'setextHeadingLine',
 
-  // Sequence of equals or dash characters in underline in a setext heading (`-`).
+  / Sequence of equals or dash characters in underline in a setext heading (`-`).
   setextHeadingLineSequence: 'setextHeadingLineSequence',
 
-  // Strong (`**alpha**`).
-  // Includes `strongSequence` and `strongText`.
+  / Strong (`**alpha**`).
+  / Includes `strongSequence` and `strongText`.
   strong: 'strong',
 
-  // Sequence of strong markers (`**` or `__`).
+  / Sequence of strong markers (`**` or `__`).
   strongSequence: 'strongSequence',
 
-  // Strong text (`alpha`).
-  // Includes text.
+  / Strong text (`alpha`).
+  / Includes text.
   strongText: 'strongText',
 
-  // Whole thematic break:
-  //
-  // ```markdown
-  // * * *
-  // ```
-  //
-  // Includes `thematicBreakSequence` and `whitespace`.
+  / Whole thematic break:
+  /
+  / ```markdown
+  / * * *
+  / ```
+  /
+  / Includes `thematicBreakSequence` and `whitespace`.
   thematicBreak: 'thematicBreak',
 
-  // A sequence of one or more thematic break markers (`***`).
+  / A sequence of one or more thematic break markers (`***`).
   thematicBreakSequence: 'thematicBreakSequence',
 
-  // Whole block quote:
-  //
-  // ```markdown
-  // > a
-  // >
-  // > b
-  // ```
-  //
-  // Includes `blockQuotePrefix` and flow.
+  / Whole block quote:
+  /
+  / ```markdown
+  / > a
+  / >
+  / > b
+  / ```
+  /
+  / Includes `blockQuotePrefix` and flow.
   blockQuote: 'blockQuote',
-  // The `>` or `> ` of a block quote.
+  / The `>` or `> ` of a block quote.
   blockQuotePrefix: 'blockQuotePrefix',
-  // The `>` of a block quote prefix.
+  / The `>` of a block quote prefix.
   blockQuoteMarker: 'blockQuoteMarker',
-  // The optional ` ` of a block quote prefix.
+  / The optional ` ` of a block quote prefix.
   blockQuotePrefixWhitespace: 'blockQuotePrefixWhitespace',
 
-  // Whole unordered list:
-  //
-  // ```markdown
-  // - a
-  //   b
-  // ```
-  //
-  // Includes `listItemPrefix`, flow, and optionally  `listItemIndent` on further
-  // lines.
+  / Whole unordered list:
+  /
+  / ```markdown
+  / - a
+  /   b
+  / ```
+  /
+  / Includes `listItemPrefix`, flow, and optionally  `listItemIndent` on further
+  / lines.
   listOrdered: 'listOrdered',
 
-  // Whole ordered list:
-  //
-  // ```markdown
-  // 1. a
-  //    b
-  // ```
-  //
-  // Includes `listItemPrefix`, flow, and optionally  `listItemIndent` on further
-  // lines.
+  / Whole ordered list:
+  /
+  / ```markdown
+  / 1. a
+  /    b
+  / ```
+  /
+  / Includes `listItemPrefix`, flow, and optionally  `listItemIndent` on further
+  / lines.
   listUnordered: 'listUnordered',
 
-  // The indent of further list item lines.
+  / The indent of further list item lines.
   listItemIndent: 'listItemIndent',
 
-  // A marker, as in, `*`, `+`, `-`, `.`, or `)`.
+  / A marker, as in, `*`, `+`, `-`, `.`, or `)`.
   listItemMarker: 'listItemMarker',
 
-  // The thing that starts a list item, such as `1. `.
-  // Includes `listItemValue` if ordered, `listItemMarker`, and
-  // `listItemPrefixWhitespace` (unless followed by a line ending).
+  / The thing that starts a list item, such as `1. `.
+  / Includes `listItemValue` if ordered, `listItemMarker`, and
+  / `listItemPrefixWhitespace` (unless followed by a line ending).
   listItemPrefix: 'listItemPrefix',
 
-  // The whitespace after a marker.
+  / The whitespace after a marker.
   listItemPrefixWhitespace: 'listItemPrefixWhitespace',
 
-  // The numerical value of an ordered item.
+  / The numerical value of an ordered item.
   listItemValue: 'listItemValue',
 
-  // Internal types used for subtokenizers, compiled away
+  / Internal types used for subtokenizers, compiled away
   chunkDocument: 'chunkDocument',
   chunkContent: 'chunkContent',
   chunkFlow: 'chunkFlow',
@@ -43239,22 +43239,22 @@ function createTokenizer(parser, initialize, from) {
 
     main()
 
-    // Exit if we’re not done, resolve might change stuff.
+    / Exit if we’re not done, resolve might change stuff.
     if (chunks[chunks.length - 1] !== micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof) {
       return []
     }
 
     addResult(initialize, 0)
 
-    // Otherwise, resolve, and exit.
+    / Otherwise, resolve, and exit.
     context.events = (0,micromark_util_resolve_all__WEBPACK_IMPORTED_MODULE_4__.resolveAll)(resolveAllConstructs, context.events, context)
 
     return context.events
   }
 
-  //
-  // Tools.
-  //
+  /
+  / Tools.
+  /
 
   /** @type {TokenizeContext['sliceSerialize']} */
   function sliceSerialize(token, expandTabs) {
@@ -43268,7 +43268,7 @@ function createTokenizer(parser, initialize, from) {
 
   /** @type {TokenizeContext['now']} */
   function now() {
-    // This is a hot path, so we clone manually instead of `Object.assign({}, point)`
+    / This is a hot path, so we clone manually instead of `Object.assign({}, point)`
     const {line, column, offset, _index, _bufferIndex} = point
     return {line, column, offset, _index, _bufferIndex}
   }
@@ -43280,9 +43280,9 @@ function createTokenizer(parser, initialize, from) {
     debug('position: define skip: `%j`', point)
   }
 
-  //
-  // State management.
-  //
+  /
+  / State management.
+  /
 
   /**
    * Main loop (note that `_index` and `_bufferIndex` in `point` are modified by
@@ -43301,7 +43301,7 @@ function createTokenizer(parser, initialize, from) {
     while (point._index < chunks.length) {
       const chunk = chunks[point._index]
 
-      // If we’re in a buffer chunk, loop through it.
+      / If we’re in a buffer chunk, loop through it.
       if (typeof chunk === 'string') {
         chunkIndex = point._index
 
@@ -43365,32 +43365,32 @@ function createTokenizer(parser, initialize, from) {
       point.offset++
     }
 
-    // Not in a string chunk.
+    / Not in a string chunk.
     if (point._bufferIndex < 0) {
       point._index++
     } else {
       point._bufferIndex++
 
-      // At end of string chunk.
-      // @ts-expect-error Points w/ non-negative `_bufferIndex` reference
-      // strings.
+      / At end of string chunk.
+      / @ts-expect-error Points w/ non-negative `_bufferIndex` reference
+      / strings.
       if (point._bufferIndex === chunks[point._index].length) {
         point._bufferIndex = -1
         point._index++
       }
     }
 
-    // Expose the previous character.
+    / Expose the previous character.
     context.previous = code
 
-    // Mark as consumed.
+    / Mark as consumed.
     consumed = true
   }
 
   /** @type {Effects['enter']} */
   function enter(type, fields) {
     /** @type {Token} */
-    // @ts-expect-error Patch instead of assign required fields to help GC.
+    / @ts-expect-error Patch instead of assign required fields to help GC.
     const token = fields || {}
     token.type = type
     token.start = now()
@@ -43481,7 +43481,7 @@ function createTokenizer(parser, initialize, from) {
         ? /* c8 ignore next 1 */
           handleListOfConstructs(constructs)
         : 'tokenize' in constructs
-        ? // @ts-expect-error Looks like a construct.
+        ? / @ts-expect-error Looks like a construct.
           handleListOfConstructs([constructs])
         : handleMapOfConstructs(constructs)
 
@@ -43499,7 +43499,7 @@ function createTokenizer(parser, initialize, from) {
           const def = code !== null && map[code]
           const all = code !== null && map.null
           const list = [
-            // To do: add more extension tests.
+            / To do: add more extension tests.
             /* c8 ignore next 2 */
             ...(Array.isArray(def) ? def : def ? [def] : []),
             ...(Array.isArray(all) ? all : all ? [all] : [])
@@ -43538,10 +43538,10 @@ function createTokenizer(parser, initialize, from) {
 
         /** @type {State} */
         function start(code) {
-          // To do: not needed to store if there is no bogus state, probably?
-          // Currently doesn’t work because `inspect` in document does a check
-          // w/o a bogus, which doesn’t make sense. But it does seem to help perf
-          // by not storing.
+          / To do: not needed to store if there is no bogus state, probably?
+          / Currently doesn’t work because `inspect` in document does a check
+          / w/o a bogus, which doesn’t make sense. But it does seem to help perf
+          / by not storing.
           info = store()
           currentConstruct = construct
 
@@ -43549,7 +43549,7 @@ function createTokenizer(parser, initialize, from) {
             context.currentConstruct = construct
           }
 
-          // Always populated by defaults.
+          / Always populated by defaults.
           (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(
             context.parser.constructs.disable.null,
             'expected `disable.null` to be populated'
@@ -43563,9 +43563,9 @@ function createTokenizer(parser, initialize, from) {
           }
 
           return construct.tokenize.call(
-            // If we do have fields, create an object w/ `context` as its
-            // prototype.
-            // This allows a “live binding”, which is needed for `interrupt`.
+            / If we do have fields, create an object w/ `context` as its
+            / prototype.
+            / This allows a “live binding”, which is needed for `interrupt`.
             fields ? Object.assign(Object.create(context), fields) : context,
             effects,
             ok,
@@ -43690,7 +43690,7 @@ function sliceChunks(chunks, token) {
   if (startIndex === endIndex) {
     (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(endBufferIndex > -1, 'expected non-negative end buffer index')
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(startBufferIndex > -1, 'expected non-negative start buffer index')
-    // @ts-expect-error `_bufferIndex` is used on string chunks.
+    / @ts-expect-error `_bufferIndex` is used on string chunks.
     view = [chunks[startIndex].slice(startBufferIndex, endBufferIndex)]
   } else {
     view = chunks.slice(startIndex, endIndex)
@@ -43706,7 +43706,7 @@ function sliceChunks(chunks, token) {
     }
 
     if (endBufferIndex > 0) {
-      // @ts-expect-error `_bufferIndex` is used on string chunks.
+      / @ts-expect-error `_bufferIndex` is used on string chunks.
       view.push(chunks[endIndex].slice(0, endBufferIndex))
     }
   }
@@ -43770,7 +43770,7 @@ function serializeChunks(chunks, expandTabs) {
 
         default: {
           (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(typeof chunk === 'number', 'expected number')
-          // Currently only replacement character.
+          / Currently only replacement character.
           value = String.fromCharCode(chunk)
         }
       }
@@ -43894,7 +43894,7 @@ function initializeContent(effects) {
       return lineStart
     }
 
-    // Data.
+    / Data.
     effects.consume(code)
     return data
   }
@@ -43971,16 +43971,16 @@ function initializeDocument(effects) {
 
   /** @type {State} */
   function start(code) {
-    // First we iterate through the open blocks, starting with the root
-    // document, and descending through last children down to the last open
-    // block.
-    // Each block imposes a condition that the line must satisfy if the block is
-    // to remain open.
-    // For example, a block quote requires a `>` character.
-    // A paragraph requires a non-blank line.
-    // In this phase we may match all or just some of the open blocks.
-    // But we cannot close unmatched blocks yet, because we may have a lazy
-    // continuation line.
+    / First we iterate through the open blocks, starting with the root
+    / document, and descending through last children down to the last open
+    / block.
+    / Each block imposes a condition that the line must satisfy if the block is
+    / to remain open.
+    / For example, a block quote requires a `>` character.
+    / A paragraph requires a non-blank line.
+    / In this phase we may match all or just some of the open blocks.
+    / But we cannot close unmatched blocks yet, because we may have a lazy
+    / continuation line.
     if (continued < stack.length) {
       const item = stack[continued]
       self.containerState = item[1]
@@ -43995,7 +43995,7 @@ function initializeDocument(effects) {
       )(code)
     }
 
-    // Done.
+    / Done.
     return checkNewContainers(code)
   }
 
@@ -44008,9 +44008,9 @@ function initializeDocument(effects) {
 
     continued++
 
-    // Note: this field is called `_closeFlow` but it also closes containers.
-    // Perhaps a good idea to rename it but it’s already used in the wild by
-    // extensions.
+    / Note: this field is called `_closeFlow` but it also closes containers.
+    / Perhaps a good idea to rename it but it’s already used in the wild by
+    / extensions.
     if (self.containerState._closeFlow) {
       self.containerState._closeFlow = undefined
 
@@ -44018,14 +44018,14 @@ function initializeDocument(effects) {
         closeFlow()
       }
 
-      // Note: this algorithm for moving events around is similar to the
-      // algorithm when dealing with lazy lines in `writeToChild`.
+      / Note: this algorithm for moving events around is similar to the
+      / algorithm when dealing with lazy lines in `writeToChild`.
       const indexBeforeExits = self.events.length
       let indexBeforeFlow = indexBeforeExits
       /** @type {Point | undefined} */
       let point
 
-      // Find the flow chunk.
+      / Find the flow chunk.
       while (indexBeforeFlow--) {
         if (
           self.events[indexBeforeFlow][0] === 'exit' &&
@@ -44040,7 +44040,7 @@ function initializeDocument(effects) {
 
       exitContainers(continued)
 
-      // Fix positions.
+      / Fix positions.
       let index = indexBeforeExits
 
       while (index < self.events.length) {
@@ -44048,7 +44048,7 @@ function initializeDocument(effects) {
         index++
       }
 
-      // Inject the exits earlier (they’re still also at the end).
+      / Inject the exits earlier (they’re still also at the end).
       (0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.splice)(
         self.events,
         indexBeforeFlow + 1,
@@ -44056,7 +44056,7 @@ function initializeDocument(effects) {
         self.events.slice(indexBeforeExits)
       )
 
-      // Discard the duplicate exits.
+      / Discard the duplicate exits.
       self.events.length = index
 
       return checkNewContainers(code)
@@ -44067,37 +44067,37 @@ function initializeDocument(effects) {
 
   /** @type {State} */
   function checkNewContainers(code) {
-    // Next, after consuming the continuation markers for existing blocks, we
-    // look for new block starts (e.g. `>` for a block quote).
-    // If we encounter a new block start, we close any blocks unmatched in
-    // step 1 before creating the new block as a child of the last matched
-    // block.
+    / Next, after consuming the continuation markers for existing blocks, we
+    / look for new block starts (e.g. `>` for a block quote).
+    / If we encounter a new block start, we close any blocks unmatched in
+    / step 1 before creating the new block as a child of the last matched
+    / block.
     if (continued === stack.length) {
-      // No need to `check` whether there’s a container, of `exitContainers`
-      // would be moot.
-      // We can instead immediately `attempt` to parse one.
+      / No need to `check` whether there’s a container, of `exitContainers`
+      / would be moot.
+      / We can instead immediately `attempt` to parse one.
       if (!childFlow) {
         return documentContinued(code)
       }
 
-      // If we have concrete content, such as block HTML or fenced code,
-      // we can’t have containers “pierce” into them, so we can immediately
-      // start.
+      / If we have concrete content, such as block HTML or fenced code,
+      / we can’t have containers “pierce” into them, so we can immediately
+      / start.
       if (childFlow.currentConstruct && childFlow.currentConstruct.concrete) {
         return flowStart(code)
       }
 
-      // If we do have flow, it could still be a blank line,
-      // but we’d be interrupting it w/ a new container if there’s a current
-      // construct.
-      // To do: next major: remove `_gfmTableDynamicInterruptHack` (no longer
-      // needed in micromark-extension-gfm-table@1.0.6).
+      / If we do have flow, it could still be a blank line,
+      / but we’d be interrupting it w/ a new container if there’s a current
+      / construct.
+      / To do: next major: remove `_gfmTableDynamicInterruptHack` (no longer
+      / needed in micromark-extension-gfm-table@1.0.6).
       self.interrupt = Boolean(
         childFlow.currentConstruct && !childFlow._gfmTableDynamicInterruptHack
       )
     }
 
-    // Check if there is a new container.
+    / Check if there is a new container.
     self.containerState = {}
     return effects.check(
       containerConstruct,
@@ -44122,7 +44122,7 @@ function initializeDocument(effects) {
 
   /** @type {State} */
   function documentContinued(code) {
-    // Try new containers.
+    / Try new containers.
     self.containerState = {}
     return effects.attempt(
       containerConstruct,
@@ -44143,7 +44143,7 @@ function initializeDocument(effects) {
     )
     continued++
     stack.push([self.currentConstruct, self.containerState])
-    // Try another.
+    / Try another.
     return documentContinued(code)
   }
 
@@ -44178,7 +44178,7 @@ function initializeDocument(effects) {
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code)) {
       effects.consume(code)
       writeToChild(effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.chunkFlow))
-      // Get ready for the next line.
+      / Get ready for the next line.
       continued = 0
       self.interrupt = undefined
       return start
@@ -44203,59 +44203,59 @@ function initializeDocument(effects) {
     childFlow.defineSkip(token.start)
     childFlow.write(stream)
 
-    // Alright, so we just added a lazy line:
-    //
-    // ```markdown
-    // > a
-    // b.
-    //
-    // Or:
-    //
-    // > ~~~c
-    // d
-    //
-    // Or:
-    //
-    // > | e |
-    // f
-    // ```
-    //
-    // The construct in the second example (fenced code) does not accept lazy
-    // lines, so it marked itself as done at the end of its first line, and
-    // then the content construct parses `d`.
-    // Most constructs in markdown match on the first line: if the first line
-    // forms a construct, a non-lazy line can’t “unmake” it.
-    //
-    // The construct in the third example is potentially a GFM table, and
-    // those are *weird*.
-    // It *could* be a table, from the first line, if the following line
-    // matches a condition.
-    // In this case, that second line is lazy, which “unmakes” the first line
-    // and turns the whole into one content block.
-    //
-    // We’ve now parsed the non-lazy and the lazy line, and can figure out
-    // whether the lazy line started a new flow block.
-    // If it did, we exit the current containers between the two flow blocks.
+    / Alright, so we just added a lazy line:
+    /
+    / ```markdown
+    / > a
+    / b.
+    /
+    / Or:
+    /
+    / > ~~~c
+    / d
+    /
+    / Or:
+    /
+    / > | e |
+    / f
+    / ```
+    /
+    / The construct in the second example (fenced code) does not accept lazy
+    / lines, so it marked itself as done at the end of its first line, and
+    / then the content construct parses `d`.
+    / Most constructs in markdown match on the first line: if the first line
+    / forms a construct, a non-lazy line can’t “unmake” it.
+    /
+    / The construct in the third example is potentially a GFM table, and
+    / those are *weird*.
+    / It *could* be a table, from the first line, if the following line
+    / matches a condition.
+    / In this case, that second line is lazy, which “unmakes” the first line
+    / and turns the whole into one content block.
+    /
+    / We’ve now parsed the non-lazy and the lazy line, and can figure out
+    / whether the lazy line started a new flow block.
+    / If it did, we exit the current containers between the two flow blocks.
     if (self.parser.lazy[token.start.line]) {
       let index = childFlow.events.length
 
       while (index--) {
         if (
-          // The token starts before the line ending…
+          / The token starts before the line ending…
           childFlow.events[index][1].start.offset < lineStartOffset &&
-          // …and either is not ended yet…
+          / …and either is not ended yet…
           (!childFlow.events[index][1].end ||
-            // …or ends after it.
+            / …or ends after it.
             childFlow.events[index][1].end.offset > lineStartOffset)
         ) {
-          // Exit: there’s still something open, which means it’s a lazy line
-          // part of something.
+          / Exit: there’s still something open, which means it’s a lazy line
+          / part of something.
           return
         }
       }
 
-      // Note: this algorithm for moving events around is similar to the
-      // algorithm when closing flow in `documentContinue`.
+      / Note: this algorithm for moving events around is similar to the
+      / algorithm when closing flow in `documentContinue`.
       const indexBeforeExits = self.events.length
       let indexBeforeFlow = indexBeforeExits
       /** @type {boolean | undefined} */
@@ -44263,7 +44263,7 @@ function initializeDocument(effects) {
       /** @type {Point | undefined} */
       let point
 
-      // Find the previous chunk (the one before the lazy line).
+      / Find the previous chunk (the one before the lazy line).
       while (indexBeforeFlow--) {
         if (
           self.events[indexBeforeFlow][0] === 'exit' &&
@@ -44282,7 +44282,7 @@ function initializeDocument(effects) {
 
       exitContainers(continued)
 
-      // Fix positions.
+      / Fix positions.
       index = indexBeforeExits
 
       while (index < self.events.length) {
@@ -44290,7 +44290,7 @@ function initializeDocument(effects) {
         index++
       }
 
-      // Inject the exits earlier (they’re still also at the end).
+      / Inject the exits earlier (they’re still also at the end).
       (0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.splice)(
         self.events,
         indexBeforeFlow + 1,
@@ -44298,7 +44298,7 @@ function initializeDocument(effects) {
         self.events.slice(indexBeforeExits)
       )
 
-      // Discard the duplicate exits.
+      / Discard the duplicate exits.
       self.events.length = index
     }
   }
@@ -44310,7 +44310,7 @@ function initializeDocument(effects) {
   function exitContainers(size) {
     let index = stack.length
 
-    // Exit open containers.
+    / Exit open containers.
     while (index-- > size) {
       const entry = stack[index]
       self.containerState = entry[1]
@@ -44342,7 +44342,7 @@ function initializeDocument(effects) {
  * @type {Tokenizer}
  */
 function tokenizeContainer(effects, ok, nok) {
-  // Always populated by defaults.
+  / Always populated by defaults.
   (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
     this.parser.constructs.disable.null,
     'expected `disable.null` to be populated'
@@ -44402,10 +44402,10 @@ const flow = {tokenize: initializeFlow}
 function initializeFlow(effects) {
   const self = this
   const initial = effects.attempt(
-    // Try to parse a blank line.
+    / Try to parse a blank line.
     micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_1__.blankLine,
     atBlankEnding,
-    // Try to parse initial flow (essentially, only code).
+    / Try to parse initial flow (essentially, only code).
     effects.attempt(
       this.parser.constructs.flowInitial,
       afterConstruct,
@@ -44547,7 +44547,7 @@ function initializeFactory(field) {
         return text(code)
       }
 
-      // Data.
+      / Data.
       effects.consume(code)
       return data
     }
@@ -44565,7 +44565,7 @@ function initializeFactory(field) {
       let index = -1
 
       if (list) {
-        // Always populated by defaults.
+        / Always populated by defaults.
         (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(Array.isArray(list), 'expected `disable.null` to be populated')
 
         while (++index < list.length) {
@@ -44594,8 +44594,8 @@ function createResolver(extraResolver) {
     /** @type {number | undefined} */
     let enter
 
-    // A rather boring computation (to merge adjacent `data` events) which
-    // improves mm performance by 29%.
+    / A rather boring computation (to merge adjacent `data` events) which
+    / improves mm performance by 29%.
     while (++index <= events.length) {
       if (enter === undefined) {
         if (events[index] && events[index][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.data) {
@@ -44603,7 +44603,7 @@ function createResolver(extraResolver) {
           index++
         }
       } else if (!events[index] || events[index][1].type !== micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.data) {
-        // Don’t do anything if there is one data token.
+        / Don’t do anything if there is one data token.
         if (index !== enter + 2) {
           events[enter][1].end = events[index - 1][1].end
           events.splice(enter + 2, index - enter - 2)
@@ -44630,7 +44630,7 @@ function createResolver(extraResolver) {
  * @type {Resolver}
  */
 function resolveAllLineSuffixes(events, context) {
-  let eventIndex = 0 // Skip first.
+  let eventIndex = 0 / Skip first.
 
   while (++eventIndex <= events.length) {
     if (
@@ -44660,14 +44660,14 @@ function resolveAllLineSuffixes(events, context) {
           if (bufferIndex) break
           bufferIndex = -1
         }
-        // Number
+        / Number
         else if (chunk === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.horizontalTab) {
           tabs = true
           size++
         } else if (chunk === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.virtualSpace) {
-          // Empty
+          / Empty
         } else {
-          // Replacement character, exit.
+          / Replacement character, exit.
           index++
           break
         }
@@ -44815,7 +44815,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 function postprocess(events) {
   while (!(0,micromark_util_subtokenize__WEBPACK_IMPORTED_MODULE_0__.subtokenize)(events)) {
-    // Empty
+    / Empty
   }
 
   return events
@@ -44885,13 +44885,13 @@ function preprocess() {
     /** @type {Code} */
     let code
 
-    // @ts-expect-error `Buffer` does allow an encoding.
+    / @ts-expect-error `Buffer` does allow an encoding.
     value = buffer + value.toString(encoding)
     startPosition = 0
     buffer = ''
 
     if (start) {
-      // To do: `markdown-rs` actually parses BOMs (byte order mark).
+      / To do: `markdown-rs` actually parses BOMs (byte order mark).
       if (value.charCodeAt(0) === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.byteOrderMarker) {
         startPosition++
       }
@@ -45139,13 +45139,13 @@ function find(schema, value) {
   }
 
   if (normal.length > 4 && normal.slice(0, 4) === 'data' && valid.test(value)) {
-    // Attribute or property.
+    / Attribute or property.
     if (value.charAt(4) === '-') {
-      // Turn it into a property.
+      / Turn it into a property.
       const rest = value.slice(5).replace(dash, camelcase)
       prop = 'data' + rest.charAt(0).toUpperCase() + rest.slice(1)
     } else {
-      // Turn it into an attribute.
+      / Turn it into an attribute.
       const rest = value.slice(4)
 
       if (!dash.test(rest)) {
@@ -45256,7 +45256,7 @@ const html = (0,_util_create_js__WEBPACK_IMPORTED_MODULE_0__.create)({
   transform: _util_case_insensitive_transform_js__WEBPACK_IMPORTED_MODULE_1__.caseInsensitiveTransform,
   mustUseProperty: ['checked', 'multiple', 'muted', 'selected'],
   properties: {
-    // Standard Properties.
+    / Standard Properties.
     abbr: null,
     accept: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.commaSeparated,
     acceptCharset: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.spaceSeparated,
@@ -45487,63 +45487,63 @@ const html = (0,_util_create_js__WEBPACK_IMPORTED_MODULE_0__.create)({
     wrap: null,
     writingSuggestions: null,
 
-    // Legacy.
-    // See: https://html.spec.whatwg.org/#other-elements,-attributes-and-apis
-    align: null, // Several. Use CSS `text-align` instead,
-    aLink: null, // `<body>`. Use CSS `a:active {color}` instead
-    archive: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.spaceSeparated, // `<object>`. List of URIs to archives
-    axis: null, // `<td>` and `<th>`. Use `scope` on `<th>`
-    background: null, // `<body>`. Use CSS `background-image` instead
-    bgColor: null, // `<body>` and table elements. Use CSS `background-color` instead
-    border: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.number, // `<table>`. Use CSS `border-width` instead,
-    borderColor: null, // `<table>`. Use CSS `border-color` instead,
-    bottomMargin: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.number, // `<body>`
-    cellPadding: null, // `<table>`
-    cellSpacing: null, // `<table>`
-    char: null, // Several table elements. When `align=char`, sets the character to align on
-    charOff: null, // Several table elements. When `char`, offsets the alignment
-    classId: null, // `<object>`
-    clear: null, // `<br>`. Use CSS `clear` instead
-    code: null, // `<object>`
-    codeBase: null, // `<object>`
-    codeType: null, // `<object>`
-    color: null, // `<font>` and `<hr>`. Use CSS instead
-    compact: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.boolean, // Lists. Use CSS to reduce space between items instead
-    declare: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.boolean, // `<object>`
-    event: null, // `<script>`
-    face: null, // `<font>`. Use CSS instead
-    frame: null, // `<table>`
-    frameBorder: null, // `<iframe>`. Use CSS `border` instead
-    hSpace: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.number, // `<img>` and `<object>`
-    leftMargin: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.number, // `<body>`
-    link: null, // `<body>`. Use CSS `a:link {color: *}` instead
-    longDesc: null, // `<frame>`, `<iframe>`, and `<img>`. Use an `<a>`
-    lowSrc: null, // `<img>`. Use a `<picture>`
-    marginHeight: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.number, // `<body>`
-    marginWidth: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.number, // `<body>`
-    noResize: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.boolean, // `<frame>`
-    noHref: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.boolean, // `<area>`. Use no href instead of an explicit `nohref`
-    noShade: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.boolean, // `<hr>`. Use background-color and height instead of borders
-    noWrap: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.boolean, // `<td>` and `<th>`
-    object: null, // `<applet>`
-    profile: null, // `<head>`
-    prompt: null, // `<isindex>`
-    rev: null, // `<link>`
-    rightMargin: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.number, // `<body>`
-    rules: null, // `<table>`
-    scheme: null, // `<meta>`
-    scrolling: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.booleanish, // `<frame>`. Use overflow in the child context
-    standby: null, // `<object>`
-    summary: null, // `<table>`
-    text: null, // `<body>`. Use CSS `color` instead
-    topMargin: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.number, // `<body>`
-    valueType: null, // `<param>`
-    version: null, // `<html>`. Use a doctype.
-    vAlign: null, // Several. Use CSS `vertical-align` instead
-    vLink: null, // `<body>`. Use CSS `a:visited {color}` instead
-    vSpace: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.number, // `<img>` and `<object>`
+    / Legacy.
+    / See: https://html.spec.whatwg.org/#other-elements,-attributes-and-apis
+    align: null, / Several. Use CSS `text-align` instead,
+    aLink: null, / `<body>`. Use CSS `a:active {color}` instead
+    archive: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.spaceSeparated, / `<object>`. List of URIs to archives
+    axis: null, / `<td>` and `<th>`. Use `scope` on `<th>`
+    background: null, / `<body>`. Use CSS `background-image` instead
+    bgColor: null, / `<body>` and table elements. Use CSS `background-color` instead
+    border: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.number, / `<table>`. Use CSS `border-width` instead,
+    borderColor: null, / `<table>`. Use CSS `border-color` instead,
+    bottomMargin: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.number, / `<body>`
+    cellPadding: null, / `<table>`
+    cellSpacing: null, / `<table>`
+    char: null, / Several table elements. When `align=char`, sets the character to align on
+    charOff: null, / Several table elements. When `char`, offsets the alignment
+    classId: null, / `<object>`
+    clear: null, / `<br>`. Use CSS `clear` instead
+    code: null, / `<object>`
+    codeBase: null, / `<object>`
+    codeType: null, / `<object>`
+    color: null, / `<font>` and `<hr>`. Use CSS instead
+    compact: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.boolean, / Lists. Use CSS to reduce space between items instead
+    declare: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.boolean, / `<object>`
+    event: null, / `<script>`
+    face: null, / `<font>`. Use CSS instead
+    frame: null, / `<table>`
+    frameBorder: null, / `<iframe>`. Use CSS `border` instead
+    hSpace: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.number, / `<img>` and `<object>`
+    leftMargin: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.number, / `<body>`
+    link: null, / `<body>`. Use CSS `a:link {color: *}` instead
+    longDesc: null, / `<frame>`, `<iframe>`, and `<img>`. Use an `<a>`
+    lowSrc: null, / `<img>`. Use a `<picture>`
+    marginHeight: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.number, / `<body>`
+    marginWidth: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.number, / `<body>`
+    noResize: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.boolean, / `<frame>`
+    noHref: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.boolean, / `<area>`. Use no href instead of an explicit `nohref`
+    noShade: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.boolean, / `<hr>`. Use background-color and height instead of borders
+    noWrap: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.boolean, / `<td>` and `<th>`
+    object: null, / `<applet>`
+    profile: null, / `<head>`
+    prompt: null, / `<isindex>`
+    rev: null, / `<link>`
+    rightMargin: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.number, / `<body>`
+    rules: null, / `<table>`
+    scheme: null, / `<meta>`
+    scrolling: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.booleanish, / `<frame>`. Use overflow in the child context
+    standby: null, / `<object>`
+    summary: null, / `<table>`
+    text: null, / `<body>`. Use CSS `color` instead
+    topMargin: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.number, / `<body>`
+    valueType: null, / `<param>`
+    version: null, / `<html>`. Use a doctype.
+    vAlign: null, / Several. Use CSS `vertical-align` instead
+    vLink: null, / `<body>`. Use CSS `a:visited {color}` instead
+    vSpace: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.number, / `<img>` and `<object>`
 
-    // Non-standard Properties.
+    / Non-standard Properties.
     allowTransparency: null,
     autoCorrect: null,
     autoSave: null,
@@ -45773,7 +45773,7 @@ const svg = (0,_util_create_js__WEBPACK_IMPORTED_MODULE_0__.create)({
     wordSpacing: 'word-spacing',
     writingMode: 'writing-mode',
     xHeight: 'x-height',
-    // These were camelcased in Tiny. Now lowercased in SVG 2
+    / These were camelcased in Tiny. Now lowercased in SVG 2
     playbackOrder: 'playbackorder',
     timelineBegin: 'timelinebegin'
   },
@@ -45893,9 +45893,9 @@ const svg = (0,_util_create_js__WEBPACK_IMPORTED_MODULE_0__.create)({
     k4: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.number,
     kernelMatrix: _util_types_js__WEBPACK_IMPORTED_MODULE_2__.commaOrSpaceSeparated,
     kernelUnitLength: null,
-    keyPoints: null, // SEMI_COLON_SEPARATED
-    keySplines: null, // SEMI_COLON_SEPARATED
-    keyTimes: null, // SEMI_COLON_SEPARATED
+    keyPoints: null, / SEMI_COLON_SEPARATED
+    keySplines: null, / SEMI_COLON_SEPARATED
+    keyTimes: null, / SEMI_COLON_SEPARATED
     kerning: null,
     lang: null,
     lengthAdjust: null,
@@ -46339,7 +46339,7 @@ DefinedInfo.prototype.defined = true
  */
 function mark(values, key, value) {
   if (value) {
-    // @ts-expect-error: assume `value` matches the expected value of `key`.
+    / @ts-expect-error: assume `value` matches the expected value of `key`.
     values[key] = value
   }
 }
@@ -46771,13 +46771,13 @@ function childrenToReact(context, node) {
     if (child.type === 'element') {
       children.push(toReact(context, child, childIndex, node))
     } else if (child.type === 'text') {
-      // Currently, a warning is triggered by react for *any* white space in
-      // tables.
-      // So we drop it.
-      // See: <https://github.com/facebook/react/pull/7081>.
-      // See: <https://github.com/facebook/react/pull/7515>.
-      // See: <https://github.com/remarkjs/remark-react/issues/64>.
-      // See: <https://github.com/remarkjs/react-markdown/issues/576>.
+      / Currently, a warning is triggered by react for *any* white space in
+      / tables.
+      / So we drop it.
+      / See: <https://github.com/facebook/react/pull/7081>.
+      / See: <https://github.com/facebook/react/pull/7515>.
+      / See: <https://github.com/remarkjs/remark-react/issues/64>.
+      / See: <https://github.com/remarkjs/react-markdown/issues/576>.
       if (
         node.type !== 'element' ||
         !tableElements.has(node.tagName) ||
@@ -46786,7 +46786,7 @@ function childrenToReact(context, node) {
         children.push(child.value)
       }
     } else if (child.type === 'raw' && !context.options.skipHtml) {
-      // Default behavior is to show (encoded) HTML.
+      / Default behavior is to show (encoded) HTML.
       children.push(child.value)
     }
   }
@@ -46808,7 +46808,7 @@ function toReact(context, node, index, parent) {
       : options.transformLinkUri
   const parentSchema = context.schema
   /** @type {ReactMarkdownNames} */
-  // @ts-expect-error assume a known HTML/SVG element.
+  / @ts-expect-error assume a known HTML/SVG element.
   const name = node.tagName
   /** @type {Record<string, unknown>} */
   const properties = {}
@@ -46839,11 +46839,11 @@ function toReact(context, node, index, parent) {
     context.listDepth--
   }
 
-  // Restore parent schema.
+  / Restore parent schema.
   context.schema = parentSchema
 
-  // Nodes created by plugins do not have positional info, in which case we use
-  // an object that matches the position interface.
+  / Nodes created by plugins do not have positional info, in which case we use
+  / an object that matches the position interface.
   const position = node.position || {
     start: {line: null, column: null, offset: null},
     end: {line: null, column: null, offset: null}
@@ -46926,7 +46926,7 @@ function toReact(context, node, index, parent) {
   if (name === 'td' || name === 'th') {
     if (properties.align) {
       if (!properties.style) properties.style = {}
-      // @ts-expect-error assume `style` is an object
+      / @ts-expect-error assume `style` is an object
       properties.style.textAlign = properties.align
       delete properties.align
     }
@@ -46940,7 +46940,7 @@ function toReact(context, node, index, parent) {
     properties.isHeader = Boolean(parent.tagName === 'thead')
   }
 
-  // If `sourcePos` is given, pass source information (line/column info from markdown source).
+  / If `sourcePos` is given, pass source information (line/column info from markdown source).
   if (options.sourcePos) {
     properties['data-sourcepos'] = flattenPosition(position)
   }
@@ -46949,7 +46949,7 @@ function toReact(context, node, index, parent) {
     properties.sourcePosition = node.position
   }
 
-  // If `includeElementIndex` is given, pass node index info to components.
+  / If `includeElementIndex` is given, pass node index info to components.
   if (!basic && options.includeElementIndex) {
     properties.index = getElementsBeforeCount(parent, node)
     properties.siblingCount = getElementsBeforeCount(parent)
@@ -46959,7 +46959,7 @@ function toReact(context, node, index, parent) {
     properties.node = node
   }
 
-  // Ensure no React warnings are emitted for void elements w/ children.
+  / Ensure no React warnings are emitted for void elements w/ children.
   return children.length > 0
     ? react__WEBPACK_IMPORTED_MODULE_0__.createElement(component, properties, children)
     : react__WEBPACK_IMPORTED_MODULE_0__.createElement(component, properties)
@@ -47010,14 +47010,14 @@ function addProperty(props, prop, value, ctx) {
   const info = (0,property_information__WEBPACK_IMPORTED_MODULE_6__.find)(ctx.schema, prop)
   let result = value
 
-  // Ignore nullish and `NaN` values.
-  // eslint-disable-next-line no-self-compare
+  / Ignore nullish and `NaN` values.
+  / eslint-disable-next-line no-self-compare
   if (result === null || result === undefined || result !== result) {
     return
   }
 
-  // Accept `array`.
-  // Most props are space-separated.
+  / Accept `array`.
+  / Most props are space-separated.
   if (Array.isArray(result)) {
     result = info.commaSeparated ? (0,comma_separated_tokens__WEBPACK_IMPORTED_MODULE_7__.stringify)(result) : (0,space_separated_tokens__WEBPACK_IMPORTED_MODULE_8__.stringify)(result)
   }
@@ -47048,7 +47048,7 @@ function parseStyle(value) {
   try {
     ;(0,style_to_object__WEBPACK_IMPORTED_MODULE_2__["default"])(value, iterator)
   } catch {
-    // Silent.
+    / Silent.
   }
 
   return result
@@ -47238,16 +47238,16 @@ function ReactMarkdown(options) {
 }
 
 ReactMarkdown.propTypes = {
-  // Core options:
+  / Core options:
   children: prop_types__WEBPACK_IMPORTED_MODULE_8__.string,
-  // Layout options:
+  / Layout options:
   className: prop_types__WEBPACK_IMPORTED_MODULE_8__.string,
-  // Filter options:
+  / Filter options:
   allowElement: prop_types__WEBPACK_IMPORTED_MODULE_8__.func,
   allowedElements: prop_types__WEBPACK_IMPORTED_MODULE_8__.arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_8__.string),
   disallowedElements: prop_types__WEBPACK_IMPORTED_MODULE_8__.arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_8__.string),
   unwrapDisallowed: prop_types__WEBPACK_IMPORTED_MODULE_8__.bool,
-  // Plugin options:
+  / Plugin options:
   remarkPlugins: prop_types__WEBPACK_IMPORTED_MODULE_8__.arrayOf(
     prop_types__WEBPACK_IMPORTED_MODULE_8__.oneOfType([
       prop_types__WEBPACK_IMPORTED_MODULE_8__.object,
@@ -47259,8 +47259,8 @@ ReactMarkdown.propTypes = {
           prop_types__WEBPACK_IMPORTED_MODULE_8__.object,
           prop_types__WEBPACK_IMPORTED_MODULE_8__.func,
           prop_types__WEBPACK_IMPORTED_MODULE_8__.arrayOf(
-            // prettier-ignore
-            // type-coverage:ignore-next-line
+            / prettier-ignore
+            / type-coverage:ignore-next-line
             prop_types__WEBPACK_IMPORTED_MODULE_8__.any
           )
         ])
@@ -47278,15 +47278,15 @@ ReactMarkdown.propTypes = {
           prop_types__WEBPACK_IMPORTED_MODULE_8__.object,
           prop_types__WEBPACK_IMPORTED_MODULE_8__.func,
           prop_types__WEBPACK_IMPORTED_MODULE_8__.arrayOf(
-            // prettier-ignore
-            // type-coverage:ignore-next-line
+            / prettier-ignore
+            / type-coverage:ignore-next-line
             prop_types__WEBPACK_IMPORTED_MODULE_8__.any
           )
         ])
       )
     ])
   ),
-  // Transform options:
+  / Transform options:
   sourcePos: prop_types__WEBPACK_IMPORTED_MODULE_8__.bool,
   rawSourcePos: prop_types__WEBPACK_IMPORTED_MODULE_8__.bool,
   skipHtml: prop_types__WEBPACK_IMPORTED_MODULE_8__.bool,
@@ -47435,7 +47435,7 @@ function uriTransformer(uri) {
     return url
   }
 
-  // eslint-disable-next-line no-script-url
+  / eslint-disable-next-line no-script-url
   return 'javascript:void(0)'
 }
 
@@ -47468,15 +47468,15 @@ __webpack_require__.r(__webpack_exports__);
 function remarkParse(options) {
   /** @type {import('unified').ParserFunction<Root>} */
   const parser = (doc) => {
-    // Assume options.
+    / Assume options.
     const settings = /** @type {Options} */ (this.data('settings'))
 
     return (0,mdast_util_from_markdown__WEBPACK_IMPORTED_MODULE_0__.fromMarkdown)(
       doc,
       Object.assign({}, settings, options, {
-        // Note: these options are not in the readme.
-        // The goal is for them to be set by plugins on `data` instead of being
-        // passed by users.
+        / Note: these options are not in the readme.
+        / The goal is for them to be set by plugins on `data` instead of being
+        / passed by users.
         extensions: this.data('micromarkExtensions') || [],
         mdastExtensions: this.data('fromMarkdownExtensions') || []
       })
@@ -47569,7 +47569,7 @@ function bridge(destination, options) {
  * @type {import('unified').Plugin<[Options?]|void[], MdastRoot, HastRoot>}
  */
 function mutate(options) {
-  // @ts-expect-error: assume a corresponding node is returned by `toHast`.
+  / @ts-expect-error: assume a corresponding node is returned by `toHast`.
   return (node) => (0,mdast_util_to_hast__WEBPACK_IMPORTED_MODULE_0__.toHast)(node, options)
 }
 
@@ -47804,17 +47804,17 @@ function trough() {
         return
       }
 
-      // Copy non-nullish input into values.
+      / Copy non-nullish input into values.
       while (++index < values.length) {
         if (output[index] === null || output[index] === undefined) {
           output[index] = values[index]
         }
       }
 
-      // Save the newly created `output` for the next call.
+      / Save the newly created `output` for the next call.
       values = output
 
-      // Next or done.
+      / Next or done.
       if (fn) {
         wrap(fn, next)(...output)
       } else {
@@ -47894,10 +47894,10 @@ function wrap(middleware, callback) {
     } catch (error) {
       const exception = /** @type {Error} */ (error)
 
-      // Well, this is quite the pickle.
-      // `middleware` received a callback and called it synchronously, but that
-      // threw an error.
-      // The only thing left to do is to throw the thing instead.
+      / Well, this is quite the pickle.
+      / `middleware` received a callback and called it synchronously, but that
+      / threw an error.
+      / The only thing left to do is to throw the thing instead.
       if (fnExpectsCallback && called) {
         throw exception
       }
@@ -48343,7 +48343,7 @@ function __disposeResources(env) {
 }
 
 function __rewriteRelativeImportExtension(path, preserveJsx) {
-  if (typeof path === "string" && /^\.\.?\//.test(path)) {
+  if (typeof path === "string" && /^\.\.?\/.test(path)) {
       return path.replace(/\.(tsx)$|((?:\.d)?)((?:\.[^./]+?)?)\.([cm]?)ts$/i, function (m, tsx, d, ext, cm) {
           return tsx ? preserveJsx ? ".jsx" : ".js" : d && (!ext || !cm) ? m : (d + ext + "." + cm.toLowerCase() + "js");
       });
@@ -48452,34 +48452,34 @@ function base() {
   let frozen
   let freezeIndex = -1
 
-  // Data management.
-  // @ts-expect-error: overloads are handled.
+  / Data management.
+  / @ts-expect-error: overloads are handled.
   processor.data = data
   processor.Parser = undefined
   processor.Compiler = undefined
 
-  // Lock.
+  / Lock.
   processor.freeze = freeze
 
-  // Plugins.
+  / Plugins.
   processor.attachers = attachers
-  // @ts-expect-error: overloads are handled.
+  / @ts-expect-error: overloads are handled.
   processor.use = use
 
-  // API.
+  / API.
   processor.parse = parse
   processor.stringify = stringify
-  // @ts-expect-error: overloads are handled.
+  / @ts-expect-error: overloads are handled.
   processor.run = run
   processor.runSync = runSync
-  // @ts-expect-error: overloads are handled.
+  / @ts-expect-error: overloads are handled.
   processor.process = process
   processor.processSync = processSync
 
-  // Expose.
+  / Expose.
   return processor
 
-  // Create a new processor based on the processor in the current scope.
+  / Create a new processor based on the processor in the current scope.
   /** @type {Processor} */
   function processor() {
     const destination = base()
@@ -48501,25 +48501,25 @@ function base() {
    */
   function data(key, value) {
     if (typeof key === 'string') {
-      // Set `key`.
+      / Set `key`.
       if (arguments.length === 2) {
         assertUnfrozen('data', frozen)
         namespace[key] = value
         return processor
       }
 
-      // Get `key`.
+      / Get `key`.
       return (own.call(namespace, key) && namespace[key]) || null
     }
 
-    // Set space.
+    / Set space.
     if (key) {
       assertUnfrozen('data', frozen)
       namespace = key
       return processor
     }
 
-    // Get space.
+    / Get space.
     return namespace
   }
 
@@ -48566,7 +48566,7 @@ function base() {
     assertUnfrozen('use', frozen)
 
     if (value === null || value === undefined) {
-      // Empty.
+      / Empty.
     } else if (typeof value === 'function') {
       addPlugin(value, ...options)
     } else if (typeof value === 'object') {
@@ -48624,7 +48624,7 @@ function base() {
       let index = -1
 
       if (plugins === null || plugins === undefined) {
-        // Empty.
+        / Empty.
       } else if (Array.isArray(plugins)) {
         while (++index < plugins.length) {
           const thing = plugins[index]
@@ -48659,7 +48659,7 @@ function base() {
 
         entry[1] = value
       } else {
-        // @ts-expect-error: fine.
+        / @ts-expect-error: fine.
         attachers.push([...arguments])
       }
     }
@@ -48673,12 +48673,12 @@ function base() {
     assertParser('parse', Parser)
 
     if (newable(Parser, 'parse')) {
-      // @ts-expect-error: `newable` checks this.
+      / @ts-expect-error: `newable` checks this.
       return new Parser(String(file), file).parse()
     }
 
-    // @ts-expect-error: `newable` checks this.
-    return Parser(String(file), file) // eslint-disable-line new-cap
+    / @ts-expect-error: `newable` checks this.
+    return Parser(String(file), file) / eslint-disable-line new-cap
   }
 
   /** @type {Processor['stringify']} */
@@ -48690,12 +48690,12 @@ function base() {
     assertNode(node)
 
     if (newable(Compiler, 'compile')) {
-      // @ts-expect-error: `newable` checks this.
+      / @ts-expect-error: `newable` checks this.
       return new Compiler(node, file).compile()
     }
 
-    // @ts-expect-error: `newable` checks this.
-    return Compiler(node, file) // eslint-disable-line new-cap
+    / @ts-expect-error: `newable` checks this.
+    return Compiler(node, file) / eslint-disable-line new-cap
   }
 
   /**
@@ -48725,7 +48725,7 @@ function base() {
      * @returns {void}
      */
     function executor(resolve, reject) {
-      // @ts-expect-error: `doc` can’t be a callback anymore, we checked.
+      / @ts-expect-error: `doc` can’t be a callback anymore, we checked.
       transformers.run(node, vfile(doc), done)
 
       /**
@@ -48741,7 +48741,7 @@ function base() {
         } else if (resolve) {
           resolve(tree)
         } else {
-          // @ts-expect-error: `callback` is defined if `resolve` is not.
+          / @ts-expect-error: `callback` is defined if `resolve` is not.
           callback(null, tree, file)
         }
       }
@@ -48759,7 +48759,7 @@ function base() {
 
     assertDone('runSync', 'run', complete)
 
-    // @ts-expect-error: we either bailed on an error or have a tree.
+    / @ts-expect-error: we either bailed on an error or have a tree.
     return result
 
     /**
@@ -48806,7 +48806,7 @@ function base() {
           const result = processor.stringify(tree, file)
 
           if (result === undefined || result === null) {
-            // Empty.
+            / Empty.
           } else if (looksLikeAVFileValue(result)) {
             file.value = result
           } else {
@@ -48828,7 +48828,7 @@ function base() {
         } else if (resolve) {
           resolve(file)
         } else {
-          // @ts-expect-error: `callback` is defined if `resolve` is not.
+          / @ts-expect-error: `callback` is defined if `resolve` is not.
           callback(null, file)
         }
       }
@@ -48873,13 +48873,13 @@ function base() {
 function newable(value, name) {
   return (
     typeof value === 'function' &&
-    // Prototypes do exist.
-    // type-coverage:ignore-next-line
+    / Prototypes do exist.
+    / type-coverage:ignore-next-line
     value.prototype &&
-    // A function with keys in its prototype is probably a constructor.
-    // Classes’ prototype methods are not enumerable, so we check if some value
-    // exists in the prototype.
-    // type-coverage:ignore-next-line
+    / A function with keys in its prototype is probably a constructor.
+    / Classes’ prototype methods are not enumerable, so we check if some value
+    / exists in the prototype.
+    / type-coverage:ignore-next-line
     (keys(value.prototype) || name in value.prototype)
   )
 }
@@ -48953,11 +48953,11 @@ function assertUnfrozen(name, frozen) {
  * @returns {asserts node is Node}
  */
 function assertNode(node) {
-  // `isPlainObj` unfortunately uses `any` instead of `unknown`.
-  // type-coverage:ignore-next-line
+  / `isPlainObj` unfortunately uses `any` instead of `unknown`.
+  / type-coverage:ignore-next-line
   if (!(0,is_plain_obj__WEBPACK_IMPORTED_MODULE_2__["default"])(node) || typeof node.type !== 'string') {
     throw new TypeError('Expected node, got `' + node + '`')
-    // Fine.
+    / Fine.
   }
 }
 
@@ -49181,7 +49181,7 @@ const is =
      * @param {unknown} [context]
      * @returns {boolean}
      */
-    // eslint-disable-next-line max-params
+    / eslint-disable-next-line max-params
     function is(node, test, index, parent, context) {
       const check = convert(test)
 
@@ -49210,7 +49210,7 @@ const is =
         throw new Error('Expected both parent and index')
       }
 
-      // @ts-expect-error Looks like a node.
+      / @ts-expect-error Looks like a node.
       return node && node.type && typeof node.type === 'string'
         ? Boolean(check.call(context, node, index, parent))
         : false
@@ -49317,7 +49317,7 @@ function propsFactory(check) {
     let key
 
     for (key in check) {
-      // @ts-expect-error: hush, it sure works as an index.
+      / @ts-expect-error: hush, it sure works as an index.
       if (node[key] !== check[key]) return false
     }
 
@@ -49362,7 +49362,7 @@ function castFactory(check) {
       node &&
         typeof node === 'object' &&
         'type' in node &&
-        // @ts-expect-error: fine.
+        / @ts-expect-error: fine.
         Boolean(check.call(this, node, ...parameters))
     )
   }
@@ -49461,13 +49461,13 @@ function point(type) {
   function point(node) {
     const point = (node && node.position && node.position[type]) || {}
 
-    // To do: next major: don’t return points when invalid.
+    / To do: next major: don’t return points when invalid.
     return {
-      // @ts-expect-error: in practice, null is allowed.
+      / @ts-expect-error: in practice, null is allowed.
       line: point.line || null,
-      // @ts-expect-error: in practice, null is allowed.
+      / @ts-expect-error: in practice, null is allowed.
       column: point.column || null,
-      // @ts-expect-error: in practice, null is allowed.
+      / @ts-expect-error: in practice, null is allowed.
       offset: point.offset > -1 ? point.offset : null
     }
   }
@@ -49524,27 +49524,27 @@ __webpack_require__.r(__webpack_exports__);
  *   `position`, nor `point`.
  */
 function stringifyPosition(value) {
-  // Nothing.
+  / Nothing.
   if (!value || typeof value !== 'object') {
     return ''
   }
 
-  // Node.
+  / Node.
   if ('position' in value || 'type' in value) {
     return position(value.position)
   }
 
-  // Position.
+  / Position.
   if ('start' in value || 'end' in value) {
     return position(value)
   }
 
-  // Point.
+  / Point.
   if ('line' in value || 'column' in value) {
     return point(value)
   }
 
-  // ?
+  / ?
   return ''
 }
 
@@ -49752,7 +49752,7 @@ const visitParents =
     function (tree, test, visitor, reverse) {
       if (typeof test === 'function' && typeof visitor !== 'function') {
         reverse = visitor
-        // @ts-expect-error no visitor given, so `visitor` is test.
+        / @ts-expect-error no visitor given, so `visitor` is test.
         visitor = test
         test = null
       }
@@ -49769,15 +49769,15 @@ const visitParents =
        */
       function factory(node, index, parents) {
         /** @type {Record<string, unknown>} */
-        // @ts-expect-error: hush
+        / @ts-expect-error: hush
         const value = node && typeof node === 'object' ? node : {}
 
         if (typeof value.type === 'string') {
           const name =
-            // `hast`
+            / `hast`
             typeof value.tagName === 'string'
               ? value.tagName
-              : // `xast`
+              : / `xast`
               typeof value.name === 'string'
               ? value.name
               : undefined
@@ -49808,16 +49808,16 @@ const visitParents =
             }
           }
 
-          // @ts-expect-error looks like a parent.
+          / @ts-expect-error looks like a parent.
           if (node.children && result[0] !== SKIP) {
-            // @ts-expect-error looks like a parent.
+            / @ts-expect-error looks like a parent.
             offset = (reverse ? node.children.length : -1) + step
-            // @ts-expect-error looks like a parent.
+            / @ts-expect-error looks like a parent.
             grandparents = parents.concat(node)
 
-            // @ts-expect-error looks like a parent.
+            / @ts-expect-error looks like a parent.
             while (offset > -1 && offset < node.children.length) {
-              // @ts-expect-error looks like a parent.
+              / @ts-expect-error looks like a parent.
               subresult = factory(node.children[offset], offset, grandparents)()
 
               if (subresult[0] === EXIT) {
@@ -50357,11 +50357,11 @@ function chars(input, expect) {
 	tmp = arr[i];
 
 	if (l1 === l2) {
-		// no length offsets
+		/ no length offsets
 	} else if (tmp.removed && arr[i + 1]) {
 		let del = tmp.count - arr[i + 1].count;
 		if (del == 0) {
-			// wash~
+			/ wash~
 		} else if (del > 0) {
 			expect = ' '.repeat(del) + expect;
 			p2 = ' '.repeat(del) + p2;
@@ -50422,7 +50422,7 @@ function sort(input, expect) {
 		for (i=0; i < out.length; i++) {
 			tmp = input[i];
 			if (!tmp || typeof tmp !== 'object') out[i] = tmp;
-			else out[i] = sort(tmp, expect[i]); // might not be right
+			else out[i] = sort(tmp, expect[i]); / might not be right
 		}
 	} else {
 		for (k in expect)
@@ -50437,7 +50437,7 @@ function sort(input, expect) {
 
 		for (k in input) {
 			if (!out.hasOwnProperty(k)) {
-				out[k] = input[k]; // expect didnt have
+				out[k] = input[k]; / expect didnt have
 			}
 		}
 	}
@@ -50514,7 +50514,7 @@ const $ = {
 		FORCE_COLOR != null && FORCE_COLOR !== '0' || isTTY
 	),
 
-	// modifiers
+	/ modifiers
 	reset: init(0, 0),
 	bold: init(1, 22),
 	dim: init(2, 22),
@@ -50524,7 +50524,7 @@ const $ = {
 	hidden: init(8, 28),
 	strikethrough: init(9, 29),
 
-	// colors
+	/ colors
 	black: init(30, 39),
 	red: init(31, 39),
 	green: init(32, 39),
@@ -50536,7 +50536,7 @@ const $ = {
 	gray: init(90, 39),
 	grey: init(90, 39),
 
-	// background colors
+	/ background colors
 	bgBlack: init(40, 49),
 	bgRed: init(41, 49),
 	bgGreen: init(42, 49),
@@ -50657,15 +50657,15 @@ class VFileMessage extends Error {
    * @returns
    *   Instance of `VFileMessage`.
    */
-  // To do: next major: expose `undefined` everywhere instead of `null`.
+  / To do: next major: expose `undefined` everywhere instead of `null`.
   constructor(reason, place, origin) {
     /** @type {[string | null, string | null]} */
     const parts = [null, null]
     /** @type {Position} */
     let position = {
-      // @ts-expect-error: we always follows the structure of `position`.
+      / @ts-expect-error: we always follows the structure of `position`.
       start: {line: null, column: null},
-      // @ts-expect-error: "
+      / @ts-expect-error: "
       end: {line: null, column: null}
     }
 
@@ -50688,28 +50688,28 @@ class VFileMessage extends Error {
     }
 
     if (place) {
-      // Node.
+      / Node.
       if ('type' in place || 'position' in place) {
         if (place.position) {
-          // To do: next major: deep clone.
-          // @ts-expect-error: looks like a position.
+          / To do: next major: deep clone.
+          / @ts-expect-error: looks like a position.
           position = place.position
         }
       }
-      // Position.
+      / Position.
       else if ('start' in place || 'end' in place) {
-        // @ts-expect-error: looks like a position.
-        // To do: next major: deep clone.
+        / @ts-expect-error: looks like a position.
+        / To do: next major: deep clone.
         position = place
       }
-      // Point.
+      / Point.
       else if ('line' in place || 'column' in place) {
-        // To do: next major: deep clone.
+        / To do: next major: deep clone.
         position.start = place
       }
     }
 
-    // Fields from `Error`.
+    / Fields from `Error`.
     /**
      * Serialized positional info of error.
      *
@@ -50802,9 +50802,9 @@ class VFileMessage extends Error {
      */
     this.file
 
-    // The following fields are “well known”.
-    // Not standard.
-    // Feel free to add other non-standard fields to your messages.
+    / The following fields are “well known”.
+    / Not standard.
+    / Feel free to add other non-standard fields to your messages.
 
     /**
      * Specify the source value that’s being reported, which is deemed
@@ -51051,8 +51051,8 @@ class VFile {
      */
     this.value
 
-    // The below are non-standard, they are “well-known”.
-    // As in, used in several tools.
+    / The below are non-standard, they are “well-known”.
+    / As in, used in several tools.
 
     /**
      * Whether a file was saved to disk.
@@ -51084,20 +51084,20 @@ class VFile {
     this.map
     /* eslint-enable no-unused-expressions */
 
-    // Set path related properties in the correct order.
+    / Set path related properties in the correct order.
     let index = -1
 
     while (++index < order.length) {
       const prop = order[index]
 
-      // Note: we specifically use `in` instead of `hasOwnProperty` to accept
-      // `vfile`s too.
+      / Note: we specifically use `in` instead of `hasOwnProperty` to accept
+      / `vfile`s too.
       if (
         prop in options &&
         options[prop] !== undefined &&
         options[prop] !== null
       ) {
-        // @ts-expect-error: TS doesn’t understand basic reality.
+        / @ts-expect-error: TS doesn’t understand basic reality.
         this[prop] = prop === 'history' ? [...options[prop]] : options[prop]
       }
     }
@@ -51105,11 +51105,11 @@ class VFile {
     /** @type {string} */
     let prop
 
-    // Set non-path related properties.
+    / Set non-path related properties.
     for (prop in options) {
-      // @ts-expect-error: fine to set other things.
+      / @ts-expect-error: fine to set other things.
       if (!order.includes(prop)) {
-        // @ts-expect-error: fine to set other things.
+        / @ts-expect-error: fine to set other things.
         this[prop] = options[prop]
       }
     }
@@ -51488,15 +51488,15 @@ function basename(path, ext) {
   if (ext === undefined || ext.length === 0 || ext.length > path.length) {
     while (index--) {
       if (path.charCodeAt(index) === 47 /* `/` */) {
-        // If we reached a path separator that was not part of a set of path
-        // separators at the end of the string, stop now.
+        / If we reached a path separator that was not part of a set of path
+        / separators at the end of the string, stop now.
         if (seenNonSlash) {
           start = index + 1
           break
         }
       } else if (end < 0) {
-        // We saw the first non-path separator, mark this as the end of our
-        // path component.
+        / We saw the first non-path separator, mark this as the end of our
+        / path component.
         seenNonSlash = true
         end = index + 1
       }
@@ -51514,31 +51514,31 @@ function basename(path, ext) {
 
   while (index--) {
     if (path.charCodeAt(index) === 47 /* `/` */) {
-      // If we reached a path separator that was not part of a set of path
-      // separators at the end of the string, stop now.
+      / If we reached a path separator that was not part of a set of path
+      / separators at the end of the string, stop now.
       if (seenNonSlash) {
         start = index + 1
         break
       }
     } else {
       if (firstNonSlashEnd < 0) {
-        // We saw the first non-path separator, remember this index in case
-        // we need it if the extension ends up not matching.
+        / We saw the first non-path separator, remember this index in case
+        / we need it if the extension ends up not matching.
         seenNonSlash = true
         firstNonSlashEnd = index + 1
       }
 
       if (extIndex > -1) {
-        // Try to match the explicit extension.
+        / Try to match the explicit extension.
         if (path.charCodeAt(index) === ext.charCodeAt(extIndex--)) {
           if (extIndex < 0) {
-            // We matched the extension, so mark this as the end of our path
-            // component
+            / We matched the extension, so mark this as the end of our path
+            / component
             end = index
           }
         } else {
-          // Extension does not match, so our result is the entire path
-          // component
+          / Extension does not match, so our result is the entire path
+          / component
           extIndex = -1
           end = firstNonSlashEnd
         }
@@ -51575,7 +51575,7 @@ function dirname(path) {
   /** @type {boolean | undefined} */
   let unmatchedSlash
 
-  // Prefix `--` is important to not run on `0`.
+  / Prefix `--` is important to not run on `0`.
   while (--index) {
     if (path.charCodeAt(index) === 47 /* `/` */) {
       if (unmatchedSlash) {
@@ -51583,7 +51583,7 @@ function dirname(path) {
         break
       }
     } else if (!unmatchedSlash) {
-      // We saw the first non-path separator
+      / We saw the first non-path separator
       unmatchedSlash = true
     }
   }
@@ -51593,7 +51593,7 @@ function dirname(path) {
       ? '/'
       : '.'
     : end === 1 && path.charCodeAt(0) === 47 /* `/` */
-    ? '//'
+    ? '/'
     : path.slice(0, end)
 }
 
@@ -51613,8 +51613,8 @@ function extname(path) {
   let end = -1
   let startPart = 0
   let startDot = -1
-  // Track the state of characters (if any) we see before our first dot and
-  // after any path separator we find.
+  / Track the state of characters (if any) we see before our first dot and
+  / after any path separator we find.
   let preDotState = 0
   /** @type {boolean | undefined} */
   let unmatchedSlash
@@ -51623,8 +51623,8 @@ function extname(path) {
     const code = path.charCodeAt(index)
 
     if (code === 47 /* `/` */) {
-      // If we reached a path separator that was not part of a set of path
-      // separators at the end of the string, stop now.
+      / If we reached a path separator that was not part of a set of path
+      / separators at the end of the string, stop now.
       if (unmatchedSlash) {
         startPart = index + 1
         break
@@ -51634,22 +51634,22 @@ function extname(path) {
     }
 
     if (end < 0) {
-      // We saw the first non-path separator, mark this as the end of our
-      // extension.
+      / We saw the first non-path separator, mark this as the end of our
+      / extension.
       unmatchedSlash = true
       end = index + 1
     }
 
     if (code === 46 /* `.` */) {
-      // If this is our first dot, mark it as the start of our extension.
+      / If this is our first dot, mark it as the start of our extension.
       if (startDot < 0) {
         startDot = index
       } else if (preDotState !== 1) {
         preDotState = 1
       }
     } else if (startDot > -1) {
-      // We saw a non-dot and non-path separator before our dot, so we should
-      // have a good chance at having a non-empty extension.
+      / We saw a non-dot and non-path separator before our dot, so we should
+      / have a good chance at having a non-empty extension.
       preDotState = -1
     }
   }
@@ -51657,9 +51657,9 @@ function extname(path) {
   if (
     startDot < 0 ||
     end < 0 ||
-    // We saw a non-dot character immediately before the dot.
+    / We saw a non-dot character immediately before the dot.
     preDotState === 0 ||
-    // The (right-most) trimmed path component is exactly `..`.
+    / The (right-most) trimmed path component is exactly `..`.
     (preDotState === 1 && startDot === end - 1 && startDot === startPart + 1)
   ) {
     return ''
@@ -51708,7 +51708,7 @@ function normalize(path) {
 
   const absolute = path.charCodeAt(0) === 47 /* `/` */
 
-  // Normalize the path according to POSIX rules.
+  / Normalize the path according to POSIX rules.
   let value = normalizeString(path, !absolute)
 
   if (value.length === 0 && !absolute) {
@@ -51754,7 +51754,7 @@ function normalizeString(path, allowAboveRoot) {
 
     if (code === 47 /* `/` */) {
       if (lastSlash === index - 1 || dots === 1) {
-        // Empty.
+        / Empty.
       } else if (lastSlash !== index - 1 && dots === 2) {
         if (
           result.length < 2 ||
@@ -51870,7 +51870,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   urlToPath: () => (/* binding */ urlToPath)
 /* harmony export */ });
 /* harmony import */ var _minurl_shared_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./minurl.shared.js */ "../node_modules/vfile/lib/minurl.shared.js");
-/// <reference lib="dom" />
+// <reference lib="dom" />
 
 
 
@@ -51994,9 +51994,9 @@ function isUrl(fileUrlOrPath) {
   return (
     fileUrlOrPath !== null &&
     typeof fileUrlOrPath === 'object' &&
-    // @ts-expect-error: indexable.
+    / @ts-expect-error: indexable.
     fileUrlOrPath.href &&
-    // @ts-expect-error: indexable.
+    / @ts-expect-error: indexable.
     fileUrlOrPath.origin
   )
 }
@@ -52006,34 +52006,34 @@ function isUrl(fileUrlOrPath) {
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -52045,7 +52045,7 @@ function isUrl(fileUrlOrPath) {
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -52062,7 +52062,7 @@ function isUrl(fileUrlOrPath) {
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -52102,13 +52102,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   'use strict';
 
   window.EDITOR_SESSION_ID = (0, _requestsIds.getUniqueId)('wp-gutenberg-session');
-  // Wait for the Gutenberg editor to initialize
+  / Wait for the Gutenberg editor to initialize
   wp.domReady(function () {
-    // Define a function to add the custom link to the excerpt panel
+    / Define a function to add the custom link to the excerpt panel
     var addGenerateExcerptWithAI = function addGenerateExcerptWithAI() {
-      // Get the excerpt panel
+      / Get the excerpt panel
       var excerptPanel = document.querySelector('.editor-post-excerpt');
-      // Check if the excerpt panel exists and the custom link hasn't been added
+      / Check if the excerpt panel exists and the custom link hasn't been added
       if (excerptPanel && !document.querySelector('.e-excerpt-ai')) {
         var _elementorCommon;
         var rootElement = document.createElement('div');

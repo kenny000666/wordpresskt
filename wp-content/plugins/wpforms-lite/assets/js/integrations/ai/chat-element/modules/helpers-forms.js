@@ -19,7 +19,7 @@
  *
  * @return {Object} Forms helpers object.
  */
-export default function( chat ) { // eslint-disable-line no-unused-vars, max-lines-per-function
+export default function( chat ) { / eslint-disable-line no-unused-vars, max-lines-per-function
 	/**
 	 * The default `forms` mode helpers object.
 	 *
@@ -32,11 +32,11 @@ export default function( chat ) { // eslint-disable-line no-unused-vars, max-lin
 		 * @since 1.9.2
 		 */
 		init() {
-			// Set the initial form generator state.
+			/ Set the initial form generator state.
 			if ( chat.sessionId ) {
 				WPFormsAIFormGenerator.state.chatStart = true;
 
-				// Remove the selected state from the current template card.
+				/ Remove the selected state from the current template card.
 				WPFormsAIFormGenerator.main.el.$templateCard
 					.next( '.selected' ).removeClass( 'selected' );
 			}
@@ -97,7 +97,7 @@ export default function( chat ) { // eslint-disable-line no-unused-vars, max-lin
 		 *
 		 * @param {HTMLElement} element The answer element.
 		 */
-		addedAnswer( element ) { // eslint-disable-line no-unused-vars
+		addedAnswer( element ) { / eslint-disable-line no-unused-vars
 			forms.updateInactiveAnswers();
 		},
 
@@ -122,7 +122,7 @@ export default function( chat ) { // eslint-disable-line no-unused-vars, max-lin
 		updateInactiveAnswers() {
 			chat.messageList.querySelectorAll( '.wpforms-chat-item-answer:not(.active) .wpforms-chat-item-content' )
 				.forEach( ( el ) => {
-					// Set title attribute for inactive answers.
+					/ Set title attribute for inactive answers.
 					el.setAttribute( 'title', chat.modeStrings.inactiveAnswerTitle );
 				} );
 		},
@@ -152,7 +152,7 @@ export default function( chat ) { // eslint-disable-line no-unused-vars, max-lin
 				return response;
 			}
 
-			// Sanitize explanation string.
+			/ Sanitize explanation string.
 			response.explanation = wpf.sanitizeHTML( response.explanation, wpforms_builder.allowed_label_html_tags );
 
 			return response;

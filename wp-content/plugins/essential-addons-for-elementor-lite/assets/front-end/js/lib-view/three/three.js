@@ -25,7 +25,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 	const FrontSide = 0;
 	const BackSide = 1;
 	const DoubleSide = 2;
-	const TwoPassDoubleSide = 2; // r149
+	const TwoPassDoubleSide = 2; / r149
 	const NoBlending = 0;
 	const NormalBlending = 1;
 	const AdditiveBlending = 2;
@@ -163,7 +163,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 	const TangentSpaceNormalMap = 0;
 	const ObjectSpaceNormalMap = 1;
 
-	// Color space string identifiers, matching CSS Color Module Level 4 and WebGPU names where available.
+	/ Color space string identifiers, matching CSS Color Module Level 4 and WebGPU names where available.
 	const NoColorSpace = '';
 	const SRGBColorSpace = 'srgb';
 	const LinearSRGBColorSpace = 'srgb-linear';
@@ -216,7 +216,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 	const GLSL1 = '100';
 	const GLSL3 = '300 es';
 
-	const _SRGBAFormat = 1035; // fallback for WebGL 1
+	const _SRGBAFormat = 1035; / fallback for WebGL 1
 
 	const WebGLCoordinateSystem = 2000;
 	const WebGPUCoordinateSystem = 2001;
@@ -289,7 +289,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				event.target = this;
 
-				// Make a copy, in case listeners are removed while iterating.
+				/ Make a copy, in case listeners are removed while iterating.
 				const array = listenerArray.slice( 0 );
 
 				for ( let i = 0, l = array.length; i < l; i ++ ) {
@@ -314,7 +314,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 	const DEG2RAD = Math.PI / 180;
 	const RAD2DEG = 180 / Math.PI;
 
-	// http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript/21963136#21963136
+	/ http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript/21963136#21963136
 	function generateUUID() {
 
 		const d0 = Math.random() * 0xffffffff | 0;
@@ -326,7 +326,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				_lut[ d2 & 0x3f | 0x80 ] + _lut[ d2 >> 8 & 0xff ] + '-' + _lut[ d2 >> 16 & 0xff ] + _lut[ d2 >> 24 & 0xff ] +
 				_lut[ d3 & 0xff ] + _lut[ d3 >> 8 & 0xff ] + _lut[ d3 >> 16 & 0xff ] + _lut[ d3 >> 24 & 0xff ];
 
-		// .toLowerCase() here flattens concatenated strings to save heap memory space.
+		/ .toLowerCase() here flattens concatenated strings to save heap memory space.
 		return uuid.toLowerCase();
 
 	}
@@ -337,22 +337,22 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// compute euclidean modulo of m % n
-	// https://en.wikipedia.org/wiki/Modulo_operation
+	/ compute euclidean modulo of m % n
+	/ https://en.wikipedia.org/wiki/Modulo_operation
 	function euclideanModulo( n, m ) {
 
 		return ( ( n % m ) + m ) % m;
 
 	}
 
-	// Linear mapping from range <a1, a2> to range <b1, b2>
+	/ Linear mapping from range <a1, a2> to range <b1, b2>
 	function mapLinear( x, a1, a2, b1, b2 ) {
 
 		return b1 + ( x - a1 ) * ( b2 - b1 ) / ( a2 - a1 );
 
 	}
 
-	// https://www.gamedev.net/tutorials/programming/general-and-gameplay-programming/inverse-lerp-a-super-useful-yet-often-overlooked-function-r5230/
+	/ https://www.gamedev.net/tutorials/programming/general-and-gameplay-programming/inverse-lerp-a-super-useful-yet-often-overlooked-function-r5230/
 	function inverseLerp( x, y, value ) {
 
 		if ( x !== y ) {
@@ -367,28 +367,28 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// https://en.wikipedia.org/wiki/Linear_interpolation
+	/ https://en.wikipedia.org/wiki/Linear_interpolation
 	function lerp( x, y, t ) {
 
 		return ( 1 - t ) * x + t * y;
 
 	}
 
-	// http://www.rorydriscoll.com/2016/03/07/frame-rate-independent-damping-using-lerp/
+	/ http://www.rorydriscoll.com/2016/03/07/frame-rate-independent-damping-using-lerp/
 	function damp( x, y, lambda, dt ) {
 
 		return lerp( x, y, 1 - Math.exp( - lambda * dt ) );
 
 	}
 
-	// https://www.desmos.com/calculator/vcsjnyz7x4
+	/ https://www.desmos.com/calculator/vcsjnyz7x4
 	function pingpong( x, length = 1 ) {
 
 		return length - Math.abs( euclideanModulo( x, length * 2 ) - length );
 
 	}
 
-	// http://en.wikipedia.org/wiki/Smoothstep
+	/ http://en.wikipedia.org/wiki/Smoothstep
 	function smoothstep( x, min, max ) {
 
 		if ( x <= min ) return 0;
@@ -411,33 +411,33 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Random integer from <low, high> interval
+	/ Random integer from <low, high> interval
 	function randInt( low, high ) {
 
 		return low + Math.floor( Math.random() * ( high - low + 1 ) );
 
 	}
 
-	// Random float from <low, high> interval
+	/ Random float from <low, high> interval
 	function randFloat( low, high ) {
 
 		return low + Math.random() * ( high - low );
 
 	}
 
-	// Random float from <-range/2, range/2> interval
+	/ Random float from <-range/2, range/2> interval
 	function randFloatSpread( range ) {
 
 		return range * ( 0.5 - Math.random() );
 
 	}
 
-	// Deterministic pseudo-random float in the interval [ 0, 1 ]
+	/ Deterministic pseudo-random float in the interval [ 0, 1 ]
 	function seededRandom( s ) {
 
 		if ( s !== undefined ) _seed = s;
 
-		// Mulberry32 generator
+		/ Mulberry32 generator
 
 		let t = _seed += 0x6D2B79F5;
 
@@ -481,11 +481,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	function setQuaternionFromProperEuler( q, a, b, c, order ) {
 
-		// Intrinsic Proper Euler Angles - see https://en.wikipedia.org/wiki/Euler_angles
+		/ Intrinsic Proper Euler Angles - see https://en.wikipedia.org/wiki/Euler_angles
 
-		// rotations are applied to the axes in the order specified by 'order'
-		// rotation by angle 'a' is applied first, then by angle 'b', then by angle 'c'
-		// angles are in radians
+		/ rotations are applied to the axes in the order specified by 'order'
+		/ rotation by angle 'a' is applied first, then by angle 'b', then by angle 'c'
+		/ angles are in radians
 
 		const cos = Math.cos;
 		const sin = Math.sin;
@@ -880,7 +880,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		clamp( min, max ) {
 
-			// assumes min < max, componentwise
+			/ assumes min < max, componentwise
 
 			this.x = Math.max( min.x, Math.min( max.x, this.x ) );
 			this.y = Math.max( min.y, Math.min( max.y, this.y ) );
@@ -989,7 +989,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		angle() {
 
-			// computes the angle in radians with respect to the positive x-axis
+			/ computes the angle in radians with respect to the positive x-axis
 
 			const angle = Math.atan2( - this.y, - this.x ) + Math.PI;
 
@@ -1005,7 +1005,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const theta = this.dot( v ) / denominator;
 
-			// clamp, to handle numerical problems
+			/ clamp, to handle numerical problems
 
 			return Math.acos( clamp( theta, - 1, 1 ) );
 
@@ -1358,7 +1358,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		//
+		/
 
 		scale( sx, sy ) {
 
@@ -1384,7 +1384,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// for 2D Transforms
+		/ for 2D Transforms
 
 		makeTranslation( x, y ) {
 
@@ -1416,7 +1416,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		makeRotation( theta ) {
 
-			// counterclockwise
+			/ counterclockwise
 
 			const c = Math.cos( theta );
 			const s = Math.sin( theta );
@@ -1447,7 +1447,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		//
+		/
 
 		equals( matrix ) {
 
@@ -1508,11 +1508,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	function arrayNeedsUint32( array ) {
 
-		// assumes larger values usually on last
+		/ assumes larger values usually on last
 
 		for ( let i = array.length - 1; i >= 0; -- i ) {
 
-			if ( array[ i ] >= 65535 ) return true; // account for PRIMITIVE_RESTART_FIXED_INDEX, #24565
+			if ( array[ i ] >= 65535 ) return true; / account for PRIMITIVE_RESTART_FIXED_INDEX, #24565
 
 		}
 
@@ -1817,7 +1817,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					} else {
 
-						// assuming float
+						/ assuming float
 
 						data[ i ] = SRGBToLinear( data[ i ] );
 
@@ -1889,7 +1889,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( Array.isArray( data ) ) {
 
-					// cube texture
+					/ cube texture
 
 					url = [];
 
@@ -1909,7 +1909,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				} else {
 
-					// texture
+					/ texture
 
 					url = serializeImage( data );
 
@@ -1937,7 +1937,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			( typeof HTMLCanvasElement !== 'undefined' && image instanceof HTMLCanvasElement ) ||
 			( typeof ImageBitmap !== 'undefined' && image instanceof ImageBitmap ) ) {
 
-			// default images
+			/ default images
 
 			return ImageUtils.getDataURL( image );
 
@@ -1945,7 +1945,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( image.data ) {
 
-				// images of DataTexture
+				/ images of DataTexture
 
 				return {
 					data: Array.from( image.data ),
@@ -2010,13 +2010,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			this.generateMipmaps = true;
 			this.premultiplyAlpha = false;
 			this.flipY = true;
-			this.unpackAlignment = 4;	// valid values: 1, 2, 4, 8 (see http://www.khronos.org/opengles/sdk/docs/man/xhtml/glPixelStorei.xml)
+			this.unpackAlignment = 4;	/ valid values: 1, 2, 4, 8 (see http://www.khronos.org/opengles/sdk/docs/man/xhtml/glPixelStorei.xml)
 
 			if ( typeof colorSpace === 'string' ) {
 
 				this.colorSpace = colorSpace;
 
-			} else { // @deprecated, r152
+			} else { / @deprecated, r152
 
 				warnOnce( 'THREE.Texture: Property .encoding has been replaced by .colorSpace.' );
 				this.colorSpace = colorSpace === sRGBEncoding ? SRGBColorSpace : NoColorSpace;
@@ -2029,8 +2029,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			this.version = 0;
 			this.onUpdate = null;
 
-			this.isRenderTargetTexture = false; // indicates whether a texture belongs to a render target or not
-			this.needsPMREMUpdate = false; // indicates whether this texture should be processed by PMREMGenerator or not (only relevant for render target textures)
+			this.isRenderTargetTexture = false; / indicates whether a texture belongs to a render target or not
+			this.needsPMREMUpdate = false; / indicates whether this texture should be processed by PMREMGenerator or not (only relevant for render target textures)
 
 		}
 
@@ -2261,14 +2261,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		get encoding() { // @deprecated, r152
+		get encoding() { / @deprecated, r152
 
 			warnOnce( 'THREE.Texture: Property .encoding has been replaced by .colorSpace.' );
 			return this.colorSpace === SRGBColorSpace ? sRGBEncoding : LinearEncoding;
 
 		}
 
-		set encoding( encoding ) { // @deprecated, r152
+		set encoding( encoding ) { / @deprecated, r152
 
 			warnOnce( 'THREE.Texture: Property .encoding has been replaced by .colorSpace.' );
 			this.colorSpace = encoding === sRGBEncoding ? SRGBColorSpace : NoColorSpace;
@@ -2540,9 +2540,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		setAxisAngleFromQuaternion( q ) {
 
-			// http://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToAngle/index.htm
+			/ http://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToAngle/index.htm
 
-			// q is assumed to be normalized
+			/ q is assumed to be normalized
 
 			this.w = 2 * Math.acos( q.w );
 
@@ -2568,13 +2568,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		setAxisAngleFromRotationMatrix( m ) {
 
-			// http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToAngle/index.htm
+			/ http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToAngle/index.htm
 
-			// assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
+			/ assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
 
-			let angle, x, y, z; // variables for result
-			const epsilon = 0.01,		// margin to allow for rounding errors
-				epsilon2 = 0.1,		// margin to distinguish between 0 and 180 degrees
+			let angle, x, y, z; / variables for result
+			const epsilon = 0.01,		/ margin to allow for rounding errors
+				epsilon2 = 0.1,		/ margin to distinguish between 0 and 180 degrees
 
 				te = m.elements,
 
@@ -2586,24 +2586,24 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			     ( Math.abs( m13 - m31 ) < epsilon ) &&
 			     ( Math.abs( m23 - m32 ) < epsilon ) ) {
 
-				// singularity found
-				// first check for identity matrix which must have +1 for all terms
-				// in leading diagonal and zero in other terms
+				/ singularity found
+				/ first check for identity matrix which must have +1 for all terms
+				/ in leading diagonal and zero in other terms
 
 				if ( ( Math.abs( m12 + m21 ) < epsilon2 ) &&
 				     ( Math.abs( m13 + m31 ) < epsilon2 ) &&
 				     ( Math.abs( m23 + m32 ) < epsilon2 ) &&
 				     ( Math.abs( m11 + m22 + m33 - 3 ) < epsilon2 ) ) {
 
-					// this singularity is identity matrix so angle = 0
+					/ this singularity is identity matrix so angle = 0
 
 					this.set( 1, 0, 0, 0 );
 
-					return this; // zero angle, arbitrary axis
+					return this; / zero angle, arbitrary axis
 
 				}
 
-				// otherwise this singularity is angle = 180
+				/ otherwise this singularity is angle = 180
 
 				angle = Math.PI;
 
@@ -2616,7 +2616,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( ( xx > yy ) && ( xx > zz ) ) {
 
-					// m11 is the largest diagonal term
+					/ m11 is the largest diagonal term
 
 					if ( xx < epsilon ) {
 
@@ -2634,7 +2634,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				} else if ( yy > zz ) {
 
-					// m22 is the largest diagonal term
+					/ m22 is the largest diagonal term
 
 					if ( yy < epsilon ) {
 
@@ -2652,7 +2652,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				} else {
 
-					// m33 is the largest diagonal term so base result on this
+					/ m33 is the largest diagonal term so base result on this
 
 					if ( zz < epsilon ) {
 
@@ -2672,20 +2672,20 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				this.set( x, y, z, angle );
 
-				return this; // return 180 deg rotation
+				return this; / return 180 deg rotation
 
 			}
 
-			// as we have reached here there are no singularities so we can handle normally
+			/ as we have reached here there are no singularities so we can handle normally
 
 			let s = Math.sqrt( ( m32 - m23 ) * ( m32 - m23 ) +
 				( m13 - m31 ) * ( m13 - m31 ) +
-				( m21 - m12 ) * ( m21 - m12 ) ); // used to normalize
+				( m21 - m12 ) * ( m21 - m12 ) ); / used to normalize
 
 			if ( Math.abs( s ) < 0.001 ) s = 1;
 
-			// prevent divide by zero, should not happen if matrix is orthogonal and should be
-			// caught by singularity test above, but I've left it in just in case
+			/ prevent divide by zero, should not happen if matrix is orthogonal and should be
+			/ caught by singularity test above, but I've left it in just in case
 
 			this.x = ( m32 - m23 ) / s;
 			this.y = ( m13 - m31 ) / s;
@@ -2720,7 +2720,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		clamp( min, max ) {
 
-			// assumes min < max, componentwise
+			/ assumes min < max, componentwise
 
 			this.x = Math.max( min.x, Math.min( max.x, this.x ) );
 			this.y = Math.max( min.y, Math.min( max.y, this.y ) );
@@ -2950,7 +2950,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( options.encoding !== undefined ) {
 
-				// @deprecated, r152
+				/ @deprecated, r152
 				warnOnce( 'THREE.WebGLRenderTarget: option.encoding has been replaced by option.colorSpace.' );
 				options.colorSpace = options.encoding === sRGBEncoding ? SRGBColorSpace : NoColorSpace;
 
@@ -3023,7 +3023,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			this.texture = source.texture.clone();
 			this.texture.isRenderTargetTexture = true;
 
-			// ensure image object is not shared, see #20328
+			/ ensure image object is not shared, see #20328
 
 			const image = Object.assign( {}, source.texture.image );
 			this.texture.source = new Source( image );
@@ -3104,13 +3104,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		constructor( data = null, width = 1, height = 1, depth = 1 ) {
 
-			// We're going to add .setXXX() methods for setting properties later.
-			// Users can still set in DataTexture3D directly.
-			//
-			//	const texture = new THREE.DataTexture3D( data, width, height, depth );
-			// 	texture.anisotropy = 16;
-			//
-			// See #14839
+			/ We're going to add .setXXX() methods for setting properties later.
+			/ Users can still set in DataTexture3D directly.
+			/
+			/	const texture = new THREE.DataTexture3D( data, width, height, depth );
+			/ 	texture.anisotropy = 16;
+			/
+			/ See #14839
 
 			super( null );
 
@@ -3243,7 +3243,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		static slerpFlat( dst, dstOffset, src0, srcOffset0, src1, srcOffset1, t ) {
 
-			// fuzz-free, array-based Quaternion SLERP operation
+			/ fuzz-free, array-based Quaternion SLERP operation
 
 			let x0 = src0[ srcOffset0 + 0 ],
 				y0 = src0[ srcOffset0 + 1 ],
@@ -3282,7 +3282,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					dir = ( cos >= 0 ? 1 : - 1 ),
 					sqrSin = 1 - cos * cos;
 
-				// Skip the Slerp for tiny steps to avoid numeric problems:
+				/ Skip the Slerp for tiny steps to avoid numeric problems:
 				if ( sqrSin > Number.EPSILON ) {
 
 					const sin = Math.sqrt( sqrSin ),
@@ -3300,7 +3300,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				z0 = z0 * s + z1 * tDir;
 				w0 = w0 * s + w1 * tDir;
 
-				// Normalize in case we just did a lerp:
+				/ Normalize in case we just did a lerp:
 				if ( s === 1 - t ) {
 
 					const f = 1 / Math.sqrt( x0 * x0 + y0 * y0 + z0 * z0 + w0 * w0 );
@@ -3430,9 +3430,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const x = euler._x, y = euler._y, z = euler._z, order = euler._order;
 
-			// http://www.mathworks.com/matlabcentral/fileexchange/
-			// 	20696-function-to-convert-between-dcm-euler-angles-quaternions-and-euler-vectors/
-			//	content/SpinCalc.m
+			/ http://www.mathworks.com/matlabcentral/fileexchange/
+			/ 	20696-function-to-convert-between-dcm-euler-angles-quaternions-and-euler-vectors/
+			/	content/SpinCalc.m
 
 			const cos = Math.cos;
 			const sin = Math.sin;
@@ -3502,9 +3502,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		setFromAxisAngle( axis, angle ) {
 
-			// http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/index.htm
+			/ http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/index.htm
 
-			// assumes axis is normalized
+			/ assumes axis is normalized
 
 			const halfAngle = angle / 2, s = Math.sin( halfAngle );
 
@@ -3521,9 +3521,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		setFromRotationMatrix( m ) {
 
-			// http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
+			/ http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
 
-			// assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
+			/ assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
 
 			const te = m.elements,
 
@@ -3579,13 +3579,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		setFromUnitVectors( vFrom, vTo ) {
 
-			// assumes direction vectors vFrom and vTo are normalized
+			/ assumes direction vectors vFrom and vTo are normalized
 
 			let r = vFrom.dot( vTo ) + 1;
 
 			if ( r < Number.EPSILON ) {
 
-				// vFrom and vTo point in opposite directions
+				/ vFrom and vTo point in opposite directions
 
 				r = 0;
 
@@ -3607,7 +3607,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			} else {
 
-				// crossVectors( vFrom, vTo ); // inlined to avoid cyclic dependency on Vector3
+				/ crossVectors( vFrom, vTo ); / inlined to avoid cyclic dependency on Vector3
 
 				this._x = vFrom.y * vTo.z - vFrom.z * vTo.y;
 				this._y = vFrom.z * vTo.x - vFrom.x * vTo.z;
@@ -3648,7 +3648,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		invert() {
 
-			// quaternion is assumed to have unit length
+			/ quaternion is assumed to have unit length
 
 			return this.conjugate();
 
@@ -3726,7 +3726,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		multiplyQuaternions( a, b ) {
 
-			// from http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm
+			/ from http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm
 
 			const qax = a._x, qay = a._y, qaz = a._z, qaw = a._w;
 			const qbx = b._x, qby = b._y, qbz = b._z, qbw = b._w;
@@ -3749,7 +3749,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const x = this._x, y = this._y, z = this._z, w = this._w;
 
-			// http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/
+			/ http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/
 
 			let cosHalfTheta = w * qb._w + x * qb._x + y * qb._y + z * qb._z;
 
@@ -3820,9 +3820,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		random() {
 
-			// Derived from http://planning.cs.uiuc.edu/node198.html
-			// Note, this source uses w, x, y, z ordering,
-			// so we swap the order below.
+			/ Derived from http://planning.cs.uiuc.edu/node198.html
+			/ Note, this source uses w, x, y, z ordering,
+			/ so we swap the order below.
 
 			const u1 = Math.random();
 			const sqrt1u1 = Math.sqrt( 1 - u1 );
@@ -3923,7 +3923,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		set( x, y, z ) {
 
-			if ( z === undefined ) z = this.z; // sprite.scale.set(x,y)
+			if ( z === undefined ) z = this.z; / sprite.scale.set(x,y)
 
 			this.x = x;
 			this.y = y;
@@ -4162,14 +4162,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const x = this.x, y = this.y, z = this.z;
 			const qx = q.x, qy = q.y, qz = q.z, qw = q.w;
 
-			// calculate quat * vector
+			/ calculate quat * vector
 
 			const ix = qw * x + qy * z - qz * y;
 			const iy = qw * y + qz * x - qx * z;
 			const iz = qw * z + qx * y - qy * x;
 			const iw = - qx * x - qy * y - qz * z;
 
-			// calculate result * inverse quat
+			/ calculate result * inverse quat
 
 			this.x = ix * qw + iw * - qx + iy * - qz - iz * - qy;
 			this.y = iy * qw + iw * - qy + iz * - qx - ix * - qz;
@@ -4193,8 +4193,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		transformDirection( m ) {
 
-			// input: THREE.Matrix4 affine matrix
-			// vector interpreted as a direction
+			/ input: THREE.Matrix4 affine matrix
+			/ vector interpreted as a direction
 
 			const x = this.x, y = this.y, z = this.z;
 			const e = m.elements;
@@ -4245,7 +4245,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		clamp( min, max ) {
 
-			// assumes min < max, componentwise
+			/ assumes min < max, componentwise
 
 			this.x = Math.max( min.x, Math.min( max.x, this.x ) );
 			this.y = Math.max( min.y, Math.min( max.y, this.y ) );
@@ -4329,7 +4329,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// TODO lengthSquared?
+		/ TODO lengthSquared?
 
 		lengthSq() {
 
@@ -4422,8 +4422,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		reflect( normal ) {
 
-			// reflect incident vector off plane orthogonal to normal
-			// normal is assumed to have unit length
+			/ reflect incident vector off plane orthogonal to normal
+			/ normal is assumed to have unit length
 
 			return this.sub( _vector$b.copy( normal ).multiplyScalar( 2 * this.dot( normal ) ) );
 
@@ -4437,7 +4437,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const theta = this.dot( v ) / denominator;
 
-			// clamp, to handle numerical problems
+			/ clamp, to handle numerical problems
 
 			return Math.acos( clamp( theta, - 1, 1 ) );
 
@@ -4603,7 +4603,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		randomDirection() {
 
-			// Derived from https://mathworld.wolfram.com/SpherePointPicking.html
+			/ Derived from https://mathworld.wolfram.com/SpherePointPicking.html
 
 			const u = ( Math.random() - 0.5 ) * 2;
 			const t = Math.random() * Math.PI * 2;
@@ -4737,7 +4737,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		isEmpty() {
 
-			// this is a more robust check for empty than ( volume <= 0 ) because volume can get positive with two negative axes
+			/ this is a more robust check for empty than ( volume <= 0 ) because volume can get positive with two negative axes
 
 			return ( this.max.x < this.min.x ) || ( this.max.y < this.min.y ) || ( this.max.z < this.min.z );
 
@@ -4784,8 +4784,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		expandByObject( object, precise = false ) {
 
-			// Computes the world-axis-aligned bounding box of an object (including its children),
-			// accounting for both the object's, and children's, world transforms
+			/ Computes the world-axis-aligned bounding box of an object (including its children),
+			/ accounting for both the object's, and children's, world transforms
 
 			object.updateWorldMatrix( false, false );
 
@@ -4867,8 +4867,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		getParameter( point, target ) {
 
-			// This can potentially have a divide by zero if the box
-			// has a size dimension of 0.
+			/ This can potentially have a divide by zero if the box
+			/ has a size dimension of 0.
 
 			return target.set(
 				( point.x - this.min.x ) / ( this.max.x - this.min.x ),
@@ -4880,7 +4880,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		intersectsBox( box ) {
 
-			// using 6 splitting planes to rule out intersections.
+			/ using 6 splitting planes to rule out intersections.
 			return box.max.x < this.min.x || box.min.x > this.max.x ||
 				box.max.y < this.min.y || box.min.y > this.max.y ||
 				box.max.z < this.min.z || box.min.z > this.max.z ? false : true;
@@ -4889,18 +4889,18 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		intersectsSphere( sphere ) {
 
-			// Find the point on the AABB closest to the sphere center.
+			/ Find the point on the AABB closest to the sphere center.
 			this.clampPoint( sphere.center, _vector$a );
 
-			// If that point is inside the sphere, the AABB and sphere intersect.
+			/ If that point is inside the sphere, the AABB and sphere intersect.
 			return _vector$a.distanceToSquared( sphere.center ) <= ( sphere.radius * sphere.radius );
 
 		}
 
 		intersectsPlane( plane ) {
 
-			// We compute the minimum and maximum dot product values. If those values
-			// are on the same side (back or front) of the plane, then there is no intersection.
+			/ We compute the minimum and maximum dot product values. If those values
+			/ are on the same side (back or front) of the plane, then there is no intersection.
 
 			let min, max;
 
@@ -4952,23 +4952,23 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// compute box center and extents
+			/ compute box center and extents
 			this.getCenter( _center );
 			_extents.subVectors( this.max, _center );
 
-			// translate triangle to aabb origin
+			/ translate triangle to aabb origin
 			_v0$2.subVectors( triangle.a, _center );
 			_v1$7.subVectors( triangle.b, _center );
 			_v2$4.subVectors( triangle.c, _center );
 
-			// compute edge vectors for triangle
+			/ compute edge vectors for triangle
 			_f0.subVectors( _v1$7, _v0$2 );
 			_f1.subVectors( _v2$4, _v1$7 );
 			_f2.subVectors( _v0$2, _v2$4 );
 
-			// test against axes that are given by cross product combinations of the edges of the triangle and the edges of the aabb
-			// make an axis testing of each of the 3 sides of the aabb against each of the 3 sides of the triangle = 9 axis of separation
-			// axis_ij = u_i x f_j (u0, u1, u2 = face normals of aabb = x,y,z axes vectors since aabb is axis aligned)
+			/ test against axes that are given by cross product combinations of the edges of the triangle and the edges of the aabb
+			/ make an axis testing of each of the 3 sides of the aabb against each of the 3 sides of the triangle = 9 axis of separation
+			/ axis_ij = u_i x f_j (u0, u1, u2 = face normals of aabb = x,y,z axes vectors since aabb is axis aligned)
 			let axes = [
 				0, - _f0.z, _f0.y, 0, - _f1.z, _f1.y, 0, - _f2.z, _f2.y,
 				_f0.z, 0, - _f0.x, _f1.z, 0, - _f1.x, _f2.z, 0, - _f2.x,
@@ -4980,7 +4980,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// test 3 face normals from the aabb
+			/ test 3 face normals from the aabb
 			axes = [ 1, 0, 0, 0, 1, 0, 0, 0, 1 ];
 			if ( ! satForAxes( axes, _v0$2, _v1$7, _v2$4, _extents ) ) {
 
@@ -4988,8 +4988,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// finally testing the face normal of the triangle
-			// use already existing triangle edge vectors here
+			/ finally testing the face normal of the triangle
+			/ use already existing triangle edge vectors here
 			_triangleNormal.crossVectors( _f0, _f1 );
 			axes = [ _triangleNormal.x, _triangleNormal.y, _triangleNormal.z ];
 
@@ -5032,7 +5032,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			this.min.max( box.min );
 			this.max.min( box.max );
 
-			// ensure that if there is no overlap, the result is fully empty, not slightly empty with non-inf/+inf values that will cause subsequence intersects to erroneously return valid values.
+			/ ensure that if there is no overlap, the result is fully empty, not slightly empty with non-inf/+inf values that will cause subsequence intersects to erroneously return valid values.
 			if ( this.isEmpty() ) this.makeEmpty();
 
 			return this;
@@ -5050,18 +5050,18 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		applyMatrix4( matrix ) {
 
-			// transform of empty box is an empty box.
+			/ transform of empty box is an empty box.
 			if ( this.isEmpty() ) return this;
 
-			// NOTE: I am using a binary pattern to specify all 2^3 combinations below
-			_points[ 0 ].set( this.min.x, this.min.y, this.min.z ).applyMatrix4( matrix ); // 000
-			_points[ 1 ].set( this.min.x, this.min.y, this.max.z ).applyMatrix4( matrix ); // 001
-			_points[ 2 ].set( this.min.x, this.max.y, this.min.z ).applyMatrix4( matrix ); // 010
-			_points[ 3 ].set( this.min.x, this.max.y, this.max.z ).applyMatrix4( matrix ); // 011
-			_points[ 4 ].set( this.max.x, this.min.y, this.min.z ).applyMatrix4( matrix ); // 100
-			_points[ 5 ].set( this.max.x, this.min.y, this.max.z ).applyMatrix4( matrix ); // 101
-			_points[ 6 ].set( this.max.x, this.max.y, this.min.z ).applyMatrix4( matrix ); // 110
-			_points[ 7 ].set( this.max.x, this.max.y, this.max.z ).applyMatrix4( matrix ); // 111
+			/ NOTE: I am using a binary pattern to specify all 2^3 combinations below
+			_points[ 0 ].set( this.min.x, this.min.y, this.min.z ).applyMatrix4( matrix ); / 000
+			_points[ 1 ].set( this.min.x, this.min.y, this.max.z ).applyMatrix4( matrix ); / 001
+			_points[ 2 ].set( this.min.x, this.max.y, this.min.z ).applyMatrix4( matrix ); / 010
+			_points[ 3 ].set( this.min.x, this.max.y, this.max.z ).applyMatrix4( matrix ); / 011
+			_points[ 4 ].set( this.max.x, this.min.y, this.min.z ).applyMatrix4( matrix ); / 100
+			_points[ 5 ].set( this.max.x, this.min.y, this.max.z ).applyMatrix4( matrix ); / 101
+			_points[ 6 ].set( this.max.x, this.max.y, this.min.z ).applyMatrix4( matrix ); / 110
+			_points[ 7 ].set( this.max.x, this.max.y, this.max.z ).applyMatrix4( matrix ); / 111
 
 			this.setFromPoints( _points );
 
@@ -5101,13 +5101,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	const _box$3 = /*@__PURE__*/ new Box3();
 
-	// triangle centered vertices
+	/ triangle centered vertices
 
 	const _v0$2 = /*@__PURE__*/ new Vector3();
 	const _v1$7 = /*@__PURE__*/ new Vector3();
 	const _v2$4 = /*@__PURE__*/ new Vector3();
 
-	// triangle edge vectors
+	/ triangle edge vectors
 
 	const _f0 = /*@__PURE__*/ new Vector3();
 	const _f1 = /*@__PURE__*/ new Vector3();
@@ -5123,17 +5123,17 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 		for ( let i = 0, j = axes.length - 3; i <= j; i += 3 ) {
 
 			_testAxis.fromArray( axes, i );
-			// project the aabb onto the separating axis
+			/ project the aabb onto the separating axis
 			const r = extents.x * Math.abs( _testAxis.x ) + extents.y * Math.abs( _testAxis.y ) + extents.z * Math.abs( _testAxis.z );
-			// project all 3 vertices of the triangle onto the separating axis
+			/ project all 3 vertices of the triangle onto the separating axis
 			const p0 = v0.dot( _testAxis );
 			const p1 = v1.dot( _testAxis );
 			const p2 = v2.dot( _testAxis );
-			// actual test, basically see if either of the most extreme of the triangle points intersects r
+			/ actual test, basically see if either of the most extreme of the triangle points intersects r
 			if ( Math.max( - Math.max( p0, p1, p2 ), Math.min( p0, p1, p2 ) ) > r ) {
 
-				// points of the projected triangle are outside the projected half-length of the aabb
-				// the axis is separating and we can exit
+				/ points of the projected triangle are outside the projected half-length of the aabb
+				/ the axis is separating and we can exit
 				return false;
 
 			}
@@ -5271,7 +5271,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( this.isEmpty() ) {
 
-				// Empty sphere produces empty bounding box
+				/ Empty sphere produces empty bounding box
 				target.makeEmpty();
 				return target;
 
@@ -5319,7 +5319,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( lengthSq > ( this.radius * this.radius ) ) {
 
-				// calculate the minimal sphere
+				/ calculate the minimal sphere
 
 				const length = Math.sqrt( lengthSq );
 
@@ -5467,7 +5467,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const directionDistance = _vector$9.subVectors( point, this.origin ).dot( this.direction );
 
-			// point behind the ray
+			/ point behind the ray
 
 			if ( directionDistance < 0 ) {
 
@@ -5483,12 +5483,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		distanceSqToSegment( v0, v1, optionalPointOnRay, optionalPointOnSegment ) {
 
-			// from https://github.com/pmjoniak/GeometricTools/blob/master/GTEngine/Include/Mathematics/GteDistRaySegment.h
-			// It returns the min distance between the ray and the segment
-			// defined by v0 and v1
-			// It can also set two optional targets :
-			// - The closest point on the ray
-			// - The closest point on the segment
+			/ from https://github.com/pmjoniak/GeometricTools/blob/master/GTEngine/Include/Mathematics/GteDistRaySegment.h
+			/ It returns the min distance between the ray and the segment
+			/ defined by v0 and v1
+			/ It can also set two optional targets :
+			/ - The closest point on the ray
+			/ - The closest point on the segment
 
 			_segCenter.copy( v0 ).add( v1 ).multiplyScalar( 0.5 );
 			_segDir.copy( v1 ).sub( v0 ).normalize();
@@ -5504,7 +5504,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( det > 0 ) {
 
-				// The ray and segment are not parallel.
+				/ The ray and segment are not parallel.
 
 				s0 = a01 * b1 - b0;
 				s1 = a01 * b0 - b1;
@@ -5516,8 +5516,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						if ( s1 <= extDet ) {
 
-							// region 0
-							// Minimum at interior points of ray and segment.
+							/ region 0
+							/ Minimum at interior points of ray and segment.
 
 							const invDet = 1 / det;
 							s0 *= invDet;
@@ -5526,7 +5526,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						} else {
 
-							// region 1
+							/ region 1
 
 							s1 = segExtent;
 							s0 = Math.max( 0, - ( a01 * s1 + b0 ) );
@@ -5536,7 +5536,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					} else {
 
-						// region 5
+						/ region 5
 
 						s1 = - segExtent;
 						s0 = Math.max( 0, - ( a01 * s1 + b0 ) );
@@ -5548,7 +5548,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					if ( s1 <= - extDet ) {
 
-						// region 4
+						/ region 4
 
 						s0 = Math.max( 0, - ( - a01 * segExtent + b0 ) );
 						s1 = ( s0 > 0 ) ? - segExtent : Math.min( Math.max( - segExtent, - b1 ), segExtent );
@@ -5556,7 +5556,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					} else if ( s1 <= extDet ) {
 
-						// region 3
+						/ region 3
 
 						s0 = 0;
 						s1 = Math.min( Math.max( - segExtent, - b1 ), segExtent );
@@ -5564,7 +5564,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					} else {
 
-						// region 2
+						/ region 2
 
 						s0 = Math.max( 0, - ( a01 * segExtent + b0 ) );
 						s1 = ( s0 > 0 ) ? segExtent : Math.min( Math.max( - segExtent, - b1 ), segExtent );
@@ -5576,7 +5576,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			} else {
 
-				// Ray and segment are parallel.
+				/ Ray and segment are parallel.
 
 				s1 = ( a01 > 0 ) ? - segExtent : segExtent;
 				s0 = Math.max( 0, - ( a01 * s1 + b0 ) );
@@ -5611,21 +5611,21 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const thc = Math.sqrt( radius2 - d2 );
 
-			// t0 = first intersect point - entrance on front of sphere
+			/ t0 = first intersect point - entrance on front of sphere
 			const t0 = tca - thc;
 
-			// t1 = second intersect point - exit point on back of sphere
+			/ t1 = second intersect point - exit point on back of sphere
 			const t1 = tca + thc;
 
-			// test to see if t1 is behind the ray - if so, return null
+			/ test to see if t1 is behind the ray - if so, return null
 			if ( t1 < 0 ) return null;
 
-			// test to see if t0 is behind the ray:
-			// if it is, the ray is inside the sphere, so return the second exit point scaled by t1,
-			// in order to always return an intersect point that is in front of the ray.
+			/ test to see if t0 is behind the ray:
+			/ if it is, the ray is inside the sphere, so return the second exit point scaled by t1,
+			/ in order to always return an intersect point that is in front of the ray.
 			if ( t0 < 0 ) return this.at( t1, target );
 
-			// else t0 is in front of the ray, so return the first collision point scaled by t0
+			/ else t0 is in front of the ray, so return the first collision point scaled by t0
 			return this.at( t0, target );
 
 		}
@@ -5642,14 +5642,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( denominator === 0 ) {
 
-				// line is coplanar, return origin
+				/ line is coplanar, return origin
 				if ( plane.distanceToPoint( this.origin ) === 0 ) {
 
 					return 0;
 
 				}
 
-				// Null is preferable to undefined since undefined means.... it is undefined
+				/ Null is preferable to undefined since undefined means.... it is undefined
 
 				return null;
 
@@ -5657,7 +5657,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const t = - ( this.origin.dot( plane.normal ) + plane.constant ) / denominator;
 
-			// Return if the ray never intersects the plane
+			/ Return if the ray never intersects the plane
 
 			return t >= 0 ? t : null;
 
@@ -5679,7 +5679,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		intersectsPlane( plane ) {
 
-			// check if the ray lies on the plane first
+			/ check if the ray lies on the plane first
 
 			const distToPoint = plane.distanceToPoint( this.origin );
 
@@ -5697,7 +5697,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// ray origin is behind the plane (and is pointing behind it)
+			/ ray origin is behind the plane (and is pointing behind it)
 
 			return false;
 
@@ -5761,7 +5761,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( tzmax < tmax || tmax !== tmax ) tmax = tzmax;
 
-			//return point closest to the ray (positive side)
+			/return point closest to the ray (positive side)
 
 			if ( tmax < 0 ) return null;
 
@@ -5777,19 +5777,19 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		intersectTriangle( a, b, c, backfaceCulling, target ) {
 
-			// Compute the offset origin, edges, and normal.
+			/ Compute the offset origin, edges, and normal.
 
-			// from https://github.com/pmjoniak/GeometricTools/blob/master/GTEngine/Include/Mathematics/GteIntrRay3Triangle3.h
+			/ from https://github.com/pmjoniak/GeometricTools/blob/master/GTEngine/Include/Mathematics/GteIntrRay3Triangle3.h
 
 			_edge1.subVectors( b, a );
 			_edge2.subVectors( c, a );
 			_normal$1.crossVectors( _edge1, _edge2 );
 
-			// Solve Q + t*D = b1*E1 + b2*E2 (Q = kDiff, D = ray direction,
-			// E1 = kEdge1, E2 = kEdge2, N = Cross(E1,E2)) by
-			//   |Dot(D,N)|*b1 = sign(Dot(D,N))*Dot(D,Cross(Q,E2))
-			//   |Dot(D,N)|*b2 = sign(Dot(D,N))*Dot(D,Cross(E1,Q))
-			//   |Dot(D,N)|*t = -sign(Dot(D,N))*Dot(Q,N)
+			/ Solve Q + t*D = b1*E1 + b2*E2 (Q = kDiff, D = ray direction,
+			/ E1 = kEdge1, E2 = kEdge2, N = Cross(E1,E2)) by
+			/   |Dot(D,N)|*b1 = sign(Dot(D,N))*Dot(D,Cross(Q,E2))
+			/   |Dot(D,N)|*b2 = sign(Dot(D,N))*Dot(D,Cross(E1,Q))
+			/   |Dot(D,N)|*t = -sign(Dot(D,N))*Dot(Q,N)
 			let DdN = this.direction.dot( _normal$1 );
 			let sign;
 
@@ -5812,7 +5812,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			_diff.subVectors( this.origin, a );
 			const DdQxE2 = sign * this.direction.dot( _edge2.crossVectors( _diff, _edge2 ) );
 
-			// b1 < 0, no intersection
+			/ b1 < 0, no intersection
 			if ( DdQxE2 < 0 ) {
 
 				return null;
@@ -5821,31 +5821,31 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const DdE1xQ = sign * this.direction.dot( _edge1.cross( _diff ) );
 
-			// b2 < 0, no intersection
+			/ b2 < 0, no intersection
 			if ( DdE1xQ < 0 ) {
 
 				return null;
 
 			}
 
-			// b1+b2 > 1, no intersection
+			/ b1+b2 > 1, no intersection
 			if ( DdQxE2 + DdE1xQ > DdN ) {
 
 				return null;
 
 			}
 
-			// Line intersects triangle, check if ray does.
+			/ Line intersects triangle, check if ray does.
 			const QdN = - sign * _diff.dot( _normal$1 );
 
-			// t < 0, no intersection
+			/ t < 0, no intersection
 			if ( QdN < 0 ) {
 
 				return null;
 
 			}
 
-			// Ray intersects triangle.
+			/ Ray intersects triangle.
 			return this.at( QdN / DdN, target );
 
 		}
@@ -5998,7 +5998,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		extractRotation( m ) {
 
-			// this method does not support reflection matrices
+			/ this method does not support reflection matrices
 
 			const te = this.elements;
 			const me = m.elements;
@@ -6138,12 +6138,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// bottom row
+			/ bottom row
 			te[ 3 ] = 0;
 			te[ 7 ] = 0;
 			te[ 11 ] = 0;
 
-			// last column
+			/ last column
 			te[ 12 ] = 0;
 			te[ 13 ] = 0;
 			te[ 14 ] = 0;
@@ -6167,7 +6167,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( _z.lengthSq() === 0 ) {
 
-				// eye and target are in the same position
+				/ eye and target are in the same position
 
 				_z.z = 1;
 
@@ -6178,7 +6178,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( _x.lengthSq() === 0 ) {
 
-				// up and z are parallel
+				/ up and z are parallel
 
 				if ( Math.abs( up.z ) === 1 ) {
 
@@ -6280,8 +6280,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const n31 = te[ 2 ], n32 = te[ 6 ], n33 = te[ 10 ], n34 = te[ 14 ];
 			const n41 = te[ 3 ], n42 = te[ 7 ], n43 = te[ 11 ], n44 = te[ 15 ];
 
-			//TODO: make this more efficient
-			//( based on http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm )
+			/TODO: make this more efficient
+			/( based on http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm )
 
 			return (
 				n41 * (
@@ -6362,7 +6362,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		invert() {
 
-			// based on http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm
+			/ based on http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm
 			const te = this.elements,
 
 				n11 = te[ 0 ], n21 = te[ 1 ], n31 = te[ 2 ], n41 = te[ 3 ],
@@ -6514,7 +6514,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		makeRotationAxis( axis, angle ) {
 
-			// Based on http://www.gamedev.net/reference/articles/article1199.asp
+			/ Based on http://www.gamedev.net/reference/articles/article1199.asp
 
 			const c = Math.cos( angle );
 			const s = Math.sin( angle );
@@ -6609,7 +6609,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const sy = _v1$5.set( te[ 4 ], te[ 5 ], te[ 6 ] ).length();
 			const sz = _v1$5.set( te[ 8 ], te[ 9 ], te[ 10 ] ).length();
 
-			// if determine is negative, we need to invert one scale
+			/ if determine is negative, we need to invert one scale
 			const det = this.determinant();
 			if ( det < 0 ) sx = - sx;
 
@@ -6617,7 +6617,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			position.y = te[ 13 ];
 			position.z = te[ 14 ];
 
-			// scale the rotation part
+			/ scale the rotation part
 			_m1$2.copy( this );
 
 			const invSX = 1 / sx;
@@ -6886,7 +6886,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		setFromRotationMatrix( m, order = this._order, update = true ) {
 
-			// assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
+			/ assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
 
 			const te = m.elements;
 			const m11 = te[ 0 ], m12 = te[ 4 ], m13 = te[ 8 ];
@@ -7033,7 +7033,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		reorder( newOrder ) {
 
-			// WARNING: this discards revolution information -bhouston
+			/ WARNING: this discards revolution information -bhouston
 
 			_quaternion$3.setFromEuler( this );
 
@@ -7245,7 +7245,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			this.matrixAutoUpdate = Object3D.DEFAULT_MATRIX_AUTO_UPDATE;
 			this.matrixWorldNeedsUpdate = false;
 
-			this.matrixWorldAutoUpdate = Object3D.DEFAULT_MATRIX_WORLD_AUTO_UPDATE; // checked by the renderer
+			this.matrixWorldAutoUpdate = Object3D.DEFAULT_MATRIX_WORLD_AUTO_UPDATE; / checked by the renderer
 
 			this.layers = new Layers();
 			this.visible = true;
@@ -7286,7 +7286,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		setRotationFromAxisAngle( axis, angle ) {
 
-			// assumes axis is normalized
+			/ assumes axis is normalized
 
 			this.quaternion.setFromAxisAngle( axis, angle );
 
@@ -7300,7 +7300,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		setRotationFromMatrix( m ) {
 
-			// assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
+			/ assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
 
 			this.quaternion.setFromRotationMatrix( m );
 
@@ -7308,7 +7308,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		setRotationFromQuaternion( q ) {
 
-			// assumes q is normalized
+			/ assumes q is normalized
 
 			this.quaternion.copy( q );
 
@@ -7316,8 +7316,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		rotateOnAxis( axis, angle ) {
 
-			// rotate object on axis in object space
-			// axis is assumed to be normalized
+			/ rotate object on axis in object space
+			/ axis is assumed to be normalized
 
 			_q1.setFromAxisAngle( axis, angle );
 
@@ -7329,9 +7329,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		rotateOnWorldAxis( axis, angle ) {
 
-			// rotate object on axis in world space
-			// axis is assumed to be normalized
-			// method assumes no rotated parent
+			/ rotate object on axis in world space
+			/ axis is assumed to be normalized
+			/ method assumes no rotated parent
 
 			_q1.setFromAxisAngle( axis, angle );
 
@@ -7361,8 +7361,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		translateOnAxis( axis, distance ) {
 
-			// translate object by distance along axis in object space
-			// axis is assumed to be normalized
+			/ translate object by distance along axis in object space
+			/ axis is assumed to be normalized
 
 			_v1$4.copy( axis ).applyQuaternion( this.quaternion );
 
@@ -7408,7 +7408,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		lookAt( x, y, z ) {
 
-			// This method does not support objects having non-uniformly-scaled parent(s)
+			/ This method does not support objects having non-uniformly-scaled parent(s)
 
 			if ( x.isVector3 ) {
 
@@ -7543,9 +7543,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		attach( object ) {
 
-			// adds object as a child of this, while maintaining the object's world transform
+			/ adds object as a child of this, while maintaining the object's world transform
 
-			// Note: This method does not support scene graphs having non-uniformly-scaled nodes(s)
+			/ Note: This method does not support scene graphs having non-uniformly-scaled nodes(s)
 
 			this.updateWorldMatrix( true, false );
 
@@ -7738,7 +7738,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// update children
+			/ update children
 
 			const children = this.children;
 
@@ -7778,7 +7778,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// update children
+			/ update children
 
 			if ( updateChildren === true ) {
 
@@ -7802,17 +7802,17 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		toJSON( meta ) {
 
-			// meta is a string when called from JSON.stringify
+			/ meta is a string when called from JSON.stringify
 			const isRootObject = ( meta === undefined || typeof meta === 'string' );
 
 			const output = {};
 
-			// meta is a hash used to collect geometries, materials.
-			// not providing it implies that this is the root object
-			// being serialized.
+			/ meta is a hash used to collect geometries, materials.
+			/ not providing it implies that this is the root object
+			/ being serialized.
 			if ( isRootObject ) {
 
-				// initialize meta obj
+				/ initialize meta obj
 				meta = {
 					geometries: {},
 					materials: {},
@@ -7832,7 +7832,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// standard Object3D serialization
+			/ standard Object3D serialization
 
 			const object = {};
 
@@ -7853,7 +7853,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( this.matrixAutoUpdate === false ) object.matrixAutoUpdate = false;
 
-			// object specific properties
+			/ object specific properties
 
 			if ( this.isInstancedMesh ) {
 
@@ -7864,7 +7864,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			//
+			/
 
 			function serialize( library, element ) {
 
@@ -7967,7 +7967,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			//
+			/
 
 			if ( this.children.length > 0 ) {
 
@@ -7981,7 +7981,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			//
+			/
 
 			if ( this.animations.length > 0 ) {
 
@@ -8023,9 +8023,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			return output;
 
-			// extract data from the cache hash
-			// remove metadata on each item
-			// and return as array
+			/ extract data from the cache hash
+			/ remove metadata on each item
+			/ and return as array
 			function extractFromCache( cache ) {
 
 				const values = [];
@@ -8143,8 +8143,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// static/instance method to calculate barycentric coordinates
-		// based on: http://www.blackpawn.com/texts/pointinpoly/default.html
+		/ static/instance method to calculate barycentric coordinates
+		/ based on: http://www.blackpawn.com/texts/pointinpoly/default.html
 		static getBarycoord( point, a, b, c, target ) {
 
 			_v0$1.subVectors( c, a );
@@ -8159,11 +8159,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const denom = ( dot00 * dot11 - dot01 * dot01 );
 
-			// collinear or singular triangle
+			/ collinear or singular triangle
 			if ( denom === 0 ) {
 
-				// arbitrary location outside of triangle?
-				// not sure if this is the best idea, maybe should be returning undefined
+				/ arbitrary location outside of triangle?
+				/ not sure if this is the best idea, maybe should be returning undefined
 				return target.set( - 2, - 1, - 1 );
 
 			}
@@ -8172,7 +8172,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const u = ( dot11 * dot02 - dot01 * dot12 ) * invDenom;
 			const v = ( dot00 * dot12 - dot01 * dot02 ) * invDenom;
 
-			// barycentric coordinates must always sum to 1
+			/ barycentric coordinates must always sum to 1
 			return target.set( 1 - u - v, v, u );
 
 		}
@@ -8185,7 +8185,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		static getUV( point, p1, p2, p3, uv1, uv2, uv3, target ) { // @deprecated, r151
+		static getUV( point, p1, p2, p3, uv1, uv2, uv3, target ) { / @deprecated, r151
 
 			if ( warnedGetUV === false ) {
 
@@ -8217,7 +8217,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			_v0$1.subVectors( c, b );
 			_v1$3.subVectors( a, b );
 
-			// strictly front facing
+			/ strictly front facing
 			return ( _v0$1.cross( _v1$3 ).dot( direction ) < 0 ) ? true : false;
 
 		}
@@ -8301,7 +8301,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		getUV( point, uv1, uv2, uv3, target ) { // @deprecated, r151
+		getUV( point, uv1, uv2, uv3, target ) { / @deprecated, r151
 
 			if ( warnedGetUV === false ) {
 
@@ -8344,11 +8344,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const a = this.a, b = this.b, c = this.c;
 			let v, w;
 
-			// algorithm thanks to Real-Time Collision Detection by Christer Ericson,
-			// published by Morgan Kaufmann Publishers, (c) 2005 Elsevier Inc.,
-			// under the accompanying license; see chapter 5.1.5 for detailed explanation.
-			// basically, we're distinguishing which of the voronoi regions of the triangle
-			// the point lies in with the minimum amount of redundant computation.
+			/ algorithm thanks to Real-Time Collision Detection by Christer Ericson,
+			/ published by Morgan Kaufmann Publishers, (c) 2005 Elsevier Inc.,
+			/ under the accompanying license; see chapter 5.1.5 for detailed explanation.
+			/ basically, we're distinguishing which of the voronoi regions of the triangle
+			/ the point lies in with the minimum amount of redundant computation.
 
 			_vab.subVectors( b, a );
 			_vac.subVectors( c, a );
@@ -8357,7 +8357,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const d2 = _vac.dot( _vap );
 			if ( d1 <= 0 && d2 <= 0 ) {
 
-				// vertex region of A; barycentric coords (1, 0, 0)
+				/ vertex region of A; barycentric coords (1, 0, 0)
 				return target.copy( a );
 
 			}
@@ -8367,7 +8367,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const d4 = _vac.dot( _vbp );
 			if ( d3 >= 0 && d4 <= d3 ) {
 
-				// vertex region of B; barycentric coords (0, 1, 0)
+				/ vertex region of B; barycentric coords (0, 1, 0)
 				return target.copy( b );
 
 			}
@@ -8376,7 +8376,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			if ( vc <= 0 && d1 >= 0 && d3 <= 0 ) {
 
 				v = d1 / ( d1 - d3 );
-				// edge region of AB; barycentric coords (1-v, v, 0)
+				/ edge region of AB; barycentric coords (1-v, v, 0)
 				return target.copy( a ).addScaledVector( _vab, v );
 
 			}
@@ -8386,7 +8386,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const d6 = _vac.dot( _vcp );
 			if ( d6 >= 0 && d5 <= d6 ) {
 
-				// vertex region of C; barycentric coords (0, 0, 1)
+				/ vertex region of C; barycentric coords (0, 0, 1)
 				return target.copy( c );
 
 			}
@@ -8395,7 +8395,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			if ( vb <= 0 && d2 >= 0 && d6 <= 0 ) {
 
 				w = d2 / ( d2 - d6 );
-				// edge region of AC; barycentric coords (1-w, 0, w)
+				/ edge region of AC; barycentric coords (1-w, 0, w)
 				return target.copy( a ).addScaledVector( _vac, w );
 
 			}
@@ -8405,14 +8405,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				_vbc.subVectors( c, b );
 				w = ( d4 - d3 ) / ( ( d4 - d3 ) + ( d5 - d6 ) );
-				// edge region of BC; barycentric coords (0, 1-w, w)
-				return target.copy( b ).addScaledVector( _vbc, w ); // edge region of BC
+				/ edge region of BC; barycentric coords (0, 1-w, w)
+				return target.copy( b ).addScaledVector( _vbc, w ); / edge region of BC
 
 			}
 
-			// face region
+			/ face region
 			const denom = 1 / ( va + vb + vc );
-			// u = va * denom
+			/ u = va * denom
 			v = vb * denom;
 			w = vc * denom;
 
@@ -8481,7 +8481,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this.colorWrite = true;
 
-			this.precision = null; // override the renderer's default precision for this material
+			this.precision = null; / override the renderer's default precision for this material
 
 			this.polygonOffset = false;
 			this.polygonOffsetFactor = 0;
@@ -8598,7 +8598,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				}
 			};
 
-			// standard Material serialization
+			/ standard Material serialization
 			data.uuid = this.uuid;
 			data.type = this.type;
 
@@ -8765,7 +8765,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			data.stencilZFail = this.stencilZFail;
 			data.stencilZPass = this.stencilZPass;
 
-			// rotation (SpriteMaterial)
+			/ rotation (SpriteMaterial)
 			if ( this.rotation !== undefined && this.rotation !== 0 ) data.rotation = this.rotation;
 
 			if ( this.polygonOffset === true ) data.polygonOffset = true;
@@ -8800,7 +8800,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( Object.keys( this.userData ).length > 0 ) data.userData = this.userData;
 
-			// TODO: Copied from Object3D.toJSON
+			/ TODO: Copied from Object3D.toJSON
 
 			function extractFromCache( cache ) {
 
@@ -8988,7 +8988,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( g === undefined && b === undefined ) {
 
-				// r is THREE.Color, hex or string
+				/ r is THREE.Color, hex or string
 
 				const value = r;
 
@@ -9054,7 +9054,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		setHSL( h, s, l, colorSpace = ColorManagement.workingColorSpace ) {
 
-			// h,s,l ranges are in 0.0 - 1.0
+			/ h,s,l ranges are in 0.0 - 1.0
 			h = euclideanModulo( h, 1 );
 			s = clamp( s, 0, 1 );
 			l = clamp( l, 0, 1 );
@@ -9099,7 +9099,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( m = /^(\w+)\(([^\)]*)\)/.exec( style ) ) {
 
-				// rgb / hsl
+				/ rgb / hsl
 
 				let color;
 				const name = m[ 1 ];
@@ -9112,7 +9112,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						if ( color = /^\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*(\d*\.?\d+)\s*)?$/.exec( components ) ) {
 
-							// rgb(255,0,0) rgba(255,0,0,0.5)
+							/ rgb(255,0,0) rgba(255,0,0,0.5)
 
 							handleAlpha( color[ 4 ] );
 
@@ -9127,7 +9127,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						if ( color = /^\s*(\d+)\%\s*,\s*(\d+)\%\s*,\s*(\d+)\%\s*(?:,\s*(\d*\.?\d+)\s*)?$/.exec( components ) ) {
 
-							// rgb(100%,0%,0%) rgba(100%,0%,0%,0.5)
+							/ rgb(100%,0%,0%) rgba(100%,0%,0%,0.5)
 
 							handleAlpha( color[ 4 ] );
 
@@ -9147,7 +9147,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						if ( color = /^\s*(\d*\.?\d+)\s*,\s*(\d*\.?\d+)\%\s*,\s*(\d*\.?\d+)\%\s*(?:,\s*(\d*\.?\d+)\s*)?$/.exec( components ) ) {
 
-							// hsl(120,50%,50%) hsla(120,50%,50%,0.5)
+							/ hsl(120,50%,50%) hsla(120,50%,50%,0.5)
 
 							handleAlpha( color[ 4 ] );
 
@@ -9170,14 +9170,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			} else if ( m = /^\#([A-Fa-f\d]+)$/.exec( style ) ) {
 
-				// hex color
+				/ hex color
 
 				const hex = m[ 1 ];
 				const size = hex.length;
 
 				if ( size === 3 ) {
 
-					// #ff0
+					/ #ff0
 					return this.setRGB(
 						parseInt( hex.charAt( 0 ), 16 ) / 15,
 						parseInt( hex.charAt( 1 ), 16 ) / 15,
@@ -9187,7 +9187,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				} else if ( size === 6 ) {
 
-					// #ff0000
+					/ #ff0000
 					return this.setHex( parseInt( hex, 16 ), colorSpace );
 
 				} else {
@@ -9208,17 +9208,17 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		setColorName( style, colorSpace = SRGBColorSpace ) {
 
-			// color keywords
+			/ color keywords
 			const hex = _colorKeywords[ style.toLowerCase() ];
 
 			if ( hex !== undefined ) {
 
-				// red
+				/ red
 				this.setHex( hex, colorSpace );
 
 			} else {
 
-				// unknown color
+				/ unknown color
 				console.warn( 'THREE.Color: Unknown color ' + style );
 
 			}
@@ -9295,7 +9295,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		getHSL( target, colorSpace = ColorManagement.workingColorSpace ) {
 
-			// h,s,l ranges are in 0.0 - 1.0
+			/ h,s,l ranges are in 0.0 - 1.0
 
 			ColorManagement.fromWorkingColorSpace( _color.copy( this ), colorSpace );
 
@@ -9358,7 +9358,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( colorSpace !== SRGBColorSpace ) {
 
-				// Requires CSS Color Module Level 4 (https://www.w3.org/TR/css-color-4/).
+				/ Requires CSS Color Module Level 4 (https://www.w3.org/TR/css-color-4/).
 				return `color(${ colorSpace } ${ r.toFixed( 3 ) } ${ g.toFixed( 3 ) } ${ b.toFixed( 3 ) })`;
 
 			}
@@ -9559,7 +9559,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this.type = 'MeshBasicMaterial';
 
-			this.color = new Color( 0xffffff ); // emissive
+			this.color = new Color( 0xffffff ); / emissive
 
 			this.map = null;
 
@@ -9625,13 +9625,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Fast Half Float Conversions, http://www.fox-toolkit.org/ftp/fasthalffloatconversion.pdf
+	/ Fast Half Float Conversions, http://www.fox-toolkit.org/ftp/fasthalffloatconversion.pdf
 
 	const _tables = /*@__PURE__*/ _generateTables();
 
 	function _generateTables() {
 
-		// float32 to float16 helpers
+		/ float32 to float16 helpers
 
 		const buffer = new ArrayBuffer( 4 );
 		const floatView = new Float32Array( buffer );
@@ -9644,7 +9644,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const e = i - 127;
 
-			// very small number (0, -0)
+			/ very small number (0, -0)
 
 			if ( e < - 27 ) {
 
@@ -9653,7 +9653,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				shiftTable[ i ] = 24;
 				shiftTable[ i | 0x100 ] = 24;
 
-				// small number (denorm)
+				/ small number (denorm)
 
 			} else if ( e < - 14 ) {
 
@@ -9662,7 +9662,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				shiftTable[ i ] = - e - 1;
 				shiftTable[ i | 0x100 ] = - e - 1;
 
-				// normal number
+				/ normal number
 
 			} else if ( e <= 15 ) {
 
@@ -9671,7 +9671,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				shiftTable[ i ] = 13;
 				shiftTable[ i | 0x100 ] = 13;
 
-				// large number (Infinity, -Infinity)
+				/ large number (Infinity, -Infinity)
 
 			} else if ( e < 128 ) {
 
@@ -9680,7 +9680,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				shiftTable[ i ] = 24;
 				shiftTable[ i | 0x100 ] = 24;
 
-				// stay (NaN, Infinity, -Infinity)
+				/ stay (NaN, Infinity, -Infinity)
 
 			} else {
 
@@ -9693,7 +9693,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// float16 to float32 helpers
+		/ float16 to float32 helpers
 
 		const mantissaTable = new Uint32Array( 2048 );
 		const exponentTable = new Uint32Array( 64 );
@@ -9701,19 +9701,19 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		for ( let i = 1; i < 1024; ++ i ) {
 
-			let m = i << 13; // zero pad mantissa bits
-			let e = 0; // zero exponent
+			let m = i << 13; / zero pad mantissa bits
+			let e = 0; / zero exponent
 
-			// normalized
+			/ normalized
 			while ( ( m & 0x00800000 ) === 0 ) {
 
 				m <<= 1;
-				e -= 0x00800000; // decrement exponent
+				e -= 0x00800000; / decrement exponent
 
 			}
 
-			m &= ~ 0x00800000; // clear leading 1 bit
-			e += 0x38800000; // adjust bias
+			m &= ~ 0x00800000; / clear leading 1 bit
+			e += 0x38800000; / adjust bias
 
 			mantissaTable[ i ] = m | e;
 
@@ -9764,7 +9764,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// float32 to float16
+	/ float32 to float16
 
 	function toHalfFloat( val ) {
 
@@ -9779,7 +9779,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// float16 to float32
+	/ float16 to float32
 
 	function fromHalfFloat( val ) {
 
@@ -9958,7 +9958,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		set( value, offset = 0 ) {
 
-			// Matching BufferAttribute constructor, do not normalize the array.
+			/ Matching BufferAttribute constructor, do not normalize the array.
 			this.array.set( value, offset );
 
 			return this;
@@ -10158,7 +10158,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	//
+	/
 
 	class Int8BufferAttribute extends BufferAttribute {
 
@@ -10581,7 +10581,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		rotateX( angle ) {
 
-			// rotate geometry around world x-axis
+			/ rotate geometry around world x-axis
 
 			_m1.makeRotationX( angle );
 
@@ -10593,7 +10593,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		rotateY( angle ) {
 
-			// rotate geometry around world y-axis
+			/ rotate geometry around world y-axis
 
 			_m1.makeRotationY( angle );
 
@@ -10605,7 +10605,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		rotateZ( angle ) {
 
-			// rotate geometry around world z-axis
+			/ rotate geometry around world z-axis
 
 			_m1.makeRotationZ( angle );
 
@@ -10617,7 +10617,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		translate( x, y, z ) {
 
-			// translate geometry
+			/ translate geometry
 
 			_m1.makeTranslation( x, y, z );
 
@@ -10629,7 +10629,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		scale( x, y, z ) {
 
-			// scale geometry
+			/ scale geometry
 
 			_m1.makeScale( x, y, z );
 
@@ -10708,7 +10708,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				this.boundingBox.setFromBufferAttribute( position );
 
-				// process morph attributes if present
+				/ process morph attributes if present
 
 				if ( morphAttributesPosition ) {
 
@@ -10773,13 +10773,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( position ) {
 
-				// first, find the center of the bounding sphere
+				/ first, find the center of the bounding sphere
 
 				const center = this.boundingSphere.center;
 
 				_box$1.setFromBufferAttribute( position );
 
-				// process morph attributes if present
+				/ process morph attributes if present
 
 				if ( morphAttributesPosition ) {
 
@@ -10809,8 +10809,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				_box$1.getCenter( center );
 
-				// second, try to find a boundingSphere with a radius smaller than the
-				// boundingSphere of the boundingBox: sqrt(3) smaller in the best case
+				/ second, try to find a boundingSphere with a radius smaller than the
+				/ boundingSphere of the boundingBox: sqrt(3) smaller in the best case
 
 				let maxRadiusSq = 0;
 
@@ -10822,7 +10822,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// process morph attributes if present
+				/ process morph attributes if present
 
 				if ( morphAttributesPosition ) {
 
@@ -10867,8 +10867,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const index = this.index;
 			const attributes = this.attributes;
 
-			// based on http://www.terathon.com/code/tangent.html
-			// (per vertex tangents)
+			/ based on http://www.terathon.com/code/tangent.html
+			/ (per vertex tangents)
 
 			if ( index === null ||
 				 attributes.position === undefined ||
@@ -10933,7 +10933,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				const r = 1.0 / ( uvB.x * uvC.y - uvC.x * uvB.y );
 
-				// silently ignore degenerate uv triangles having coincident or colinear vertices
+				/ silently ignore degenerate uv triangles having coincident or colinear vertices
 
 				if ( ! isFinite( r ) ) return;
 
@@ -10990,12 +10990,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				const t = tan1[ v ];
 
-				// Gram-Schmidt orthogonalize
+				/ Gram-Schmidt orthogonalize
 
 				tmp.copy( t );
 				tmp.sub( n.multiplyScalar( n.dot( t ) ) ).normalize();
 
-				// Calculate handedness
+				/ Calculate handedness
 
 				tmp2.crossVectors( n2, t );
 				const test = tmp2.dot( tan2[ v ] );
@@ -11043,7 +11043,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				} else {
 
-					// reset existing normals to zero
+					/ reset existing normals to zero
 
 					for ( let i = 0, il = normalAttribute.count; i < il; i ++ ) {
 
@@ -11057,7 +11057,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				const nA = new Vector3(), nB = new Vector3(), nC = new Vector3();
 				const cb = new Vector3(), ab = new Vector3();
 
-				// indexed elements
+				/ indexed elements
 
 				if ( index ) {
 
@@ -11091,7 +11091,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				} else {
 
-					// non-indexed elements (unconnected triangle soup)
+					/ non-indexed elements (unconnected triangle soup)
 
 					for ( let i = 0, il = positionAttribute.count; i < il; i += 3 ) {
 
@@ -11171,7 +11171,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			//
+			/
 
 			if ( this.index === null ) {
 
@@ -11185,7 +11185,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const indices = this.index.array;
 			const attributes = this.attributes;
 
-			// attributes
+			/ attributes
 
 			for ( const name in attributes ) {
 
@@ -11197,14 +11197,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// morph attributes
+			/ morph attributes
 
 			const morphAttributes = this.morphAttributes;
 
 			for ( const name in morphAttributes ) {
 
 				const morphArray = [];
-				const morphAttribute = morphAttributes[ name ]; // morphAttribute: array of Float32BufferAttributes
+				const morphAttribute = morphAttributes[ name ]; / morphAttribute: array of Float32BufferAttributes
 
 				for ( let i = 0, il = morphAttribute.length; i < il; i ++ ) {
 
@@ -11222,7 +11222,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			geometry2.morphTargetsRelative = this.morphTargetsRelative;
 
-			// groups
+			/ groups
 
 			const groups = this.groups;
 
@@ -11247,7 +11247,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				}
 			};
 
-			// standard BufferGeometry serialization
+			/ standard BufferGeometry serialization
 
 			data.uuid = this.uuid;
 			data.type = this.type;
@@ -11268,7 +11268,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// for simplicity the code assumes attributes are not shared across geometries, see #15811
+			/ for simplicity the code assumes attributes are not shared across geometries, see #15811
 
 			data.data = { attributes: {} };
 
@@ -11358,7 +11358,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		copy( source ) {
 
-			// reset
+			/ reset
 
 			this.index = null;
 			this.attributes = {};
@@ -11367,15 +11367,15 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			this.boundingBox = null;
 			this.boundingSphere = null;
 
-			// used for storing cloned, shared data
+			/ used for storing cloned, shared data
 
 			const data = {};
 
-			// name
+			/ name
 
 			this.name = source.name;
 
-			// index
+			/ index
 
 			const index = source.index;
 
@@ -11385,7 +11385,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// attributes
+			/ attributes
 
 			const attributes = source.attributes;
 
@@ -11396,14 +11396,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// morph attributes
+			/ morph attributes
 
 			const morphAttributes = source.morphAttributes;
 
 			for ( const name in morphAttributes ) {
 
 				const array = [];
-				const morphAttribute = morphAttributes[ name ]; // morphAttribute: array of Float32BufferAttributes
+				const morphAttribute = morphAttributes[ name ]; / morphAttribute: array of Float32BufferAttributes
 
 				for ( let i = 0, l = morphAttribute.length; i < l; i ++ ) {
 
@@ -11417,7 +11417,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this.morphTargetsRelative = source.morphTargetsRelative;
 
-			// groups
+			/ groups
 
 			const groups = source.groups;
 
@@ -11428,7 +11428,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// bounding box
+			/ bounding box
 
 			const boundingBox = source.boundingBox;
 
@@ -11438,7 +11438,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// bounding sphere
+			/ bounding sphere
 
 			const boundingSphere = source.boundingSphere;
 
@@ -11448,12 +11448,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// draw range
+			/ draw range
 
 			this.drawRange.start = source.drawRange.start;
 			this.drawRange.count = source.drawRange.count;
 
-			// user data
+			/ user data
 
 			this.userData = source.userData;
 
@@ -11615,14 +11615,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( material === undefined ) return;
 
-			// test with bounding sphere in world space
+			/ test with bounding sphere in world space
 
 			if ( geometry.boundingSphere === null ) geometry.computeBoundingSphere();
 
 			_sphere$5.copy( geometry.boundingSphere );
 			_sphere$5.applyMatrix4( matrixWorld );
 
-			// check distance from ray origin to bounding sphere
+			/ check distance from ray origin to bounding sphere
 
 			_ray$3.copy( raycaster.ray ).recast( raycaster.near );
 
@@ -11634,12 +11634,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// convert ray to local space of mesh
+			/ convert ray to local space of mesh
 
 			_inverseMatrix$3.copy( matrixWorld ).invert();
 			_ray$3.copy( raycaster.ray ).applyMatrix4( _inverseMatrix$3 );
 
-			// test with bounding box in local space
+			/ test with bounding box in local space
 
 			if ( geometry.boundingBox !== null ) {
 
@@ -11647,7 +11647,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// test for intersections with geometry
+			/ test for intersections with geometry
 
 			this._computeIntersections( raycaster, intersects, _ray$3 );
 
@@ -11670,7 +11670,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( index !== null ) {
 
-				// indexed buffer geometry
+				/ indexed buffer geometry
 
 				if ( Array.isArray( material ) ) {
 
@@ -11692,7 +11692,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 							if ( intersection ) {
 
-								intersection.faceIndex = Math.floor( j / 3 ); // triangle number in indexed buffer semantics
+								intersection.faceIndex = Math.floor( j / 3 ); / triangle number in indexed buffer semantics
 								intersection.face.materialIndex = group.materialIndex;
 								intersects.push( intersection );
 
@@ -11717,7 +11717,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						if ( intersection ) {
 
-							intersection.faceIndex = Math.floor( i / 3 ); // triangle number in indexed buffer semantics
+							intersection.faceIndex = Math.floor( i / 3 ); / triangle number in indexed buffer semantics
 							intersects.push( intersection );
 
 						}
@@ -11728,7 +11728,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			} else if ( position !== undefined ) {
 
-				// non-indexed buffer geometry
+				/ non-indexed buffer geometry
 
 				if ( Array.isArray( material ) ) {
 
@@ -11750,7 +11750,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 							if ( intersection ) {
 
-								intersection.faceIndex = Math.floor( j / 3 ); // triangle number in non-indexed buffer semantics
+								intersection.faceIndex = Math.floor( j / 3 ); / triangle number in non-indexed buffer semantics
 								intersection.face.materialIndex = group.materialIndex;
 								intersects.push( intersection );
 
@@ -11775,7 +11775,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						if ( intersection ) {
 
-							intersection.faceIndex = Math.floor( i / 3 ); // triangle number in non-indexed buffer semantics
+							intersection.faceIndex = Math.floor( i / 3 ); / triangle number in non-indexed buffer semantics
 							intersects.push( intersection );
 
 						}
@@ -11848,7 +11848,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				_uvC$1.fromBufferAttribute( uv1, c );
 
 				intersection.uv1 = Triangle.getInterpolation( _intersectionPoint, _vA$1, _vB$1, _vC$1, _uvA$1, _uvB$1, _uvC$1, new Vector2() );
-				intersection.uv2 = intersection.uv1; // @deprecated, r152
+				intersection.uv2 = intersection.uv1; / @deprecated, r152
 
 			}
 
@@ -11905,34 +11905,34 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const scope = this;
 
-			// segments
+			/ segments
 
 			widthSegments = Math.floor( widthSegments );
 			heightSegments = Math.floor( heightSegments );
 			depthSegments = Math.floor( depthSegments );
 
-			// buffers
+			/ buffers
 
 			const indices = [];
 			const vertices = [];
 			const normals = [];
 			const uvs = [];
 
-			// helper variables
+			/ helper variables
 
 			let numberOfVertices = 0;
 			let groupStart = 0;
 
-			// build each side of the box geometry
+			/ build each side of the box geometry
 
-			buildPlane( 'z', 'y', 'x', - 1, - 1, depth, height, width, depthSegments, heightSegments, 0 ); // px
-			buildPlane( 'z', 'y', 'x', 1, - 1, depth, height, - width, depthSegments, heightSegments, 1 ); // nx
-			buildPlane( 'x', 'z', 'y', 1, 1, width, depth, height, widthSegments, depthSegments, 2 ); // py
-			buildPlane( 'x', 'z', 'y', 1, - 1, width, depth, - height, widthSegments, depthSegments, 3 ); // ny
-			buildPlane( 'x', 'y', 'z', 1, - 1, width, height, depth, widthSegments, heightSegments, 4 ); // pz
-			buildPlane( 'x', 'y', 'z', - 1, - 1, width, height, - depth, widthSegments, heightSegments, 5 ); // nz
+			buildPlane( 'z', 'y', 'x', - 1, - 1, depth, height, width, depthSegments, heightSegments, 0 ); / px
+			buildPlane( 'z', 'y', 'x', 1, - 1, depth, height, - width, depthSegments, heightSegments, 1 ); / nx
+			buildPlane( 'x', 'z', 'y', 1, 1, width, depth, height, widthSegments, depthSegments, 2 ); / py
+			buildPlane( 'x', 'z', 'y', 1, - 1, width, depth, - height, widthSegments, depthSegments, 3 ); / ny
+			buildPlane( 'x', 'y', 'z', 1, - 1, width, height, depth, widthSegments, heightSegments, 4 ); / pz
+			buildPlane( 'x', 'y', 'z', - 1, - 1, width, height, - depth, widthSegments, heightSegments, 5 ); / nz
 
-			// build geometry
+			/ build geometry
 
 			this.setIndex( indices );
 			this.setAttribute( 'position', new Float32BufferAttribute( vertices, 3 ) );
@@ -11956,7 +11956,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				const vector = new Vector3();
 
-				// generate vertices, normals and uvs
+				/ generate vertices, normals and uvs
 
 				for ( let iy = 0; iy < gridY1; iy ++ ) {
 
@@ -11966,32 +11966,32 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						const x = ix * segmentWidth - widthHalf;
 
-						// set values to correct vector component
+						/ set values to correct vector component
 
 						vector[ u ] = x * udir;
 						vector[ v ] = y * vdir;
 						vector[ w ] = depthHalf;
 
-						// now apply vector to vertex buffer
+						/ now apply vector to vertex buffer
 
 						vertices.push( vector.x, vector.y, vector.z );
 
-						// set values to correct vector component
+						/ set values to correct vector component
 
 						vector[ u ] = 0;
 						vector[ v ] = 0;
 						vector[ w ] = depth > 0 ? 1 : - 1;
 
-						// now apply vector to normal buffer
+						/ now apply vector to normal buffer
 
 						normals.push( vector.x, vector.y, vector.z );
 
-						// uvs
+						/ uvs
 
 						uvs.push( ix / gridX );
 						uvs.push( 1 - ( iy / gridY ) );
 
-						// counters
+						/ counters
 
 						vertexCounter += 1;
 
@@ -11999,11 +11999,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// indices
+				/ indices
 
-				// 1. you need three indices to draw a single face
-				// 2. a single segment consists of two faces
-				// 3. so we need to generate six (2*3) indices per segment
+				/ 1. you need three indices to draw a single face
+				/ 2. a single segment consists of two faces
+				/ 3. so we need to generate six (2*3) indices per segment
 
 				for ( let iy = 0; iy < gridY; iy ++ ) {
 
@@ -12014,12 +12014,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 						const c = numberOfVertices + ( ix + 1 ) + gridX1 * ( iy + 1 );
 						const d = numberOfVertices + ( ix + 1 ) + gridX1 * iy;
 
-						// faces
+						/ faces
 
 						indices.push( a, b, d );
 						indices.push( b, c, d );
 
-						// increase counter
+						/ increase counter
 
 						groupCount += 6;
 
@@ -12027,15 +12027,15 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// add a group to the geometry. this will ensure multi material support
+				/ add a group to the geometry. this will ensure multi material support
 
 				scope.addGroup( groupStart, groupCount, materialIndex );
 
-				// calculate new start value for groups
+				/ calculate new start value for groups
 
 				groupStart += groupCount;
 
-				// update total number of vertices
+				/ update total number of vertices
 
 				numberOfVertices += vertexCounter;
 
@@ -12149,7 +12149,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		if ( renderer.getRenderTarget() === null ) {
 
-			// https://github.com/mrdoob/three.js/pull/23937#issuecomment-1111067398
+			/ https://github.com/mrdoob/three.js/pull/23937#issuecomment-1111067398
 			return renderer.outputColorSpace;
 
 		}
@@ -12158,7 +12158,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Legacy
+	/ Legacy
 
 	const UniformsUtils = { clone: cloneUniforms, merge: mergeUniforms };
 
@@ -12188,21 +12188,21 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			this.wireframe = false;
 			this.wireframeLinewidth = 1;
 
-			this.fog = false; // set to use scene fog
-			this.lights = false; // set to use scene lights
-			this.clipping = false; // set to use user-defined clipping planes
+			this.fog = false; / set to use scene fog
+			this.lights = false; / set to use scene lights
+			this.clipping = false; / set to use user-defined clipping planes
 
 			this.forceSinglePass = true;
 
 			this.extensions = {
-				derivatives: false, // set to use derivatives
-				fragDepth: false, // set to use fragment depth values
-				drawBuffers: false, // set to use draw buffers
-				shaderTextureLOD: false // set to use shader texture LOD
+				derivatives: false, / set to use derivatives
+				fragDepth: false, / set to use fragment depth values
+				drawBuffers: false, / set to use draw buffers
+				shaderTextureLOD: false / set to use shader texture LOD
 			};
 
-			// When rendered geometry doesn't include these attributes but the material does,
-			// use these default values in WebGL. This avoids errors when buffer data is missing.
+			/ When rendered geometry doesn't include these attributes but the material does,
+			/ use these default values in WebGL. This avoids errors when buffer data is missing.
 			this.defaultAttributeValues = {
 				'color': [ 1, 1, 1 ],
 				'uv': [ 0, 0 ],
@@ -12316,7 +12316,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 						value: value
 					};
 
-					// note: the array variants v2v, v3v, v4v, m4v and tv are not supported so far
+					/ note: the array variants v2v, v3v, v4v, m4v and tv are not supported so far
 
 				}
 
@@ -12430,8 +12430,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			this.aspect = aspect;
 			this.view = null;
 
-			this.filmGauge = 35;	// width of the film (default in millimeters)
-			this.filmOffset = 0;	// horizontal film offset (same unit as gauge)
+			this.filmGauge = 35;	/ width of the film (default in millimeters)
+			this.filmOffset = 0;	/ horizontal film offset (same unit as gauge)
 
 			this.updateProjectionMatrix();
 
@@ -12496,14 +12496,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		getFilmWidth() {
 
-			// film not completely covered in portrait format (aspect < 1)
+			/ film not completely covered in portrait format (aspect < 1)
 			return this.filmGauge * Math.min( this.aspect, 1 );
 
 		}
 
 		getFilmHeight() {
 
-			// film not completely covered in landscape format (aspect > 1)
+			/ film not completely covered in landscape format (aspect > 1)
 			return this.filmGauge / Math.max( this.aspect, 1 );
 
 		}
@@ -12639,7 +12639,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	const fov = - 90; // negative fov is not an error
+	const fov = - 90; / negative fov is not an error
 	const aspect = 1;
 
 	class CubeCamera extends Object3D {
@@ -12789,8 +12789,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			renderer.setRenderTarget( renderTarget, 4, activeMipmapLevel );
 			renderer.render( scene, cameraPZ );
 
-			// mipmaps are generated during the last call of render()
-			// at this point, all sides of the cube render target are defined
+			/ mipmaps are generated during the last call of render()
+			/ at this point, all sides of the cube render target are defined
 
 			renderTarget.texture.generateMipmaps = generateMipmaps;
 
@@ -12849,7 +12849,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( options.encoding !== undefined ) {
 
-				// @deprecated, r152
+				/ @deprecated, r152
 				warnOnce( 'THREE.WebGLCubeRenderTarget: option.encoding has been replaced by option.colorSpace.' );
 				options.colorSpace = options.encoding === sRGBEncoding ? SRGBColorSpace : NoColorSpace;
 
@@ -12857,13 +12857,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this.texture = new CubeTexture( images, options.mapping, options.wrapS, options.wrapT, options.magFilter, options.minFilter, options.format, options.type, options.anisotropy, options.colorSpace );
 
-			// By convention -- likely based on the RenderMan spec from the 1990's -- cube maps are specified by WebGL (and three.js)
-			// in a coordinate system in which positive-x is to the right when looking up the positive-z axis -- in other words,
-			// in a left-handed coordinate system. By continuing this convention, preexisting cube maps continued to render correctly.
+			/ By convention -- likely based on the RenderMan spec from the 1990's -- cube maps are specified by WebGL (and three.js)
+			/ in a coordinate system in which positive-x is to the right when looking up the positive-z axis -- in other words,
+			/ in a left-handed coordinate system. By continuing this convention, preexisting cube maps continued to render correctly.
 
-			// three.js uses a right-handed coordinate system. So environment maps used in three.js appear to have px and nx swapped
-			// and the flag isRenderTargetTexture controls this conversion. The flip is not required when using WebGLCubeRenderTarget.texture
-			// as a cube texture (this is detected when isRenderTargetTexture is set to true for cube textures).
+			/ three.js uses a right-handed coordinate system. So environment maps used in three.js appear to have px and nx swapped
+			/ and the flag isRenderTargetTexture controls this conversion. The flip is not required when using WebGLCubeRenderTarget.texture
+			/ as a cube texture (this is detected when isRenderTargetTexture is set to true for cube textures).
 
 			this.texture.isRenderTargetTexture = true;
 
@@ -12947,7 +12947,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const currentMinFilter = texture.minFilter;
 
-			// Avoid blurred poles
+			/ Avoid blurred poles
 			if ( texture.minFilter === LinearMipmapLinearFilter ) texture.minFilter = LinearFilter;
 
 			const camera = new CubeCamera( 1, 10, this );
@@ -12990,7 +12990,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this.isPlane = true;
 
-			// normal is assumed to be normalized
+			/ normal is assumed to be normalized
 
 			this.normal = normal;
 			this.constant = constant;
@@ -13028,7 +13028,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const normal = _vector1.subVectors( c, b ).cross( _vector2.subVectors( a, b ) ).normalize();
 
-			// Q: should an error be thrown if normal is zero (e.g. degenerate plane)?
+			/ Q: should an error be thrown if normal is zero (e.g. degenerate plane)?
 
 			this.setFromNormalAndCoplanarPoint( normal, a );
 
@@ -13047,7 +13047,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		normalize() {
 
-			// Note: will lead to a divide by zero if the plane is invalid.
+			/ Note: will lead to a divide by zero if the plane is invalid.
 
 			const inverseNormalLength = 1.0 / this.normal.length();
 			this.normal.multiplyScalar( inverseNormalLength );
@@ -13092,14 +13092,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( denominator === 0 ) {
 
-				// line is coplanar, return origin
+				/ line is coplanar, return origin
 				if ( this.distanceToPoint( line.start ) === 0 ) {
 
 					return target.copy( line.start );
 
 				}
 
-				// Unsure if this is the correct method to handle this case.
+				/ Unsure if this is the correct method to handle this case.
 				return null;
 
 			}
@@ -13118,7 +13118,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		intersectsLine( line ) {
 
-			// Note: this tests if a line intersects the plane, not whether it (or its end-points) are coplanar with it.
+			/ Note: this tests if a line intersects the plane, not whether it (or its end-points) are coplanar with it.
 
 			const startSign = this.distanceToPoint( line.start );
 			const endSign = this.distanceToPoint( line.end );
@@ -13316,7 +13316,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				const plane = planes[ i ];
 
-				// corner at max distance
+				/ corner at max distance
 
 				_vector$6.x = plane.normal.x > 0 ? box.max.x : box.min.x;
 				_vector$6.y = plane.normal.y > 0 ? box.max.y : box.min.y;
@@ -13504,7 +13504,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( updateRange.count === - 1 ) {
 
-				// Not using update ranges
+				/ Not using update ranges
 
 				gl.bufferSubData( bufferType, 0, array );
 
@@ -13522,7 +13522,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				updateRange.count = - 1; // reset range
+				updateRange.count = - 1; / reset range
 
 			}
 
@@ -13530,7 +13530,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		//
+		/
 
 		function get( attribute ) {
 
@@ -13632,7 +13632,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const segment_width = width / gridX;
 			const segment_height = height / gridY;
 
-			//
+			/
 
 			const indices = [];
 			const vertices = [];
@@ -13719,7 +13719,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	var beginnormal_vertex = "vec3 objectNormal = vec3( normal );\n#ifdef USE_TANGENT\n\tvec3 objectTangent = vec3( tangent.xyz );\n#endif";
 
-	var bsdfs = "float G_BlinnPhong_Implicit( ) {\n\treturn 0.25;\n}\nfloat D_BlinnPhong( const in float shininess, const in float dotNH ) {\n\treturn RECIPROCAL_PI * ( shininess * 0.5 + 1.0 ) * pow( dotNH, shininess );\n}\nvec3 BRDF_BlinnPhong( const in vec3 lightDir, const in vec3 viewDir, const in vec3 normal, const in vec3 specularColor, const in float shininess ) {\n\tvec3 halfDir = normalize( lightDir + viewDir );\n\tfloat dotNH = saturate( dot( normal, halfDir ) );\n\tfloat dotVH = saturate( dot( viewDir, halfDir ) );\n\tvec3 F = F_Schlick( specularColor, 1.0, dotVH );\n\tfloat G = G_BlinnPhong_Implicit( );\n\tfloat D = D_BlinnPhong( shininess, dotNH );\n\treturn F * ( G * D );\n} // validated";
+	var bsdfs = "float G_BlinnPhong_Implicit( ) {\n\treturn 0.25;\n}\nfloat D_BlinnPhong( const in float shininess, const in float dotNH ) {\n\treturn RECIPROCAL_PI * ( shininess * 0.5 + 1.0 ) * pow( dotNH, shininess );\n}\nvec3 BRDF_BlinnPhong( const in vec3 lightDir, const in vec3 viewDir, const in vec3 normal, const in vec3 specularColor, const in float shininess ) {\n\tvec3 halfDir = normalize( lightDir + viewDir );\n\tfloat dotNH = saturate( dot( normal, halfDir ) );\n\tfloat dotVH = saturate( dot( viewDir, halfDir ) );\n\tvec3 F = F_Schlick( specularColor, 1.0, dotVH );\n\tfloat G = G_BlinnPhong_Implicit( );\n\tfloat D = D_BlinnPhong( shininess, dotNH );\n\treturn F * ( G * D );\n} / validated";
 
 	var iridescence_fragment = "#ifdef USE_IRIDESCENCE\n\tconst mat3 XYZ_TO_REC709 = mat3(\n\t\t 3.2404542, -0.9692660,  0.0556434,\n\t\t-1.5371385,  1.8760108, -0.2040259,\n\t\t-0.4985314,  0.0415560,  1.0572252\n\t);\n\tvec3 Fresnel0ToIor( vec3 fresnel0 ) {\n\t\tvec3 sqrtF0 = sqrt( fresnel0 );\n\t\treturn ( vec3( 1.0 ) + sqrtF0 ) / ( vec3( 1.0 ) - sqrtF0 );\n\t}\n\tvec3 IorToFresnel0( vec3 transmittedIor, float incidentIor ) {\n\t\treturn pow2( ( transmittedIor - vec3( incidentIor ) ) / ( transmittedIor + vec3( incidentIor ) ) );\n\t}\n\tfloat IorToFresnel0( float transmittedIor, float incidentIor ) {\n\t\treturn pow2( ( transmittedIor - incidentIor ) / ( transmittedIor + incidentIor ));\n\t}\n\tvec3 evalSensitivity( float OPD, vec3 shift ) {\n\t\tfloat phase = 2.0 * PI * OPD * 1.0e-9;\n\t\tvec3 val = vec3( 5.4856e-13, 4.4201e-13, 5.2481e-13 );\n\t\tvec3 pos = vec3( 1.6810e+06, 1.7953e+06, 2.2084e+06 );\n\t\tvec3 var = vec3( 4.3278e+09, 9.3046e+09, 6.6121e+09 );\n\t\tvec3 xyz = val * sqrt( 2.0 * PI * var ) * cos( pos * phase + shift ) * exp( - pow2( phase ) * var );\n\t\txyz.x += 9.7470e-14 * sqrt( 2.0 * PI * 4.5282e+09 ) * cos( 2.2399e+06 * phase + shift[ 0 ] ) * exp( - 4.5282e+09 * pow2( phase ) );\n\t\txyz /= 1.0685e-7;\n\t\tvec3 rgb = XYZ_TO_REC709 * xyz;\n\t\treturn rgb;\n\t}\n\tvec3 evalIridescence( float outsideIOR, float eta2, float cosTheta1, float thinFilmThickness, vec3 baseF0 ) {\n\t\tvec3 I;\n\t\tfloat iridescenceIOR = mix( outsideIOR, eta2, smoothstep( 0.0, 0.03, thinFilmThickness ) );\n\t\tfloat sinTheta2Sq = pow2( outsideIOR / iridescenceIOR ) * ( 1.0 - pow2( cosTheta1 ) );\n\t\tfloat cosTheta2Sq = 1.0 - sinTheta2Sq;\n\t\tif ( cosTheta2Sq < 0.0 ) {\n\t\t\treturn vec3( 1.0 );\n\t\t}\n\t\tfloat cosTheta2 = sqrt( cosTheta2Sq );\n\t\tfloat R0 = IorToFresnel0( iridescenceIOR, outsideIOR );\n\t\tfloat R12 = F_Schlick( R0, 1.0, cosTheta1 );\n\t\tfloat T121 = 1.0 - R12;\n\t\tfloat phi12 = 0.0;\n\t\tif ( iridescenceIOR < outsideIOR ) phi12 = PI;\n\t\tfloat phi21 = PI - phi12;\n\t\tvec3 baseIOR = Fresnel0ToIor( clamp( baseF0, 0.0, 0.9999 ) );\t\tvec3 R1 = IorToFresnel0( baseIOR, iridescenceIOR );\n\t\tvec3 R23 = F_Schlick( R1, 1.0, cosTheta2 );\n\t\tvec3 phi23 = vec3( 0.0 );\n\t\tif ( baseIOR[ 0 ] < iridescenceIOR ) phi23[ 0 ] = PI;\n\t\tif ( baseIOR[ 1 ] < iridescenceIOR ) phi23[ 1 ] = PI;\n\t\tif ( baseIOR[ 2 ] < iridescenceIOR ) phi23[ 2 ] = PI;\n\t\tfloat OPD = 2.0 * iridescenceIOR * thinFilmThickness * cosTheta2;\n\t\tvec3 phi = vec3( phi21 ) + phi23;\n\t\tvec3 R123 = clamp( R12 * R23, 1e-5, 0.9999 );\n\t\tvec3 r123 = sqrt( R123 );\n\t\tvec3 Rs = pow2( T121 ) * R23 / ( vec3( 1.0 ) - R123 );\n\t\tvec3 C0 = R12 + Rs;\n\t\tI = C0;\n\t\tvec3 Cm = Rs - T121;\n\t\tfor ( int m = 1; m <= 2; ++ m ) {\n\t\t\tCm *= r123;\n\t\t\tvec3 Sm = 2.0 * evalSensitivity( float( m ) * OPD, float( m ) * phi );\n\t\t\tI += Cm * Sm;\n\t\t}\n\t\treturn max( I, vec3( 0.0 ) );\n\t}\n#endif";
 
@@ -13741,7 +13741,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	var color_vertex = "#if defined( USE_COLOR_ALPHA )\n\tvColor = vec4( 1.0 );\n#elif defined( USE_COLOR ) || defined( USE_INSTANCING_COLOR )\n\tvColor = vec3( 1.0 );\n#endif\n#ifdef USE_COLOR\n\tvColor *= color;\n#endif\n#ifdef USE_INSTANCING_COLOR\n\tvColor.xyz *= instanceColor.xyz;\n#endif";
 
-	var common = "#define PI 3.141592653589793\n#define PI2 6.283185307179586\n#define PI_HALF 1.5707963267948966\n#define RECIPROCAL_PI 0.3183098861837907\n#define RECIPROCAL_PI2 0.15915494309189535\n#define EPSILON 1e-6\n#ifndef saturate\n#define saturate( a ) clamp( a, 0.0, 1.0 )\n#endif\n#define whiteComplement( a ) ( 1.0 - saturate( a ) )\nfloat pow2( const in float x ) { return x*x; }\nvec3 pow2( const in vec3 x ) { return x*x; }\nfloat pow3( const in float x ) { return x*x*x; }\nfloat pow4( const in float x ) { float x2 = x*x; return x2*x2; }\nfloat max3( const in vec3 v ) { return max( max( v.x, v.y ), v.z ); }\nfloat average( const in vec3 v ) { return dot( v, vec3( 0.3333333 ) ); }\nhighp float rand( const in vec2 uv ) {\n\tconst highp float a = 12.9898, b = 78.233, c = 43758.5453;\n\thighp float dt = dot( uv.xy, vec2( a,b ) ), sn = mod( dt, PI );\n\treturn fract( sin( sn ) * c );\n}\n#ifdef HIGH_PRECISION\n\tfloat precisionSafeLength( vec3 v ) { return length( v ); }\n#else\n\tfloat precisionSafeLength( vec3 v ) {\n\t\tfloat maxComponent = max3( abs( v ) );\n\t\treturn length( v / maxComponent ) * maxComponent;\n\t}\n#endif\nstruct IncidentLight {\n\tvec3 color;\n\tvec3 direction;\n\tbool visible;\n};\nstruct ReflectedLight {\n\tvec3 directDiffuse;\n\tvec3 directSpecular;\n\tvec3 indirectDiffuse;\n\tvec3 indirectSpecular;\n};\n#ifdef USE_ALPHAHASH\n\tvarying vec3 vPosition;\n#endif\nvec3 transformDirection( in vec3 dir, in mat4 matrix ) {\n\treturn normalize( ( matrix * vec4( dir, 0.0 ) ).xyz );\n}\nvec3 inverseTransformDirection( in vec3 dir, in mat4 matrix ) {\n\treturn normalize( ( vec4( dir, 0.0 ) * matrix ).xyz );\n}\nmat3 transposeMat3( const in mat3 m ) {\n\tmat3 tmp;\n\ttmp[ 0 ] = vec3( m[ 0 ].x, m[ 1 ].x, m[ 2 ].x );\n\ttmp[ 1 ] = vec3( m[ 0 ].y, m[ 1 ].y, m[ 2 ].y );\n\ttmp[ 2 ] = vec3( m[ 0 ].z, m[ 1 ].z, m[ 2 ].z );\n\treturn tmp;\n}\nfloat luminance( const in vec3 rgb ) {\n\tconst vec3 weights = vec3( 0.2126729, 0.7151522, 0.0721750 );\n\treturn dot( weights, rgb );\n}\nbool isPerspectiveMatrix( mat4 m ) {\n\treturn m[ 2 ][ 3 ] == - 1.0;\n}\nvec2 equirectUv( in vec3 dir ) {\n\tfloat u = atan( dir.z, dir.x ) * RECIPROCAL_PI2 + 0.5;\n\tfloat v = asin( clamp( dir.y, - 1.0, 1.0 ) ) * RECIPROCAL_PI + 0.5;\n\treturn vec2( u, v );\n}\nvec3 BRDF_Lambert( const in vec3 diffuseColor ) {\n\treturn RECIPROCAL_PI * diffuseColor;\n}\nvec3 F_Schlick( const in vec3 f0, const in float f90, const in float dotVH ) {\n\tfloat fresnel = exp2( ( - 5.55473 * dotVH - 6.98316 ) * dotVH );\n\treturn f0 * ( 1.0 - fresnel ) + ( f90 * fresnel );\n}\nfloat F_Schlick( const in float f0, const in float f90, const in float dotVH ) {\n\tfloat fresnel = exp2( ( - 5.55473 * dotVH - 6.98316 ) * dotVH );\n\treturn f0 * ( 1.0 - fresnel ) + ( f90 * fresnel );\n} // validated";
+	var common = "#define PI 3.141592653589793\n#define PI2 6.283185307179586\n#define PI_HALF 1.5707963267948966\n#define RECIPROCAL_PI 0.3183098861837907\n#define RECIPROCAL_PI2 0.15915494309189535\n#define EPSILON 1e-6\n#ifndef saturate\n#define saturate( a ) clamp( a, 0.0, 1.0 )\n#endif\n#define whiteComplement( a ) ( 1.0 - saturate( a ) )\nfloat pow2( const in float x ) { return x*x; }\nvec3 pow2( const in vec3 x ) { return x*x; }\nfloat pow3( const in float x ) { return x*x*x; }\nfloat pow4( const in float x ) { float x2 = x*x; return x2*x2; }\nfloat max3( const in vec3 v ) { return max( max( v.x, v.y ), v.z ); }\nfloat average( const in vec3 v ) { return dot( v, vec3( 0.3333333 ) ); }\nhighp float rand( const in vec2 uv ) {\n\tconst highp float a = 12.9898, b = 78.233, c = 43758.5453;\n\thighp float dt = dot( uv.xy, vec2( a,b ) ), sn = mod( dt, PI );\n\treturn fract( sin( sn ) * c );\n}\n#ifdef HIGH_PRECISION\n\tfloat precisionSafeLength( vec3 v ) { return length( v ); }\n#else\n\tfloat precisionSafeLength( vec3 v ) {\n\t\tfloat maxComponent = max3( abs( v ) );\n\t\treturn length( v / maxComponent ) * maxComponent;\n\t}\n#endif\nstruct IncidentLight {\n\tvec3 color;\n\tvec3 direction;\n\tbool visible;\n};\nstruct ReflectedLight {\n\tvec3 directDiffuse;\n\tvec3 directSpecular;\n\tvec3 indirectDiffuse;\n\tvec3 indirectSpecular;\n};\n#ifdef USE_ALPHAHASH\n\tvarying vec3 vPosition;\n#endif\nvec3 transformDirection( in vec3 dir, in mat4 matrix ) {\n\treturn normalize( ( matrix * vec4( dir, 0.0 ) ).xyz );\n}\nvec3 inverseTransformDirection( in vec3 dir, in mat4 matrix ) {\n\treturn normalize( ( vec4( dir, 0.0 ) * matrix ).xyz );\n}\nmat3 transposeMat3( const in mat3 m ) {\n\tmat3 tmp;\n\ttmp[ 0 ] = vec3( m[ 0 ].x, m[ 1 ].x, m[ 2 ].x );\n\ttmp[ 1 ] = vec3( m[ 0 ].y, m[ 1 ].y, m[ 2 ].y );\n\ttmp[ 2 ] = vec3( m[ 0 ].z, m[ 1 ].z, m[ 2 ].z );\n\treturn tmp;\n}\nfloat luminance( const in vec3 rgb ) {\n\tconst vec3 weights = vec3( 0.2126729, 0.7151522, 0.0721750 );\n\treturn dot( weights, rgb );\n}\nbool isPerspectiveMatrix( mat4 m ) {\n\treturn m[ 2 ][ 3 ] == - 1.0;\n}\nvec2 equirectUv( in vec3 dir ) {\n\tfloat u = atan( dir.z, dir.x ) * RECIPROCAL_PI2 + 0.5;\n\tfloat v = asin( clamp( dir.y, - 1.0, 1.0 ) ) * RECIPROCAL_PI + 0.5;\n\treturn vec2( u, v );\n}\nvec3 BRDF_Lambert( const in vec3 diffuseColor ) {\n\treturn RECIPROCAL_PI * diffuseColor;\n}\nvec3 F_Schlick( const in vec3 f0, const in float f90, const in float dotVH ) {\n\tfloat fresnel = exp2( ( - 5.55473 * dotVH - 6.98316 ) * dotVH );\n\treturn f0 * ( 1.0 - fresnel ) + ( f90 * fresnel );\n}\nfloat F_Schlick( const in float f0, const in float f90, const in float dotVH ) {\n\tfloat fresnel = exp2( ( - 5.55473 * dotVH - 6.98316 ) * dotVH );\n\treturn f0 * ( 1.0 - fresnel ) + ( f90 * fresnel );\n} / validated";
 
 	var cube_uv_reflection_fragment = "#ifdef ENVMAP_TYPE_CUBE_UV\n\t#define cubeUV_minMipLevel 4.0\n\t#define cubeUV_minTileSize 16.0\n\tfloat getFace( vec3 direction ) {\n\t\tvec3 absDirection = abs( direction );\n\t\tfloat face = - 1.0;\n\t\tif ( absDirection.x > absDirection.z ) {\n\t\t\tif ( absDirection.x > absDirection.y )\n\t\t\t\tface = direction.x > 0.0 ? 0.0 : 3.0;\n\t\t\telse\n\t\t\t\tface = direction.y > 0.0 ? 1.0 : 4.0;\n\t\t} else {\n\t\t\tif ( absDirection.z > absDirection.y )\n\t\t\t\tface = direction.z > 0.0 ? 2.0 : 5.0;\n\t\t\telse\n\t\t\t\tface = direction.y > 0.0 ? 1.0 : 4.0;\n\t\t}\n\t\treturn face;\n\t}\n\tvec2 getUV( vec3 direction, float face ) {\n\t\tvec2 uv;\n\t\tif ( face == 0.0 ) {\n\t\t\tuv = vec2( direction.z, direction.y ) / abs( direction.x );\n\t\t} else if ( face == 1.0 ) {\n\t\t\tuv = vec2( - direction.x, - direction.z ) / abs( direction.y );\n\t\t} else if ( face == 2.0 ) {\n\t\t\tuv = vec2( - direction.x, direction.y ) / abs( direction.z );\n\t\t} else if ( face == 3.0 ) {\n\t\t\tuv = vec2( - direction.z, direction.y ) / abs( direction.x );\n\t\t} else if ( face == 4.0 ) {\n\t\t\tuv = vec2( - direction.x, direction.z ) / abs( direction.y );\n\t\t} else {\n\t\t\tuv = vec2( direction.x, direction.y ) / abs( direction.z );\n\t\t}\n\t\treturn 0.5 * ( uv + 1.0 );\n\t}\n\tvec3 bilinearCubeUV( sampler2D envMap, vec3 direction, float mipInt ) {\n\t\tfloat face = getFace( direction );\n\t\tfloat filterInt = max( cubeUV_minMipLevel - mipInt, 0.0 );\n\t\tmipInt = max( mipInt, cubeUV_minMipLevel );\n\t\tfloat faceSize = exp2( mipInt );\n\t\thighp vec2 uv = getUV( direction, face ) * ( faceSize - 2.0 ) + 1.0;\n\t\tif ( face > 2.0 ) {\n\t\t\tuv.y += faceSize;\n\t\t\tface -= 3.0;\n\t\t}\n\t\tuv.x += face * faceSize;\n\t\tuv.x += filterInt * 3.0 * cubeUV_minTileSize;\n\t\tuv.y += 4.0 * ( exp2( CUBEUV_MAX_MIP ) - faceSize );\n\t\tuv.x *= CUBEUV_TEXEL_WIDTH;\n\t\tuv.y *= CUBEUV_TEXEL_HEIGHT;\n\t\t#ifdef texture2DGradEXT\n\t\t\treturn texture2DGradEXT( envMap, uv, vec2( 0.0 ), vec2( 0.0 ) ).rgb;\n\t\t#else\n\t\t\treturn texture2D( envMap, uv ).rgb;\n\t\t#endif\n\t}\n\t#define cubeUV_r0 1.0\n\t#define cubeUV_v0 0.339\n\t#define cubeUV_m0 - 2.0\n\t#define cubeUV_r1 0.8\n\t#define cubeUV_v1 0.276\n\t#define cubeUV_m1 - 1.0\n\t#define cubeUV_r4 0.4\n\t#define cubeUV_v4 0.046\n\t#define cubeUV_m4 2.0\n\t#define cubeUV_r5 0.305\n\t#define cubeUV_v5 0.016\n\t#define cubeUV_m5 3.0\n\t#define cubeUV_r6 0.21\n\t#define cubeUV_v6 0.0038\n\t#define cubeUV_m6 4.0\n\tfloat roughnessToMip( float roughness ) {\n\t\tfloat mip = 0.0;\n\t\tif ( roughness >= cubeUV_r1 ) {\n\t\t\tmip = ( cubeUV_r0 - roughness ) * ( cubeUV_m1 - cubeUV_m0 ) / ( cubeUV_r0 - cubeUV_r1 ) + cubeUV_m0;\n\t\t} else if ( roughness >= cubeUV_r4 ) {\n\t\t\tmip = ( cubeUV_r1 - roughness ) * ( cubeUV_m4 - cubeUV_m1 ) / ( cubeUV_r1 - cubeUV_r4 ) + cubeUV_m1;\n\t\t} else if ( roughness >= cubeUV_r5 ) {\n\t\t\tmip = ( cubeUV_r4 - roughness ) * ( cubeUV_m5 - cubeUV_m4 ) / ( cubeUV_r4 - cubeUV_r5 ) + cubeUV_m4;\n\t\t} else if ( roughness >= cubeUV_r6 ) {\n\t\t\tmip = ( cubeUV_r5 - roughness ) * ( cubeUV_m6 - cubeUV_m5 ) / ( cubeUV_r5 - cubeUV_r6 ) + cubeUV_m5;\n\t\t} else {\n\t\t\tmip = - 2.0 * log2( 1.16 * roughness );\t\t}\n\t\treturn mip;\n\t}\n\tvec4 textureCubeUV( sampler2D envMap, vec3 sampleDir, float roughness ) {\n\t\tfloat mip = clamp( roughnessToMip( roughness ), cubeUV_m0, CUBEUV_MAX_MIP );\n\t\tfloat mipF = fract( mip );\n\t\tfloat mipInt = floor( mip );\n\t\tvec3 color0 = bilinearCubeUV( envMap, sampleDir, mipInt );\n\t\tif ( mipF == 0.0 ) {\n\t\t\treturn vec4( color0, 1.0 );\n\t\t} else {\n\t\t\tvec3 color1 = bilinearCubeUV( envMap, sampleDir, mipInt + 1.0 );\n\t\t\treturn vec4( mix( color0, color1, mipF ), 1.0 );\n\t\t}\n\t}\n#endif";
 
@@ -14152,9 +14152,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			envMap: { value: null },
 			flipEnvMap: { value: - 1 },
-			reflectivity: { value: 1.0 }, // basic, lambert, phong
-			ior: { value: 1.5 }, // physical
-			refractionRatio: { value: 0.98 }, // basic, lambert, phong
+			reflectivity: { value: 1.0 }, / basic, lambert, phong
+			ior: { value: 1.5 }, / physical
+			refractionRatio: { value: 0.98 }, / basic, lambert, phong
 
 		},
 
@@ -14302,7 +14302,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				groundColor: {}
 			} },
 
-			// TODO (abelnation): RectAreaLight BRDF data needs to be moved from example to main src
+			/ TODO (abelnation): RectAreaLight BRDF data needs to be moved from example to main src
 			rectAreaLights: { value: [], properties: {
 				color: {},
 				position: {},
@@ -14432,7 +14432,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					emissive: { value: /*@__PURE__*/ new Color( 0x000000 ) },
 					roughness: { value: 1.0 },
 					metalness: { value: 0.0 },
-					envMapIntensity: { value: 1 } // temporary
+					envMapIntensity: { value: 1 } / temporary
 				}
 			] ),
 
@@ -14715,7 +14715,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( background && background.isTexture ) {
 
-				const usePMREM = scene.backgroundBlurriness > 0; // use PMREM if the user wants to blur the background
+				const usePMREM = scene.backgroundBlurriness > 0; / use PMREM if the user wants to blur the background
 				background = ( usePMREM ? cubeuvmaps : cubemaps ).get( background );
 
 			}
@@ -14776,7 +14776,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					};
 
-					// add "envMap" material property so the renderer can evaluate it like for built-in materials
+					/ add "envMap" material property so the renderer can evaluate it like for built-in materials
 					Object.defineProperty( boxMesh.material, 'envMap', {
 
 						get: function () {
@@ -14811,7 +14811,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				boxMesh.layers.enableAll();
 
-				// push to the pre-sorted opaque render list
+				/ push to the pre-sorted opaque render list
 				renderList.unshift( boxMesh, boxMesh.geometry, boxMesh.material, 0, 0, null );
 
 			} else if ( background && background.isTexture ) {
@@ -14834,7 +14834,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					planeMesh.geometry.deleteAttribute( 'normal' );
 
-					// add "map" material property so the renderer can evaluate it like for built-in materials
+					/ add "map" material property so the renderer can evaluate it like for built-in materials
 					Object.defineProperty( planeMesh.material, 'map', {
 
 						get: function () {
@@ -14875,7 +14875,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				planeMesh.layers.enableAll();
 
-				// push to the pre-sorted opaque render list
+				/ push to the pre-sorted opaque render list
 				renderList.unshift( planeMesh, planeMesh.geometry, planeMesh.material, 0, 0, null );
 
 			}
@@ -15068,7 +15068,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			return {
 
-				// for backward compatibility on non-VAO support browser
+				/ for backward compatibility on non-VAO support browser
 				geometry: null,
 				program: null,
 				wireframe: false,
@@ -15290,7 +15290,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						const attribute = attributes.get( geometryAttribute );
 
-						// TODO Attribute may not be available on context restore
+						/ TODO Attribute may not be available on context restore
 
 						if ( attribute === undefined ) continue;
 
@@ -15298,7 +15298,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 						const type = attribute.type;
 						const bytesPerElement = attribute.bytesPerElement;
 
-						// check for integer attributes (WebGL 2 only)
+						/ check for integer attributes (WebGL 2 only)
 
 						const integer = ( capabilities.isWebGL2 === true && ( type === gl.INT || type === gl.UNSIGNED_INT || geometryAttribute.gpuType === IntType ) );
 
@@ -15521,7 +15521,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// for backward-compatibility
+		/ for backward-compatibility
 
 		function resetDefaultState() {
 
@@ -15599,7 +15599,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		//
+		/
 
 		this.setMode = setMode;
 		this.render = render;
@@ -15748,8 +15748,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const enabled =
 				planes.length !== 0 ||
 				enableLocalClipping ||
-				// enable state of previous frame - the clipping code has to
-				// run another frame in order to reset the state:
+				/ enable state of previous frame - the clipping code has to
+				/ run another frame in order to reset the state:
 				numGlobalPlanes !== 0 ||
 				localClippingEnabled;
 
@@ -15790,11 +15790,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( ! localClippingEnabled || planes === null || planes.length === 0 || renderingShadows && ! clipShadows ) {
 
-				// there's no local clipping
+				/ there's no local clipping
 
 				if ( renderingShadows ) {
 
-					// there's no global clipping
+					/ there's no global clipping
 
 					projectPlanes( null );
 
@@ -15811,7 +15811,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				let dstArray = materialProperties.clippingState || null;
 
-				uniform.value = dstArray; // ensure unique state
+				uniform.value = dstArray; / ensure unique state
 
 				dstArray = projectPlanes( planes, camera, lGlobal, useCache );
 
@@ -15940,7 +15940,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						} else {
 
-							// image not yet ready. try the conversion next frame
+							/ image not yet ready. try the conversion next frame
 
 							return null;
 
@@ -16121,26 +16121,26 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	const LOD_MIN = 4;
 
-	// The standard deviations (radians) associated with the extra mips. These are
-	// chosen to approximate a Trowbridge-Reitz distribution function times the
-	// geometric shadowing function. These sigma values squared must match the
-	// variance #defines in cube_uv_reflection_fragment.glsl.js.
+	/ The standard deviations (radians) associated with the extra mips. These are
+	/ chosen to approximate a Trowbridge-Reitz distribution function times the
+	/ geometric shadowing function. These sigma values squared must match the
+	/ variance #defines in cube_uv_reflection_fragment.glsl.js.
 	const EXTRA_LOD_SIGMA = [ 0.125, 0.215, 0.35, 0.446, 0.526, 0.582 ];
 
-	// The maximum length of the blur for loop. Smaller sigmas will use fewer
-	// samples and exit early, but not recompile the shader.
+	/ The maximum length of the blur for loop. Smaller sigmas will use fewer
+	/ samples and exit early, but not recompile the shader.
 	const MAX_SAMPLES = 20;
 
 	const _flatCamera = /*@__PURE__*/ new OrthographicCamera();
 	const _clearColor = /*@__PURE__*/ new Color();
 	let _oldTarget = null;
 
-	// Golden Ratio
+	/ Golden Ratio
 	const PHI = ( 1 + Math.sqrt( 5 ) ) / 2;
 	const INV_PHI = 1 / PHI;
 
-	// Vertices of a dodecahedron (except the opposites, which represent the
-	// same axis), used as axis directions evenly spread on a sphere.
+	/ Vertices of a dodecahedron (except the opposites, which represent the
+	/ same axis), used as axis directions evenly spread on a sphere.
 	const _axisDirections = [
 		/*@__PURE__*/ new Vector3( 1, 1, 1 ),
 		/*@__PURE__*/ new Vector3( - 1, 1, 1 ),
@@ -16286,7 +16286,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// private interface
+		/ private interface
 
 		_setSize( cubeSize ) {
 
@@ -16323,7 +16323,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				this._setSize( texture.image.length === 0 ? 16 : ( texture.image[ 0 ].width || texture.image[ 0 ].image.width ) );
 
-			} else { // Equirectangular
+			} else { / Equirectangular
 
 				this._setSize( texture.image.width / 4 );
 
@@ -16581,7 +16581,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// Number of standard deviations at which to cut off the discrete approximation.
+			/ Number of standard deviations at which to cut off the discrete approximation.
 			const STANDARD_DEVIATIONS = 3;
 
 			const blurMesh = new Mesh( this._lodPlanes[ lodOut ], blurMaterial );
@@ -16801,7 +16801,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			vec3 getSample( float theta, vec3 axis ) {
 
 				float cosTheta = cos( theta );
-				// Rodrigues' axis-angle rotation
+				/ Rodrigues' axis-angle rotation
 				vec3 sampleDirection = vOutputDirection * cosTheta
 					+ cross( axis, vOutputDirection ) * sin( theta )
 					+ axis * dot( axis, vOutputDirection ) * ( 1.0 - cosTheta );
@@ -16943,7 +16943,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		varying vec3 vOutputDirection;
 
-		// RH coordinate system; PMREM face-indexing convention
+		/ RH coordinate system; PMREM face-indexing convention
 		vec3 getDirection( vec2 uv, float face ) {
 
 			uv = 2.0 * uv - 1.0;
@@ -16952,30 +16952,30 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( face == 0.0 ) {
 
-				direction = direction.zyx; // ( 1, v, u ) pos x
+				direction = direction.zyx; / ( 1, v, u ) pos x
 
 			} else if ( face == 1.0 ) {
 
 				direction = direction.xzy;
-				direction.xz *= -1.0; // ( -u, 1, -v ) pos y
+				direction.xz *= -1.0; / ( -u, 1, -v ) pos y
 
 			} else if ( face == 2.0 ) {
 
-				direction.x *= -1.0; // ( -u, v, 1 ) pos z
+				direction.x *= -1.0; / ( -u, v, 1 ) pos z
 
 			} else if ( face == 3.0 ) {
 
 				direction = direction.zyx;
-				direction.xz *= -1.0; // ( -1, v, -u ) neg x
+				direction.xz *= -1.0; / ( -1, v, -u ) neg x
 
 			} else if ( face == 4.0 ) {
 
 				direction = direction.xzy;
-				direction.xy *= -1.0; // ( -u, -1, v ) neg y
+				direction.xy *= -1.0; / ( -u, -1, v ) neg y
 
 			} else if ( face == 5.0 ) {
 
-				direction.z *= -1.0; // ( u, v, -1 ) neg z
+				direction.z *= -1.0; / ( u, v, -1 ) neg z
 
 			}
 
@@ -17008,7 +17008,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				const isEquirectMap = ( mapping === EquirectangularReflectionMapping || mapping === EquirectangularRefractionMapping );
 				const isCubeMap = ( mapping === CubeReflectionMapping || mapping === CubeRefractionMapping );
 
-				// equirect/cube map to cubeUV conversion
+				/ equirect/cube map to cubeUV conversion
 
 				if ( isEquirectMap || isCubeMap ) {
 
@@ -17048,7 +17048,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 							} else {
 
-								// image not yet ready. try the conversion next frame
+								/ image not yet ready. try the conversion next frame
 
 								return null;
 
@@ -17267,7 +17267,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			//
+			/
 
 			info.memory.geometries --;
 
@@ -17291,7 +17291,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const geometryAttributes = geometry.attributes;
 
-			// Updating index buffer in VAO now. See WebGLBindingStates.
+			/ Updating index buffer in VAO now. See WebGLBindingStates.
 
 			for ( const name in geometryAttributes ) {
 
@@ -17299,7 +17299,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// morph targets
+			/ morph targets
 
 			const morphAttributes = geometry.morphAttributes;
 
@@ -17364,15 +17364,15 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const attribute = new ( arrayNeedsUint32( indices ) ? Uint32BufferAttribute : Uint16BufferAttribute )( indices, 1 );
 			attribute.version = version;
 
-			// Updating index buffer in VAO now. See WebGLBindingStates
+			/ Updating index buffer in VAO now. See WebGLBindingStates
 
-			//
+			/
 
 			const previousAttribute = wireframeAttributes.get( geometry );
 
 			if ( previousAttribute ) attributes.remove( previousAttribute );
 
-			//
+			/
 
 			wireframeAttributes.set( geometry, attribute );
 
@@ -17388,7 +17388,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( geometryIndex !== null ) {
 
-					// if the attribute is obsolete, create a new one
+					/ if the attribute is obsolete, create a new one
 
 					if ( currentAttribute.version < geometryIndex.version ) {
 
@@ -17479,7 +17479,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		//
+		/
 
 		this.setMode = setMode;
 		this.setIndex = setIndex;
@@ -17590,8 +17590,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( capabilities.isWebGL2 === true ) {
 
-				// instead of using attributes, the WebGL 2 code path encodes morph targets
-				// into an array of data textures. Each layer represents a single morph target.
+				/ instead of using attributes, the WebGL 2 code path encodes morph targets
+				/ into an array of data textures. Each layer represents a single morph target.
 
 				const morphAttribute = geometry.morphAttributes.position || geometry.morphAttributes.normal || geometry.morphAttributes.color;
 				const morphTargetsCount = ( morphAttribute !== undefined ) ? morphAttribute.length : 0;
@@ -17632,7 +17632,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					texture.type = FloatType;
 					texture.needsUpdate = true;
 
-					// fill buffer
+					/ fill buffer
 
 					const vertexDataStride = vertexDataCount * 4;
 
@@ -17707,7 +17707,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				//
+				/
 
 				let morphInfluencesSum = 0;
 
@@ -17728,8 +17728,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			} else {
 
-				// When object doesn't have morph target influences defined, we treat it as a 0-length array
-				// This is important to make sure we set up morphTargetBaseInfluence / morphTargetInfluences
+				/ When object doesn't have morph target influences defined, we treat it as a 0-length array
+				/ This is important to make sure we set up morphTargetBaseInfluence / morphTargetInfluences
 
 				const length = objectInfluences === undefined ? 0 : objectInfluences.length;
 
@@ -17737,7 +17737,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( influences === undefined || influences.length !== length ) {
 
-					// initialise list
+					/ initialise list
 
 					influences = [];
 
@@ -17751,7 +17751,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// Collect influences
+				/ Collect influences
 
 				for ( let i = 0; i < length; i ++ ) {
 
@@ -17830,9 +17830,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// GLSL shader uses formula baseinfluence * base + sum(target * influence)
-				// This allows us to switch between absolute morphs and relative morphs without changing shader code
-				// When baseinfluence = 1 - sum(influence), the above is equivalent to sum((target - base) * influence)
+				/ GLSL shader uses formula baseinfluence * base + sum(target * influence)
+				/ This allows us to switch between absolute morphs and relative morphs without changing shader code
+				/ When baseinfluence = 1 - sum(influence), the above is equivalent to sum((target - base) * influence)
 				const morphBaseInfluence = geometry.morphTargetsRelative ? 1 : 1 - morphInfluencesSum;
 
 				program.getUniforms().setValue( gl, 'morphTargetBaseInfluence', morphBaseInfluence );
@@ -17861,7 +17861,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const geometry = object.geometry;
 			const buffergeometry = geometries.get( object, geometry );
 
-			// Update once per frame
+			/ Update once per frame
 
 			if ( updateMap.get( buffergeometry ) !== frame ) {
 
@@ -17989,28 +17989,28 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 	const empty3dTexture = /*@__PURE__*/ new Data3DTexture();
 	const emptyCubeTexture = /*@__PURE__*/ new CubeTexture();
 
-	// --- Utilities ---
+	/ --- Utilities ---
 
-	// Array Caches (provide typed arrays for temporary by size)
+	/ Array Caches (provide typed arrays for temporary by size)
 
 	const arrayCacheF32 = [];
 	const arrayCacheI32 = [];
 
-	// Float32Array caches used for uploading Matrix uniforms
+	/ Float32Array caches used for uploading Matrix uniforms
 
 	const mat4array = new Float32Array( 16 );
 	const mat3array = new Float32Array( 9 );
 	const mat2array = new Float32Array( 4 );
 
-	// Flattening for arrays of vectors and matrices
+	/ Flattening for arrays of vectors and matrices
 
 	function flatten( array, nBlocks, blockSize ) {
 
 		const firstElem = array[ 0 ];
 
 		if ( firstElem <= 0 || firstElem > 0 ) return array;
-		// unoptimized: ! isNaN( firstElem )
-		// see http://jacksondunstan.com/articles/983
+		/ unoptimized: ! isNaN( firstElem )
+		/ see http://jacksondunstan.com/articles/983
 
 		const n = nBlocks * blockSize;
 		let r = arrayCacheF32[ n ];
@@ -18063,7 +18063,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Texture unit allocation
+	/ Texture unit allocation
 
 	function allocTexUnits( textures, n ) {
 
@@ -18086,12 +18086,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// --- Setters ---
+	/ --- Setters ---
 
-	// Note: Defining these methods externally, because they come in a bunch
-	// and this way their names minify.
+	/ Note: Defining these methods externally, because they come in a bunch
+	/ and this way their names minify.
 
-	// Single scalar
+	/ Single scalar
 
 	function setValueV1f( gl, v ) {
 
@@ -18105,7 +18105,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Single float vector (from flat array or THREE.VectorN)
+	/ Single float vector (from flat array or THREE.VectorN)
 
 	function setValueV2f( gl, v ) {
 
@@ -18203,7 +18203,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Single matrix (from flat array or THREE.MatrixN)
+	/ Single matrix (from flat array or THREE.MatrixN)
 
 	function setValueM2( gl, v ) {
 
@@ -18286,7 +18286,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Single integer / boolean
+	/ Single integer / boolean
 
 	function setValueV1i( gl, v ) {
 
@@ -18300,7 +18300,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Single integer / boolean vector (from flat array or THREE.VectorN)
+	/ Single integer / boolean vector (from flat array or THREE.VectorN)
 
 	function setValueV2i( gl, v ) {
 
@@ -18386,7 +18386,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Single unsigned integer
+	/ Single unsigned integer
 
 	function setValueV1ui( gl, v ) {
 
@@ -18400,7 +18400,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Single unsigned integer vector (from flat array or THREE.VectorN)
+	/ Single unsigned integer vector (from flat array or THREE.VectorN)
 
 	function setValueV2ui( gl, v ) {
 
@@ -18487,7 +18487,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 	}
 
 
-	// Single texture (2D / Cube)
+	/ Single texture (2D / Cube)
 
 	function setValueT1( gl, v, textures ) {
 
@@ -18553,53 +18553,53 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Helper to pick the right setter for the singular case
+	/ Helper to pick the right setter for the singular case
 
 	function getSingularSetter( type ) {
 
 		switch ( type ) {
 
-			case 0x1406: return setValueV1f; // FLOAT
-			case 0x8b50: return setValueV2f; // _VEC2
-			case 0x8b51: return setValueV3f; // _VEC3
-			case 0x8b52: return setValueV4f; // _VEC4
+			case 0x1406: return setValueV1f; / FLOAT
+			case 0x8b50: return setValueV2f; / _VEC2
+			case 0x8b51: return setValueV3f; / _VEC3
+			case 0x8b52: return setValueV4f; / _VEC4
 
-			case 0x8b5a: return setValueM2; // _MAT2
-			case 0x8b5b: return setValueM3; // _MAT3
-			case 0x8b5c: return setValueM4; // _MAT4
+			case 0x8b5a: return setValueM2; / _MAT2
+			case 0x8b5b: return setValueM3; / _MAT3
+			case 0x8b5c: return setValueM4; / _MAT4
 
-			case 0x1404: case 0x8b56: return setValueV1i; // INT, BOOL
-			case 0x8b53: case 0x8b57: return setValueV2i; // _VEC2
-			case 0x8b54: case 0x8b58: return setValueV3i; // _VEC3
-			case 0x8b55: case 0x8b59: return setValueV4i; // _VEC4
+			case 0x1404: case 0x8b56: return setValueV1i; / INT, BOOL
+			case 0x8b53: case 0x8b57: return setValueV2i; / _VEC2
+			case 0x8b54: case 0x8b58: return setValueV3i; / _VEC3
+			case 0x8b55: case 0x8b59: return setValueV4i; / _VEC4
 
-			case 0x1405: return setValueV1ui; // UINT
-			case 0x8dc6: return setValueV2ui; // _VEC2
-			case 0x8dc7: return setValueV3ui; // _VEC3
-			case 0x8dc8: return setValueV4ui; // _VEC4
+			case 0x1405: return setValueV1ui; / UINT
+			case 0x8dc6: return setValueV2ui; / _VEC2
+			case 0x8dc7: return setValueV3ui; / _VEC3
+			case 0x8dc8: return setValueV4ui; / _VEC4
 
-			case 0x8b5e: // SAMPLER_2D
-			case 0x8d66: // SAMPLER_EXTERNAL_OES
-			case 0x8dca: // INT_SAMPLER_2D
-			case 0x8dd2: // UNSIGNED_INT_SAMPLER_2D
-			case 0x8b62: // SAMPLER_2D_SHADOW
+			case 0x8b5e: / SAMPLER_2D
+			case 0x8d66: / SAMPLER_EXTERNAL_OES
+			case 0x8dca: / INT_SAMPLER_2D
+			case 0x8dd2: / UNSIGNED_INT_SAMPLER_2D
+			case 0x8b62: / SAMPLER_2D_SHADOW
 				return setValueT1;
 
-			case 0x8b5f: // SAMPLER_3D
-			case 0x8dcb: // INT_SAMPLER_3D
-			case 0x8dd3: // UNSIGNED_INT_SAMPLER_3D
+			case 0x8b5f: / SAMPLER_3D
+			case 0x8dcb: / INT_SAMPLER_3D
+			case 0x8dd3: / UNSIGNED_INT_SAMPLER_3D
 				return setValueT3D1;
 
-			case 0x8b60: // SAMPLER_CUBE
-			case 0x8dcc: // INT_SAMPLER_CUBE
-			case 0x8dd4: // UNSIGNED_INT_SAMPLER_CUBE
-			case 0x8dc5: // SAMPLER_CUBE_SHADOW
+			case 0x8b60: / SAMPLER_CUBE
+			case 0x8dcc: / INT_SAMPLER_CUBE
+			case 0x8dd4: / UNSIGNED_INT_SAMPLER_CUBE
+			case 0x8dc5: / SAMPLER_CUBE_SHADOW
 				return setValueT6;
 
-			case 0x8dc1: // SAMPLER_2D_ARRAY
-			case 0x8dcf: // INT_SAMPLER_2D_ARRAY
-			case 0x8dd7: // UNSIGNED_INT_SAMPLER_2D_ARRAY
-			case 0x8dc4: // SAMPLER_2D_ARRAY_SHADOW
+			case 0x8dc1: / SAMPLER_2D_ARRAY
+			case 0x8dcf: / INT_SAMPLER_2D_ARRAY
+			case 0x8dd7: / UNSIGNED_INT_SAMPLER_2D_ARRAY
+			case 0x8dc4: / SAMPLER_2D_ARRAY_SHADOW
 				return setValueT2DArray1;
 
 		}
@@ -18607,7 +18607,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 	}
 
 
-	// Array of scalars
+	/ Array of scalars
 
 	function setValueV1fArray( gl, v ) {
 
@@ -18615,7 +18615,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Array of vectors (from flat array or array of THREE.VectorN)
+	/ Array of vectors (from flat array or array of THREE.VectorN)
 
 	function setValueV2fArray( gl, v ) {
 
@@ -18641,7 +18641,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Array of matrices (from flat array or array of THREE.MatrixN)
+	/ Array of matrices (from flat array or array of THREE.MatrixN)
 
 	function setValueM2Array( gl, v ) {
 
@@ -18667,7 +18667,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Array of integer / boolean
+	/ Array of integer / boolean
 
 	function setValueV1iArray( gl, v ) {
 
@@ -18675,7 +18675,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Array of integer / boolean vectors (from flat array)
+	/ Array of integer / boolean vectors (from flat array)
 
 	function setValueV2iArray( gl, v ) {
 
@@ -18695,7 +18695,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Array of unsigned integer
+	/ Array of unsigned integer
 
 	function setValueV1uiArray( gl, v ) {
 
@@ -18703,7 +18703,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Array of unsigned integer vectors (from flat array)
+	/ Array of unsigned integer vectors (from flat array)
 
 	function setValueV2uiArray( gl, v ) {
 
@@ -18724,7 +18724,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 	}
 
 
-	// Array of textures (2D / 3D / Cube / 2DArray)
+	/ Array of textures (2D / 3D / Cube / 2DArray)
 
 	function setValueT1Array( gl, v, textures ) {
 
@@ -18823,60 +18823,60 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 	}
 
 
-	// Helper to pick the right setter for a pure (bottom-level) array
+	/ Helper to pick the right setter for a pure (bottom-level) array
 
 	function getPureArraySetter( type ) {
 
 		switch ( type ) {
 
-			case 0x1406: return setValueV1fArray; // FLOAT
-			case 0x8b50: return setValueV2fArray; // _VEC2
-			case 0x8b51: return setValueV3fArray; // _VEC3
-			case 0x8b52: return setValueV4fArray; // _VEC4
+			case 0x1406: return setValueV1fArray; / FLOAT
+			case 0x8b50: return setValueV2fArray; / _VEC2
+			case 0x8b51: return setValueV3fArray; / _VEC3
+			case 0x8b52: return setValueV4fArray; / _VEC4
 
-			case 0x8b5a: return setValueM2Array; // _MAT2
-			case 0x8b5b: return setValueM3Array; // _MAT3
-			case 0x8b5c: return setValueM4Array; // _MAT4
+			case 0x8b5a: return setValueM2Array; / _MAT2
+			case 0x8b5b: return setValueM3Array; / _MAT3
+			case 0x8b5c: return setValueM4Array; / _MAT4
 
-			case 0x1404: case 0x8b56: return setValueV1iArray; // INT, BOOL
-			case 0x8b53: case 0x8b57: return setValueV2iArray; // _VEC2
-			case 0x8b54: case 0x8b58: return setValueV3iArray; // _VEC3
-			case 0x8b55: case 0x8b59: return setValueV4iArray; // _VEC4
+			case 0x1404: case 0x8b56: return setValueV1iArray; / INT, BOOL
+			case 0x8b53: case 0x8b57: return setValueV2iArray; / _VEC2
+			case 0x8b54: case 0x8b58: return setValueV3iArray; / _VEC3
+			case 0x8b55: case 0x8b59: return setValueV4iArray; / _VEC4
 
-			case 0x1405: return setValueV1uiArray; // UINT
-			case 0x8dc6: return setValueV2uiArray; // _VEC2
-			case 0x8dc7: return setValueV3uiArray; // _VEC3
-			case 0x8dc8: return setValueV4uiArray; // _VEC4
+			case 0x1405: return setValueV1uiArray; / UINT
+			case 0x8dc6: return setValueV2uiArray; / _VEC2
+			case 0x8dc7: return setValueV3uiArray; / _VEC3
+			case 0x8dc8: return setValueV4uiArray; / _VEC4
 
-			case 0x8b5e: // SAMPLER_2D
-			case 0x8d66: // SAMPLER_EXTERNAL_OES
-			case 0x8dca: // INT_SAMPLER_2D
-			case 0x8dd2: // UNSIGNED_INT_SAMPLER_2D
-			case 0x8b62: // SAMPLER_2D_SHADOW
+			case 0x8b5e: / SAMPLER_2D
+			case 0x8d66: / SAMPLER_EXTERNAL_OES
+			case 0x8dca: / INT_SAMPLER_2D
+			case 0x8dd2: / UNSIGNED_INT_SAMPLER_2D
+			case 0x8b62: / SAMPLER_2D_SHADOW
 				return setValueT1Array;
 
-			case 0x8b5f: // SAMPLER_3D
-			case 0x8dcb: // INT_SAMPLER_3D
-			case 0x8dd3: // UNSIGNED_INT_SAMPLER_3D
+			case 0x8b5f: / SAMPLER_3D
+			case 0x8dcb: / INT_SAMPLER_3D
+			case 0x8dd3: / UNSIGNED_INT_SAMPLER_3D
 				return setValueT3DArray;
 
-			case 0x8b60: // SAMPLER_CUBE
-			case 0x8dcc: // INT_SAMPLER_CUBE
-			case 0x8dd4: // UNSIGNED_INT_SAMPLER_CUBE
-			case 0x8dc5: // SAMPLER_CUBE_SHADOW
+			case 0x8b60: / SAMPLER_CUBE
+			case 0x8dcc: / INT_SAMPLER_CUBE
+			case 0x8dd4: / UNSIGNED_INT_SAMPLER_CUBE
+			case 0x8dc5: / SAMPLER_CUBE_SHADOW
 				return setValueT6Array;
 
-			case 0x8dc1: // SAMPLER_2D_ARRAY
-			case 0x8dcf: // INT_SAMPLER_2D_ARRAY
-			case 0x8dd7: // UNSIGNED_INT_SAMPLER_2D_ARRAY
-			case 0x8dc4: // SAMPLER_2D_ARRAY_SHADOW
+			case 0x8dc1: / SAMPLER_2D_ARRAY
+			case 0x8dcf: / INT_SAMPLER_2D_ARRAY
+			case 0x8dd7: / UNSIGNED_INT_SAMPLER_2D_ARRAY
+			case 0x8dc4: / SAMPLER_2D_ARRAY_SHADOW
 				return setValueT2DArrayArray;
 
 		}
 
 	}
 
-	// --- Uniform Classes ---
+	/ --- Uniform Classes ---
 
 	class SingleUniform {
 
@@ -18887,7 +18887,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			this.cache = [];
 			this.setValue = getSingularSetter( activeInfo.type );
 
-			// this.path = activeInfo.name; // DEBUG
+			/ this.path = activeInfo.name; / DEBUG
 
 		}
 
@@ -18903,7 +18903,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			this.size = activeInfo.size;
 			this.setValue = getPureArraySetter( activeInfo.type );
 
-			// this.path = activeInfo.name; // DEBUG
+			/ this.path = activeInfo.name; / DEBUG
 
 		}
 
@@ -18935,20 +18935,20 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// --- Top-level ---
+	/ --- Top-level ---
 
-	// Parser - builds up the property tree from the path strings
+	/ Parser - builds up the property tree from the path strings
 
 	const RePathPart = /(\w+)(\])?(\[|\.)?/g;
 
-	// extracts
-	// 	- the identifier (member name or array index)
-	//  - followed by an optional right bracket (found when array index)
-	//  - followed by an optional left bracket or dot (type of subscript)
-	//
-	// Note: These portions can be read in a non-overlapping fashion and
-	// allow straightforward parsing of the hierarchy that WebGL encodes
-	// in the uniform names.
+	/ extracts
+	/ 	- the identifier (member name or array index)
+	/  - followed by an optional right bracket (found when array index)
+	/  - followed by an optional left bracket or dot (type of subscript)
+	/
+	/ Note: These portions can be read in a non-overlapping fashion and
+	/ allow straightforward parsing of the hierarchy that WebGL encodes
+	/ in the uniform names.
 
 	function addUniform( container, uniformObject ) {
 
@@ -18962,7 +18962,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 		const path = activeInfo.name,
 			pathLength = path.length;
 
-		// reset RegExp object, because of the early exit of a previous run
+		/ reset RegExp object, because of the early exit of a previous run
 		RePathPart.lastIndex = 0;
 
 		while ( true ) {
@@ -18974,11 +18974,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const idIsIndex = match[ 2 ] === ']',
 				subscript = match[ 3 ];
 
-			if ( idIsIndex ) id = id | 0; // convert to integer
+			if ( idIsIndex ) id = id | 0; / convert to integer
 
 			if ( subscript === undefined || subscript === '[' && matchEnd + 2 === pathLength ) {
 
-				// bare name or "pure" bottom-level array "[0]" suffix
+				/ bare name or "pure" bottom-level array "[0]" suffix
 
 				addUniform( container, subscript === undefined ?
 					new SingleUniform( id, activeInfo, addr ) :
@@ -18988,7 +18988,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			} else {
 
-				// step into inner node / create it in case it doesn't exist
+				/ step into inner node / create it in case it doesn't exist
 
 				const map = container.map;
 				let next = map[ id ];
@@ -19008,7 +19008,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Root Container
+	/ Root Container
 
 	class WebGLUniforms {
 
@@ -19055,7 +19055,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( v.needsUpdate !== false ) {
 
-					// note: always updating when .needsUpdate is undefined
+					/ note: always updating when .needsUpdate is undefined
 					u.setValue( gl, v.value, textures );
 
 				}
@@ -19162,8 +19162,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 		const errorMatches = /ERROR: 0:(\d+)/.exec( errors );
 		if ( errorMatches ) {
 
-			// --enable-privileged-webgl-extension
-			// console.log( '**' + type + '**', gl.getExtension( 'WEBGL_debug_shaders' ).getTranslatedShaderSource( shader ) );
+			/ --enable-privileged-webgl-extension
+			/ console.log( '**' + type + '**', gl.getExtension( 'WEBGL_debug_shaders' ).getTranslatedShaderSource( shader ) );
 
 			const errorLine = parseInt( errorMatches[ 1 ] );
 			return type.toUpperCase() + '\n\n' + errors + '\n\n' + handleSource( gl.getShaderSource( shader ), errorLine );
@@ -19266,7 +19266,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			if ( info.type === gl.FLOAT_MAT3 ) locationSize = 3;
 			if ( info.type === gl.FLOAT_MAT4 ) locationSize = 4;
 
-			// console.log( 'THREE.WebGLProgram: ACTIVE VERTEX ATTRIBUTE:', name, i );
+			/ console.log( 'THREE.WebGLProgram: ACTIVE VERTEX ATTRIBUTE:', name, i );
 
 			attributes[ name ] = {
 				type: info.type,
@@ -19313,7 +19313,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Resolve Includes
+	/ Resolve Includes
 
 	const includePattern = /^[ \t]*#include +<([\w\d./]+)>/gm;
 
@@ -19324,9 +19324,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 	}
 
 	const shaderChunkMap = new Map( [
-		[ 'encodings_fragment', 'colorspace_fragment' ], // @deprecated, r154
-		[ 'encodings_pars_fragment', 'colorspace_pars_fragment' ], // @deprecated, r154
-		[ 'output_fragment', 'opaque_fragment' ], // @deprecated, r154
+		[ 'encodings_fragment', 'colorspace_fragment' ], / @deprecated, r154
+		[ 'encodings_pars_fragment', 'colorspace_pars_fragment' ], / @deprecated, r154
+		[ 'output_fragment', 'opaque_fragment' ], / @deprecated, r154
 	] );
 
 	function includeReplacer( match, include ) {
@@ -19354,7 +19354,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Unroll Loops
+	/ Unroll Loops
 
 	const unrollLoopPattern = /#pragma unroll_loop_start\s+for\s*\(\s*int\s+i\s*=\s*(\d+)\s*;\s*i\s*<\s*(\d+)\s*;\s*i\s*\+\+\s*\)\s*{([\s\S]+?)}\s+#pragma unroll_loop_end/g;
 
@@ -19380,7 +19380,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	//
+	/
 
 	function generatePrecision( parameters ) {
 
@@ -19518,8 +19518,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	function WebGLProgram( renderer, cacheKey, parameters, bindingStates ) {
 
-		// TODO Send this event to Three.js DevTools
-		// console.log( 'WebGLProgram', cacheKey );
+		/ TODO Send this event to Three.js DevTools
+		/ console.log( 'WebGLProgram', cacheKey );
 
 		const gl = renderer.getContext();
 
@@ -19632,7 +19632,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				parameters.sheenColorMap ? '#define USE_SHEEN_COLORMAP' : '',
 				parameters.sheenRoughnessMap ? '#define USE_SHEEN_ROUGHNESSMAP' : '',
 
-				//
+				/
 
 				parameters.mapUv ? '#define MAP_UV ' + parameters.mapUv : '',
 				parameters.alphaMapUv ? '#define ALPHAMAP_UV ' + parameters.alphaMapUv : '',
@@ -19665,7 +19665,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				parameters.transmissionMapUv ? '#define TRANSMISSIONMAP_UV ' + parameters.transmissionMapUv : '',
 				parameters.thicknessMapUv ? '#define THICKNESSMAP_UV ' + parameters.thicknessMapUv : '',
 
-				//
+				/
 
 				parameters.vertexTangents && parameters.flatShading === false ? '#define USE_TANGENT' : '',
 				parameters.vertexColors ? '#define USE_COLOR' : '',
@@ -19892,13 +19892,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				'uniform bool isOrthographic;',
 
 				( parameters.toneMapping !== NoToneMapping ) ? '#define TONE_MAPPING' : '',
-				( parameters.toneMapping !== NoToneMapping ) ? ShaderChunk[ 'tonemapping_pars_fragment' ] : '', // this code is required here because it is used by the toneMapping() function defined below
+				( parameters.toneMapping !== NoToneMapping ) ? ShaderChunk[ 'tonemapping_pars_fragment' ] : '', / this code is required here because it is used by the toneMapping() function defined below
 				( parameters.toneMapping !== NoToneMapping ) ? getToneMappingFunction( 'toneMapping', parameters.toneMapping ) : '',
 
 				parameters.dithering ? '#define DITHERING' : '',
 				parameters.opaque ? '#define OPAQUE' : '',
 
-				ShaderChunk[ 'colorspace_pars_fragment' ], // this code is required here because it is used by the various encoding/decoding function defined below
+				ShaderChunk[ 'colorspace_pars_fragment' ], / this code is required here because it is used by the various encoding/decoding function defined below
 				getTexelEncodingFunction( 'linearToOutputTexel', parameters.outputColorSpace ),
 
 				parameters.useDepthPacking ? '#define DEPTH_PACKING ' + parameters.depthPacking : '',
@@ -19922,7 +19922,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		if ( parameters.isWebGL2 && parameters.isRawShaderMaterial !== true ) {
 
-			// GLSL 3.0 conversion for built-in materials and ShaderMaterial
+			/ GLSL 3.0 conversion for built-in materials and ShaderMaterial
 
 			versionString = '#version 300 es\n';
 
@@ -19954,8 +19954,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 		const vertexGlsl = versionString + prefixVertex + vertexShader;
 		const fragmentGlsl = versionString + prefixFragment + fragmentShader;
 
-		// console.log( '*VERTEX*', vertexGlsl );
-		// console.log( '*FRAGMENT*', fragmentGlsl );
+		/ console.log( '*VERTEX*', vertexGlsl );
+		/ console.log( '*FRAGMENT*', fragmentGlsl );
 
 		const glVertexShader = WebGLShader( gl, gl.VERTEX_SHADER, vertexGlsl );
 		const glFragmentShader = WebGLShader( gl, gl.FRAGMENT_SHADER, fragmentGlsl );
@@ -19963,7 +19963,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 		gl.attachShader( program, glVertexShader );
 		gl.attachShader( program, glFragmentShader );
 
-		// Force a particular attribute to index 0.
+		/ Force a particular attribute to index 0.
 
 		if ( parameters.index0AttributeName !== undefined ) {
 
@@ -19971,14 +19971,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		} else if ( parameters.morphTargets === true ) {
 
-			// programs with morphTargets displace position out of attribute 0
+			/ programs with morphTargets displace position out of attribute 0
 			gl.bindAttribLocation( program, 0, 'position' );
 
 		}
 
 		gl.linkProgram( program );
 
-		// check for link errors
+		/ check for link errors
 		if ( renderer.debug.checkShaderErrors ) {
 
 			const programLog = gl.getProgramInfoLog( program ).trim();
@@ -19998,7 +19998,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				} else {
 
-					// default error reporting
+					/ default error reporting
 
 					const vertexErrors = getShaderErrors( gl, glVertexShader, 'vertex' );
 					const fragmentErrors = getShaderErrors( gl, glFragmentShader, 'fragment' );
@@ -20051,16 +20051,16 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Clean up
+		/ Clean up
 
-		// Crashes in iOS9 and iOS10. #18402
-		// gl.detachShader( program, glVertexShader );
-		// gl.detachShader( program, glFragmentShader );
+		/ Crashes in iOS9 and iOS10. #18402
+		/ gl.detachShader( program, glVertexShader );
+		/ gl.detachShader( program, glFragmentShader );
 
 		gl.deleteShader( glVertexShader );
 		gl.deleteShader( glFragmentShader );
 
-		// set up caching for uniform locations
+		/ set up caching for uniform locations
 
 		let cachedUniforms;
 
@@ -20076,7 +20076,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		};
 
-		// set up caching for attribute locations
+		/ set up caching for attribute locations
 
 		let cachedAttributes;
 
@@ -20092,7 +20092,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		};
 
-		// free resource
+		/ free resource
 
 		this.destroy = function () {
 
@@ -20103,7 +20103,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		};
 
-		//
+		/
 
 		this.type = parameters.shaderType;
 		this.name = parameters.shaderName;
@@ -20290,8 +20290,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const shaderID = shaderIDs[ material.type ];
 
-			// heuristics to create shader parameters according to lights in the scene
-			// (not to blow over maxLights budget)
+			/ heuristics to create shader parameters according to lights in the scene
+			/ (not to blow over maxLights budget)
 
 			if ( material.precision !== null ) {
 
@@ -20305,7 +20305,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			//
+			/
 
 			const morphAttribute = geometry.morphAttributes.position || geometry.morphAttributes.normal || geometry.morphAttributes.color;
 			const morphTargetsCount = ( morphAttribute !== undefined ) ? morphAttribute.length : 0;
@@ -20316,7 +20316,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			if ( geometry.morphAttributes.normal !== undefined ) morphTextureStride = 2;
 			if ( geometry.morphAttributes.color !== undefined ) morphTextureStride = 3;
 
-			//
+			/
 
 			let vertexShader, fragmentShader;
 			let customVertexShaderID, customFragmentShaderID;
@@ -20486,7 +20486,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				combine: material.combine,
 
-				//
+				/
 
 				mapUv: HAS_MAP && getChannel( material.map.channel ),
 				aoMapUv: HAS_AOMAP && getChannel( material.aoMap.channel ),
@@ -20520,7 +20520,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				alphaMapUv: HAS_ALPHAMAP && getChannel( material.alphaMap.channel ),
 
-				//
+				/
 
 				vertexTangents: !! geometry.attributes.tangent && ( HAS_NORMALMAP || HAS_ANISOTROPY ),
 				vertexColors: material.vertexColors,
@@ -20808,7 +20808,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			let program;
 
-			// Check if code has been already compiled
+			/ Check if code has been already compiled
 			for ( let p = 0, pl = programs.length; p < pl; p ++ ) {
 
 				const preexistingProgram = programs[ p ];
@@ -20839,12 +20839,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( -- program.usedTimes === 0 ) {
 
-				// Remove from unordered set
+				/ Remove from unordered set
 				const i = programs.indexOf( program );
 				programs[ i ] = programs[ programs.length - 1 ];
 				programs.pop();
 
-				// Free WebGL resources
+				/ Free WebGL resources
 				program.destroy();
 
 			}
@@ -20870,7 +20870,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			acquireProgram: acquireProgram,
 			releaseProgram: releaseProgram,
 			releaseShaderCache: releaseShaderCache,
-			// Exposed for resource monitoring & error feedback via renderer.info:
+			/ Exposed for resource monitoring & error feedback via renderer.info:
 			programs: programs,
 			dispose: dispose
 		};
@@ -21079,7 +21079,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		function finish() {
 
-			// Clear references from inactive renderItems in the list
+			/ Clear references from inactive renderItems in the list
 
 			for ( let i = renderItemsIndex, il = renderItems.length; i < il; i ++ ) {
 
@@ -21281,7 +21281,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 						};
 						break;
 
-					// TODO (abelnation): set RectAreaLight shadow uniforms
+					/ TODO (abelnation): set RectAreaLight shadow uniforms
 
 				}
 
@@ -21380,10 +21380,10 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			let numLightProbes = 0;
 
-			// ordering : [shadow casting + map texturing, map texturing, shadow casting, none ]
+			/ ordering : [shadow casting + map texturing, map texturing, shadow casting, none ]
 			lights.sort( shadowCastingAndTexturingLightsFirst );
 
-			// artist-friendly light intensity scaling factor
+			/ artist-friendly light intensity scaling factor
 			const scaleFactor = ( useLegacyLights === true ) ? Math.PI : 1;
 
 			for ( let i = 0, l = lights.length; i < l; i ++ ) {
@@ -21463,8 +21463,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 						state.spotLightMap[ numSpotMaps ] = light.map;
 						numSpotMaps ++;
 
-						// make sure the lightMatrix is up to date
-						// TODO : do it if required only
+						/ make sure the lightMatrix is up to date
+						/ TODO : do it if required only
 						shadow.updateMatrices( light );
 
 						if ( light.castShadow ) numSpotShadowsWithMaps ++;
@@ -21556,14 +21556,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( capabilities.isWebGL2 ) {
 
-					// WebGL 2
+					/ WebGL 2
 
 					state.rectAreaLTC1 = UniformsLib.LTC_FLOAT_1;
 					state.rectAreaLTC2 = UniformsLib.LTC_FLOAT_2;
 
 				} else {
 
-					// WebGL 1
+					/ WebGL 1
 
 					if ( extensions.has( 'OES_texture_float_linear' ) === true ) {
 
@@ -21686,7 +21686,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					uniforms.position.setFromMatrixPosition( light.matrixWorld );
 					uniforms.position.applyMatrix4( viewMatrix );
 
-					// extract local rotation of light to derive width/height half vectors
+					/ extract local rotation of light to derive width/height half vectors
 					matrix42.identity();
 					matrix4.copy( light.matrixWorld );
 					matrix4.premultiply( viewMatrix );
@@ -21999,18 +21999,18 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const _state = _renderer.state;
 
-			// Set GL state for depth map.
+			/ Set GL state for depth map.
 			_state.setBlending( NoBlending );
 			_state.buffers.color.setClear( 1, 1, 1, 1 );
 			_state.buffers.depth.setTest( true );
 			_state.setScissorTest( false );
 
-			// check for shadow map type changes
+			/ check for shadow map type changes
 
 			const toVSM = ( _previousType !== VSMShadowMap && this.type === VSMShadowMap );
 			const fromVSM = ( _previousType === VSMShadowMap && this.type !== VSMShadowMap );
 
-			// render depth map
+			/ render depth map
 
 			for ( let i = 0, il = lights.length; i < il; i ++ ) {
 
@@ -22097,7 +22097,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// do blur pass for VSM
+				/ do blur pass for VSM
 
 				if ( shadow.isPointLightShadow !== true && this.type === VSMShadowMap ) {
 
@@ -22137,7 +22137,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// vertical pass
+			/ vertical pass
 
 			shadowMaterialVertical.uniforms.shadow_pass.value = shadow.map.texture;
 			shadowMaterialVertical.uniforms.resolution.value = shadow.mapSize;
@@ -22146,7 +22146,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			_renderer.clear();
 			_renderer.renderBufferDirect( camera, null, geometry, shadowMaterialVertical, fullScreenMesh, null );
 
-			// horizontal pass
+			/ horizontal pass
 
 			shadowMaterialHorizontal.uniforms.shadow_pass.value = shadow.mapPass.texture;
 			shadowMaterialHorizontal.uniforms.resolution.value = shadow.mapSize;
@@ -22176,8 +22176,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					( material.alphaMap && material.alphaTest > 0 ) ||
 					( material.map && material.alphaTest > 0 ) ) {
 
-					// in this case we need a unique material instance reflecting the
-					// appropriate state
+					/ in this case we need a unique material instance reflecting the
+					/ appropriate state
 
 					const keyA = result.uuid, keyB = material.uuid;
 
@@ -22357,7 +22357,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					locked = false;
 
 					currentColorMask = null;
-					currentColorClear.set( - 1, 0, 0, 0 ); // set to invalid state
+					currentColorClear.set( - 1, 0, 0, 0 ); / set to invalid state
 
 				}
 
@@ -22601,7 +22601,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		//
+		/
 
 		const colorBuffer = new ColorBuffer();
 		const depthBuffer = new DepthBuffer();
@@ -22665,7 +22665,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		function createTexture( type, target, count, dimensions ) {
 
-			const data = new Uint8Array( 4 ); // 4 is required to match default unpack alignment of 4.
+			const data = new Uint8Array( 4 ); / 4 is required to match default unpack alignment of 4.
 			const texture = gl.createTexture();
 
 			gl.bindTexture( type, texture );
@@ -22701,7 +22701,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// init
+		/ init
 
 		colorBuffer.setClear( 0, 0, 0, 1 );
 		depthBuffer.setClear( 1 );
@@ -22716,7 +22716,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		setBlending( NoBlending );
 
-		//
+		/
 
 		function enable( id ) {
 
@@ -22750,7 +22750,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( isWebGL2 ) {
 
-					// gl.DRAW_FRAMEBUFFER is equivalent to gl.FRAMEBUFFER
+					/ gl.DRAW_FRAMEBUFFER is equivalent to gl.FRAMEBUFFER
 
 					if ( target === gl.DRAW_FRAMEBUFFER ) {
 
@@ -23007,7 +23007,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// custom blending
+			/ custom blending
 
 			blendEquationAlpha = blendEquationAlpha || blendEquation;
 			blendSrcAlpha = blendSrcAlpha || blendSrc;
@@ -23076,7 +23076,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		//
+		/
 
 		function setFlipSided( flipSided ) {
 
@@ -23181,7 +23181,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// texture
+		/ texture
 
 		function activeTexture( webglSlot ) {
 
@@ -23394,7 +23394,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		//
+		/
 
 		function scissor( scissor ) {
 
@@ -23449,7 +23449,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( uboBindings.get( program ) !== blockIndex ) {
 
-				// bind shader specific block index to global block point
+				/ bind shader specific block index to global block point
 				gl.uniformBlockBinding( program, blockIndex, uniformsGroup.__bindingPointIndex );
 
 				uboBindings.set( program, blockIndex );
@@ -23458,11 +23458,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		//
+		/
 
 		function reset() {
 
-			// reset state
+			/ reset state
 
 			gl.disable( gl.BLEND );
 			gl.disable( gl.CULL_FACE );
@@ -23511,7 +23511,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			gl.scissor( 0, 0, gl.canvas.width, gl.canvas.height );
 			gl.viewport( 0, 0, gl.canvas.width, gl.canvas.height );
 
-			// reset internals
+			/ reset internals
 
 			enabledCapabilities = {};
 
@@ -23618,32 +23618,32 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 		const _videoTextures = new WeakMap();
 		let _canvas;
 
-		const _sources = new WeakMap(); // maps WebglTexture objects to instances of Source
+		const _sources = new WeakMap(); / maps WebglTexture objects to instances of Source
 
-		// cordova iOS (as of 5.0) still uses UIWebView, which provides OffscreenCanvas,
-		// also OffscreenCanvas.getContext("webgl"), but not OffscreenCanvas.getContext("2d")!
-		// Some implementations may only implement OffscreenCanvas partially (e.g. lacking 2d).
+		/ cordova iOS (as of 5.0) still uses UIWebView, which provides OffscreenCanvas,
+		/ also OffscreenCanvas.getContext("webgl"), but not OffscreenCanvas.getContext("2d")!
+		/ Some implementations may only implement OffscreenCanvas partially (e.g. lacking 2d).
 
 		let useOffscreenCanvas = false;
 
 		try {
 
 			useOffscreenCanvas = typeof OffscreenCanvas !== 'undefined'
-				// eslint-disable-next-line compat/compat
+				/ eslint-disable-next-line compat/compat
 				&& ( new OffscreenCanvas( 1, 1 ).getContext( '2d' ) ) !== null;
 
 		} catch ( err ) {
 
-			// Ignore any errors
+			/ Ignore any errors
 
 		}
 
 		function createCanvas( width, height ) {
 
-			// Use OffscreenCanvas when available. Specially needed in web workers
+			/ Use OffscreenCanvas when available. Specially needed in web workers
 
 			return useOffscreenCanvas ?
-				// eslint-disable-next-line compat/compat
+				/ eslint-disable-next-line compat/compat
 				new OffscreenCanvas( width, height ) : createElementNS( 'canvas' );
 
 		}
@@ -23652,7 +23652,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			let scale = 1;
 
-			// handle case if texture exceeds max size
+			/ handle case if texture exceeds max size
 
 			if ( image.width > maxSize || image.height > maxSize ) {
 
@@ -23660,11 +23660,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// only perform resize if necessary
+			/ only perform resize if necessary
 
 			if ( scale < 1 || needsPowerOfTwo === true ) {
 
-				// only perform resize for certain image types
+				/ only perform resize for certain image types
 
 				if ( ( typeof HTMLImageElement !== 'undefined' && image instanceof HTMLImageElement ) ||
 					( typeof HTMLCanvasElement !== 'undefined' && image instanceof HTMLCanvasElement ) ||
@@ -23677,7 +23677,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					if ( _canvas === undefined ) _canvas = createCanvas( width, height );
 
-					// cube textures can't reuse the same canvas
+					/ cube textures can't reuse the same canvas
 
 					const canvas = needsNewCanvas ? createCanvas( width, height ) : _canvas;
 
@@ -23810,7 +23810,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			} else if ( texture.mipmaps !== undefined && texture.mipmaps.length > 0 ) {
 
-				// user-defined mipmaps
+				/ user-defined mipmaps
 
 				return texture.mipmaps.length;
 
@@ -23820,7 +23820,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			} else {
 
-				// texture without mipmaps (only base level)
+				/ texture without mipmaps (only base level)
 
 				return 1;
 
@@ -23828,7 +23828,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Fallback filters for non-power-of-2 textures
+		/ Fallback filters for non-power-of-2 textures
 
 		function filterFallback( f ) {
 
@@ -23842,7 +23842,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		//
+		/
 
 		function onTextureDispose( event ) {
 
@@ -23870,7 +23870,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		//
+		/
 
 		function deallocateTexture( texture ) {
 
@@ -23878,7 +23878,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( textureProperties.__webglInit === undefined ) return;
 
-			// check if it's necessary to remove the WebGLTexture object
+			/ check if it's necessary to remove the WebGLTexture object
 
 			const source = texture.source;
 			const webglTextures = _sources.get( source );
@@ -23888,7 +23888,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				const webglTexture = webglTextures[ textureProperties.__cacheKey ];
 				webglTexture.usedTimes --;
 
-				// the WebGLTexture object is not used anymore, remove it
+				/ the WebGLTexture object is not used anymore, remove it
 
 				if ( webglTexture.usedTimes === 0 ) {
 
@@ -23896,7 +23896,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// remove the weak map entry if no WebGLTexture uses the source anymore
+				/ remove the weak map entry if no WebGLTexture uses the source anymore
 
 				if ( Object.keys( webglTextures ).length === 0 ) {
 
@@ -24016,7 +24016,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		//
+		/
 
 		let textureUnits = 0;
 
@@ -24065,7 +24065,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		//
+		/
 
 		function setTexture2D( texture, slot ) {
 
@@ -24227,8 +24227,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( texture.magFilter === NearestFilter ) return;
 				if ( texture.minFilter !== NearestMipmapLinearFilter && texture.minFilter !== LinearMipmapLinearFilter ) return;
-				if ( texture.type === FloatType && extensions.has( 'OES_texture_float_linear' ) === false ) return; // verify extension for WebGL 1 and WebGL 2
-				if ( isWebGL2 === false && ( texture.type === HalfFloatType && extensions.has( 'OES_texture_half_float_linear' ) === false ) ) return; // verify extension for WebGL 1 only
+				if ( texture.type === FloatType && extensions.has( 'OES_texture_float_linear' ) === false ) return; / verify extension for WebGL 1 and WebGL 2
+				if ( isWebGL2 === false && ( texture.type === HalfFloatType && extensions.has( 'OES_texture_half_float_linear' ) === false ) ) return; / verify extension for WebGL 1 only
 
 				if ( texture.anisotropy > 1 || properties.get( texture ).__currentAnisotropy ) {
 
@@ -24253,7 +24253,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// create Source <-> WebGLTextures mapping if necessary
+			/ create Source <-> WebGLTextures mapping if necessary
 
 			const source = texture.source;
 			let webglTextures = _sources.get( source );
@@ -24265,17 +24265,17 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// check if there is already a WebGLTexture object for the given texture parameters
+			/ check if there is already a WebGLTexture object for the given texture parameters
 
 			const textureCacheKey = getTextureCacheKey( texture );
 
 			if ( textureCacheKey !== textureProperties.__cacheKey ) {
 
-				// if not, create a new instance of WebGLTexture
+				/ if not, create a new instance of WebGLTexture
 
 				if ( webglTextures[ textureCacheKey ] === undefined ) {
 
-					// create new entry
+					/ create new entry
 
 					webglTextures[ textureCacheKey ] = {
 						texture: _gl.createTexture(),
@@ -24284,8 +24284,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					info.memory.textures ++;
 
-					// when a new instance of WebGLTexture was created, a texture upload is required
-					// even if the image contents are identical
+					/ when a new instance of WebGLTexture was created, a texture upload is required
+					/ even if the image contents are identical
 
 					forceUpload = true;
 
@@ -24293,8 +24293,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				webglTextures[ textureCacheKey ].usedTimes ++;
 
-				// every time the texture cache key changes, it's necessary to check if an instance of
-				// WebGLTexture can be deleted in order to avoid a memory leak.
+				/ every time the texture cache key changes, it's necessary to check if an instance of
+				/ WebGLTexture can be deleted in order to avoid a memory leak.
 
 				const webglTexture = webglTextures[ textureProperties.__cacheKey ];
 
@@ -24310,7 +24310,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// store references to cache key and WebGLTexture object
+				/ store references to cache key and WebGLTexture object
 
 				textureProperties.__cacheKey = textureCacheKey;
 				textureProperties.__webglTexture = webglTextures[ textureCacheKey ].texture;
@@ -24369,7 +24369,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( texture.isDepthTexture ) {
 
-					// populate depth texture with dummy data
+					/ populate depth texture with dummy data
 
 					glInternalFormat = _gl.DEPTH_COMPONENT;
 
@@ -24389,7 +24389,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						} else {
 
-							glInternalFormat = _gl.DEPTH_COMPONENT16; // WebGL2 requires sized internalformat for glTexImage2D
+							glInternalFormat = _gl.DEPTH_COMPONENT16; / WebGL2 requires sized internalformat for glTexImage2D
 
 						}
 
@@ -24403,13 +24403,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					}
 
-					// validation checks for WebGL 1
+					/ validation checks for WebGL 1
 
 					if ( texture.format === DepthFormat && glInternalFormat === _gl.DEPTH_COMPONENT ) {
 
-						// The error INVALID_OPERATION is generated by texImage2D if format and internalformat are
-						// DEPTH_COMPONENT and type is not UNSIGNED_SHORT or UNSIGNED_INT
-						// (https://www.khronos.org/registry/webgl/extensions/WEBGL_depth_texture/)
+						/ The error INVALID_OPERATION is generated by texImage2D if format and internalformat are
+						/ DEPTH_COMPONENT and type is not UNSIGNED_SHORT or UNSIGNED_INT
+						/ (https://www.khronos.org/registry/webgl/extensions/WEBGL_depth_texture/)
 						if ( texture.type !== UnsignedShortType && texture.type !== UnsignedIntType ) {
 
 							console.warn( 'THREE.WebGLRenderer: Use UnsignedShortType or UnsignedIntType for DepthFormat DepthTexture.' );
@@ -24423,13 +24423,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					if ( texture.format === DepthStencilFormat && glInternalFormat === _gl.DEPTH_COMPONENT ) {
 
-						// Depth stencil textures need the DEPTH_STENCIL internal format
-						// (https://www.khronos.org/registry/webgl/extensions/WEBGL_depth_texture/)
+						/ Depth stencil textures need the DEPTH_STENCIL internal format
+						/ (https://www.khronos.org/registry/webgl/extensions/WEBGL_depth_texture/)
 						glInternalFormat = _gl.DEPTH_STENCIL;
 
-						// The error INVALID_OPERATION is generated by texImage2D if format and internalformat are
-						// DEPTH_STENCIL and type is not UNSIGNED_INT_24_8_WEBGL.
-						// (https://www.khronos.org/registry/webgl/extensions/WEBGL_depth_texture/)
+						/ The error INVALID_OPERATION is generated by texImage2D if format and internalformat are
+						/ DEPTH_STENCIL and type is not UNSIGNED_INT_24_8_WEBGL.
+						/ (https://www.khronos.org/registry/webgl/extensions/WEBGL_depth_texture/)
 						if ( texture.type !== UnsignedInt248Type ) {
 
 							console.warn( 'THREE.WebGLRenderer: Use UnsignedInt248Type for DepthStencilFormat DepthTexture.' );
@@ -24441,7 +24441,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					}
 
-					//
+					/
 
 					if ( allocateMemory ) {
 
@@ -24459,9 +24459,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				} else if ( texture.isDataTexture ) {
 
-					// use manually created mipmaps if available
-					// if there are no manual mipmaps
-					// set 0 level mipmap and then use GL to generate other mipmap levels
+					/ use manually created mipmaps if available
+					/ if there are no manual mipmaps
+					/ set 0 level mipmap and then use GL to generate other mipmap levels
 
 					if ( mipmaps.length > 0 && supportsMips ) {
 
@@ -24672,11 +24672,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				} else {
 
-					// regular Texture (image, video, canvas)
+					/ regular Texture (image, video, canvas)
 
-					// use manually created mipmaps if available
-					// if there are no manual mipmaps
-					// set 0 level mipmap and then use GL to generate other mipmap levels
+					/ use manually created mipmaps if available
+					/ if there are no manual mipmaps
+					/ set 0 level mipmap and then use GL to generate other mipmap levels
 
 					if ( mipmaps.length > 0 && supportsMips ) {
 
@@ -24861,9 +24861,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					if ( useTexStorage && allocateMemory ) {
 
-						// TODO: Uniformly handle mipmap definitions
-						// Normal textures and compressed cube textures define base level + mips with their mipmap array
-						// Uncompressed cube textures use their mipmap array only for mips (no base level)
+						/ TODO: Uniformly handle mipmap definitions
+						/ Normal textures and compressed cube textures define base level + mips with their mipmap array
+						/ Uncompressed cube textures use their mipmap array only for mips (no base level)
 
 						if ( mipmaps.length > 0 ) levels ++;
 
@@ -24938,7 +24938,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( textureNeedsGenerateMipmaps( texture, supportsMips ) ) {
 
-					// We assume images for cube map have the same size.
+					/ We assume images for cube map have the same size.
 					generateMipmap( _gl.TEXTURE_CUBE_MAP );
 
 				}
@@ -24953,9 +24953,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Render targets
+		/ Render targets
 
-		// Setup storage for target texture and bind it to correct framebuffer
+		/ Setup storage for target texture and bind it to correct framebuffer
 		function setupFrameBufferTexture( framebuffer, renderTarget, texture, attachment, textureTarget, level ) {
 
 			const glFormat = utils.convert( texture.format, texture.colorSpace );
@@ -24986,7 +24986,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				multisampledRTTExt.framebufferTexture2DMultisampleEXT( _gl.FRAMEBUFFER, attachment, textureTarget, properties.get( texture ).__webglTexture, 0, getRenderTargetSamples( renderTarget ) );
 
-			} else if ( textureTarget === _gl.TEXTURE_2D || ( textureTarget >= _gl.TEXTURE_CUBE_MAP_POSITIVE_X && textureTarget <= _gl.TEXTURE_CUBE_MAP_NEGATIVE_Z ) ) { // see #24753
+			} else if ( textureTarget === _gl.TEXTURE_2D || ( textureTarget >= _gl.TEXTURE_CUBE_MAP_POSITIVE_X && textureTarget <= _gl.TEXTURE_CUBE_MAP_NEGATIVE_Z ) ) { / see #24753
 
 				_gl.framebufferTexture2D( _gl.FRAMEBUFFER, attachment, textureTarget, properties.get( texture ).__webglTexture, level );
 
@@ -24997,7 +24997,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 		}
 
 
-		// Setup storage for internal depth/stencil buffers and bind to correct framebuffer
+		/ Setup storage for internal depth/stencil buffers and bind to correct framebuffer
 		function setupRenderBufferStorage( renderbuffer, renderTarget, isMultisample ) {
 
 			_gl.bindRenderbuffer( _gl.RENDERBUFFER, renderbuffer );
@@ -25100,7 +25100,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Setup resources for a Depth Texture for a FBO (needs an extension)
+		/ Setup resources for a Depth Texture for a FBO (needs an extension)
 		function setupDepthTexture( framebuffer, renderTarget ) {
 
 			const isCube = ( renderTarget && renderTarget.isWebGLCubeRenderTarget );
@@ -25114,7 +25114,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// upload an empty depth texture with framebuffer size
+			/ upload an empty depth texture with framebuffer size
 			if ( ! properties.get( renderTarget.depthTexture ).__webglTexture ||
 					renderTarget.depthTexture.image.width !== renderTarget.width ||
 					renderTarget.depthTexture.image.height !== renderTarget.height ) {
@@ -25162,7 +25162,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Setup GL resources for a non-texture depth buffer
+		/ Setup GL resources for a non-texture depth buffer
 		function setupDepthRenderbuffer( renderTarget ) {
 
 			const renderTargetProperties = properties.get( renderTarget );
@@ -25202,7 +25202,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// rebind framebuffer with external textures
+		/ rebind framebuffer with external textures
 		function rebindTextures( renderTarget, colorTexture, depthTexture ) {
 
 			const renderTargetProperties = properties.get( renderTarget );
@@ -25221,7 +25221,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Set up GL resources for the render target
+		/ Set up GL resources for the render target
 		function setupRenderTarget( renderTarget ) {
 
 			const texture = renderTarget.texture;
@@ -25248,7 +25248,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const isMultipleRenderTargets = ( renderTarget.isWebGLMultipleRenderTargets === true );
 			const supportsMips = isPowerOfTwo$1( renderTarget ) || isWebGL2;
 
-			// Setup framebuffer
+			/ Setup framebuffer
 
 			if ( isCube ) {
 
@@ -25361,7 +25361,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// Setup color buffer
+			/ Setup color buffer
 
 			if ( isCube ) {
 
@@ -25462,7 +25462,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// Setup depth and stencil buffers
+			/ Setup depth and stencil buffers
 
 			if ( renderTarget.depthBuffer ) {
 
@@ -25510,7 +25510,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				const renderTargetProperties = properties.get( renderTarget );
 				const isMultipleRenderTargets = ( renderTarget.isWebGLMultipleRenderTargets === true );
 
-				// If MRT we need to remove FBO attachments
+				/ If MRT we need to remove FBO attachments
 				if ( isMultipleRenderTargets ) {
 
 					for ( let i = 0; i < textures.length; i ++ ) {
@@ -25581,7 +25581,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				state.bindFramebuffer( _gl.READ_FRAMEBUFFER, null );
 				state.bindFramebuffer( _gl.DRAW_FRAMEBUFFER, null );
 
-				// If MRT since pre-blit we removed the FBO we need to reconstruct the attachments
+				/ If MRT since pre-blit we removed the FBO we need to reconstruct the attachments
 				if ( isMultipleRenderTargets ) {
 
 					for ( let i = 0; i < textures.length; i ++ ) {
@@ -25622,7 +25622,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const frame = info.render.frame;
 
-			// Check the last frame we updated the VideoTexture
+			/ Check the last frame we updated the VideoTexture
 
 			if ( _videoTextures.get( texture ) !== frame ) {
 
@@ -25643,26 +25643,26 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( colorSpace !== LinearSRGBColorSpace && colorSpace !== NoColorSpace ) {
 
-				// sRGB
+				/ sRGB
 
 				if ( ColorManagement.getTransfer( colorSpace ) === SRGBTransfer ) {
 
 					if ( isWebGL2 === false ) {
 
-						// in WebGL 1, try to use EXT_sRGB extension and unsized formats
+						/ in WebGL 1, try to use EXT_sRGB extension and unsized formats
 
 						if ( extensions.has( 'EXT_sRGB' ) === true && format === RGBAFormat ) {
 
 							texture.format = _SRGBAFormat;
 
-							// it's not possible to generate mips in WebGL 1 with this extension
+							/ it's not possible to generate mips in WebGL 1 with this extension
 
 							texture.minFilter = LinearFilter;
 							texture.generateMipmaps = false;
 
 						} else {
 
-							// slow fallback (CPU decode)
+							/ slow fallback (CPU decode)
 
 							image = ImageUtils.sRGBToLinear( image );
 
@@ -25670,7 +25670,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					} else {
 
-						// in WebGL 2 uncompressed textures can only be sRGB encoded if they have the RGBA8 format
+						/ in WebGL 2 uncompressed textures can only be sRGB encoded if they have the RGBA8 format
 
 						if ( format !== RGBAFormat || type !== UnsignedByteType ) {
 
@@ -25692,7 +25692,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		//
+		/
 
 		this.allocateTextureUnit = allocateTextureUnit;
 		this.resetTextureUnits = resetTextureUnits;
@@ -25757,7 +25757,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			if ( p === DepthFormat ) return gl.DEPTH_COMPONENT;
 			if ( p === DepthStencilFormat ) return gl.DEPTH_STENCIL;
 
-			// WebGL 1 sRGB fallback
+			/ WebGL 1 sRGB fallback
 
 			if ( p === _SRGBAFormat ) {
 
@@ -25775,7 +25775,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// WebGL2 formats.
+			/ WebGL2 formats.
 
 			if ( p === RedFormat ) return gl.RED;
 			if ( p === RedIntegerFormat ) return gl.RED_INTEGER;
@@ -25783,7 +25783,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			if ( p === RGIntegerFormat ) return gl.RG_INTEGER;
 			if ( p === RGBAIntegerFormat ) return gl.RGBA_INTEGER;
 
-			// S3TC
+			/ S3TC
 
 			if ( p === RGB_S3TC_DXT1_Format || p === RGBA_S3TC_DXT1_Format || p === RGBA_S3TC_DXT3_Format || p === RGBA_S3TC_DXT5_Format ) {
 
@@ -25825,7 +25825,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// PVRTC
+			/ PVRTC
 
 			if ( p === RGB_PVRTC_4BPPV1_Format || p === RGB_PVRTC_2BPPV1_Format || p === RGBA_PVRTC_4BPPV1_Format || p === RGBA_PVRTC_2BPPV1_Format ) {
 
@@ -25846,7 +25846,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// ETC1
+			/ ETC1
 
 			if ( p === RGB_ETC1_Format ) {
 
@@ -25864,7 +25864,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// ETC2
+			/ ETC2
 
 			if ( p === RGB_ETC2_Format || p === RGBA_ETC2_EAC_Format ) {
 
@@ -25883,7 +25883,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// ASTC
+			/ ASTC
 
 			if ( p === RGBA_ASTC_4x4_Format || p === RGBA_ASTC_5x4_Format || p === RGBA_ASTC_5x5_Format ||
 				p === RGBA_ASTC_6x5_Format || p === RGBA_ASTC_6x6_Format || p === RGBA_ASTC_8x5_Format ||
@@ -25918,7 +25918,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// BPTC
+			/ BPTC
 
 			if ( p === RGBA_BPTC_Format || p === RGB_BPTC_SIGNED_Format || p === RGB_BPTC_UNSIGNED_Format ) {
 
@@ -25938,7 +25938,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// RGTC
+			/ RGTC
 
 			if ( p === RED_RGTC1_Format || p === SIGNED_RED_RGTC1_Format || p === RED_GREEN_RGTC2_Format || p === SIGNED_RED_GREEN_RGTC2_Format ) {
 
@@ -25959,7 +25959,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			//
+			/
 
 			if ( p === UnsignedInt248Type ) {
 
@@ -25979,7 +25979,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// if "p" can't be resolved, assume the user defines a WebGL constant as a string (fallback/workaround for packed RGB formats)
+			/ if "p" can't be resolved, assume the user defines a WebGL constant as a string (fallback/workaround for packed RGB formats)
 
 			return ( gl[ p ] !== undefined ) ? gl[ p ] : null;
 
@@ -26116,7 +26116,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					for ( const inputjoint of inputSource.hand.values() ) {
 
-						// Initialize hand with joints when connected
+						/ Initialize hand with joints when connected
 						this._getHandJoint( hand, inputjoint );
 
 					}
@@ -26175,10 +26175,10 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					for ( const inputjoint of inputSource.hand.values() ) {
 
-						// Update the joints groups with the XRJoint poses
+						/ Update the joints groups with the XRJoint poses
 						const jointPose = frame.getJointPose( inputjoint, referenceSpace );
 
-						// The transform of this joint will be updated with the joint pose on each frame
+						/ The transform of this joint will be updated with the joint pose on each frame
 						const joint = this._getHandJoint( hand, inputjoint );
 
 						if ( jointPose !== null ) {
@@ -26194,9 +26194,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					}
 
-					// Custom events
+					/ Custom events
 
-					// Check pinchz
+					/ Check pinchz
 					const indexTip = hand.joints[ 'index-finger-tip' ];
 					const thumbTip = hand.joints[ 'thumb-tip' ];
 					const distance = indexTip.position.distanceTo( thumbTip.position );
@@ -26268,7 +26268,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					inputPose = frame.getPose( inputSource.targetRaySpace, referenceSpace );
 
-					// Some runtimes (namely Vive Cosmos with Vive OpenXR Runtime) have only grip space and ray space is equal to it
+					/ Some runtimes (namely Vive Cosmos with Vive OpenXR Runtime) have only grip space and ray space is equal to it
 					if ( inputPose === null && gripPose !== null ) {
 
 						inputPose = gripPose;
@@ -26334,7 +26334,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// private method
+		/ private method
 
 		_getHandJoint( hand, inputjoint ) {
 
@@ -26423,7 +26423,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			let referenceSpace = null;
 			let referenceSpaceType = 'local-floor';
-			// Set default foveation to maximum.
+			/ Set default foveation to maximum.
 			let foveation = 1.0;
 			let customReferenceSpace = null;
 
@@ -26439,7 +26439,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const controllers = [];
 			const controllerInputSources = [];
 
-			//
+			/
 
 			const cameraL = new PerspectiveCamera();
 			cameraL.layers.enable( 1 );
@@ -26458,7 +26458,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			let _currentDepthNear = null;
 			let _currentDepthFar = null;
 
-			//
+			/
 
 			this.cameraAutoUpdate = true;
 			this.enabled = false;
@@ -26510,7 +26510,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			};
 
-			//
+			/
 
 			function onSessionEvent( event ) {
 
@@ -26559,7 +26559,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				_currentDepthNear = null;
 				_currentDepthFar = null;
 
-				// restore framebuffer/rendering state
+				/ restore framebuffer/rendering state
 
 				renderer.setRenderTarget( initialRenderTarget );
 
@@ -26569,7 +26569,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				session = null;
 				newRenderTarget = null;
 
-				//
+				/
 
 				animation.stop();
 
@@ -26730,7 +26730,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					}
 
-					newRenderTarget.isXRRenderTarget = true; // TODO Remove this when possible, see #23278
+					newRenderTarget.isXRRenderTarget = true; / TODO Remove this when possible, see #23278
 
 					this.setFoveation( foveation );
 
@@ -26760,7 +26760,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			function onInputSourcesChange( event ) {
 
-				// Notify disconnected
+				/ Notify disconnected
 
 				for ( let i = 0; i < event.removed.length; i ++ ) {
 
@@ -26776,7 +26776,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// Notify connected
+				/ Notify connected
 
 				for ( let i = 0; i < event.added.length; i ++ ) {
 
@@ -26786,7 +26786,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					if ( controllerIndex === - 1 ) {
 
-						// Assign input source a controller that currently has no input source
+						/ Assign input source a controller that currently has no input source
 
 						for ( let i = 0; i < controllers.length; i ++ ) {
 
@@ -26806,7 +26806,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						}
 
-						// If all controllers do currently receive input we ignore new ones
+						/ If all controllers do currently receive input we ignore new ones
 
 						if ( controllerIndex === - 1 ) break;
 
@@ -26824,7 +26824,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			//
+			/
 
 			const cameraLPos = new Vector3();
 			const cameraRPos = new Vector3();
@@ -26845,9 +26845,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				const projL = cameraL.projectionMatrix.elements;
 				const projR = cameraR.projectionMatrix.elements;
 
-				// VR systems will have identical far and near planes, and
-				// most likely identical top and bottom frustum extents.
-				// Use the left camera for these values.
+				/ VR systems will have identical far and near planes, and
+				/ most likely identical top and bottom frustum extents.
+				/ Use the left camera for these values.
 				const near = projL[ 14 ] / ( projL[ 10 ] - 1 );
 				const far = projL[ 14 ] / ( projL[ 10 ] + 1 );
 				const topFov = ( projL[ 9 ] + 1 ) / projL[ 5 ];
@@ -26858,21 +26858,21 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				const left = near * leftFov;
 				const right = near * rightFov;
 
-				// Calculate the new camera's position offset from the
-				// left camera. xOffset should be roughly half `ipd`.
+				/ Calculate the new camera's position offset from the
+				/ left camera. xOffset should be roughly half `ipd`.
 				const zOffset = ipd / ( - leftFov + rightFov );
 				const xOffset = zOffset * - leftFov;
 
-				// TODO: Better way to apply this offset?
+				/ TODO: Better way to apply this offset?
 				cameraL.matrixWorld.decompose( camera.position, camera.quaternion, camera.scale );
 				camera.translateX( xOffset );
 				camera.translateZ( zOffset );
 				camera.matrixWorld.compose( camera.position, camera.quaternion, camera.scale );
 				camera.matrixWorldInverse.copy( camera.matrixWorld ).invert();
 
-				// Find the union of the frustum values of the cameras and scale
-				// the values so that the near plane's position does not change in world space,
-				// although must now be relative to the new union camera.
+				/ Find the union of the frustum values of the cameras and scale
+				/ the values so that the near plane's position does not change in world space,
+				/ although must now be relative to the new union camera.
 				const near2 = near + zOffset;
 				const far2 = far + zOffset;
 				const left2 = left - xOffset;
@@ -26910,7 +26910,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( _currentDepthNear !== cameraXR.near || _currentDepthFar !== cameraXR.far ) {
 
-					// Note that the new renderState won't apply until the next frame. See #18320
+					/ Note that the new renderState won't apply until the next frame. See #18320
 
 					session.updateRenderState( {
 						depthNear: cameraXR.near,
@@ -26933,7 +26933,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// update projection matrix for proper view frustum culling
+				/ update projection matrix for proper view frustum culling
 
 				if ( cameras.length === 2 ) {
 
@@ -26941,13 +26941,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				} else {
 
-					// assume single camera setup (AR)
+					/ assume single camera setup (AR)
 
 					cameraXR.projectionMatrix.copy( cameraL.projectionMatrix );
 
 				}
 
-				// update user camera and its children
+				/ update user camera and its children
 
 				updateUserCamera( camera, cameraXR, parent );
 
@@ -27002,8 +27002,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this.setFoveation = function ( value ) {
 
-				// 0 = no foveation = full resolution
-				// 1 = maximum foveation = the edges render at lower resolution
+				/ 0 = no foveation = full resolution
+				/ 1 = maximum foveation = the edges render at lower resolution
 
 				foveation = value;
 
@@ -27021,7 +27021,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			};
 
-			// Animation Loop
+			/ Animation Loop
 
 			let onAnimationFrameCallback = null;
 
@@ -27043,7 +27043,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					let cameraXRNeedsUpdate = false;
 
-					// check if it's necessary to rebuild cameraXR's camera list
+					/ check if it's necessary to rebuild cameraXR's camera list
 
 					if ( views.length !== cameraXR.cameras.length ) {
 
@@ -27067,7 +27067,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 							const glSubImage = glBinding.getViewSubImage( glProjLayer, view );
 							viewport = glSubImage.viewport;
 
-							// For side-by-side projection, we only produce a single texture for both eyes.
+							/ For side-by-side projection, we only produce a single texture for both eyes.
 							if ( i === 0 ) {
 
 								renderer.setRenderTargetTextures(
@@ -27115,7 +27115,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				//
+				/
 
 				for ( let i = 0; i < controllers.length; i ++ ) {
 
@@ -27263,7 +27263,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			} else if ( material.isShaderMaterial ) {
 
-				material.uniformsNeedUpdate = false; // #15581
+				material.uniformsNeedUpdate = false; / #15581
 
 			}
 
@@ -27384,7 +27384,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				uniforms.lightMap.value = material.lightMap;
 
-				// artist-friendly light intensity scaling factor
+				/ artist-friendly light intensity scaling factor
 				const scaleFactor = ( renderer._useLegacyLights === true ) ? Math.PI : 1;
 
 				uniforms.lightMapIntensity.value = material.lightMapIntensity * scaleFactor;
@@ -27491,7 +27491,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 		function refreshUniformsPhong( uniforms, material ) {
 
 			uniforms.specular.value.copy( material.specular );
-			uniforms.shininess.value = Math.max( material.shininess, 1e-4 ); // to prevent pow( 0.0, 0.0 )
+			uniforms.shininess.value = Math.max( material.shininess, 1e-4 ); / to prevent pow( 0.0, 0.0 )
 
 		}
 
@@ -27531,7 +27531,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( envMap ) {
 
-				//uniforms.envMap.value = material.envMap; // part of uniforms common
+				/uniforms.envMap.value = material.envMap; / part of uniforms common
 				uniforms.envMapIntensity.value = material.envMapIntensity;
 
 			}
@@ -27540,7 +27540,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		function refreshUniformsPhysical( uniforms, material, transmissionRenderTarget ) {
 
-			uniforms.ior.value = material.ior; // also part of uniforms common
+			uniforms.ior.value = material.ior; / also part of uniforms common
 
 			if ( material.sheen > 0 ) {
 
@@ -27727,7 +27727,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 		let updateList = {};
 		let allocatedBindingPoints = [];
 
-		const maxBindingPoints = ( capabilities.isWebGL2 ) ? gl.getParameter( gl.MAX_UNIFORM_BUFFER_BINDINGS ) : 0; // binding points are global whereas block indices are per shader program
+		const maxBindingPoints = ( capabilities.isWebGL2 ) ? gl.getParameter( gl.MAX_UNIFORM_BUFFER_BINDINGS ) : 0; / binding points are global whereas block indices are per shader program
 
 		function bind( uniformsGroup, program ) {
 
@@ -27751,12 +27751,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// ensure to update the binding points/block indices mapping for this program
+			/ ensure to update the binding points/block indices mapping for this program
 
 			const webglProgram = program.program;
 			state.updateUBOMapping( uniformsGroup, webglProgram );
 
-			// update UBO once per frame
+			/ update UBO once per frame
 
 			const frame = info.render.frame;
 
@@ -27772,7 +27772,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		function createBuffer( uniformsGroup ) {
 
-			// the setup of an UBO is independent of a particular shader program but global
+			/ the setup of an UBO is independent of a particular shader program but global
 
 			const bindingPointIndex = allocateBindingPointIndex();
 			uniformsGroup.__bindingPointIndex = bindingPointIndex;
@@ -27821,7 +27821,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				const uniform = uniforms[ i ];
 
-				// partly update the buffer if necessary
+				/ partly update the buffer if necessary
 
 				if ( hasUniformChanged( uniform, i, cache ) === true ) {
 
@@ -27844,7 +27844,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						} else if ( value.isMatrix3 ) {
 
-							// manually converting 3x3 to 3x4
+							/ manually converting 3x3 to 3x4
 
 							uniform.__data[ 0 ] = value.elements[ 0 ];
 							uniform.__data[ 1 ] = value.elements[ 1 ];
@@ -27885,7 +27885,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( cache[ index ] === undefined ) {
 
-				// cache entry does not exist so far
+				/ cache entry does not exist so far
 
 				if ( typeof value === 'number' ) {
 
@@ -27911,7 +27911,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			} else {
 
-				// compare current value with cached entry
+				/ compare current value with cached entry
 
 				if ( typeof value === 'number' ) {
 
@@ -27950,22 +27950,22 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		function prepareUniformsGroup( uniformsGroup ) {
 
-			// determine total buffer size according to the STD140 layout
-			// Hint: STD140 is the only supported layout in WebGL 2
+			/ determine total buffer size according to the STD140 layout
+			/ Hint: STD140 is the only supported layout in WebGL 2
 
 			const uniforms = uniformsGroup.uniforms;
 
-			let offset = 0; // global buffer offset in bytes
-			const chunkSize = 16; // size of a chunk in bytes
-			let chunkOffset = 0; // offset within a single chunk in bytes
+			let offset = 0; / global buffer offset in bytes
+			const chunkSize = 16; / size of a chunk in bytes
+			let chunkOffset = 0; / offset within a single chunk in bytes
 
 			for ( let i = 0, l = uniforms.length; i < l; i ++ ) {
 
 				const uniform = uniforms[ i ];
 
 				const infos = {
-					boundary: 0, // bytes
-					storage: 0 // bytes
+					boundary: 0, / bytes
+					storage: 0 / bytes
 				};
 
 				const values = Array.isArray( uniform.value ) ? uniform.value : [ uniform.value ];
@@ -27981,12 +27981,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// the following two properties will be used for partial buffer updates
+				/ the following two properties will be used for partial buffer updates
 
 				uniform.__data = new Float32Array( infos.storage / Float32Array.BYTES_PER_ELEMENT );
 				uniform.__offset = offset;
 
-				//
+				/
 
 				if ( i > 0 ) {
 
@@ -27994,11 +27994,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					const remainingSizeInChunk = chunkSize - chunkOffset;
 
-					// check for chunk overflow
+					/ check for chunk overflow
 
 					if ( chunkOffset !== 0 && ( remainingSizeInChunk - infos.boundary ) < 0 ) {
 
-						// add padding and adjust offset
+						/ add padding and adjust offset
 
 						offset += ( chunkSize - chunkOffset );
 						uniform.__offset = offset;
@@ -28011,13 +28011,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// ensure correct final padding
+			/ ensure correct final padding
 
 			chunkOffset = offset % chunkSize;
 
 			if ( chunkOffset > 0 ) offset += ( chunkSize - chunkOffset );
 
-			//
+			/
 
 			uniformsGroup.__size = offset;
 			uniformsGroup.__cache = {};
@@ -28029,50 +28029,50 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 		function getUniformSize( value ) {
 
 			const info = {
-				boundary: 0, // bytes
-				storage: 0 // bytes
+				boundary: 0, / bytes
+				storage: 0 / bytes
 			};
 
-			// determine sizes according to STD140
+			/ determine sizes according to STD140
 
 			if ( typeof value === 'number' ) {
 
-				// float/int
+				/ float/int
 
 				info.boundary = 4;
 				info.storage = 4;
 
 			} else if ( value.isVector2 ) {
 
-				// vec2
+				/ vec2
 
 				info.boundary = 8;
 				info.storage = 8;
 
 			} else if ( value.isVector3 || value.isColor ) {
 
-				// vec3
+				/ vec3
 
 				info.boundary = 16;
-				info.storage = 12; // evil: vec3 must start on a 16-byte boundary but it only consumes 12 bytes
+				info.storage = 12; / evil: vec3 must start on a 16-byte boundary but it only consumes 12 bytes
 
 			} else if ( value.isVector4 ) {
 
-				// vec4
+				/ vec4
 
 				info.boundary = 16;
 				info.storage = 16;
 
 			} else if ( value.isMatrix3 ) {
 
-				// mat3 (in STD140 a 3x3 matrix is represented as 3x4)
+				/ mat3 (in STD140 a 3x3 matrix is represented as 3x4)
 
 				info.boundary = 48;
 				info.storage = 48;
 
 			} else if ( value.isMatrix4 ) {
 
-				// mat4
+				/ mat4
 
 				info.boundary = 64;
 				info.storage = 64;
@@ -28169,17 +28169,17 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			let currentRenderList = null;
 			let currentRenderState = null;
 
-			// render() can be called from within a callback triggered by another render.
-			// We track this so that the nested render call gets its list and state isolated from the parent render call.
+			/ render() can be called from within a callback triggered by another render.
+			/ We track this so that the nested render call gets its list and state isolated from the parent render call.
 
 			const renderListStack = [];
 			const renderStateStack = [];
 
-			// public properties
+			/ public properties
 
 			this.domElement = canvas;
 
-			// Debug configuration container
+			/ Debug configuration container
 			this.debug = {
 
 				/**
@@ -28194,42 +28194,42 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				onShaderError: null
 			};
 
-			// clearing
+			/ clearing
 
 			this.autoClear = true;
 			this.autoClearColor = true;
 			this.autoClearDepth = true;
 			this.autoClearStencil = true;
 
-			// scene graph
+			/ scene graph
 
 			this.sortObjects = true;
 
-			// user-defined clipping
+			/ user-defined clipping
 
 			this.clippingPlanes = [];
 			this.localClippingEnabled = false;
 
-			// physically based shading
+			/ physically based shading
 
 			this._outputColorSpace = SRGBColorSpace;
 
-			// physical lights
+			/ physical lights
 
 			this._useLegacyLights = false;
 
-			// tone mapping
+			/ tone mapping
 
 			this.toneMapping = NoToneMapping;
 			this.toneMappingExposure = 1.0;
 
-			// internal properties
+			/ internal properties
 
 			const _this = this;
 
 			let _isContextLost = false;
 
-			// internal state cache
+			/ internal state cache
 
 			let _currentActiveCubeFace = 0;
 			let _currentActiveMipmapLevel = 0;
@@ -28245,7 +28245,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const _currentClearColor = new Color( 0x000000 );
 			let _currentClearAlpha = 0;
 
-			//
+			/
 
 			let _width = canvas.width;
 			let _height = canvas.height;
@@ -28258,20 +28258,20 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const _scissor = new Vector4( 0, 0, _width, _height );
 			let _scissorTest = false;
 
-			// frustum
+			/ frustum
 
 			const _frustum = new Frustum();
 
-			// clipping
+			/ clipping
 
 			let _clippingEnabled = false;
 			let _localClippingEnabled = false;
 
-			// transmission
+			/ transmission
 
 			let _transmissionRenderTarget = null;
 
-			// camera matrices cache
+			/ camera matrices cache
 
 			const _projScreenMatrix = new Matrix4();
 
@@ -28286,7 +28286,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// initialize
+			/ initialize
 
 			let _gl = context;
 
@@ -28317,10 +28317,10 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					failIfMajorPerformanceCaveat,
 				};
 
-				// OffscreenCanvas does not have setAttribute, see #22811
+				/ OffscreenCanvas does not have setAttribute, see #22811
 				if ( 'setAttribute' in canvas ) canvas.setAttribute( 'data-engine', `three.js r${REVISION}` );
 
-				// event listeners must be registered before WebGL context is created, see #12753
+				/ event listeners must be registered before WebGL context is created, see #12753
 				canvas.addEventListener( 'webglcontextlost', onContextLost, false );
 				canvas.addEventListener( 'webglcontextrestored', onContextRestore, false );
 				canvas.addEventListener( 'webglcontextcreationerror', onContextCreationError, false );
@@ -28353,13 +28353,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				if ( typeof WebGLRenderingContext !== 'undefined' && _gl instanceof WebGLRenderingContext ) { // @deprecated, r153
+				if ( typeof WebGLRenderingContext !== 'undefined' && _gl instanceof WebGLRenderingContext ) { / @deprecated, r153
 
 					console.warn( 'THREE.WebGLRenderer: WebGL 1 support was deprecated in r153 and will be removed in r163.' );
 
 				}
 
-				// Some experimental-webgl implementations do not have getShaderPrecisionFormat
+				/ Some experimental-webgl implementations do not have getShaderPrecisionFormat
 
 				if ( _gl.getShaderPrecisionFormat === undefined ) {
 
@@ -28434,13 +28434,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			initGLContext();
 
-			// xr
+			/ xr
 
 			const xr = new WebXRManager( _this, _gl );
 
 			this.xr = xr;
 
-			// API
+			/ API
 
 			this.getContext = function () {
 
@@ -28610,7 +28610,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			};
 
-			// Clearing
+			/ Clearing
 
 			this.getClearColor = function ( target ) {
 
@@ -28642,7 +28642,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( color ) {
 
-					// check if we're trying to clear an integer target
+					/ check if we're trying to clear an integer target
 					let isIntegerFormat = false;
 					if ( _currentRenderTarget !== null ) {
 
@@ -28653,8 +28653,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					}
 
-					// use the appropriate clear functions to clear the target if it's a signed
-					// or unsigned integer target
+					/ use the appropriate clear functions to clear the target if it's a signed
+					/ or unsigned integer target
 					if ( isIntegerFormat ) {
 
 						const targetType = _currentRenderTarget.texture.type;
@@ -28722,7 +28722,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			};
 
-			//
+			/
 
 			this.dispose = function () {
 
@@ -28756,7 +28756,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			};
 
-			// Events
+			/ Events
 
 			function onContextLost( event ) {
 
@@ -28806,7 +28806,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// Buffer deallocation
+			/ Buffer deallocation
 
 			function deallocateMaterial( material ) {
 
@@ -28839,11 +28839,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// Buffer rendering
+			/ Buffer rendering
 
 			this.renderBufferDirect = function ( camera, scene, geometry, material, object, group ) {
 
-				if ( scene === null ) scene = _emptyScene; // renderBufferDirect second parameter used to be fog (could be null)
+				if ( scene === null ) scene = _emptyScene; / renderBufferDirect second parameter used to be fog (could be null)
 
 				const frontFaceCW = ( object.isMesh && object.matrixWorld.determinant() < 0 );
 
@@ -28851,7 +28851,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				state.setMaterial( material, frontFaceCW );
 
-				//
+				/
 
 				let index = geometry.index;
 				let rangeFactor = 1;
@@ -28866,7 +28866,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				//
+				/
 
 				const drawRange = geometry.drawRange;
 				const position = geometry.attributes.position;
@@ -28897,7 +28897,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( drawCount < 0 || drawCount === Infinity ) return;
 
-				//
+				/
 
 				bindingStates.setup( object, material, program, geometry, index );
 
@@ -28913,7 +28913,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				//
+				/
 
 				if ( object.isMesh ) {
 
@@ -28932,7 +28932,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					let lineWidth = material.linewidth;
 
-					if ( lineWidth === undefined ) lineWidth = 1; // Not using Line*Material
+					if ( lineWidth === undefined ) lineWidth = 1; / Not using Line*Material
 
 					state.setLineWidth( lineWidth * getTargetPixelRatio() );
 
@@ -28979,7 +28979,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			};
 
-			// Compile
+			/ Compile
 
 			this.compile = function ( scene, camera ) {
 
@@ -29059,7 +29059,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			};
 
-			// Animation Loop
+			/ Animation Loop
 
 			let onAnimationFrameCallback = null;
 
@@ -29098,7 +29098,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			xr.addEventListener( 'sessionstart', onXRSessionStart );
 			xr.addEventListener( 'sessionend', onXRSessionEnd );
 
-			// Rendering
+			/ Rendering
 
 			this.render = function ( scene, camera ) {
 
@@ -29111,11 +29111,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( _isContextLost === true ) return;
 
-				// update scene graph
+				/ update scene graph
 
 				if ( scene.matrixWorldAutoUpdate === true ) scene.updateMatrixWorld();
 
-				// update camera matrices and frustum
+				/ update camera matrices and frustum
 
 				if ( camera.parent === null && camera.matrixWorldAutoUpdate === true ) camera.updateMatrixWorld();
 
@@ -29123,11 +29123,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					if ( xr.cameraAutoUpdate === true ) xr.updateCamera( camera );
 
-					camera = xr.getCamera(); // use XR camera for rendering
+					camera = xr.getCamera(); / use XR camera for rendering
 
 				}
 
-				//
+				/
 				if ( scene.isScene === true ) scene.onBeforeRender( _this, scene, camera, _currentRenderTarget );
 
 				currentRenderState = renderStates.get( scene, renderStateStack.length );
@@ -29156,7 +29156,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				//
+				/
 
 				this.info.render.frame ++;
 
@@ -29168,16 +29168,16 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( _clippingEnabled === true ) clipping.endShadows();
 
-				//
+				/
 
 				if ( this.info.autoReset === true ) this.info.reset();
 
 
-				//
+				/
 
 				background.render( currentRenderList, scene );
 
-				// render scene
+				/ render scene
 
 				currentRenderState.setupLights( _this._useLegacyLights );
 
@@ -29199,25 +29199,25 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				//
+				/
 
 				if ( _currentRenderTarget !== null ) {
 
-					// resolve multisample renderbuffers to a single-sample texture if necessary
+					/ resolve multisample renderbuffers to a single-sample texture if necessary
 
 					textures.updateMultisampleRenderTarget( _currentRenderTarget );
 
-					// Generate mipmap if we're using any kind of mipmap filtering
+					/ Generate mipmap if we're using any kind of mipmap filtering
 
 					textures.updateRenderTargetMipmap( _currentRenderTarget );
 
 				}
 
-				//
+				/
 
 				if ( scene.isScene === true ) scene.onAfterRender( _this, scene, camera );
 
-				// _gl.finish();
+				/ _gl.finish();
 
 				bindingStates.resetDefaultState();
 				_currentMaterialId = - 1;
@@ -29381,7 +29381,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				if ( transmissiveObjects.length > 0 ) renderObjects( transmissiveObjects, scene, camera );
 				if ( transparentObjects.length > 0 ) renderObjects( transparentObjects, scene, camera );
 
-				// Ensure depth buffer writing is enabled so it can be cleared on next render
+				/ Ensure depth buffer writing is enabled so it can be cleared on next render
 
 				state.buffers.depth.setTest( true );
 				state.buffers.depth.setMask( true );
@@ -29404,7 +29404,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 						samples: ( isWebGL2 ) ? 4 : 0
 					} );
 
-					// debug
+					/ debug
 
 					/*
 					const geometry = new PlaneGeometry();
@@ -29428,7 +29428,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				//
+				/
 
 				const currentRenderTarget = _this.getRenderTarget();
 				_this.setRenderTarget( _transmissionRenderTarget );
@@ -29439,8 +29439,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				_this.clear();
 
-				// Turn off the features which can affect the frag color for opaque objects pass.
-				// Otherwise they are applied twice in opaque objects pass and transmission objects pass.
+				/ Turn off the features which can affect the frag color for opaque objects pass.
+				/ Otherwise they are applied twice in opaque objects pass and transmission objects pass.
 				const currentToneMapping = _this.toneMapping;
 				_this.toneMapping = NoToneMapping;
 
@@ -29549,7 +29549,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			function getProgram( material, scene, object ) {
 
-				if ( scene.isScene !== true ) scene = _emptyScene; // scene could be a Mesh, Line, Points, ...
+				if ( scene.isScene !== true ) scene = _emptyScene; / scene could be a Mesh, Line, Points, ...
 
 				const materialProperties = properties.get( material );
 
@@ -29563,7 +29563,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				let programs = materialProperties.programs;
 
-				// always update environment and fog - changing these trigger an getProgram call, but it's possible that the program doesn't change
+				/ always update environment and fog - changing these trigger an getProgram call, but it's possible that the program doesn't change
 
 				materialProperties.environment = material.isMeshStandardMaterial ? scene.environment : null;
 				materialProperties.fog = scene.fog;
@@ -29571,7 +29571,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( programs === undefined ) {
 
-					// new material
+					/ new material
 
 					material.addEventListener( 'dispose', onMaterialDispose );
 
@@ -29584,7 +29584,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( program !== undefined ) {
 
-					// early out if program and light state is identical
+					/ early out if program and light state is identical
 
 					if ( materialProperties.currentProgram === program && materialProperties.lightsStateVersion === lightsStateVersion ) {
 
@@ -29619,14 +29619,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				updateCommonMaterialProperties( material, parameters );
 
-				// store the light setup it was created for
+				/ store the light setup it was created for
 
 				materialProperties.needsLights = materialNeedsLights( material );
 				materialProperties.lightsStateVersion = lightsStateVersion;
 
 				if ( materialProperties.needsLights ) {
 
-					// wire up the material to this renderer's lighting state
+					/ wire up the material to this renderer's lighting state
 
 					uniforms.ambientLightColor.value = lights.state.ambient;
 					uniforms.lightProbe.value = lights.state.probe;
@@ -29648,7 +29648,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					uniforms.spotLightMap.value = lights.state.spotLightMap;
 					uniforms.pointShadowMap.value = lights.state.pointShadowMap;
 					uniforms.pointShadowMatrix.value = lights.state.pointShadowMatrix;
-					// TODO (abelnation): add area lights shadow info to uniforms
+					/ TODO (abelnation): add area lights shadow info to uniforms
 
 				}
 
@@ -29684,7 +29684,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			function setProgram( camera, scene, geometry, material, object ) {
 
-				if ( scene.isScene !== true ) scene = _emptyScene; // scene could be a Mesh, Line, Points, ...
+				if ( scene.isScene !== true ) scene = _emptyScene; / scene could be a Mesh, Line, Points, ...
 
 				textures.resetTextureUnits();
 
@@ -29724,16 +29724,16 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 							camera === _currentCamera &&
 							material.id === _currentMaterialId;
 
-						// we might want to call this function with some ClippingGroup
-						// object instead of the material, once it becomes feasible
-						// (#8465, #8379)
+						/ we might want to call this function with some ClippingGroup
+						/ object instead of the material, once it becomes feasible
+						/ (#8465, #8379)
 						clipping.setState( material, camera, useCache );
 
 					}
 
 				}
 
-				//
+				/
 
 				let needsProgramChange = false;
 
@@ -29822,7 +29822,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				//
+				/
 
 				let program = materialProperties.currentProgram;
 
@@ -29857,7 +29857,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( refreshProgram || _currentCamera !== camera ) {
 
-					// common camera uniforms
+					/ common camera uniforms
 
 					p_uniforms.setValue( _gl, 'projectionMatrix', camera.projectionMatrix );
 					p_uniforms.setValue( _gl, 'viewMatrix', camera.matrixWorldInverse );
@@ -29877,7 +29877,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					}
 
-					// consider moving isOrthographic to UniformLib and WebGLMaterials, see https://github.com/mrdoob/three.js/pull/26467#issuecomment-1645185067
+					/ consider moving isOrthographic to UniformLib and WebGLMaterials, see https://github.com/mrdoob/three.js/pull/26467#issuecomment-1645185067
 
 					if ( material.isMeshPhongMaterial ||
 						material.isMeshToonMaterial ||
@@ -29894,20 +29894,20 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						_currentCamera = camera;
 
-						// lighting uniforms depend on the camera so enforce an update
-						// now, in case this material supports lights - or later, when
-						// the next material that does gets activated:
+						/ lighting uniforms depend on the camera so enforce an update
+						/ now, in case this material supports lights - or later, when
+						/ the next material that does gets activated:
 
-						refreshMaterial = true;		// set to true on material change
-						refreshLights = true;		// remains set until update done
+						refreshMaterial = true;		/ set to true on material change
+						refreshLights = true;		/ remains set until update done
 
 					}
 
 				}
 
-				// skinning and morph target uniforms must be set even if material didn't change
-				// auto-setting of texture unit for bone and morph texture must go before other textures
-				// otherwise textures used for skinning and morphing can take over texture units reserved for other material textures
+				/ skinning and morph target uniforms must be set even if material didn't change
+				/ auto-setting of texture unit for bone and morph texture must go before other textures
+				/ otherwise textures used for skinning and morphing can take over texture units reserved for other material textures
 
 				if ( object.isSkinnedMesh ) {
 
@@ -29950,7 +29950,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// https://github.com/mrdoob/three.js/pull/24467#issuecomment-1209031512
+				/ https://github.com/mrdoob/three.js/pull/24467#issuecomment-1209031512
 
 				if ( material.isMeshGouraudMaterial && material.envMap !== null ) {
 
@@ -29966,20 +29966,20 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					if ( materialProperties.needsLights ) {
 
-						// the current material requires lighting info
+						/ the current material requires lighting info
 
-						// note: all lighting uniforms are always set correctly
-						// they simply reference the renderer's state for their
-						// values
-						//
-						// use the current material's .needsUpdate flags to set
-						// the GL state when required
+						/ note: all lighting uniforms are always set correctly
+						/ they simply reference the renderer's state for their
+						/ values
+						/
+						/ use the current material's .needsUpdate flags to set
+						/ the GL state when required
 
 						markUniformsLightsNeedsUpdate( m_uniforms, refreshLights );
 
 					}
 
-					// refresh uniforms common to several materials
+					/ refresh uniforms common to several materials
 
 					if ( fog && material.fog === true ) {
 
@@ -30006,13 +30006,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// common matrices
+				/ common matrices
 
 				p_uniforms.setValue( _gl, 'modelViewMatrix', object.modelViewMatrix );
 				p_uniforms.setValue( _gl, 'normalMatrix', object.normalMatrix );
 				p_uniforms.setValue( _gl, 'modelMatrix', object.matrixWorld );
 
-				// UBOs
+				/ UBOs
 
 				if ( material.isShaderMaterial || material.isRawShaderMaterial ) {
 
@@ -30041,7 +30041,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// If uniforms are marked as clean, they don't need to be loaded to the GPU.
+			/ If uniforms are marked as clean, they don't need to be loaded to the GPU.
 
 			function markUniformsLightsNeedsUpdate( uniforms, value ) {
 
@@ -30099,8 +30099,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					if ( ! renderTargetProperties.__autoAllocateDepthBuffer ) {
 
-						// The multisample_render_to_texture extension doesn't work properly if there
-						// are midframe flushes and an external depth buffer. Disable use of the extension.
+						/ The multisample_render_to_texture extension doesn't work properly if there
+						/ are midframe flushes and an external depth buffer. Disable use of the extension.
 						if ( extensions.has( 'WEBGL_multisampled_render_to_texture' ) === true ) {
 
 							console.warn( 'THREE.WebGLRenderer: Render-to-texture extension was disabled because an external texture was provided' );
@@ -30139,7 +30139,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					if ( renderTargetProperties.__useDefaultFramebuffer !== undefined ) {
 
-						// We need to make sure to rebind the framebuffer.
+						/ We need to make sure to rebind the framebuffer.
 						state.bindFramebuffer( _gl.FRAMEBUFFER, null );
 						useDefaultFramebuffer = false;
 
@@ -30149,7 +30149,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					} else if ( renderTargetProperties.__hasExternalTextures ) {
 
-						// Color and depth texture must be rebound in order for the swapchain to update.
+						/ Color and depth texture must be rebound in order for the swapchain to update.
 						textures.rebindTextures( renderTarget, properties.get( renderTarget.texture ).__webglTexture, properties.get( renderTarget.depthTexture ).__webglTexture );
 
 					}
@@ -30233,7 +30233,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				_currentMaterialId = - 1; // reset current material to ensure correct uniform bindings
+				_currentMaterialId = - 1; / reset current material to ensure correct uniform bindings
 
 			};
 
@@ -30273,8 +30273,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						const halfFloatSupportedByExt = ( textureType === HalfFloatType ) && ( extensions.has( 'EXT_color_buffer_half_float' ) || ( capabilities.isWebGL2 && extensions.has( 'EXT_color_buffer_float' ) ) );
 
-						if ( textureType !== UnsignedByteType && utils.convert( textureType ) !== _gl.getParameter( _gl.IMPLEMENTATION_COLOR_READ_TYPE ) && // Edge and Chrome Mac < 52 (#9513)
-							! ( textureType === FloatType && ( capabilities.isWebGL2 || extensions.has( 'OES_texture_float' ) || extensions.has( 'WEBGL_color_buffer_float' ) ) ) && // Chrome Mac >= 52 and Firefox
+						if ( textureType !== UnsignedByteType && utils.convert( textureType ) !== _gl.getParameter( _gl.IMPLEMENTATION_COLOR_READ_TYPE ) && / Edge and Chrome Mac < 52 (#9513)
+							! ( textureType === FloatType && ( capabilities.isWebGL2 || extensions.has( 'OES_texture_float' ) || extensions.has( 'WEBGL_color_buffer_float' ) ) ) && / Chrome Mac >= 52 and Firefox
 							! halfFloatSupportedByExt ) {
 
 							console.error( 'THREE.WebGLRenderer.readRenderTargetPixels: renderTarget is not in UnsignedByteType or implementation defined type.' );
@@ -30282,7 +30282,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						}
 
-						// the following if statement ensures valid read requests (no out-of-bounds pixels, see #8604)
+						/ the following if statement ensures valid read requests (no out-of-bounds pixels, see #8604)
 
 						if ( ( x >= 0 && x <= ( renderTarget.width - width ) ) && ( y >= 0 && y <= ( renderTarget.height - height ) ) ) {
 
@@ -30292,7 +30292,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					} finally {
 
-						// restore framebuffer of current render target if necessary
+						/ restore framebuffer of current render target if necessary
 
 						const framebuffer = ( _currentRenderTarget !== null ) ? properties.get( _currentRenderTarget ).__webglFramebuffer : null;
 						state.bindFramebuffer( _gl.FRAMEBUFFER, framebuffer );
@@ -30326,8 +30326,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				textures.setTexture2D( dstTexture, 0 );
 
-				// As another texture upload may have changed pixelStorei
-				// parameters, make sure they are correct for the dstTexture
+				/ As another texture upload may have changed pixelStorei
+				/ parameters, make sure they are correct for the dstTexture
 				_gl.pixelStorei( _gl.UNPACK_FLIP_Y_WEBGL, dstTexture.flipY );
 				_gl.pixelStorei( _gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, dstTexture.premultiplyAlpha );
 				_gl.pixelStorei( _gl.UNPACK_ALIGNMENT, dstTexture.unpackAlignment );
@@ -30350,7 +30350,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// Generate mipmaps only when copying level 0
+				/ Generate mipmaps only when copying level 0
 				if ( level === 0 && dstTexture.generateMipmaps ) _gl.generateMipmap( _gl.TEXTURE_2D );
 
 				state.unbindTexture();
@@ -30433,7 +30433,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				_gl.pixelStorei( _gl.UNPACK_SKIP_ROWS, unpackSkipRows );
 				_gl.pixelStorei( _gl.UNPACK_SKIP_IMAGES, unpackSkipImages );
 
-				// Generate mipmaps only when copying level 0
+				/ Generate mipmaps only when copying level 0
 				if ( level === 0 && dstTexture.generateMipmaps ) _gl.generateMipmap( glTarget );
 
 				state.unbindTexture();
@@ -30505,42 +30505,42 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		get physicallyCorrectLights() { // @deprecated, r150
+		get physicallyCorrectLights() { / @deprecated, r150
 
 			console.warn( 'THREE.WebGLRenderer: The property .physicallyCorrectLights has been removed. Set renderer.useLegacyLights instead.' );
 			return ! this.useLegacyLights;
 
 		}
 
-		set physicallyCorrectLights( value ) { // @deprecated, r150
+		set physicallyCorrectLights( value ) { / @deprecated, r150
 
 			console.warn( 'THREE.WebGLRenderer: The property .physicallyCorrectLights has been removed. Set renderer.useLegacyLights instead.' );
 			this.useLegacyLights = ! value;
 
 		}
 
-		get outputEncoding() { // @deprecated, r152
+		get outputEncoding() { / @deprecated, r152
 
 			console.warn( 'THREE.WebGLRenderer: Property .outputEncoding has been removed. Use .outputColorSpace instead.' );
 			return this.outputColorSpace === SRGBColorSpace ? sRGBEncoding : LinearEncoding;
 
 		}
 
-		set outputEncoding( encoding ) { // @deprecated, r152
+		set outputEncoding( encoding ) { / @deprecated, r152
 
 			console.warn( 'THREE.WebGLRenderer: Property .outputEncoding has been removed. Use .outputColorSpace instead.' );
 			this.outputColorSpace = encoding === sRGBEncoding ? SRGBColorSpace : LinearSRGBColorSpace;
 
 		}
 
-		get useLegacyLights() { // @deprecated, r155
+		get useLegacyLights() { / @deprecated, r155
 
 			console.warn( 'THREE.WebGLRenderer: The property .useLegacyLights has been deprecated. Migrate your lighting according to the following guide: https://discourse.threejs.org/t/updates-to-lighting-in-three-js-r155/53733.' );
 			return this._useLegacyLights;
 
 		}
 
-		set useLegacyLights( value ) { // @deprecated, r155
+		set useLegacyLights( value ) { / @deprecated, r155
 
 			console.warn( 'THREE.WebGLRenderer: The property .useLegacyLights has been deprecated. Migrate your lighting according to the following guide: https://discourse.threejs.org/t/updates-to-lighting-in-three-js-r155/53733.' );
 			this._useLegacyLights = value;
@@ -30794,7 +30794,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// generate UUID for array buffer if necessary
+			/ generate UUID for array buffer if necessary
 
 			if ( this.array.buffer._uuid === undefined ) {
 
@@ -30808,7 +30808,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			//
+			/
 
 			return {
 				uuid: this.uuid,
@@ -31107,7 +31107,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// de-interleave data and save it as an ordinary buffer attribute for now
+				/ de-interleave data and save it as an ordinary buffer attribute for now
 
 				return {
 					itemSize: this.itemSize,
@@ -31118,7 +31118,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			} else {
 
-				// save as true interleaved attribute
+				/ save as true interleaved attribute
 
 				if ( data.interleavedBuffers === undefined ) {
 
@@ -31291,12 +31291,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			_uvB.set( 1, 0 );
 			_uvC.set( 1, 1 );
 
-			// check first triangle
+			/ check first triangle
 			let intersect = raycaster.ray.intersectTriangle( _vA, _vB, _vC, false, _intersectPoint );
 
 			if ( intersect === null ) {
 
-				// check second triangle
+				/ check second triangle
 				transformVertex( _vB.set( - 0.5, 0.5, 0 ), _mvPosition, center, _worldScale, sin, cos );
 				_uvB.set( 0, 1 );
 
@@ -31341,10 +31341,10 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	function transformVertex( vertexPosition, mvPosition, center, scale, sin, cos ) {
 
-		// compute position in camera space
+		/ compute position in camera space
 		_alignedPosition.subVectors( vertexPosition, center ).addScalar( 0.5 ).multiply( scale );
 
-		// to check if rotation is not zero
+		/ to check if rotation is not zero
 		if ( sin !== undefined ) {
 
 			_rotatedPosition.x = ( cos * _alignedPosition.x ) - ( sin * _alignedPosition.y );
@@ -31361,7 +31361,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 		vertexPosition.x += _rotatedPosition.x;
 		vertexPosition.y += _rotatedPosition.y;
 
-		// transform to world space
+		/ transform to world space
 		vertexPosition.applyMatrix4( _viewWorldMatrix );
 
 	}
@@ -31679,7 +31679,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( material === undefined ) return;
 
-			// test with bounding sphere in world space
+			/ test with bounding sphere in world space
 
 			if ( this.boundingSphere === null ) this.computeBoundingSphere();
 
@@ -31688,12 +31688,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( raycaster.ray.intersectsSphere( _sphere$3 ) === false ) return;
 
-			// convert ray to local space of skinned mesh
+			/ convert ray to local space of skinned mesh
 
 			_inverseMatrix$2.copy( matrixWorld ).invert();
 			_ray$2.copy( raycaster.ray ).applyMatrix4( _inverseMatrix$2 );
 
-			// test with bounding box in local space
+			/ test with bounding box in local space
 
 			if ( this.boundingBox !== null ) {
 
@@ -31701,7 +31701,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// test for intersections with geometry
+			/ test for intersections with geometry
 
 			this._computeIntersections( raycaster, intersects, _ray$2 );
 
@@ -31760,7 +31760,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				} else {
 
-					vector.set( 1, 0, 0, 0 ); // do something reasonable
+					vector.set( 1, 0, 0, 0 ); / do something reasonable
 
 				}
 
@@ -31822,7 +31822,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		boneTransform( index, vector ) { // @deprecated, r151
+		boneTransform( index, vector ) { / @deprecated, r151
 
 			console.warn( 'THREE.SkinnedMesh: .boneTransform() was renamed to .applyBoneTransform() in r151.' );
 			return this.applyBoneTransform( index, vector );
@@ -31891,7 +31891,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this.boneMatrices = new Float32Array( bones.length * 16 );
 
-			// calculate inverse bone matrices if necessary
+			/ calculate inverse bone matrices if necessary
 
 			if ( boneInverses.length === 0 ) {
 
@@ -31899,7 +31899,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			} else {
 
-				// handle special case
+				/ handle special case
 
 				if ( bones.length !== boneInverses.length ) {
 
@@ -31941,7 +31941,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		pose() {
 
-			// recover the bind-time world matrices
+			/ recover the bind-time world matrices
 
 			for ( let i = 0, il = this.bones.length; i < il; i ++ ) {
 
@@ -31955,7 +31955,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// compute the local matrices, positions, rotations and scales
+			/ compute the local matrices, positions, rotations and scales
 
 			for ( let i = 0, il = this.bones.length; i < il; i ++ ) {
 
@@ -31989,11 +31989,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const boneMatrices = this.boneMatrices;
 			const boneTexture = this.boneTexture;
 
-			// flatten bone matrices to array
+			/ flatten bone matrices to array
 
 			for ( let i = 0, il = bones.length; i < il; i ++ ) {
 
-				// compute the offset between the current and the original transform
+				/ compute the offset between the current and the original transform
 
 				const matrix = bones[ i ] ? bones[ i ].matrixWorld : _identityMatrix;
 
@@ -32018,19 +32018,19 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		computeBoneTexture() {
 
-			// layout (1 matrix = 4 pixels)
-			//      RGBA RGBA RGBA RGBA (=> column1, column2, column3, column4)
-			//  with  8x8  pixel texture max   16 bones * 4 pixels =  (8 * 8)
-			//       16x16 pixel texture max   64 bones * 4 pixels = (16 * 16)
-			//       32x32 pixel texture max  256 bones * 4 pixels = (32 * 32)
-			//       64x64 pixel texture max 1024 bones * 4 pixels = (64 * 64)
+			/ layout (1 matrix = 4 pixels)
+			/      RGBA RGBA RGBA RGBA (=> column1, column2, column3, column4)
+			/  with  8x8  pixel texture max   16 bones * 4 pixels =  (8 * 8)
+			/       16x16 pixel texture max   64 bones * 4 pixels = (16 * 16)
+			/       32x32 pixel texture max  256 bones * 4 pixels = (32 * 32)
+			/       64x64 pixel texture max 1024 bones * 4 pixels = (64 * 64)
 
-			let size = Math.sqrt( this.bones.length * 4 ); // 4 pixels needed for 1 matrix
+			let size = Math.sqrt( this.bones.length * 4 ); / 4 pixels needed for 1 matrix
 			size = ceilPowerOfTwo( size );
 			size = Math.max( size, 4 );
 
-			const boneMatrices = new Float32Array( size * size * 4 ); // 4 floats per RGBA pixel
-			boneMatrices.set( this.boneMatrices ); // copy current values
+			const boneMatrices = new Float32Array( size * size * 4 ); / 4 floats per RGBA pixel
+			boneMatrices.set( this.boneMatrices ); / copy current values
 
 			const boneTexture = new DataTexture( boneMatrices, size, size, RGBAFormat, FloatType );
 			boneTexture.needsUpdate = true;
@@ -32304,7 +32304,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( _mesh.material === undefined ) return;
 
-			// test with bounding sphere first
+			/ test with bounding sphere first
 
 			if ( this.boundingSphere === null ) this.computeBoundingSphere();
 
@@ -32313,23 +32313,23 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( raycaster.ray.intersectsSphere( _sphere$2 ) === false ) return;
 
-			// now test each instance
+			/ now test each instance
 
 			for ( let instanceId = 0; instanceId < raycastTimes; instanceId ++ ) {
 
-				// calculate the world matrix for each instance
+				/ calculate the world matrix for each instance
 
 				this.getMatrixAt( instanceId, _instanceLocalMatrix );
 
 				_instanceWorldMatrix.multiplyMatrices( matrixWorld, _instanceLocalMatrix );
 
-				// the mesh represents this single instance
+				/ the mesh represents this single instance
 
 				_mesh.matrixWorld = _instanceWorldMatrix;
 
 				_mesh.raycast( raycaster, _instanceIntersects );
 
-				// process the result of raycast
+				/ process the result of raycast
 
 				for ( let i = 0, l = _instanceIntersects.length; i < l; i ++ ) {
 
@@ -32459,7 +32459,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const geometry = this.geometry;
 
-			// we assume non-indexed geometry
+			/ we assume non-indexed geometry
 
 			if ( geometry.index === null ) {
 
@@ -32495,7 +32495,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const threshold = raycaster.params.Line.threshold;
 			const drawRange = geometry.drawRange;
 
-			// Checking boundingSphere distance to ray
+			/ Checking boundingSphere distance to ray
 
 			if ( geometry.boundingSphere === null ) geometry.computeBoundingSphere();
 
@@ -32505,7 +32505,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( raycaster.ray.intersectsSphere( _sphere$1 ) === false ) return;
 
-			//
+			/
 
 			_inverseMatrix$1.copy( matrixWorld ).invert();
 			_ray$1.copy( raycaster.ray ).applyMatrix4( _inverseMatrix$1 );
@@ -32540,7 +32540,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					if ( distSq > localThresholdSq ) continue;
 
-					interRay.applyMatrix4( this.matrixWorld ); //Move back to world space for distance calculation
+					interRay.applyMatrix4( this.matrixWorld ); /Move back to world space for distance calculation
 
 					const distance = raycaster.ray.origin.distanceTo( interRay );
 
@@ -32549,8 +32549,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					intersects.push( {
 
 						distance: distance,
-						// What do we want? intersection point on the ray or on the segment??
-						// point: raycaster.ray.at( distance ),
+						/ What do we want? intersection point on the ray or on the segment??
+						/ point: raycaster.ray.at( distance ),
 						point: interSegment.clone().applyMatrix4( this.matrixWorld ),
 						index: i,
 						face: null,
@@ -32575,7 +32575,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					if ( distSq > localThresholdSq ) continue;
 
-					interRay.applyMatrix4( this.matrixWorld ); //Move back to world space for distance calculation
+					interRay.applyMatrix4( this.matrixWorld ); /Move back to world space for distance calculation
 
 					const distance = raycaster.ray.origin.distanceTo( interRay );
 
@@ -32584,8 +32584,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					intersects.push( {
 
 						distance: distance,
-						// What do we want? intersection point on the ray or on the segment??
-						// point: raycaster.ray.at( distance ),
+						/ What do we want? intersection point on the ray or on the segment??
+						/ point: raycaster.ray.at( distance ),
 						point: interSegment.clone().applyMatrix4( this.matrixWorld ),
 						index: i,
 						face: null,
@@ -32652,7 +32652,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const geometry = this.geometry;
 
-			// we assume non-indexed geometry
+			/ we assume non-indexed geometry
 
 			if ( geometry.index === null ) {
 
@@ -32783,7 +32783,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const threshold = raycaster.params.Points.threshold;
 			const drawRange = geometry.drawRange;
 
-			// Checking boundingSphere distance to ray
+			/ Checking boundingSphere distance to ray
 
 			if ( geometry.boundingSphere === null ) geometry.computeBoundingSphere();
 
@@ -32793,7 +32793,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( raycaster.ray.intersectsSphere( _sphere ) === false ) return;
 
-			//
+			/
 
 			_inverseMatrix.copy( matrixWorld ).invert();
 			_ray.copy( raycaster.ray ).applyMatrix4( _inverseMatrix );
@@ -32981,13 +32981,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			this.image = { width: width, height: height };
 			this.mipmaps = mipmaps;
 
-			// no flipping for cube textures
-			// (also flipping doesn't work for compressed textures )
+			/ no flipping for cube textures
+			/ (also flipping doesn't work for compressed textures )
 
 			this.flipY = false;
 
-			// can't generate mipmaps for compressed textures
-			// mips must be embedded in DDS files
+			/ can't generate mipmaps for compressed textures
+			/ mips must be embedded in DDS files
 
 			this.generateMipmaps = false;
 
@@ -33078,8 +33078,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Virtual base class method to overwrite and implement in subclasses
-		//	- t [0 .. 1]
+		/ Virtual base class method to overwrite and implement in subclasses
+		/	- t [0 .. 1]
 
 		getPoint( /* t, optionalTarget */ ) {
 
@@ -33088,8 +33088,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Get point at relative position in curve according to arc length
-		// - u [0 .. 1]
+		/ Get point at relative position in curve according to arc length
+		/ - u [0 .. 1]
 
 		getPointAt( u, optionalTarget ) {
 
@@ -33098,7 +33098,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Get sequence of points using getPoint( t )
+		/ Get sequence of points using getPoint( t )
 
 		getPoints( divisions = 5 ) {
 
@@ -33114,7 +33114,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Get sequence of points using getPointAt( u )
+		/ Get sequence of points using getPointAt( u )
 
 		getSpacedPoints( divisions = 5 ) {
 
@@ -33130,7 +33130,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Get total curve arc length
+		/ Get total curve arc length
 
 		getLength() {
 
@@ -33139,7 +33139,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Get list of cumulative segment lengths
+		/ Get list of cumulative segment lengths
 
 		getLengths( divisions = this.arcLengthDivisions ) {
 
@@ -33170,7 +33170,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this.cacheArcLengths = cache;
 
-			return cache; // { sums: cache, sum: sum }; Sum is in the last element.
+			return cache; / { sums: cache, sum: sum }; Sum is in the last element.
 
 		}
 
@@ -33181,7 +33181,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Given u ( 0 .. 1 ), get a t to find p. This gives you points which are equidistant
+		/ Given u ( 0 .. 1 ), get a t to find p. This gives you points which are equidistant
 
 		getUtoTmapping( u, distance ) {
 
@@ -33190,7 +33190,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			let i = 0;
 			const il = arcLengths.length;
 
-			let targetArcLength; // The targeted u distance value to get
+			let targetArcLength; / The targeted u distance value to get
 
 			if ( distance ) {
 
@@ -33202,13 +33202,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// binary search for the index with largest value smaller than target u distance
+			/ binary search for the index with largest value smaller than target u distance
 
 			let low = 0, high = il - 1, comparison;
 
 			while ( low <= high ) {
 
-				i = Math.floor( low + ( high - low ) / 2 ); // less likely to overflow, though probably not issue here, JS doesn't really have integers, all numbers are floats
+				i = Math.floor( low + ( high - low ) / 2 ); / less likely to overflow, though probably not issue here, JS doesn't really have integers, all numbers are floats
 
 				comparison = arcLengths[ i ] - targetArcLength;
 
@@ -33225,7 +33225,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					high = i;
 					break;
 
-					// DONE
+					/ DONE
 
 				}
 
@@ -33239,18 +33239,18 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// we could get finer grain at lengths, or use simple interpolation between two points
+			/ we could get finer grain at lengths, or use simple interpolation between two points
 
 			const lengthBefore = arcLengths[ i ];
 			const lengthAfter = arcLengths[ i + 1 ];
 
 			const segmentLength = lengthAfter - lengthBefore;
 
-			// determine where we are between the 'before' and 'after' points
+			/ determine where we are between the 'before' and 'after' points
 
 			const segmentFraction = ( targetArcLength - lengthBefore ) / segmentLength;
 
-			// add that fractional amount to t
+			/ add that fractional amount to t
 
 			const t = ( i + segmentFraction ) / ( il - 1 );
 
@@ -33258,10 +33258,10 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Returns a unit vector tangent at t
-		// In case any sub curve does not implement its tangent derivation,
-		// 2 points a small delta apart will be used to find its gradient
-		// which seems to give a reasonable approximation
+		/ Returns a unit vector tangent at t
+		/ In case any sub curve does not implement its tangent derivation,
+		/ 2 points a small delta apart will be used to find its gradient
+		/ which seems to give a reasonable approximation
 
 		getTangent( t, optionalTarget ) {
 
@@ -33269,7 +33269,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			let t1 = t - delta;
 			let t2 = t + delta;
 
-			// Capping in case of danger
+			/ Capping in case of danger
 
 			if ( t1 < 0 ) t1 = 0;
 			if ( t2 > 1 ) t2 = 1;
@@ -33294,7 +33294,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		computeFrenetFrames( segments, closed ) {
 
-			// see http://www.cs.indiana.edu/pub/techreports/TR425.pdf
+			/ see http://www.cs.indiana.edu/pub/techreports/TR425.pdf
 
 			const normal = new Vector3();
 
@@ -33305,7 +33305,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const vec = new Vector3();
 			const mat = new Matrix4();
 
-			// compute the tangent vectors for each segment on the curve
+			/ compute the tangent vectors for each segment on the curve
 
 			for ( let i = 0; i <= segments; i ++ ) {
 
@@ -33315,8 +33315,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// select an initial normal vector perpendicular to the first tangent vector,
-			// and in the direction of the minimum tangent xyz component
+			/ select an initial normal vector perpendicular to the first tangent vector,
+			/ and in the direction of the minimum tangent xyz component
 
 			normals[ 0 ] = new Vector3();
 			binormals[ 0 ] = new Vector3();
@@ -33351,7 +33351,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			binormals[ 0 ].crossVectors( tangents[ 0 ], normals[ 0 ] );
 
 
-			// compute the slowly-varying normal and binormal vectors for each segment on the curve
+			/ compute the slowly-varying normal and binormal vectors for each segment on the curve
 
 			for ( let i = 1; i <= segments; i ++ ) {
 
@@ -33365,7 +33365,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					vec.normalize();
 
-					const theta = Math.acos( clamp( tangents[ i - 1 ].dot( tangents[ i ] ), - 1, 1 ) ); // clamp for floating pt errors
+					const theta = Math.acos( clamp( tangents[ i - 1 ].dot( tangents[ i ] ), - 1, 1 ) ); / clamp for floating pt errors
 
 					normals[ i ].applyMatrix4( mat.makeRotationAxis( vec, theta ) );
 
@@ -33375,7 +33375,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// if the curve is closed, postprocess the vectors so the first and last normal vectors are the same
+			/ if the curve is closed, postprocess the vectors so the first and last normal vectors are the same
 
 			if ( closed === true ) {
 
@@ -33390,7 +33390,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				for ( let i = 1; i <= segments; i ++ ) {
 
-					// twist a little...
+					/ twist a little...
 					normals[ i ].applyMatrix4( mat.makeRotationAxis( tangents[ i ], theta * i ) );
 					binormals[ i ].crossVectors( tangents[ i ], normals[ i ] );
 
@@ -33480,7 +33480,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			let deltaAngle = this.aEndAngle - this.aStartAngle;
 			const samePoints = Math.abs( deltaAngle ) < Number.EPSILON;
 
-			// ensures that deltaAngle is 0 .. 2 PI
+			/ ensures that deltaAngle is 0 .. 2 PI
 			while ( deltaAngle < 0 ) deltaAngle += twoPi;
 			while ( deltaAngle > twoPi ) deltaAngle -= twoPi;
 
@@ -33524,7 +33524,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				const tx = x - this.aX;
 				const ty = y - this.aY;
 
-				// Rotate the point about the center of the ellipse.
+				/ Rotate the point about the center of the ellipse.
 				x = tx * cos - ty * sin + this.aX;
 				y = tx * sin + ty * cos + this.aY;
 
@@ -33664,11 +33664,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			initNonuniformCatmullRom: function ( x0, x1, x2, x3, dt0, dt1, dt2 ) {
 
-				// compute tangents when parameterized in [t1,t2]
+				/ compute tangents when parameterized in [t1,t2]
 				let t1 = ( x1 - x0 ) / dt0 - ( x2 - x0 ) / ( dt0 + dt1 ) + ( x2 - x1 ) / dt1;
 				let t2 = ( x2 - x1 ) / dt1 - ( x3 - x1 ) / ( dt1 + dt2 ) + ( x3 - x2 ) / dt2;
 
-				// rescale tangents for parametrization in [0,1]
+				/ rescale tangents for parametrization in [0,1]
 				t1 *= dt1;
 				t2 *= dt1;
 
@@ -33688,7 +33688,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	//
+	/
 
 	const tmp = /*@__PURE__*/ new Vector3();
 	const px = /*@__PURE__*/ new CubicPoly();
@@ -33734,7 +33734,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			let p0, p3; // 4 points (p1 & p2 defined below)
+			let p0, p3; / 4 points (p1 & p2 defined below)
 
 			if ( this.closed || intPoint > 0 ) {
 
@@ -33742,7 +33742,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			} else {
 
-				// extrapolate first point
+				/ extrapolate first point
 				tmp.subVectors( points[ 0 ], points[ 1 ] ).add( points[ 0 ] );
 				p0 = tmp;
 
@@ -33757,7 +33757,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			} else {
 
-				// extrapolate last point
+				/ extrapolate last point
 				tmp.subVectors( points[ l - 1 ], points[ l - 2 ] ).add( points[ l - 1 ] );
 				p3 = tmp;
 
@@ -33765,13 +33765,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( this.curveType === 'centripetal' || this.curveType === 'chordal' ) {
 
-				// init Centripetal / Chordal Catmull-Rom
+				/ init Centripetal / Chordal Catmull-Rom
 				const pow = this.curveType === 'chordal' ? 0.5 : 0.25;
 				let dt0 = Math.pow( p0.distanceToSquared( p1 ), pow );
 				let dt1 = Math.pow( p1.distanceToSquared( p2 ), pow );
 				let dt2 = Math.pow( p2.distanceToSquared( p3 ), pow );
 
-				// safety check for repeated points
+				/ safety check for repeated points
 				if ( dt1 < 1e-4 ) dt1 = 1.0;
 				if ( dt0 < 1e-4 ) dt0 = dt1;
 				if ( dt2 < 1e-4 ) dt2 = dt1;
@@ -33879,7 +33879,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	//
+	/
 
 	function QuadraticBezierP0( t, p ) {
 
@@ -33907,7 +33907,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	//
+	/
 
 	function CubicBezierP0( t, p ) {
 
@@ -34123,7 +34123,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Line curve is linear, so we can overwrite default getPointAt
+		/ Line curve is linear, so we can overwrite default getPointAt
 		getPointAt( u, optionalTarget ) {
 
 			return this.getPoint( u, optionalTarget );
@@ -34209,7 +34209,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			return point;
 
 		}
-		// Line curve is linear, so we can overwrite default getPointAt
+		/ Line curve is linear, so we can overwrite default getPointAt
 		getPointAt( u, optionalTarget ) {
 
 			return this.getPoint( u, optionalTarget );
@@ -34520,7 +34520,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			this.type = 'CurvePath';
 
 			this.curves = [];
-			this.autoClose = false; // Automatically closes the path
+			this.autoClose = false; / Automatically closes the path
 
 		}
 
@@ -34532,7 +34532,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		closePath() {
 
-			// Add a line curve if start and end of lines are not connected
+			/ Add a line curve if start and end of lines are not connected
 			const startPoint = this.curves[ 0 ].getPoint( 0 );
 			const endPoint = this.curves[ this.curves.length - 1 ].getPoint( 1 );
 
@@ -34547,14 +34547,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// To get accurate point with reference to
-		// entire path distance at time t,
-		// following has to be done:
+		/ To get accurate point with reference to
+		/ entire path distance at time t,
+		/ following has to be done:
 
-		// 1. Length of each sub path have to be known
-		// 2. Locate and identify type of curve
-		// 3. Get t for the curve
-		// 4. Return curve.getPointAt(t')
+		/ 1. Length of each sub path have to be known
+		/ 2. Locate and identify type of curve
+		/ 3. Get t for the curve
+		/ 4. Return curve.getPointAt(t')
 
 		getPoint( t, optionalTarget ) {
 
@@ -34562,7 +34562,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const curveLengths = this.getCurveLengths();
 			let i = 0;
 
-			// To think about boundaries points.
+			/ To think about boundaries points.
 
 			while ( i < curveLengths.length ) {
 
@@ -34584,13 +34584,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			return null;
 
-			// loop where sum != 0, sum > d , sum+1 <d
+			/ loop where sum != 0, sum > d , sum+1 <d
 
 		}
 
-		// We cannot use the default THREE.Curve getPoint() with getLength() because in
-		// THREE.Curve, getLength() depends on getPoint() but in THREE.CurvePath
-		// getPoint() depends on getLength
+		/ We cannot use the default THREE.Curve getPoint() with getLength() because in
+		/ THREE.Curve, getLength() depends on getPoint() but in THREE.CurvePath
+		/ getPoint() depends on getLength
 
 		getLength() {
 
@@ -34599,7 +34599,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// cacheLengths must be recalculated.
+		/ cacheLengths must be recalculated.
 		updateArcLengths() {
 
 			this.needsUpdate = true;
@@ -34608,12 +34608,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Compute lengths and cache them
-		// We cannot overwrite getLengths() because UtoT mapping uses it.
+		/ Compute lengths and cache them
+		/ We cannot overwrite getLengths() because UtoT mapping uses it.
 
 		getCurveLengths() {
 
-			// We use cache values if curves and cache array are same length
+			/ We use cache values if curves and cache array are same length
 
 			if ( this.cacheLengths && this.cacheLengths.length === this.curves.length ) {
 
@@ -34621,8 +34621,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// Get length of sub-curve
-			// Push sums into cached array
+			/ Get length of sub-curve
+			/ Push sums into cached array
 
 			const lengths = [];
 			let sums = 0;
@@ -34679,7 +34679,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					const point = pts[ j ];
 
-					if ( last && last.equals( point ) ) continue; // ensures no consecutive points are duplicates
+					if ( last && last.equals( point ) ) continue; / ensures no consecutive points are duplicates
 
 					points.push( point );
 					last = point;
@@ -34790,7 +34790,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		moveTo( x, y ) {
 
-			this.currentPoint.set( x, y ); // TODO consider referencing vectors instead of copying?
+			this.currentPoint.set( x, y ); / TODO consider referencing vectors instead of copying?
 
 			return this;
 
@@ -34890,7 +34890,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( this.curves.length > 0 ) {
 
-				// if a previous curve is present, attempt to join
+				/ if a previous curve is present, attempt to join
 				const firstPoint = curve.getPoint( 0 );
 
 				if ( ! firstPoint.equals( this.currentPoint ) ) {
@@ -34959,11 +34959,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			segments = Math.floor( segments );
 
-			// clamp phiLength so it's in range of [ 0, 2PI ]
+			/ clamp phiLength so it's in range of [ 0, 2PI ]
 
 			phiLength = clamp( phiLength, 0, Math.PI * 2 );
 
-			// buffers
+			/ buffers
 
 			const indices = [];
 			const vertices = [];
@@ -34971,7 +34971,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const initNormals = [];
 			const normals = [];
 
-			// helper variables
+			/ helper variables
 
 			const inverseSegments = 1.0 / segments;
 			const vertex = new Vector3();
@@ -34982,13 +34982,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			let dx = 0;
 			let dy = 0;
 
-			// pre-compute normals for initial "meridian"
+			/ pre-compute normals for initial "meridian"
 
 			for ( let j = 0; j <= ( points.length - 1 ); j ++ ) {
 
 				switch ( j ) {
 
-					case 0:				// special handling for 1st vertex on path
+					case 0:				/ special handling for 1st vertex on path
 
 						dx = points[ j + 1 ].x - points[ j ].x;
 						dy = points[ j + 1 ].y - points[ j ].y;
@@ -35005,13 +35005,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						break;
 
-					case ( points.length - 1 ):	// special handling for last Vertex on path
+					case ( points.length - 1 ):	/ special handling for last Vertex on path
 
 						initNormals.push( prevNormal.x, prevNormal.y, prevNormal.z );
 
 						break;
 
-					default:			// default handling for all vertices in between
+					default:			/ default handling for all vertices in between
 
 						dx = points[ j + 1 ].x - points[ j ].x;
 						dy = points[ j + 1 ].y - points[ j ].y;
@@ -35036,7 +35036,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// generate vertices, uvs and normals
+			/ generate vertices, uvs and normals
 
 			for ( let i = 0; i <= segments; i ++ ) {
 
@@ -35047,7 +35047,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				for ( let j = 0; j <= ( points.length - 1 ); j ++ ) {
 
-					// vertex
+					/ vertex
 
 					vertex.x = points[ j ].x * sin;
 					vertex.y = points[ j ].y;
@@ -35055,14 +35055,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					vertices.push( vertex.x, vertex.y, vertex.z );
 
-					// uv
+					/ uv
 
 					uv.x = i / segments;
 					uv.y = j / ( points.length - 1 );
 
 					uvs.push( uv.x, uv.y );
 
-					// normal
+					/ normal
 
 					const x = initNormals[ 3 * j + 0 ] * sin;
 					const y = initNormals[ 3 * j + 1 ];
@@ -35074,7 +35074,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// indices
+			/ indices
 
 			for ( let i = 0; i < segments; i ++ ) {
 
@@ -35087,7 +35087,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					const c = base + points.length + 1;
 					const d = base + 1;
 
-					// faces
+					/ faces
 
 					indices.push( a, b, d );
 					indices.push( c, d, b );
@@ -35096,7 +35096,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// build geometry
+			/ build geometry
 
 			this.setIndex( indices );
 			this.setAttribute( 'position', new Float32BufferAttribute( vertices, 3 ) );
@@ -35169,19 +35169,19 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			segments = Math.max( 3, segments );
 
-			// buffers
+			/ buffers
 
 			const indices = [];
 			const vertices = [];
 			const normals = [];
 			const uvs = [];
 
-			// helper variables
+			/ helper variables
 
 			const vertex = new Vector3();
 			const uv = new Vector2();
 
-			// center point
+			/ center point
 
 			vertices.push( 0, 0, 0 );
 			normals.push( 0, 0, 1 );
@@ -35191,18 +35191,18 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				const segment = thetaStart + s / segments * thetaLength;
 
-				// vertex
+				/ vertex
 
 				vertex.x = radius * Math.cos( segment );
 				vertex.y = radius * Math.sin( segment );
 
 				vertices.push( vertex.x, vertex.y, vertex.z );
 
-				// normal
+				/ normal
 
 				normals.push( 0, 0, 1 );
 
-				// uvs
+				/ uvs
 
 				uv.x = ( vertices[ i ] / radius + 1 ) / 2;
 				uv.y = ( vertices[ i + 1 ] / radius + 1 ) / 2;
@@ -35211,7 +35211,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// indices
+			/ indices
 
 			for ( let i = 1; i <= segments; i ++ ) {
 
@@ -35219,7 +35219,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// build geometry
+			/ build geometry
 
 			this.setIndex( indices );
 			this.setAttribute( 'position', new Float32BufferAttribute( vertices, 3 ) );
@@ -35270,21 +35270,21 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			radialSegments = Math.floor( radialSegments );
 			heightSegments = Math.floor( heightSegments );
 
-			// buffers
+			/ buffers
 
 			const indices = [];
 			const vertices = [];
 			const normals = [];
 			const uvs = [];
 
-			// helper variables
+			/ helper variables
 
 			let index = 0;
 			const indexArray = [];
 			const halfHeight = height / 2;
 			let groupStart = 0;
 
-			// generate geometry
+			/ generate geometry
 
 			generateTorso();
 
@@ -35295,7 +35295,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// build geometry
+			/ build geometry
 
 			this.setIndex( indices );
 			this.setAttribute( 'position', new Float32BufferAttribute( vertices, 3 ) );
@@ -35309,10 +35309,10 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				let groupCount = 0;
 
-				// this will be used to calculate the normal
+				/ this will be used to calculate the normal
 				const slope = ( radiusBottom - radiusTop ) / height;
 
-				// generate vertices, normals and uvs
+				/ generate vertices, normals and uvs
 
 				for ( let y = 0; y <= heightSegments; y ++ ) {
 
@@ -35320,7 +35320,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					const v = y / heightSegments;
 
-					// calculate the radius of the current row
+					/ calculate the radius of the current row
 
 					const radius = v * ( radiusBottom - radiusTop ) + radiusTop;
 
@@ -35333,53 +35333,53 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 						const sinTheta = Math.sin( theta );
 						const cosTheta = Math.cos( theta );
 
-						// vertex
+						/ vertex
 
 						vertex.x = radius * sinTheta;
 						vertex.y = - v * height + halfHeight;
 						vertex.z = radius * cosTheta;
 						vertices.push( vertex.x, vertex.y, vertex.z );
 
-						// normal
+						/ normal
 
 						normal.set( sinTheta, slope, cosTheta ).normalize();
 						normals.push( normal.x, normal.y, normal.z );
 
-						// uv
+						/ uv
 
 						uvs.push( u, 1 - v );
 
-						// save index of vertex in respective row
+						/ save index of vertex in respective row
 
 						indexRow.push( index ++ );
 
 					}
 
-					// now save vertices of the row in our index array
+					/ now save vertices of the row in our index array
 
 					indexArray.push( indexRow );
 
 				}
 
-				// generate indices
+				/ generate indices
 
 				for ( let x = 0; x < radialSegments; x ++ ) {
 
 					for ( let y = 0; y < heightSegments; y ++ ) {
 
-						// we use the index array to access the correct indices
+						/ we use the index array to access the correct indices
 
 						const a = indexArray[ y ][ x ];
 						const b = indexArray[ y + 1 ][ x ];
 						const c = indexArray[ y + 1 ][ x + 1 ];
 						const d = indexArray[ y ][ x + 1 ];
 
-						// faces
+						/ faces
 
 						indices.push( a, b, d );
 						indices.push( b, c, d );
 
-						// update group counter
+						/ update group counter
 
 						groupCount += 6;
 
@@ -35387,11 +35387,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// add a group to the geometry. this will ensure multi material support
+				/ add a group to the geometry. this will ensure multi material support
 
 				scope.addGroup( groupStart, groupCount, 0 );
 
-				// calculate new start value for groups
+				/ calculate new start value for groups
 
 				groupStart += groupCount;
 
@@ -35399,7 +35399,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			function generateCap( top ) {
 
-				// save the index of the first center vertex
+				/ save the index of the first center vertex
 				const centerIndexStart = index;
 
 				const uv = new Vector2();
@@ -35410,34 +35410,34 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				const radius = ( top === true ) ? radiusTop : radiusBottom;
 				const sign = ( top === true ) ? 1 : - 1;
 
-				// first we generate the center vertex data of the cap.
-				// because the geometry needs one set of uvs per face,
-				// we must generate a center vertex per face/segment
+				/ first we generate the center vertex data of the cap.
+				/ because the geometry needs one set of uvs per face,
+				/ we must generate a center vertex per face/segment
 
 				for ( let x = 1; x <= radialSegments; x ++ ) {
 
-					// vertex
+					/ vertex
 
 					vertices.push( 0, halfHeight * sign, 0 );
 
-					// normal
+					/ normal
 
 					normals.push( 0, sign, 0 );
 
-					// uv
+					/ uv
 
 					uvs.push( 0.5, 0.5 );
 
-					// increase index
+					/ increase index
 
 					index ++;
 
 				}
 
-				// save the index of the last center vertex
+				/ save the index of the last center vertex
 				const centerIndexEnd = index;
 
-				// now we generate the surrounding vertices, normals and uvs
+				/ now we generate the surrounding vertices, normals and uvs
 
 				for ( let x = 0; x <= radialSegments; x ++ ) {
 
@@ -35447,30 +35447,30 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					const cosTheta = Math.cos( theta );
 					const sinTheta = Math.sin( theta );
 
-					// vertex
+					/ vertex
 
 					vertex.x = radius * sinTheta;
 					vertex.y = halfHeight * sign;
 					vertex.z = radius * cosTheta;
 					vertices.push( vertex.x, vertex.y, vertex.z );
 
-					// normal
+					/ normal
 
 					normals.push( 0, sign, 0 );
 
-					// uv
+					/ uv
 
 					uv.x = ( cosTheta * 0.5 ) + 0.5;
 					uv.y = ( sinTheta * 0.5 * sign ) + 0.5;
 					uvs.push( uv.x, uv.y );
 
-					// increase index
+					/ increase index
 
 					index ++;
 
 				}
 
-				// generate indices
+				/ generate indices
 
 				for ( let x = 0; x < radialSegments; x ++ ) {
 
@@ -35479,13 +35479,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					if ( top === true ) {
 
-						// face top
+						/ face top
 
 						indices.push( i, i + 1, c );
 
 					} else {
 
-						// face bottom
+						/ face bottom
 
 						indices.push( i + 1, i, c );
 
@@ -35495,11 +35495,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// add a group to the geometry. this will ensure multi material support
+				/ add a group to the geometry. this will ensure multi material support
 
 				scope.addGroup( groupStart, groupCount, top === true ? 1 : 2 );
 
-				// calculate new start value for groups
+				/ calculate new start value for groups
 
 				groupStart += groupCount;
 
@@ -35568,24 +35568,24 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				detail: detail
 			};
 
-			// default buffer data
+			/ default buffer data
 
 			const vertexBuffer = [];
 			const uvBuffer = [];
 
-			// the subdivision creates the vertex buffer data
+			/ the subdivision creates the vertex buffer data
 
 			subdivide( detail );
 
-			// all vertices should lie on a conceptual sphere with a given radius
+			/ all vertices should lie on a conceptual sphere with a given radius
 
 			applyRadius( radius );
 
-			// finally, create the uv data
+			/ finally, create the uv data
 
 			generateUVs();
 
-			// build non-indexed geometry
+			/ build non-indexed geometry
 
 			this.setAttribute( 'position', new Float32BufferAttribute( vertexBuffer, 3 ) );
 			this.setAttribute( 'normal', new Float32BufferAttribute( vertexBuffer.slice(), 3 ) );
@@ -35593,15 +35593,15 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( detail === 0 ) {
 
-				this.computeVertexNormals(); // flat normals
+				this.computeVertexNormals(); / flat normals
 
 			} else {
 
-				this.normalizeNormals(); // smooth normals
+				this.normalizeNormals(); / smooth normals
 
 			}
 
-			// helper functions
+			/ helper functions
 
 			function subdivide( detail ) {
 
@@ -35609,17 +35609,17 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				const b = new Vector3();
 				const c = new Vector3();
 
-				// iterate over all faces and apply a subdivision with the given detail value
+				/ iterate over all faces and apply a subdivision with the given detail value
 
 				for ( let i = 0; i < indices.length; i += 3 ) {
 
-					// get the vertices of the face
+					/ get the vertices of the face
 
 					getVertexByIndex( indices[ i + 0 ], a );
 					getVertexByIndex( indices[ i + 1 ], b );
 					getVertexByIndex( indices[ i + 2 ], c );
 
-					// perform subdivision
+					/ perform subdivision
 
 					subdivideFace( a, b, c, detail );
 
@@ -35631,11 +35631,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				const cols = detail + 1;
 
-				// we use this multidimensional array as a data structure for creating the subdivision
+				/ we use this multidimensional array as a data structure for creating the subdivision
 
 				const v = [];
 
-				// construct all of the vertices for this subdivision
+				/ construct all of the vertices for this subdivision
 
 				for ( let i = 0; i <= cols; i ++ ) {
 
@@ -35662,7 +35662,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// construct all of the faces
+				/ construct all of the faces
 
 				for ( let i = 0; i < cols; i ++ ) {
 
@@ -35694,7 +35694,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				const vertex = new Vector3();
 
-				// iterate over the entire buffer and apply the radius to each vertex
+				/ iterate over the entire buffer and apply the radius to each vertex
 
 				for ( let i = 0; i < vertexBuffer.length; i += 3 ) {
 
@@ -35736,11 +35736,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			function correctSeam() {
 
-				// handle case when face straddles the seam, see #3269
+				/ handle case when face straddles the seam, see #3269
 
 				for ( let i = 0; i < uvBuffer.length; i += 6 ) {
 
-					// uv data of a single face
+					/ uv data of a single face
 
 					const x0 = uvBuffer[ i + 0 ];
 					const x1 = uvBuffer[ i + 2 ];
@@ -35749,7 +35749,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					const max = Math.max( x0, x1, x2 );
 					const min = Math.min( x0, x1, x2 );
 
-					// 0.9 is somewhat arbitrary
+					/ 0.9 is somewhat arbitrary
 
 					if ( max > 0.9 && min < 0.1 ) {
 
@@ -35829,7 +35829,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// Angle around the Y axis, counter-clockwise when looking from above.
+			/ Angle around the Y axis, counter-clockwise when looking from above.
 
 			function azimuth( vector ) {
 
@@ -35838,7 +35838,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			}
 
 
-			// Angle above the XZ plane.
+			/ Angle above the XZ plane.
 
 			function inclination( vector ) {
 
@@ -35875,21 +35875,21 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const vertices = [
 
-				// (±1, ±1, ±1)
+				/ (±1, ±1, ±1)
 				- 1, - 1, - 1,	- 1, - 1, 1,
 				- 1, 1, - 1, - 1, 1, 1,
 				1, - 1, - 1, 1, - 1, 1,
 				1, 1, - 1, 1, 1, 1,
 
-				// (0, ±1/φ, ±φ)
+				/ (0, ±1/φ, ±φ)
 				0, - r, - t, 0, - r, t,
 				0, r, - t, 0, r, t,
 
-				// (±1/φ, ±φ, 0)
+				/ (±1/φ, ±φ, 0)
 				- r, - t, 0, - r, t, 0,
 				r, - t, 0, r, t, 0,
 
-				// (±φ, 0, ±1/φ)
+				/ (±φ, 0, ±1/φ)
 				- t, 0, - r, t, 0, - r,
 				- t, 0, r, t, 0, r
 			];
@@ -35984,22 +35984,22 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					c.fromBufferAttribute( positionAttr, indexArr[ 2 ] );
 					_triangle.getNormal( _normal );
 
-					// create hashes for the edge from the vertices
+					/ create hashes for the edge from the vertices
 					hashes[ 0 ] = `${ Math.round( a.x * precision ) },${ Math.round( a.y * precision ) },${ Math.round( a.z * precision ) }`;
 					hashes[ 1 ] = `${ Math.round( b.x * precision ) },${ Math.round( b.y * precision ) },${ Math.round( b.z * precision ) }`;
 					hashes[ 2 ] = `${ Math.round( c.x * precision ) },${ Math.round( c.y * precision ) },${ Math.round( c.z * precision ) }`;
 
-					// skip degenerate triangles
+					/ skip degenerate triangles
 					if ( hashes[ 0 ] === hashes[ 1 ] || hashes[ 1 ] === hashes[ 2 ] || hashes[ 2 ] === hashes[ 0 ] ) {
 
 						continue;
 
 					}
 
-					// iterate over every edge
+					/ iterate over every edge
 					for ( let j = 0; j < 3; j ++ ) {
 
-						// get the first and next vertex making up the edge
+						/ get the first and next vertex making up the edge
 						const jNext = ( j + 1 ) % 3;
 						const vecHash0 = hashes[ j ];
 						const vecHash1 = hashes[ jNext ];
@@ -36011,8 +36011,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						if ( reverseHash in edgeData && edgeData[ reverseHash ] ) {
 
-							// if we found a sibling edge add it into the vertex array if
-							// it meets the angle threshold and delete the edge from the map.
+							/ if we found a sibling edge add it into the vertex array if
+							/ it meets the angle threshold and delete the edge from the map.
 							if ( _normal.dot( edgeData[ reverseHash ].normal ) <= thresholdDot ) {
 
 								vertices.push( v0.x, v0.y, v0.z );
@@ -36024,7 +36024,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						} else if ( ! ( hash in edgeData ) ) {
 
-							// if we've already got an edge here then skip adding a new one
+							/ if we've already got an edge here then skip adding a new one
 							edgeData[ hash ] = {
 
 								index0: indexArr[ j ],
@@ -36039,7 +36039,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// iterate over all remaining, unmatched edges and add them to the vertex array
+				/ iterate over all remaining, unmatched edges and add them to the vertex array
 				for ( const key in edgeData ) {
 
 					if ( edgeData[ key ] ) {
@@ -36101,7 +36101,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// get points of shape and holes (keypoints based on segments parameter)
+		/ get points of shape and holes (keypoints based on segments parameter)
 
 		extractPoints( divisions ) {
 
@@ -36189,7 +36189,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( hasHoles ) outerNode = eliminateHoles( data, holeIndices, outerNode, dim );
 
-			// if the shape is not too simple, we'll use z-order curve hash later; calculate polygon bbox
+			/ if the shape is not too simple, we'll use z-order curve hash later; calculate polygon bbox
 			if ( data.length > 80 * dim ) {
 
 				minX = maxX = data[ 0 ];
@@ -36206,7 +36206,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// minX, minY and invSize are later used to transform coords into integers for z-order calculation
+				/ minX, minY and invSize are later used to transform coords into integers for z-order calculation
 				invSize = Math.max( maxX - minX, maxY - minY );
 				invSize = invSize !== 0 ? 32767 / invSize : 0;
 
@@ -36220,7 +36220,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	};
 
-	// create a circular doubly linked list from polygon points in the specified winding order
+	/ create a circular doubly linked list from polygon points in the specified winding order
 	function linkedList( data, start, end, dim, clockwise ) {
 
 		let i, last;
@@ -36246,7 +36246,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// eliminate colinear or duplicate points
+	/ eliminate colinear or duplicate points
 	function filterPoints( start, end ) {
 
 		if ( ! start ) return start;
@@ -36277,18 +36277,18 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// main ear slicing loop which triangulates a polygon (given as a linked list)
+	/ main ear slicing loop which triangulates a polygon (given as a linked list)
 	function earcutLinked( ear, triangles, dim, minX, minY, invSize, pass ) {
 
 		if ( ! ear ) return;
 
-		// interlink polygon nodes in z-order
+		/ interlink polygon nodes in z-order
 		if ( ! pass && invSize ) indexCurve( ear, minX, minY, invSize );
 
 		let stop = ear,
 			prev, next;
 
-		// iterate through ears, slicing them one by one
+		/ iterate through ears, slicing them one by one
 		while ( ear.prev !== ear.next ) {
 
 			prev = ear.prev;
@@ -36296,14 +36296,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( invSize ? isEarHashed( ear, minX, minY, invSize ) : isEar( ear ) ) {
 
-				// cut off the triangle
+				/ cut off the triangle
 				triangles.push( prev.i / dim | 0 );
 				triangles.push( ear.i / dim | 0 );
 				triangles.push( next.i / dim | 0 );
 
 				removeNode( ear );
 
-				// skipping the next vertex leads to less sliver triangles
+				/ skipping the next vertex leads to less sliver triangles
 				ear = next.next;
 				stop = next.next;
 
@@ -36313,22 +36313,22 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			ear = next;
 
-			// if we looped through the whole remaining polygon and can't find any more ears
+			/ if we looped through the whole remaining polygon and can't find any more ears
 			if ( ear === stop ) {
 
-				// try filtering points and slicing again
+				/ try filtering points and slicing again
 				if ( ! pass ) {
 
 					earcutLinked( filterPoints( ear ), triangles, dim, minX, minY, invSize, 1 );
 
-					// if this didn't work, try curing all small self-intersections locally
+					/ if this didn't work, try curing all small self-intersections locally
 
 				} else if ( pass === 1 ) {
 
 					ear = cureLocalIntersections( filterPoints( ear ), triangles, dim );
 					earcutLinked( ear, triangles, dim, minX, minY, invSize, 2 );
 
-					// as a last resort, try splitting the remaining polygon into two
+					/ as a last resort, try splitting the remaining polygon into two
 
 				} else if ( pass === 2 ) {
 
@@ -36344,19 +36344,19 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// check whether a polygon node forms a valid ear with adjacent nodes
+	/ check whether a polygon node forms a valid ear with adjacent nodes
 	function isEar( ear ) {
 
 		const a = ear.prev,
 			b = ear,
 			c = ear.next;
 
-		if ( area( a, b, c ) >= 0 ) return false; // reflex, can't be an ear
+		if ( area( a, b, c ) >= 0 ) return false; / reflex, can't be an ear
 
-		// now make sure we don't have other points inside the potential ear
+		/ now make sure we don't have other points inside the potential ear
 		const ax = a.x, bx = b.x, cx = c.x, ay = a.y, by = b.y, cy = c.y;
 
-		// triangle bbox; min & max are calculated like this for speed
+		/ triangle bbox; min & max are calculated like this for speed
 		const x0 = ax < bx ? ( ax < cx ? ax : cx ) : ( bx < cx ? bx : cx ),
 			y0 = ay < by ? ( ay < cy ? ay : cy ) : ( by < cy ? by : cy ),
 			x1 = ax > bx ? ( ax > cx ? ax : cx ) : ( bx > cx ? bx : cx ),
@@ -36382,24 +36382,24 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			b = ear,
 			c = ear.next;
 
-		if ( area( a, b, c ) >= 0 ) return false; // reflex, can't be an ear
+		if ( area( a, b, c ) >= 0 ) return false; / reflex, can't be an ear
 
 		const ax = a.x, bx = b.x, cx = c.x, ay = a.y, by = b.y, cy = c.y;
 
-		// triangle bbox; min & max are calculated like this for speed
+		/ triangle bbox; min & max are calculated like this for speed
 		const x0 = ax < bx ? ( ax < cx ? ax : cx ) : ( bx < cx ? bx : cx ),
 			y0 = ay < by ? ( ay < cy ? ay : cy ) : ( by < cy ? by : cy ),
 			x1 = ax > bx ? ( ax > cx ? ax : cx ) : ( bx > cx ? bx : cx ),
 			y1 = ay > by ? ( ay > cy ? ay : cy ) : ( by > cy ? by : cy );
 
-		// z-order range for the current triangle bbox;
+		/ z-order range for the current triangle bbox;
 		const minZ = zOrder( x0, y0, minX, minY, invSize ),
 			maxZ = zOrder( x1, y1, minX, minY, invSize );
 
 		let p = ear.prevZ,
 			n = ear.nextZ;
 
-		// look for points inside the triangle in both directions
+		/ look for points inside the triangle in both directions
 		while ( p && p.z >= minZ && n && n.z <= maxZ ) {
 
 			if ( p.x >= x0 && p.x <= x1 && p.y >= y0 && p.y <= y1 && p !== a && p !== c &&
@@ -36412,7 +36412,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// look for remaining points in decreasing z-order
+		/ look for remaining points in decreasing z-order
 		while ( p && p.z >= minZ ) {
 
 			if ( p.x >= x0 && p.x <= x1 && p.y >= y0 && p.y <= y1 && p !== a && p !== c &&
@@ -36421,7 +36421,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// look for remaining points in increasing z-order
+		/ look for remaining points in increasing z-order
 		while ( n && n.z <= maxZ ) {
 
 			if ( n.x >= x0 && n.x <= x1 && n.y >= y0 && n.y <= y1 && n !== a && n !== c &&
@@ -36434,7 +36434,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// go through all polygon nodes and cure small local self-intersections
+	/ go through all polygon nodes and cure small local self-intersections
 	function cureLocalIntersections( start, triangles, dim ) {
 
 		let p = start;
@@ -36449,7 +36449,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				triangles.push( p.i / dim | 0 );
 				triangles.push( b.i / dim | 0 );
 
-				// remove two nodes involved
+				/ remove two nodes involved
 				removeNode( p );
 				removeNode( p.next );
 
@@ -36465,10 +36465,10 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// try splitting polygon into two and triangulate them independently
+	/ try splitting polygon into two and triangulate them independently
 	function splitEarcut( start, triangles, dim, minX, minY, invSize ) {
 
-		// look for a valid diagonal that divides the polygon into two
+		/ look for a valid diagonal that divides the polygon into two
 		let a = start;
 		do {
 
@@ -36477,14 +36477,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( a.i !== b.i && isValidDiagonal( a, b ) ) {
 
-					// split the polygon in two by the diagonal
+					/ split the polygon in two by the diagonal
 					let c = splitPolygon( a, b );
 
-					// filter colinear points around the cuts
+					/ filter colinear points around the cuts
 					a = filterPoints( a, a.next );
 					c = filterPoints( c, c.next );
 
-					// run earcut on each half
+					/ run earcut on each half
 					earcutLinked( a, triangles, dim, minX, minY, invSize, 0 );
 					earcutLinked( c, triangles, dim, minX, minY, invSize, 0 );
 					return;
@@ -36501,7 +36501,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// link every hole into the outer loop, producing a single-ring polygon without holes
+	/ link every hole into the outer loop, producing a single-ring polygon without holes
 	function eliminateHoles( data, holeIndices, outerNode, dim ) {
 
 		const queue = [];
@@ -36519,7 +36519,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		queue.sort( compareX );
 
-		// process holes from left to right
+		/ process holes from left to right
 		for ( i = 0; i < queue.length; i ++ ) {
 
 			outerNode = eliminateHole( queue[ i ], outerNode );
@@ -36536,7 +36536,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// find a bridge between vertices that connects hole with an outer ring and link it
+	/ find a bridge between vertices that connects hole with an outer ring and link it
 	function eliminateHole( hole, outerNode ) {
 
 		const bridge = findHoleBridge( hole, outerNode );
@@ -36548,13 +36548,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		const bridgeReverse = splitPolygon( bridge, hole );
 
-		// filter collinear points around the cuts
+		/ filter collinear points around the cuts
 		filterPoints( bridgeReverse, bridgeReverse.next );
 		return filterPoints( bridge, bridge.next );
 
 	}
 
-	// David Eberly's algorithm for finding a bridge between hole and outer polygon
+	/ David Eberly's algorithm for finding a bridge between hole and outer polygon
 	function findHoleBridge( hole, outerNode ) {
 
 		let p = outerNode,
@@ -36563,8 +36563,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		const hx = hole.x, hy = hole.y;
 
-		// find a segment intersected by a ray from the hole's leftmost point to the left;
-		// segment's endpoint with lesser x will be potential connection point
+		/ find a segment intersected by a ray from the hole's leftmost point to the left;
+		/ segment's endpoint with lesser x will be potential connection point
 		do {
 
 			if ( hy <= p.y && hy >= p.next.y && p.next.y !== p.y ) {
@@ -36574,7 +36574,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					qx = x;
 					m = p.x < p.next.x ? p : p.next;
-					if ( x === hx ) return m; // hole touches outer segment; pick leftmost endpoint
+					if ( x === hx ) return m; / hole touches outer segment; pick leftmost endpoint
 
 				}
 
@@ -36586,9 +36586,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		if ( ! m ) return null;
 
-		// look for points inside the triangle of hole point, segment intersection and endpoint;
-		// if there are no points found, we have a valid connection;
-		// otherwise choose the point of the minimum angle with the ray as connection point
+		/ look for points inside the triangle of hole point, segment intersection and endpoint;
+		/ if there are no points found, we have a valid connection;
+		/ otherwise choose the point of the minimum angle with the ray as connection point
 
 		const stop = m,
 			mx = m.x,
@@ -36602,7 +36602,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			if ( hx >= p.x && p.x >= mx && hx !== p.x &&
 					pointInTriangle( hy < my ? hx : qx, hy, mx, my, hy < my ? qx : hx, hy, p.x, p.y ) ) {
 
-				tan = Math.abs( hy - p.y ) / ( hx - p.x ); // tangential
+				tan = Math.abs( hy - p.y ) / ( hx - p.x ); / tangential
 
 				if ( locallyInside( p, hole ) && ( tan < tanMin || ( tan === tanMin && ( p.x > m.x || ( p.x === m.x && sectorContainsSector( m, p ) ) ) ) ) ) {
 
@@ -36621,14 +36621,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// whether sector in vertex m contains sector in vertex p in the same coordinates
+	/ whether sector in vertex m contains sector in vertex p in the same coordinates
 	function sectorContainsSector( m, p ) {
 
 		return area( m.prev, m, p.prev ) < 0 && area( p.next, m, m.next ) < 0;
 
 	}
 
-	// interlink polygon nodes in z-order
+	/ interlink polygon nodes in z-order
 	function indexCurve( start, minX, minY, invSize ) {
 
 		let p = start;
@@ -36648,8 +36648,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Simon Tatham's linked list merge sort algorithm
-	// http://www.chiark.greenend.org.uk/~sgtatham/algorithms/listsort.html
+	/ Simon Tatham's linked list merge sort algorithm
+	/ http://www.chiark.greenend.org.uk/~sgtatham/algorithms/listsort.html
 	function sortLinked( list ) {
 
 		let i, p, q, e, tail, numMerges, pSize, qSize,
@@ -36714,10 +36714,10 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// z-order of a point given coords and inverse of the longer side of data bbox
+	/ z-order of a point given coords and inverse of the longer side of data bbox
 	function zOrder( x, y, minX, minY, invSize ) {
 
-		// coords are transformed into non-negative 15-bit integer range
+		/ coords are transformed into non-negative 15-bit integer range
 		x = ( x - minX ) * invSize | 0;
 		y = ( y - minY ) * invSize | 0;
 
@@ -36735,7 +36735,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// find the leftmost node of a polygon ring
+	/ find the leftmost node of a polygon ring
 	function getLeftmost( start ) {
 
 		let p = start,
@@ -36751,7 +36751,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// check if a point lies within a convex triangle
+	/ check if a point lies within a convex triangle
 	function pointInTriangle( ax, ay, bx, by, cx, cy, px, py ) {
 
 		return ( cx - px ) * ( ay - py ) >= ( ax - px ) * ( cy - py ) &&
@@ -36760,31 +36760,31 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// check if a diagonal between two polygon nodes is valid (lies in polygon interior)
+	/ check if a diagonal between two polygon nodes is valid (lies in polygon interior)
 	function isValidDiagonal( a, b ) {
 
-		return a.next.i !== b.i && a.prev.i !== b.i && ! intersectsPolygon( a, b ) && // dones't intersect other edges
-	           ( locallyInside( a, b ) && locallyInside( b, a ) && middleInside( a, b ) && // locally visible
-	            ( area( a.prev, a, b.prev ) || area( a, b.prev, b ) ) || // does not create opposite-facing sectors
-	            equals( a, b ) && area( a.prev, a, a.next ) > 0 && area( b.prev, b, b.next ) > 0 ); // special zero-length case
+		return a.next.i !== b.i && a.prev.i !== b.i && ! intersectsPolygon( a, b ) && / dones't intersect other edges
+	           ( locallyInside( a, b ) && locallyInside( b, a ) && middleInside( a, b ) && / locally visible
+	            ( area( a.prev, a, b.prev ) || area( a, b.prev, b ) ) || / does not create opposite-facing sectors
+	            equals( a, b ) && area( a.prev, a, a.next ) > 0 && area( b.prev, b, b.next ) > 0 ); / special zero-length case
 
 	}
 
-	// signed area of a triangle
+	/ signed area of a triangle
 	function area( p, q, r ) {
 
 		return ( q.y - p.y ) * ( r.x - q.x ) - ( q.x - p.x ) * ( r.y - q.y );
 
 	}
 
-	// check if two points are equal
+	/ check if two points are equal
 	function equals( p1, p2 ) {
 
 		return p1.x === p2.x && p1.y === p2.y;
 
 	}
 
-	// check if two segments intersect
+	/ check if two segments intersect
 	function intersects( p1, q1, p2, q2 ) {
 
 		const o1 = sign( area( p1, q1, p2 ) );
@@ -36792,18 +36792,18 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 		const o3 = sign( area( p2, q2, p1 ) );
 		const o4 = sign( area( p2, q2, q1 ) );
 
-		if ( o1 !== o2 && o3 !== o4 ) return true; // general case
+		if ( o1 !== o2 && o3 !== o4 ) return true; / general case
 
-		if ( o1 === 0 && onSegment( p1, p2, q1 ) ) return true; // p1, q1 and p2 are collinear and p2 lies on p1q1
-		if ( o2 === 0 && onSegment( p1, q2, q1 ) ) return true; // p1, q1 and q2 are collinear and q2 lies on p1q1
-		if ( o3 === 0 && onSegment( p2, p1, q2 ) ) return true; // p2, q2 and p1 are collinear and p1 lies on p2q2
-		if ( o4 === 0 && onSegment( p2, q1, q2 ) ) return true; // p2, q2 and q1 are collinear and q1 lies on p2q2
+		if ( o1 === 0 && onSegment( p1, p2, q1 ) ) return true; / p1, q1 and p2 are collinear and p2 lies on p1q1
+		if ( o2 === 0 && onSegment( p1, q2, q1 ) ) return true; / p1, q1 and q2 are collinear and q2 lies on p1q1
+		if ( o3 === 0 && onSegment( p2, p1, q2 ) ) return true; / p2, q2 and p1 are collinear and p1 lies on p2q2
+		if ( o4 === 0 && onSegment( p2, q1, q2 ) ) return true; / p2, q2 and q1 are collinear and q1 lies on p2q2
 
 		return false;
 
 	}
 
-	// for collinear points p, q, r, check if point q lies on segment pr
+	/ for collinear points p, q, r, check if point q lies on segment pr
 	function onSegment( p, q, r ) {
 
 		return q.x <= Math.max( p.x, r.x ) && q.x >= Math.min( p.x, r.x ) && q.y <= Math.max( p.y, r.y ) && q.y >= Math.min( p.y, r.y );
@@ -36816,7 +36816,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// check if a polygon diagonal intersects any polygon segments
+	/ check if a polygon diagonal intersects any polygon segments
 	function intersectsPolygon( a, b ) {
 
 		let p = a;
@@ -36832,7 +36832,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// check if a polygon diagonal is locally inside the polygon
+	/ check if a polygon diagonal is locally inside the polygon
 	function locallyInside( a, b ) {
 
 		return area( a.prev, a, a.next ) < 0 ?
@@ -36841,7 +36841,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// check if the middle point of a polygon diagonal is inside the polygon
+	/ check if the middle point of a polygon diagonal is inside the polygon
 	function middleInside( a, b ) {
 
 		let p = a,
@@ -36861,8 +36861,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// link two polygon vertices with a bridge; if the vertices belong to the same ring, it splits polygon into two;
-	// if one belongs to the outer ring and another to a hole, it merges it into a single ring
+	/ link two polygon vertices with a bridge; if the vertices belong to the same ring, it splits polygon into two;
+	/ if one belongs to the outer ring and another to a hole, it merges it into a single ring
 	function splitPolygon( a, b ) {
 
 		const a2 = new Node( a.i, a.x, a.y ),
@@ -36886,7 +36886,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// create a node and optionally link it with previous one (in a circular doubly linked list)
+	/ create a node and optionally link it with previous one (in a circular doubly linked list)
 	function insertNode( i, x, y, last ) {
 
 		const p = new Node( i, x, y );
@@ -36921,25 +36921,25 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	function Node( i, x, y ) {
 
-		// vertex index in coordinates array
+		/ vertex index in coordinates array
 		this.i = i;
 
-		// vertex coordinates
+		/ vertex coordinates
 		this.x = x;
 		this.y = y;
 
-		// previous and next vertex nodes in a polygon ring
+		/ previous and next vertex nodes in a polygon ring
 		this.prev = null;
 		this.next = null;
 
-		// z-order curve value
+		/ z-order curve value
 		this.z = 0;
 
-		// previous and next nodes in z-order
+		/ previous and next nodes in z-order
 		this.prevZ = null;
 		this.nextZ = null;
 
-		// indicates whether this is a steiner point
+		/ indicates whether this is a steiner point
 		this.steiner = false;
 
 	}
@@ -36960,7 +36960,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	class ShapeUtils {
 
-		// calculate area of the contour polygon
+		/ calculate area of the contour polygon
 
 		static area( contour ) {
 
@@ -36985,14 +36985,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		static triangulateShape( contour, holes ) {
 
-			const vertices = []; // flat array of vertices like [ x0,y0, x1,y1, x2,y2, ... ]
-			const holeIndices = []; // array of hole indices
-			const faces = []; // final array of vertex indices like [ [ a,b,d ], [ b,c,d ] ]
+			const vertices = []; / flat array of vertices like [ x0,y0, x1,y1, x2,y2, ... ]
+			const holeIndices = []; / array of hole indices
+			const faces = []; / final array of vertex indices like [ [ a,b,d ], [ b,c,d ] ]
 
 			removeDupEndPts( contour );
 			addContour( vertices, contour );
 
-			//
+			/
 
 			let holeIndex = contour.length;
 
@@ -37006,11 +37006,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			//
+			/
 
 			const triangles = Earcut.triangulate( vertices, holeIndices );
 
-			//
+			/
 
 			for ( let i = 0; i < triangles.length; i += 3 ) {
 
@@ -37052,19 +37052,19 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 	 *
 	 * parameters = {
 	 *
-	 *  curveSegments: <int>, // number of points on the curves
-	 *  steps: <int>, // number of points for z-side extrusions / used for subdividing segments of extrude spline too
-	 *  depth: <float>, // Depth to extrude the shape
+	 *  curveSegments: <int>, / number of points on the curves
+	 *  steps: <int>, / number of points for z-side extrusions / used for subdividing segments of extrude spline too
+	 *  depth: <float>, / Depth to extrude the shape
 	 *
-	 *  bevelEnabled: <bool>, // turn on bevel
-	 *  bevelThickness: <float>, // how deep into the original shape bevel goes
-	 *  bevelSize: <float>, // how far from shape outline (including bevelOffset) is bevel
-	 *  bevelOffset: <float>, // how far from shape outline does bevel start
-	 *  bevelSegments: <int>, // number of bevel layers
+	 *  bevelEnabled: <bool>, / turn on bevel
+	 *  bevelThickness: <float>, / how deep into the original shape bevel goes
+	 *  bevelSize: <float>, / how far from shape outline (including bevelOffset) is bevel
+	 *  bevelOffset: <float>, / how far from shape outline does bevel start
+	 *  bevelSegments: <int>, / number of bevel layers
 	 *
-	 *  extrudePath: <THREE.Curve> // curve to extrude shape along
+	 *  extrudePath: <THREE.Curve> / curve to extrude shape along
 	 *
-	 *  UVGenerator: <Object> // object that provides UV generator functions
+	 *  UVGenerator: <Object> / object that provides UV generator functions
 	 *
 	 * }
 	 */
@@ -37097,20 +37097,20 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// build geometry
+			/ build geometry
 
 			this.setAttribute( 'position', new Float32BufferAttribute( verticesArray, 3 ) );
 			this.setAttribute( 'uv', new Float32BufferAttribute( uvArray, 2 ) );
 
 			this.computeVertexNormals();
 
-			// functions
+			/ functions
 
 			function addShape( shape ) {
 
 				const placeholder = [];
 
-				// options
+				/ options
 
 				const curveSegments = options.curveSegments !== undefined ? options.curveSegments : 12;
 				const steps = options.steps !== undefined ? options.steps : 1;
@@ -37126,7 +37126,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				const uvgen = options.UVGenerator !== undefined ? options.UVGenerator : WorldUVGenerator;
 
-				//
+				/
 
 				let extrudePts, extrudeByPath = false;
 				let splineTube, binormal, normal, position2;
@@ -37136,15 +37136,15 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					extrudePts = extrudePath.getSpacedPoints( steps );
 
 					extrudeByPath = true;
-					bevelEnabled = false; // bevels not supported for path extrusion
+					bevelEnabled = false; / bevels not supported for path extrusion
 
-					// SETUP TNB variables
+					/ SETUP TNB variables
 
-					// TODO1 - have a .isClosed in spline?
+					/ TODO1 - have a .isClosed in spline?
 
 					splineTube = extrudePath.computeFrenetFrames( steps, false );
 
-					// console.log(splineTube, 'splineTube', splineTube.normals.length, 'steps', steps, 'extrudePts', extrudePts.length);
+					/ console.log(splineTube, 'splineTube', splineTube.normals.length, 'steps', steps, 'extrudePts', extrudePts.length);
 
 					binormal = new Vector3();
 					normal = new Vector3();
@@ -37152,7 +37152,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// Safeguards if bevels are not enabled
+				/ Safeguards if bevels are not enabled
 
 				if ( ! bevelEnabled ) {
 
@@ -37163,7 +37163,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// Variables initialization
+				/ Variables initialization
 
 				const shapePoints = shape.extractPoints( curveSegments );
 
@@ -37176,7 +37176,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					vertices = vertices.reverse();
 
-					// Maybe we should also check if holes are in the opposite direction, just to be safe ...
+					/ Maybe we should also check if holes are in the opposite direction, just to be safe ...
 
 					for ( let h = 0, hl = holes.length; h < hl; h ++ ) {
 
@@ -37197,7 +37197,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				/* Vertices */
 
-				const contour = vertices; // vertices has all points but contour has only points of circumference
+				const contour = vertices; / vertices has all points but contour has only points of circumference
 
 				for ( let h = 0, hl = holes.length; h < hl; h ++ ) {
 
@@ -37219,22 +37219,22 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				const vlen = vertices.length, flen = faces.length;
 
 
-				// Find directions for point movement
+				/ Find directions for point movement
 
 
 				function getBevelVec( inPt, inPrev, inNext ) {
 
-					// computes for inPt the corresponding point inPt' on a new contour
-					//   shifted by 1 unit (length of normalized vector) to the left
-					// if we walk along contour clockwise, this new contour is outside the old one
-					//
-					// inPt' is the intersection of the two lines parallel to the two
-					//  adjacent edges of inPt at a distance of 1 unit on the left side.
+					/ computes for inPt the corresponding point inPt' on a new contour
+					/   shifted by 1 unit (length of normalized vector) to the left
+					/ if we walk along contour clockwise, this new contour is outside the old one
+					/
+					/ inPt' is the intersection of the two lines parallel to the two
+					/  adjacent edges of inPt at a distance of 1 unit on the left side.
 
-					let v_trans_x, v_trans_y, shrink_by; // resulting translation vector for inPt
+					let v_trans_x, v_trans_y, shrink_by; / resulting translation vector for inPt
 
-					// good reading for geometry algorithms (here: line-line intersection)
-					// http://geomalgorithms.com/a05-_intersect-1.html
+					/ good reading for geometry algorithms (here: line-line intersection)
+					/ http://geomalgorithms.com/a05-_intersect-1.html
 
 					const v_prev_x = inPt.x - inPrev.x,
 						v_prev_y = inPt.y - inPrev.y;
@@ -37243,19 +37243,19 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					const v_prev_lensq = ( v_prev_x * v_prev_x + v_prev_y * v_prev_y );
 
-					// check for collinear edges
+					/ check for collinear edges
 					const collinear0 = ( v_prev_x * v_next_y - v_prev_y * v_next_x );
 
 					if ( Math.abs( collinear0 ) > Number.EPSILON ) {
 
-						// not collinear
+						/ not collinear
 
-						// length of vectors for normalizing
+						/ length of vectors for normalizing
 
 						const v_prev_len = Math.sqrt( v_prev_lensq );
 						const v_next_len = Math.sqrt( v_next_x * v_next_x + v_next_y * v_next_y );
 
-						// shift adjacent points by unit vectors to the left
+						/ shift adjacent points by unit vectors to the left
 
 						const ptPrevShift_x = ( inPrev.x - v_prev_y / v_prev_len );
 						const ptPrevShift_y = ( inPrev.y + v_prev_x / v_prev_len );
@@ -37263,19 +37263,19 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 						const ptNextShift_x = ( inNext.x - v_next_y / v_next_len );
 						const ptNextShift_y = ( inNext.y + v_next_x / v_next_len );
 
-						// scaling factor for v_prev to intersection point
+						/ scaling factor for v_prev to intersection point
 
 						const sf = ( ( ptNextShift_x - ptPrevShift_x ) * v_next_y -
 								( ptNextShift_y - ptPrevShift_y ) * v_next_x ) /
 							( v_prev_x * v_next_y - v_prev_y * v_next_x );
 
-						// vector from inPt to intersection point
+						/ vector from inPt to intersection point
 
 						v_trans_x = ( ptPrevShift_x + v_prev_x * sf - inPt.x );
 						v_trans_y = ( ptPrevShift_y + v_prev_y * sf - inPt.y );
 
-						// Don't normalize!, otherwise sharp corners become ugly
-						//  but prevent crazy spikes
+						/ Don't normalize!, otherwise sharp corners become ugly
+						/  but prevent crazy spikes
 						const v_trans_lensq = ( v_trans_x * v_trans_x + v_trans_y * v_trans_y );
 						if ( v_trans_lensq <= 2 ) {
 
@@ -37289,9 +37289,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					} else {
 
-						// handle special case of collinear edges
+						/ handle special case of collinear edges
 
-						let direction_eq = false; // assumes: opposite
+						let direction_eq = false; / assumes: opposite
 
 						if ( v_prev_x > Number.EPSILON ) {
 
@@ -37325,14 +37325,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						if ( direction_eq ) {
 
-							// console.log("Warning: lines are a straight sequence");
+							/ console.log("Warning: lines are a straight sequence");
 							v_trans_x = - v_prev_y;
 							v_trans_y = v_prev_x;
 							shrink_by = Math.sqrt( v_prev_lensq );
 
 						} else {
 
-							// console.log("Warning: lines are a straight spike");
+							/ console.log("Warning: lines are a straight spike");
 							v_trans_x = v_prev_x;
 							v_trans_y = v_prev_y;
 							shrink_by = Math.sqrt( v_prev_lensq / 2 );
@@ -37353,8 +37353,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					if ( j === il ) j = 0;
 					if ( k === il ) k = 0;
 
-					//  (j)---(i)---(k)
-					// console.log('i,j,k', i, j , k)
+					/  (j)---(i)---(k)
+					/ console.log('i,j,k', i, j , k)
 
 					contourMovements[ i ] = getBevelVec( contour[ i ], contour[ j ], contour[ k ] );
 
@@ -37374,7 +37374,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 						if ( j === il ) j = 0;
 						if ( k === il ) k = 0;
 
-						//  (j)---(i)---(k)
+						/  (j)---(i)---(k)
 						oneHoleMovements[ i ] = getBevelVec( ahole[ i ], ahole[ j ], ahole[ k ] );
 
 					}
@@ -37385,17 +37385,17 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				}
 
 
-				// Loop bevelSegments, 1 for the front, 1 for the back
+				/ Loop bevelSegments, 1 for the front, 1 for the back
 
 				for ( let b = 0; b < bevelSegments; b ++ ) {
 
-					//for ( b = bevelSegments; b > 0; b -- ) {
+					/for ( b = bevelSegments; b > 0; b -- ) {
 
 					const t = b / bevelSegments;
 					const z = bevelThickness * Math.cos( t * Math.PI / 2 );
 					const bs = bevelSize * Math.sin( t * Math.PI / 2 ) + bevelOffset;
 
-					// contract shape
+					/ contract shape
 
 					for ( let i = 0, il = contour.length; i < il; i ++ ) {
 
@@ -37405,7 +37405,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					}
 
-					// expand holes
+					/ expand holes
 
 					for ( let h = 0, hl = holes.length; h < hl; h ++ ) {
 
@@ -37426,7 +37426,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				const bs = bevelSize + bevelOffset;
 
-				// Back facing vertices
+				/ Back facing vertices
 
 				for ( let i = 0; i < vlen; i ++ ) {
 
@@ -37438,7 +37438,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					} else {
 
-						// v( vert.x, vert.y + extrudePts[ 0 ].y, extrudePts[ 0 ].x );
+						/ v( vert.x, vert.y + extrudePts[ 0 ].y, extrudePts[ 0 ].x );
 
 						normal.copy( splineTube.normals[ 0 ] ).multiplyScalar( vert.x );
 						binormal.copy( splineTube.binormals[ 0 ] ).multiplyScalar( vert.y );
@@ -37451,8 +37451,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// Add stepped vertices...
-				// Including front facing vertices
+				/ Add stepped vertices...
+				/ Including front facing vertices
 
 				for ( let s = 1; s <= steps; s ++ ) {
 
@@ -37466,7 +37466,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						} else {
 
-							// v( vert.x, vert.y + extrudePts[ s - 1 ].y, extrudePts[ s - 1 ].x );
+							/ v( vert.x, vert.y + extrudePts[ s - 1 ].y, extrudePts[ s - 1 ].x );
 
 							normal.copy( splineTube.normals[ s ] ).multiplyScalar( vert.x );
 							binormal.copy( splineTube.binormals[ s ] ).multiplyScalar( vert.y );
@@ -37482,16 +37482,16 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				}
 
 
-				// Add bevel segments planes
+				/ Add bevel segments planes
 
-				//for ( b = 1; b <= bevelSegments; b ++ ) {
+				/for ( b = 1; b <= bevelSegments; b ++ ) {
 				for ( let b = bevelSegments - 1; b >= 0; b -- ) {
 
 					const t = b / bevelSegments;
 					const z = bevelThickness * Math.cos( t * Math.PI / 2 );
 					const bs = bevelSize * Math.sin( t * Math.PI / 2 ) + bevelOffset;
 
-					// contract shape
+					/ contract shape
 
 					for ( let i = 0, il = contour.length; i < il; i ++ ) {
 
@@ -37500,7 +37500,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					}
 
-					// expand holes
+					/ expand holes
 
 					for ( let h = 0, hl = holes.length; h < hl; h ++ ) {
 
@@ -37529,16 +37529,16 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				/* Faces */
 
-				// Top and bottom faces
+				/ Top and bottom faces
 
 				buildLidFaces();
 
-				// Sides faces
+				/ Sides faces
 
 				buildSideFaces();
 
 
-				/////  Internal functions
+				///  Internal functions
 
 				function buildLidFaces() {
 
@@ -37546,10 +37546,10 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					if ( bevelEnabled ) {
 
-						let layer = 0; // steps + 1
+						let layer = 0; / steps + 1
 						let offset = vlen * layer;
 
-						// Bottom faces
+						/ Bottom faces
 
 						for ( let i = 0; i < flen; i ++ ) {
 
@@ -37561,7 +37561,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 						layer = steps + bevelSegments * 2;
 						offset = vlen * layer;
 
-						// Top faces
+						/ Top faces
 
 						for ( let i = 0; i < flen; i ++ ) {
 
@@ -37572,7 +37572,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					} else {
 
-						// Bottom faces
+						/ Bottom faces
 
 						for ( let i = 0; i < flen; i ++ ) {
 
@@ -37581,7 +37581,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						}
 
-						// Top faces
+						/ Top faces
 
 						for ( let i = 0; i < flen; i ++ ) {
 
@@ -37596,7 +37596,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// Create faces for the z-sides of the shape
+				/ Create faces for the z-sides of the shape
 
 				function buildSideFaces() {
 
@@ -37610,7 +37610,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 						const ahole = holes[ h ];
 						sidewalls( ahole, layeroffset );
 
-						//, true
+						/, true
 						layeroffset += ahole.length;
 
 					}
@@ -37631,7 +37631,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 						let k = i - 1;
 						if ( k < 0 ) k = contour.length - 1;
 
-						//console.log('b', i,j, i-1, k,vertices.length);
+						/console.log('b', i,j, i-1, k,vertices.length);
 
 						for ( let s = 0, sl = ( steps + bevelSegments * 2 ); s < sl; s ++ ) {
 
@@ -37944,42 +37944,42 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			thetaSegments = Math.max( 3, thetaSegments );
 			phiSegments = Math.max( 1, phiSegments );
 
-			// buffers
+			/ buffers
 
 			const indices = [];
 			const vertices = [];
 			const normals = [];
 			const uvs = [];
 
-			// some helper variables
+			/ some helper variables
 
 			let radius = innerRadius;
 			const radiusStep = ( ( outerRadius - innerRadius ) / phiSegments );
 			const vertex = new Vector3();
 			const uv = new Vector2();
 
-			// generate vertices, normals and uvs
+			/ generate vertices, normals and uvs
 
 			for ( let j = 0; j <= phiSegments; j ++ ) {
 
 				for ( let i = 0; i <= thetaSegments; i ++ ) {
 
-					// values are generate from the inside of the ring to the outside
+					/ values are generate from the inside of the ring to the outside
 
 					const segment = thetaStart + i / thetaSegments * thetaLength;
 
-					// vertex
+					/ vertex
 
 					vertex.x = radius * Math.cos( segment );
 					vertex.y = radius * Math.sin( segment );
 
 					vertices.push( vertex.x, vertex.y, vertex.z );
 
-					// normal
+					/ normal
 
 					normals.push( 0, 0, 1 );
 
-					// uv
+					/ uv
 
 					uv.x = ( vertex.x / outerRadius + 1 ) / 2;
 					uv.y = ( vertex.y / outerRadius + 1 ) / 2;
@@ -37988,13 +37988,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// increase the radius for next row of vertices
+				/ increase the radius for next row of vertices
 
 				radius += radiusStep;
 
 			}
 
-			// indices
+			/ indices
 
 			for ( let j = 0; j < phiSegments; j ++ ) {
 
@@ -38009,7 +38009,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					const c = segment + thetaSegments + 2;
 					const d = segment + 1;
 
-					// faces
+					/ faces
 
 					indices.push( a, b, d );
 					indices.push( b, c, d );
@@ -38018,7 +38018,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// build geometry
+			/ build geometry
 
 			this.setIndex( indices );
 			this.setAttribute( 'position', new Float32BufferAttribute( vertices, 3 ) );
@@ -38058,19 +38058,19 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				curveSegments: curveSegments
 			};
 
-			// buffers
+			/ buffers
 
 			const indices = [];
 			const vertices = [];
 			const normals = [];
 			const uvs = [];
 
-			// helper variables
+			/ helper variables
 
 			let groupStart = 0;
 			let groupCount = 0;
 
-			// allow single and array values for "shapes" parameter
+			/ allow single and array values for "shapes" parameter
 
 			if ( Array.isArray( shapes ) === false ) {
 
@@ -38082,7 +38082,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					addShape( shapes[ i ] );
 
-					this.addGroup( groupStart, groupCount, i ); // enables MultiMaterial support
+					this.addGroup( groupStart, groupCount, i ); / enables MultiMaterial support
 
 					groupStart += groupCount;
 					groupCount = 0;
@@ -38091,7 +38091,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// build geometry
+			/ build geometry
 
 			this.setIndex( indices );
 			this.setAttribute( 'position', new Float32BufferAttribute( vertices, 3 ) );
@@ -38099,7 +38099,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			this.setAttribute( 'uv', new Float32BufferAttribute( uvs, 2 ) );
 
 
-			// helper functions
+			/ helper functions
 
 			function addShape( shape ) {
 
@@ -38109,7 +38109,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				let shapeVertices = points.shape;
 				const shapeHoles = points.holes;
 
-				// check direction of vertices
+				/ check direction of vertices
 
 				if ( ShapeUtils.isClockWise( shapeVertices ) === false ) {
 
@@ -38131,7 +38131,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				const faces = ShapeUtils.triangulateShape( shapeVertices, shapeHoles );
 
-				// join vertices of inner and outer paths to a single array
+				/ join vertices of inner and outer paths to a single array
 
 				for ( let i = 0, l = shapeHoles.length; i < l; i ++ ) {
 
@@ -38140,7 +38140,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// vertices, normals, uvs
+				/ vertices, normals, uvs
 
 				for ( let i = 0, l = shapeVertices.length; i < l; i ++ ) {
 
@@ -38148,11 +38148,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					vertices.push( vertex.x, vertex.y, 0 );
 					normals.push( 0, 0, 1 );
-					uvs.push( vertex.x, vertex.y ); // world uvs
+					uvs.push( vertex.x, vertex.y ); / world uvs
 
 				}
 
-				// indices
+				/ indices
 
 				for ( let i = 0, l = faces.length; i < l; i ++ ) {
 
@@ -38262,14 +38262,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const vertex = new Vector3();
 			const normal = new Vector3();
 
-			// buffers
+			/ buffers
 
 			const indices = [];
 			const vertices = [];
 			const normals = [];
 			const uvs = [];
 
-			// generate vertices, normals and uvs
+			/ generate vertices, normals and uvs
 
 			for ( let iy = 0; iy <= heightSegments; iy ++ ) {
 
@@ -38277,7 +38277,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				const v = iy / heightSegments;
 
-				// special case for the poles
+				/ special case for the poles
 
 				let uOffset = 0;
 
@@ -38295,7 +38295,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					const u = ix / widthSegments;
 
-					// vertex
+					/ vertex
 
 					vertex.x = - radius * Math.cos( phiStart + u * phiLength ) * Math.sin( thetaStart + v * thetaLength );
 					vertex.y = radius * Math.cos( thetaStart + v * thetaLength );
@@ -38303,12 +38303,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					vertices.push( vertex.x, vertex.y, vertex.z );
 
-					// normal
+					/ normal
 
 					normal.copy( vertex ).normalize();
 					normals.push( normal.x, normal.y, normal.z );
 
-					// uv
+					/ uv
 
 					uvs.push( u + uOffset, 1 - v );
 
@@ -38320,7 +38320,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// indices
+			/ indices
 
 			for ( let iy = 0; iy < heightSegments; iy ++ ) {
 
@@ -38338,7 +38338,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// build geometry
+			/ build geometry
 
 			this.setIndex( indices );
 			this.setAttribute( 'position', new Float32BufferAttribute( vertices, 3 ) );
@@ -38415,20 +38415,20 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			radialSegments = Math.floor( radialSegments );
 			tubularSegments = Math.floor( tubularSegments );
 
-			// buffers
+			/ buffers
 
 			const indices = [];
 			const vertices = [];
 			const normals = [];
 			const uvs = [];
 
-			// helper variables
+			/ helper variables
 
 			const center = new Vector3();
 			const vertex = new Vector3();
 			const normal = new Vector3();
 
-			// generate vertices, normals and uvs
+			/ generate vertices, normals and uvs
 
 			for ( let j = 0; j <= radialSegments; j ++ ) {
 
@@ -38437,7 +38437,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					const u = i / tubularSegments * arc;
 					const v = j / radialSegments * Math.PI * 2;
 
-					// vertex
+					/ vertex
 
 					vertex.x = ( radius + tube * Math.cos( v ) ) * Math.cos( u );
 					vertex.y = ( radius + tube * Math.cos( v ) ) * Math.sin( u );
@@ -38445,7 +38445,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					vertices.push( vertex.x, vertex.y, vertex.z );
 
-					// normal
+					/ normal
 
 					center.x = radius * Math.cos( u );
 					center.y = radius * Math.sin( u );
@@ -38453,7 +38453,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					normals.push( normal.x, normal.y, normal.z );
 
-					// uv
+					/ uv
 
 					uvs.push( i / tubularSegments );
 					uvs.push( j / radialSegments );
@@ -38462,20 +38462,20 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// generate indices
+			/ generate indices
 
 			for ( let j = 1; j <= radialSegments; j ++ ) {
 
 				for ( let i = 1; i <= tubularSegments; i ++ ) {
 
-					// indices
+					/ indices
 
 					const a = ( tubularSegments + 1 ) * j + i - 1;
 					const b = ( tubularSegments + 1 ) * ( j - 1 ) + i - 1;
 					const c = ( tubularSegments + 1 ) * ( j - 1 ) + i;
 					const d = ( tubularSegments + 1 ) * j + i;
 
-					// faces
+					/ faces
 
 					indices.push( a, b, d );
 					indices.push( b, c, d );
@@ -38484,7 +38484,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// build geometry
+			/ build geometry
 
 			this.setIndex( indices );
 			this.setAttribute( 'position', new Float32BufferAttribute( vertices, 3 ) );
@@ -38531,14 +38531,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			tubularSegments = Math.floor( tubularSegments );
 			radialSegments = Math.floor( radialSegments );
 
-			// buffers
+			/ buffers
 
 			const indices = [];
 			const vertices = [];
 			const normals = [];
 			const uvs = [];
 
-			// helper variables
+			/ helper variables
 
 			const vertex = new Vector3();
 			const normal = new Vector3();
@@ -38550,43 +38550,43 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const T = new Vector3();
 			const N = new Vector3();
 
-			// generate vertices, normals and uvs
+			/ generate vertices, normals and uvs
 
 			for ( let i = 0; i <= tubularSegments; ++ i ) {
 
-				// the radian "u" is used to calculate the position on the torus curve of the current tubular segment
+				/ the radian "u" is used to calculate the position on the torus curve of the current tubular segment
 
 				const u = i / tubularSegments * p * Math.PI * 2;
 
-				// now we calculate two points. P1 is our current position on the curve, P2 is a little farther ahead.
-				// these points are used to create a special "coordinate space", which is necessary to calculate the correct vertex positions
+				/ now we calculate two points. P1 is our current position on the curve, P2 is a little farther ahead.
+				/ these points are used to create a special "coordinate space", which is necessary to calculate the correct vertex positions
 
 				calculatePositionOnCurve( u, p, q, radius, P1 );
 				calculatePositionOnCurve( u + 0.01, p, q, radius, P2 );
 
-				// calculate orthonormal basis
+				/ calculate orthonormal basis
 
 				T.subVectors( P2, P1 );
 				N.addVectors( P2, P1 );
 				B.crossVectors( T, N );
 				N.crossVectors( B, T );
 
-				// normalize B, N. T can be ignored, we don't use it
+				/ normalize B, N. T can be ignored, we don't use it
 
 				B.normalize();
 				N.normalize();
 
 				for ( let j = 0; j <= radialSegments; ++ j ) {
 
-					// now calculate the vertices. they are nothing more than an extrusion of the torus curve.
-					// because we extrude a shape in the xy-plane, there is no need to calculate a z-value.
+					/ now calculate the vertices. they are nothing more than an extrusion of the torus curve.
+					/ because we extrude a shape in the xy-plane, there is no need to calculate a z-value.
 
 					const v = j / radialSegments * Math.PI * 2;
 					const cx = - tube * Math.cos( v );
 					const cy = tube * Math.sin( v );
 
-					// now calculate the final vertex position.
-					// first we orient the extrusion with our basis vectors, then we add it to the current position on the curve
+					/ now calculate the final vertex position.
+					/ first we orient the extrusion with our basis vectors, then we add it to the current position on the curve
 
 					vertex.x = P1.x + ( cx * N.x + cy * B.x );
 					vertex.y = P1.y + ( cx * N.y + cy * B.y );
@@ -38594,13 +38594,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					vertices.push( vertex.x, vertex.y, vertex.z );
 
-					// normal (P1 is always the center/origin of the extrusion, thus we can use it to calculate the normal)
+					/ normal (P1 is always the center/origin of the extrusion, thus we can use it to calculate the normal)
 
 					normal.subVectors( vertex, P1 ).normalize();
 
 					normals.push( normal.x, normal.y, normal.z );
 
-					// uv
+					/ uv
 
 					uvs.push( i / tubularSegments );
 					uvs.push( j / radialSegments );
@@ -38609,20 +38609,20 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// generate indices
+			/ generate indices
 
 			for ( let j = 1; j <= tubularSegments; j ++ ) {
 
 				for ( let i = 1; i <= radialSegments; i ++ ) {
 
-					// indices
+					/ indices
 
 					const a = ( radialSegments + 1 ) * ( j - 1 ) + ( i - 1 );
 					const b = ( radialSegments + 1 ) * j + ( i - 1 );
 					const c = ( radialSegments + 1 ) * j + i;
 					const d = ( radialSegments + 1 ) * ( j - 1 ) + i;
 
-					// faces
+					/ faces
 
 					indices.push( a, b, d );
 					indices.push( b, c, d );
@@ -38631,14 +38631,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// build geometry
+			/ build geometry
 
 			this.setIndex( indices );
 			this.setAttribute( 'position', new Float32BufferAttribute( vertices, 3 ) );
 			this.setAttribute( 'normal', new Float32BufferAttribute( normals, 3 ) );
 			this.setAttribute( 'uv', new Float32BufferAttribute( uvs, 2 ) );
 
-			// this function calculates the current position on the torus curve
+			/ this function calculates the current position on the torus curve
 
 			function calculatePositionOnCurve( u, p, q, radius, position ) {
 
@@ -38691,38 +38691,38 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const frames = path.computeFrenetFrames( tubularSegments, closed );
 
-			// expose internals
+			/ expose internals
 
 			this.tangents = frames.tangents;
 			this.normals = frames.normals;
 			this.binormals = frames.binormals;
 
-			// helper variables
+			/ helper variables
 
 			const vertex = new Vector3();
 			const normal = new Vector3();
 			const uv = new Vector2();
 			let P = new Vector3();
 
-			// buffer
+			/ buffer
 
 			const vertices = [];
 			const normals = [];
 			const uvs = [];
 			const indices = [];
 
-			// create buffer data
+			/ create buffer data
 
 			generateBufferData();
 
-			// build geometry
+			/ build geometry
 
 			this.setIndex( indices );
 			this.setAttribute( 'position', new Float32BufferAttribute( vertices, 3 ) );
 			this.setAttribute( 'normal', new Float32BufferAttribute( normals, 3 ) );
 			this.setAttribute( 'uv', new Float32BufferAttribute( uvs, 2 ) );
 
-			// functions
+			/ functions
 
 			function generateBufferData() {
 
@@ -38732,19 +38732,19 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// if the geometry is not closed, generate the last row of vertices and normals
-				// at the regular position on the given path
-				//
-				// if the geometry is closed, duplicate the first row of vertices and normals (uvs will differ)
+				/ if the geometry is not closed, generate the last row of vertices and normals
+				/ at the regular position on the given path
+				/
+				/ if the geometry is closed, duplicate the first row of vertices and normals (uvs will differ)
 
 				generateSegment( ( closed === false ) ? tubularSegments : 0 );
 
-				// uvs are generated in a separate function.
-				// this makes it easy compute correct values for closed geometries
+				/ uvs are generated in a separate function.
+				/ this makes it easy compute correct values for closed geometries
 
 				generateUVs();
 
-				// finally create faces
+				/ finally create faces
 
 				generateIndices();
 
@@ -38752,16 +38752,16 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			function generateSegment( i ) {
 
-				// we use getPointAt to sample evenly distributed points from the given path
+				/ we use getPointAt to sample evenly distributed points from the given path
 
 				P = path.getPointAt( i / tubularSegments, P );
 
-				// retrieve corresponding normal and binormal
+				/ retrieve corresponding normal and binormal
 
 				const N = frames.normals[ i ];
 				const B = frames.binormals[ i ];
 
-				// generate normals and vertices for the current segment
+				/ generate normals and vertices for the current segment
 
 				for ( let j = 0; j <= radialSegments; j ++ ) {
 
@@ -38770,7 +38770,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					const sin = Math.sin( v );
 					const cos = - Math.cos( v );
 
-					// normal
+					/ normal
 
 					normal.x = ( cos * N.x + sin * B.x );
 					normal.y = ( cos * N.y + sin * B.y );
@@ -38779,7 +38779,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					normals.push( normal.x, normal.y, normal.z );
 
-					// vertex
+					/ vertex
 
 					vertex.x = P.x + radius * normal.x;
 					vertex.y = P.y + radius * normal.y;
@@ -38802,7 +38802,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 						const c = ( radialSegments + 1 ) * j + i;
 						const d = ( radialSegments + 1 ) * ( j - 1 ) + i;
 
-						// faces
+						/ faces
 
 						indices.push( a, b, d );
 						indices.push( b, c, d );
@@ -38854,8 +38854,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		static fromJSON( data ) {
 
-			// This only works for built-in curves (e.g. CatmullRomCurve3).
-			// User defined curves or instances of CurvePath will not be deserialized.
+			/ This only works for built-in curves (e.g. CatmullRomCurve3).
+			/ User defined curves or instances of CurvePath will not be deserialized.
 			return new TubeGeometry(
 				new Curves[ data.path.type ]().fromJSON( data.path ),
 				data.tubularSegments,
@@ -38882,19 +38882,19 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( geometry !== null ) {
 
-				// buffer
+				/ buffer
 
 				const vertices = [];
 				const edges = new Set();
 
-				// helper variables
+				/ helper variables
 
 				const start = new Vector3();
 				const end = new Vector3();
 
 				if ( geometry.index !== null ) {
 
-					// indexed BufferGeometry
+					/ indexed BufferGeometry
 
 					const position = geometry.attributes.position;
 					const indices = geometry.index;
@@ -38906,7 +38906,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					}
 
-					// create a data structure that contains all edges without duplicates
+					/ create a data structure that contains all edges without duplicates
 
 					for ( let o = 0, ol = groups.length; o < ol; ++ o ) {
 
@@ -38940,7 +38940,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				} else {
 
-					// non-indexed BufferGeometry
+					/ non-indexed BufferGeometry
 
 					const position = geometry.attributes.position;
 
@@ -38948,8 +38948,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						for ( let j = 0; j < 3; j ++ ) {
 
-							// three edges per triangle, an edge is represented as (index1, index2)
-							// e.g. the first triangle has the following edges: (0,1),(1,2),(2,0)
+							/ three edges per triangle, an edge is represented as (index1, index2)
+							/ e.g. the first triangle has the following edges: (0,1),(1,2),(2,0)
 
 							const index1 = 3 * i + j;
 							const index2 = 3 * i + ( ( j + 1 ) % 3 );
@@ -38970,7 +38970,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// build geometry
+				/ build geometry
 
 				this.setAttribute( 'position', new Float32BufferAttribute( vertices, 3 ) );
 
@@ -38993,7 +38993,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 	function isUniqueEdge( start, end, edges ) {
 
 		const hash1 = `${start.x},${start.y},${start.z}-${end.x},${end.y},${end.z}`;
-		const hash2 = `${end.x},${end.y},${end.z}-${start.x},${start.y},${start.z}`; // coincident edge
+		const hash2 = `${end.x},${end.y},${end.z}-${start.x},${start.y},${start.z}`; / coincident edge
 
 		if ( edges.has( hash1 ) === true || edges.has( hash2 ) === true ) {
 
@@ -39093,7 +39093,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this.type = 'MeshStandardMaterial';
 
-			this.color = new Color( 0xffffff ); // diffuse
+			this.color = new Color( 0xffffff ); / diffuse
 			this.roughness = 1.0;
 			this.metalness = 0.0;
 
@@ -39427,7 +39427,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this.type = 'MeshPhongMaterial';
 
-			this.color = new Color( 0xffffff ); // diffuse
+			this.color = new Color( 0xffffff ); / diffuse
 			this.specular = new Color( 0x111111 );
 			this.shininess = 30;
 
@@ -39693,7 +39693,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this.type = 'MeshLambertMaterial';
 
-			this.color = new Color( 0xffffff ); // diffuse
+			this.color = new Color( 0xffffff ); / diffuse
 
 			this.map = null;
 
@@ -39805,7 +39805,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this.type = 'MeshMatcapMaterial';
 
-			this.color = new Color( 0xffffff ); // diffuse
+			this.color = new Color( 0xffffff ); / diffuse
 
 			this.matcap = null;
 
@@ -39900,19 +39900,19 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// converts an array to a specific type
+	/ converts an array to a specific type
 	function convertArray( array, type, forceClone ) {
 
-		if ( ! array || // let 'undefined' and 'null' pass
+		if ( ! array || / let 'undefined' and 'null' pass
 			! forceClone && array.constructor === type ) return array;
 
 		if ( typeof type.BYTES_PER_ELEMENT === 'number' ) {
 
-			return new type( array ); // create typed array
+			return new type( array ); / create typed array
 
 		}
 
-		return Array.prototype.slice.call( array ); // create Array
+		return Array.prototype.slice.call( array ); / create Array
 
 	}
 
@@ -39923,7 +39923,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// returns an array by which times and values can be sorted
+	/ returns an array by which times and values can be sorted
 	function getKeyframeOrder( times ) {
 
 		function compareTime( i, j ) {
@@ -39942,7 +39942,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// uses the array previously returned by 'getKeyframeOrder' to sort data
+	/ uses the array previously returned by 'getKeyframeOrder' to sort data
 	function sortedArray( values, stride, order ) {
 
 		const nValues = values.length;
@@ -39964,7 +39964,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// function for parsing AOS keyframe formats
+	/ function for parsing AOS keyframe formats
 	function flattenJSON( jsonKeys, times, values, valuePropertyName ) {
 
 		let i = 1, key = jsonKeys[ 0 ];
@@ -39975,10 +39975,10 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		if ( key === undefined ) return; // no data
+		if ( key === undefined ) return; / no data
 
 		let value = key[ valuePropertyName ];
-		if ( value === undefined ) return; // no data
+		if ( value === undefined ) return; / no data
 
 		if ( Array.isArray( value ) ) {
 
@@ -39989,7 +39989,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				if ( value !== undefined ) {
 
 					times.push( key.time );
-					values.push.apply( values, value ); // push all elements
+					values.push.apply( values, value ); / push all elements
 
 				}
 
@@ -39999,7 +39999,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		} else if ( value.toArray !== undefined ) {
 
-			// ...assume THREE.Math-ish
+			/ ...assume THREE.Math-ish
 
 			do {
 
@@ -40018,7 +40018,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		} else {
 
-			// otherwise push as-is
+			/ otherwise push as-is
 
 			do {
 
@@ -40082,7 +40082,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		clip.tracks = tracks;
 
-		// find minimum .times value across all tracks in the trimmed clip
+		/ find minimum .times value across all tracks in the trimmed clip
 
 		let minStartTime = Infinity;
 
@@ -40096,7 +40096,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// shift all tracks such that clip begins at t=0
+		/ shift all tracks such that clip begins at t=0
 
 		for ( let i = 0; i < clip.tracks.length; ++ i ) {
 
@@ -40117,16 +40117,16 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 		const numTracks = referenceClip.tracks.length;
 		const referenceTime = referenceFrame / fps;
 
-		// Make each track's values relative to the values at the reference frame
+		/ Make each track's values relative to the values at the reference frame
 		for ( let i = 0; i < numTracks; ++ i ) {
 
 			const referenceTrack = referenceClip.tracks[ i ];
 			const referenceTrackType = referenceTrack.ValueTypeName;
 
-			// Skip this track if it's non-numeric
+			/ Skip this track if it's non-numeric
 			if ( referenceTrackType === 'bool' || referenceTrackType === 'string' ) continue;
 
-			// Find the track in the target clip whose name and type matches the reference track
+			/ Find the track in the target clip whose name and type matches the reference track
 			const targetTrack = targetClip.tracks.find( function ( track ) {
 
 				return track.name === referenceTrack.name
@@ -40157,24 +40157,24 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const lastIndex = referenceTrack.times.length - 1;
 			let referenceValue;
 
-			// Find the value to subtract out of the track
+			/ Find the value to subtract out of the track
 			if ( referenceTime <= referenceTrack.times[ 0 ] ) {
 
-				// Reference frame is earlier than the first keyframe, so just use the first keyframe
+				/ Reference frame is earlier than the first keyframe, so just use the first keyframe
 				const startIndex = referenceOffset;
 				const endIndex = referenceValueSize - referenceOffset;
 				referenceValue = referenceTrack.values.slice( startIndex, endIndex );
 
 			} else if ( referenceTime >= referenceTrack.times[ lastIndex ] ) {
 
-				// Reference frame is after the last keyframe, so just use the last keyframe
+				/ Reference frame is after the last keyframe, so just use the last keyframe
 				const startIndex = lastIndex * referenceValueSize + referenceOffset;
 				const endIndex = startIndex + referenceValueSize - referenceOffset;
 				referenceValue = referenceTrack.values.slice( startIndex, endIndex );
 
 			} else {
 
-				// Interpolate to the reference value
+				/ Interpolate to the reference value
 				const interpolant = referenceTrack.createInterpolant();
 				const startIndex = referenceOffset;
 				const endIndex = referenceValueSize - referenceOffset;
@@ -40183,7 +40183,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// Conjugate the quaternion
+			/ Conjugate the quaternion
 			if ( referenceTrackType === 'quaternion' ) {
 
 				const referenceQuat = new Quaternion().fromArray( referenceValue ).normalize().conjugate();
@@ -40191,7 +40191,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// Subtract the reference value from all of the track values
+			/ Subtract the reference value from all of the track values
 
 			const numTimes = targetTrack.times.length;
 			for ( let j = 0; j < numTimes; ++ j ) {
@@ -40200,7 +40200,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( referenceTrackType === 'quaternion' ) {
 
-					// Multiply the conjugate for quaternion track types
+					/ Multiply the conjugate for quaternion track types
 					Quaternion.multiplyQuaternionsFlat(
 						targetTrack.values,
 						valueStart,
@@ -40214,7 +40214,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					const valueEnd = targetValueSize - targetOffset * 2;
 
-					// Subtract each value for all other numeric track types
+					/ Subtract each value for all other numeric track types
 					for ( let k = 0; k < valueEnd; ++ k ) {
 
 						targetTrack.values[ valueStart + k ] -= referenceValue[ k ];
@@ -40296,10 +40296,10 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					linear_scan: {
 
-						//- See http://jsperf.com/comparison-to-undefined/3
-						//- slower code:
-						//-
-						//- 				if ( t >= t1 || t1 === undefined ) {
+						/- See http://jsperf.com/comparison-to-undefined/3
+						/- slower code:
+						/-
+						/- 				if ( t >= t1 || t1 === undefined ) {
 						forward_scan: if ( ! ( t < t1 ) ) {
 
 							for ( let giveUpAt = i1 + 2; ; ) {
@@ -40308,7 +40308,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 									if ( t < t0 ) break forward_scan;
 
-									// after end
+									/ after end
 
 									i1 = pp.length;
 									this._cachedIndex = i1;
@@ -40316,82 +40316,82 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 								}
 
-								if ( i1 === giveUpAt ) break; // this loop
+								if ( i1 === giveUpAt ) break; / this loop
 
 								t0 = t1;
 								t1 = pp[ ++ i1 ];
 
 								if ( t < t1 ) {
 
-									// we have arrived at the sought interval
+									/ we have arrived at the sought interval
 									break seek;
 
 								}
 
 							}
 
-							// prepare binary search on the right side of the index
+							/ prepare binary search on the right side of the index
 							right = pp.length;
 							break linear_scan;
 
 						}
 
-						//- slower code:
-						//-					if ( t < t0 || t0 === undefined ) {
+						/- slower code:
+						/-					if ( t < t0 || t0 === undefined ) {
 						if ( ! ( t >= t0 ) ) {
 
-							// looping?
+							/ looping?
 
 							const t1global = pp[ 1 ];
 
 							if ( t < t1global ) {
 
-								i1 = 2; // + 1, using the scan for the details
+								i1 = 2; / + 1, using the scan for the details
 								t0 = t1global;
 
 							}
 
-							// linear reverse scan
+							/ linear reverse scan
 
 							for ( let giveUpAt = i1 - 2; ; ) {
 
 								if ( t0 === undefined ) {
 
-									// before start
+									/ before start
 
 									this._cachedIndex = 0;
 									return this.copySampleValue_( 0 );
 
 								}
 
-								if ( i1 === giveUpAt ) break; // this loop
+								if ( i1 === giveUpAt ) break; / this loop
 
 								t1 = t0;
 								t0 = pp[ -- i1 - 1 ];
 
 								if ( t >= t0 ) {
 
-									// we have arrived at the sought interval
+									/ we have arrived at the sought interval
 									break seek;
 
 								}
 
 							}
 
-							// prepare binary search on the left side of the index
+							/ prepare binary search on the left side of the index
 							right = i1;
 							i1 = 0;
 							break linear_scan;
 
 						}
 
-						// the interval is valid
+						/ the interval is valid
 
 						break validate_interval;
 
-					} // linear scan
+					} / linear scan
 
-					// binary search
+					/ binary search
 
 					while ( i1 < right ) {
 
@@ -40412,7 +40412,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					t1 = pp[ i1 ];
 					t0 = pp[ i1 - 1 ];
 
-					// check boundary cases, again
+					/ check boundary cases, again
 
 					if ( t0 === undefined ) {
 
@@ -40429,13 +40429,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					}
 
-				} // seek
+				} / seek
 
 				this._cachedIndex = i1;
 
 				this.intervalChanged_( i1, t0, t1 );
 
-			} // validate_interval
+			} / validate_interval
 
 			return this.interpolate_( i1, t0, t, t1 );
 
@@ -40449,7 +40449,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		copySampleValue_( index ) {
 
-			// copies a sample value to the result buffer
+			/ copies a sample value to the result buffer
 
 			const result = this.resultBuffer,
 				values = this.sampleValues,
@@ -40466,18 +40466,18 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Template methods for derived classes:
+		/ Template methods for derived classes:
 
 		interpolate_( /* i1, t0, t, t1 */ ) {
 
 			throw new Error( 'call to abstract method' );
-			// implementations shall return this.resultBuffer
+			/ implementations shall return this.resultBuffer
 
 		}
 
 		intervalChanged_( /* i1, t0, t1 */ ) {
 
-			// empty
+			/ empty
 
 		}
 
@@ -40526,7 +40526,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					case ZeroSlopeEnding:
 
-						// f'(t0) = 0
+						/ f'(t0) = 0
 						iPrev = i1;
 						tPrev = 2 * t0 - t1;
 
@@ -40534,15 +40534,15 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					case WrapAroundEnding:
 
-						// use the other end of the curve
+						/ use the other end of the curve
 						iPrev = pp.length - 2;
 						tPrev = t0 + pp[ iPrev ] - pp[ iPrev + 1 ];
 
 						break;
 
-					default: // ZeroCurvatureEnding
+					default: / ZeroCurvatureEnding
 
-						// f''(t0) = 0 a.k.a. Natural Spline
+						/ f''(t0) = 0 a.k.a. Natural Spline
 						iPrev = i1;
 						tPrev = t1;
 
@@ -40556,7 +40556,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					case ZeroSlopeEnding:
 
-						// f'(tN) = 0
+						/ f'(tN) = 0
 						iNext = i1;
 						tNext = 2 * t1 - t0;
 
@@ -40564,15 +40564,15 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					case WrapAroundEnding:
 
-						// use the other end of the curve
+						/ use the other end of the curve
 						iNext = 1;
 						tNext = t1 + pp[ 1 ] - pp[ 0 ];
 
 						break;
 
-					default: // ZeroCurvatureEnding
+					default: / ZeroCurvatureEnding
 
-						// f''(tN) = 0, a.k.a. Natural Spline
+						/ f''(tN) = 0, a.k.a. Natural Spline
 						iNext = i1 - 1;
 						tNext = t0;
 
@@ -40604,14 +40604,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				pp = p * p,
 				ppp = pp * p;
 
-			// evaluate polynomials
+			/ evaluate polynomials
 
 			const sP = - wP * ppp + 2 * wP * pp - wP * p;
 			const s0 = ( 1 + wP ) * ppp + ( - 1.5 - 2 * wP ) * pp + ( - 0.5 + wP ) * p + 1;
 			const s1 = ( - 1 - wN ) * ppp + ( 1.5 + wN ) * pp + 0.5 * p;
 			const sN = wN * ppp - wN * pp;
 
-			// combine data linearly
+			/ combine data linearly
 
 			for ( let i = 0; i !== stride; ++ i ) {
 
@@ -40701,8 +40701,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Serialization (in static context, because of constructor invocation
-		// and automatic invocation of .toJSON):
+		/ Serialization (in static context, because of constructor invocation
+		/ and automatic invocation of .toJSON):
 
 		static toJSON( track ) {
 
@@ -40710,14 +40710,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			let json;
 
-			// derived classes can define a static toJSON method
+			/ derived classes can define a static toJSON method
 			if ( trackType.toJSON !== this.toJSON ) {
 
 				json = trackType.toJSON( track );
 
 			} else {
 
-				// by default, we assume the data can be serialized as-is
+				/ by default, we assume the data can be serialized as-is
 				json = {
 
 					'name': track.name,
@@ -40736,7 +40736,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			json.type = track.ValueTypeName; // mandatory
+			json.type = track.ValueTypeName; / mandatory
 
 			return json;
 
@@ -40793,14 +40793,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( this.createInterpolant === undefined ) {
 
-					// fall back to default, unless the default itself is messed up
+					/ fall back to default, unless the default itself is messed up
 					if ( interpolation !== this.DefaultInterpolation ) {
 
 						this.setInterpolation( this.DefaultInterpolation );
 
 					} else {
 
-						throw new Error( message ); // fatal, in this case
+						throw new Error( message ); / fatal, in this case
 
 					}
 
@@ -40843,7 +40843,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// move all keyframes either forwards or backwards in time
+		/ move all keyframes either forwards or backwards in time
 		shift( timeOffset ) {
 
 			if ( timeOffset !== 0.0 ) {
@@ -40862,7 +40862,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// scale all keyframe times by a factor (useful for frame <-> seconds conversions)
+		/ scale all keyframe times by a factor (useful for frame <-> seconds conversions)
 		scale( timeScale ) {
 
 			if ( timeScale !== 1.0 ) {
@@ -40881,8 +40881,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// removes keyframes before and after animation without changing any values within the range [startTime, endTime].
-		// IMPORTANT: We do not shift around keys to the start of the track time, because for interpolated keys this will change their values
+		/ removes keyframes before and after animation without changing any values within the range [startTime, endTime].
+		/ IMPORTANT: We do not shift around keys to the start of the track time, because for interpolated keys this will change their values
 		trim( startTime, endTime ) {
 
 			const times = this.times,
@@ -40903,11 +40903,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			++ to; // inclusive -> exclusive bound
+			++ to; / inclusive -> exclusive bound
 
 			if ( from !== 0 || to !== nKeys ) {
 
-				// empty tracks are forbidden, so keep at least one keyframe
+				/ empty tracks are forbidden, so keep at least one keyframe
 				if ( from >= to ) {
 
 					to = Math.max( to, 1 );
@@ -40925,7 +40925,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// ensure we do not get a GarbageInGarbageOut situation, make sure tracks are at least minimally viable
+		/ ensure we do not get a GarbageInGarbageOut situation, make sure tracks are at least minimally viable
 		validate() {
 
 			let valid = true;
@@ -41002,11 +41002,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// removes equivalent sequential keys as common in morph target sequences
-		// (0,0,0,0,1,1,1,0,0,0,0,0,0,0) --> (0,0,1,1,0,0)
+		/ removes equivalent sequential keys as common in morph target sequences
+		/ (0,0,0,0,1,1,1,0,0,0,0,0,0,0) --> (0,0,1,1,0,0)
 		optimize() {
 
-			// times or values may be shared with other tracks, so overwriting is unsafe
+			/ times or values may be shared with other tracks, so overwriting is unsafe
 			const times = this.times.slice(),
 				values = this.values.slice(),
 				stride = this.getValueSize(),
@@ -41024,13 +41024,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				const time = times[ i ];
 				const timeNext = times[ i + 1 ];
 
-				// remove adjacent keyframes scheduled at the same time
+				/ remove adjacent keyframes scheduled at the same time
 
 				if ( time !== timeNext && ( i !== 1 || time !== times[ 0 ] ) ) {
 
 					if ( ! smoothInterpolation ) {
 
-						// remove unnecessary keyframes same as their neighbors
+						/ remove unnecessary keyframes same as their neighbors
 
 						const offset = i * stride,
 							offsetP = offset - stride,
@@ -41058,7 +41058,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// in-place compaction
+				/ in-place compaction
 
 				if ( keep ) {
 
@@ -41083,7 +41083,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// flush last keyframe (compaction looks ahead)
+			/ flush last keyframe (compaction looks ahead)
 
 			if ( lastIndex > 0 ) {
 
@@ -41123,7 +41123,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const TypedKeyframeTrack = this.constructor;
 			const track = new TypedKeyframeTrack( this.name, times, values );
 
-			// Interpolant argument to constructor is not saved, so copy the factory method directly.
+			/ Interpolant argument to constructor is not saved, so copy the factory method directly.
 			track.createInterpolant = this.createInterpolant;
 
 			return track;
@@ -41209,7 +41209,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 	}
 
 	QuaternionKeyframeTrack.prototype.ValueTypeName = 'quaternion';
-	// ValueBufferType is inherited
+	/ ValueBufferType is inherited
 	QuaternionKeyframeTrack.prototype.DefaultInterpolation = InterpolateLinear;
 	QuaternionKeyframeTrack.prototype.InterpolantFactoryMethodSmooth = undefined;
 
@@ -41242,7 +41242,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this.uuid = generateUUID();
 
-			// this means it should figure out its duration by scanning the tracks
+			/ this means it should figure out its duration by scanning the tracks
 			if ( this.duration < 0 ) {
 
 				this.resetDuration();
@@ -41317,8 +41317,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				times = sortedArray( times, 1, order );
 				values = sortedArray( values, 1, order );
 
-				// if there is a key at the first frame, duplicate it as the
-				// last frame as well for perfect loop.
+				/ if there is a key at the first frame, duplicate it as the
+				/ last frame as well for perfect loop.
 				if ( ! noLoop && times[ 0 ] === 0 ) {
 
 					times.push( numMorphTargets );
@@ -41367,12 +41367,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const animationToMorphTargets = {};
 
-			// tested with https://regex101.com/ on trick sequences
-			// such flamingo_flyA_003, flamingo_run1_003, crdeath0059
+			/ tested with https://regex101.com/ on trick sequences
+			/ such flamingo_flyA_003, flamingo_run1_003, crdeath0059
 			const pattern = /^([\w-]*?)([\d]+)$/;
 
-			// sort morph target names into animation groups based
-			// patterns like Walk_001, Walk_002, Run_001, Run_002
+			/ sort morph target names into animation groups based
+			/ patterns like Walk_001, Walk_002, Run_001, Run_002
 			for ( let i = 0, il = morphTargets.length; i < il; i ++ ) {
 
 				const morphTarget = morphTargets[ i ];
@@ -41408,7 +41408,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// parse the animation.hierarchy format
+		/ parse the animation.hierarchy format
 		static parseAnimation( animation, bones ) {
 
 			if ( ! animation ) {
@@ -41420,7 +41420,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const addNonemptyTrack = function ( trackType, trackName, animationKeys, propertyName, destTracks ) {
 
-				// only return track if there are actually keys.
+				/ only return track if there are actually keys.
 				if ( animationKeys.length !== 0 ) {
 
 					const times = [];
@@ -41428,7 +41428,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					flattenJSON( animationKeys, times, values, propertyName );
 
-					// empty keys are filtered out, so check again
+					/ empty keys are filtered out, so check again
 					if ( times.length !== 0 ) {
 
 						destTracks.push( new trackType( trackName, times, values ) );
@@ -41445,7 +41445,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const fps = animation.fps || 30;
 			const blendMode = animation.blendMode;
 
-			// automatic length determination in AnimationClip.
+			/ automatic length determination in AnimationClip.
 			let duration = animation.length || - 1;
 
 			const hierarchyTracks = animation.hierarchy || [];
@@ -41454,13 +41454,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				const animationKeys = hierarchyTracks[ h ].keys;
 
-				// skip empty tracks
+				/ skip empty tracks
 				if ( ! animationKeys || animationKeys.length === 0 ) continue;
 
-				// process morph targets
+				/ process morph targets
 				if ( animationKeys[ 0 ].morphTargets ) {
 
-					// figure out all morph targets used in this track
+					/ figure out all morph targets used in this track
 					const morphTargetNames = {};
 
 					let k;
@@ -41479,9 +41479,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					}
 
-					// create a track for each morph target with all zero
-					// morphTargetInfluences except for the keys in which
-					// the morphTarget is named.
+					/ create a track for each morph target with all zero
+					/ morphTargetInfluences except for the keys in which
+					/ the morphTarget is named.
 					for ( const morphTargetName in morphTargetNames ) {
 
 						const times = [];
@@ -41504,7 +41504,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				} else {
 
-					// ...assume skeletal animation
+					/ ...assume skeletal animation
 
 					const boneName = '.bones[' + bones[ h ].name + ']';
 
@@ -41678,14 +41678,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// derived classes can define a static parse method
+		/ derived classes can define a static parse method
 		if ( trackType.parse !== undefined ) {
 
 			return trackType.parse( json );
 
 		} else {
 
-			// by default, we assume a constructor compatible with the base
+			/ by default, we assume a constructor compatible with the base
 			return new trackType( json.name, json.times, json.values, json.interpolation );
 
 		}
@@ -41702,7 +41702,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( this.enabled === false ) return;
 
-			// console.log( 'THREE.Cache', 'Adding key:', key );
+			/ console.log( 'THREE.Cache', 'Adding key:', key );
 
 			this.files[ key ] = file;
 
@@ -41712,7 +41712,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( this.enabled === false ) return;
 
-			// console.log( 'THREE.Cache', 'Checking key:', key );
+			/ console.log( 'THREE.Cache', 'Checking key:', key );
 
 			return this.files[ key ];
 
@@ -41744,8 +41744,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			let urlModifier = undefined;
 			const handlers = [];
 
-			// Refer to #5689 for the reason why we don't set .onStart
-			// in the constructor
+			/ Refer to #5689 for the reason why we don't set .onStart
+			/ in the constructor
 
 			this.onStart = undefined;
 			this.onLoad = onLoad;
@@ -41853,7 +41853,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					const regex = handlers[ i ];
 					const loader = handlers[ i + 1 ];
 
-					if ( regex.global ) regex.lastIndex = 0; // see #17920
+					if ( regex.global ) regex.lastIndex = 0; / see #17920
 
 					if ( regex.test( file ) ) {
 
@@ -41989,7 +41989,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// Check if request is duplicate
+			/ Check if request is duplicate
 
 			if ( loading[ url ] !== undefined ) {
 
@@ -42005,7 +42005,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// Initialise array for duplicate requests
+			/ Initialise array for duplicate requests
 			loading[ url ] = [];
 
 			loading[ url ].push( {
@@ -42014,25 +42014,25 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				onError: onError,
 			} );
 
-			// create request
+			/ create request
 			const req = new Request( url, {
 				headers: new Headers( this.requestHeader ),
 				credentials: this.withCredentials ? 'include' : 'same-origin',
-				// An abort controller could be added within a future PR
+				/ An abort controller could be added within a future PR
 			} );
 
-			// record states ( avoid data race )
+			/ record states ( avoid data race )
 			const mimeType = this.mimeType;
 			const responseType = this.responseType;
 
-			// start the fetch
+			/ start the fetch
 			fetch( req )
 				.then( response => {
 
 					if ( response.status === 200 || response.status === 0 ) {
 
-						// Some browsers return HTTP Status 0 when using non-http protocol
-						// e.g. 'file://' or 'data://'. Handle as success.
+						/ Some browsers return HTTP Status 0 when using non-http protocol
+						/ e.g. 'file://' or 'data://'. Handle as success.
 
 						if ( response.status === 0 ) {
 
@@ -42040,7 +42040,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						}
 
-						// Workaround: Checking if response.body === undefined for Alipay browser #23548
+						/ Workaround: Checking if response.body === undefined for Alipay browser #23548
 
 						if ( typeof ReadableStream === 'undefined' || response.body === undefined || response.body.getReader === undefined ) {
 
@@ -42051,14 +42051,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 						const callbacks = loading[ url ];
 						const reader = response.body.getReader();
 
-						// Nginx needs X-File-Size check
-						// https://serverfault.com/questions/482875/why-does-nginx-remove-content-length-header-for-chunked-content
+						/ Nginx needs X-File-Size check
+						/ https://serverfault.com/questions/482875/why-does-nginx-remove-content-length-header-for-chunked-content
 						const contentLength = response.headers.get( 'Content-Length' ) || response.headers.get( 'X-File-Size' );
 						const total = contentLength ? parseInt( contentLength ) : 0;
 						const lengthComputable = total !== 0;
 						let loaded = 0;
 
-						// periodically read data into the new stream tracking while download progress
+						/ periodically read data into the new stream tracking while download progress
 						const stream = new ReadableStream( {
 							start( controller ) {
 
@@ -42140,7 +42140,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 							} else {
 
-								// sniff encoding
+								/ sniff encoding
 								const re = /charset="?([^;"\s]*)"?/i;
 								const exec = re.exec( mimeType );
 								const label = exec && exec[ 1 ] ? exec[ 1 ].toLowerCase() : undefined;
@@ -42154,8 +42154,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				} )
 				.then( data => {
 
-					// Add to cache only on HTTP success, so that we do not cache
-					// error response bodies as proper responses to requests.
+					/ Add to cache only on HTTP success, so that we do not cache
+					/ error response bodies as proper responses to requests.
 					Cache.add( url, data );
 
 					const callbacks = loading[ url ];
@@ -42171,13 +42171,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				} )
 				.catch( err => {
 
-					// Abort errors and other errors are handled the same
+					/ Abort errors and other errors are handled the same
 
 					const callbacks = loading[ url ];
 
 					if ( callbacks === undefined ) {
 
-						// When onLoad was called and url was deleted in `loading`
+						/ When onLoad was called and url was deleted in `loading`
 						this.manager.itemError( url );
 						throw err;
 
@@ -42352,7 +42352,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			} else {
 
-				// compressed cubemap texture stored in a single DDS file
+				/ compressed cubemap texture stored in a single DDS file
 
 				loader.load( url, function ( buffer ) {
 
@@ -42616,7 +42616,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					texture.colorSpace = texData.colorSpace;
 
-				} else if ( texData.encoding !== undefined ) { // @deprecated, r152
+				} else if ( texData.encoding !== undefined ) { / @deprecated, r152
 
 					texture.encoding = texData.encoding;
 
@@ -42643,7 +42643,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				if ( texData.mipmaps !== undefined ) {
 
 					texture.mipmaps = texData.mipmaps;
-					texture.minFilter = LinearMipmapLinearFilter; // presumably...
+					texture.minFilter = LinearMipmapLinearFilter; / presumably...
 
 				}
 
@@ -42724,7 +42724,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		dispose() {
 
-			// Empty here in base class; some subclasses override.
+			/ Empty here in base class; some subclasses override.
 
 		}
 
@@ -43003,15 +43003,15 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		get power() {
 
-			// compute the light's luminous power (in lumens) from its intensity (in candela)
-			// by convention for a spotlight, luminous power (lm) = π * luminous intensity (cd)
+			/ compute the light's luminous power (in lumens) from its intensity (in candela)
+			/ by convention for a spotlight, luminous power (lm) = π * luminous intensity (cd)
 			return this.intensity * Math.PI;
 
 		}
 
 		set power( power ) {
 
-			// set the light's intensity (in candela) from the desired luminous power (in lumens)
+			/ set the light's intensity (in candela) from the desired luminous power (in lumens)
 			this.intensity = power / Math.PI;
 
 		}
@@ -43058,30 +43058,30 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			this._viewportCount = 6;
 
 			this._viewports = [
-				// These viewports map a cube-map onto a 2D texture with the
-				// following orientation:
-				//
-				//  xzXZ
-				//   y Y
-				//
-				// X - Positive x direction
-				// x - Negative x direction
-				// Y - Positive y direction
-				// y - Negative y direction
-				// Z - Positive z direction
-				// z - Negative z direction
+				/ These viewports map a cube-map onto a 2D texture with the
+				/ following orientation:
+				/
+				/  xzXZ
+				/   y Y
+				/
+				/ X - Positive x direction
+				/ x - Negative x direction
+				/ Y - Positive y direction
+				/ y - Negative y direction
+				/ Z - Positive z direction
+				/ z - Negative z direction
 
-				// positive X
+				/ positive X
 				new Vector4( 2, 1, 1, 1 ),
-				// negative X
+				/ negative X
 				new Vector4( 0, 1, 1, 1 ),
-				// positive Z
+				/ positive Z
 				new Vector4( 3, 1, 1, 1 ),
-				// negative Z
+				/ negative Z
 				new Vector4( 1, 1, 1, 1 ),
-				// positive Y
+				/ positive Y
 				new Vector4( 3, 0, 1, 1 ),
-				// negative Y
+				/ negative Y
 				new Vector4( 1, 0, 1, 1 )
 			];
 
@@ -43148,15 +43148,15 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		get power() {
 
-			// compute the light's luminous power (in lumens) from its intensity (in candela)
-			// for an isotropic light source, luminous power (lm) = 4 π luminous intensity (cd)
+			/ compute the light's luminous power (in lumens) from its intensity (in candela)
+			/ for an isotropic light source, luminous power (lm) = 4 π luminous intensity (cd)
 			return this.intensity * 4 * Math.PI;
 
 		}
 
 		set power( power ) {
 
-			// set the light's intensity (in candela) from the desired luminous power (in lumens)
+			/ set the light's intensity (in candela) from the desired luminous power (in lumens)
 			this.intensity = power / ( 4 * Math.PI );
 
 		}
@@ -43263,14 +43263,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		get power() {
 
-			// compute the light's luminous power (in lumens) from its intensity (in nits)
+			/ compute the light's luminous power (in lumens) from its intensity (in nits)
 			return this.intensity * this.width * this.height * Math.PI;
 
 		}
 
 		set power( power ) {
 
-			// set the light's intensity (in nits) from the desired luminous power (in lumens)
+			/ set the light's intensity (in nits) from the desired luminous power (in lumens)
 			this.intensity = power / ( this.width * this.height * Math.PI );
 
 		}
@@ -43307,7 +43307,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 	 *   https://www.ppsloan.org/publications/StupidSH36.pdf
 	 */
 
-	// 3-band SH defined by 9 coefficients
+	/ 3-band SH defined by 9 coefficients
 
 	class SphericalHarmonics3 {
 
@@ -43349,25 +43349,25 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// get the radiance in the direction of the normal
-		// target is a Vector3
+		/ get the radiance in the direction of the normal
+		/ target is a Vector3
 		getAt( normal, target ) {
 
-			// normal is assumed to be unit length
+			/ normal is assumed to be unit length
 
 			const x = normal.x, y = normal.y, z = normal.z;
 
 			const coeff = this.coefficients;
 
-			// band 0
+			/ band 0
 			target.copy( coeff[ 0 ] ).multiplyScalar( 0.282095 );
 
-			// band 1
+			/ band 1
 			target.addScaledVector( coeff[ 1 ], 0.488603 * y );
 			target.addScaledVector( coeff[ 2 ], 0.488603 * z );
 			target.addScaledVector( coeff[ 3 ], 0.488603 * x );
 
-			// band 2
+			/ band 2
 			target.addScaledVector( coeff[ 4 ], 1.092548 * ( x * y ) );
 			target.addScaledVector( coeff[ 5 ], 1.092548 * ( y * z ) );
 			target.addScaledVector( coeff[ 6 ], 0.315392 * ( 3.0 * z * z - 1.0 ) );
@@ -43378,31 +43378,31 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// get the irradiance (radiance convolved with cosine lobe) in the direction of the normal
-		// target is a Vector3
-		// https://graphics.stanford.edu/papers/envmap/envmap.pdf
+		/ get the irradiance (radiance convolved with cosine lobe) in the direction of the normal
+		/ target is a Vector3
+		/ https://graphics.stanford.edu/papers/envmap/envmap.pdf
 		getIrradianceAt( normal, target ) {
 
-			// normal is assumed to be unit length
+			/ normal is assumed to be unit length
 
 			const x = normal.x, y = normal.y, z = normal.z;
 
 			const coeff = this.coefficients;
 
-			// band 0
-			target.copy( coeff[ 0 ] ).multiplyScalar( 0.886227 ); // π * 0.282095
+			/ band 0
+			target.copy( coeff[ 0 ] ).multiplyScalar( 0.886227 ); / π * 0.282095
 
-			// band 1
-			target.addScaledVector( coeff[ 1 ], 2.0 * 0.511664 * y ); // ( 2 * π / 3 ) * 0.488603
+			/ band 1
+			target.addScaledVector( coeff[ 1 ], 2.0 * 0.511664 * y ); / ( 2 * π / 3 ) * 0.488603
 			target.addScaledVector( coeff[ 2 ], 2.0 * 0.511664 * z );
 			target.addScaledVector( coeff[ 3 ], 2.0 * 0.511664 * x );
 
-			// band 2
-			target.addScaledVector( coeff[ 4 ], 2.0 * 0.429043 * x * y ); // ( π / 4 ) * 1.092548
+			/ band 2
+			target.addScaledVector( coeff[ 4 ], 2.0 * 0.429043 * x * y ); / ( π / 4 ) * 1.092548
 			target.addScaledVector( coeff[ 5 ], 2.0 * 0.429043 * y * z );
-			target.addScaledVector( coeff[ 6 ], 0.743125 * z * z - 0.247708 ); // ( π / 4 ) * 0.315392 * 3
+			target.addScaledVector( coeff[ 6 ], 0.743125 * z * z - 0.247708 ); / ( π / 4 ) * 0.315392 * 3
 			target.addScaledVector( coeff[ 7 ], 2.0 * 0.429043 * x * z );
-			target.addScaledVector( coeff[ 8 ], 0.429043 * ( x * x - y * y ) ); // ( π / 4 ) * 0.546274
+			target.addScaledVector( coeff[ 8 ], 0.429043 * ( x * x - y * y ) ); / ( π / 4 ) * 0.546274
 
 			return target;
 
@@ -43512,23 +43512,23 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// evaluate the basis functions
-		// shBasis is an Array[ 9 ]
+		/ evaluate the basis functions
+		/ shBasis is an Array[ 9 ]
 		static getBasisAt( normal, shBasis ) {
 
-			// normal is assumed to be unit length
+			/ normal is assumed to be unit length
 
 			const x = normal.x, y = normal.y, z = normal.z;
 
-			// band 0
+			/ band 0
 			shBasis[ 0 ] = 0.282095;
 
-			// band 1
+			/ band 1
 			shBasis[ 1 ] = 0.488603 * y;
 			shBasis[ 2 ] = 0.488603 * z;
 			shBasis[ 3 ] = 0.488603 * x;
 
-			// band 2
+			/ band 2
 			shBasis[ 4 ] = 1.092548 * x * y;
 			shBasis[ 5 ] = 1.092548 * y * z;
 			shBasis[ 6 ] = 0.315392 * ( 3 * z * z - 1 );
@@ -43563,7 +43563,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		fromJSON( json ) {
 
-			this.intensity = json.intensity; // TODO: Move this bit to Light.fromJSON();
+			this.intensity = json.intensity; / TODO: Move this bit to Light.fromJSON();
 			this.sh.fromArray( json.sh );
 
 			return this;
@@ -43732,7 +43732,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// Shader Material
+			/ Shader Material
 
 			if ( json.uniforms !== undefined ) {
 
@@ -43799,12 +43799,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			if ( json.lights !== undefined ) material.lights = json.lights;
 			if ( json.clipping !== undefined ) material.clipping = json.clipping;
 
-			// for PointsMaterial
+			/ for PointsMaterial
 
 			if ( json.size !== undefined ) material.size = json.size;
 			if ( json.sizeAttenuation !== undefined ) material.sizeAttenuation = json.sizeAttenuation;
 
-			// maps
+			/ maps
 
 			if ( json.map !== undefined ) material.map = getTexture( json.map );
 			if ( json.matcap !== undefined ) material.matcap = getTexture( json.matcap );
@@ -43822,7 +43822,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( Array.isArray( normalScale ) === false ) {
 
-					// Blender exporter used to export a scalar. See #7459
+					/ Blender exporter used to export a scalar. See #7459
 
 					normalScale = [ normalScale, normalScale ];
 
@@ -43926,25 +43926,25 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// Avoid the String.fromCharCode.apply(null, array) shortcut, which
-			// throws a "maximum call stack size exceeded" error for large arrays.
+			/ Avoid the String.fromCharCode.apply(null, array) shortcut, which
+			/ throws a "maximum call stack size exceeded" error for large arrays.
 
 			let s = '';
 
 			for ( let i = 0, il = array.length; i < il; i ++ ) {
 
-				// Implicitly assumes little-endian.
+				/ Implicitly assumes little-endian.
 				s += String.fromCharCode( array[ i ] );
 
 			}
 
 			try {
 
-				// merges multi-byte utf-8 characters.
+				/ merges multi-byte utf-8 characters.
 
 				return decodeURIComponent( escape( s ) );
 
-			} catch ( e ) { // see #16358
+			} catch ( e ) { / see #16358
 
 				return s;
 
@@ -43964,26 +43964,26 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		static resolveURL( url, path ) {
 
-			// Invalid URL
+			/ Invalid URL
 			if ( typeof url !== 'string' || url === '' ) return '';
 
-			// Host Relative URL
-			if ( /^https?:\/\//i.test( path ) && /^\//.test( url ) ) {
+			/ Host Relative URL
+			if ( /^https?:\/\/i.test( path ) && /^\/.test( url ) ) {
 
 				path = path.replace( /(^https?:\/\/[^\/]+).*/i, '$1' );
 
 			}
 
-			// Absolute URL http://,https://,//
-			if ( /^(https?:)?\/\//i.test( url ) ) return url;
+			/ Absolute URL http://,https://,/
+			if ( /^(https?:)?\/\/i.test( url ) ) return url;
 
-			// Data URI
+			/ Data URI
 			if ( /^data:.*,.*$/i.test( url ) ) return url;
 
-			// Blob URL
+			/ Blob URL
 			if ( /^blob:.*$/i.test( url ) ) return url;
 
-			// Relative URL
+			/ Relative URL
 			return path + url;
 
 		}
@@ -44340,7 +44340,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this.bindSkeletons( object, skeletons );
 
-			//
+			/
 
 			if ( onLoad !== undefined ) {
 
@@ -44410,7 +44410,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const skeletons = {};
 			const bones = {};
 
-			// generate bone lookup table
+			/ generate bone lookup table
 
 			object.traverse( function ( child ) {
 
@@ -44418,7 +44418,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			} );
 
-			// create skeletons
+			/ create skeletons
 
 			if ( json !== undefined ) {
 
@@ -44488,7 +44488,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		parseMaterials( json, textures ) {
 
-			const cache = {}; // MultiMaterial
+			const cache = {}; / MultiMaterial
 			const materials = {};
 
 			if ( json !== undefined ) {
@@ -44606,7 +44606,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					if ( Array.isArray( url ) ) {
 
-						// load array of images e.g CubeTexture
+						/ load array of images e.g CubeTexture
 
 						const imageArray = [];
 
@@ -44624,7 +44624,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 								} else {
 
-									// special case: handle array of data textures for cube textures
+									/ special case: handle array of data textures for cube textures
 
 									imageArray.push( new DataTexture( deserializedImage.data, deserializedImage.width, deserializedImage.height ) );
 
@@ -44638,7 +44638,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					} else {
 
-						// load single image
+						/ load single image
 
 						const deserializedImage = deserializeImage( image.url );
 						images[ image.uuid ] = new Source( deserializedImage );
@@ -44703,7 +44703,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					if ( Array.isArray( url ) ) {
 
-						// load array of images e.g CubeTexture
+						/ load array of images e.g CubeTexture
 
 						const imageArray = [];
 
@@ -44721,7 +44721,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 								} else {
 
-									// special case: handle array of data textures for cube textures
+									/ special case: handle array of data textures for cube textures
 
 									imageArray.push( new DataTexture( deserializedImage.data, deserializedImage.width, deserializedImage.height ) );
 
@@ -44735,7 +44735,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					} else {
 
-						// load single image
+						/ load single image
 
 						const deserializedImage = await deserializeImage( image.url );
 						images[ image.uuid ] = new Source( deserializedImage );
@@ -44805,7 +44805,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						}
 
-						if ( image ) texture.needsUpdate = true; // textures can have undefined image data
+						if ( image ) texture.needsUpdate = true; / textures can have undefined image data
 
 					}
 
@@ -44834,7 +44834,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					if ( data.internalFormat !== undefined ) texture.internalFormat = data.internalFormat;
 					if ( data.type !== undefined ) texture.type = data.type;
 					if ( data.colorSpace !== undefined ) texture.colorSpace = data.colorSpace;
-					if ( data.encoding !== undefined ) texture.encoding = data.encoding; // @deprecated, r152
+					if ( data.encoding !== undefined ) texture.encoding = data.encoding; / @deprecated, r152
 
 					if ( data.minFilter !== undefined ) texture.minFilter = parseConstant( data.minFilter, TEXTURE_FILTER );
 					if ( data.magFilter !== undefined ) texture.magFilter = parseConstant( data.magFilter, TEXTURE_FILTER );
@@ -45414,8 +45414,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				try {
 
-					// Create a copy of the buffer. The `decodeAudioData` method
-					// detaches the buffer when complete, preventing reuse.
+					/ Create a copy of the buffer. The `decodeAudioData` method
+					/ detaches the buffer when complete, preventing reuse.
 					const bufferCopy = buffer.slice( 0 );
 
 					const context = AudioContext.getContext();
@@ -45505,8 +45505,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				cache.zoom = camera.zoom;
 				cache.eyeSep = this.eyeSep;
 
-				// Off-axis stereoscopic effect based on
-				// http://paulbourke.net/stereographics/stereorender/
+				/ Off-axis stereoscopic effect based on
+				/ http://paulbourke.net/stereographics/stereorender/
 
 				_projectionMatrix.copy( camera.projectionMatrix );
 				const eyeSepHalf = cache.eyeSep / 2;
@@ -45514,12 +45514,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				const ymax = ( cache.near * Math.tan( DEG2RAD * cache.fov * 0.5 ) ) / cache.zoom;
 				let xmin, xmax;
 
-				// translate xOffset
+				/ translate xOffset
 
 				_eyeLeft.elements[ 12 ] = - eyeSepHalf;
 				_eyeRight.elements[ 12 ] = eyeSepHalf;
 
-				// for left eye
+				/ for left eye
 
 				xmin = - ymax * cache.aspect + eyeSepOnProjection;
 				xmax = ymax * cache.aspect + eyeSepOnProjection;
@@ -45529,7 +45529,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				this.cameraL.projectionMatrix.copy( _projectionMatrix );
 
-				// for right eye
+				/ for right eye
 
 				xmin = - ymax * cache.aspect - eyeSepOnProjection;
 				xmax = ymax * cache.aspect - eyeSepOnProjection;
@@ -45617,7 +45617,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	function now() {
 
-		return ( typeof performance === 'undefined' ? Date : performance ).now(); // see #10732
+		return ( typeof performance === 'undefined' ? Date : performance ).now(); / see #10732
 
 	}
 
@@ -45643,7 +45643,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this.timeDelta = 0;
 
-			// private
+			/ private
 
 			this._clock = new Clock();
 
@@ -45726,7 +45726,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( listener.positionX ) {
 
-				// code path for Chrome (see #14393)
+				/ code path for Chrome (see #14393)
 
 				const endTime = this.context.currentTime + this.timeDelta;
 
@@ -45886,13 +45886,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( this.isPlaying === true ) {
 
-				// update current progress
+				/ update current progress
 
 				this._progress += Math.max( this.context.currentTime - this._startedAt, 0 ) * this.playbackRate;
 
 				if ( this.loop === true ) {
 
-					// ensure _progress does not exceed duration with looped audios
+					/ ensure _progress does not exceed duration with looped audios
 
 					this._progress = this._progress % ( this.duration || this.buffer.duration );
 
@@ -46021,7 +46021,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this.detune = value;
 
-			if ( this.source.detune === undefined ) return; // only set detune when available
+			if ( this.source.detune === undefined ) return; / only set detune when available
 
 			if ( this.isPlaying === true ) {
 
@@ -46269,7 +46269,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( panner.positionX ) {
 
-				// code path for Chrome and Firefox (see #14393)
+				/ code path for Chrome and Firefox (see #14393)
 
 				const endTime = this.context.currentTime + this.listener.timeDelta;
 
@@ -46341,21 +46341,21 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				mixFunctionAdditive,
 				setIdentity;
 
-			// buffer layout: [ incoming | accu0 | accu1 | orig | addAccu | (optional work) ]
-			//
-			// interpolators can use .buffer as their .result
-			// the data then goes to 'incoming'
-			//
-			// 'accu0' and 'accu1' are used frame-interleaved for
-			// the cumulative result and are compared to detect
-			// changes
-			//
-			// 'orig' stores the original state of the property
-			//
-			// 'add' is used for additive cumulative results
-			//
-			// 'work' is optional and is only present for quaternion types. It is used
-			// to store intermediate quaternion multiplication results
+			/ buffer layout: [ incoming | accu0 | accu1 | orig | addAccu | (optional work) ]
+			/
+			/ interpolators can use .buffer as their .result
+			/ the data then goes to 'incoming'
+			/
+			/ 'accu0' and 'accu1' are used frame-interleaved for
+			/ the cumulative result and are compared to detect
+			/ changes
+			/
+			/ 'orig' stores the original state of the property
+			/
+			/ 'add' is used for additive cumulative results
+			/
+			/ 'work' is optional and is only present for quaternion types. It is used
+			/ to store intermediate quaternion multiplication results
 
 			switch ( typeName ) {
 
@@ -46372,8 +46372,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				case 'bool':
 					mixFunction = this._select;
 
-					// Use the regular mix function and for additive on these types,
-					// additive is not relevant for non-numeric types
+					/ Use the regular mix function and for additive on these types,
+					/ additive is not relevant for non-numeric types
 					mixFunctionAdditive = this._select;
 
 					setIdentity = this._setAdditiveIdentityOther;
@@ -46404,11 +46404,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// accumulate data in the 'incoming' region into 'accu<i>'
+		/ accumulate data in the 'incoming' region into 'accu<i>'
 		accumulate( accuIndex, weight ) {
 
-			// note: happily accumulating nothing when weight = 0, the caller knows
-			// the weight and shouldn't have made the call in the first place
+			/ note: happily accumulating nothing when weight = 0, the caller knows
+			/ the weight and shouldn't have made the call in the first place
 
 			const buffer = this.buffer,
 				stride = this.valueSize,
@@ -46418,7 +46418,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( currentWeight === 0 ) {
 
-				// accuN := incoming * weight
+				/ accuN := incoming * weight
 
 				for ( let i = 0; i !== stride; ++ i ) {
 
@@ -46430,7 +46430,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			} else {
 
-				// accuN := accuN + incoming * weight
+				/ accuN := accuN + incoming * weight
 
 				currentWeight += weight;
 				const mix = weight / currentWeight;
@@ -46442,7 +46442,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// accumulate data in the 'incoming' region into 'add'
+		/ accumulate data in the 'incoming' region into 'add'
 		accumulateAdditive( weight ) {
 
 			const buffer = this.buffer,
@@ -46451,20 +46451,20 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( this.cumulativeWeightAdditive === 0 ) {
 
-				// add = identity
+				/ add = identity
 
 				this._setIdentity();
 
 			}
 
-			// add := add + incoming * weight
+			/ add := add + incoming * weight
 
 			this._mixBufferRegionAdditive( buffer, offset, 0, weight, stride );
 			this.cumulativeWeightAdditive += weight;
 
 		}
 
-		// apply the state of 'accu<i>' to the binding when accus differ
+		/ apply the state of 'accu<i>' to the binding when accus differ
 		apply( accuIndex ) {
 
 			const stride = this.valueSize,
@@ -46481,7 +46481,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( weight < 1 ) {
 
-				// accuN := accuN + original * ( 1 - cumulativeWeight )
+				/ accuN := accuN + original * ( 1 - cumulativeWeight )
 
 				const originalValueOffset = stride * this._origIndex;
 
@@ -46492,7 +46492,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( weightAdditive > 0 ) {
 
-				// accuN := accuN + additive accuN
+				/ accuN := accuN + additive accuN
 
 				this._mixBufferRegionAdditive( buffer, offset, this._addIndex * stride, 1, stride );
 
@@ -46502,7 +46502,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( buffer[ i ] !== buffer[ i + stride ] ) {
 
-					// value has changed -> update scene graph
+					/ value has changed -> update scene graph
 
 					binding.setValue( buffer, offset );
 					break;
@@ -46513,7 +46513,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// remember the state of the bound property and copy it to both accus
+		/ remember the state of the bound property and copy it to both accus
 		saveOriginalState() {
 
 			const binding = this.binding;
@@ -46525,14 +46525,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			binding.getValue( buffer, originalValueOffset );
 
-			// accu[0..1] := orig -- initially detect changes against the original
+			/ accu[0..1] := orig -- initially detect changes against the original
 			for ( let i = stride, e = originalValueOffset; i !== e; ++ i ) {
 
 				buffer[ i ] = buffer[ originalValueOffset + ( i % stride ) ];
 
 			}
 
-			// Add to identity for additive
+			/ Add to identity for additive
 			this._setIdentity();
 
 			this.cumulativeWeight = 0;
@@ -46540,7 +46540,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// apply the state previously taken via 'saveOriginalState' to the binding
+		/ apply the state previously taken via 'saveOriginalState' to the binding
 		restoreOriginalState() {
 
 			const originalValueOffset = this.valueSize * 3;
@@ -46582,7 +46582,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 		}
 
 
-		// mix functions
+		/ mix functions
 
 		_select( buffer, dstOffset, srcOffset, t, stride ) {
 
@@ -46608,10 +46608,10 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const workOffset = this._workIndex * stride;
 
-			// Store result in intermediate buffer offset
+			/ Store result in intermediate buffer offset
 			Quaternion.multiplyQuaternionsFlat( buffer, workOffset, buffer, dstOffset, buffer, srcOffset );
 
-			// Slerp to the intermediate result
+			/ Slerp to the intermediate result
 			Quaternion.slerpFlat( buffer, dstOffset, buffer, dstOffset, buffer, workOffset, t );
 
 		}
@@ -46644,29 +46644,29 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Characters [].:/ are reserved for track binding syntax.
+	/ Characters [].:/ are reserved for track binding syntax.
 	const _RESERVED_CHARS_RE = '\\[\\]\\.:\\/';
 	const _reservedRe = new RegExp( '[' + _RESERVED_CHARS_RE + ']', 'g' );
 
-	// Attempts to allow node names from any language. ES5's `\w` regexp matches
-	// only latin characters, and the unicode \p{L} is not yet supported. So
-	// instead, we exclude reserved characters and match everything else.
+	/ Attempts to allow node names from any language. ES5's `\w` regexp matches
+	/ only latin characters, and the unicode \p{L} is not yet supported. So
+	/ instead, we exclude reserved characters and match everything else.
 	const _wordChar = '[^' + _RESERVED_CHARS_RE + ']';
 	const _wordCharOrDot = '[^' + _RESERVED_CHARS_RE.replace( '\\.', '' ) + ']';
 
-	// Parent directories, delimited by '/' or ':'. Currently unused, but must
-	// be matched to parse the rest of the track name.
+	/ Parent directories, delimited by '/' or ':'. Currently unused, but must
+	/ be matched to parse the rest of the track name.
 	const _directoryRe = /*@__PURE__*/ /((?:WC+[\/:])*)/.source.replace( 'WC', _wordChar );
 
-	// Target node. May contain word characters (a-zA-Z0-9_) and '.' or '-'.
+	/ Target node. May contain word characters (a-zA-Z0-9_) and '.' or '-'.
 	const _nodeRe = /*@__PURE__*/ /(WCOD+)?/.source.replace( 'WCOD', _wordCharOrDot );
 
-	// Object on target node, and accessor. May not contain reserved
-	// characters. Accessor may contain any character except closing bracket.
+	/ Object on target node, and accessor. May not contain reserved
+	/ characters. Accessor may contain any character except closing bracket.
 	const _objectRe = /*@__PURE__*/ /(?:\.(WC+)(?:\[(.+)\])?)?/.source.replace( 'WC', _wordChar );
 
-	// Property and accessor. May not contain reserved characters. Accessor may
-	// contain any non-bracket characters.
+	/ Property and accessor. May not contain reserved characters. Accessor may
+	/ contain any non-bracket characters.
 	const _propertyRe = /*@__PURE__*/ /\.(WC+)(?:\[(.+)\])?/.source.replace( 'WC', _wordChar );
 
 	const _trackRe = new RegExp( ''
@@ -46693,12 +46693,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		getValue( array, offset ) {
 
-			this.bind(); // bind all binding
+			this.bind(); / bind all binding
 
 			const firstValidIndex = this._targetGroup.nCachedObjects_,
 				binding = this._bindings[ firstValidIndex ];
 
-			// and only call .getValue on the first
+			/ and only call .getValue on the first
 			if ( binding !== undefined ) binding.getValue( array, offset );
 
 		}
@@ -46741,11 +46741,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	}
 
-	// Note: This class uses a State pattern on a per-method basis:
-	// 'bind' sets 'this.getValue' / 'setValue' and shadows the
-	// prototype version of these methods with one that represents
-	// the bound state. When the property is not found, the methods
-	// become no-ops.
+	/ Note: This class uses a State pattern on a per-method basis:
+	/ 'bind' sets 'this.getValue' / 'setValue' and shadows the
+	/ prototype version of these methods with one that represents
+	/ the bound state. When the property is not found, the methods
+	/ become no-ops.
 	class PropertyBinding {
 
 		constructor( rootNode, path, parsedPath ) {
@@ -46757,7 +46757,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this.rootNode = rootNode;
 
-			// initial state of these methods that calls 'bind'
+			/ initial state of these methods that calls 'bind'
 			this.getValue = this._getValue_unbound;
 			this.setValue = this._setValue_unbound;
 
@@ -46802,11 +46802,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			}
 
 			const results = {
-				// directoryName: matches[ 1 ], // (tschw) currently unused
+				/ directoryName: matches[ 1 ], / (tschw) currently unused
 				nodeName: matches[ 2 ],
 				objectName: matches[ 3 ],
 				objectIndex: matches[ 4 ],
-				propertyName: matches[ 5 ], // required
+				propertyName: matches[ 5 ], / required
 				propertyIndex: matches[ 6 ]
 			};
 
@@ -46816,10 +46816,10 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				const objectName = results.nodeName.substring( lastDot + 1 );
 
-				// Object names must be checked against an allowlist. Otherwise, there
-				// is no way to parse 'foo.bar.baz': 'baz' must be a property, but
-				// 'bar' could be the objectName, or part of a nodeName (which can
-				// include '.' characters).
+				/ Object names must be checked against an allowlist. Otherwise, there
+				/ is no way to parse 'foo.bar.baz': 'baz' must be a property, but
+				/ 'bar' could be the objectName, or part of a nodeName (which can
+				/ include '.' characters).
 				if ( _supportedObjectNames.indexOf( objectName ) !== - 1 ) {
 
 					results.nodeName = results.nodeName.substring( 0, lastDot );
@@ -46847,7 +46847,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// search into skeleton bones.
+			/ search into skeleton bones.
 			if ( root.skeleton ) {
 
 				const bone = root.skeleton.getBoneByName( nodeName );
@@ -46860,7 +46860,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// search into node subtree.
+			/ search into node subtree.
 			if ( root.children ) {
 
 				const searchNodeSubtree = function ( children ) {
@@ -46899,11 +46899,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// these are used to "bind" a nonexistent property
+		/ these are used to "bind" a nonexistent property
 		_getValue_unavailable() {}
 		_setValue_unavailable() {}
 
-		// Getters
+		/ Getters
 
 		_getValue_direct( buffer, offset ) {
 
@@ -46935,7 +46935,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Direct
+		/ Direct
 
 		_setValue_direct( buffer, offset ) {
 
@@ -46957,7 +46957,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// EntireArray
+		/ EntireArray
 
 		_setValue_array( buffer, offset ) {
 
@@ -46999,7 +46999,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// ArrayElement
+		/ ArrayElement
 
 		_setValue_arrayElement( buffer, offset ) {
 
@@ -47021,7 +47021,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// HasToFromArray
+		/ HasToFromArray
 
 		_setValue_fromArray( buffer, offset ) {
 
@@ -47057,7 +47057,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// create getter / setter pair for a property in the scene graph
+		/ create getter / setter pair for a property in the scene graph
 		bind() {
 
 			let targetObject = this.node;
@@ -47075,11 +47075,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// set fail state so we can just 'return' on error
+			/ set fail state so we can just 'return' on error
 			this.getValue = this._getValue_unavailable;
 			this.setValue = this._setValue_unavailable;
 
-			// ensure there is a value node
+			/ ensure there is a value node
 			if ( ! targetObject ) {
 
 				console.warn( 'THREE.PropertyBinding: No target node found for track: ' + this.path + '.' );
@@ -47091,7 +47091,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				let objectIndex = parsedPath.objectIndex;
 
-				// special cases were we need to reach deeper into the hierarchy to get the face materials....
+				/ special cases were we need to reach deeper into the hierarchy to get the face materials....
 				switch ( objectName ) {
 
 					case 'materials':
@@ -47123,12 +47123,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						}
 
-						// potential future optimization: skip this if propertyIndex is already an integer
-						// and convert the integer string to a true integer.
+						/ potential future optimization: skip this if propertyIndex is already an integer
+						/ and convert the integer string to a true integer.
 
 						targetObject = targetObject.skeleton.bones;
 
-						// support resolving morphTarget names into indices.
+						/ support resolving morphTarget names into indices.
 						for ( let i = 0; i < targetObject.length; i ++ ) {
 
 							if ( targetObject[ i ].name === objectIndex ) {
@@ -47197,7 +47197,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// resolve property
+			/ resolve property
 			const nodeProperty = targetObject[ propertyName ];
 
 			if ( nodeProperty === undefined ) {
@@ -47210,33 +47210,33 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// determine versioning scheme
+			/ determine versioning scheme
 			let versioning = this.Versioning.None;
 
 			this.targetObject = targetObject;
 
-			if ( targetObject.needsUpdate !== undefined ) { // material
+			if ( targetObject.needsUpdate !== undefined ) { / material
 
 				versioning = this.Versioning.NeedsUpdate;
 
-			} else if ( targetObject.matrixWorldNeedsUpdate !== undefined ) { // node transform
+			} else if ( targetObject.matrixWorldNeedsUpdate !== undefined ) { / node transform
 
 				versioning = this.Versioning.MatrixWorldNeedsUpdate;
 
 			}
 
-			// determine how the property gets bound
+			/ determine how the property gets bound
 			let bindingType = this.BindingType.Direct;
 
 			if ( propertyIndex !== undefined ) {
 
-				// access a sub element of the property array (only primitives are supported right now)
+				/ access a sub element of the property array (only primitives are supported right now)
 
 				if ( propertyName === 'morphTargetInfluences' ) {
 
-					// potential optimization, skip this if propertyIndex is already an integer, and convert the integer string to a true integer.
+					/ potential optimization, skip this if propertyIndex is already an integer, and convert the integer string to a true integer.
 
-					// support resolving morphTarget names into indices.
+					/ support resolving morphTarget names into indices.
 					if ( ! targetObject.geometry ) {
 
 						console.error( 'THREE.PropertyBinding: Can not bind to morphTargetInfluences because node does not have a geometry.', this );
@@ -47266,7 +47266,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			} else if ( nodeProperty.fromArray !== undefined && nodeProperty.toArray !== undefined ) {
 
-				// must use copy for Object3D.Euler/Quaternion
+				/ must use copy for Object3D.Euler/Quaternion
 
 				bindingType = this.BindingType.HasFromToArray;
 
@@ -47284,7 +47284,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// select getter / setter
+			/ select getter / setter
 			this.getValue = this.GetterByBindingType[ bindingType ];
 			this.setValue = this.SetterByBindingTypeAndVersioning[ bindingType ][ versioning ];
 
@@ -47294,8 +47294,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this.node = null;
 
-			// back to the prototype version of getValue / setValue
-			// note: avoiding to mutate the shape of 'this' via 'delete'
+			/ back to the prototype version of getValue / setValue
+			/ note: avoiding to mutate the shape of 'this' via 'delete'
 			this.getValue = this._getValue_unbound;
 			this.setValue = this._setValue_unbound;
 
@@ -47330,14 +47330,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 	PropertyBinding.prototype.SetterByBindingTypeAndVersioning = [
 
 		[
-			// Direct
+			/ Direct
 			PropertyBinding.prototype._setValue_direct,
 			PropertyBinding.prototype._setValue_direct_setNeedsUpdate,
 			PropertyBinding.prototype._setValue_direct_setMatrixWorldNeedsUpdate,
 
 		], [
 
-			// EntireArray
+			/ EntireArray
 
 			PropertyBinding.prototype._setValue_array,
 			PropertyBinding.prototype._setValue_array_setNeedsUpdate,
@@ -47345,14 +47345,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		], [
 
-			// ArrayElement
+			/ ArrayElement
 			PropertyBinding.prototype._setValue_arrayElement,
 			PropertyBinding.prototype._setValue_arrayElement_setNeedsUpdate,
 			PropertyBinding.prototype._setValue_arrayElement_setMatrixWorldNeedsUpdate,
 
 		], [
 
-			// HasToFromArray
+			/ HasToFromArray
 			PropertyBinding.prototype._setValue_fromArray,
 			PropertyBinding.prototype._setValue_fromArray_setNeedsUpdate,
 			PropertyBinding.prototype._setValue_fromArray_setMatrixWorldNeedsUpdate,
@@ -47398,14 +47398,14 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this.uuid = generateUUID();
 
-			// cached objects followed by the active ones
+			/ cached objects followed by the active ones
 			this._objects = Array.prototype.slice.call( arguments );
 
-			this.nCachedObjects_ = 0; // threshold
-			// note: read by PropertyBinding.Composite
+			this.nCachedObjects_ = 0; / threshold
+			/ note: read by PropertyBinding.Composite
 
 			const indices = {};
-			this._indicesByUUID = indices; // for bookkeeping
+			this._indicesByUUID = indices; / for bookkeeping
 
 			for ( let i = 0, n = arguments.length; i !== n; ++ i ) {
 
@@ -47413,10 +47413,10 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			this._paths = []; // inside: string
-			this._parsedPaths = []; // inside: { we don't care, here }
-			this._bindings = []; // inside: Array< PropertyBinding >
-			this._bindingsIndicesByPath = {}; // inside: indices in these arrays
+			this._paths = []; / inside: string
+			this._parsedPaths = []; / inside: { we don't care, here }
+			this._bindings = []; / inside: Array< PropertyBinding >
+			this._bindingsIndicesByPath = {}; / inside: indices in these arrays
 
 			const scope = this;
 
@@ -47465,13 +47465,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( index === undefined ) {
 
-					// unknown object -> add it to the ACTIVE region
+					/ unknown object -> add it to the ACTIVE region
 
 					index = nObjects ++;
 					indicesByUUID[ uuid ] = index;
 					objects.push( object );
 
-					// accounting is done, now do the same for all bindings
+					/ accounting is done, now do the same for all bindings
 
 					for ( let j = 0, m = nBindings; j !== m; ++ j ) {
 
@@ -47483,7 +47483,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					knownObject = objects[ index ];
 
-					// move existing object to the ACTIVE region
+					/ move existing object to the ACTIVE region
 
 					const firstActiveIndex = -- nCachedObjects,
 						lastCachedObject = objects[ firstActiveIndex ];
@@ -47494,7 +47494,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					indicesByUUID[ uuid ] = firstActiveIndex;
 					objects[ firstActiveIndex ] = object;
 
-					// accounting is done, now do the same for all bindings
+					/ accounting is done, now do the same for all bindings
 
 					for ( let j = 0, m = nBindings; j !== m; ++ j ) {
 
@@ -47507,9 +47507,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						if ( binding === undefined ) {
 
-							// since we do not bother to create new bindings
-							// for objects that are cached, the binding may
-							// or may not exist
+							/ since we do not bother to create new bindings
+							/ for objects that are cached, the binding may
+							/ or may not exist
 
 							binding = new PropertyBinding( object, paths[ j ], parsedPaths[ j ] );
 
@@ -47524,9 +47524,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					console.error( 'THREE.AnimationObjectGroup: Different objects with the same UUID ' +
 						'detected. Clean the caches or recreate your infrastructure when reloading scenes.' );
 
-				} // else the object is already where we want it to be
+				} / else the object is already where we want it to be
 
-			} // for arguments
+			} / for arguments
 
 			this.nCachedObjects_ = nCachedObjects;
 
@@ -47549,7 +47549,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( index !== undefined && index >= nCachedObjects ) {
 
-					// move existing object into the CACHED region
+					/ move existing object into the CACHED region
 
 					const lastCachedIndex = nCachedObjects ++,
 						firstActiveObject = objects[ lastCachedIndex ];
@@ -47560,7 +47560,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					indicesByUUID[ uuid ] = lastCachedIndex;
 					objects[ lastCachedIndex ] = object;
 
-					// accounting is done, now do the same for all bindings
+					/ accounting is done, now do the same for all bindings
 
 					for ( let j = 0, m = nBindings; j !== m; ++ j ) {
 
@@ -47575,13 +47575,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-			} // for arguments
+			} / for arguments
 
 			this.nCachedObjects_ = nCachedObjects;
 
 		}
 
-		// remove & forget
+		/ remove & forget
 		uncache() {
 
 			const objects = this._objects,
@@ -47604,23 +47604,23 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					if ( index < nCachedObjects ) {
 
-						// object is cached, shrink the CACHED region
+						/ object is cached, shrink the CACHED region
 
 						const firstActiveIndex = -- nCachedObjects,
 							lastCachedObject = objects[ firstActiveIndex ],
 							lastIndex = -- nObjects,
 							lastObject = objects[ lastIndex ];
 
-						// last cached object takes this object's place
+						/ last cached object takes this object's place
 						indicesByUUID[ lastCachedObject.uuid ] = index;
 						objects[ index ] = lastCachedObject;
 
-						// last object goes to the activated slot and pop
+						/ last object goes to the activated slot and pop
 						indicesByUUID[ lastObject.uuid ] = firstActiveIndex;
 						objects[ firstActiveIndex ] = lastObject;
 						objects.pop();
 
-						// accounting is done, now do the same for all bindings
+						/ accounting is done, now do the same for all bindings
 
 						for ( let j = 0, m = nBindings; j !== m; ++ j ) {
 
@@ -47636,7 +47636,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					} else {
 
-						// object is active, just swap with the last and pop
+						/ object is active, just swap with the last and pop
 
 						const lastIndex = -- nObjects,
 							lastObject = objects[ lastIndex ];
@@ -47650,7 +47650,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 						objects[ index ] = lastObject;
 						objects.pop();
 
-						// accounting is done, now do the same for all bindings
+						/ accounting is done, now do the same for all bindings
 
 						for ( let j = 0, m = nBindings; j !== m; ++ j ) {
 
@@ -47661,22 +47661,22 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						}
 
-					} // cached or active
+					} / cached or active
 
-				} // if object is known
+				} / if object is known
 
-			} // for arguments
+			} / for arguments
 
 			this.nCachedObjects_ = nCachedObjects;
 
 		}
 
-		// Internal interface used by befriended PropertyBinding.Composite:
+		/ Internal interface used by befriended PropertyBinding.Composite:
 
 		subscribe_( path, parsedPath ) {
 
-			// returns an array of bindings for the given path that is changed
-			// according to the contained objects in the group
+			/ returns an array of bindings for the given path that is changed
+			/ according to the contained objects in the group
 
 			const indicesByPath = this._bindingsIndicesByPath;
 			let index = indicesByPath[ path ];
@@ -47712,8 +47712,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		unsubscribe_( path ) {
 
-			// tells the group to forget about a property path and no longer
-			// update the array previously obtained with 'subscribe_'
+			/ tells the group to forget about a property path and no longer
+			/ update the array previously obtained with 'subscribe_'
 
 			const indicesByPath = this._bindingsIndicesByPath,
 				index = indicesByPath[ path ];
@@ -47772,13 +47772,13 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this._interpolantSettings = interpolantSettings;
 
-			this._interpolants = interpolants; // bound by the mixer
+			this._interpolants = interpolants; / bound by the mixer
 
-			// inside: PropertyMixer (managed by the mixer)
+			/ inside: PropertyMixer (managed by the mixer)
 			this._propertyBindings = new Array( nTracks );
 
-			this._cacheIndex = null; // for the memory manager
-			this._byClipCacheIndex = null; // for the memory manager
+			this._cacheIndex = null; / for the memory manager
+			this._byClipCacheIndex = null; / for the memory manager
 
 			this._timeScaleInterpolant = null;
 			this._weightInterpolant = null;
@@ -47786,12 +47786,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			this.loop = LoopRepeat;
 			this._loopCount = - 1;
 
-			// global mixer time when the action is to be started
-			// it's set back to 'null' upon start of the action
+			/ global mixer time when the action is to be started
+			/ it's set back to 'null' upon start of the action
 			this._startTime = null;
 
-			// scaled local time of the action
-			// gets clamped or wrapped to 0..clip.duration according to loop
+			/ scaled local time of the action
+			/ gets clamped or wrapped to 0..clip.duration according to loop
 			this.time = 0;
 
 			this.timeScale = 1;
@@ -47800,19 +47800,19 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			this.weight = 1;
 			this._effectiveWeight = 1;
 
-			this.repetitions = Infinity; // no. of repetitions when looping
+			this.repetitions = Infinity; / no. of repetitions when looping
 
-			this.paused = false; // true -> zero effective time scale
-			this.enabled = true; // false -> zero effective weight
+			this.paused = false; / true -> zero effective time scale
+			this.enabled = true; / false -> zero effective weight
 
-			this.clampWhenFinished = false;// keep feeding the last frame?
+			this.clampWhenFinished = false;/ keep feeding the last frame?
 
-			this.zeroSlopeAtStart = true;// for smooth interpolation w/o separate
-			this.zeroSlopeAtEnd = true;// clips for start, loop and end
+			this.zeroSlopeAtStart = true;/ for smooth interpolation w/o separate
+			this.zeroSlopeAtEnd = true;/ clips for start, loop and end
 
 		}
 
-		// State & Scheduling
+		/ State & Scheduling
 
 		play() {
 
@@ -47835,9 +47835,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			this.paused = false;
 			this.enabled = true;
 
-			this.time = 0; // restart clip
-			this._loopCount = - 1;// forget previous loops
-			this._startTime = null;// forget scheduling
+			this.time = 0; / restart clip
+			this._loopCount = - 1;/ forget previous loops
+			this._startTime = null;/ forget scheduling
 
 			return this.stopFading().stopWarping();
 
@@ -47850,7 +47850,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// return true when play has been called
+		/ return true when play has been called
 		isScheduled() {
 
 			return this._mixer._isActiveAction( this );
@@ -47874,23 +47874,23 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Weight
+		/ Weight
 
-		// set the weight stopping any scheduled fading
-		// although .enabled = false yields an effective weight of zero, this
-		// method does *not* change .enabled, because it would be confusing
+		/ set the weight stopping any scheduled fading
+		/ although .enabled = false yields an effective weight of zero, this
+		/ method does *not* change .enabled, because it would be confusing
 		setEffectiveWeight( weight ) {
 
 			this.weight = weight;
 
-			// note: same logic as when updated at runtime
+			/ note: same logic as when updated at runtime
 			this._effectiveWeight = this.enabled ? weight : 0;
 
 			return this.stopFading();
 
 		}
 
-		// return the weight considering fading and .enabled
+		/ return the weight considering fading and .enabled
 		getEffectiveWeight() {
 
 			return this._effectiveWeight;
@@ -47952,11 +47952,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Time Scale Control
+		/ Time Scale Control
 
-		// set the time scale stopping any scheduled warping
-		// although .paused = true yields an effective time scale of zero, this
-		// method does *not* change .paused, because it would be confusing
+		/ set the time scale stopping any scheduled warping
+		/ although .paused = true yields an effective time scale of zero, this
+		/ method does *not* change .paused, because it would be confusing
 		setEffectiveTimeScale( timeScale ) {
 
 			this.timeScale = timeScale;
@@ -47966,7 +47966,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// return the time scale considering warping and .paused
+		/ return the time scale considering warping and .paused
 		getEffectiveTimeScale() {
 
 			return this._effectiveTimeScale;
@@ -48039,7 +48039,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Object Accessors
+		/ Object Accessors
 
 		getMixer() {
 
@@ -48059,15 +48059,15 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Interna
+		/ Interna
 
 		_update( time, deltaTime, timeDirection, accuIndex ) {
 
-			// called by the mixer
+			/ called by the mixer
 
 			if ( ! this.enabled ) {
 
-				// call ._updateWeight() to update ._effectiveWeight
+				/ call ._updateWeight() to update ._effectiveWeight
 
 				this._updateWeight( time );
 				return;
@@ -48078,7 +48078,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( startTime !== null ) {
 
-				// check for scheduled start of action
+				/ check for scheduled start of action
 
 				const timeRunning = ( time - startTime ) * timeDirection;
 				if ( timeRunning < 0 || timeDirection === 0 ) {
@@ -48088,20 +48088,20 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 				} else {
 
 
-					this._startTime = null; // unschedule
+					this._startTime = null; / unschedule
 					deltaTime = timeDirection * timeRunning;
 
 				}
 
 			}
 
-			// apply time scale and advance time
+			/ apply time scale and advance time
 
 			deltaTime *= this._updateTimeScale( time );
 			const clipTime = this._updateTime( deltaTime );
 
-			// note: _updateTime may disable the action resulting in
-			// an effective weight of 0
+			/ note: _updateTime may disable the action resulting in
+			/ an effective weight of 0
 
 			const weight = this._updateWeight( time );
 
@@ -48160,7 +48160,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						if ( interpolantValue === 0 ) {
 
-							// faded out, disable
+							/ faded out, disable
 							this.enabled = false;
 
 						}
@@ -48198,12 +48198,12 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						if ( timeScale === 0 ) {
 
-							// motion has halted, pause
+							/ motion has halted, pause
 							this.paused = true;
 
 						} else {
 
-							// warp done - apply final time scale
+							/ warp done - apply final time scale
 							this.timeScale = timeScale;
 
 						}
@@ -48241,7 +48241,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( loopCount === - 1 ) {
 
-					// just started
+					/ just started
 
 					this._loopCount = 0;
 					this._setEndings( true, true, false );
@@ -48278,11 +48278,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-			} else { // repetitive Repeat or PingPong
+			} else { / repetitive Repeat or PingPong
 
 				if ( loopCount === - 1 ) {
 
-					// just started
+					/ just started
 
 					if ( deltaTime >= 0 ) {
 
@@ -48292,9 +48292,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					} else {
 
-						// when looping in reverse direction, the initial
-						// transition through zero counts as a repetition,
-						// so leave loopCount at -1
+						/ when looping in reverse direction, the initial
+						/ transition through zero counts as a repetition,
+						/ so leave loopCount at -1
 
 						this._setEndings( this.repetitions === 0, true, pingPong );
 
@@ -48304,9 +48304,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( time >= duration || time < 0 ) {
 
-					// wrap around
+					/ wrap around
 
-					const loopDelta = Math.floor( time / duration ); // signed
+					const loopDelta = Math.floor( time / duration ); / signed
 					time -= duration * loopDelta;
 
 					loopCount += Math.abs( loopDelta );
@@ -48315,7 +48315,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					if ( pending <= 0 ) {
 
-						// have to stop (switch state, clamp time, fire event)
+						/ have to stop (switch state, clamp time, fire event)
 
 						if ( this.clampWhenFinished ) this.paused = true;
 						else this.enabled = false;
@@ -48331,11 +48331,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					} else {
 
-						// keep running
+						/ keep running
 
 						if ( pending === 1 ) {
 
-							// entering the last round
+							/ entering the last round
 
 							const atStart = deltaTime < 0;
 							this._setEndings( atStart, ! atStart, pingPong );
@@ -48364,7 +48364,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( pingPong && ( loopCount & 1 ) === 1 ) {
 
-					// invert time for the "pong round"
+					/ invert time for the "pong round"
 
 					return duration - time;
 
@@ -48387,7 +48387,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			} else {
 
-				// assuming for LoopOnce atStart == atEnd == true
+				/ assuming for LoopOnce atStart == atEnd == true
 
 				if ( atStart ) {
 
@@ -48493,7 +48493,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					if ( binding !== undefined ) {
 
-						// existing binding, make sure the cache knows
+						/ existing binding, make sure the cache knows
 
 						if ( binding._cacheIndex === null ) {
 
@@ -48532,8 +48532,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				if ( action._cacheIndex === null ) {
 
-					// this action has been forgotten by the cache, but the user
-					// appears to be still using it -> rebind
+					/ this action has been forgotten by the cache, but the user
+					/ appears to be still using it -> rebind
 
 					const rootUuid = ( action._localRoot || this._root ).uuid,
 						clipUuid = action._clip.uuid,
@@ -48548,7 +48548,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				const bindings = action._propertyBindings;
 
-				// increment reference counts / sort out state
+				/ increment reference counts / sort out state
 				for ( let i = 0, n = bindings.length; i !== n; ++ i ) {
 
 					const binding = bindings[ i ];
@@ -48574,7 +48574,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				const bindings = action._propertyBindings;
 
-				// decrement reference counts / sort out state
+				/ decrement reference counts / sort out state
 				for ( let i = 0, n = bindings.length; i !== n; ++ i ) {
 
 					const binding = bindings[ i ];
@@ -48594,28 +48594,28 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Memory manager
+		/ Memory manager
 
 		_initMemoryManager() {
 
-			this._actions = []; // 'nActiveActions' followed by inactive ones
+			this._actions = []; / 'nActiveActions' followed by inactive ones
 			this._nActiveActions = 0;
 
 			this._actionsByClip = {};
-			// inside:
-			// {
-			// 	knownActions: Array< AnimationAction > - used as prototypes
-			// 	actionByRoot: AnimationAction - lookup
-			// }
+			/ inside:
+			/ {
+			/ 	knownActions: Array< AnimationAction > - used as prototypes
+			/ 	actionByRoot: AnimationAction - lookup
+			/ }
 
 
-			this._bindings = []; // 'nActiveBindings' followed by inactive ones
+			this._bindings = []; / 'nActiveBindings' followed by inactive ones
 			this._nActiveBindings = 0;
 
-			this._bindingsByRootAndName = {}; // inside: Map< name, PropertyMixer >
+			this._bindingsByRootAndName = {}; / inside: Map< name, PropertyMixer >
 
 
-			this._controlInterpolants = []; // same game as above
+			this._controlInterpolants = []; / same game as above
 			this._nActiveControlInterpolants = 0;
 
 			const scope = this;
@@ -48663,7 +48663,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Memory management for AnimationAction objects
+		/ Memory management for AnimationAction objects
 
 		_isActiveAction( action ) {
 
@@ -48773,11 +48773,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		_lendAction( action ) {
 
-			// [ active actions |  inactive actions  ]
-			// [  active actions >| inactive actions ]
-			//                 s        a
-			//                  <-swap->
-			//                 a        s
+			/ [ active actions |  inactive actions  ]
+			/ [  active actions >| inactive actions ]
+			/                 s        a
+			/                  <-swap->
+			/                 a        s
 
 			const actions = this._actions,
 				prevIndex = action._cacheIndex,
@@ -48796,11 +48796,11 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		_takeBackAction( action ) {
 
-			// [  active actions  | inactive actions ]
-			// [ active actions |< inactive actions  ]
-			//        a        s
-			//         <-swap->
-			//        s        a
+			/ [  active actions  | inactive actions ]
+			/ [ active actions |< inactive actions  ]
+			/        a        s
+			/         <-swap->
+			/        s        a
 
 			const actions = this._actions,
 				prevIndex = action._cacheIndex,
@@ -48817,7 +48817,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Memory management for PropertyMixer objects
+		/ Memory management for PropertyMixer objects
 
 		_addInactiveBinding( binding, rootUuid, trackName ) {
 
@@ -48901,7 +48901,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 		}
 
 
-		// Memory management of Interpolants for weight and time scale
+		/ Memory management of Interpolants for weight and time scale
 
 		_lendControlInterpolant() {
 
@@ -48942,9 +48942,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// return an action for a clip optionally using a custom root target
-		// object (this method allocates a lot of dynamic memory in case a
-		// previously unknown clip/root combination is specified)
+		/ return an action for a clip optionally using a custom root target
+		/ object (this method allocates a lot of dynamic memory in case a
+		/ previously unknown clip/root combination is specified)
 		clipAction( clip, optionalRoot, blendMode ) {
 
 			const root = optionalRoot || this._root,
@@ -48981,32 +48981,32 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				}
 
-				// we know the clip, so we don't have to parse all
-				// the bindings again but can just copy
+				/ we know the clip, so we don't have to parse all
+				/ the bindings again but can just copy
 				prototypeAction = actionsForClip.knownActions[ 0 ];
 
-				// also, take the clip from the prototype action
+				/ also, take the clip from the prototype action
 				if ( clipObject === null )
 					clipObject = prototypeAction._clip;
 
 			}
 
-			// clip must be known when specified via string
+			/ clip must be known when specified via string
 			if ( clipObject === null ) return null;
 
-			// allocate all resources required to run it
+			/ allocate all resources required to run it
 			const newAction = new AnimationAction( this, clipObject, optionalRoot, blendMode );
 
 			this._bindAction( newAction, prototypeAction );
 
-			// and make the action known to the memory manager
+			/ and make the action known to the memory manager
 			this._addInactiveAction( newAction, clipUuid, rootUuid );
 
 			return newAction;
 
 		}
 
-		// get an existing action
+		/ get an existing action
 		existingAction( clip, optionalRoot ) {
 
 			const root = optionalRoot || this._root,
@@ -49029,7 +49029,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// deactivates all previously scheduled actions
+		/ deactivates all previously scheduled actions
 		stopAllAction() {
 
 			const actions = this._actions,
@@ -49045,7 +49045,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// advance the time and update apply the animation
+		/ advance the time and update apply the animation
 		update( deltaTime ) {
 
 			deltaTime *= this.timeScale;
@@ -49058,7 +49058,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				accuIndex = this._accuIndex ^= 1;
 
-			// run active actions
+			/ run active actions
 
 			for ( let i = 0; i !== nActions; ++ i ) {
 
@@ -49068,7 +49068,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// update scene graph
+			/ update scene graph
 
 			const bindings = this._bindings,
 				nBindings = this._nActiveBindings;
@@ -49083,28 +49083,28 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// Allows you to seek to a specific time in an animation.
+		/ Allows you to seek to a specific time in an animation.
 		setTime( timeInSeconds ) {
 
-			this.time = 0; // Zero out time attribute for AnimationMixer object;
+			this.time = 0; / Zero out time attribute for AnimationMixer object;
 			for ( let i = 0; i < this._actions.length; i ++ ) {
 
-				this._actions[ i ].time = 0; // Zero out time attribute for all associated AnimationAction objects.
+				this._actions[ i ].time = 0; / Zero out time attribute for all associated AnimationAction objects.
 
 			}
 
-			return this.update( timeInSeconds ); // Update used to set exact time. Returns "this" AnimationMixer object.
+			return this.update( timeInSeconds ); / Update used to set exact time. Returns "this" AnimationMixer object.
 
 		}
 
-		// return this mixer's root target object
+		/ return this mixer's root target object
 		getRoot() {
 
 			return this._root;
 
 		}
 
-		// free all resources specific to a particular clip
+		/ free all resources specific to a particular clip
 		uncacheClip( clip ) {
 
 			const actions = this._actions,
@@ -49114,9 +49114,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			if ( actionsForClip !== undefined ) {
 
-				// note: just calling _removeInactiveAction would mess up the
-				// iteration state and also require updating the state we can
-				// just throw away
+				/ note: just calling _removeInactiveAction would mess up the
+				/ iteration state and also require updating the state we can
+				/ just throw away
 
 				const actionsToRemove = actionsForClip.knownActions;
 
@@ -49146,7 +49146,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// free all resources specific to a particular root target object
+		/ free all resources specific to a particular root target object
 		uncacheRoot( root ) {
 
 			const rootUuid = root.uuid,
@@ -49183,7 +49183,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// remove a targeted clip from the cache
+		/ remove a targeted clip from the cache
 		uncacheAction( clip, optionalRoot ) {
 
 			const action = this.existingAction( clip, optionalRoot );
@@ -49412,7 +49412,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 		constructor( origin, direction, near = 0, far = Infinity ) {
 
 			this.ray = new Ray( origin, direction );
-			// direction is assumed to be normalized (for accurate distance calculations)
+			/ direction is assumed to be normalized (for accurate distance calculations)
 
 			this.near = near;
 			this.far = far;
@@ -49431,7 +49431,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		set( origin, direction ) {
 
-			// direction is assumed to be normalized (for accurate distance calculations)
+			/ direction is assumed to be normalized (for accurate distance calculations)
 
 			this.ray.set( origin, direction );
 
@@ -49447,7 +49447,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			} else if ( camera.isOrthographicCamera ) {
 
-				this.ray.origin.set( coords.x, coords.y, ( camera.near + camera.far ) / ( camera.near - camera.far ) ).unproject( camera ); // set origin in plane of camera
+				this.ray.origin.set( coords.x, coords.y, ( camera.near + camera.far ) / ( camera.near - camera.far ) ).unproject( camera ); / set origin in plane of camera
 				this.ray.direction.set( 0, 0, - 1 ).transformDirection( camera.matrixWorld );
 				this.camera = camera;
 
@@ -49526,8 +49526,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 		constructor( radius = 1, phi = 0, theta = 0 ) {
 
 			this.radius = radius;
-			this.phi = phi; // polar angle
-			this.theta = theta; // azimuthal angle
+			this.phi = phi; / polar angle
+			this.theta = theta; / azimuthal angle
 
 			return this;
 
@@ -49553,7 +49553,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		}
 
-		// restrict phi to be between EPS and PI-EPS
+		/ restrict phi to be between EPS and PI-EPS
 		makeSafe() {
 
 			const EPS = 0.000001;
@@ -49605,9 +49605,9 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		constructor( radius = 1, theta = 0, y = 0 ) {
 
-			this.radius = radius; // distance from the origin to a point in the x-z plane
-			this.theta = theta; // counterclockwise angle in the x-z plane measured in radians from the positive z-axis
-			this.y = y; // height above the x-z plane
+			this.radius = radius; / distance from the origin to a point in the x-z plane
+			this.theta = theta; / counterclockwise angle in the x-z plane measured in radians from the positive z-axis
+			this.y = y; / height above the x-z plane
 
 			return this;
 
@@ -49729,7 +49729,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		isEmpty() {
 
-			// this is a more robust check for empty than ( volume <= 0 ) because volume can get positive with two negative axes
+			/ this is a more robust check for empty than ( volume <= 0 ) because volume can get positive with two negative axes
 
 			return ( this.max.x < this.min.x ) || ( this.max.y < this.min.y );
 
@@ -49790,8 +49790,8 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		getParameter( point, target ) {
 
-			// This can potentially have a divide by zero if the box
-			// has a size dimension of 0.
+			/ This can potentially have a divide by zero if the box
+			/ has a size dimension of 0.
 
 			return target.set(
 				( point.x - this.min.x ) / ( this.max.x - this.min.x ),
@@ -49802,7 +49802,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		intersectsBox( box ) {
 
-			// using 4 splitting planes to rule out intersections
+			/ using 4 splitting planes to rule out intersections
 
 			return box.max.x < this.min.x || box.min.x > this.max.x ||
 				box.max.y < this.min.y || box.min.y > this.max.y ? false : true;
@@ -50194,7 +50194,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 
 			/*
-		// TODO: delete this comment?
+		/ TODO: delete this comment?
 		const distanceGeometry = new THREE.IcosahedronGeometry( 1, 2 );
 		const distanceMaterial = new THREE.MeshBasicMaterial( { color: hexColor, fog: false, wireframe: true, opacity: 0.1, transparent: true } );
 
@@ -50394,7 +50394,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			const vertices = [];
 			const colors = [];
 
-			// create the sectors
+			/ create the sectors
 
 			if ( sectors > 1 ) {
 
@@ -50417,7 +50417,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			// create the rings
+			/ create the rings
 
 			for ( let i = 0; i < rings; i ++ ) {
 
@@ -50427,7 +50427,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				for ( let j = 0; j < divisions; j ++ ) {
 
-					// first vertex
+					/ first vertex
 
 					let v = ( j / divisions ) * ( Math.PI * 2 );
 
@@ -50437,7 +50437,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					vertices.push( x, 0, z );
 					colors.push( color.r, color.g, color.b );
 
-					// second vertex
+					/ second vertex
 
 					v = ( ( j + 1 ) / divisions ) * ( Math.PI * 2 );
 
@@ -50578,46 +50578,46 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const pointMap = {};
 
-			// near
+			/ near
 
 			addLine( 'n1', 'n2' );
 			addLine( 'n2', 'n4' );
 			addLine( 'n4', 'n3' );
 			addLine( 'n3', 'n1' );
 
-			// far
+			/ far
 
 			addLine( 'f1', 'f2' );
 			addLine( 'f2', 'f4' );
 			addLine( 'f4', 'f3' );
 			addLine( 'f3', 'f1' );
 
-			// sides
+			/ sides
 
 			addLine( 'n1', 'f1' );
 			addLine( 'n2', 'f2' );
 			addLine( 'n3', 'f3' );
 			addLine( 'n4', 'f4' );
 
-			// cone
+			/ cone
 
 			addLine( 'p', 'n1' );
 			addLine( 'p', 'n2' );
 			addLine( 'p', 'n3' );
 			addLine( 'p', 'n4' );
 
-			// up
+			/ up
 
 			addLine( 'u1', 'u2' );
 			addLine( 'u2', 'u3' );
 			addLine( 'u3', 'u1' );
 
-			// target
+			/ target
 
 			addLine( 'c', 't' );
 			addLine( 'p', 'c' );
 
-			// cross
+			/ cross
 
 			addLine( 'cn1', 'cn2' );
 			addLine( 'cn3', 'cn4' );
@@ -50664,7 +50664,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			this.update();
 
-			// colors
+			/ colors
 
 			const colorFrustum = new Color( 0xffaa00 );
 			const colorCone = new Color( 0xff0000 );
@@ -50682,52 +50682,52 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const colorAttribute = geometry.getAttribute( 'color' );
 
-			// near
+			/ near
 
-			colorAttribute.setXYZ( 0, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 1, frustum.r, frustum.g, frustum.b ); // n1, n2
-			colorAttribute.setXYZ( 2, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 3, frustum.r, frustum.g, frustum.b ); // n2, n4
-			colorAttribute.setXYZ( 4, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 5, frustum.r, frustum.g, frustum.b ); // n4, n3
-			colorAttribute.setXYZ( 6, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 7, frustum.r, frustum.g, frustum.b ); // n3, n1
+			colorAttribute.setXYZ( 0, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 1, frustum.r, frustum.g, frustum.b ); / n1, n2
+			colorAttribute.setXYZ( 2, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 3, frustum.r, frustum.g, frustum.b ); / n2, n4
+			colorAttribute.setXYZ( 4, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 5, frustum.r, frustum.g, frustum.b ); / n4, n3
+			colorAttribute.setXYZ( 6, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 7, frustum.r, frustum.g, frustum.b ); / n3, n1
 
-			// far
+			/ far
 
-			colorAttribute.setXYZ( 8, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 9, frustum.r, frustum.g, frustum.b ); // f1, f2
-			colorAttribute.setXYZ( 10, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 11, frustum.r, frustum.g, frustum.b ); // f2, f4
-			colorAttribute.setXYZ( 12, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 13, frustum.r, frustum.g, frustum.b ); // f4, f3
-			colorAttribute.setXYZ( 14, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 15, frustum.r, frustum.g, frustum.b ); // f3, f1
+			colorAttribute.setXYZ( 8, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 9, frustum.r, frustum.g, frustum.b ); / f1, f2
+			colorAttribute.setXYZ( 10, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 11, frustum.r, frustum.g, frustum.b ); / f2, f4
+			colorAttribute.setXYZ( 12, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 13, frustum.r, frustum.g, frustum.b ); / f4, f3
+			colorAttribute.setXYZ( 14, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 15, frustum.r, frustum.g, frustum.b ); / f3, f1
 
-			// sides
+			/ sides
 
-			colorAttribute.setXYZ( 16, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 17, frustum.r, frustum.g, frustum.b ); // n1, f1
-			colorAttribute.setXYZ( 18, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 19, frustum.r, frustum.g, frustum.b ); // n2, f2
-			colorAttribute.setXYZ( 20, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 21, frustum.r, frustum.g, frustum.b ); // n3, f3
-			colorAttribute.setXYZ( 22, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 23, frustum.r, frustum.g, frustum.b ); // n4, f4
+			colorAttribute.setXYZ( 16, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 17, frustum.r, frustum.g, frustum.b ); / n1, f1
+			colorAttribute.setXYZ( 18, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 19, frustum.r, frustum.g, frustum.b ); / n2, f2
+			colorAttribute.setXYZ( 20, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 21, frustum.r, frustum.g, frustum.b ); / n3, f3
+			colorAttribute.setXYZ( 22, frustum.r, frustum.g, frustum.b ); colorAttribute.setXYZ( 23, frustum.r, frustum.g, frustum.b ); / n4, f4
 
-			// cone
+			/ cone
 
-			colorAttribute.setXYZ( 24, cone.r, cone.g, cone.b ); colorAttribute.setXYZ( 25, cone.r, cone.g, cone.b ); // p, n1
-			colorAttribute.setXYZ( 26, cone.r, cone.g, cone.b ); colorAttribute.setXYZ( 27, cone.r, cone.g, cone.b ); // p, n2
-			colorAttribute.setXYZ( 28, cone.r, cone.g, cone.b ); colorAttribute.setXYZ( 29, cone.r, cone.g, cone.b ); // p, n3
-			colorAttribute.setXYZ( 30, cone.r, cone.g, cone.b ); colorAttribute.setXYZ( 31, cone.r, cone.g, cone.b ); // p, n4
+			colorAttribute.setXYZ( 24, cone.r, cone.g, cone.b ); colorAttribute.setXYZ( 25, cone.r, cone.g, cone.b ); / p, n1
+			colorAttribute.setXYZ( 26, cone.r, cone.g, cone.b ); colorAttribute.setXYZ( 27, cone.r, cone.g, cone.b ); / p, n2
+			colorAttribute.setXYZ( 28, cone.r, cone.g, cone.b ); colorAttribute.setXYZ( 29, cone.r, cone.g, cone.b ); / p, n3
+			colorAttribute.setXYZ( 30, cone.r, cone.g, cone.b ); colorAttribute.setXYZ( 31, cone.r, cone.g, cone.b ); / p, n4
 
-			// up
+			/ up
 
-			colorAttribute.setXYZ( 32, up.r, up.g, up.b ); colorAttribute.setXYZ( 33, up.r, up.g, up.b ); // u1, u2
-			colorAttribute.setXYZ( 34, up.r, up.g, up.b ); colorAttribute.setXYZ( 35, up.r, up.g, up.b ); // u2, u3
-			colorAttribute.setXYZ( 36, up.r, up.g, up.b ); colorAttribute.setXYZ( 37, up.r, up.g, up.b ); // u3, u1
+			colorAttribute.setXYZ( 32, up.r, up.g, up.b ); colorAttribute.setXYZ( 33, up.r, up.g, up.b ); / u1, u2
+			colorAttribute.setXYZ( 34, up.r, up.g, up.b ); colorAttribute.setXYZ( 35, up.r, up.g, up.b ); / u2, u3
+			colorAttribute.setXYZ( 36, up.r, up.g, up.b ); colorAttribute.setXYZ( 37, up.r, up.g, up.b ); / u3, u1
 
-			// target
+			/ target
 
-			colorAttribute.setXYZ( 38, target.r, target.g, target.b ); colorAttribute.setXYZ( 39, target.r, target.g, target.b ); // c, t
-			colorAttribute.setXYZ( 40, cross.r, cross.g, cross.b ); colorAttribute.setXYZ( 41, cross.r, cross.g, cross.b ); // p, c
+			colorAttribute.setXYZ( 38, target.r, target.g, target.b ); colorAttribute.setXYZ( 39, target.r, target.g, target.b ); / c, t
+			colorAttribute.setXYZ( 40, cross.r, cross.g, cross.b ); colorAttribute.setXYZ( 41, cross.r, cross.g, cross.b ); / p, c
 
-			// cross
+			/ cross
 
-			colorAttribute.setXYZ( 42, cross.r, cross.g, cross.b ); colorAttribute.setXYZ( 43, cross.r, cross.g, cross.b ); // cn1, cn2
-			colorAttribute.setXYZ( 44, cross.r, cross.g, cross.b ); colorAttribute.setXYZ( 45, cross.r, cross.g, cross.b ); // cn3, cn4
+			colorAttribute.setXYZ( 42, cross.r, cross.g, cross.b ); colorAttribute.setXYZ( 43, cross.r, cross.g, cross.b ); / cn1, cn2
+			colorAttribute.setXYZ( 44, cross.r, cross.g, cross.b ); colorAttribute.setXYZ( 45, cross.r, cross.g, cross.b ); / cn3, cn4
 
-			colorAttribute.setXYZ( 46, cross.r, cross.g, cross.b ); colorAttribute.setXYZ( 47, cross.r, cross.g, cross.b ); // cf1, cf2
-			colorAttribute.setXYZ( 48, cross.r, cross.g, cross.b ); colorAttribute.setXYZ( 49, cross.r, cross.g, cross.b ); // cf3, cf4
+			colorAttribute.setXYZ( 46, cross.r, cross.g, cross.b ); colorAttribute.setXYZ( 47, cross.r, cross.g, cross.b ); / cf1, cf2
+			colorAttribute.setXYZ( 48, cross.r, cross.g, cross.b ); colorAttribute.setXYZ( 49, cross.r, cross.g, cross.b ); / cf3, cf4
 
 			colorAttribute.needsUpdate = true;
 
@@ -50740,37 +50740,37 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			const w = 1, h = 1;
 
-			// we need just camera projection matrix inverse
-			// world matrix must be identity
+			/ we need just camera projection matrix inverse
+			/ world matrix must be identity
 
 			_camera.projectionMatrixInverse.copy( this.camera.projectionMatrixInverse );
 
-			// center / target
+			/ center / target
 
 			setPoint( 'c', pointMap, geometry, _camera, 0, 0, - 1 );
 			setPoint( 't', pointMap, geometry, _camera, 0, 0, 1 );
 
-			// near
+			/ near
 
 			setPoint( 'n1', pointMap, geometry, _camera, - w, - h, - 1 );
 			setPoint( 'n2', pointMap, geometry, _camera, w, - h, - 1 );
 			setPoint( 'n3', pointMap, geometry, _camera, - w, h, - 1 );
 			setPoint( 'n4', pointMap, geometry, _camera, w, h, - 1 );
 
-			// far
+			/ far
 
 			setPoint( 'f1', pointMap, geometry, _camera, - w, - h, 1 );
 			setPoint( 'f2', pointMap, geometry, _camera, w, - h, 1 );
 			setPoint( 'f3', pointMap, geometry, _camera, - w, h, 1 );
 			setPoint( 'f4', pointMap, geometry, _camera, w, h, 1 );
 
-			// up
+			/ up
 
 			setPoint( 'u1', pointMap, geometry, _camera, w * 0.7, h * 1.1, - 1 );
 			setPoint( 'u2', pointMap, geometry, _camera, - w * 0.7, h * 1.1, - 1 );
 			setPoint( 'u3', pointMap, geometry, _camera, 0, h * 2, - 1 );
 
-			// cross
+			/ cross
 
 			setPoint( 'cf1', pointMap, geometry, _camera, - w, 0, 1 );
 			setPoint( 'cf2', pointMap, geometry, _camera, w, 0, 1 );
@@ -51030,7 +51030,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 	class ArrowHelper extends Object3D {
 
-		// dir is assumed to be normalized
+		/ dir is assumed to be normalized
 
 		constructor( dir = new Vector3( 0, 0, 1 ), origin = new Vector3( 0, 0, 0 ), length = 1, color = 0xffff00, headLength = length * 0.2, headWidth = headLength * 0.2 ) {
 
@@ -51065,7 +51065,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		setDirection( dir ) {
 
-			// dir is assumed to be normalized
+			/ dir is assumed to be normalized
 
 			if ( dir.y > 0.99999 ) {
 
@@ -51089,7 +51089,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 		setLength( length, headLength = length * 0.2, headWidth = headLength * 0.2 ) {
 
-			this.line.scale.set( 1, Math.max( 0.0001, length - headLength ), 1 ); // see #17458
+			this.line.scale.set( 1, Math.max( 0.0001, length - headLength ), 1 ); / see #17458
 			this.line.updateMatrix();
 
 			this.cone.scale.set( headWidth, headLength, headWidth );
@@ -51267,10 +51267,10 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 				const polyLen = inPolygon.length;
 
-				// inPt on polygon contour => immediate success    or
-				// toggling of inside/outside at every single! intersection point of an edge
-				//  with the horizontal line through inPt, left of inPt
-				//  not counting lowerY endpoints of edges and whole edges on that line
+				/ inPt on polygon contour => immediate success    or
+				/ toggling of inside/outside at every single! intersection point of an edge
+				/  with the horizontal line through inPt, left of inPt
+				/  not counting lowerY endpoints of edges and whole edges on that line
 				let inside = false;
 				for ( let p = polyLen - 1, q = 0; q < polyLen; p = q ++ ) {
 
@@ -51282,7 +51282,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 					if ( Math.abs( edgeDy ) > Number.EPSILON ) {
 
-						// not parallel
+						/ not parallel
 						if ( edgeDy < 0 ) {
 
 							edgeLowPt = inPolygon[ q ]; edgeDx = - edgeDx;
@@ -51294,26 +51294,26 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 						if ( inPt.y === edgeLowPt.y ) {
 
-							if ( inPt.x === edgeLowPt.x )		return	true;		// inPt is on contour ?
-							// continue;				// no intersection or edgeLowPt => doesn't count !!!
+							if ( inPt.x === edgeLowPt.x )		return	true;		/ inPt is on contour ?
+							/ continue;				/ no intersection or edgeLowPt => doesn't count !!!
 
 						} else {
 
 							const perpEdge = edgeDy * ( inPt.x - edgeLowPt.x ) - edgeDx * ( inPt.y - edgeLowPt.y );
-							if ( perpEdge === 0 )				return	true;		// inPt is on contour ?
+							if ( perpEdge === 0 )				return	true;		/ inPt is on contour ?
 							if ( perpEdge < 0 ) 				continue;
-							inside = ! inside;		// true intersection left of inPt
+							inside = ! inside;		/ true intersection left of inPt
 
 						}
 
 					} else {
 
-						// parallel or collinear
-						if ( inPt.y !== edgeLowPt.y ) 		continue;			// parallel
-						// edge lies on the same horizontal line as inPt
+						/ parallel or collinear
+						if ( inPt.y !== edgeLowPt.y ) 		continue;			/ parallel
+						/ edge lies on the same horizontal line as inPt
 						if ( ( ( edgeHighPt.x <= inPt.x ) && ( inPt.x <= edgeLowPt.x ) ) ||
-							 ( ( edgeLowPt.x <= inPt.x ) && ( inPt.x <= edgeHighPt.x ) ) )		return	true;	// inPt: Point on contour !
-						// continue;
+							 ( ( edgeLowPt.x <= inPt.x ) && ( inPt.x <= edgeHighPt.x ) ) )		return	true;	/ inPt: Point on contour !
+						/ continue;
 
 					}
 
@@ -51344,7 +51344,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 			let holesFirst = ! isClockWise( subPaths[ 0 ].getPoints() );
 			holesFirst = isCCW ? ! holesFirst : holesFirst;
 
-			// console.log("Holes first", holesFirst);
+			/ console.log("Holes first", holesFirst);
 
 			const betterShapeHoles = [];
 			const newShapes = [];
@@ -51372,19 +51372,19 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 					if ( holesFirst )	mainIdx ++;
 					newShapeHoles[ mainIdx ] = [];
 
-					//console.log('cw', i);
+					/console.log('cw', i);
 
 				} else {
 
 					newShapeHoles[ mainIdx ].push( { h: tmpPath, p: tmpPoints[ 0 ] } );
 
-					//console.log('ccw', i);
+					/console.log('ccw', i);
 
 				}
 
 			}
 
-			// only Holes? -> probably all Shapes with wrong orientation
+			/ only Holes? -> probably all Shapes with wrong orientation
 			if ( ! newShapes[ 0 ] )	return	toShapesNoHoles( subPaths );
 
 
@@ -51463,7 +51463,7 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 
 			}
 
-			//console.log("shape", shapes);
+			/console.log("shape", shapes);
 
 			return shapes;
 

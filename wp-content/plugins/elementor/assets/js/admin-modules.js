@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../assets/dev/js/admin/menu-handler.js":
@@ -50,9 +50,9 @@ var MenuHandler = exports["default"] = /*#__PURE__*/function (_elementorModules$
       };
     }
 
-    // This method highlights the currently visited submenu item for the slug provided as an argument to this handler.
-    // This method also accepts a jQuery instance of a custom submenu item to highlight. If provided, the provided
-    // item will be the one highlighted.
+    / This method highlights the currently visited submenu item for the slug provided as an argument to this handler.
+    / This method also accepts a jQuery instance of a custom submenu item to highlight. If provided, the provided
+    / item will be the one highlighted.
   }, {
     key: "highlightSubMenuItem",
     value: function highlightSubMenuItem() {
@@ -63,7 +63,7 @@ var MenuHandler = exports["default"] = /*#__PURE__*/function (_elementorModules$
       }
       $submenuItem.addClass('current');
 
-      // Need to add the 'current' class to the link element's parent `<li>` element as well.
+      / Need to add the 'current' class to the link element's parent `<li>` element as well.
       $submenuItem.parent().addClass('current');
     }
   }, {
@@ -846,27 +846,27 @@ try {
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	

@@ -33,7 +33,7 @@
 				}
 			);
 
-			// Show the only active one.
+			/ Show the only active one.
 		} else {
 			trigger.addClass( 'expanded' );
 			parent.find( '.redux-main' ).addClass( 'expand' );

@@ -219,7 +219,7 @@ function PopoverDialog(props) {
     popoverRef = (0, _react.useCallback)(function (popoverEl) {
       var target = targetRef === null || targetRef === void 0 ? void 0 : targetRef.current;
 
-      // If the target or the popover element does not exist on the page anymore after a re-render, do nothing.
+      / If the target or the popover element does not exist on the page anymore after a re-render, do nothing.
       if (!target || !popoverEl) {
         return;
       }
@@ -236,7 +236,7 @@ function PopoverDialog(props) {
         popoverEl.style.top = targetRect.bottom + offsetTop + 'px';
         popoverEl.style.left = targetRect.left - widthDifference / 2 - offsetLeft + 'px';
 
-        // 16px to compensate for the arrow width.
+        / 16px to compensate for the arrow width.
         popoverEl.style.setProperty('--popover-arrow-offset-end', (popoverRect.width - 16) / 2 + 'px');
       };
 
@@ -255,13 +255,13 @@ function PopoverDialog(props) {
         var hideOnMouseOut = true,
           timeOut = null;
 
-        // Show popover on hover of the target
+        / Show popover on hover of the target
         target.addEventListener('mouseover', function () {
           hideOnMouseOut = true;
           showPopover();
         });
 
-        // Hide popover when not overing over the target or the popover itself
+        / Hide popover when not overing over the target or the popover itself
         target.addEventListener('mouseleave', function () {
           timeOut = setTimeout(function () {
             if (hideOnMouseOut) {
@@ -272,7 +272,7 @@ function PopoverDialog(props) {
           }, hideAfter);
         });
 
-        // Don't hide the popover if the user is still hovering over it.
+        / Don't hide the popover if the user is still hovering over it.
         popoverEl.addEventListener('mouseover', function () {
           hideOnMouseOut = false;
           if (timeOut) {
@@ -281,7 +281,7 @@ function PopoverDialog(props) {
           }
         });
 
-        // Once the user stops hovering over the popover, hide it.
+        / Once the user stops hovering over the popover, hide it.
         popoverEl.addEventListener('mouseleave', function () {
           timeOut = setTimeout(function () {
             if (hideOnMouseOut) {
@@ -311,12 +311,12 @@ function PopoverDialog(props) {
           }
         });
 
-        // Make sure the popover doesn't close when it is clicked on.
+        / Make sure the popover doesn't close when it is clicked on.
         popoverEl.addEventListener('click', function (e) {
           e.stopPropagation();
         });
 
-        // Hide the popover when clicking outside of it.
+        / Hide the popover when clicking outside of it.
         document.body.addEventListener('click', function () {
           if (popoverIsActive) {
             hidePopover();
@@ -392,7 +392,7 @@ var queryClient = new _reactQuery.QueryClient({
     queries: {
       refetchOnWindowFocus: false,
       retry: false,
-      staleTime: 1000 * 60 * 30 // 30 minutes
+      staleTime: 1000 * 60 * 30 / 30 minutes
     }
   }
 });
@@ -455,7 +455,7 @@ function ApplyKitDialog(props) {
     navigate(url);
   }, [props.downloadLink, props.nonce]);
   return /*#__PURE__*/_react.default.createElement(_appUi.Dialog
-  // Translators: %s is the kit name.
+  / Translators: %s is the kit name.
   , {
     title: __('Apply %s?', 'elementor').replace('%s', props.title),
     text: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, __('You can use everything in this kit, or Customize to only include some items.', 'elementor'), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), __('By applying the entire kit, you\'ll override any styles, settings or content already on your site.', 'elementor')),
@@ -539,7 +539,7 @@ exports["default"] = Collapse;
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 __webpack_require__(/*! ./collapse.scss */ "../app/modules/kit-library/assets/js/components/collapse.scss");
 function Collapse(props) {
-  // The state of the collapse managed by the parent component to let the parent control if the collapse is open or closed by default.
+  / The state of the collapse managed by the parent component to let the parent control if the collapse is open or closed by default.
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "eps-collapse ".concat(props.className),
     "data-open": props.isOpen || undefined /* Set `undefined` when 'isOpen' equals `false` to avoid showing the attr "data-open" */
@@ -814,7 +814,7 @@ function FavoritesActions(props) {
     icon: "eicon-heart",
     className: "e-kit-library__kit-favorite-actions e-kit-library__kit-favorite-actions--active ".concat(loadingClasses),
     onClick: function onClick() {
-      // eslint-disable-next-line no-unused-expressions
+      / eslint-disable-next-line no-unused-expressions
       !isLoading && removeFromFavorites.mutate(props.id);
       eventTracking(props === null || props === void 0 ? void 0 : props.name, props === null || props === void 0 ? void 0 : props.source, 'uncheck');
     }
@@ -824,7 +824,7 @@ function FavoritesActions(props) {
     icon: "eicon-heart-o",
     className: "e-kit-library__kit-favorite-actions ".concat(loadingClasses),
     onClick: function onClick() {
-      // eslint-disable-next-line no-unused-expressions
+      / eslint-disable-next-line no-unused-expressions
       !isLoading && addToFavorites.mutate(props.id);
       eventTracking(props === null || props === void 0 ? void 0 : props.name, props === null || props === void 0 ? void 0 : props.source, 'check', props === null || props === void 0 ? void 0 : props.index, props === null || props === void 0 ? void 0 : props.queryParams);
     }
@@ -881,7 +881,7 @@ function FilterIndicationText(props) {
   }, /*#__PURE__*/_react.default.createElement(_appUi.Text, {
     className: "e-kit-library__filter-indication-text"
   },
-  // Translators: %s is the number of kits in the results
+  / Translators: %s is the number of kits in the results
   (0, _i18n.sprintf)((0, _i18n._n)('Showing %s result for', 'Showing %s results for', props.resultCount, 'elementor'), !props.resultCount ? __('no', 'elementor') : props.resultCount), ' ', props.queryParams.search && "\"".concat(props.queryParams.search, "\""), ' ', selectedTaxonomies.length > 0 && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, selectedTaxonomies.map(function (taxonomy) {
     return /*#__PURE__*/_react.default.createElement(_badge.default, {
       key: taxonomy,
@@ -982,7 +982,7 @@ function useKitCallToActionButton(model, _ref) {
       return {
         id: 'connect',
         text: __('Apply', 'elementor'),
-        // The label is Apply kit but the this is connect button
+        / The label is Apply kit but the this is connect button
         hideText: false,
         variant: 'contained',
         color: 'primary',
@@ -1125,7 +1125,7 @@ function ItemHeader(props) {
       updateSettings({
         is_library_connected: true,
         access_level: accessLevel,
-        // BC: Check for 'access_level' prop
+        / BC: Check for 'access_level' prop
         access_tier: accessTier
       });
       if (data.access_level < props.model.accessLevel) {
@@ -1686,7 +1686,7 @@ function KitList(props) {
     var _props$queryParams;
     return (
       /*#__PURE__*/
-      // The + 1 was added in order to start the map.index from 1 and not from 0.
+      / The + 1 was added in order to start the map.index from 1 and not from 0.
       _react.default.createElement(_kitListItem.default, {
         key: model.id,
         model: model,
@@ -2140,7 +2140,7 @@ var TaxonomiesFilterList = function TaxonomiesFilterList(props) {
   }, props.taxonomiesByType.data.length >= MIN_TAGS_LENGTH_FOR_SEARCH_INPUT && /*#__PURE__*/_react.default.createElement(_searchInput.default, {
     size: "sm",
     className: "e-kit-library__tags-filter-list-search"
-    // Translators: %s is the taxonomy type.
+    / Translators: %s is the taxonomy type.
     ,
     placeholder: (0, _i18n.sprintf)(__('Search %s...', 'elementor'), props.taxonomiesByType.label),
     value: search,
@@ -2157,7 +2157,7 @@ var TaxonomiesFilterList = function TaxonomiesFilterList(props) {
     var _props$selected$taxon;
     return (
       /*#__PURE__*/
-      // eslint-disable-next-line jsx-a11y/label-has-associated-control
+      / eslint-disable-next-line jsx-a11y/label-has-associated-control
       _react.default.createElement("label", {
         key: taxonomy.text,
         className: "e-kit-library__tags-filter-list-item"
@@ -2698,20 +2698,20 @@ function fetchContentTypes(settings) {
     id: 'site-parts',
     label: __('Site Parts', 'elementor'),
     doc_types: ['archive', 'error-404', 'footer', 'header', 'search-results', 'single-page', 'single-post',
-    // WooCommerce types
+    / WooCommerce types
     'product', 'product-archive',
-    // Legacy Types
+    / Legacy Types
     '404', 'single'],
     order: 1
   }];
 
-  // BC: When user has old Pro version which doesn't override the `free` access_tier.
+  / BC: When user has old Pro version which doesn't override the `free` access_tier.
   var userAccessTier = settings.access_tier;
   var hasActiveProLicense = settings.is_pro && settings.is_library_connected;
   var shouldFallbackToLegacy = hasActiveProLicense && userAccessTier === _tiers.TIERS.free;
 
-  // Fallback to the last access_tier before the new tiers were introduced.
-  // TODO: Remove when Pro with the new tiers is stable.
+  / Fallback to the last access_tier before the new tiers were introduced.
+  / TODO: Remove when Pro with the new tiers is stable.
   if (shouldFallbackToLegacy) {
     userAccessTier = _tiers.TIERS['essential-oct2023'];
   }
@@ -2822,19 +2822,19 @@ function useKitCallToAction(kitAccessTier) {
   var _useSettingsContext = (0, _settingsContext.useSettingsContext)(),
     settings = _useSettingsContext.settings;
 
-  // BC: When user has old Pro version which doesn't override the `free` access_tier.
+  / BC: When user has old Pro version which doesn't override the `free` access_tier.
   var userAccessTier = settings.access_tier;
   var tierKey = _taxonomyTransformer.TierToKeyMap[kitAccessTier];
   var hasActiveProLicense = settings.is_pro && settings.is_library_connected;
   var shouldFallbackToLegacy = hasActiveProLicense && userAccessTier === _tiers.TIERS.free;
 
-  // Fallback to the last access_tier before the new tiers were introduced.
-  // TODO: Remove when Pro with the new tiers is stable.
+  / Fallback to the last access_tier before the new tiers were introduced.
+  / TODO: Remove when Pro with the new tiers is stable.
   if (shouldFallbackToLegacy) {
     userAccessTier = _tiers.TIERS['essential-oct2023'];
   }
 
-  // SubscriptionPlan can be null when the context is not filled (can be happened when using back button in the browser.)
+  / SubscriptionPlan can be null when the context is not filled (can be happened when using back button in the browser.)
   var subscriptionPlan = (0, _react.useMemo)(function () {
     var _settings$subscriptio;
     return (_settings$subscriptio = settings.subscription_plans) === null || _settings$subscriptio === void 0 ? void 0 : _settings$subscriptio[kitAccessTier];
@@ -2842,20 +2842,20 @@ function useKitCallToAction(kitAccessTier) {
   subscriptionPlan.label = _taxonomyTransformer.PromotionChipText[tierKey];
   subscriptionPlan.isPromoted = _tiers.TIERS.free !== kitAccessTier;
   var type = (0, _react.useMemo)(function () {
-    // The user can apply this kit (the user access level is equal or greater then the kit access level).
+    / The user can apply this kit (the user access level is equal or greater then the kit access level).
     var isAuthorizeToApplyKit = (0, _tiers.isTierAtLeast)(userAccessTier, kitAccessTier);
 
-    // The user in not connected and has pro plugin or the kit is a free kit.
+    / The user in not connected and has pro plugin or the kit is a free kit.
     if (!settings.is_library_connected && (settings.is_pro || isAuthorizeToApplyKit)) {
       return TYPE_CONNECT;
     }
 
-    // The user is connected or has only core plugin and cannot access this kit.
+    / The user is connected or has only core plugin and cannot access this kit.
     if (!isAuthorizeToApplyKit) {
       return TYPE_PROMOTION;
     }
 
-    // The user is connected and can access the kit.
+    / The user is connected and can access the kit.
     return TYPE_APPLY;
   }, [settings, kitAccessTier]);
   return {
@@ -2960,7 +2960,7 @@ function useKitFavoritesMutations() {
     var id = data.data.id;
     var isFavorite = data.data.is_favorite;
 
-    // Update the kit list if the list exists.
+    / Update the kit list if the list exists.
     if (queryClient.getQueryData([_useKits.KEY])) {
       queryClient.setQueryData([_useKits.KEY], function (kits) {
         if (!kits) {
@@ -2970,7 +2970,7 @@ function useKitFavoritesMutations() {
           if (item.id === id) {
             item.isFavorite = isFavorite;
 
-            // Should return a new kit to trigger rerender.
+            / Should return a new kit to trigger rerender.
             return item.clone();
           }
           return item;
@@ -2978,12 +2978,12 @@ function useKitFavoritesMutations() {
       });
     }
 
-    // Update specific kit if the kit exists
+    / Update specific kit if the kit exists
     if (queryClient.getQueryData([_useKit.KEY, id])) {
       queryClient.setQueryData([_useKit.KEY, id], function (currentKit) {
         currentKit.isFavorite = isFavorite;
 
-        // Should return a new kit to trigger rerender.
+        / Should return a new kit to trigger rerender.
         return currentKit.clone();
       });
     }
@@ -3033,7 +3033,7 @@ var _react = __webpack_require__(/*! react */ "react");
 var _reactQuery = __webpack_require__(/*! react-query */ "../node_modules/react-query/es/index.js");
 var KEY = exports.KEY = 'kit';
 function useKit(id) {
-  // A function that returns existing data from the kit list for a placeholder data before the kit request will resolved.
+  / A function that returns existing data from the kit list for a placeholder data before the kit request will resolved.
   var placeholderDataCallback = usePlaceholderDataCallback(id);
   return (0, _reactQuery.useQuery)([KEY, id], fetchKitItem, {
     placeholderData: placeholderDataCallback
@@ -3728,10 +3728,10 @@ var Kit = exports["default"] = /*#__PURE__*/function (_BaseModel) {
         trendIndex: kit.trend_index,
         popularityIndex: kit.popularity_index,
         featuredIndex: kit.featured_index,
-        // TODO: Remove when the API is stable (when date params always exists)
+        / TODO: Remove when the API is stable (when date params always exists)
         createdAt: kit.created_at ? new Date(kit.created_at) : null,
         updatedAt: kit.updated_at ? new Date(kit.updated_at) : null,
-        //
+        /
         keywords: kit.keywords,
         taxonomies: kit.taxonomies,
         documents: kit.documents ? kit.documents.map(function (document) {
@@ -4073,7 +4073,7 @@ function Cloud(_ref) {
     item: true,
     className: "e-kit-library__index-layout-heading-search"
   }, /*#__PURE__*/_react.default.createElement(_searchInput.default
-  // eslint-disable-next-line @wordpress/i18n-ellipsis
+  / eslint-disable-next-line @wordpress/i18n-ellipsis
   , {
     placeholder: __('Search my Website Templates...', 'elementor'),
     value: queryParams.search,
@@ -4377,7 +4377,7 @@ var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ ".
 function Favorites(props) {
   var navigate = (0, _router.useNavigate)();
   var indexNotResultsFavorites = /*#__PURE__*/_react.default.createElement(_errorScreen.default
-  // eslint-disable-next-line @wordpress/i18n-ellipsis
+  / eslint-disable-next-line @wordpress/i18n-ellipsis
   , {
     title: __('No favorites here yet...', 'elementor'),
     description: __('Use the heart icon to save Website Templates that inspire you. You\'ll be able to find them here.', 'elementor'),
@@ -4695,7 +4695,7 @@ function useRouterQueryParams(queryParams, setQueryParams) {
   }, [queryParams]);
   (0, _react.useEffect)(function () {
     var routerQueryParams = Object.keys(_useKits2.defaultQueryParams).reduce(function (current, key) {
-      // TODO: Replace with `wp.url.getQueryArgs` when WordPress 5.7 is the min version
+      / TODO: Replace with `wp.url.getQueryArgs` when WordPress 5.7 is the min version
       var queryArg = wp.url.getQueryArg(location.pathname, key);
       if (!queryArg) {
         return current;
@@ -4777,7 +4777,7 @@ function Index(props) {
     item: true,
     className: "e-kit-library__index-layout-heading-search"
   }, /*#__PURE__*/_react.default.createElement(_searchInput.default
-  // eslint-disable-next-line @wordpress/i18n-ellipsis
+  / eslint-disable-next-line @wordpress/i18n-ellipsis
   , {
     placeholder: __('Search all Website Templates...', 'elementor'),
     value: queryParams.search,
@@ -5150,11 +5150,11 @@ function Overview(props) {
     documentsByType = _useKitDocumentByType.data;
   var headerButtons = useHeaderButtons(props.id, kit && kit.title);
   (0, _usePageTitle.default)({
-    title: kit ? "".concat(__('Kit Library', 'elementor'), " | ").concat(kit.title) // eslint-disable-next-line @wordpress/i18n-ellipsis
+    title: kit ? "".concat(__('Kit Library', 'elementor'), " | ").concat(kit.title) / eslint-disable-next-line @wordpress/i18n-ellipsis
     : __('Loading...', 'elementor')
   });
   if (isError) {
-    // Will be caught by the App error boundary.
+    / Will be caught by the App error boundary.
     throw new Error();
   }
   if (isLoading) {
@@ -5450,11 +5450,11 @@ function Preview(props) {
     eventTracking('kit-library/responsive-controls', device, 'app_header');
   };
   (0, _usePageTitle.default)({
-    title: data ? "".concat(__('Kit Library', 'elementor'), " | ").concat(data.title) // eslint-disable-next-line @wordpress/i18n-ellipsis
+    title: data ? "".concat(__('Kit Library', 'elementor'), " | ").concat(data.title) / eslint-disable-next-line @wordpress/i18n-ellipsis
     : __('Loading...', 'elementor')
   });
   if (isError) {
-    // Will be caught by the App error boundary.
+    / Will be caught by the App error boundary.
     throw new Error();
   }
   if (isLoading) {

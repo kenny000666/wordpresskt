@@ -16,7 +16,7 @@
  * @since 1.6.8
  */
 
-var WPForms = window.WPForms || {}; // eslint-disable-line no-var
+var WPForms = window.WPForms || {}; / eslint-disable-line no-var
 
 WPForms.Admin = WPForms.Admin || {};
 WPForms.Admin.Builder = WPForms.Admin.Builder || {};
@@ -64,9 +64,9 @@ WPForms.Admin.Builder.Setup = WPForms.Admin.Builder.Setup || ( function( documen
 		init() {
 			$( app.ready );
 
-			// Page load.
+			/ Page load.
 			$( window ).on( 'load', function() {
-				// In the case of jQuery 3.+, we need to wait for a ready event first.
+				/ In the case of jQuery 3.+, we need to wait for a ready event first.
 				if ( typeof $.ready.then === 'function' ) {
 					$.ready.then( app.load );
 				} else {
@@ -87,7 +87,7 @@ WPForms.Admin.Builder.Setup = WPForms.Admin.Builder.Setup || ( function( documen
 			app.setTriggerBlankLink();
 			app.events();
 
-			// Trigger `wpformsBuilderPanelLoaded` event only when the panel is available in DOM.
+			/ Trigger `wpformsBuilderPanelLoaded` event only when the panel is available in DOM.
 			if ( el.$panel.length ) {
 				el.$builder.trigger( 'wpformsBuilderPanelLoaded', [ 'setup' ] );
 			}
@@ -110,7 +110,7 @@ WPForms.Admin.Builder.Setup = WPForms.Admin.Builder.Setup || ( function( documen
 		 * @since 1.6.8
 		 */
 		setup() {
-			// Cache DOM elements.
+			/ Cache DOM elements.
 			el.$builder = $( '#wpforms-builder' );
 			el.$form = $( '#wpforms-builder-form' );
 			el.$formName = $( '#wpforms-setup-name' );
@@ -118,7 +118,7 @@ WPForms.Admin.Builder.Setup = WPForms.Admin.Builder.Setup || ( function( documen
 			el.$categories = $( '#wpforms-panel-setup .wpforms-setup-templates-categories' );
 			el.$subcategories = $( '#wpforms-panel-setup .wpforms-setup-templates-subcategories' );
 
-			// Other values.
+			/ Other values.
 			vars.spinner = '<i class="wpforms-loading-spinner wpforms-loading-white wpforms-loading-inline"></i>';
 			vars.formID = el.$form.data( 'id' );
 		},
@@ -131,11 +131,11 @@ WPForms.Admin.Builder.Setup = WPForms.Admin.Builder.Setup || ( function( documen
 		events() {
 			el.$builder.on( 'wpformsBuilderPanelLoaded', app.panelLoaded );
 
-			// Focus on the form title field when displaying a setup panel.
+			/ Focus on the form title field when displaying a setup panel.
 			el.$builder
 				.on( 'wpformsPanelSwitched', app.setupTitleFocus );
 
-			// Sync Setup title and settings title.
+			/ Sync Setup title and settings title.
 			el.$builder
 				.on( 'input', '#wpforms-panel-field-settings-form_title', app.syncTitle )
 				.on( 'input', '#wpforms-setup-name', app.syncTitle );
@@ -212,14 +212,14 @@ WPForms.Admin.Builder.Setup = WPForms.Admin.Builder.Setup || ( function( documen
 		 * @param {Object|null} e    Event object.
 		 * @param {string|null} view Current view.
 		 */
-		setupTitleFocus( e = null, view = null ) { // eslint-disable-line no-unused-vars
+		setupTitleFocus( e = null, view = null ) { / eslint-disable-line no-unused-vars
 			view = view || wpf.getQueryString( 'view' );
 
 			if ( view !== 'setup' ) {
 				return;
 			}
 
-			// Clone form title to the Setup page.
+			/ Clone form title to the Setup page.
 			$( '#wpforms-setup-name' ).val( $( '#wpforms-panel-field-settings-form_title' ).val() );
 
 			el.$formName.trigger( 'focus' );
@@ -247,10 +247,10 @@ WPForms.Admin.Builder.Setup = WPForms.Admin.Builder.Setup || ( function( documen
 				.addClass( 'selected' )
 				.addClass( 'badge' );
 
-			// Remove existing badge.
+			/ Remove existing badge.
 			$template.find( '.wpforms-badge' ).remove();
 
-			// Remove edit and delete action buttons from current user template.
+			/ Remove edit and delete action buttons from current user template.
 			if ( $template.hasClass( 'wpforms-user-template' ) ) {
 				$template.find( '.wpforms-template-edit, .wpforms-template-remove' ).remove();
 			}
@@ -293,14 +293,14 @@ WPForms.Admin.Builder.Setup = WPForms.Admin.Builder.Setup || ( function( documen
 		filterTemplatesBySelectedCategory() {
 			const $subCategory = el.$subcategories.find( 'li.active' );
 
-			// If subcategory is available, trigger its click it will update and category also.
+			/ If subcategory is available, trigger its click it will update and category also.
 			if ( $subCategory.length ) {
 				$subCategory.trigger( 'click' );
 			}
 
 			const $category = el.$categories.find( '> li.active' );
 
-			// In another case, click on the category.
+			/ In another case, click on the category.
 			if (
 				! $subCategory.length &&
 				$category.length &&
@@ -369,14 +369,14 @@ WPForms.Admin.Builder.Setup = WPForms.Admin.Builder.Setup || ( function( documen
 
 			const $button = $( this );
 
-			// Don't do anything for templates that trigger education modal OR addons-modal.
+			/ Don't do anything for templates that trigger education modal OR addons-modal.
 			if ( $button.hasClass( 'education-modal' ) ) {
 				return;
 			}
 
 			const template = $button.data( 'template' );
 
-			// User templates are applied differently for new forms.
+			/ User templates are applied differently for new forms.
 			if ( ! vars.formID && template.match( /wpforms-user-template-(\d+)/ ) && $button.data( 'create-url' ) ) {
 				window.location.href = $button.data( 'create-url' );
 				return;
@@ -385,10 +385,10 @@ WPForms.Admin.Builder.Setup = WPForms.Admin.Builder.Setup || ( function( documen
 			el.$panel.find( '.wpforms-template' ).removeClass( 'active' );
 			$button.closest( '.wpforms-template' ).addClass( 'active' );
 
-			// Save the original label.
+			/ Save the original label.
 			$button.data( 'labelOriginal', $button.html() );
 
-			// Display loading indicator.
+			/ Display loading indicator.
 			$button.html( vars.spinner + wpforms_builder.loading );
 
 			const formName = app.getFormName( $button );
@@ -431,10 +431,10 @@ WPForms.Admin.Builder.Setup = WPForms.Admin.Builder.Setup || ( function( documen
 			el.$builder.trigger( 'wpformsTemplateSelect', template );
 
 			if ( vars.formID ) {
-				// Existing form.
+				/ Existing form.
 				app.selectTemplateExistingForm( formName, template, $button );
 			} else {
-				// Create a new form.
+				/ Create a new form.
 				WPFormsFormTemplates.selectTemplateProcess( formName, template, $button, app.selectTemplateProcessAjax );
 			}
 		},
@@ -537,7 +537,7 @@ WPForms.Admin.Builder.Setup = WPForms.Admin.Builder.Setup || ( function( documen
 				title: formName,
 				action: vars.formID ? 'wpforms_update_form_template' : 'wpforms_new_form',
 				template,
-				form_id: vars.formID, // eslint-disable-line camelcase
+				form_id: vars.formID, / eslint-disable-line camelcase
 				nonce: wpforms_builder.nonce,
 			};
 
@@ -559,7 +559,7 @@ WPForms.Admin.Builder.Setup = WPForms.Admin.Builder.Setup || ( function( documen
 			$.post( wpforms_builder.ajax_url, data )
 				.done( function( res ) {
 					if ( res.success ) {
-						// We have already warned the user that unsaved changes will be ignored.
+						/ We have already warned the user that unsaved changes will be ignored.
 						WPFormsBuilder.setCloseConfirmation( false );
 
 						window.location.href = wpf.getQueryString( 'force_desktop_view' )
@@ -741,7 +741,7 @@ WPForms.Admin.Builder.Setup = WPForms.Admin.Builder.Setup || ( function( documen
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

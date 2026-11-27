@@ -205,9 +205,9 @@ var Colors = module.exports = {
     whitesmoke      :"#f5f5f5",
     yellow          :"#ffff00",
     yellowgreen     :"#9acd32",
-    //'currentColor' color keyword https://www.w3.org/TR/css3-color/#currentcolor
+    /'currentColor' color keyword https://www.w3.org/TR/css3-color/#currentcolor
     currentColor        :"The value of the 'color' property.",
-    //CSS2 system colors https://www.w3.org/TR/css3-color/#css2-system
+    /CSS2 system colors https://www.w3.org/TR/css3-color/#css2-system
     activeBorder        :"Active window border.",
     activecaption       :"Active window caption.",
     appworkspace        :"Background color of multiple document interface.",
@@ -269,7 +269,7 @@ function Combinator(text, line, col) {
      */
     this.type = "unknown";
 
-    //pretty simple
+    /pretty simple
     if (/^\s+$/.test(text)) {
         this.type = "descendant";
     } else if (text === ">") {
@@ -301,8 +301,8 @@ var SyntaxError = require("../util/SyntaxError");
  */
 function Matcher(matchFunc, toString) {
     this.match = function(expression) {
-        // Save/restore marks to ensure that failed matches always restore
-        // the original location in the expression.
+        / Save/restore marks to ensure that failed matches always restore
+        / the original location in the expression.
         var result;
         expression.mark();
         result = matchFunc(expression);
@@ -340,7 +340,7 @@ Matcher.parse = function(str) {
         return result;
     };
     expr = function() {
-        // expr = oror (" | " oror)*
+        / expr = oror (" | " oror)*
         var m = [ oror() ];
         while (reader.readMatch(" | ") !== null) {
             m.push(oror());
@@ -348,7 +348,7 @@ Matcher.parse = function(str) {
         return m.length === 1 ? m[0] : Matcher.alt.apply(Matcher, m);
     };
     oror = function() {
-        // oror = andand ( " || " andand)*
+        / oror = andand ( " || " andand)*
         var m = [ andand() ];
         while (reader.readMatch(" || ") !== null) {
             m.push(andand());
@@ -356,7 +356,7 @@ Matcher.parse = function(str) {
         return m.length === 1 ? m[0] : Matcher.oror.apply(Matcher, m);
     };
     andand = function() {
-        // andand = seq ( " && " seq)*
+        / andand = seq ( " && " seq)*
         var m = [ seq() ];
         while (reader.readMatch(" && ") !== null) {
             m.push(seq());
@@ -364,7 +364,7 @@ Matcher.parse = function(str) {
         return m.length === 1 ? m[0] : Matcher.andand.apply(Matcher, m);
     };
     seq = function() {
-        // seq = mod ( " " mod)*
+        / seq = mod ( " " mod)*
         var m = [ mod() ];
         while (reader.readMatch(/^ (?![&|\]])/) !== null) {
             m.push(mod());
@@ -372,7 +372,7 @@ Matcher.parse = function(str) {
         return m.length === 1 ? m[0] : Matcher.seq.apply(Matcher, m);
     };
     mod = function() {
-        // mod = term ( "?" | "*" | "+" | "#" | "{<num>,<num>}" )?
+        / mod = term ( "?" | "*" | "+" | "#" | "{<num>,<num>}" )?
         var m = term();
         if (reader.readMatch("?") !== null) {
             return m.question();
@@ -392,7 +392,7 @@ Matcher.parse = function(str) {
         return m;
     };
     term = function() {
-        // term = <nt> | literal | "[ " expression " ]"
+        / term = <nt> | literal | "[ " expression " ]"
         if (reader.readMatch("[ ") !== null) {
             var m = expr();
             eat(" ]");
@@ -423,7 +423,7 @@ Matcher.cast = function(m) {
  * Create a matcher for a single type.
  */
 Matcher.fromType = function(type) {
-    // Late require of ValidationTypes to break a dependency cycle.
+    / Late require of ValidationTypes to break a dependency cycle.
     var ValidationTypes = require("./ValidationTypes");
     return new Matcher(function(expression) {
         return expression.hasNext() && ValidationTypes.isType(expression, type);
@@ -494,8 +494,8 @@ Matcher.alt = function() {
 Matcher.many = function(required) {
     var ms = Array.prototype.slice.call(arguments, 1).reduce(function(acc, v) {
         if (v.expand) {
-            // Insert all of the options for the given complex rule as
-            // individual options.
+            / Insert all of the options for the given complex rule as
+            / individual options.
             var ValidationTypes = require("./ValidationTypes");
             acc.push.apply(acc, ValidationTypes.complex[v.expand].options);
         } else {
@@ -528,14 +528,14 @@ Matcher.many = function(required) {
                 expression.mark();
                 if (ms[i].match(expression)) {
                     seen[i] = true;
-                    // Increase matchCount iff this was a required element
-                    // (or if all the elements are optional)
+                    / Increase matchCount iff this was a required element
+                    / (or if all the elements are optional)
                     if (tryMatch(matchCount + ((required === false || required[i]) ? 1 : 0))) {
                         expression.drop();
                         return true;
                     }
-                    // Backtrack: try *not* matching using this rule, and
-                    // let's see if it leads to a better overall match.
+                    / Backtrack: try *not* matching using this rule, and
+                    / let's see if it leads to a better overall match.
                     expression.restore();
                     seen[i] = false;
                 } else {
@@ -545,8 +545,8 @@ Matcher.many = function(required) {
             return success(matchCount);
         };
         if (!tryMatch(0)) {
-            // Couldn't get a complete match, retrace our steps to make the
-            // match with the maximum # of required elements.
+            / Couldn't get a complete match, retrace our steps to make the
+            / match with the maximum # of required elements.
             pass++;
             tryMatch(0);
         }
@@ -554,7 +554,7 @@ Matcher.many = function(required) {
         if (required === false) {
             return max > 0;
         }
-        // Use finer-grained specification of which matchers are required.
+        / Use finer-grained specification of which matchers are required.
         for (var i = 0; i < ms.length; i++) {
             if (required[i] && !seen[i]) {
                 return false;
@@ -602,17 +602,17 @@ Matcher.oror = function() {
 /** Instance methods on Matchers. */
 Matcher.prototype = {
     constructor: Matcher,
-    // These are expected to be overridden in every instance.
+    / These are expected to be overridden in every instance.
     match: function() { throw new Error("unimplemented"); },
     toString: function() { throw new Error("unimplemented"); },
-    // This returns a standalone function to do the matching.
+    / This returns a standalone function to do the matching.
     func: function() { return this.match.bind(this); },
-    // Basic combinators
+    / Basic combinators
     then: function(m) { return Matcher.seq(this, m); },
     or: function(m) { return Matcher.alt(this, m); },
     andand: function(m) { return Matcher.many(true, this, m); },
     oror: function(m) { return Matcher.many(false, this, m); },
-    // Component value multipliers
+    / Component value multipliers
     star: function() { return this.braces(0, Infinity, "*"); },
     plus: function() { return this.braces(1, Infinity, "+"); },
     question: function() { return this.braces(0, 1, "?"); },
@@ -772,7 +772,7 @@ var Validation = require("./Validation");
  */
 function Parser(options) {
 
-    //inherit event functionality
+    /inherit event functionality
     EventTarget.call(this);
 
 
@@ -795,15 +795,15 @@ Parser.SELECTOR_SUB_PART_TYPE = 9;
 
 Parser.prototype = function() {
 
-    var proto = new EventTarget(),  //new prototype
+    var proto = new EventTarget(),  /new prototype
         prop,
         additions =  {
             __proto__: null,
 
-            //restore constructor
+            /restore constructor
             constructor: Parser,
 
-            //instance constants - yuck
+            /instance constants - yuck
             DEFAULT_TYPE : 0,
             COMBINATOR_TYPE : 1,
             MEDIA_FEATURE_TYPE : 2,
@@ -815,9 +815,9 @@ Parser.prototype = function() {
             SELECTOR_PART_TYPE : 8,
             SELECTOR_SUB_PART_TYPE : 9,
 
-            //-----------------------------------------------------------------
-            // Grammar
-            //-----------------------------------------------------------------
+            /-----------------------------------------------------------------
+            / Grammar
+            /-----------------------------------------------------------------
 
             _stylesheet: function() {
 
@@ -837,27 +837,27 @@ Parser.prototype = function() {
 
                 this.fire("startstylesheet");
 
-                //try to read character set
+                /try to read character set
                 this._charset();
 
                 this._skipCruft();
 
-                //try to read imports - may be more than one
+                /try to read imports - may be more than one
                 while (tokenStream.peek() === Tokens.IMPORT_SYM) {
                     this._import();
                     this._skipCruft();
                 }
 
-                //try to read namespaces - may be more than one
+                /try to read namespaces - may be more than one
                 while (tokenStream.peek() === Tokens.NAMESPACE_SYM) {
                     this._namespace();
                     this._skipCruft();
                 }
 
-                //get the next token
+                /get the next token
                 tt = tokenStream.peek();
 
-                //try to read the rest
+                /try to read the rest
                 while (tt > Tokens.EOF) {
 
                     try {
@@ -891,11 +891,11 @@ Parser.prototype = function() {
                                 this._supports();
                                 this._skipCruft();
                                 break;
-                            case Tokens.UNKNOWN_SYM:  //unknown @ rule
+                            case Tokens.UNKNOWN_SYM:  /unknown @ rule
                                 tokenStream.get();
                                 if (!this.options.strict) {
 
-                                    //fire error event
+                                    /fire error event
                                     this.fire({
                                         type:       "error",
                                         error:      null,
@@ -904,10 +904,10 @@ Parser.prototype = function() {
                                         col:        tokenStream.LT(0).startCol
                                     });
 
-                                    //skip braces
+                                    /skip braces
                                     count=0;
                                     while (tokenStream.advance([Tokens.LBRACE, Tokens.RBRACE]) === Tokens.LBRACE) {
-                                        count++;    //keep track of nesting depth
+                                        count++;    /keep track of nesting depth
                                     }
 
                                     while (count) {
@@ -916,7 +916,7 @@ Parser.prototype = function() {
                                     }
 
                                 } else {
-                                    //not a syntax error, rethrow it
+                                    /not a syntax error, rethrow it
                                     throw new SyntaxError("Unknown @ rule.", tokenStream.LT(0).startLine, tokenStream.LT(0).startCol);
                                 }
                                 break;
@@ -926,7 +926,7 @@ Parser.prototype = function() {
                             default:
                                 if (!this._ruleset()) {
 
-                                    //error handling for known issues
+                                    /error handling for known issues
                                     switch (tt) {
                                         case Tokens.CHARSET_SYM:
                                             token = tokenStream.LT(1);
@@ -941,7 +941,7 @@ Parser.prototype = function() {
                                             this._namespace(false);
                                             throw new SyntaxError("@namespace not allowed here.", token.startLine, token.startCol);
                                         default:
-                                            tokenStream.get();  //get the last token
+                                            tokenStream.get();  /get the last token
                                             this._unexpectedToken(tokenStream.token());
                                     }
 
@@ -1014,21 +1014,21 @@ Parser.prototype = function() {
                     importToken,
                     mediaList   = [];
 
-                //read import symbol
+                /read import symbol
                 tokenStream.mustMatch(Tokens.IMPORT_SYM);
                 importToken = tokenStream.token();
                 this._readWhitespace();
 
                 tokenStream.mustMatch([Tokens.STRING, Tokens.URI]);
 
-                //grab the URI value
+                /grab the URI value
                 uri = tokenStream.token().value.replace(/^(?:url\()?["']?([^"']+?)["']?\)?$/, "$1");
 
                 this._readWhitespace();
 
                 mediaList = this._media_query_list();
 
-                //must end with a semicolon
+                /must end with a semicolon
                 tokenStream.mustMatch(Tokens.SEMICOLON);
                 this._readWhitespace();
 
@@ -1056,13 +1056,13 @@ Parser.prototype = function() {
                     prefix,
                     uri;
 
-                //read import symbol
+                /read import symbol
                 tokenStream.mustMatch(Tokens.NAMESPACE_SYM);
                 line = tokenStream.token().startLine;
                 col = tokenStream.token().startCol;
                 this._readWhitespace();
 
-                //it's a namespace prefix - no _namespace_prefix() method because it's just an IDENT
+                /it's a namespace prefix - no _namespace_prefix() method because it's just an IDENT
                 if (tokenStream.match(Tokens.IDENT)) {
                     prefix = tokenStream.token().value;
                     this._readWhitespace();
@@ -1073,12 +1073,12 @@ Parser.prototype = function() {
                     tokenStream.mustMatch(Tokens.URI);
                 }*/
 
-                //grab the URI value
+                /grab the URI value
                 uri = tokenStream.token().value.replace(/(?:url\()?["']([^"']+)["']\)?/, "$1");
 
                 this._readWhitespace();
 
-                //must end with a semicolon
+                /must end with a semicolon
                 tokenStream.mustMatch(Tokens.SEMICOLON);
                 this._readWhitespace();
 
@@ -1188,7 +1188,7 @@ Parser.prototype = function() {
                 if (tokenStream.match(Tokens.LPAREN)) {
                     this._readWhitespace();
                     if (tokenStream.match(Tokens.IDENT)) {
-                        // look ahead for not keyword, if not given, continue with declaration condition.
+                        / look ahead for not keyword, if not given, continue with declaration condition.
                         ident = tokenStream.token().value.toLowerCase();
                         if (ident === "not") {
                             this._readWhitespace();
@@ -1234,9 +1234,9 @@ Parser.prototype = function() {
                 var tokenStream     = this._tokenStream,
                     line,
                     col,
-                    mediaList;//       = [];
+                    mediaList;/       = [];
 
-                //look for @media
+                /look for @media
                 tokenStream.mustMatch(Tokens.MEDIA_SYM);
                 line = tokenStream.token().startLine;
                 col = tokenStream.token().startCol;
@@ -1285,7 +1285,7 @@ Parser.prototype = function() {
             },
 
 
-            //CSS3 Media Queries
+            /CSS3 Media Queries
             _media_query_list: function() {
                 /*
                  * media_query_list
@@ -1331,7 +1331,7 @@ Parser.prototype = function() {
                 if (tokenStream.match(Tokens.IDENT)) {
                     ident = tokenStream.token().value.toLowerCase();
 
-                    //since there's no custom tokens for these, need to manually check
+                    /since there's no custom tokens for these, need to manually check
                     if (ident !== "only" && ident !== "not") {
                         tokenStream.unget();
                         ident = null;
@@ -1371,7 +1371,7 @@ Parser.prototype = function() {
                 return new MediaQuery(ident, type, expressions, token.startLine, token.startCol);
             },
 
-            //CSS3 Media Queries
+            /CSS3 Media Queries
             _media_type: function() {
                 /*
                  * media_type
@@ -1417,7 +1417,7 @@ Parser.prototype = function() {
                 return new MediaFeature(feature, expression ? new SyntaxUnit(expression, token.startLine, token.startCol) : null);
             },
 
-            //CSS3 Media Queries
+            /CSS3 Media Queries
             _media_feature: function() {
                 /*
                  * media_feature
@@ -1433,7 +1433,7 @@ Parser.prototype = function() {
                 return SyntaxUnit.fromToken(tokenStream.token());
             },
 
-            //CSS3 Paged Media
+            /CSS3 Paged Media
             _page: function() {
                 /*
                  * page:
@@ -1447,7 +1447,7 @@ Parser.prototype = function() {
                     identifier  = null,
                     pseudoPage  = null;
 
-                //look for @page
+                /look for @page
                 tokenStream.mustMatch(Tokens.PAGE_SYM);
                 line = tokenStream.token().startLine;
                 col = tokenStream.token().startCol;
@@ -1457,13 +1457,13 @@ Parser.prototype = function() {
                 if (tokenStream.match(Tokens.IDENT)) {
                     identifier = tokenStream.token().value;
 
-                    //The value 'auto' may not be used as a page name and MUST be treated as a syntax error.
+                    /The value 'auto' may not be used as a page name and MUST be treated as a syntax error.
                     if (identifier.toLowerCase() === "auto") {
                         this._unexpectedToken(tokenStream.token());
                     }
                 }
 
-                //see if there's a colon upcoming
+                /see if there's a colon upcoming
                 if (tokenStream.peek() === Tokens.COLON) {
                     pseudoPage = this._pseudo_page();
                 }
@@ -1490,7 +1490,7 @@ Parser.prototype = function() {
 
             },
 
-            //CSS3 Paged Media
+            /CSS3 Paged Media
             _margin: function() {
                 /*
                  * margin :
@@ -1527,7 +1527,7 @@ Parser.prototype = function() {
                 }
             },
 
-            //CSS3 Paged Media
+            /CSS3 Paged Media
             _margin_sym: function() {
 
                 /*
@@ -1579,7 +1579,7 @@ Parser.prototype = function() {
                 tokenStream.mustMatch(Tokens.COLON);
                 tokenStream.mustMatch(Tokens.IDENT);
 
-                //TODO: CSS3 Paged Media says only "left", "center", and "right" are allowed
+                /TODO: CSS3 Paged Media says only "left", "center", and "right" are allowed
 
                 return tokenStream.token().value;
             },
@@ -1595,7 +1595,7 @@ Parser.prototype = function() {
                     line,
                     col;
 
-                //look for @page
+                /look for @page
                 tokenStream.mustMatch(Tokens.FONT_FACE_SYM);
                 line = tokenStream.token().startLine;
                 col = tokenStream.token().startCol;
@@ -1824,7 +1824,7 @@ Parser.prototype = function() {
                     line,
                     col;
 
-                //check for star hack - throws error if not allowed
+                /check for star hack - throws error if not allowed
                 if (tokenStream.peek() === Tokens.STAR && this.options.starHack) {
                     tokenStream.get();
                     token = tokenStream.token();
@@ -1837,7 +1837,7 @@ Parser.prototype = function() {
                     token = tokenStream.token();
                     tokenValue = token.value;
 
-                    //check for underscore hack - no error if not allowed because it's valid CSS syntax
+                    /check for underscore hack - no error if not allowed because it's valid CSS syntax
                     if (tokenValue.charAt(0) === "_" && this.options.underscoreHack) {
                         hack = "_";
                         tokenValue = tokenValue.substring(1);
@@ -1850,7 +1850,7 @@ Parser.prototype = function() {
                 return value;
             },
 
-            //Augmented with CSS3 Selectors
+            /Augmented with CSS3 Selectors
             _ruleset: function() {
                 /*
                  * ruleset
@@ -1873,7 +1873,7 @@ Parser.prototype = function() {
                 } catch (ex) {
                     if (ex instanceof SyntaxError && !this.options.strict) {
 
-                        //fire error event
+                        /fire error event
                         this.fire({
                             type:       "error",
                             error:      ex,
@@ -1882,25 +1882,25 @@ Parser.prototype = function() {
                             col:        ex.col
                         });
 
-                        //skip over everything until closing brace
+                        /skip over everything until closing brace
                         tt = tokenStream.advance([Tokens.RBRACE]);
                         if (tt === Tokens.RBRACE) {
-                            //if there's a right brace, the rule is finished so don't do anything
+                            /if there's a right brace, the rule is finished so don't do anything
                         } else {
-                            //otherwise, rethrow the error because it wasn't handled properly
+                            /otherwise, rethrow the error because it wasn't handled properly
                             throw ex;
                         }
 
                     } else {
-                        //not a syntax error, rethrow it
+                        /not a syntax error, rethrow it
                         throw ex;
                     }
 
-                    //trigger parser to continue
+                    /trigger parser to continue
                     return true;
                 }
 
-                //if it got here, all selectors parsed
+                /if it got here, all selectors parsed
                 if (selectors) {
 
                     this.fire({
@@ -1925,7 +1925,7 @@ Parser.prototype = function() {
 
             },
 
-            //CSS3 Selectors
+            /CSS3 Selectors
             _selectors_group: function() {
 
                 /*
@@ -1955,7 +1955,7 @@ Parser.prototype = function() {
                 return selectors.length ? selectors : null;
             },
 
-            //CSS3 Selectors
+            /CSS3 Selectors
             _selector: function() {
                 /*
                  * selector
@@ -1969,7 +1969,7 @@ Parser.prototype = function() {
                     combinator  = null,
                     ws          = null;
 
-                //if there's no simple selector, then there's no selector
+                /if there's no simple selector, then there's no selector
                 nextSelector = this._simple_selector_sequence();
                 if (nextSelector === null) {
                     return null;
@@ -1979,33 +1979,33 @@ Parser.prototype = function() {
 
                 do {
 
-                    //look for a combinator
+                    /look for a combinator
                     combinator = this._combinator();
 
                     if (combinator !== null) {
                         selector.push(combinator);
                         nextSelector = this._simple_selector_sequence();
 
-                        //there must be a next selector
+                        /there must be a next selector
                         if (nextSelector === null) {
                             this._unexpectedToken(tokenStream.LT(1));
                         } else {
 
-                            //nextSelector is an instance of SelectorPart
+                            /nextSelector is an instance of SelectorPart
                             selector.push(nextSelector);
                         }
                     } else {
 
-                        //if there's not whitespace, we're done
+                        /if there's not whitespace, we're done
                         if (this._readWhitespace()) {
 
-                            //add whitespace separator
+                            /add whitespace separator
                             ws = new Combinator(tokenStream.token().value, tokenStream.token().startLine, tokenStream.token().startCol);
 
-                            //combinator is not required
+                            /combinator is not required
                             combinator = this._combinator();
 
-                            //selector is required if there's a combinator
+                            /selector is required if there's a combinator
                             nextSelector = this._simple_selector_sequence();
                             if (nextSelector === null) {
                                 if (combinator !== null) {
@@ -2031,7 +2031,7 @@ Parser.prototype = function() {
                 return new Selector(selector, selector[0].line, selector[0].col);
             },
 
-            //CSS3 Selectors
+            /CSS3 Selectors
             _simple_selector_sequence: function() {
                 /*
                  * simple_selector_sequence
@@ -2043,16 +2043,16 @@ Parser.prototype = function() {
 
                 var tokenStream = this._tokenStream,
 
-                    //parts of a simple selector
+                    /parts of a simple selector
                     elementName = null,
                     modifiers   = [],
 
-                    //complete selector text
+                    /complete selector text
                     selectorText= "",
 
-                    //the different parts after the element name to search for
+                    /the different parts after the element name to search for
                     components  = [
-                        //HASH
+                        /HASH
                         function() {
                             return tokenStream.match(Tokens.HASH) ?
                                     new SelectorSubPart(tokenStream.token().value, "id", tokenStream.token().startLine, tokenStream.token().startCol) :
@@ -2070,7 +2070,7 @@ Parser.prototype = function() {
                     col;
 
 
-                //get starting line and column for the selector
+                /get starting line and column for the selector
                 line = tokenStream.LT(1).startLine;
                 col = tokenStream.LT(1).startCol;
 
@@ -2085,19 +2085,19 @@ Parser.prototype = function() {
 
                 while (true) {
 
-                    //whitespace means we're done
+                    /whitespace means we're done
                     if (tokenStream.peek() === Tokens.S) {
                         break;
                     }
 
-                    //check for each component
+                    /check for each component
                     while (i < len && component === null) {
                         component = components[i++].call(this);
                     }
 
                     if (component === null) {
 
-                        //we don't have a selector
+                        /we don't have a selector
                         if (selectorText === "") {
                             return null;
                         } else {
@@ -2117,7 +2117,7 @@ Parser.prototype = function() {
                         null;
             },
 
-            //CSS3 Selectors
+            /CSS3 Selectors
             _type_selector: function() {
                 /*
                  * type_selector
@@ -2153,7 +2153,7 @@ Parser.prototype = function() {
                 }
             },
 
-            //CSS3 Selectors
+            /CSS3 Selectors
             _class: function() {
                 /*
                  * class
@@ -2174,7 +2174,7 @@ Parser.prototype = function() {
 
             },
 
-            //CSS3 Selectors
+            /CSS3 Selectors
             _element_name: function() {
                 /*
                  * element_name
@@ -2194,7 +2194,7 @@ Parser.prototype = function() {
                 }
             },
 
-            //CSS3 Selectors
+            /CSS3 Selectors
             _namespace_prefix: function() {
                 /*
                  * namespace_prefix
@@ -2204,7 +2204,7 @@ Parser.prototype = function() {
                 var tokenStream = this._tokenStream,
                     value       = "";
 
-                //verify that this is a namespace prefix
+                /verify that this is a namespace prefix
                 if (tokenStream.LA(1) === Tokens.PIPE || tokenStream.LA(2) === Tokens.PIPE) {
 
                     if (tokenStream.match([Tokens.IDENT, Tokens.STAR])) {
@@ -2219,7 +2219,7 @@ Parser.prototype = function() {
                 return value.length ? value : null;
             },
 
-            //CSS3 Selectors
+            /CSS3 Selectors
             _universal: function() {
                 /*
                  * universal
@@ -2243,7 +2243,7 @@ Parser.prototype = function() {
 
             },
 
-            //CSS3 Selectors
+            /CSS3 Selectors
             _attrib: function() {
                 /*
                  * attrib
@@ -2297,7 +2297,7 @@ Parser.prototype = function() {
                 }
             },
 
-            //CSS3 Selectors
+            /CSS3 Selectors
             _pseudo: function() {
 
                 /*
@@ -2340,7 +2340,7 @@ Parser.prototype = function() {
                 return pseudo;
             },
 
-            //CSS3 Selectors
+            /CSS3 Selectors
             _functional_pseudo: function() {
                 /*
                  * functional_pseudo
@@ -2362,7 +2362,7 @@ Parser.prototype = function() {
                 return value;
             },
 
-            //CSS3 Selectors
+            /CSS3 Selectors
             _expression: function() {
                 /*
                  * expression
@@ -2386,7 +2386,7 @@ Parser.prototype = function() {
 
             },
 
-            //CSS3 Selectors
+            /CSS3 Selectors
             _negation: function() {
                 /*
                  * negation
@@ -2419,7 +2419,7 @@ Parser.prototype = function() {
                 return subpart;
             },
 
-            //CSS3 Selectors
+            /CSS3 Selectors
             _negation_arg: function() {
                 /*
                  * negation_arg
@@ -2456,12 +2456,12 @@ Parser.prototype = function() {
                     i++;
                 }
 
-                //must be a negation arg
+                /must be a negation arg
                 if (arg === null) {
                     this._unexpectedToken(tokenStream.LT(1));
                 }
 
-                //it's an element name
+                /it's an element name
                 if (arg.type === "elementName") {
                     part = new SelectorPart(arg, [], arg.toString(), line, col);
                 } else {
@@ -2495,7 +2495,7 @@ Parser.prototype = function() {
 
                     expr = this._expr();
 
-                    //if there's no parts for the value, it's an error
+                    /if there's no parts for the value, it's an error
                     if (!expr || expr.length === 0) {
                         this._unexpectedToken(tokenStream.LT(1));
                     }
@@ -2558,7 +2558,7 @@ Parser.prototype = function() {
                  */
 
                 var values      = [],
-                    //valueParts    = [],
+                    /valueParts    = [],
                     value       = null,
                     operator    = null;
 
@@ -2570,11 +2570,11 @@ Parser.prototype = function() {
                     do {
                         operator = this._operator(inFunction);
 
-                        //if there's an operator, keep building up the value parts
+                        /if there's an operator, keep building up the value parts
                         if (operator) {
                             values.push(operator);
                         } /*else {
-                            //if there's not an operator, you have a full value
+                            /if there's not an operator, you have a full value
                             values.push(new PropertyValue(valueParts, valueParts[0].line, valueParts[0].col));
                             valueParts = [];
                         }*/
@@ -2589,7 +2589,7 @@ Parser.prototype = function() {
                     } while (true);
                 }
 
-                //cleanup
+                /cleanup
                 /*if (valueParts.length) {
                     values.push(new PropertyValue(valueParts, valueParts[0].line, valueParts[0].col));
                 }*/
@@ -2617,14 +2617,14 @@ Parser.prototype = function() {
                     line,
                     col;
 
-                //returns the operator or null
+                /returns the operator or null
                 unary = this._unary_operator();
                 if (unary !== null) {
                     line = tokenStream.token().startLine;
                     col = tokenStream.token().startCol;
                 }
 
-                //exception for IE filters
+                /exception for IE filters
                 if (tokenStream.peek() === Tokens.IE_FUNCTION && this.options.ieFilters) {
 
                     value = this._ie_function();
@@ -2633,7 +2633,7 @@ Parser.prototype = function() {
                         col = tokenStream.token().startCol;
                     }
 
-                //see if it's a simple block
+                /see if it's a simple block
                 } else if (inFunction && tokenStream.match([Tokens.LPAREN, Tokens.LBRACE, Tokens.LBRACKET])) {
 
                     token = tokenStream.token();
@@ -2647,7 +2647,7 @@ Parser.prototype = function() {
                     value += endChar;
                     this._readWhitespace();
 
-                //see if there's a simple match
+                /see if there's a simple match
                 } else if (tokenStream.match([Tokens.NUMBER, Tokens.PERCENTAGE, Tokens.LENGTH,
                         Tokens.ANGLE, Tokens.TIME,
                         Tokens.FREQ, Tokens.STRING, Tokens.IDENT, Tokens.URI, Tokens.UNICODE_RANGE])) {
@@ -2656,24 +2656,24 @@ Parser.prototype = function() {
                     if (unary === null) {
                         line = tokenStream.token().startLine;
                         col = tokenStream.token().startCol;
-                        // Correct potentially-inaccurate IDENT parsing in
-                        // PropertyValuePart constructor.
+                        / Correct potentially-inaccurate IDENT parsing in
+                        / PropertyValuePart constructor.
                         part = PropertyValuePart.fromToken(tokenStream.token());
                     }
                     this._readWhitespace();
                 } else {
 
-                    //see if it's a color
+                    /see if it's a color
                     token = this._hexcolor();
                     if (token === null) {
 
-                        //if there's no unary, get the start of the next token for line/col info
+                        /if there's no unary, get the start of the next token for line/col info
                         if (unary === null) {
                             line = tokenStream.LT(1).startLine;
                             col = tokenStream.LT(1).startCol;
                         }
 
-                        //has to be a function
+                        /has to be a function
                         if (value === null) {
 
                             /*
@@ -2689,7 +2689,7 @@ Parser.prototype = function() {
 
                         /*if (value === null) {
                             return null;
-                            //throw new Error("Expected identifier at line " + tokenStream.token().startLine + ", character " +  tokenStream.token().startCol + ".");
+                            /throw new Error("Expected identifier at line " + tokenStream.token().startLine + ", character " +  tokenStream.token().startCol + ".");
                         }*/
 
                     } else {
@@ -2727,7 +2727,7 @@ Parser.prototype = function() {
                     expr = this._expr(true);
                     functionText += expr;
 
-                    //START: Horrible hack in case it's an IE filter
+                    /START: Horrible hack in case it's an IE filter
                     if (this.options.ieFilters && tokenStream.peek() === Tokens.EQUALS) {
                         do {
 
@@ -2735,7 +2735,7 @@ Parser.prototype = function() {
                                 functionText += tokenStream.token().value;
                             }
 
-                            //might be second time in the loop
+                            /might be second time in the loop
                             if (tokenStream.LA(0) === Tokens.COMMA) {
                                 functionText += tokenStream.token().value;
                             }
@@ -2746,7 +2746,7 @@ Parser.prototype = function() {
                             tokenStream.match(Tokens.EQUALS);
                             functionText += tokenStream.token().value;
 
-                            //functionText += this._term();
+                            /functionText += this._term();
                             lt = tokenStream.peek();
                             while (lt !== Tokens.COMMA && lt !== Tokens.S && lt !== Tokens.RPAREN) {
                                 tokenStream.get();
@@ -2756,7 +2756,7 @@ Parser.prototype = function() {
                         } while (tokenStream.match([Tokens.COMMA, Tokens.S]));
                     }
 
-                    //END: Horrible Hack
+                    /END: Horrible Hack
 
                     tokenStream.match(Tokens.RPAREN);
                     functionText += ")";
@@ -2778,7 +2778,7 @@ Parser.prototype = function() {
                     functionText = null,
                     lt;
 
-                //IE function can begin like a regular function, too
+                /IE function can begin like a regular function, too
                 if (tokenStream.match([Tokens.IE_FUNCTION, Tokens.FUNCTION])) {
                     functionText = tokenStream.token().value;
 
@@ -2788,7 +2788,7 @@ Parser.prototype = function() {
                             functionText += tokenStream.token().value;
                         }
 
-                        //might be second time in the loop
+                        /might be second time in the loop
                         if (tokenStream.LA(0) === Tokens.COMMA) {
                             functionText += tokenStream.token().value;
                         }
@@ -2799,7 +2799,7 @@ Parser.prototype = function() {
                         tokenStream.match(Tokens.EQUALS);
                         functionText += tokenStream.token().value;
 
-                        //functionText += this._term();
+                        /functionText += this._term();
                         lt = tokenStream.peek();
                         while (lt !== Tokens.COMMA && lt !== Tokens.S && lt !== Tokens.RPAREN) {
                             tokenStream.get();
@@ -2833,7 +2833,7 @@ Parser.prototype = function() {
 
                 if (tokenStream.match(Tokens.HASH)) {
 
-                    //need to do some validation here
+                    /need to do some validation here
 
                     token = tokenStream.token();
                     color = token.value;
@@ -2846,9 +2846,9 @@ Parser.prototype = function() {
                 return token;
             },
 
-            //-----------------------------------------------------------------
-            // Animations methods
-            //-----------------------------------------------------------------
+            /-----------------------------------------------------------------
+            / Animations methods
+            /-----------------------------------------------------------------
 
             _keyframes: function() {
 
@@ -2886,7 +2886,7 @@ Parser.prototype = function() {
                 this._readWhitespace();
                 tt = tokenStream.peek();
 
-                //check for key
+                /check for key
                 while (tt === Tokens.IDENT || tt === Tokens.PERCENTAGE) {
                     this._keyframe_rule();
                     this._readWhitespace();
@@ -2959,7 +2959,7 @@ Parser.prototype = function() {
                 var tokenStream = this._tokenStream,
                     keyList = [];
 
-                //must be least one key
+                /must be least one key
                 keyList.push(this._key());
 
                 this._readWhitespace();
@@ -2998,13 +2998,13 @@ Parser.prototype = function() {
                     tokenStream.unget();
                 }
 
-                //if it gets here, there wasn't a valid token, so time to explode
+                /if it gets here, there wasn't a valid token, so time to explode
                 this._unexpectedToken(tokenStream.LT(1));
             },
 
-            //-----------------------------------------------------------------
-            // Helper methods
-            //-----------------------------------------------------------------
+            /-----------------------------------------------------------------
+            / Helper methods
+            /-----------------------------------------------------------------
 
             /**
              * Not part of CSS grammar, but useful for skipping over
@@ -3015,7 +3015,7 @@ Parser.prototype = function() {
              */
             _skipCruft: function() {
                 while (this._tokenStream.match([Tokens.S, Tokens.CDO, Tokens.CDC])) {
-                    //noop
+                    /noop
                 }
             },
 
@@ -3058,7 +3058,7 @@ Parser.prototype = function() {
                     while (true) {
 
                         if (tokenStream.match(Tokens.SEMICOLON) || (readMargins && this._margin())) {
-                            //noop
+                            /noop
                         } else if (this._declaration()) {
                             if (!tokenStream.match(Tokens.SEMICOLON)) {
                                 break;
@@ -3067,9 +3067,9 @@ Parser.prototype = function() {
                             break;
                         }
 
-                        //if ((!this._margin() && !this._declaration()) || !tokenStream.match(Tokens.SEMICOLON)){
-                        //    break;
-                        //}
+                        /if ((!this._margin() && !this._declaration()) || !tokenStream.match(Tokens.SEMICOLON)){
+                        /    break;
+                        /}
                         this._readWhitespace();
                     }
 
@@ -3079,7 +3079,7 @@ Parser.prototype = function() {
                 } catch (ex) {
                     if (ex instanceof SyntaxError && !this.options.strict) {
 
-                        //fire error event
+                        /fire error event
                         this.fire({
                             type:       "error",
                             error:      ex,
@@ -3088,19 +3088,19 @@ Parser.prototype = function() {
                             col:        ex.col
                         });
 
-                        //see if there's another declaration
+                        /see if there's another declaration
                         tt = tokenStream.advance([Tokens.SEMICOLON, Tokens.RBRACE]);
                         if (tt === Tokens.SEMICOLON) {
-                            //if there's a semicolon, then there might be another declaration
+                            /if there's a semicolon, then there might be another declaration
                             this._readDeclarations(false, readMargins);
                         } else if (tt !== Tokens.RBRACE) {
-                            //if there's a right brace, the rule is finished so don't do anything
-                            //otherwise, rethrow the error because it wasn't handled properly
+                            /if there's a right brace, the rule is finished so don't do anything
+                            /otherwise, rethrow the error because it wasn't handled properly
                             throw ex;
                         }
 
                     } else {
-                        //not a syntax error, rethrow it
+                        /not a syntax error, rethrow it
                         throw ex;
                     }
                 }
@@ -3152,16 +3152,16 @@ Parser.prototype = function() {
                 }
             },
 
-            //-----------------------------------------------------------------
-            // Validation methods
-            //-----------------------------------------------------------------
+            /-----------------------------------------------------------------
+            / Validation methods
+            /-----------------------------------------------------------------
             _validateProperty: function(property, value) {
                 Validation.validate(property, value);
             },
 
-            //-----------------------------------------------------------------
-            // Parsing methods
-            //-----------------------------------------------------------------
+            /-----------------------------------------------------------------
+            / Parsing methods
+            /-----------------------------------------------------------------
 
             parse: function(input) {
                 this._tokenStream = new TokenStream(input, Tokens);
@@ -3169,7 +3169,7 @@ Parser.prototype = function() {
             },
 
             parseStyleSheet: function(input) {
-                //just passthrough
+                /just passthrough
                 return this.parse(input);
             },
 
@@ -3177,10 +3177,10 @@ Parser.prototype = function() {
                 this._tokenStream = new TokenStream(input, Tokens);
                 var result = this._media_query();
 
-                //if there's anything more, then it's an invalid selector
+                /if there's anything more, then it's an invalid selector
                 this._verifyEnd();
 
-                //otherwise return result
+                /otherwise return result
                 return result;
             },
 
@@ -3197,13 +3197,13 @@ Parser.prototype = function() {
 
                 var result = this._expr();
 
-                //okay to have a trailing white space
+                /okay to have a trailing white space
                 this._readWhitespace();
 
-                //if there's anything more, then it's an invalid selector
+                /if there's anything more, then it's an invalid selector
                 this._verifyEnd();
 
-                //otherwise return result
+                /otherwise return result
                 return result;
             },
 
@@ -3217,18 +3217,18 @@ Parser.prototype = function() {
             parseRule: function(input) {
                 this._tokenStream = new TokenStream(input, Tokens);
 
-                //skip any leading white space
+                /skip any leading white space
                 this._readWhitespace();
 
                 var result = this._ruleset();
 
-                //skip any trailing white space
+                /skip any trailing white space
                 this._readWhitespace();
 
-                //if there's anything more, then it's an invalid selector
+                /if there's anything more, then it's an invalid selector
                 this._verifyEnd();
 
-                //otherwise return result
+                /otherwise return result
                 return result;
             },
 
@@ -3243,18 +3243,18 @@ Parser.prototype = function() {
 
                 this._tokenStream = new TokenStream(input, Tokens);
 
-                //skip any leading white space
+                /skip any leading white space
                 this._readWhitespace();
 
                 var result = this._selector();
 
-                //skip any trailing white space
+                /skip any trailing white space
                 this._readWhitespace();
 
-                //if there's anything more, then it's an invalid selector
+                /if there's anything more, then it's an invalid selector
                 this._verifyEnd();
 
-                //otherwise return result
+                /otherwise return result
                 return result;
             },
 
@@ -3266,13 +3266,13 @@ Parser.prototype = function() {
              * @method parseStyleAttribute
              */
             parseStyleAttribute: function(input) {
-                input += "}"; // for error recovery in _readDeclarations()
+                input += "}"; / for error recovery in _readDeclarations()
                 this._tokenStream = new TokenStream(input, Tokens);
                 this._readDeclarations();
             }
         };
 
-    //copy over onto prototype
+    /copy over onto prototype
     for (prop in additions) {
         if (Object.prototype.hasOwnProperty.call(additions, prop)) {
             proto[prop] = additions[prop];
@@ -3298,7 +3298,7 @@ nth
 var Properties = module.exports = {
     __proto__: null,
 
-    //A
+    /A
     "align-items"                   : "flex-start | flex-end | center | baseline | stretch",
     "align-content"                 : "flex-start | flex-end | center | space-between | space-around | stretch",
     "align-self"                    : "auto | flex-start | flex-end | center | baseline | stretch",
@@ -3318,7 +3318,7 @@ var Properties = module.exports = {
     "animation-play-state"          : "[ running | paused ]#",
     "animation-timing-function"     : 1,
 
-    //vendor prefixed
+    /vendor prefixed
     "-moz-animation-delay"               : "<time>#",
     "-moz-animation-direction"           : "[ normal | alternate ]#",
     "-moz-animation-duration"            : "<time>#",
@@ -3356,7 +3356,7 @@ var Properties = module.exports = {
 
     "azimuth"                       : "<azimuth>",
 
-    //B
+    /B
     "backface-visibility"           : "visible | hidden",
     "background"                    : 1,
     "background-attachment"         : "<attachment>#",
@@ -3435,7 +3435,7 @@ var Properties = module.exports = {
     "break-before"                  : "auto | always | avoid | left | right | page | column | avoid-page | avoid-column",
     "break-inside"                  : "auto | avoid | avoid-page | avoid-column",
 
-    //C
+    /C
     "caption-side"                  : "top | bottom",
     "clear"                         : "none | right | left | both",
     "clip"                          : "<shape> | auto",
@@ -3447,7 +3447,7 @@ var Properties = module.exports = {
     "color-interpolation-filters"   : "auto | sRGB | linearRGB",
     "color-profile"                 : 1,
     "color-rendering"               : "auto | optimizeSpeed | optimizeQuality",
-    "column-count"                  : "<integer> | auto",                      //https://www.w3.org/TR/css3-multicol/
+    "column-count"                  : "<integer> | auto",                      /https://www.w3.org/TR/css3-multicol/
     "column-fill"                   : "auto | balance",
     "column-gap"                    : "<length> | normal",
     "column-rule"                   : "<border-width> || <border-style> || <color>",
@@ -3466,7 +3466,7 @@ var Properties = module.exports = {
     "cue-before"                    : 1,
     "cursor"                        : 1,
 
-    //D
+    /D
     "direction"                     : "ltr | rtl",
     "display"                       : "inline | block | list-item | inline-block | table | inline-table | table-row-group | table-header-group | table-footer-group | table-row | table-column-group | table-column | table-cell | table-caption | grid | inline-grid | run-in | ruby | ruby-base | ruby-text | ruby-base-container | ruby-text-container | contents | none | -moz-box | -moz-inline-block | -moz-inline-box | -moz-inline-grid | -moz-inline-stack | -moz-inline-table | -moz-grid | -moz-grid-group | -moz-grid-line | -moz-groupbox | -moz-deck | -moz-popup | -moz-stack | -moz-marker | -webkit-box | -webkit-inline-box | -ms-flexbox | -ms-inline-flexbox | flex | -webkit-flex | inline-flex | -webkit-inline-flex",
     "dominant-baseline"             : "auto | use-script | no-change | reset-size | ideographic | alphabetic | hanging | mathematical | central | middle | text-after-edge | text-before-edge",
@@ -3477,12 +3477,12 @@ var Properties = module.exports = {
     "drop-initial-size"             : "auto | line | <length> | <percentage>",
     "drop-initial-value"            : "<integer>",
 
-    //E
+    /E
     "elevation"                     : "<angle> | below | level | above | higher | lower",
     "empty-cells"                   : "show | hide",
     "enable-background"             : 1,
 
-    //F
+    /F
     "fill"                          : "<paint>",
     "fill-opacity"                  : "<opacity-value>",
     "fill-rule"                     : "nonzero | evenodd",
@@ -3530,7 +3530,7 @@ var Properties = module.exports = {
     "font-variant-position"         : "normal | sub | super",
     "font-weight"                   : "<font-weight>",
 
-    //G
+    /G
     "glyph-orientation-horizontal"  : "<glyph-angle>",
     "glyph-orientation-vertical"    : "auto | <glyph-angle>",
     "grid"                          : 1,
@@ -3561,7 +3561,7 @@ var Properties = module.exports = {
     "grid-template-columns"         : 1,
     "grid-template-rows"            : 1,
 
-    //H
+    /H
     "hanging-punctuation"           : 1,
     "height"                        : "<margin-width> | <content-sizing>",
     "hyphenate-after"               : "<integer> | auto",
@@ -3571,7 +3571,7 @@ var Properties = module.exports = {
     "hyphenate-resource"            : 1,
     "hyphens"                       : "none | manual | auto",
 
-    //I
+    /I
     "icon"                          : 1,
     "image-orientation"             : "angle | auto",
     "image-rendering"               : "auto | optimizeSpeed | optimizeQuality",
@@ -3579,14 +3579,14 @@ var Properties = module.exports = {
     "ime-mode"                      : "auto | normal | active | inactive | disabled",
     "inline-box-align"              : "last | <integer>",
 
-    //J
+    /J
     "justify-content"               : "flex-start | flex-end | center | space-between | space-around",
     "-webkit-justify-content"       : "flex-start | flex-end | center | space-between | space-around",
 
-    //K
+    /K
     "kerning"                       : "auto | <length>",
 
-    //L
+    /L
     "left"                          : "<margin-width>",
     "letter-spacing"                : "<length> | normal",
     "line-height"                   : "<line-height>",
@@ -3600,7 +3600,7 @@ var Properties = module.exports = {
     "list-style-position"           : "inside | outside",
     "list-style-type"               : "disc | circle | square | decimal | decimal-leading-zero | lower-roman | upper-roman | lower-greek | lower-latin | upper-latin | armenian | georgian | lower-alpha | upper-alpha | none",
 
-    //M
+    /M
     "margin"                        : "<margin-width>{1,4}",
     "margin-bottom"                 : "<margin-width>",
     "margin-left"                   : "<margin-width>",
@@ -3625,14 +3625,14 @@ var Properties = module.exports = {
     "min-width"                     : "<length> | <percentage> | <content-sizing> | contain-floats | -moz-contain-floats | -webkit-contain-floats",
     "move-to"                       : 1,
 
-    //N
+    /N
     "nav-down"                      : 1,
     "nav-index"                     : 1,
     "nav-left"                      : 1,
     "nav-right"                     : 1,
     "nav-up"                        : 1,
 
-    //O
+    /O
     "object-fit"                    : "fill | contain | cover | none | scale-down",
     "object-position"               : "<position>",
     "opacity"                       : "<opacity-value>",
@@ -3650,7 +3650,7 @@ var Properties = module.exports = {
     "overflow-x"                    : 1,
     "overflow-y"                    : 1,
 
-    //P
+    /P
     "padding"                       : "<padding-width>{1,4}",
     "padding-bottom"                : "<padding-width>",
     "padding-left"                  : "<padding-width>",
@@ -3675,10 +3675,10 @@ var Properties = module.exports = {
     "presentation-level"            : 1,
     "punctuation-trim"              : 1,
 
-    //Q
+    /Q
     "quotes"                        : 1,
 
-    //R
+    /R
     "rendering-intent"              : 1,
     "resize"                        : 1,
     "rest"                          : 1,
@@ -3693,7 +3693,7 @@ var Properties = module.exports = {
     "ruby-position"                 : 1,
     "ruby-span"                     : 1,
 
-    //S
+    /S
     "shape-rendering"               : "auto | optimizeSpeed | crispEdges | geometricPrecision",
     "size"                          : 1,
     "speak"                         : "normal | none | spell-out",
@@ -3750,12 +3750,12 @@ var Properties = module.exports = {
     "transition-property"           : 1,
     "transition-timing-function"    : 1,
 
-    //U
+    /U
     "unicode-bidi"                  : "normal | embed | isolate | bidi-override | isolate-override | plaintext",
     "user-modify"                   : "read-only | read-write | write-only",
     "user-select"                   : "none | text | toggle | element | elements | all",
 
-    //V
+    /V
     "vertical-align"                : "auto | use-script | baseline | sub | super | top | text-top | central | middle | bottom | text-bottom | <percentage> | <length>",
     "visibility"                    : "visible | hidden | collapse",
     "voice-balance"                 : 1,
@@ -3768,8 +3768,8 @@ var Properties = module.exports = {
     "voice-volume"                  : 1,
     "volume"                        : 1,
 
-    //W
-    "white-space"                   : "normal | pre | nowrap | pre-wrap | pre-line | -pre-wrap | -o-pre-wrap | -moz-pre-wrap | -hp-pre-wrap",   // https://perishablepress.com/wrapping-content/
+    /W
+    "white-space"                   : "normal | pre | nowrap | pre-wrap | pre-line | -pre-wrap | -o-pre-wrap | -moz-pre-wrap | -hp-pre-wrap",   / https://perishablepress.com/wrapping-content/
     "white-space-collapse"          : 1,
     "widows"                        : "<integer>",
     "width"                         : "<length> | <percentage> | <content-sizing> | auto",
@@ -3779,7 +3779,7 @@ var Properties = module.exports = {
     "word-wrap"                     : "normal | break-word",
     "writing-mode"                  : "horizontal-tb | vertical-rl | vertical-lr | lr-tb | rl-tb | tb-rl | bt-rl | tb-lr | bt-lr | lr-bt | rl-bt | lr | rl | tb",
 
-    //Z
+    /Z
     "z-index"                       : "<integer> | auto",
     "zoom"                          : "<number> | <percentage> | normal"
 };
@@ -4033,17 +4033,17 @@ function PropertyValuePart(text, line, col, optionalHint) {
      */
     this.type = "unknown";
 
-    //figure out what type of data it is
+    /figure out what type of data it is
 
     var temp;
 
-    //it is a measurement?
-    if (/^([+\-]?[\d\.]+)([a-z]+)$/i.test(text)) {  //dimension
+    /it is a measurement?
+    if (/^([+\-]?[\d\.]+)([a-z]+)$/i.test(text)) {  /dimension
         this.type = "dimension";
         this.value = +RegExp.$1;
         this.units = RegExp.$2;
 
-        //try to narrow down
+        /try to narrow down
         switch (this.units.toLowerCase()) {
 
             case "em":
@@ -4089,21 +4089,21 @@ function PropertyValuePart(text, line, col, optionalHint) {
                 this.type = "resolution";
                 break;
 
-            //default
+            /default
 
         }
 
-    } else if (/^([+\-]?[\d\.]+)%$/i.test(text)) {  //percentage
+    } else if (/^([+\-]?[\d\.]+)%$/i.test(text)) {  /percentage
         this.type = "percentage";
         this.value = +RegExp.$1;
-    } else if (/^([+\-]?\d+)$/i.test(text)) {  //integer
+    } else if (/^([+\-]?\d+)$/i.test(text)) {  /integer
         this.type = "integer";
         this.value = +RegExp.$1;
-    } else if (/^([+\-]?[\d\.]+)$/i.test(text)) {  //number
+    } else if (/^([+\-]?[\d\.]+)$/i.test(text)) {  /number
         this.type = "number";
         this.value = +RegExp.$1;
 
-    } else if (/^#([a-f0-9]{3,6})/i.test(text)) {  //hexcolor
+    } else if (/^#([a-f0-9]{3,6})/i.test(text)) {  /hexcolor
         this.type = "color";
         temp = RegExp.$1;
         if (temp.length === 3) {
@@ -4115,54 +4115,54 @@ function PropertyValuePart(text, line, col, optionalHint) {
             this.green  = parseInt(temp.substring(2, 4), 16);
             this.blue   = parseInt(temp.substring(4, 6), 16);
         }
-    } else if (/^rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/i.test(text)) { //rgb() color with absolute numbers
+    } else if (/^rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/i.test(text)) { /rgb() color with absolute numbers
         this.type   = "color";
         this.red    = +RegExp.$1;
         this.green  = +RegExp.$2;
         this.blue   = +RegExp.$3;
-    } else if (/^rgb\(\s*(\d+)%\s*,\s*(\d+)%\s*,\s*(\d+)%\s*\)/i.test(text)) { //rgb() color with percentages
+    } else if (/^rgb\(\s*(\d+)%\s*,\s*(\d+)%\s*,\s*(\d+)%\s*\)/i.test(text)) { /rgb() color with percentages
         this.type   = "color";
         this.red    = +RegExp.$1 * 255 / 100;
         this.green  = +RegExp.$2 * 255 / 100;
         this.blue   = +RegExp.$3 * 255 / 100;
-    } else if (/^rgba\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*([\d\.]+)\s*\)/i.test(text)) { //rgba() color with absolute numbers
+    } else if (/^rgba\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*([\d\.]+)\s*\)/i.test(text)) { /rgba() color with absolute numbers
         this.type   = "color";
         this.red    = +RegExp.$1;
         this.green  = +RegExp.$2;
         this.blue   = +RegExp.$3;
         this.alpha  = +RegExp.$4;
-    } else if (/^rgba\(\s*(\d+)%\s*,\s*(\d+)%\s*,\s*(\d+)%\s*,\s*([\d\.]+)\s*\)/i.test(text)) { //rgba() color with percentages
+    } else if (/^rgba\(\s*(\d+)%\s*,\s*(\d+)%\s*,\s*(\d+)%\s*,\s*([\d\.]+)\s*\)/i.test(text)) { /rgba() color with percentages
         this.type   = "color";
         this.red    = +RegExp.$1 * 255 / 100;
         this.green  = +RegExp.$2 * 255 / 100;
         this.blue   = +RegExp.$3 * 255 / 100;
         this.alpha  = +RegExp.$4;
-    } else if (/^hsl\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*\)/i.test(text)) { //hsl()
+    } else if (/^hsl\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*\)/i.test(text)) { /hsl()
         this.type   = "color";
         this.hue    = +RegExp.$1;
         this.saturation = +RegExp.$2 / 100;
         this.lightness  = +RegExp.$3 / 100;
-    } else if (/^hsla\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*,\s*([\d\.]+)\s*\)/i.test(text)) { //hsla() color with percentages
+    } else if (/^hsla\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*,\s*([\d\.]+)\s*\)/i.test(text)) { /hsla() color with percentages
         this.type   = "color";
         this.hue    = +RegExp.$1;
         this.saturation = +RegExp.$2 / 100;
         this.lightness  = +RegExp.$3 / 100;
         this.alpha  = +RegExp.$4;
-    } else if (/^url\(("([^\\"]|\\.)*")\)/i.test(text)) { //URI
-        // generated by TokenStream.readURI, so always double-quoted.
+    } else if (/^url\(("([^\\"]|\\.)*")\)/i.test(text)) { /URI
+        / generated by TokenStream.readURI, so always double-quoted.
         this.type   = "uri";
         this.uri    = PropertyValuePart.parseString(RegExp.$1);
     } else if (/^([^\(]+)\(/i.test(text)) {
         this.type   = "function";
         this.name   = RegExp.$1;
         this.value  = text;
-    } else if (/^"([^\n\r\f\\"]|\\\r\n|\\[^\r0-9a-f]|\\[0-9a-f]{1,6}(\r\n|[ \n\r\t\f])?)*"/i.test(text)) {    //double-quoted string
+    } else if (/^"([^\n\r\f\\"]|\\\r\n|\\[^\r0-9a-f]|\\[0-9a-f]{1,6}(\r\n|[ \n\r\t\f])?)*"/i.test(text)) {    /double-quoted string
         this.type   = "string";
         this.value  = PropertyValuePart.parseString(text);
-    } else if (/^'([^\n\r\f\\']|\\\r\n|\\[^\r0-9a-f]|\\[0-9a-f]{1,6}(\r\n|[ \n\r\t\f])?)*'/i.test(text)) {    //single-quoted string
+    } else if (/^'([^\n\r\f\\']|\\\r\n|\\[^\r0-9a-f]|\\[0-9a-f]{1,6}(\r\n|[ \n\r\t\f])?)*'/i.test(text)) {    /single-quoted string
         this.type   = "string";
         this.value  = PropertyValuePart.parseString(text);
-    } else if (Colors[text.toLowerCase()]) {  //named color
+    } else if (Colors[text.toLowerCase()]) {  /named color
         this.type   = "color";
         temp        = Colors[text.toLowerCase()].substring(1);
         this.red    = parseInt(temp.substring(0, 2), 16);
@@ -4176,10 +4176,10 @@ function PropertyValuePart(text, line, col, optionalHint) {
         this.value  = text;
     }
 
-    // There can be ambiguity with escape sequences in identifiers, as
-    // well as with "color" parts which are also "identifiers", so record
-    // an explicit hint when the token generating this PropertyValuePart
-    // was an identifier.
+    / There can be ambiguity with escape sequences in identifiers, as
+    / well as with "color" parts which are also "identifiers", so record
+    / an explicit hint when the token generating this PropertyValuePart
+    / was an identifier.
     this.wasIdent = Boolean(hint.ident);
 
 }
@@ -4191,7 +4191,7 @@ PropertyValuePart.prototype.constructor = PropertyValuePart;
  * Helper method to parse a CSS string.
  */
 PropertyValuePart.parseString = function(str) {
-    str = str.slice(1, -1); // Strip surrounding single/double quotes
+    str = str.slice(1, -1); / Strip surrounding single/double quotes
     var replacer = function(match, esc) {
         if (/^(\n|\r\n|\r|\f)$/.test(esc)) {
             return "";
@@ -4202,7 +4202,7 @@ PropertyValuePart.parseString = function(str) {
             if (String.fromCodePoint) {
                 return String.fromCodePoint(codePoint);
             } else {
-                // XXX No support for surrogates on old JavaScript engines.
+                / XXX No support for surrogates on old JavaScript engines.
                 return String.fromCharCode(codePoint);
             }
         }
@@ -4221,8 +4221,8 @@ PropertyValuePart.serializeString = function(value) {
             return "\\" + c;
         }
         var cp = String.codePointAt ? String.codePointAt(0) :
-            // We only escape non-surrogate chars, so using charCodeAt
-            // is harmless here.
+            / We only escape non-surrogate chars, so using charCodeAt
+            / is harmless here.
             String.charCodeAt(0);
         return "\\" + cp.toString(16) + " ";
     };
@@ -4240,9 +4240,9 @@ PropertyValuePart.serializeString = function(value) {
  */
 PropertyValuePart.fromToken = function(token) {
     var part = new PropertyValuePart(token.value, token.startLine, token.startCol, {
-        // Tokens can have escaped characters that would fool the type
-        // identification in the PropertyValuePart constructor, so pass
-        // in a hint if this was an identifier.
+        / Tokens can have escaped characters that would fool the type
+        / identification in the PropertyValuePart constructor, so pass
+        / in a hint if this was an identifier.
         ident: token.type === Tokens.IDENT
     });
     return part;
@@ -4717,7 +4717,7 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
                  * - PERCENTAGE
                  */
                 case "-":
-                    if (reader.peek() === "-") {  //could be closing HTML-style comment
+                    if (reader.peek() === "-") {  /could be closing HTML-style comment
                         token = this.htmlCommentEndToken(c, startLine, startCol);
                     } else if (isNameStart(reader.peek())) {
                         token = this.identOrFunctionToken(c, startLine, startCol);
@@ -4828,8 +4828,8 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
 
             }
 
-            //make sure this token is wanted
-            //TODO: check channel
+            /make sure this token is wanted
+            /TODO: check channel
             break;
         }
 
@@ -4840,9 +4840,9 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
         return token;
     },
 
-    //-------------------------------------------------------------------------
-    // Methods to create tokens
-    //-------------------------------------------------------------------------
+    /-------------------------------------------------------------------------
+    / Methods to create tokens
+    /-------------------------------------------------------------------------
 
     /**
      * Produces a token based on available data and the current
@@ -4876,9 +4876,9 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
         };
     },
 
-    //-------------------------------------------------------------------------
-    // Methods to create specific tokens
-    //-------------------------------------------------------------------------
+    /-------------------------------------------------------------------------
+    / Methods to create specific tokens
+    /-------------------------------------------------------------------------
 
     /**
      * Produces a token for any at-rule. If the at-rule is unknown, then
@@ -4904,12 +4904,12 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
          */
         reader.mark();
 
-        //try to find the at-keyword
+        /try to find the at-keyword
         ident = this.readName();
         rule = first + ident;
         tt = Tokens.type(rule.toLowerCase());
 
-        //if it's not valid, use the first character only and reset the reader
+        /if it's not valid, use the first character only and reset the reader
         if (tt === Tokens.CHAR || tt === Tokens.UNKNOWN) {
             if (rule.length > 1) {
                 tt = Tokens.UNKNOWN_SYM;
@@ -5063,14 +5063,14 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
             uriFns  = ["url(", "url-prefix(", "domain("],
             uri;
 
-        //if there's a left paren immediately after, it's a URI or function
+        /if there's a left paren immediately after, it's a URI or function
         if (reader.peek() === "(") {
             ident += reader.read();
             if (uriFns.indexOf(ident.toLowerCase()) > -1) {
                 reader.mark();
                 uri = this.readURI(ident);
                 if (uri === null) {
-                    //didn't find a valid URL or there's no closing paren
+                    /didn't find a valid URL or there's no closing paren
                     reader.reset();
                     tt = Tokens.FUNCTION;
                 } else {
@@ -5080,9 +5080,9 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
             } else {
                 tt = Tokens.FUNCTION;
             }
-        } else if (reader.peek() === ":") {  //might be an IE function
+        } else if (reader.peek() === ":") {  /might be an IE function
 
-            //IE-specific functions always being with progid:
+            /IE-specific functions always being with progid:
             if (ident.toLowerCase() === "progid") {
                 ident += reader.readTo("(");
                 tt = Tokens.IE_FUNCTION;
@@ -5114,15 +5114,15 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
 
         while (c) {
 
-            //there can be a comment in here
+            /there can be a comment in here
             if (c === "/") {
 
-                //if the next character isn't a star, then this isn't a valid !important token
+                /if the next character isn't a star, then this isn't a valid !important token
                 if (reader.peek() !== "*") {
                     break;
                 } else {
                     temp = this.readComment(c);
-                    if (temp === "") {    //broken!
+                    if (temp === "") {    /broken!
                         break;
                     }
                 }
@@ -5135,7 +5135,7 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
                     tt = Tokens.IMPORTANT_SYM;
 
                 }
-                break;  //we're done
+                break;  /we're done
             } else {
                 break;
             }
@@ -5249,17 +5249,17 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
             if (c === "\\") {
                 c = reader.read();
                 if (c === null) {
-                    break; // premature EOF after backslash
+                    break; / premature EOF after backslash
                 } else if (/[^\r\n\f0-9a-f]/i.test(c)) {
-                    // single-character escape
+                    / single-character escape
                     string += c;
                 } else {
-                    // read up to six hex digits
+                    / read up to six hex digits
                     for (i=0; isHexDigit(c) && i<6; i++) {
                         string += c;
                         c = reader.read();
                     }
-                    // swallow trailing newline or space
+                    / swallow trailing newline or space
                     if (c === "\r" && reader.peek() === "\n") {
                         string += c;
                         c = reader.read();
@@ -5267,22 +5267,22 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
                     if (isWhitespace(c)) {
                         string += c;
                     } else {
-                        // This character is null or not part of the escape;
-                        // jump back to the top to process it.
+                        / This character is null or not part of the escape;
+                        / jump back to the top to process it.
                         continue;
                     }
                 }
             } else if (c === delim) {
-                break; // delimiter found.
+                break; / delimiter found.
             } else if (isNewLine(reader.peek())) {
-                // newline without an escapement: it's an invalid string
+                / newline without an escapement: it's an invalid string
                 tt = Tokens.INVALID;
                 break;
             }
             c = reader.read();
         }
 
-        //if c is null, that means we're out of input and the string was never closed
+        /if c is null, that means we're out of input and the string was never closed
         if (c === null) {
             tt = Tokens.INVALID;
         }
@@ -5296,20 +5296,20 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
             temp,
             tt      = Tokens.CHAR;
 
-        //then it should be a unicode range
+        /then it should be a unicode range
         if (reader.peek() === "+") {
             reader.mark();
             value += reader.read();
             value += this.readUnicodeRangePart(true);
 
-            //ensure there's an actual unicode range here
+            /ensure there's an actual unicode range here
             if (value.length === 2) {
                 reader.reset();
             } else {
 
                 tt = Tokens.UNICODE_RANGE;
 
-                //if there's a ? in the first part, there can't be a second part
+                /if there's a ? in the first part, there can't be a second part
                 if (value.indexOf("?") === -1) {
 
                     if (reader.peek() === "-") {
@@ -5317,7 +5317,7 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
                         temp = reader.read();
                         temp += this.readUnicodeRangePart(false);
 
-                        //if there's not another value, back up and just take the first
+                        /if there's not another value, back up and just take the first
                         if (temp.length === 1) {
                             reader.reset();
                         } else {
@@ -5348,23 +5348,23 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
     },
 
 
-    //-------------------------------------------------------------------------
-    // Methods to read values from the string stream
-    //-------------------------------------------------------------------------
+    /-------------------------------------------------------------------------
+    / Methods to read values from the string stream
+    /-------------------------------------------------------------------------
 
     readUnicodeRangePart: function(allowQuestionMark) {
         var reader  = this._reader,
             part = "",
             c       = reader.peek();
 
-        //first read hex digits
+        /first read hex digits
         while (isHexDigit(c) && part.length < 6) {
             reader.read();
             part += c;
             c = reader.peek();
         }
 
-        //then read question marks if allowed
+        /then read question marks if allowed
         if (allowQuestionMark) {
             while (c === "?" && part.length < 6) {
                 reader.read();
@@ -5373,7 +5373,7 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
             }
         }
 
-        //there can't be any other characters after this point
+        /there can't be any other characters after this point
 
         return part;
     },
@@ -5418,26 +5418,26 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
         return number;
     },
 
-    // returns null w/o resetting reader if string is invalid.
+    / returns null w/o resetting reader if string is invalid.
     readString: function() {
         var token = this.stringToken(this._reader.read(), 0, 0);
         return token.type === Tokens.INVALID ? null : token.value;
     },
 
-    // returns null w/o resetting reader if URI is invalid.
+    / returns null w/o resetting reader if URI is invalid.
     readURI: function(first) {
         var reader  = this._reader,
             uri     = first,
             inner   = "",
             c       = reader.peek();
 
-        //skip whitespace before
+        /skip whitespace before
         while (c && isWhitespace(c)) {
             reader.read();
             c = reader.peek();
         }
 
-        //it's a string
+        /it's a string
         if (c === "'" || c === "\"") {
             inner = this.readString();
             if (inner !== null) {
@@ -5449,35 +5449,35 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
 
         c = reader.peek();
 
-        //skip whitespace after
+        /skip whitespace after
         while (c && isWhitespace(c)) {
             reader.read();
             c = reader.peek();
         }
 
-        //if there was no inner value or the next character isn't closing paren, it's not a URI
+        /if there was no inner value or the next character isn't closing paren, it's not a URI
         if (inner === null || c !== ")") {
             uri = null;
         } else {
-            // Ensure argument to URL is always double-quoted
-            // (This simplifies later processing in PropertyValuePart.)
+            / Ensure argument to URL is always double-quoted
+            / (This simplifies later processing in PropertyValuePart.)
             uri += PropertyValuePart.serializeString(inner) + reader.read();
         }
 
         return uri;
     },
-    // This method never fails, although it may return an empty string.
+    / This method never fails, although it may return an empty string.
     readUnquotedURL: function(first) {
         var reader  = this._reader,
             url     = first || "",
             c;
 
         for (c = reader.peek(); c; c = reader.peek()) {
-            // Note that the grammar at
-            // https://www.w3.org/TR/CSS2/grammar.html#scanner
-            // incorrectly includes the backslash character in the
-            // `url` production, although it is correctly omitted in
-            // the `baduri1` production.
+            / Note that the grammar at
+            / https://www.w3.org/TR/CSS2/grammar.html#scanner
+            / incorrectly includes the backslash character in the
+            / `url` production, although it is correctly omitted in
+            / the `baduri1` production.
             if (nonascii.test(c) || /^[\-!#$%&*-\[\]-~]$/.test(c)) {
                 url += c;
                 reader.read();
@@ -5485,10 +5485,10 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
                 if (/^[^\r\n\f]$/.test(reader.peek(2))) {
                     url += this.readEscape(reader.read(), true);
                 } else {
-                    break; // bad escape sequence.
+                    break; / bad escape sequence.
                 }
             } else {
-                break; // bad character
+                break; / bad character
             }
         }
 
@@ -5505,7 +5505,7 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
                 if (/^[^\r\n\f]$/.test(reader.peek(2))) {
                     ident += this.readEscape(reader.read(), true);
                 } else {
-                    // Bad escape sequence.
+                    / Bad escape sequence.
                     break;
                 }
             } else if (isNameChar(c)) {
@@ -5538,8 +5538,8 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
                     return c;
                 }
             } else {
-                // We should never get here (readName won't call readEscape
-                // if the escape sequence is bad).
+                / We should never get here (readName won't call readEscape
+                / if the escape sequence is bad).
                 throw new Error("Bad escape sequence.");
             }
         } else if (c === "\r") {
@@ -5570,7 +5570,7 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
             while (c) {
                 comment += c;
 
-                //look for end of comment
+                /look for end of comment
                 if (comment.length > 2 && c === "*" && reader.peek() === "/") {
                     comment += reader.read();
                     break;
@@ -5596,27 +5596,27 @@ var Tokens = module.exports = [
      * The following token names are defined in CSS3 Grammar: https://www.w3.org/TR/css3-syntax/#lexical
      */
 
-    // HTML-style comments
+    / HTML-style comments
     { name: "CDO" },
     { name: "CDC" },
 
-    // ignorables
+    / ignorables
     { name: "S", whitespace: true/*, channel: "ws"*/ },
     { name: "COMMENT", comment: true, hide: true, channel: "comment" },
 
-    // attribute equality
+    / attribute equality
     { name: "INCLUDES", text: "~=" },
     { name: "DASHMATCH", text: "|=" },
     { name: "PREFIXMATCH", text: "^=" },
     { name: "SUFFIXMATCH", text: "$=" },
     { name: "SUBSTRINGMATCH", text: "*=" },
 
-    // identifier types
+    / identifier types
     { name: "STRING" },
     { name: "IDENT" },
     { name: "HASH" },
 
-    // at-keywords
+    / at-keywords
     { name: "IMPORT_SYM", text: "@import" },
     { name: "PAGE_SYM", text: "@page" },
     { name: "MEDIA_SYM", text: "@media" },
@@ -5627,15 +5627,15 @@ var Tokens = module.exports = [
     { name: "VIEWPORT_SYM", text: ["@viewport", "@-ms-viewport", "@-o-viewport"] },
     { name: "DOCUMENT_SYM", text: ["@document", "@-moz-document"] },
     { name: "UNKNOWN_SYM" },
-    //{ name: "ATKEYWORD"},
+    /{ name: "ATKEYWORD"},
 
-    // CSS3 animations
+    / CSS3 animations
     { name: "KEYFRAMES_SYM", text: [ "@keyframes", "@-webkit-keyframes", "@-moz-keyframes", "@-o-keyframes" ] },
 
-    // important symbol
+    / important symbol
     { name: "IMPORTANT_SYM" },
 
-    // measurements
+    / measurements
     { name: "LENGTH" },
     { name: "ANGLE" },
     { name: "TIME" },
@@ -5644,27 +5644,27 @@ var Tokens = module.exports = [
     { name: "PERCENTAGE" },
     { name: "NUMBER" },
 
-    // functions
+    / functions
     { name: "URI" },
     { name: "FUNCTION" },
 
-    // Unicode ranges
+    / Unicode ranges
     { name: "UNICODE_RANGE" },
 
     /*
      * The following token names are defined in CSS3 Selectors: https://www.w3.org/TR/css3-selectors/#selector-syntax
      */
 
-    // invalid string
+    / invalid string
     { name: "INVALID" },
 
-    // combinators
+    / combinators
     { name: "PLUS", text: "+" },
     { name: "GREATER", text: ">" },
     { name: "COMMA", text: "," },
     { name: "TILDE", text: "~" },
 
-    // modifier
+    / modifier
     { name: "NOT" },
 
     /*
@@ -5699,14 +5699,14 @@ var Tokens = module.exports = [
      * The following token names are not defined in any CSS specification but are used by the lexer.
      */
 
-    // not a real token, but useful for stupid IE filters
+    / not a real token, but useful for stupid IE filters
     { name: "IE_FUNCTION" },
 
-    // part of CSS3 grammar but not the Flex code
+    / part of CSS3 grammar but not the Flex code
     { name: "CHAR" },
 
-    // TODO: Needed?
-    // Not defined as tokens, but might as well be
+    / TODO: Needed?
+    / Not defined as tokens, but might as well be
     {
         name: "PIPE",
         text: "|"
@@ -5813,20 +5813,20 @@ var Validation = module.exports = {
 
     validate: function(property, value) {
 
-        //normalize name
+        /normalize name
         var name        = property.toString().toLowerCase(),
             expression  = new PropertyValueIterator(value),
             spec        = Properties[name],
             part;
 
         if (!spec) {
-            if (name.indexOf("-") !== 0) {    //vendor prefixed are ok
+            if (name.indexOf("-") !== 0) {    /vendor prefixed are ok
                 throw new ValidationError("Unknown property '" + property + "'.", property.line, property.col);
             }
         } else if (typeof spec !== "number") {
 
-            // All properties accept some CSS-wide values.
-            // https://drafts.csswg.org/css-values-3/#common-keywords
+            / All properties accept some CSS-wide values.
+            / https://drafts.csswg.org/css-values-3/#common-keywords
             if (ValidationTypes.isAny(expression, "inherit | initial | unset")) {
                 if (expression.hasNext()) {
                     part = expression.next();
@@ -5835,7 +5835,7 @@ var Validation = module.exports = {
                 return;
             }
 
-            // Property-specific validation.
+            / Property-specific validation.
             this.singleProperty(spec, expression);
 
         }
@@ -6036,10 +6036,10 @@ copy(ValidationTypes, {
 
         "<attr>": "attr()",
 
-        // inset() = inset( <shape-arg>{1,4} [round <border-radius>]? )
-        // circle() = circle( [<shape-radius>]? [at <position>]? )
-        // ellipse() = ellipse( [<shape-radius>{2}]? [at <position>]? )
-        // polygon() = polygon( [<fill-rule>,]? [<shape-arg> <shape-arg>]# )
+        / inset() = inset( <shape-arg>{1,4} [round <border-radius>]? )
+        / circle() = circle( [<shape-radius>]? [at <position>]? )
+        / ellipse() = ellipse( [<shape-radius>{2}]? [at <position>]? )
+        / polygon() = polygon( [<fill-rule>,]? [<shape-arg> <shape-arg>]# )
         "<basic-shape>": "inset() | circle() | ellipse() | polygon()",
 
         "<bg-image>": "<image> | <gradient> | none",
@@ -6058,14 +6058,14 @@ copy(ValidationTypes, {
             return part.type === "color" || String(part) === "transparent" || String(part) === "currentColor";
         },
 
-        // The SVG <color> spec doesn't include "currentColor" or "transparent" as a color.
+        / The SVG <color> spec doesn't include "currentColor" or "transparent" as a color.
         "<color-svg>": function(part) {
             return part.type === "color";
         },
 
         "<content>": "content()",
 
-        // https://www.w3.org/TR/css3-sizing/#width-height-keywords
+        / https://www.w3.org/TR/css3-sizing/#width-height-keywords
         "<content-sizing>":
             "fill-available | -moz-available | -webkit-fill-available | " +
             "max-content | -moz-max-content | -webkit-max-content | " +
@@ -6076,7 +6076,7 @@ copy(ValidationTypes, {
             return part.type === "function" && /^[A-Z0-9]{4}$/i.test(part);
         },
 
-        // custom() isn't actually in the spec
+        / custom() isn't actually in the spec
         "<filter-function>":
             "blur() | brightness() | contrast() | custom() | " +
             "drop-shadow() | grayscale() | hue-rotate() | invert() | " +
@@ -6129,7 +6129,7 @@ copy(ValidationTypes, {
             "cielab() | cielch() | cielchab() | " +
             "icc-color() | icc-named-color()",
 
-        //any identifier
+        /any identifier
         "<ident>": function(part) {
             return part.type === "identifier" || part.wasIdent;
         },
@@ -6235,8 +6235,8 @@ copy(ValidationTypes, {
             "[ <length> | <percentage> | auto ]{1,2} | cover | contain",
 
         "<border-image-slice>":
-        // [<number> | <percentage>]{1,4} && fill?
-        // *but* fill can appear between any of the numbers
+        / [<number> | <percentage>]{1,4} && fill?
+        / *but* fill can appear between any of the numbers
         Matcher.many([true /* first element is required */],
                      Matcher.cast("<nonnegative-number-or-percentage>"),
                      Matcher.cast("<nonnegative-number-or-percentage>"),
@@ -6253,18 +6253,18 @@ copy(ValidationTypes, {
         "<clip-path>": "<basic-shape> || <geometry-box>",
 
         "<dasharray>":
-        // "list of comma and/or white space separated <length>s and
-        // <percentage>s".  There is a non-negative constraint.
+        / "list of comma and/or white space separated <length>s and
+        / <percentage>s".  There is a non-negative constraint.
         Matcher.cast("<nonnegative-length-or-percentage>")
             .braces(1, Infinity, "#", Matcher.cast(",").question()),
 
         "<family-name>":
-            // <string> | <IDENT>+
+            / <string> | <IDENT>+
             "<string> | <ident-not-generic-family> <ident>*",
 
         "<filter-function-list>": "[ <filter-function> | <uri> ]+",
 
-        // https://www.w3.org/TR/2014/WD-css-flexbox-1-20140325/#flex-property
+        / https://www.w3.org/TR/2014/WD-css-flexbox-1-20140325/#flex-property
         "<flex>":
             "none | [ <flex-grow> <flex-shrink>? || <flex-basis> ]",
 
@@ -6276,58 +6276,58 @@ copy(ValidationTypes, {
             "[ / <line-height> ]? <font-family>",
 
         "<font-variant-alternates>":
-            // stylistic(<feature-value-name>)
+            / stylistic(<feature-value-name>)
             "stylistic() || " +
             "historical-forms || " +
-            // styleset(<feature-value-name> #)
+            / styleset(<feature-value-name> #)
             "styleset() || " +
-            // character-variant(<feature-value-name> #)
+            / character-variant(<feature-value-name> #)
             "character-variant() || " +
-            // swash(<feature-value-name>)
+            / swash(<feature-value-name>)
             "swash() || " +
-            // ornaments(<feature-value-name>)
+            / ornaments(<feature-value-name>)
             "ornaments() || " +
-            // annotation(<feature-value-name>)
+            / annotation(<feature-value-name>)
             "annotation()",
 
         "<font-variant-ligatures>":
-            // <common-lig-values>
+            / <common-lig-values>
             "[ common-ligatures | no-common-ligatures ] || " +
-            // <discretionary-lig-values>
+            / <discretionary-lig-values>
             "[ discretionary-ligatures | no-discretionary-ligatures ] || " +
-            // <historical-lig-values>
+            / <historical-lig-values>
             "[ historical-ligatures | no-historical-ligatures ] || " +
-            // <contextual-alt-values>
+            / <contextual-alt-values>
             "[ contextual | no-contextual ]",
 
         "<font-variant-numeric>":
-            // <numeric-figure-values>
+            / <numeric-figure-values>
             "[ lining-nums | oldstyle-nums ] || " +
-            // <numeric-spacing-values>
+            / <numeric-spacing-values>
             "[ proportional-nums | tabular-nums ] || " +
-            // <numeric-fraction-values>
+            / <numeric-fraction-values>
             "[ diagonal-fractions | stacked-fractions ] || " +
             "ordinal || slashed-zero",
 
         "<font-variant-east-asian>":
-            // <east-asian-variant-values>
+            / <east-asian-variant-values>
             "[ jis78 | jis83 | jis90 | jis04 | simplified | traditional ] || " +
-            // <east-asian-width-values>
+            / <east-asian-width-values>
             "[ full-width | proportional-width ] || " +
             "ruby",
 
-        // Note that <color> here is "as defined in the SVG spec", which
-        // is more restrictive that the <color> defined in the CSS spec.
-        // none | currentColor | <color> [<icccolor>]? |
-        // <funciri> [ none | currentColor | <color> [<icccolor>]? ]?
+        / Note that <color> here is "as defined in the SVG spec", which
+        / is more restrictive that the <color> defined in the CSS spec.
+        / none | currentColor | <color> [<icccolor>]? |
+        / <funciri> [ none | currentColor | <color> [<icccolor>]? ]?
         "<paint>": "<paint-basic> | <uri> <paint-basic>?",
 
-        // Helper definition for <paint> above.
+        / Helper definition for <paint> above.
         "<paint-basic>": "none | currentColor | <color-svg> <icccolor>?",
 
         "<position>":
-            // Because our `alt` combinator is ordered, we need to test these
-            // in order from longest possible match to shortest.
+            / Because our `alt` combinator is ordered, we need to test these
+            / in order from longest possible match to shortest.
             "[ center | [ left | right ] [ <percentage> | <length> ]? ] && " +
             "[ center | [ top | bottom ] [ <percentage> | <length> ]? ]" +
             " | " +
@@ -6340,7 +6340,7 @@ copy(ValidationTypes, {
             "repeat-x | repeat-y | [ repeat | space | round | no-repeat ]{1,2}",
 
         "<shadow>":
-        //inset? && [ <length>{2,4} && <color>? ]
+        /inset? && [ <length>{2,4} && <color>? ]
         Matcher.many([true /* length is required */],
                      Matcher.cast("<length>").braces(2, 4), "inset", "<color>"),
 
@@ -6357,7 +6357,7 @@ copy(ValidationTypes, {
             "auto | <animateable-feature>#",
 
         "<x-one-radius>":
-            //[ <length> | <percentage> ] [ <length> | <percentage> ]?
+            /[ <length> | <percentage> ] [ <length> | <percentage> ]?
             "[ <length> | <percentage> ]{1,2}"
     }
 });
@@ -6433,7 +6433,7 @@ function EventTarget() {
 
 EventTarget.prototype = {
 
-    //restore constructor
+    /restore constructor
     constructor: EventTarget,
 
     /**
@@ -6472,7 +6472,7 @@ EventTarget.prototype = {
 
         if (this._listeners[event.type]) {
 
-            //create a copy of the array and use that so listeners can't chane
+            /create a copy of the array and use that so listeners can't chane
             var listeners = this._listeners[event.type].concat();
             for (var i=0, len=listeners.length; i < len; i++) {
                 listeners[i].call(this, event);
@@ -6553,12 +6553,12 @@ function StringReader(text) {
 
 StringReader.prototype = {
 
-    // restore constructor
+    / restore constructor
     constructor: StringReader,
 
-    //-------------------------------------------------------------------------
-    // Position info
-    //-------------------------------------------------------------------------
+    /-------------------------------------------------------------------------
+    / Position info
+    /-------------------------------------------------------------------------
 
     /**
      * Returns the column of the character to be read next.
@@ -6587,9 +6587,9 @@ StringReader.prototype = {
         return this._cursor === this._input.length;
     },
 
-    //-------------------------------------------------------------------------
-    // Basic reading
-    //-------------------------------------------------------------------------
+    /-------------------------------------------------------------------------
+    / Basic reading
+    /-------------------------------------------------------------------------
 
     /**
      * Reads the next character without advancing the cursor.
@@ -6601,10 +6601,10 @@ StringReader.prototype = {
         var c = null;
         count = typeof count === "undefined" ? 1 : count;
 
-        // if we're not at the end of the input...
+        / if we're not at the end of the input...
         if (this._cursor < this._input.length) {
 
-            // get character and increment cursor and column
+            / get character and increment cursor and column
             c = this._input.charAt(this._cursor + count - 1);
         }
 
@@ -6620,11 +6620,11 @@ StringReader.prototype = {
     read: function() {
         var c = null;
 
-        // if we're not at the end of the input...
+        / if we're not at the end of the input...
         if (this._cursor < this._input.length) {
 
-            // if the last character was a newline, increment row count
-            // and reset column count
+            / if the last character was a newline, increment row count
+            / and reset column count
             if (this._input.charAt(this._cursor) === "\n") {
                 this._line++;
                 this._col=1;
@@ -6632,16 +6632,16 @@ StringReader.prototype = {
                 this._col++;
             }
 
-            // get character and increment cursor and column
+            / get character and increment cursor and column
             c = this._input.charAt(this._cursor++);
         }
 
         return c;
     },
 
-    //-------------------------------------------------------------------------
-    // Misc
-    //-------------------------------------------------------------------------
+    /-------------------------------------------------------------------------
+    / Misc
+    /-------------------------------------------------------------------------
 
     /**
      * Saves the current location so it can be returned to later.
@@ -6665,9 +6665,9 @@ StringReader.prototype = {
         }
     },
 
-    //-------------------------------------------------------------------------
-    // Advanced reading
-    //-------------------------------------------------------------------------
+    /-------------------------------------------------------------------------
+    / Advanced reading
+    /-------------------------------------------------------------------------
 
     /**
      * Reads up to and including the given string. Throws an error if that
@@ -6741,7 +6741,7 @@ StringReader.prototype = {
         var source = this._input.substring(this._cursor),
             value = null;
 
-        // if it's a string, just do a straight match
+        / if it's a string, just do a straight match
         if (typeof matcher === "string") {
             if (source.slice(0, matcher.length) === matcher) {
                 value = this.readCount(matcher.length);
@@ -6817,8 +6817,8 @@ function SyntaxError(message, line, col) {
 }
 
 //inherit from Error
-SyntaxError.prototype = Object.create(Error.prototype); // jshint ignore:line
-SyntaxError.prototype.constructor = SyntaxError; // jshint ignore:line
+SyntaxError.prototype = Object.create(Error.prototype); / jshint ignore:line
+SyntaxError.prototype.constructor = SyntaxError; / jshint ignore:line
 
 },{}],26:[function(require,module,exports){
 "use strict";
@@ -6881,7 +6881,7 @@ SyntaxUnit.fromToken = function(token) {
 
 SyntaxUnit.prototype = {
 
-    //restore constructor
+    /restore constructor
     constructor: SyntaxUnit,
 
     /**
@@ -7006,12 +7006,12 @@ TokenStreamBase.createTokenData = function(tokens) {
 
 TokenStreamBase.prototype = {
 
-    //restore constructor
+    /restore constructor
     constructor: TokenStreamBase,
 
-    //-------------------------------------------------------------------------
-    // Matching methods
-    //-------------------------------------------------------------------------
+    /-------------------------------------------------------------------------
+    / Matching methods
+    /-------------------------------------------------------------------------
 
     /**
      * Determines if the next token matches the given token type.
@@ -7029,7 +7029,7 @@ TokenStreamBase.prototype = {
      */
     match: function(tokenTypes, channel) {
 
-        //always convert to an array, makes things easier
+        /always convert to an array, makes things easier
         if (!(tokenTypes instanceof Array)) {
             tokenTypes = [tokenTypes];
         }
@@ -7044,7 +7044,7 @@ TokenStreamBase.prototype = {
             }
         }
 
-        //no match found, put the token back
+        /no match found, put the token back
         this.unget();
         return false;
     },
@@ -7062,7 +7062,7 @@ TokenStreamBase.prototype = {
 
         var token;
 
-        //always convert to an array, makes things easier
+        /always convert to an array, makes things easier
         if (!(tokenTypes instanceof Array)) {
             tokenTypes = [tokenTypes];
         }
@@ -7074,9 +7074,9 @@ TokenStreamBase.prototype = {
         }
     },
 
-    //-------------------------------------------------------------------------
-    // Consuming methods
-    //-------------------------------------------------------------------------
+    /-------------------------------------------------------------------------
+    / Consuming methods
+    /-------------------------------------------------------------------------
 
     /**
      * Keeps reading from the token stream until either one of the specified
@@ -7110,14 +7110,14 @@ TokenStreamBase.prototype = {
             token,
             info;
 
-        //check the lookahead buffer first
+        /check the lookahead buffer first
         if (this._lt.length && this._ltIndex >= 0 && this._ltIndex < this._lt.length) {
 
             i++;
             this._token = this._lt[this._ltIndex++];
             info = tokenInfo[this._token.type];
 
-            //obey channels logic
+            /obey channels logic
             while ((info.channel !== undefined && channel !== info.channel) &&
                     this._ltIndex < this._lt.length) {
                 this._token = this._lt[this._ltIndex++];
@@ -7125,7 +7125,7 @@ TokenStreamBase.prototype = {
                 i++;
             }
 
-            //here be dragons
+            /here be dragons
             if ((info.channel === undefined || channel === info.channel) &&
                     this._ltIndex <= this._lt.length) {
                 this._ltIndexCache.push(i);
@@ -7133,33 +7133,33 @@ TokenStreamBase.prototype = {
             }
         }
 
-        //call token retriever method
+        /call token retriever method
         token = this._getToken();
 
-        //if it should be hidden, don't save a token
+        /if it should be hidden, don't save a token
         if (token.type > -1 && !tokenInfo[token.type].hide) {
 
-            //apply token channel
+            /apply token channel
             token.channel = tokenInfo[token.type].channel;
 
-            //save for later
+            /save for later
             this._token = token;
             this._lt.push(token);
 
-            //save space that will be moved (must be done before array is truncated)
+            /save space that will be moved (must be done before array is truncated)
             this._ltIndexCache.push(this._lt.length - this._ltIndex + i);
 
-            //keep the buffer under 5 items
+            /keep the buffer under 5 items
             if (this._lt.length > 5) {
                 this._lt.shift();
             }
 
-            //also keep the shift buffer under 5 items
+            /also keep the shift buffer under 5 items
             if (this._ltIndexCache.length > 5) {
                 this._ltIndexCache.shift();
             }
 
-            //update lookahead index
+            /update lookahead index
             this._ltIndex = this._lt.length;
         }
 
@@ -7174,7 +7174,7 @@ TokenStreamBase.prototype = {
                 (info.channel !== undefined && channel !== info.channel))) {
             return this.get(channel);
         } else {
-            //return just the type
+            /return just the type
             return token.type;
         }
     },
@@ -7193,18 +7193,18 @@ TokenStreamBase.prototype = {
         var total = index,
             tt;
         if (index > 0) {
-            //TODO: Store 5 somewhere
+            /TODO: Store 5 somewhere
             if (index > 5) {
                 throw new Error("Too much lookahead.");
             }
 
-            //get all those tokens
+            /get all those tokens
             while (total) {
                 tt = this.get();
                 total--;
             }
 
-            //unget all those tokens
+            /unget all those tokens
             while (total < index) {
                 this.unget();
                 total++;
@@ -7237,10 +7237,10 @@ TokenStreamBase.prototype = {
      */
     LT: function(index) {
 
-        //lookahead first to prime the token buffer
+        /lookahead first to prime the token buffer
         this.LA(index);
 
-        //now find the token, subtract one because _ltIndex is already at the next index
+        /now find the token, subtract one because _ltIndex is already at the next index
         return this._lt[this._ltIndex+index-1];
     },
 
@@ -7294,9 +7294,9 @@ TokenStreamBase.prototype = {
      * @method unget
      */
     unget: function() {
-        //if (this._ltIndex > -1) {
+        /if (this._ltIndex > -1) {
         if (this._ltIndexCache.length) {
-            this._ltIndex -= this._ltIndexCache.pop();//--;
+            this._ltIndex -= this._ltIndexCache.pop();/--;
             this._token = this._lt[this._ltIndex - 1];
         } else {
             throw new Error("Too much lookahead.");
@@ -7336,8 +7336,8 @@ var nativeMap;
 try {
   nativeMap = Map;
 } catch(_) {
-  // maybe a reference error because no `Map`. Give it a dummy value that no
-  // value will ever be an instanceof.
+  / maybe a reference error because no `Map`. Give it a dummy value that no
+  / value will ever be an instanceof.
   nativeMap = function() {};
 }
 
@@ -7383,8 +7383,8 @@ function clone(parent, circular, depth, prototype, includeNonEnumerable) {
     includeNonEnumerable = circular.includeNonEnumerable;
     circular = circular.circular;
   }
-  // maintain two arrays for circular references, where corresponding parents
-  // and children have the same index
+  / maintain two arrays for circular references, where corresponding parents
+  / and children have the same index
   var allParents = [];
   var allChildren = [];
 
@@ -7396,9 +7396,9 @@ function clone(parent, circular, depth, prototype, includeNonEnumerable) {
   if (typeof depth == 'undefined')
     depth = Infinity;
 
-  // recurse this function so we don't reset allParents and allChildren
+  / recurse this function so we don't reset allParents and allChildren
   function _clone(parent, depth) {
-    // cloning null always returns null
+    / cloning null always returns null
     if (parent === null)
       return null;
 
@@ -7496,8 +7496,8 @@ function clone(parent, circular, depth, prototype, includeNonEnumerable) {
     if (Object.getOwnPropertySymbols) {
       var symbols = Object.getOwnPropertySymbols(parent);
       for (var i = 0; i < symbols.length; i++) {
-        // Don't need to worry about cloning a symbol because it is a primitive,
-        // like a number or string.
+        / Don't need to worry about cloning a symbol because it is a primitive,
+        / like a number or string.
         var symbol = symbols[i];
         var descriptor = Object.getOwnPropertyDescriptor(parent, symbol);
         if (descriptor && !descriptor.enumerable && !includeNonEnumerable) {
@@ -7602,14 +7602,14 @@ var CSSLint = (function() {
 
     var rules           = [],
         formatters      = [],
-        embeddedRuleset = /\/\*\s*csslint([^\*]*)\*\//,
+        embeddedRuleset = /\/\*\s*csslint([^\*]*)\*\/,
         api             = new parserlib.util.EventTarget();
 
     api.version = "1.0.4";
 
-    //-------------------------------------------------------------------------
-    // Rule Management
-    //-------------------------------------------------------------------------
+    /-------------------------------------------------------------------------
+    / Rule Management
+    /-------------------------------------------------------------------------
 
     /**
      * Adds a new rule to the engine.
@@ -7651,7 +7651,7 @@ var CSSLint = (function() {
             len = rules.length;
 
         while (i < len) {
-            ruleset[rules[i++].id] = 1;    // by default, everything is a warning
+            ruleset[rules[i++].id] = 1;    / by default, everything is a warning
         }
 
         return ruleset;
@@ -7671,13 +7671,13 @@ var CSSLint = (function() {
 
         if (rules) {
             valueMap = {
-                "true": 2,  // true is error
-                "": 1,      // blank is warning
-                "false": 0, // false is ignore
+                "true": 2,  / true is error
+                "": 1,      / blank is warning
+                "false": 0, / false is ignore
 
-                "2": 2,     // explicit error
-                "1": 1,     // explicit warning
-                "0": 0      // explicit ignore
+                "2": 2,     / explicit error
+                "1": 1,     / explicit warning
+                "0": 0      / explicit ignore
             };
 
             rules.toLowerCase().split(",").forEach(function(rule) {
@@ -7692,9 +7692,9 @@ var CSSLint = (function() {
         return ruleset;
     }
 
-    //-------------------------------------------------------------------------
-    // Formatters
-    //-------------------------------------------------------------------------
+    /-------------------------------------------------------------------------
+    / Formatters
+    /-------------------------------------------------------------------------
 
     /**
      * Adds a new formatter to the engine.
@@ -7702,7 +7702,7 @@ var CSSLint = (function() {
      * @method addFormatter
      */
     api.addFormatter = function(formatter) {
-        // formatters.push(formatter);
+        / formatters.push(formatter);
         formatters[formatter.id] = formatter;
     };
 
@@ -7748,9 +7748,9 @@ var CSSLint = (function() {
         return formatters.hasOwnProperty(formatId);
     };
 
-    //-------------------------------------------------------------------------
-    // Verification
-    //-------------------------------------------------------------------------
+    /-------------------------------------------------------------------------
+    / Verification
+    /-------------------------------------------------------------------------
 
     /**
      * Starts the verification process for the given CSS text.
@@ -7776,12 +7776,12 @@ var CSSLint = (function() {
                 strict: false
             });
 
-        // normalize line endings
+        / normalize line endings
         lines = text.replace(/\n\r?/g, "$split$").split("$split$");
 
-        // find 'allow' comments
+        / find 'allow' comments
         CSSLint.Util.forEach(lines, function (line, lineno) {
-            var allowLine = line && line.match(/\/\*[ \t]*csslint[ \t]+allow:[ \t]*([^\*]*)\*\//i),
+            var allowLine = line && line.match(/\/\*[ \t]*csslint[ \t]+allow:[ \t]*([^\*]*)\*\/i),
                 allowRules = allowLine && allowLine[1],
                 allowRuleset = {};
 
@@ -7798,12 +7798,12 @@ var CSSLint = (function() {
         var ignoreStart = null,
             ignoreEnd = null;
         CSSLint.Util.forEach(lines, function (line, lineno) {
-            // Keep oldest, "unclosest" ignore:start
-            if (ignoreStart === null && line.match(/\/\*[ \t]*csslint[ \t]+ignore:start[ \t]*\*\//i)) {
+            / Keep oldest, "unclosest" ignore:start
+            if (ignoreStart === null && line.match(/\/\*[ \t]*csslint[ \t]+ignore:start[ \t]*\*\/i)) {
                 ignoreStart = lineno;
             }
 
-            if (line.match(/\/\*[ \t]*csslint[ \t]+ignore:end[ \t]*\*\//i)) {
+            if (line.match(/\/\*[ \t]*csslint[ \t]+ignore:end[ \t]*\*\/i)) {
                 ignoreEnd = lineno;
             }
 
@@ -7813,7 +7813,7 @@ var CSSLint = (function() {
             }
         });
 
-        // Close remaining ignore block, if any
+        / Close remaining ignore block, if any
         if (ignoreStart !== null) {
             ignore.push([ignoreStart, lines.length]);
         }
@@ -7823,14 +7823,14 @@ var CSSLint = (function() {
         }
 
         if (embeddedRuleset.test(text)) {
-            // defensively copy so that caller's version does not get modified
+            / defensively copy so that caller's version does not get modified
             ruleset = clone(ruleset);
             ruleset = applyEmbeddedRuleset(text, ruleset);
         }
 
         reporter = new Reporter(lines, ruleset, allow, ignore);
 
-        ruleset.errors = 2;       // always report parsing errors as errors
+        ruleset.errors = 2;       / always report parsing errors as errors
         for (i in ruleset) {
             if (ruleset.hasOwnProperty(i) && ruleset[i]) {
                 if (rules[i]) {
@@ -7840,7 +7840,7 @@ var CSSLint = (function() {
         }
 
 
-        // capture most horrible error type
+        / capture most horrible error type
         try {
             parser.parse(text);
         } catch (ex) {
@@ -7855,7 +7855,7 @@ var CSSLint = (function() {
             ignore      : reporter.ignore
         };
 
-        // sort by line numbers, rollups at the bottom
+        / sort by line numbers, rollups at the bottom
         report.messages.sort(function (a, b) {
             if (a.rollup && !b.rollup) {
                 return 1;
@@ -7869,9 +7869,9 @@ var CSSLint = (function() {
         return report;
     };
 
-    //-------------------------------------------------------------------------
-    // Publish the API
-    //-------------------------------------------------------------------------
+    /-------------------------------------------------------------------------
+    / Publish the API
+    /-------------------------------------------------------------------------
 
     return api;
 
@@ -7944,7 +7944,7 @@ function Reporter(lines, ruleset, allow, ignore) {
 
 Reporter.prototype = {
 
-    // restore constructor
+    / restore constructor
     constructor: Reporter,
 
     /**
@@ -7992,7 +7992,7 @@ Reporter.prototype = {
     report: function(message, line, col, rule) {
         "use strict";
 
-        // Check if rule violation should be allowed
+        / Check if rule violation should be allowed
         if (this.allow.hasOwnProperty(line) && this.allow[line].hasOwnProperty(rule.id)) {
             return;
         }
@@ -8153,14 +8153,14 @@ CSSLint.Util = {
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "adjoining-classes",
     name: "Disallow adjoining classes",
     desc: "Don't use adjoining classes.",
     url: "https://github.com/CSSLint/csslint/wiki/Disallow-adjoining-classes",
     browsers: "IE6",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this;
@@ -8200,14 +8200,14 @@ CSSLint.addRule({
  */
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "box-model",
     name: "Beware of broken box size",
     desc: "Don't use width or height when using padding or border.",
     url: "https://github.com/CSSLint/csslint/wiki/Beware-of-box-model-size",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this,
@@ -8243,7 +8243,7 @@ CSSLint.addRule({
                     for (prop in heightProperties) {
                         if (heightProperties.hasOwnProperty(prop) && properties[prop]) {
                             value = properties[prop].value;
-                            // special case for padding
+                            / special case for padding
                             if (!(prop === "padding" && value.parts.length === 2 && value.parts[0].value === 0)) {
                                 reporter.report("Using height with " + prop + " can sometimes make elements larger than you expect.", properties[prop].line, properties[prop].col, rule);
                             }
@@ -8309,7 +8309,7 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "box-sizing",
     name: "Disallow use of box-sizing",
     desc: "The box-sizing properties isn't supported in IE6 and IE7.",
@@ -8317,7 +8317,7 @@ CSSLint.addRule({
     browsers: "IE6, IE7",
     tags: ["Compatibility"],
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this;
@@ -8340,14 +8340,14 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "bulletproof-font-face",
     name: "Use the bulletproof @font-face syntax",
     desc: "Use the bulletproof @font-face syntax to avoid 404's in old IE (http://www.fontspring.com/blog/the-new-bulletproof-font-face-syntax).",
     url: "https://github.com/CSSLint/csslint/wiki/Bulletproof-font-face",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this,
@@ -8356,13 +8356,13 @@ CSSLint.addRule({
             ruleFailed = false,
             line, col;
 
-        // Mark the start of a @font-face declaration so we only test properties inside it
+        / Mark the start of a @font-face declaration so we only test properties inside it
         parser.addListener("startfontface", function() {
             fontFaceRule = true;
         });
 
         parser.addListener("property", function(event) {
-            // If we aren't inside an @font-face declaration then just return
+            / If we aren't inside an @font-face declaration then just return
             if (!fontFaceRule) {
                 return;
             }
@@ -8370,15 +8370,15 @@ CSSLint.addRule({
             var propertyName = event.property.toString().toLowerCase(),
                 value = event.value.toString();
 
-            // Set the line and col numbers for use in the endfontface listener
+            / Set the line and col numbers for use in the endfontface listener
             line = event.line;
             col = event.col;
 
-            // This is the property that we care about, we can ignore the rest
+            / This is the property that we care about, we can ignore the rest
             if (propertyName === "src") {
                 var regex = /^\s?url\(['"].+\.eot\?.*['"]\)\s*format\(['"]embedded-opentype['"]\).*$/i;
 
-                // We need to handle the advanced syntax with two src properties
+                / We need to handle the advanced syntax with two src properties
                 if (!value.match(regex) && firstSrc) {
                     ruleFailed = true;
                     firstSrc = false;
@@ -8390,7 +8390,7 @@ CSSLint.addRule({
 
         });
 
-        // Back to normal rules that we don't need to test
+        / Back to normal rules that we don't need to test
         parser.addListener("endfontface", function() {
             fontFaceRule = false;
 
@@ -8408,14 +8408,14 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "compatible-vendor-prefixes",
     name: "Require compatible vendor prefixes",
     desc: "Include all compatible vendor prefixes to reach a wider range of users.",
     url: "https://github.com/CSSLint/csslint/wiki/Require-compatible-vendor-prefixes",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function (parser, reporter) {
         "use strict";
         var rule = this,
@@ -8430,7 +8430,7 @@ CSSLint.addRule({
             arrayPush = Array.prototype.push,
             applyTo = [];
 
-        // See http://peter.sh/experiments/vendor-prefixed-css-property-overview/ for details
+        / See http://peter.sh/experiments/vendor-prefixed-css-property-overview/ for details
         compatiblePrefixes = {
             "animation"                  : "webkit",
             "animation-delay"            : "webkit",
@@ -8520,7 +8520,7 @@ CSSLint.addRule({
             var name = event.property;
             if (CSSLint.Util.indexOf(applyTo, name.text) > -1) {
 
-                // e.g., -moz-transform is okay to be alone in @-moz-keyframes
+                / e.g., -moz-transform is okay to be alone in @-moz-keyframes
                 if (!inKeyFrame || typeof inKeyFrame !== "string" ||
                         name.text.indexOf("-" + inKeyFrame + "-") !== 0) {
                     properties.push(name);
@@ -8600,14 +8600,14 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "display-property-grouping",
     name: "Require properties appropriate for display",
     desc: "Certain properties shouldn't be used with certain display property values.",
     url: "https://github.com/CSSLint/csslint/wiki/Require-properties-appropriate-for-display",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this;
@@ -8650,7 +8650,7 @@ CSSLint.addRule({
                 switch (display) {
 
                     case "inline":
-                        // height, width, margin-top, margin-bottom, float should not be used with inline
+                        / height, width, margin-top, margin-bottom, float should not be used with inline
                         reportProperty("height", display);
                         reportProperty("width", display);
                         reportProperty("margin", display);
@@ -8660,17 +8660,17 @@ CSSLint.addRule({
                         break;
 
                     case "block":
-                        // vertical-align should not be used with block
+                        / vertical-align should not be used with block
                         reportProperty("vertical-align", display);
                         break;
 
                     case "inline-block":
-                        // float should not be used with inline-block
+                        / float should not be used with inline-block
                         reportProperty("float", display);
                         break;
 
                     default:
-                        // margin, float should not be used with table
+                        / margin, float should not be used with table
                         if (display.indexOf("table-") === 0) {
                             reportProperty("margin", display);
                             reportProperty("margin-left", display);
@@ -8680,7 +8680,7 @@ CSSLint.addRule({
                             reportProperty("float", display);
                         }
 
-                        // otherwise do nothing
+                        / otherwise do nothing
                 }
             }
 
@@ -8722,14 +8722,14 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "duplicate-background-images",
     name: "Disallow duplicate background images",
     desc: "Every background-image should be unique. Use a common class for e.g. sprites.",
     url: "https://github.com/CSSLint/csslint/wiki/Disallow-duplicate-background-images",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this,
@@ -8762,14 +8762,14 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "duplicate-properties",
     name: "Disallow duplicate properties",
     desc: "Duplicate properties must appear one after the other.",
     url: "https://github.com/CSSLint/csslint/wiki/Disallow-duplicate-properties",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this,
@@ -8811,14 +8811,14 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "empty-rules",
     name: "Disallow empty rules",
     desc: "Rules without any properties specified should be removed.",
     url: "https://github.com/CSSLint/csslint/wiki/Disallow-empty-rules",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this,
@@ -8848,13 +8848,13 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "errors",
     name: "Parsing Errors",
     desc: "This rule looks for recoverable syntax errors.",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this;
@@ -8869,14 +8869,14 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "fallback-colors",
     name: "Require fallback colors",
     desc: "For older browsers that don't support RGBA, HSL, or HSLA, provide a fallback color.",
     url: "https://github.com/CSSLint/csslint/wiki/Require-fallback-colors",
     browsers: "IE6,IE7,IE8",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this,
@@ -8951,20 +8951,20 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "floats",
     name: "Disallow too many floats",
     desc: "This rule tests if the float property is used too many times",
     url: "https://github.com/CSSLint/csslint/wiki/Disallow-too-many-floats",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this;
         var count = 0;
 
-        // count how many times "float" is used
+        / count how many times "float" is used
         parser.addListener("property", function(event) {
             if (event.property.text.toLowerCase() === "float" &&
                     event.value.text.toLowerCase() !== "none") {
@@ -8972,7 +8972,7 @@ CSSLint.addRule({
             }
         });
 
-        // report the results
+        / report the results
         parser.addListener("endstylesheet", function() {
             reporter.stat("floats", count);
             if (count >= 10) {
@@ -8989,14 +8989,14 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "font-faces",
     name: "Don't use too many web fonts",
     desc: "Too many different web fonts in the same stylesheet.",
     url: "https://github.com/CSSLint/csslint/wiki/Don%27t-use-too-many-web-fonts",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this,
@@ -9022,27 +9022,27 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "font-sizes",
     name: "Disallow too many font sizes",
     desc: "Checks the number of font-size declarations.",
     url: "https://github.com/CSSLint/csslint/wiki/Don%27t-use-too-many-font-size-declarations",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this,
             count = 0;
 
-        // check for use of "font-size"
+        / check for use of "font-size"
         parser.addListener("property", function(event) {
             if (event.property.toString() === "font-size") {
                 count++;
             }
         });
 
-        // report the results
+        / report the results
         parser.addListener("endstylesheet", function() {
             reporter.stat("font-sizes", count);
             if (count >= 10) {
@@ -9059,14 +9059,14 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "gradients",
     name: "Require all gradient definitions",
     desc: "When using a vendor-prefixed gradient, make sure to use them all.",
     url: "https://github.com/CSSLint/csslint/wiki/Require-all-gradient-definitions",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this,
@@ -9126,14 +9126,14 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "ids",
     name: "Disallow IDs in selectors",
     desc: "Selectors should not contain IDs.",
     url: "https://github.com/CSSLint/csslint/wiki/Disallow-IDs-in-selectors",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this;
@@ -9181,13 +9181,13 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "import-ie-limit",
     name: "@import limit on IE6-IE9",
     desc: "IE6-9 supports up to 31 @import per stylesheet",
     browsers: "IE6, IE7, IE8, IE9",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this,
@@ -9222,14 +9222,14 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "import",
     name: "Disallow @import",
     desc: "Don't use @import, use <link> instead.",
     url: "https://github.com/CSSLint/csslint/wiki/Disallow-%40import",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this;
@@ -9250,20 +9250,20 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "important",
     name: "Disallow !important",
     desc: "Be careful when using !important declaration",
     url: "https://github.com/CSSLint/csslint/wiki/Disallow-%21important",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this,
             count = 0;
 
-        // warn that important is used and increment the declaration counter
+        / warn that important is used and increment the declaration counter
         parser.addListener("property", function(event) {
             if (event.important === true) {
                 count++;
@@ -9271,7 +9271,7 @@ CSSLint.addRule({
             }
         });
 
-        // if there are more than 10, show an error
+        / if there are more than 10, show an error
         parser.addListener("endstylesheet", function() {
             reporter.stat("important", count);
             if (count >= 10) {
@@ -9289,21 +9289,21 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "known-properties",
     name: "Require use of known properties",
     desc: "Properties should be known (listed in CSS3 specification) or be a vendor-prefixed property.",
     url: "https://github.com/CSSLint/csslint/wiki/Require-use-of-known-properties",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this;
 
         parser.addListener("property", function(event) {
 
-            // the check is handled entirely by the parser-lib (https://github.com/nzakas/parser-lib)
+            / the check is handled entirely by the parser-lib (https://github.com/nzakas/parser-lib)
             if (event.invalid) {
                 reporter.report(event.invalid.message, event.line, event.col, rule);
             }
@@ -9319,13 +9319,13 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "order-alphabetical",
     name: "Alphabetical order",
     desc: "Assure properties are in alphabetical order",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this,
@@ -9375,7 +9375,7 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "outline-none",
     name: "Disallow outline: none",
     desc: "Use of outline: none or outline: 0 should be limited to :focus rules.",
@@ -9383,7 +9383,7 @@ CSSLint.addRule({
     browsers: "All",
     tags: ["Accessibility"],
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this,
@@ -9452,14 +9452,14 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "overqualified-elements",
     name: "Disallow overqualified elements",
     desc: "Don't use classes or IDs with elements (a.foo or a#foo).",
     url: "https://github.com/CSSLint/csslint/wiki/Disallow-overqualified-elements",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this,
@@ -9504,7 +9504,7 @@ CSSLint.addRule({
             for (prop in classes) {
                 if (classes.hasOwnProperty(prop)) {
 
-                    // one use means that this is overqualified
+                    / one use means that this is overqualified
                     if (classes[prop].length === 1 && classes[prop][0].part.elementName) {
                         reporter.report("Element (" + classes[prop][0].part + ") is overqualified, just use " + classes[prop][0].modifier + " without element name.", classes[prop][0].part.line, classes[prop][0].part.col, rule);
                     }
@@ -9521,14 +9521,14 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "qualified-headings",
     name: "Disallow qualified headings",
     desc: "Headings should not be qualified (namespaced).",
     url: "https://github.com/CSSLint/csslint/wiki/Disallow-qualified-headings",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this;
@@ -9562,14 +9562,14 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "regex-selectors",
     name: "Disallow selectors that look like regexs",
     desc: "Selectors that look like regular expressions are slow and should be avoided.",
     url: "https://github.com/CSSLint/csslint/wiki/Disallow-selectors-that-look-like-regular-expressions",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this;
@@ -9609,18 +9609,18 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "rules-count",
     name: "Rules Count",
     desc: "Track how many rules there are.",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var count = 0;
 
-        // count each rule
+        / count each rule
         parser.addListener("startrule", function() {
             count++;
         });
@@ -9638,13 +9638,13 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "selector-max-approaching",
     name: "Warn when approaching the 4095 selector limit for IE",
     desc: "Will warn when selector count is >= 3800 selectors.",
     browsers: "IE",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this, count = 0;
@@ -9668,13 +9668,13 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "selector-max",
     name: "Error when past the 4095 selector limit for IE",
     desc: "Will error when selector count is > 4095.",
     browsers: "IE",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this, count = 0;
@@ -9698,13 +9698,13 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "selector-newline",
     name: "Disallow new-line characters in selectors",
     desc: "New-line characters in selectors are usually a forgotten comma and not a descendant combinator.",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this;
@@ -9744,14 +9744,14 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "shorthand",
     name: "Require shorthand properties",
     desc: "Use shorthand properties where possible.",
     url: "https://github.com/CSSLint/csslint/wiki/Require-shorthand-properties",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this,
@@ -9773,7 +9773,7 @@ CSSLint.addRule({
                 ]
             };
 
-        // initialize propertiesToCheck
+        / initialize propertiesToCheck
         for (prop in mapping) {
             if (mapping.hasOwnProperty(prop)) {
                 for (i=0, len=mapping[prop].length; i < len; i++) {
@@ -9786,12 +9786,12 @@ CSSLint.addRule({
             properties = {};
         }
 
-        // event handler for end of rules
+        / event handler for end of rules
         function endRule(event) {
 
             var prop, i, len, total;
 
-            // check which properties this rule has
+            / check which properties this rule has
             for (prop in mapping) {
                 if (mapping.hasOwnProperty(prop)) {
                     total=0;
@@ -9810,7 +9810,7 @@ CSSLint.addRule({
         parser.addListener("startrule", startRule);
         parser.addListener("startfontface", startRule);
 
-        // check for use of "font-size"
+        / check for use of "font-size"
         parser.addListener("property", function(event) {
             var name = event.property.toString().toLowerCase();
 
@@ -9833,19 +9833,19 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "star-property-hack",
     name: "Disallow properties with a star prefix",
     desc: "Checks for the star property hack (targets IE6/7)",
     url: "https://github.com/CSSLint/csslint/wiki/Disallow-star-hack",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this;
 
-        // check if property name starts with "*"
+        / check if property name starts with "*"
         parser.addListener("property", function(event) {
             var property = event.property;
 
@@ -9863,14 +9863,14 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "text-indent",
     name: "Disallow negative text-indent",
     desc: "Checks for text indent less than -99px",
     url: "https://github.com/CSSLint/csslint/wiki/Disallow-negative-text-indent",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this,
@@ -9883,7 +9883,7 @@ CSSLint.addRule({
             direction = "inherit";
         }
 
-        // event handler for end of rules
+        / event handler for end of rules
         function endRule() {
             if (textIndent && direction !== "ltr") {
                 reporter.report("Negative text-indent doesn't work well with RTL. If you use text-indent for image replacement explicitly set direction for that item to ltr.", textIndent.line, textIndent.col, rule);
@@ -9893,7 +9893,7 @@ CSSLint.addRule({
         parser.addListener("startrule", startRule);
         parser.addListener("startfontface", startRule);
 
-        // check for use of "font-size"
+        / check for use of "font-size"
         parser.addListener("property", function(event) {
             var name = event.property.toString().toLowerCase(),
                 value = event.value;
@@ -9919,19 +9919,19 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "underscore-property-hack",
     name: "Disallow properties with an underscore prefix",
     desc: "Checks for the underscore property hack (targets IE6)",
     url: "https://github.com/CSSLint/csslint/wiki/Disallow-underscore-hack",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this;
 
-        // check if property name starts with "_"
+        / check if property name starts with "_"
         parser.addListener("property", function(event) {
             var property = event.property;
 
@@ -9948,14 +9948,14 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "unique-headings",
     name: "Headings should only be defined once",
     desc: "Headings should be defined only once.",
     url: "https://github.com/CSSLint/csslint/wiki/Headings-should-only-be-defined-once",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this;
@@ -10025,14 +10025,14 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "universal-selector",
     name: "Disallow universal selector",
     desc: "The universal selector (*) is known to be slow.",
     url: "https://github.com/CSSLint/csslint/wiki/Disallow-universal-selector",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this;
@@ -10062,14 +10062,14 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "unqualified-attributes",
     name: "Disallow unqualified attribute selectors",
     desc: "Unqualified attribute selectors are known to be slow.",
     url: "https://github.com/CSSLint/csslint/wiki/Disallow-unqualified-attribute-selectors",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
 
@@ -10121,14 +10121,14 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "vendor-prefix",
     name: "Require standard property with vendor prefix",
     desc: "When using a vendor-prefixed property, make sure to include the standard one.",
     url: "https://github.com/CSSLint/csslint/wiki/Require-standard-property-with-vendor-prefix",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this,
@@ -10194,13 +10194,13 @@ CSSLint.addRule({
                 "-webkit-box-sizing": "box-sizing"
             };
 
-        // event handler for beginning of rules
+        / event handler for beginning of rules
         function startRule() {
             properties = {};
             num = 1;
         }
 
-        // event handler for end of rules
+        / event handler for end of rules
         function endRule() {
             var prop,
                 i,
@@ -10225,7 +10225,7 @@ CSSLint.addRule({
                 if (!properties[needed]) {
                     reporter.report("Missing standard property '" + needed + "' to go along with '" + actual + "'.", properties[actual][0].name.line, properties[actual][0].name.col, rule);
                 } else {
-                    // make sure standard property is last
+                    / make sure standard property is last
                     if (properties[needed][0].pos < properties[actual][0].pos) {
                         reporter.report("Standard property '" + needed + "' should come after vendor-prefixed property '" + actual + "'.", properties[actual][0].name.line, properties[actual][0].name.col, rule);
                     }
@@ -10271,19 +10271,19 @@ CSSLint.addRule({
 
 CSSLint.addRule({
 
-    // rule information
+    / rule information
     id: "zero-units",
     name: "Disallow units for 0 values",
     desc: "You don't need to specify units when a value is 0.",
     url: "https://github.com/CSSLint/csslint/wiki/Disallow-units-for-zero-values",
     browsers: "All",
 
-    // initialization
+    / initialization
     init: function(parser, reporter) {
         "use strict";
         var rule = this;
 
-        // count how many times "float" is used
+        / count how many times "float" is used
         parser.addListener("property", function(event) {
             var parts = event.value.parts,
                 i = 0,
@@ -10337,7 +10337,7 @@ CSSLint.addRule({
     };
 
     CSSLint.addFormatter({
-        // format information
+        / format information
         id: "checkstyle-xml",
         name: "Checkstyle XML format",
 
@@ -10396,7 +10396,7 @@ CSSLint.addRule({
             if (messages.length > 0) {
                 output.push("<file name=\""+filename+"\">");
                 CSSLint.Util.forEach(messages, function (message) {
-                    // ignore rollups for now
+                    / ignore rollups for now
                     if (!message.rollup) {
                         output.push("<error line=\"" + message.line + "\" column=\"" + message.col + "\" severity=\"" + message.type + "\"" +
                           " message=\"" + xmlEscape(message.message) + "\" source=\"" + generateSource(message.rule) +"\"/>");
@@ -10412,7 +10412,7 @@ CSSLint.addRule({
 }());
 
 CSSLint.addFormatter({
-    // format information
+    / format information
     id: "compact",
     name: "Compact, 'porcelain' format",
 
@@ -10474,7 +10474,7 @@ CSSLint.addFormatter({
 });
 
 CSSLint.addFormatter({
-    // format information
+    / format information
     id: "csslint-xml",
     name: "CSSLint XML format",
 
@@ -10547,7 +10547,7 @@ CSSLint.addFormatter({
 /* globals JSON: true */
 
 CSSLint.addFormatter({
-    // format information
+    / format information
     id: "json",
     name: "JSON",
 
@@ -10598,7 +10598,7 @@ CSSLint.addFormatter({
 });
 
 CSSLint.addFormatter({
-    // format information
+    / format information
     id: "junit-xml",
     name: "JUNIT XML format",
 
@@ -10676,15 +10676,15 @@ CSSLint.addFormatter({
 
             messages.forEach(function (message) {
 
-                // since junit has no warning class
-                // all issues as errors
+                / since junit has no warning class
+                / all issues as errors
                 var type = message.type === "warning" ? "error" : message.type;
 
-                // ignore rollups for now
+                / ignore rollups for now
                 if (!message.rollup) {
 
-                    // build the test case separately, once joined
-                    // we'll add it to a custom array filtered by type
+                    / build the test case separately, once joined
+                    / we'll add it to a custom array filtered by type
                     output.push("<testcase time=\"0\" name=\"" + generateSource(message.rule) + "\">");
                     output.push("<" + type + " message=\"" + escapeSpecialCharacters(message.message) + "\"><![CDATA[" + message.line + ":" + message.col + ":" + escapeSpecialCharacters(message.evidence) + "]]></" + type + ">");
                     output.push("</testcase>");
@@ -10706,7 +10706,7 @@ CSSLint.addFormatter({
 });
 
 CSSLint.addFormatter({
-    // format information
+    / format information
     id: "lint-xml",
     name: "Lint XML format",
 
@@ -10782,7 +10782,7 @@ CSSLint.addFormatter({
 });
 
 CSSLint.addFormatter({
-    // format information
+    / format information
     id: "text",
     name: "Plain Text",
 

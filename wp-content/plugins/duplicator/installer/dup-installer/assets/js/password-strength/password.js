@@ -77,17 +77,17 @@
         {
             var score = 0;
 
-          // password < options.minimumLength
+          / password < options.minimumLength
             if (password.length < options.minimumLength) {
                 return -1;
             }
 
             if (options.field) {
-              // password === field
+              / password === field
                 if (password.toLowerCase() === field.toLowerCase()) {
                     return -2;
                 }
-              // password contains field (and fieldPartialMatch is set to true)
+              / password contains field (and fieldPartialMatch is set to true)
                 if (options.fieldPartialMatch && field.length) {
                     var user = new RegExp(field.toLowerCase());
                     if (password.toLowerCase().match(user)) {
@@ -96,46 +96,46 @@
                 }
             }
 
-          // password length
+          / password length
             score += password.length * 4;
             score += checkRepetition(1, password).length - password.length;
             score += checkRepetition(2, password).length - password.length;
             score += checkRepetition(3, password).length - password.length;
             score += checkRepetition(4, password).length - password.length;
 
-          // password has 3 numbers
+          / password has 3 numbers
             if (password.match(/(.*[0-9].*[0-9].*[0-9])/)) {
                 score += 5;
             }
 
-          // password has at least 2 symbols
+          / password has at least 2 symbols
             var symbols = '.*[!,@,#,$,%,^,&,*,?,_,~]';
             symbols = new RegExp('(' + symbols + symbols + ')');
             if (password.match(symbols)) {
                 score += 5;
             }
 
-          // password has Upper and Lower chars
+          / password has Upper and Lower chars
             if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) {
                 score += 10;
             }
 
-          // password has number and chars
+          / password has number and chars
             if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/)) {
                 score += 15;
             }
 
-          // password has number and symbol
+          / password has number and symbol
             if (password.match(/([!@#$%^&*?_~])/) && password.match(/([0-9])/)) {
                 score += 15;
             }
 
-          // password has char and symbol
+          / password has char and symbol
             if (password.match(/([!@#$%^&*?_~])/) && password.match(/([a-zA-Z])/)) {
                 score += 15;
             }
 
-          // password is just numbers or chars
+          / password is just numbers or chars
             if (password.match(/^\w+$/) || password.match(/^\d+$/)) {
                 score -= 10;
             }
@@ -336,7 +336,7 @@
         return init.call(this);
     };
 
-  // Bind to jquery
+  / Bind to jquery
     $.fn.password = function (options) {
         return this.each(function () {
             new Password($(this), options);

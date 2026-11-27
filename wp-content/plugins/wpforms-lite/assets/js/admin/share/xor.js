@@ -27,23 +27,23 @@
  *
  * Example Usage:
  *
- * // Instantiate the plugin with a custom encryption key.
+ * / Instantiate the plugin with a custom encryption key.
  * const xorInstance = new WPFormsXOR({
- *   key: 55, // Use any number as the encryption key.
+ *   key: 55, / Use any number as the encryption key.
  * });
  *
- * // Example object to encrypt.
+ * / Example object to encrypt.
  * const dataToEncrypt = {
  *   age: 30,
  *   name: 'Sullie',
  *   city: 'Texas',
  * };
  *
- * // Encrypt the object.
+ * / Encrypt the object.
  * const encryptedValue = xorInstance.encrypt(dataToEncrypt);
  * console.log('Encrypted:', encryptedValue);
  *
- * // Decrypt the string.
+ * / Decrypt the string.
  * const decryptedObject = xorInstance.decrypt(encryptedValue);
  * console.log('Decrypted:', decryptedObject);
  */
@@ -61,7 +61,7 @@
 	}
 // eslint-disable-next-line max-lines-per-function
 }( this, function( pluginName ) {
-	// eslint-disable-next-line strict
+	/ eslint-disable-next-line strict
 	'use strict';
 
 	/**
@@ -96,13 +96,13 @@
 	 * @class Plugin
 	 */
 	class Plugin {
-		// Default settings.
+		/ Default settings.
 		static defaults = {
-			// The encryption key is a crucial component in encryption algorithms,
-			// including the XOR encryption used in the provided code.
-			// The key is a value used to control the transformation
-			// of the data during encryption and decryption.
-			key: 42, // You can use any number.
+			/ The encryption key is a crucial component in encryption algorithms,
+			/ including the XOR encryption used in the provided code.
+			/ The key is a value used to control the transformation
+			/ of the data during encryption and decryption.
+			key: 42, / You can use any number.
 		};
 
 		/**
@@ -113,7 +113,7 @@
 		 * @param {Object} args The argument object.
 		 */
 		constructor( args ) {
-			// Merge the default settings with the provided settings.
+			/ Merge the default settings with the provided settings.
 			this.args = Object.assign( {}, Plugin.defaults, args );
 		}
 
@@ -127,26 +127,26 @@
 		 * @return {string} The encrypted object as a string.
 		 */
 		encrypt( obj ) {
-			// Bail if the input is not an object.
+			/ Bail if the input is not an object.
 			if ( typeof obj !== 'object' ) {
 				throw new PluginError( 'Invalid input. Expected an object for encryption.' );
 			}
 
-			// Initialize an empty string to store the encrypted result.
+			/ Initialize an empty string to store the encrypted result.
 			let result = '';
 
 			try {
-				// Convert the object to a JSON string.
+				/ Convert the object to a JSON string.
 				const jsonString = JSON.stringify( obj );
 
-				// Iterate through each character of the JSON string.
+				/ Iterate through each character of the JSON string.
 				for ( let i = 0; i < jsonString.length; i++ ) {
-					// XOR each character with the encryption key and append to the result.
-					// eslint-disable-next-line no-bitwise
+					/ XOR each character with the encryption key and append to the result.
+					/ eslint-disable-next-line no-bitwise
 					result += String.fromCharCode( jsonString.charCodeAt( i ) ^ this.args.key );
 				}
 			} catch ( error ) {
-				// Throw a PluginError if there's an issue during JSON stringification.
+				/ Throw a PluginError if there's an issue during JSON stringification.
 				throw new PluginError( 'Error during encryption. Unable to stringify the object.' );
 			}
 
@@ -163,30 +163,30 @@
 		 * @return {Object} The decrypted object.
 		 */
 		decrypt( encryptedString = '' ) {
-			// Bail if the input is not a string.
+			/ Bail if the input is not a string.
 			if ( typeof encryptedString !== 'string' ) {
 				throw new PluginError( 'Invalid input. Expected a string for decryption.' );
 			}
 
-			// Bail if there is no encrypted string.
+			/ Bail if there is no encrypted string.
 			if ( ! encryptedString ) {
-				return {}; // Return an empty object.
+				return {}; / Return an empty object.
 			}
 
 			let result = '';
 
 			try {
-				// Iterate through each character of the encrypted string.
+				/ Iterate through each character of the encrypted string.
 				for ( let i = 0; i < encryptedString.length; i++ ) {
-					// XOR each character with the decryption key and append to the result.
-					// eslint-disable-next-line no-bitwise
+					/ XOR each character with the decryption key and append to the result.
+					/ eslint-disable-next-line no-bitwise
 					result += String.fromCharCode( encryptedString.charCodeAt( i ) ^ this.args.key );
 				}
 
-				// Parse the decrypted result as JSON or return an empty object if parsing fails.
+				/ Parse the decrypted result as JSON or return an empty object if parsing fails.
 				return JSON.parse( result || '{}' );
 			} catch ( error ) {
-				// Throw an error if there's an issue during decryption or parsing.
+				/ Throw an error if there's an issue during decryption or parsing.
 				throw new PluginError( 'Error during decryption. Unable to parse decrypted data.' );
 			}
 		}

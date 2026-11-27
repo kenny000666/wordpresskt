@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../assets/dev/js/editor/command-bases/command-container-base.js":
@@ -168,7 +168,7 @@ var CommandHistoryBase = exports["default"] = /*#__PURE__*/function (_CommandCon
       }
     }
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Function getHistory().
      *
@@ -182,7 +182,7 @@ var CommandHistoryBase = exports["default"] = /*#__PURE__*/function (_CommandCon
     key: "getHistory",
     value: function getHistory() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       elementorModules.ForceMethodImplementation();
     }
 
@@ -231,7 +231,7 @@ var CommandHistoryBase = exports["default"] = /*#__PURE__*/function (_CommandCon
   }, {
     key: "onCatchApply",
     value: function onCatchApply(e) {
-      // Rollback history on failure.
+      / Rollback history on failure.
       if (e instanceof $e.modules.HookBreak && this.historyId) {
         $e.internal('document/history/delete-log', {
           id: this.historyId
@@ -242,7 +242,7 @@ var CommandHistoryBase = exports["default"] = /*#__PURE__*/function (_CommandCon
   }, {
     key: "isDataChanged",
     value: function isDataChanged() {
-      // All the commands who use history are commands that changing the data.
+      / All the commands who use history are commands that changing the data.
       return true;
     }
   }], [{
@@ -318,7 +318,7 @@ var CommandHistoryDebounceBase = exports["default"] = /*#__PURE__*/function (_Co
         }, getDefaultDebounceDelay());
       }
 
-      // If its head command, and not called within another command.
+      / If its head command, and not called within another command.
       if (1 === $e.commands.currentTrace.length || options.debounce) {
         this.isDebounceRequired = true;
       }
@@ -350,10 +350,10 @@ var CommandHistoryDebounceBase = exports["default"] = /*#__PURE__*/function (_Co
     value: function onCatchApply(e) {
       $e.modules.CommandBase.prototype.onCatchApply.call(this, e);
 
-      // Rollback history on failure.
+      / Rollback history on failure.
       if (e instanceof $e.modules.HookBreak && this.history) {
         if (this.isDebounceRequired) {
-          // `clear-transaction` is under debounce, because it should `clear-transaction` after `end-transaction`.
+          / `clear-transaction` is under debounce, because it should `clear-transaction` after `end-transaction`.
           this.constructor.debounce(function () {
             return $e.internal('document/history/clear-transaction');
           });
@@ -545,8 +545,8 @@ var ArgsObject = exports["default"] = /*#__PURE__*/function (_InstanceType) {
       var args = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.args;
       this.requireArgument(property, args);
 
-      // Note: Converting the constructor to string in order to avoid equation issues
-      // due to different memory addresses between iframes (window.Object !== window.top.Object).
+      / Note: Converting the constructor to string in order to avoid equation issues
+      / due to different memory addresses between iframes (window.Object !== window.top.Object).
       if (args[property].constructor.toString() !== type.prototype.constructor.toString()) {
         throw Error("".concat(property, " invalid constructor type."));
       }
@@ -584,7 +584,7 @@ var InstanceType = exports["default"] = /*#__PURE__*/function () {
   function InstanceType() {
     var _this = this;
     (0, _classCallCheck2.default)(this, InstanceType);
-    // Since anonymous classes sometimes do not get validated by babel, do it manually.
+    / Since anonymous classes sometimes do not get validated by babel, do it manually.
     var target = this instanceof InstanceType ? this.constructor : void 0;
     var prototypes = [];
     while (target.__proto__ && target.__proto__.name) {
@@ -605,7 +605,7 @@ var InstanceType = exports["default"] = /*#__PURE__*/function () {
        */
       var result = _superPropGet(InstanceType, Symbol.hasInstance, this, 2)([target]);
 
-      // Act normal when validate a class, which does not have instance type.
+      / Act normal when validate a class, which does not have instance type.
       if (target && !target.constructor.getInstanceType) {
         return result;
       }
@@ -626,7 +626,7 @@ var InstanceType = exports["default"] = /*#__PURE__*/function () {
         }
       }
       if (!result && target) {
-        // Check if the given 'target', is instance of known types.
+        / Check if the given 'target', is instance of known types.
         result = target.instanceTypes && Array.isArray(target.instanceTypes) && -1 !== target.instanceTypes.indexOf(this.getInstanceType());
       }
       return result;
@@ -802,19 +802,19 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
       throw RangeError('Doing it wrong: Each command type should have `registerConfig`.');
     }
 
-    // Acknowledge self about which command it run.
+    / Acknowledge self about which command it run.
     _this.command = _this.constructor.getCommand();
 
-    // Assign instance of current component.
+    / Assign instance of current component.
     _this.component = _this.constructor.getComponent();
 
-    // Who ever need do something before without `super` the constructor can use `initialize` method.
+    / Who ever need do something before without `super` the constructor can use `initialize` method.
     _this.initialize(args);
 
-    // Refresh args, maybe the changed via `initialize`.
+    / Refresh args, maybe the changed via `initialize`.
     args = _this.args;
 
-    // Validate args before run.
+    / Validate args before run.
     _this.validateArgs(args);
     return _this;
   }
@@ -841,7 +841,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     key: "initialize",
     value: function initialize() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
     /**
      * Function validateArgs().
@@ -854,9 +854,9 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     key: "validateArgs",
     value: function validateArgs() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Function apply().
      *
@@ -870,7 +870,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     key: "apply",
     value: function apply() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       elementorModules.ForceMethodImplementation();
     }
 
@@ -898,7 +898,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     key: "onBeforeRun",
     value: function onBeforeRun() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
     /**
      * Function onAfterRun.
@@ -913,7 +913,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     value: function onAfterRun() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var result = arguments.length > 1 ? arguments[1] : undefined;
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
     /**
      * Function onBeforeApply.
@@ -926,7 +926,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     key: "onBeforeApply",
     value: function onBeforeApply() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
     /**
      * Function onAfterApply.
@@ -941,7 +941,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     value: function onAfterApply() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var result = arguments.length > 1 ? arguments[1] : undefined;
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
     /**
      * Function onCatchApply.
@@ -952,7 +952,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
      */
   }, {
     key: "onCatchApply",
-    value: function onCatchApply(e) {} // eslint-disable-line no-unused-vars
+    value: function onCatchApply(e) {} / eslint-disable-line no-unused-vars
   }], [{
     key: "getInstanceType",
     value: function getInstanceType() {
@@ -1024,14 +1024,14 @@ var Console = exports["default"] = /*#__PURE__*/function () {
   return (0, _createClass2.default)(Console, null, [{
     key: "error",
     value: function error(message) {
-      // Show an error if devTools is available.
+      / Show an error if devTools is available.
       if ($e.devTools) {
         $e.devTools.log.error(message);
       }
 
-      // If not a 'Hook-Break' then show error.
+      / If not a 'Hook-Break' then show error.
       if (!(message instanceof $e.modules.HookBreak)) {
-        // eslint-disable-next-line no-console
+        / eslint-disable-next-line no-console
         console.error(message);
       }
     }
@@ -1044,7 +1044,7 @@ var Console = exports["default"] = /*#__PURE__*/function () {
         args[_key] = arguments[_key];
       }
       args.unshift('%c  %c', style, '');
-      (_console = console).warn.apply(_console, args); // eslint-disable-line no-console
+      (_console = console).warn.apply(_console, args); / eslint-disable-line no-console
     }
   }]);
 }();
@@ -1557,27 +1557,27 @@ module.exports = _unsupportedIterableToArray, module.exports.__esModule = true, 
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	

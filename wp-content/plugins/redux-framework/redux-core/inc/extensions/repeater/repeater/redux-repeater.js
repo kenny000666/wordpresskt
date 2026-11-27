@@ -110,7 +110,7 @@
 
 				parent = $( this ).parent().find( '.redux-repeater-accordion:first' );
 				count  = parent.find( '.redux-repeater-accordion-repeater' ).length;
-				gid    = parent.attr( 'data-id' ); // Group id.
+				gid    = parent.attr( 'data-id' ); / Group id.
 
 				if ( '' !== reduxObject.repeater[gid].limit ) {
 					if ( count >= reduxObject.repeater[gid].limit ) {
@@ -121,7 +121,7 @@
 
 				count += 1;
 
-				id = parent.find( '.redux-repeater-accordion-repeater' ).length; // Index number.
+				id = parent.find( '.redux-repeater-accordion-repeater' ).length; / Index number.
 
 				if ( parent.find( '.redux-repeater-accordion-repeater:last' ).find( '.ui-accordion-header' ).hasClass( 'ui-state-active' ) ) {
 					parent.find( '.redux-repeater-accordion-repeater:last' ).find( '.ui-accordion-header' ).trigger( 'click' );
@@ -152,23 +152,23 @@
 					$.each(
 						newSlide.find( '.redux-container-editor' ),
 						function () {
-							// Grab an editor id.
+							/ Grab an editor id.
 							let quicktagsSetting;
 
 							items.push( $( this ).attr( 'data-id' ) );
 
-							// Grab an editor settings from wp_editor
-							// Grab a quicktags settings.
+							/ Grab an editor settings from wp_editor
+							/ Grab a quicktags settings.
 							quicktagsSetting    = QTags.getInstance( firstEditorId ).settings;
 							quicktagsSetting.id = items[items.length - 1];
 						}
 					);
 				}
 
-				// Append to the accordion.
+				/ Append to the accordion.
 				$( parent ).append( newSlide );
 
-				// Render tinymce !
+				/ Render tinymce !
 				if ( newSlide.find( '.redux-container-editor' ) ) {
 					$.each(
 						items,
@@ -180,10 +180,10 @@
 					);
 				}
 
-				// Reorder.
+				/ Reorder.
 				redux.field_objects.repeater.sort_repeaters( newSlide );
 
-				// Refresh the JS object.
+				/ Refresh the JS object.
 				newSlide = $( this ).parent().find( '.redux-repeater-accordion:first' );
 
 				newSlide.find( '.redux-repeater-accordion-repeater:last .ui-accordion-header' ).trigger( 'click' );
@@ -224,7 +224,7 @@
 	redux.field_objects.repeater.remove = function ( el ) {
 		let x;
 
-		// Handler to remove the given repeater.
+		/ Handler to remove the given repeater.
 		el.find( '.redux-repeaters-remove' ).on(
 			'click',
 			function () {
@@ -360,8 +360,8 @@
 					stop: function ( event, ui ) {
 						event = null;
 
-						// IE doesn't register the blur when sorting
-						// so trigger focusout handlers to remove .ui-state-focus.
+						/ IE doesn't register the blur when sorting
+						/ so trigger focusout handlers to remove .ui-state-focus.
 						ui.item.children( 'h3' ).triggerHandler( 'focusout' );
 
 						redux.field_objects.repeater.sort_repeaters( $( this ) );
@@ -401,7 +401,7 @@
 
 				$( this ).attr( 'data-sortid', idx );
 
-				// Fix the accordion header.
+				/ Fix the accordion header.
 				header = $( this ).find( '.ui-accordion-header' );
 				split  = header.attr( 'id' ).split( '-header-' );
 
@@ -410,7 +410,7 @@
 
 				header.attr( 'aria-controls', split[0] + '-panel-' + idx );
 
-				// Fix the accordion content.
+				/ Fix the accordion content.
 				content = $( this ).find( '.ui-accordion-content' );
 				split   = content.attr( 'id' ).split( '-panel-' );
 

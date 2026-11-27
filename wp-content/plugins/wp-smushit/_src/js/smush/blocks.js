@@ -94,7 +94,7 @@ export function fetchProps( props ) {
 	image.fetch( { attribute: 'smush' } ).done( function( img ) {
 		if ( 'string' === typeof img.smush ) {
 			props.setAttributes( { smush: img.smush } );
-			//setTimeout( () => fetch( props ), 3000 );
+			/setTimeout( () => fetch( props ), 3000 );
 		} else if (
 			'undefined' !== typeof img.smush &&
 			( 'undefined' === typeof smushData ||
@@ -111,7 +111,7 @@ export function fetchProps( props ) {
  */
 const smushStatsControl = createHigherOrderComponent( ( BlockEdit ) => {
 	return ( props ) => {
-		// If not image block or not selected, return unmodified block.
+		/ If not image block or not selected, return unmodified block.
 		if (
 			'core/image' !== props.name ||
 			! props.isSelected ||

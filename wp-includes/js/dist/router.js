@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -23,7 +23,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -42,7 +42,7 @@ __webpack_require__.d(__webpack_exports__, {
   privateApis: () => (/* reexport */ privateApis)
 });
 
-;// ./node_modules/route-recognizer/dist/route-recognizer.es.js
+;/ ./node_modules/route-recognizer/dist/route-recognizer.es.js
 var createObject = Object.create;
 function createMap() {
     var map = createObject(null);
@@ -150,7 +150,7 @@ function normalizePath(path) {
 // We want to ensure the characters "%" and "/" remain in percent-encoded
 // form when normalizing paths, so replace them with their encoded form after
 // decoding the rest of the path
-var SEGMENT_RESERVED_CHARS = /%|\//g;
+var SEGMENT_RESERVED_CHARS = /%|\/g;
 function normalizeSegment(segment) {
     if (segment.length < 3 || segment.indexOf("%") === -1)
         { return segment; }
@@ -245,8 +245,8 @@ var EmptyArray = Object.freeze([]);
 // segment. `shouldDecodes` will be populated with a boolean for each dyanamic/star
 // segment, indicating whether it should be decoded during recognition.
 function parse(segments, route, types) {
-    // normalize route as not starting with a "/". Recognition will
-    // also normalize.
+    / normalize route as not starting with a "/". Recognition will
+    / also normalize.
     if (route.length > 0 && route.charCodeAt(0) === 47 /* SLASH */) {
         route = route.substr(1);
     }
@@ -349,16 +349,16 @@ State.prototype.get = function get (char, negate) {
 };
 State.prototype.put = function put (char, negate, repeat) {
     var state;
-    // If the character specification already exists in a child of the current
-    // state, just return that state.
+    / If the character specification already exists in a child of the current
+    / state, just return that state.
     if (state = this.get(char, negate)) {
         return state;
     }
-    // Make a new state for the character spec
+    / Make a new state for the character spec
     var states = this.states;
     state = new State(states, states.length, char, negate, repeat);
     states[states.length] = state;
-    // Insert the new state as a child of the current state
+    / Insert the new state as a child of the current state
     if (this.nextStates == null) {
         this.nextStates = state.id;
     }
@@ -368,7 +368,7 @@ State.prototype.put = function put (char, negate, repeat) {
     else {
         this.nextStates = [this.nextStates, state.id];
     }
-    // Return the new state
+    / Return the new state
     return state;
 };
 // Find a list of child states matching the next character
@@ -494,7 +494,7 @@ function findHandler(state, originalPath, queryParams) {
     return result;
 }
 function decodeQueryParamPart(part) {
-    // http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4.1
+    / http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4.1
     part = part.replace(/\+/gm, "%20");
     var result;
     try {
@@ -526,17 +526,17 @@ RouteRecognizer.prototype.add = function add (routes, options) {
         var ref = parse(allSegments, route.path, types);
             var names = ref.names;
             var shouldDecodes = ref.shouldDecodes;
-        // preserve j so it points to the start of newly added segments
+        / preserve j so it points to the start of newly added segments
         for (; j < allSegments.length; j++) {
             var segment = allSegments[j];
             if (segment.type === 4 /* Epsilon */) {
                 continue;
             }
             isEmpty = false;
-            // Add a "/" for the new segment
+            / Add a "/" for the new segment
             currentState = currentState.put(47 /* SLASH */, false, false);
             pattern += "/";
-            // Add a representation of the segment to the NFA and regex
+            / Add a representation of the segment to the NFA and regex
             currentState = eachChar[segment.type](segment, currentState);
             pattern += regex[segment.type](segment);
         }
@@ -558,9 +558,9 @@ RouteRecognizer.prototype.add = function add (routes, options) {
         name = options.as;
     }
     if (name) {
-        // if (this.names[name]) {
-        //   throw new Error("You may not add a duplicate route named `" + name + "`.");
-        // }
+        / if (this.names[name]) {
+        /   throw new Error("You may not add a duplicate route named `" + name + "`.");
+        / }
         this.names[name] = {
             segments: allSegments,
             handlers: handlers
@@ -641,7 +641,7 @@ RouteRecognizer.prototype.parseQueryString = function parseQueryString (queryStr
             value = "true";
         }
         else {
-            // Handle arrays
+            / Handle arrays
             if (keyLength > 2 && key.slice(keyLength - 2) === "[]") {
                 isArray = true;
                 key = key.slice(0, keyLength - 2);
@@ -707,8 +707,8 @@ RouteRecognizer.prototype.recognize = function recognize (path) {
     states = sortSolutions(solutions);
     var state = solutions[0];
     if (state && state.handlers) {
-        // if a trailing slash was dropped and a star segment is the last segment
-        // specified, put the trailing slash back
+        / if a trailing slash was dropped and a star segment is the last segment
+        / specified, put the trailing slash back
         if (isSlashDropped && state.pattern && state.pattern.slice(-5) === "(.+)$") {
             originalPath = originalPath + "/";
         }
@@ -728,7 +728,7 @@ RouteRecognizer.prototype.map = map;
 /* harmony default export */ const route_recognizer_es = (RouteRecognizer);
 
 
-;// ./node_modules/@babel/runtime/helpers/esm/extends.js
+;/ ./node_modules/@babel/runtime/helpers/esm/extends.js
 function extends_extends() {
   return extends_extends = Object.assign ? Object.assign.bind() : function (n) {
     for (var e = 1; e < arguments.length; e++) {
@@ -739,7 +739,7 @@ function extends_extends() {
   }, extends_extends.apply(null, arguments);
 }
 
-;// ./node_modules/history/index.js
+;/ ./node_modules/history/index.js
 
 
 /**
@@ -779,16 +779,16 @@ var readOnly =  false ? 0 : function (obj) {
 
 function warning(cond, message) {
   if (!cond) {
-    // eslint-disable-next-line no-console
+    / eslint-disable-next-line no-console
     if (typeof console !== 'undefined') console.warn(message);
 
     try {
-      // Welcome to debugging history!
-      //
-      // This error is thrown as a convenience so you can more easily
-      // find the source for a warning that appears in the console by
-      // enabling "pause on exceptions" in your JavaScript debugger.
-      throw new Error(message); // eslint-disable-next-line no-empty
+      / Welcome to debugging history!
+      /
+      / This error is thrown as a convenience so you can more easily
+      / find the source for a warning that appears in the console by
+      / enabling "pause on exceptions" in your JavaScript debugger.
+      throw new Error(message); / eslint-disable-next-line no-empty
     } catch (e) {}
   }
 }
@@ -847,7 +847,7 @@ function createBrowserHistory(options) {
           var delta = index - nextIndex;
 
           if (delta) {
-            // Revert the POP
+            / Revert the POP
             blockedPopTx = {
               action: nextAction,
               location: nextLocation,
@@ -858,8 +858,8 @@ function createBrowserHistory(options) {
             go(delta);
           }
         } else {
-          // Trying to POP to a location with no index. We did not create
-          // this location, so we can't effectively block the navigation.
+          / Trying to POP to a location with no index. We did not create
+          / this location, so we can't effectively block the navigation.
            false ? 0 : void 0;
         }
       } else {
@@ -887,7 +887,7 @@ function createBrowserHistory(options) {
 
   function createHref(to) {
     return typeof to === 'string' ? to : createPath(to);
-  } // state defaults to `null` because `window.history.state` does
+  } / state defaults to `null` because `window.history.state` does
 
 
   function getNextLocation(to, state) {
@@ -945,15 +945,15 @@ function createBrowserHistory(options) {
     if (allowTx(nextAction, nextLocation, retry)) {
       var _getHistoryStateAndUr = getHistoryStateAndUrl(nextLocation, index + 1),
           historyState = _getHistoryStateAndUr[0],
-          url = _getHistoryStateAndUr[1]; // TODO: Support forced reloading
-      // try...catch because iOS limits us to 100 pushState calls :/
+          url = _getHistoryStateAndUr[1]; / TODO: Support forced reloading
+      / try...catch because iOS limits us to 100 pushState calls :/
 
 
       try {
         globalHistory.pushState(historyState, '', url);
       } catch (error) {
-        // They are going to lose state here, but there is no real
-        // way to warn them about it since the page will refresh...
+        / They are going to lose state here, but there is no real
+        / way to warn them about it since the page will refresh...
         window.location.assign(url);
       }
 
@@ -972,7 +972,7 @@ function createBrowserHistory(options) {
     if (allowTx(nextAction, nextLocation, retry)) {
       var _getHistoryStateAndUr2 = getHistoryStateAndUrl(nextLocation, index),
           historyState = _getHistoryStateAndUr2[0],
-          url = _getHistoryStateAndUr2[1]; // TODO: Support forced reloading
+          url = _getHistoryStateAndUr2[1]; / TODO: Support forced reloading
 
 
       globalHistory.replaceState(historyState, '', url);
@@ -1014,9 +1014,9 @@ function createBrowserHistory(options) {
       }
 
       return function () {
-        unblock(); // Remove the beforeunload listener so the document may
-        // still be salvageable in the pagehide event.
-        // See https://html.spec.whatwg.org/#unloading-documents
+        unblock(); / Remove the beforeunload listener so the document may
+        / still be salvageable in the pagehide event.
+        / See https://html.spec.whatwg.org/#unloading-documents
 
         if (!blockers.length) {
           window.removeEventListener(BeforeUnloadEventType, promptBeforeUnload);
@@ -1082,7 +1082,7 @@ function createHashHistory(options) {
           var delta = index - nextIndex;
 
           if (delta) {
-            // Revert the POP
+            / Revert the POP
             blockedPopTx = {
               action: nextAction,
               location: nextLocation,
@@ -1093,8 +1093,8 @@ function createHashHistory(options) {
             go(delta);
           }
         } else {
-          // Trying to POP to a location with no index. We did not create
-          // this location, so we can't effectively block the navigation.
+          / Trying to POP to a location with no index. We did not create
+          / this location, so we can't effectively block the navigation.
            false ? 0 : void 0;
         }
       } else {
@@ -1103,12 +1103,12 @@ function createHashHistory(options) {
     }
   }
 
-  window.addEventListener(PopStateEventType, handlePop); // popstate does not fire on hashchange in IE 11 and old (trident) Edge
-  // https://developer.mozilla.org/de/docs/Web/API/Window/popstate_event
+  window.addEventListener(PopStateEventType, handlePop); / popstate does not fire on hashchange in IE 11 and old (trident) Edge
+  / https://developer.mozilla.org/de/docs/Web/API/Window/popstate_event
 
   window.addEventListener(HashChangeEventType, function () {
     var _getIndexAndLocation5 = getIndexAndLocation(),
-        nextLocation = _getIndexAndLocation5[1]; // Ignore extraneous hashchange events.
+        nextLocation = _getIndexAndLocation5[1]; / Ignore extraneous hashchange events.
 
 
     if (createPath(nextLocation) !== createPath(location)) {
@@ -1205,15 +1205,15 @@ function createHashHistory(options) {
     if (allowTx(nextAction, nextLocation, retry)) {
       var _getHistoryStateAndUr3 = getHistoryStateAndUrl(nextLocation, index + 1),
           historyState = _getHistoryStateAndUr3[0],
-          url = _getHistoryStateAndUr3[1]; // TODO: Support forced reloading
-      // try...catch because iOS limits us to 100 pushState calls :/
+          url = _getHistoryStateAndUr3[1]; / TODO: Support forced reloading
+      / try...catch because iOS limits us to 100 pushState calls :/
 
 
       try {
         globalHistory.pushState(historyState, '', url);
       } catch (error) {
-        // They are going to lose state here, but there is no real
-        // way to warn them about it since the page will refresh...
+        / They are going to lose state here, but there is no real
+        / way to warn them about it since the page will refresh...
         window.location.assign(url);
       }
 
@@ -1234,7 +1234,7 @@ function createHashHistory(options) {
     if (allowTx(nextAction, nextLocation, retry)) {
       var _getHistoryStateAndUr4 = getHistoryStateAndUrl(nextLocation, index),
           historyState = _getHistoryStateAndUr4[0],
-          url = _getHistoryStateAndUr4[1]; // TODO: Support forced reloading
+          url = _getHistoryStateAndUr4[1]; / TODO: Support forced reloading
 
 
       globalHistory.replaceState(historyState, '', url);
@@ -1276,9 +1276,9 @@ function createHashHistory(options) {
       }
 
       return function () {
-        unblock(); // Remove the beforeunload listener so the document may
-        // still be salvageable in the pagehide event.
-        // See https://html.spec.whatwg.org/#unloading-documents
+        unblock(); / Remove the beforeunload listener so the document may
+        / still be salvageable in the pagehide event.
+        / See https://html.spec.whatwg.org/#unloading-documents
 
         if (!blockers.length) {
           window.removeEventListener(BeforeUnloadEventType, promptBeforeUnload);
@@ -1436,17 +1436,17 @@ function createMemoryHistory(options) {
     }
   };
   return history;
-} ////////////////////////////////////////////////////////////////////////////////
+} /////////////////////////////////////////////////////
 // UTILS
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 
 function clamp(n, lowerBound, upperBound) {
   return Math.min(Math.max(n, lowerBound), upperBound);
 }
 
 function promptBeforeUnload(event) {
-  // Cancel the event.
-  event.preventDefault(); // Chrome (and legacy IE) requires returnValue to be set.
+  / Cancel the event.
+  event.preventDefault(); / Chrome (and legacy IE) requires returnValue to be set.
 
   event.returnValue = '';
 }
@@ -1529,15 +1529,15 @@ function parsePath(path) {
 
 
 
-;// external ["wp","element"]
+;/ external ["wp","element"]
 const external_wp_element_namespaceObject = window["wp"]["element"];
-;// external ["wp","url"]
+;/ external ["wp","url"]
 const external_wp_url_namespaceObject = window["wp"]["url"];
-;// external ["wp","compose"]
+;/ external ["wp","compose"]
 const external_wp_compose_namespaceObject = window["wp"]["compose"];
-;// external "ReactJSXRuntime"
+;/ external "ReactJSXRuntime"
 const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
-;// ./node_modules/@wordpress/router/build-module/router.js
+;/ ./node_modules/@wordpress/router/build-module/router.js
 /* wp:polyfill */
 /**
  * External dependencies
@@ -1708,7 +1708,7 @@ function RouterProvider({
   });
 }
 
-;// ./node_modules/@wordpress/router/build-module/link.js
+;/ ./node_modules/@wordpress/router/build-module/link.js
 /**
  * WordPress dependencies
  */
@@ -1769,9 +1769,9 @@ function Link({
   });
 }
 
-;// external ["wp","privateApis"]
+;/ external ["wp","privateApis"]
 const external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
-;// ./node_modules/@wordpress/router/build-module/lock-unlock.js
+;/ ./node_modules/@wordpress/router/build-module/lock-unlock.js
 /**
  * WordPress dependencies
  */
@@ -1781,7 +1781,7 @@ const {
   unlock
 } = (0,external_wp_privateApis_namespaceObject.__dangerousOptInToUnstableAPIsOnlyForCoreModules)('I acknowledge private features are not for use in themes or plugins and doing so will break in the next version of WordPress.', '@wordpress/router');
 
-;// ./node_modules/@wordpress/router/build-module/private-apis.js
+;/ ./node_modules/@wordpress/router/build-module/private-apis.js
 /**
  * Internal dependencies
  */
@@ -1797,7 +1797,7 @@ lock(privateApis, {
   Link: Link
 });
 
-;// ./node_modules/@wordpress/router/build-module/index.js
+;/ ./node_modules/@wordpress/router/build-module/index.js
 
 
 (window.wp = window.wp || {}).router = __webpack_exports__;

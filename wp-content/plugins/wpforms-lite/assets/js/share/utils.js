@@ -97,7 +97,7 @@ var WPFormsUtils = window.WPFormsUtils || ( function( document, window, $ ) {
 				const rgba = app.cssColorsUtils.getColorAsRGBArray( color );
 				const opacity = Number( rgba?.[ 3 ] );
 
-				// Compare the opacity value with the threshold.
+				/ Compare the opacity value with the threshold.
 				return opacity <= opacityThreshold;
 			},
 
@@ -111,23 +111,23 @@ var WPFormsUtils = window.WPFormsUtils || ( function( document, window, $ ) {
 			 * @return {Array|boolean} Color as an array of RGBA values. False on error.
 			 */
 			getColorAsRGBArray( color ) {
-				// Check if the given color is a valid CSS color.
+				/ Check if the given color is a valid CSS color.
 				if ( ! app.cssColorsUtils.isValidColor( color ) ) {
 					return false;
 				}
 
-				// Remove # from the beginning of the string and remove whitespaces.
+				/ Remove # from the beginning of the string and remove whitespaces.
 				color = color.replace( /^#/, '' ).replaceAll( ' ', '' );
 				color = color === 'transparent' ? 'rgba(0,0,0,0)' : color;
 
 				const rgba = color;
 				let rgbArray;
 
-				// Check if color is in HEX(A) format.
+				/ Check if color is in HEX(A) format.
 				const isHex = rgba.match( /[0-9a-f]{6,8}$/ig );
 
 				if ( isHex ) {
-					// Search and split HEX(A) color into an array of couples of chars.
+					/ Search and split HEX(A) color into an array of couples of chars.
 					rgbArray = rgba.match( /\w\w/g ).map( ( x ) => parseInt( x, 16 ) );
 					rgbArray[ 3 ] = rgbArray[ 3 ] || rgbArray[ 3 ] === 0 ? ( rgbArray[ 3 ] / 255 ).toFixed( 2 ) : 1;
 				} else {
@@ -147,12 +147,12 @@ var WPFormsUtils = window.WPFormsUtils || ( function( document, window, $ ) {
 			 * @return {boolean} True if the given color is a valid CSS color.
 			 */
 			isValidColor( color ) {
-				// Create a temporary DOM element and use `style` property.
+				/ Create a temporary DOM element and use `style` property.
 				const s = new Option().style;
 
 				s.color = color;
 
-				// Invalid color leads to the empty color property of DOM element style.
+				/ Invalid color leads to the empty color property of DOM element style.
 				return s.color !== '';
 			},
 
@@ -195,15 +195,15 @@ var WPFormsUtils = window.WPFormsUtils || ( function( document, window, $ ) {
 					return color;
 				}
 
-				// Default opacity is 1.
+				/ Default opacity is 1.
 				opacity = ! opacity || opacity.length === 0 ? '1' : opacity.toString();
 
 				const alpha = rgbArray.length === 4 ? parseFloat( rgbArray[ 3 ] ) : 1;
 
-				// Calculate new alpha value.
+				/ Calculate new alpha value.
 				const newAlpha = parseFloat( opacity ) * alpha;
 
-				// Combine and return the RGBA color.
+				/ Combine and return the RGBA color.
 				return `rgba(${ rgbArray[ 0 ] },${ rgbArray[ 1 ] },${ rgbArray[ 2 ] },${ newAlpha })`.replace( /\s+/g, '' );
 			},
 
@@ -232,10 +232,10 @@ var WPFormsUtils = window.WPFormsUtils || ( function( document, window, $ ) {
 				const blue = Number( rgbArray[ 2 ] );
 				const alpha = rgbArray[ 3 ] ? Math.round( Number( rgbArray[ 3 ] ) * 255 ) : 255;
 
-				// Ensure numbers are converted to valid two-character hexadecimal strings.
+				/ Ensure numbers are converted to valid two-character hexadecimal strings.
 				const colorToHex = ( value ) => value.toString( 16 ).padStart( 2, '0' );
 
-				// Convert to hex and return as a single string.
+				/ Convert to hex and return as a single string.
 				const hex = `#${ [
 					colorToHex( red ),
 					colorToHex( green ),
@@ -248,6 +248,6 @@ var WPFormsUtils = window.WPFormsUtils || ( function( document, window, $ ) {
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );

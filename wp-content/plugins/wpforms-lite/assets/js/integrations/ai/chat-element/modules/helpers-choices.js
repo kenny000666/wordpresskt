@@ -11,7 +11,7 @@
  *
  * @return {Object} The choices' helpers object.
  */
-export default function( chat ) { // eslint-disable-line max-lines-per-function
+export default function( chat ) { / eslint-disable-line max-lines-per-function
 	/**
 	 * The `choices` mode helpers object.
 	 *
@@ -49,7 +49,7 @@ export default function( chat ) { // eslint-disable-line max-lines-per-function
 				</ol>
 			`;
 
-			// Add footer to the first answer only.
+			/ Add footer to the first answer only.
 			if ( ! chat.sessionId ) {
 				answerHtml += `<span>${ chat.modeStrings.footer }</span>`;
 			}
@@ -80,7 +80,7 @@ export default function( chat ) { // eslint-disable-line max-lines-per-function
 		 * @return {string} The warning message HTML markup.
 		 */
 		getWarningMessage() {
-			// Trigger event before warning message insert.
+			/ Trigger event before warning message insert.
 			chat.triggerEvent( 'wpformsAIModalBeforeWarningMessageInsert', { fieldId: chat.fieldId } );
 
 			return `<div class="wpforms-ai-chat-divider"></div>
@@ -131,7 +131,7 @@ export default function( chat ) { // eslint-disable-line max-lines-per-function
 		addedAnswer( element ) {
 			const button = element.querySelector( '.wpforms-ai-chat-choices-insert' );
 
-			// Listen to the button click event.
+			/ Listen to the button click event.
 			button?.addEventListener( 'click', this.insertButtonClick.bind( this ) );
 		},
 
@@ -151,12 +151,12 @@ export default function( chat ) { // eslint-disable-line max-lines-per-function
 
 			let choices = response.choices;
 
-			// Sanitize choices.
+			/ Sanitize choices.
 			choices = choices.map( ( choice ) => {
 				return wpf.sanitizeHTML( choice, wpforms_builder.allowed_label_html_tags );
 			} );
 
-			// Remove empty choices.
+			/ Remove empty choices.
 			response.choices = choices.filter( ( choice ) => {
 				return choice.trim() !== '';
 			} );
@@ -175,7 +175,7 @@ export default function( chat ) { // eslint-disable-line max-lines-per-function
 		 * @return {boolean} Whether the answer has a prohibited code.
 		 */
 		hasProhibitedCode( response, sanitizedResponse ) {
-			// If the number of choices has changed after sanitization, it means that the answer contains prohibited code.
+			/ If the number of choices has changed after sanitization, it means that the answer contains prohibited code.
 			return sanitizedResponse?.choices?.length !== response?.choices?.length;
 		},
 
@@ -194,7 +194,7 @@ export default function( chat ) { // eslint-disable-line max-lines-per-function
 			const items = choicesList.querySelectorAll( '.wpforms-ai-chat-choices-item' );
 			const choiceItems = [];
 
-			// Get choices data.
+			/ Get choices data.
 			for ( const i in items ) {
 				if ( ! items.hasOwnProperty( i ) || ! items[ i ].textContent ) {
 					continue;
@@ -203,13 +203,13 @@ export default function( chat ) { // eslint-disable-line max-lines-per-function
 				choiceItems.push( items[ i ].textContent.trim() );
 			}
 
-			// Rate the response.
+			/ Rate the response.
 			chat.wpformsAiApi.rate( true, responseId );
 
-			// Replace field choices.
+			/ Replace field choices.
 			this.replaceChoices( choiceItems );
 
-			// Toggle to the field.
+			/ Toggle to the field.
 			jQuery( `#wpforms-field-${ chat.fieldId }` ).click().promise().done( function() {
 				jQuery( `#wpforms-field-option-basic-${ chat.fieldId } a.wpforms-field-option-group-toggle` ).click();
 			} );
@@ -229,35 +229,35 @@ export default function( chat ) { // eslint-disable-line max-lines-per-function
 
 			choiceRow.innerHTML = choiceRow.innerHTML.replace( /\[choices\]\[\d+\]/g, `[choices][{{key}}]` );
 
-			// Clear existing choices.
+			/ Clear existing choices.
 			choicesList.innerHTML = '';
 
-			// Add new choices.
+			/ Add new choices.
 			for ( const i in choices ) {
 				const key = ( Number( i ) + 1 ).toString();
 				const choice = choices[ i ];
 
-				// Clone choice item element.
+				/ Clone choice item element.
 				let li = choiceRow.cloneNode( true );
 
-				// Get updated single choice item.
+				/ Get updated single choice item.
 				li = this.getUpdatedSingleChoiceItem( li, key, choice );
 
-				// Add new choice item.
+				/ Add new choice item.
 				choicesList.appendChild( li );
 			}
 
-			// Update data-next-id attribute for choices list.
+			/ Update data-next-id attribute for choices list.
 			choicesList.setAttribute( 'data-next-id', choices.length + 1 );
 
-			// Update field preview.
+			/ Update field preview.
 			const fieldOptions = document.getElementById( `wpforms-field-option-${ chat.fieldId }` );
 			const fieldType = fieldOptions.querySelector( 'input.wpforms-field-option-hidden-type' )?.value;
 
 			WPFormsBuilder.fieldChoiceUpdate( fieldType, chat.fieldId, choices.length );
 			WPFormsBuilder.triggerBuilderEvent( 'wpformsFieldChoiceAdd' );
 
-			// Trigger event after choices insert.
+			/ Trigger event after choices insert.
 			chat.triggerEvent( 'wpformsAIModalAfterChoicesInsert', { fieldId: chat.fieldId } );
 		},
 
@@ -275,29 +275,29 @@ export default function( chat ) { // eslint-disable-line max-lines-per-function
 		getUpdatedSingleChoiceItem( li, key, choice ) {
 			li.setAttribute( 'data-key', key.toString() );
 
-			// Update choice item inputs name attributes.
+			/ Update choice item inputs name attributes.
 			li.innerHTML = li.innerHTML.replaceAll( '{{key}}', key );
 
-			// Sanitize choice before set.
+			/ Sanitize choice before set.
 			choice = wpf.sanitizeHTML( choice );
 
 			const inputDefault = li.querySelector( 'input.default' );
 
 			inputDefault.removeAttribute( 'checked' );
 
-			// Set label
+			/ Set label
 			const inputLabel = li.querySelector( 'input.label' );
 
 			inputLabel.value = choice;
 			inputLabel.setAttribute( 'value', choice );
 
-			// Set value.
+			/ Set value.
 			const inputValue = li.querySelector( 'input.value' );
 
 			inputValue.value = choice;
 			inputValue.setAttribute( 'value', choice );
 
-			// Reset image upload.
+			/ Reset image upload.
 			const imageUpload = li.querySelector( '.wpforms-image-upload' );
 			const inputImage = imageUpload.querySelector( 'input.source' );
 
@@ -306,7 +306,7 @@ export default function( chat ) { // eslint-disable-line max-lines-per-function
 			imageUpload.querySelector( '.preview' ).innerHTML = '';
 			imageUpload.querySelector( '.wpforms-image-upload-add' ).style.display = 'block';
 
-			// Reset icon choice.
+			/ Reset icon choice.
 			const iconSelect = li.querySelector( '.wpforms-icon-select' );
 
 			iconSelect.querySelector( '.ic-fa-preview' ).setAttribute( 'class', 'ic-fa-preview ic-fa-regular ic-fa-face-smile' );

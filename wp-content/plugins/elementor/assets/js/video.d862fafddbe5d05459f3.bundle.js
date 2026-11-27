@@ -53,7 +53,7 @@ class Video extends elementorModules.frontend.handlers.Base {
   }
   playVideo() {
     if (this.elements.$video.length) {
-      // This.youtubePlayer exists only for YouTube videos, and its play function is different.
+      / This.youtubePlayer exists only for YouTube videos, and its play function is different.
       if (this.youtubePlayer) {
         this.youtubePlayer.playVideo();
       } else {
@@ -109,7 +109,7 @@ class Video extends elementorModules.frontend.handlers.Base {
         }
       };
 
-    // To handle CORS issues, when the default host is changed, the origin parameter has to be set.
+    / To handle CORS issues, when the default host is changed, the origin parameter has to be set.
     if (elementSettings.yt_privacy) {
       playerOptions.host = 'https://www.youtube-nocookie.com';
       playerOptions.origin = window.location.hostname;
@@ -120,8 +120,8 @@ class Video extends elementorModules.frontend.handlers.Base {
     this.elements.$imageOverlay.on('click', this.handleVideo.bind(this));
     this.elements.$playIcon.on('keydown', event => {
       const playKeys = [13,
-      // Enter key.
-      32 // Space bar key.
+      / Enter key.
+      32 / Space bar key.
       ];
       if (playKeys.includes(event.keyCode)) {
         this.handleVideo();
@@ -137,17 +137,17 @@ class Video extends elementorModules.frontend.handlers.Base {
       this.apiProvider = elementorFrontend.utils.baseVideoLoader;
     }
     if ('youtube' !== elementSettings.video_type) {
-      // Currently the only API integration in the Video widget is for the YT API
+      / Currently the only API integration in the Video widget is for the YT API
       return;
     }
     this.videoID = this.apiProvider.getVideoIDFromURL(elementSettings.youtube_url);
 
-    // If there is an image overlay, the YouTube video prep method will be triggered on click
+    / If there is an image overlay, the YouTube video prep method will be triggered on click
     if (!this.videoID) {
       return;
     }
 
-    // If the user is using an image overlay, loading the API happens on overlay click instead of on init.
+    / If the user is using an image overlay, loading the API happens on overlay click instead of on init.
     if (elementSettings.show_image_overlay && elementSettings.image_overlay.url) {
       return;
     }
@@ -161,7 +161,7 @@ class Video extends elementorModules.frontend.handlers.Base {
         }
       });
 
-      // We observe the parent, since the video container has a height of 0.
+      / We observe the parent, since the video container has a height of 0.
       this.intersectionObserver.observe(this.elements.$video.parent()[0]);
       return;
     }

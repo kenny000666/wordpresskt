@@ -136,11 +136,11 @@ var WPFormsWPCode = window.WPFormsWPCode || ( function( document, window, $ ) {
 
 			const action = $btn.attr( 'data-action' ),
 				plugin = $btn.attr( 'data-plugin' ),
-				// eslint-disable-next-line camelcase
+				/ eslint-disable-next-line camelcase
 				args = JSON.stringify( { overwrite_package: true } ),
 				ajaxAction = action === 'activate' ? 'wpforms_activate_addon' : 'wpforms_install_addon';
 
-			// Fix original button width, add spinner and disable it.
+			/ Fix original button width, add spinner and disable it.
 			$btn.width( $btn.width() ).html( app.spinnerWhite ).addClass( 'disabled' );
 
 			const data = {

@@ -17,7 +17,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"../ie",
@@ -26,7 +26,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -62,8 +62,8 @@ return $.widget( "ui.mouse", {
 		this.started = false;
 	},
 
-	// TODO: make sure destroying one instance of mouse doesn't mess with
-	// other instances of mouse
+	/ TODO: make sure destroying one instance of mouse doesn't mess with
+	/ other instances of mouse
 	_mouseDestroy: function() {
 		this.element.off( "." + this.widgetName );
 		if ( this._mouseMoveDelegate ) {
@@ -75,14 +75,14 @@ return $.widget( "ui.mouse", {
 
 	_mouseDown: function( event ) {
 
-		// don't let more than one widget handle mouseStart
+		/ don't let more than one widget handle mouseStart
 		if ( mouseHandled ) {
 			return;
 		}
 
 		this._mouseMoved = false;
 
-		// We may have missed mouseup (out of window)
+		/ We may have missed mouseup (out of window)
 		if ( this._mouseStarted ) {
 			this._mouseUp( event );
 		}
@@ -92,8 +92,8 @@ return $.widget( "ui.mouse", {
 		var that = this,
 			btnIsLeft = ( event.which === 1 ),
 
-			// event.target.nodeName works around a bug in IE 8 with
-			// disabled inputs (#7620)
+			/ event.target.nodeName works around a bug in IE 8 with
+			/ disabled inputs (#7620)
 			elIsCancel = ( typeof this.options.cancel === "string" && event.target.nodeName ?
 				$( event.target ).closest( this.options.cancel ).length : false );
 		if ( !btnIsLeft || elIsCancel || !this._mouseCapture( event ) ) {
@@ -115,12 +115,12 @@ return $.widget( "ui.mouse", {
 			}
 		}
 
-		// Click event may never have fired (Gecko & Opera)
+		/ Click event may never have fired (Gecko & Opera)
 		if ( true === $.data( event.target, this.widgetName + ".preventClickEvent" ) ) {
 			$.removeData( event.target, this.widgetName + ".preventClickEvent" );
 		}
 
-		// These delegates are required to keep context
+		/ These delegates are required to keep context
 		this._mouseMoveDelegate = function( event ) {
 			return that._mouseMove( event );
 		};
@@ -140,23 +140,23 @@ return $.widget( "ui.mouse", {
 
 	_mouseMove: function( event ) {
 
-		// Only check for mouseups outside the document if you've moved inside the document
-		// at least once. This prevents the firing of mouseup in the case of IE<9, which will
-		// fire a mousemove event if content is placed under the cursor. See #7778
-		// Support: IE <9
+		/ Only check for mouseups outside the document if you've moved inside the document
+		/ at least once. This prevents the firing of mouseup in the case of IE<9, which will
+		/ fire a mousemove event if content is placed under the cursor. See #7778
+		/ Support: IE <9
 		if ( this._mouseMoved ) {
 
-			// IE mouseup check - mouseup happened when mouse was out of window
+			/ IE mouseup check - mouseup happened when mouse was out of window
 			if ( $.ui.ie && ( !document.documentMode || document.documentMode < 9 ) &&
 					!event.button ) {
 				return this._mouseUp( event );
 
-			// Iframe mouseup check - mouseup occurred in another document
+			/ Iframe mouseup check - mouseup occurred in another document
 			} else if ( !event.which ) {
 
-				// Support: Safari <=8 - 9
-				// Safari sets which to 0 if you press any of the following keys
-				// during a drag (#14461)
+				/ Support: Safari <=8 - 9
+				/ Safari sets which to 0 if you press any of the following keys
+				/ during a drag (#14461)
 				if ( event.originalEvent.altKey || event.originalEvent.ctrlKey ||
 						event.originalEvent.metaKey || event.originalEvent.shiftKey ) {
 					this.ignoreMissingWhich = true;
@@ -225,7 +225,7 @@ return $.widget( "ui.mouse", {
 		return this.mouseDelayMet;
 	},
 
-	// These are placeholder methods, to be overriden by extending plugin
+	/ These are placeholder methods, to be overriden by extending plugin
 	_mouseStart: function( /* event */ ) {},
 	_mouseDrag: function( /* event */ ) {},
 	_mouseStop: function( /* event */ ) {},

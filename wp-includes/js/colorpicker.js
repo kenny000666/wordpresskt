@@ -59,16 +59,16 @@ NOTES:
 //   This function returns an object having .x and .y properties which are the coordinates
 //   of the named anchor, relative to the page.
 function getAnchorPosition(anchorname) {
-	// This function will return an Object with x and y properties
+	/ This function will return an Object with x and y properties
 	var useWindow=false;
 	var coordinates=new Object();
 	var x=0,y=0;
-	// Browser capability sniffing
+	/ Browser capability sniffing
 	var use_gebi=false, use_css=false, use_layers=false;
 	if (document.getElementById) { use_gebi=true; }
 	else if (document.all) { use_css=true; }
 	else if (document.layers) { use_layers=true; }
-	// Logic to find position
+	/ Logic to find position
  	if (use_gebi && document.all) {
 		x=AnchorPosition_getPageOffsetLeft(document.all[anchorname]);
 		y=AnchorPosition_getPageOffsetTop(document.all[anchorname]);
@@ -251,7 +251,7 @@ function PopupWindow_setWindowProperties(props) {
 // Refresh the displayed contents of the popup
 function PopupWindow_refresh() {
 	if (this.divName != null) {
-		// refresh the DIV object
+		/ refresh the DIV object
 		if (this.use_gebi) {
 			document.getElementById(this.divName).innerHTML = this.contents;
 			}
@@ -289,7 +289,7 @@ function PopupWindow_showPopup(anchorname) {
 		this.refresh();
 		}
 	if (this.divName != null) {
-		// Show the DIV object
+		/ Show the DIV object
 		if (this.use_gebi) {
 			document.getElementById(this.divName).style.left = this.x + "px";
 			document.getElementById(this.divName).style.top = this.y;
@@ -308,7 +308,7 @@ function PopupWindow_showPopup(anchorname) {
 		}
 	else {
 		if (this.popupWindow == null || this.popupWindow.closed) {
-			// If the popup window will go off-screen, move it so it doesn't
+			/ If the popup window will go off-screen, move it so it doesn't
 			if (this.x<0) { this.x=0; }
 			if (this.y<0) { this.y=0; }
 			if (screen && screen.availHeight) {
@@ -359,7 +359,7 @@ function PopupWindow_isClicked(e) {
 				}
 			else { return false; }
 			}
-		else if (document.all) { // Need to hard-code this to trap IE for error-handling
+		else if (document.all) { / Need to hard-code this to trap IE for error-handling
 			var t = window.event.srcElement;
 			while (t.parentElement != null) {
 				if (t.id==this.divName) {
@@ -454,7 +454,7 @@ function PopupWindow() {
 	else { this.type = "WINDOW"; }
 	this.offsetX = 0;
 	this.offsetY = 0;
-	// Method mappings
+	/ Method mappings
 	this.getXYPosition = PopupWindow_getXYPosition;
 	this.populate = PopupWindow_populate;
 	this.setUrl = PopupWindow_setUrl;
@@ -568,7 +568,7 @@ function ColorPicker_highlightColor(c) {
 
 function ColorPicker() {
 	var windowMode = false;
-	// Create a new PopupWindow object
+	/ Create a new PopupWindow object
 	if (arguments.length==0) {
 		var divname = "colorPickerDiv";
 		}
@@ -588,16 +588,16 @@ function ColorPicker() {
 		cp.setSize(225,250);
 		}
 
-	// Object variables
+	/ Object variables
 	cp.currentValue = "#FFFFFF";
 
-	// Method Mappings
+	/ Method Mappings
 	cp.writeDiv = ColorPicker_writeDiv;
 	cp.highlightColor = ColorPicker_highlightColor;
 	cp.show = ColorPicker_show;
 	cp.select = ColorPicker_select;
 
-	// Code to populate color picker window
+	/ Code to populate color picker window
 	var colors = new Array(	"#4180B6","#69AEE7","#000000","#000033","#000066","#000099","#0000CC","#0000FF","#330000","#330033","#330066","#330099",
 							"#3300CC","#3300FF","#660000","#660033","#660066","#660099","#6600CC","#6600FF","#990000","#990033","#990066","#990099",
 							"#9900CC","#9900FF","#CC0000","#CC0033","#CC0066","#CC0099","#CC00CC","#CC00FF","#FF0000","#FF0033","#FF0066","#FF0099",
@@ -686,7 +686,7 @@ function ColorPicker() {
 			cp_contents += "</tr>";
 			}
 		}
-	// If the browser supports dynamically changing TD cells, add the fancy stuff
+	/ If the browser supports dynamically changing TD cells, add the fancy stuff
 	if (document.getElementById) {
 		var width1 = Math.floor(width/2);
 		var width2 = width = width1;
@@ -696,11 +696,11 @@ function ColorPicker() {
 	if (windowMode) {
 		cp_contents += "</span></body></html>";
 		}
-	// end populate code
+	/ end populate code
 
-	// Write the contents to the popup object
+	/ Write the contents to the popup object
 	cp.populate(cp_contents+"\n");
-	// Move the table down a bit so you can see it
+	/ Move the table down a bit so you can see it
 	cp.offsetY = 25;
 	cp.autoHide();
 	return cp;

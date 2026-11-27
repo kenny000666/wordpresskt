@@ -30,7 +30,7 @@ WPFormsChallenge.embed = window.WPFormsChallenge.embed || ( function( document, 
 			$( app.ready );
 			$( window ).on( 'load', function() {
 
-				// in case of jQuery 3.+ we need to wait for an `ready` event first.
+				/ in case of jQuery 3.+ we need to wait for an `ready` event first.
 				if ( typeof $.ready.then === 'function' ) {
 					$.ready.then( app.load );
 				} else {
@@ -58,7 +58,7 @@ WPFormsChallenge.embed = window.WPFormsChallenge.embed || ( function( document, 
 		 */
 		load: function() {
 
-			// If the page is Add new page.
+			/ If the page is Add new page.
 			if ( window.location.href.indexOf( 'post-new.php' ) > -1 ) {
 				app.lastStep();
 				$( '.wpforms-challenge-dot-completed' ).hide();
@@ -175,7 +175,7 @@ WPFormsChallenge.embed = window.WPFormsChallenge.embed || ( function( document, 
 			WPFormsChallenge.core.clearLocalStorage();
 
 			WPFormsChallenge.admin.saveChallengeOption( optionData )
-				.done( WPFormsChallenge.core.triggerPageSave ); // Save and reload the page to remove WPForms Challenge JS.
+				.done( WPFormsChallenge.core.triggerPageSave ); / Save and reload the page to remove WPForms Challenge JS.
 		},
 
 		/**
@@ -223,7 +223,7 @@ WPFormsChallenge.embed = window.WPFormsChallenge.embed || ( function( document, 
 			var $body = $( 'body' ),
 				isFullScreenPrev = $body.hasClass( 'is-fullscreen-mode' );
 
-			// MutationObserver configuration and callback.
+			/ MutationObserver configuration and callback.
 			var obs = {
 				targetNode  : $body[0],
 				config      : {
@@ -314,7 +314,7 @@ WPFormsChallenge.embed = window.WPFormsChallenge.embed || ( function( document, 
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 
 }( document, window, jQuery ) );

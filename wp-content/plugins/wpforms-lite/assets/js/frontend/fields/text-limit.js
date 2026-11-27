@@ -53,8 +53,8 @@
 	 * @return {Function} Handler function.
 	 */
 	function checkCharacters( hint, limit ) {
-		// noinspection JSUnusedLocalSymbols
-		return function( e ) { // eslint-disable-line no-unused-vars
+		/ noinspection JSUnusedLocalSymbols
+		return function( e ) { / eslint-disable-line no-unused-vars
 			hint.textContent = renderHint(
 				window.wpforms_settings.val_limit_characters,
 				this.value.length,
@@ -113,7 +113,7 @@
 				limit
 			);
 
-			// We should prevent the keys: Enter, Space, Comma.
+			/ We should prevent the keys: Enter, Space, Comma.
 			if ( [ 13, 32, 188 ].indexOf( e.keyCode ) > -1 && words >= limit ) {
 				e.preventDefault();
 			}
@@ -130,7 +130,7 @@
 	 * @return {string} Text from clipboard.
 	 */
 	function getPastedText( e ) {
-		if ( window.clipboardData && window.clipboardData.getData ) { // IE
+		if ( window.clipboardData && window.clipboardData.getData ) { / IE
 			return window.clipboardData.getData( 'Text' );
 		} else if ( e.clipboardData && e.clipboardData.getData ) {
 			return e.clipboardData.getData( 'text/plain' );
@@ -174,19 +174,19 @@
 	function limitWords( text, limit ) {
 		let result = '';
 
-		// Regular expression pattern: match any space character.
+		/ Regular expression pattern: match any space character.
 		const regEx = /\s+/g;
 
-		// Store separators for further join.
+		/ Store separators for further join.
 		const separators = text.trim().match( regEx ) || [];
 
-		// Split the new text by regular expression.
+		/ Split the new text by regular expression.
 		const newTextArray = text.split( regEx );
 
-		// Limit the number of words.
+		/ Limit the number of words.
 		newTextArray.splice( limit, newTextArray.length );
 
-		// Join the words together using stored separators.
+		/ Join the words together using stored separators.
 		for ( let i = 0; i < newTextArray.length; i++ ) {
 			result += newTextArray[ i ] + ( separators[ i ] || '' );
 		}
@@ -261,7 +261,7 @@
 		initHint( context ) {
 			arrFrom( document.querySelectorAll( context + ' .wpforms-limit-characters-enabled' ) )
 				.map(
-					function( e ) { // eslint-disable-line array-callback-return
+					function( e ) { / eslint-disable-line array-callback-return
 						const limit = parseInt( e.dataset.textLimit, 10 ) || 0;
 
 						e.value = e.value.slice( 0, limit );
@@ -289,7 +289,7 @@
 
 			arrFrom( document.querySelectorAll( context + ' .wpforms-limit-words-enabled' ) )
 				.map(
-					function( e ) { // eslint-disable-line array-callback-return
+					function( e ) { / eslint-disable-line array-callback-return
 						const limit = parseInt( e.dataset.textLimit, 10 ) || 0;
 
 						e.value = limitWords( e.value, limit );
@@ -324,7 +324,7 @@
 	 * @since 1.5.6
 	 */
 	function ready() {
-		// Expose to the world.
+		/ Expose to the world.
 		window.WPFormsTextLimit = app;
 
 		app.initHint( 'body' );

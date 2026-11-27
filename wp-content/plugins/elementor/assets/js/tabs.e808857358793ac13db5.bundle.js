@@ -60,20 +60,20 @@ class baseTabs extends elementorModules.frontend.handlers.Base {
         hideTabFn: settings.hideTabFn
       };
 
-    // Toggle tabs without animation to avoid jumping
+    / Toggle tabs without animation to avoid jumping
     this.setSettings({
       showTabFn: 'show',
       hideTabFn: 'hide'
     });
     this.changeActiveTab(defaultActiveTab);
 
-    // Return back original toggle effects
+    / Return back original toggle effects
     this.setSettings(originalToggleMethods);
   }
   handleKeyboardNavigation(event) {
     const tab = event.currentTarget,
       $tabList = jQuery(tab.closest(this.getSettings('selectors').tablist)),
-      // eslint-disable-next-line @wordpress/no-unused-vars-before-return
+      / eslint-disable-next-line @wordpress/no-unused-vars-before-return
       $tabs = $tabList.find(this.getSettings('selectors').tabTitle),
       isVertical = 'vertical' === $tabList.attr('aria-orientation');
     switch (event.key) {
@@ -148,12 +148,12 @@ class baseTabs extends elementorModules.frontend.handlers.Base {
   bindEvents() {
     this.elements.$tabTitles.on({
       keydown: event => {
-        // Support for old markup that includes an `<a>` tag in the tab
+        / Support for old markup that includes an `<a>` tag in the tab
         if (jQuery(event.target).is('a') && `Enter` === event.key) {
           event.preventDefault();
         }
 
-        // We listen to keydowon event for these keys in order to prevent undesired page scrolling
+        / We listen to keydowon event for these keys in order to prevent undesired page scrolling
         if (['End', 'Home', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
           this.handleKeyboardNavigation(event);
         }

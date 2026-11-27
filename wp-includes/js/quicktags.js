@@ -52,7 +52,7 @@ window.edToolbar = function(){};
 /* jshint ignore:end */
 
 (function(){
-	// Private stuff is prefixed with an underscore.
+	/ Private stuff is prefixed with an underscore.
 	var _domReady = function(func) {
 		var t, i, DOMContentLoaded, _tryReady;
 
@@ -150,7 +150,7 @@ window.edToolbar = function(){};
 		t.settings = settings;
 
 		if ( id === 'content' && typeof(adminpage) === 'string' && ( adminpage === 'post-new-php' || adminpage === 'post-php' ) ) {
-			// Back compat hack :-(
+			/ Back compat hack :-(
 			window.edCanvas = canvas;
 			toolbar_id = 'ed_toolbar';
 		} else {
@@ -168,19 +168,19 @@ window.edToolbar = function(){};
 		canvas.parentNode.insertBefore(tb, canvas);
 		t.toolbar = tb;
 
-		// Listen for click events.
+		/ Listen for click events.
 		onclick = function(e) {
 			e = e || window.event;
 			var target = e.target || e.srcElement, visible = target.clientWidth || target.offsetWidth, i;
 
-			// Don't call the callback on pressing the accesskey when the button is not visible.
+			/ Don't call the callback on pressing the accesskey when the button is not visible.
 			if ( !visible ) {
 				return;
 			}
 
-			// As long as it has the class ed_button, execute the callback.
+			/ As long as it has the class ed_button, execute the callback.
 			if ( / ed_button /.test(' ' + target.className + ' ') ) {
-				// We have to reassign canvas here.
+				/ We have to reassign canvas here.
 				t.canvas = canvas = document.getElementById(id);
 				i = target.id.replace(name + '_', '');
 
@@ -261,7 +261,7 @@ window.edToolbar = function(){};
 			theButtons = {};
 			use = '';
 
-			// Set buttons.
+			/ Set buttons.
 			if ( settings.buttons ) {
 				use = ','+settings.buttons+',';
 			}
@@ -361,7 +361,7 @@ window.edToolbar = function(){};
 			return;
 		}
 
-		if ( priority === -1 ) { // Back-compat.
+		if ( priority === -1 ) { / Back-compat.
 			return btn;
 		}
 
@@ -376,7 +376,7 @@ window.edToolbar = function(){};
 		}
 
 		if ( this.buttonsInitDone ) {
-			this._buttonsInit(); // Add the button HTML to all instances toolbars if addButton() was called too late.
+			this._buttonsInit(); / Add the button HTML to all instances toolbars if addButton() was called too late.
 		}
 	};
 
@@ -387,12 +387,12 @@ window.edToolbar = function(){};
 			return false;
 		}
 
-		if ( document.selection ) { // IE.
+		if ( document.selection ) { / IE.
 			canvas.focus();
 			sel = document.selection.createRange();
 			sel.text = content;
 			canvas.focus();
-		} else if ( canvas.selectionStart || canvas.selectionStart === 0 ) { // FF, WebKit, Opera.
+		} else if ( canvas.selectionStart || canvas.selectionStart === 0 ) { / FF, WebKit, Opera.
 			text = canvas.value;
 			startPos = canvas.selectionStart;
 			endPos = canvas.selectionEnd;
@@ -420,7 +420,7 @@ window.edToolbar = function(){};
 		return true;
 	};
 
-	// A plain, dumb button.
+	/ A plain, dumb button.
 	qt.Button = function( id, display, access, title, instance, attr ) {
 		this.id = id;
 		this.display = display;
@@ -450,7 +450,7 @@ window.edToolbar = function(){};
 	};
 	qt.Button.prototype.callback = function(){};
 
-	// A button that inserts HTML tag.
+	/ A button that inserts HTML tag.
 	qt.TagButton = function( id, display, tagStart, tagEnd, access, title, instance, attr ) {
 		var t = this;
 		qt.Button.call( t, id, display, access, title, instance, attr );
@@ -485,7 +485,7 @@ window.edToolbar = function(){};
 			element.setAttribute( 'aria-label', this.attr.ariaLabel );
 		}
 	};
-	// Whether a tag is open or not. Returns false if not open, or current open depth of the tag.
+	/ Whether a tag is open or not. Returns false if not open, or current open depth of the tag.
 	qt.TagButton.prototype.isOpen = function (ed) {
 		var t = this, i = 0, ret = false;
 		if ( ed.openTags ) {
@@ -501,7 +501,7 @@ window.edToolbar = function(){};
 	qt.TagButton.prototype.callback = function(element, canvas, ed) {
 		var t = this, startPos, endPos, cursorPos, scrollTop, v = canvas.value, l, r, i, sel, endTag = v ? t.tagEnd : '', event;
 
-		if ( document.selection ) { // IE.
+		if ( document.selection ) { / IE.
 			canvas.focus();
 			sel = document.selection.createRange();
 			if ( sel.text.length > 0 ) {
@@ -522,7 +522,7 @@ window.edToolbar = function(){};
 				}
 			}
 			canvas.focus();
-		} else if ( canvas.selectionStart || canvas.selectionStart === 0 ) { // FF, WebKit, Opera.
+		} else if ( canvas.selectionStart || canvas.selectionStart === 0 ) { / FF, WebKit, Opera.
 			startPos = canvas.selectionStart;
 			endPos = canvas.selectionEnd;
 
@@ -532,12 +532,12 @@ window.edToolbar = function(){};
 
 			cursorPos = endPos;
 			scrollTop = canvas.scrollTop;
-			l = v.substring(0, startPos);      // Left of the selection.
-			r = v.substring(endPos, v.length); // Right of the selection.
-			i = v.substring(startPos, endPos); // Inside the selection.
+			l = v.substring(0, startPos);      / Left of the selection.
+			r = v.substring(endPos, v.length); / Right of the selection.
+			i = v.substring(startPos, endPos); / Inside the selection.
 			if ( startPos !== endPos ) {
 				if ( !t.tagEnd ) {
-					canvas.value = l + i + t.tagStart + r; // Insert self-closing tags after the selection.
+					canvas.value = l + i + t.tagStart + r; / Insert self-closing tags after the selection.
 					cursorPos += t.tagStart.length;
 				} else {
 					canvas.value = l + t.tagStart + i + endTag + r;
@@ -562,7 +562,7 @@ window.edToolbar = function(){};
 			canvas.selectionEnd = cursorPos;
 			canvas.scrollTop = scrollTop;
 			canvas.focus();
-		} else { // Other browsers?
+		} else { / Other browsers?
 			if ( !endTag ) {
 				canvas.value += t.tagStart;
 			} else if ( t.isOpen(ed) !== false ) {
@@ -584,10 +584,10 @@ window.edToolbar = function(){};
 		}
 	};
 
-	// Removed.
+	/ Removed.
 	qt.SpellButton = function() {};
 
-	// The close tags button.
+	/ The close tags button.
 	qt.CloseButton = function() {
 		qt.Button.call( this, 'close', quicktagsL10n.closeTags, '', quicktagsL10n.closeAllOpenTags );
 	};
@@ -621,7 +621,7 @@ window.edToolbar = function(){};
 		}
 	};
 
-	// The link button.
+	/ The link button.
 	qt.LinkButton = function() {
 		var attr = {
 			ariaLabel: quicktagsL10n.link
@@ -653,7 +653,7 @@ window.edToolbar = function(){};
 		}
 	};
 
-	// The img button.
+	/ The img button.
 	qt.ImgButton = function() {
 		var attr = {
 			ariaLabel: quicktagsL10n.image
@@ -704,14 +704,14 @@ window.edToolbar = function(){};
 		c.focus();
 	};
 
-	// Ensure backward compatibility.
+	/ Ensure backward compatibility.
 	edButtons[10]  = new qt.TagButton( 'strong', 'b', '<strong>', '</strong>', '', '', '', { ariaLabel: quicktagsL10n.strong, ariaLabelClose: quicktagsL10n.strongClose } );
 	edButtons[20]  = new qt.TagButton( 'em', 'i', '<em>', '</em>', '', '', '', { ariaLabel: quicktagsL10n.em, ariaLabelClose: quicktagsL10n.emClose } );
-	edButtons[30]  = new qt.LinkButton(); // Special case.
+	edButtons[30]  = new qt.LinkButton(); / Special case.
 	edButtons[40]  = new qt.TagButton( 'block', 'b-quote', '\n\n<blockquote>', '</blockquote>\n\n', '', '', '', { ariaLabel: quicktagsL10n.blockquote, ariaLabelClose: quicktagsL10n.blockquoteClose } );
 	edButtons[50]  = new qt.TagButton( 'del', 'del', '<del datetime="' + _datetime + '">', '</del>', '', '', '', { ariaLabel: quicktagsL10n.del, ariaLabelClose: quicktagsL10n.delClose } );
 	edButtons[60]  = new qt.TagButton( 'ins', 'ins', '<ins datetime="' + _datetime + '">', '</ins>', '', '', '', { ariaLabel: quicktagsL10n.ins, ariaLabelClose: quicktagsL10n.insClose } );
-	edButtons[70]  = new qt.ImgButton();  // Special case.
+	edButtons[70]  = new qt.ImgButton();  / Special case.
 	edButtons[80]  = new qt.TagButton( 'ul', 'ul', '<ul>\n', '</ul>\n\n', '', '', '', { ariaLabel: quicktagsL10n.ul, ariaLabelClose: quicktagsL10n.ulClose } );
 	edButtons[90]  = new qt.TagButton( 'ol', 'ol', '<ol>\n', '</ol>\n\n', '', '', '', { ariaLabel: quicktagsL10n.ol, ariaLabelClose: quicktagsL10n.olClose } );
 	edButtons[100] = new qt.TagButton( 'li', 'li', '\t<li>', '</li>\n', '', '', '', { ariaLabel: quicktagsL10n.li, ariaLabelClose: quicktagsL10n.liClose } );

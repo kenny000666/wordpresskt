@@ -53,7 +53,7 @@ var WPFormsFormEmbedWizard = window.WPFormsFormEmbedWizard || ( function( docume
 			$( app.ready );
 			$( window ).on( 'load', function() {
 
-				// in case of jQuery 3.+ we need to wait for an `ready` event first.
+				/ in case of jQuery 3.+ we need to wait for an `ready` event first.
 				if ( typeof $.ready.then === 'function' ) {
 					$.ready.then( app.load );
 				} else {
@@ -81,12 +81,12 @@ var WPFormsFormEmbedWizard = window.WPFormsFormEmbedWizard || ( function( docume
 		 */
 		load: function() {
 
-			// Initialize tooltip in page editor.
+			/ Initialize tooltip in page editor.
 			if ( wpforms_admin_form_embed_wizard.is_edit_page === '1' && ! vars.isChallengeActive ) {
 				app.initTooltip();
 			}
 
-			// Initialize wizard state in the form builder only.
+			/ Initialize wizard state in the form builder only.
 			if ( vars.isBuilder ) {
 				app.initialStateToggle();
 			}
@@ -103,7 +103,7 @@ var WPFormsFormEmbedWizard = window.WPFormsFormEmbedWizard || ( function( docume
 		 */
 		initVars: function() {
 
-			// Caching some DOM elements for further use.
+			/ Caching some DOM elements for further use.
 			el = {
 				$wizardContainer:   $( '#wpforms-admin-form-embed-wizard-container' ),
 				$wizard:            $( '#wpforms-admin-form-embed-wizard' ),
@@ -124,13 +124,13 @@ var WPFormsFormEmbedWizard = window.WPFormsFormEmbedWizard || ( function( docume
 
 			el.$selectPageContainer = el.$selectPage.parents( 'span.choicesjs-select-wrap' );
 
-			// Detect the form builder screen and store the flag.
+			/ Detect the form builder screen and store the flag.
 			vars.isBuilder = typeof WPFormsBuilder !== 'undefined';
 
-			// Detect the Challenge and store the flag.
+			/ Detect the Challenge and store the flag.
 			vars.isChallengeActive = typeof WPFormsChallenge !== 'undefined';
 
-			// Are the pages exists?
+			/ Are the pages exists?
 			vars.pagesExists = el.$wizard.data( 'pages-exists' ) === 1;
 		},
 
@@ -164,7 +164,7 @@ var WPFormsFormEmbedWizard = window.WPFormsFormEmbedWizard || ( function( docume
 		 */
 		events: function() {
 
-			// Skip wizard events in the page editor.
+			/ Skip wizard events in the page editor.
 			if ( ! el.$wizard.length ) {
 				return;
 			}
@@ -201,19 +201,19 @@ var WPFormsFormEmbedWizard = window.WPFormsFormEmbedWizard || ( function( docume
 
 			switch ( action ) {
 
-				// Select existing page.
+				/ Select existing page.
 				case 'select-page':
 					el.$newPageTitle.hide();
 					el.$contentSelectPage.show();
 					break;
 
-				// Create a new page.
+				/ Create a new page.
 				case 'create-page':
 					el.$selectPageContainer.hide();
 					el.$contentCreatePage.show();
 					break;
 
-				// Let's Go!
+				/ Let's Go!
 				case 'go':
 					if ( el.$selectPageContainer.is( ':visible' ) && el.$selectPage.val() === '' ) {
 						return;
@@ -229,7 +229,7 @@ var WPFormsFormEmbedWizard = window.WPFormsFormEmbedWizard || ( function( docume
 			el.$sectionToggles.hide();
 			el.$sectionGoBack.fadeIn();
 
-			// Set focus to the field that is currently displayed.
+			/ Set focus to the field that is currently displayed.
 			$.each( [ el.$selectPage, el.$newPageTitle ], function() {
 				if ( this.is( ':visible' ) ) {
 					this.trigger( 'focus' );
@@ -322,21 +322,21 @@ var WPFormsFormEmbedWizard = window.WPFormsFormEmbedWizard || ( function( docume
 		 */
 		copyShortcodeToClipboard: function() {
 
-			// Remove disabled attribute, select the text, and re-add disabled attribute.
+			/ Remove disabled attribute, select the text, and re-add disabled attribute.
 			el.$shortcodeInput
 				.prop( 'disabled', false )
 				.select()
 				.prop( 'disabled', true );
 
-			// Copy it.
+			/ Copy it.
 			document.execCommand( 'copy' );
 
 			var $icon = el.$shortcodeCopy.find( 'i' );
 
-			// Add visual feedback to copy command.
+			/ Add visual feedback to copy command.
 			$icon.removeClass( 'fa-files-o' ).addClass( 'fa-check' );
 
-			// Reset visual confirmation back to default state after 2.5 sec.
+			/ Reset visual confirmation back to default state after 2.5 sec.
 			window.setTimeout( function() {
 				$icon.removeClass( 'fa-check' ).addClass( 'fa-files-o' );
 			}, 2500 );
@@ -386,13 +386,13 @@ var WPFormsFormEmbedWizard = window.WPFormsFormEmbedWizard || ( function( docume
 		 */
 		saveFormAndRedirect: function() {
 
-			// Just redirect if no need to save the form.
+			/ Just redirect if no need to save the form.
 			if ( ! vars.isBuilder || WPFormsBuilder.formIsSaved() ) {
 				app.embedPageRedirect();
 				return;
 			}
 
-			// Embedding in Challenge should save the form silently.
+			/ Embedding in Challenge should save the form silently.
 			if ( vars.isBuilder && vars.isChallengeActive ) {
 				WPFormsBuilder.formSave().done( app.embedPageRedirect );
 				return;
@@ -462,7 +462,7 @@ var WPFormsFormEmbedWizard = window.WPFormsFormEmbedWizard || ( function( docume
 
 			var data = app.embedPageRedirectAjaxData();
 
-			// Exit if no one page is selected.
+			/ Exit if no one page is selected.
 			if ( typeof data.pageId !== 'undefined' && data.pageId === '' ) {
 				return;
 			}
@@ -487,12 +487,12 @@ var WPFormsFormEmbedWizard = window.WPFormsFormEmbedWizard || ( function( docume
 
 			vars.formId = vars.isBuilder ? $( '#wpforms-builder-form' ).data( 'id' ) : openFormId;
 
-			// Regular wizard and wizard in Challenge has differences.
+			/ Regular wizard and wizard in Challenge has differences.
 			el.$wizard.toggleClass( 'wpforms-challenge-popup', vars.isChallengeActive );
 			el.$wizard.find( '.wpforms-admin-popup-content-regular' ).toggle( ! vars.isChallengeActive );
 			el.$wizard.find( '.wpforms-admin-popup-content-challenge' ).toggle( vars.isChallengeActive );
 
-			// Re-init sections.
+			/ Re-init sections.
 			if ( el.$selectPage.length === 0 ) {
 				el.$sectionBtns.hide();
 				el.$sectionGo.show();
@@ -559,15 +559,15 @@ var WPFormsFormEmbedWizard = window.WPFormsFormEmbedWizard || ( function( docume
 				$dot.insertAfter( anchor ).tooltipster( tooltipsterArgs ).tooltipster( 'open' );
 			}
 
-			// The Gutenberg header can be loaded after the window load event.
-			// We have to wait until the Gutenberg heading is added to the DOM.
+			/ The Gutenberg header can be loaded after the window load event.
+			/ We have to wait until the Gutenberg heading is added to the DOM.
 			const closeAnchorListener = wp.data.subscribe( function() {
 
 				if ( ! $( anchor ).length ) {
 					return;
 				}
 
-				// Close the listener to avoid an infinite loop.
+				/ Close the listener to avoid an infinite loop.
 				closeAnchorListener();
 
 				$dot.insertAfter( anchor ).tooltipster( tooltipsterArgs ).tooltipster( 'open' );
@@ -587,7 +587,7 @@ var WPFormsFormEmbedWizard = window.WPFormsFormEmbedWizard || ( function( docume
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 
 }( document, window, jQuery ) );

@@ -5,12 +5,12 @@ import GlobalTracking from './global-tracking';
 /* global ajaxurl */
 
 document.addEventListener( 'DOMContentLoaded', function() {
-	// Deactivation survey modal.
+	/ Deactivation survey modal.
 	( new DeactivationSurvey() ).init();
-	// Global Trackings.
+	/ Global Trackings.
 	( new GlobalTracking() ).init();
 
-	// Dismiss notices.
+	/ Dismiss notices.
 	const dismissNoticeButton = document.querySelectorAll(
 		'.smush-dismissible-notice .smush-dismiss-notice-button'
 	);
@@ -63,7 +63,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 		} );
 	}
 
-	// Show header notices.
+	/ Show header notices.
 	const handleHeaderNotice = () => {
 		const headerNotice = document.querySelector('.wp-smush-dismissible-header-notice');
 		if ( ! headerNotice || ! headerNotice.id ) {

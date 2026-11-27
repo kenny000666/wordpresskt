@@ -86,7 +86,7 @@
 			return false;
 		},
 
-		// Delete the widgetArea area with all widgets within, then re calculate the other widgetArea ids and save the order.
+		/ Delete the widgetArea area with all widgets within, then re calculate the other widgetArea ids and save the order.
 		deleteWidgetArea: function ( e ) {
 			const widget     = $( e.currentTarget ).parents( '.widgets-holder-wrap:eq(0)' );
 			const title      = widget.find( '.sidebar-name h2' );

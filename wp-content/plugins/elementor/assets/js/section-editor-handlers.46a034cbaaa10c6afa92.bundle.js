@@ -51,7 +51,7 @@ class Shapes extends elementorModules.frontend.handlers.Base {
       $svgContainer = this.elements['$' + side + 'Container'];
     $svgContainer.attr('data-shape', shapeType);
     if (!shapeType) {
-      $svgContainer.empty(); // Shape-divider set to 'none'
+      $svgContainer.empty(); / Shape-divider set to 'none'
       return;
     }
     let fileName = shapeType;

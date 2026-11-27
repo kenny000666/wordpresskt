@@ -14,12 +14,12 @@
    */
 
   (function () {
-    // Return early if we're not running inside of the browser.
+    / Return early if we're not running inside of the browser.
     if (typeof window === 'undefined' || typeof Element === 'undefined') {
       return;
     }
 
-    // Convenience function for converting NodeLists.
+    / Convenience function for converting NodeLists.
     /** @type {typeof Array.prototype.slice} */
     var slice = Array.prototype.slice;
 
@@ -69,7 +69,7 @@
          */
         this._managedNodes = new Set();
 
-        // Make the subtree hidden from assistive technology
+        / Make the subtree hidden from assistive technology
         if (this._rootElement.hasAttribute('aria-hidden')) {
           /** @type {?string} */
           this._savedAriaHidden = this._rootElement.getAttribute('aria-hidden');
@@ -78,14 +78,14 @@
         }
         this._rootElement.setAttribute('aria-hidden', 'true');
 
-        // Make all focusable elements in the subtree unfocusable and add them to _managedNodes
+        / Make all focusable elements in the subtree unfocusable and add them to _managedNodes
         this._makeSubtreeUnfocusable(this._rootElement);
 
-        // Watch for:
-        // - any additions in the subtree: make them unfocusable too
-        // - any removals from the subtree: remove them from this inert root's managed nodes
-        // - attribute changes: if `tabindex` is added, or removed from an intrinsically focusable
-        //   element, make that node a managed node.
+        / Watch for:
+        / - any additions in the subtree: make them unfocusable too
+        / - any removals from the subtree: remove them from this inert root's managed nodes
+        / - attribute changes: if `tabindex` is added, or removed from an intrinsically focusable
+        /   element, make that node a managed node.
         this._observer = new MutationObserver(this._onMutation.bind(this));
         this._observer.observe(this._rootElement, { attributes: true, childList: true, subtree: true });
       }
@@ -113,12 +113,12 @@
             this._unmanageNode(inertNode.node);
           }, this);
 
-          // Note we cast the nulls to the ANY type here because:
-          // 1) We want the class properties to be declared as non-null, or else we
-          //    need even more casts throughout this code. All bets are off if an
-          //    instance has been destroyed and a method is called.
-          // 2) We don't want to cast "this", because we want type-aware optimizations
-          //    to know which properties we're setting.
+          / Note we cast the nulls to the ANY type here because:
+          / 1) We want the class properties to be declared as non-null, or else we
+          /    need even more casts throughout this code. All bets are off if an
+          /    instance has been destroyed and a method is called.
+          / 2) We don't want to cast "this", because we want type-aware optimizations
+          /    to know which properties we're setting.
           this._observer = /** @type {?} */null;
           this._rootElement = /** @type {?} */null;
           this._managedNodes = /** @type {?} */null;
@@ -146,7 +146,7 @@
           var activeElement = document.activeElement;
 
           if (!document.body.contains(startNode)) {
-            // startNode may be in shadow DOM, so find its nearest shadowRoot to get the activeElement.
+            / startNode may be in shadow DOM, so find its nearest shadowRoot to get the activeElement.
             var node = startNode;
             /** @type {!ShadowRoot|undefined} */
             var root = undefined;
@@ -163,9 +163,9 @@
           }
           if (startNode.contains(activeElement)) {
             activeElement.blur();
-            // In IE11, if an element is already focused, and then set to tabindex=-1
-            // calling blur() will not actually move the focus.
-            // To work around this we call focus() on the body instead.
+            / In IE11, if an element is already focused, and then set to tabindex=-1
+            / calling blur() will not actually move the focus.
+            / To work around this we call focus() on the body instead.
             if (activeElement === document.activeElement) {
               document.body.focus();
             }
@@ -184,8 +184,8 @@
           }
           var element = /** @type {!HTMLElement} */node;
 
-          // If a descendant inert root becomes un-inert, its descendants will still be inert because of
-          // this inert root, so all of its managed nodes need to be adopted by this InertRoot.
+          / If a descendant inert root becomes un-inert, its descendants will still be inert because of
+          / this inert root, so all of its managed nodes need to be adopted by this InertRoot.
           if (element !== this._rootElement && element.hasAttribute('inert')) {
             this._adoptInertRoot(element);
           }
@@ -246,8 +246,8 @@
         value: function _adoptInertRoot(node) {
           var inertSubroot = this._inertManager.getInertRoot(node);
 
-          // During initialisation this inert root may not have been registered yet,
-          // so register it now if need be.
+          / During initialisation this inert root may not have been registered yet,
+          / so register it now if need be.
           if (!inertSubroot) {
             this._inertManager.setInert(node, true);
             inertSubroot = this._inertManager.getInertRoot(node);
@@ -270,22 +270,22 @@
           records.forEach(function (record) {
             var target = /** @type {!HTMLElement} */record.target;
             if (record.type === 'childList') {
-              // Manage added nodes
+              / Manage added nodes
               slice.call(record.addedNodes).forEach(function (node) {
                 this._makeSubtreeUnfocusable(node);
               }, this);
 
-              // Un-manage removed nodes
+              / Un-manage removed nodes
               slice.call(record.removedNodes).forEach(function (node) {
                 this._unmanageSubtree(node);
               }, this);
             } else if (record.type === 'attributes') {
               if (record.attributeName === 'tabindex') {
-                // Re-initialise inert node if tabindex changes
+                / Re-initialise inert node if tabindex changes
                 this._manageNode(target);
               } else if (target !== this._rootElement && record.attributeName === 'inert' && target.hasAttribute('inert')) {
-                // If a new inert root is added, adopt its managed nodes and make sure it knows about the
-                // already managed nodes from this inert subroot.
+                / If a new inert root is added, adopt its managed nodes and make sure it knows about the
+                / already managed nodes from this inert subroot.
                 this._adoptInertRoot(target);
                 var inertSubroot = this._inertManager.getInertRoot(target);
                 this._managedNodes.forEach(function (managedNode) {
@@ -371,7 +371,7 @@
         /** @type {boolean} */
         this._destroyed = false;
 
-        // Save any prior tabindex info and make this node untabbable
+        / Save any prior tabindex info and make this node untabbable
         this.ensureUntabbable();
       }
 
@@ -394,13 +394,13 @@
               element.removeAttribute('tabindex');
             }
 
-            // Use `delete` to restore native focus method.
+            / Use `delete` to restore native focus method.
             if (this._overrodeFocusMethod) {
               delete element.focus;
             }
           }
 
-          // See note in InertRoot.destructor for why we cast these nulls to ANY.
+          / See note in InertRoot.destructor for why we cast these nulls to ANY.
           this._node = /** @type {?} */null;
           this._inertRoots = /** @type {?} */null;
           this._destroyed = true;
@@ -567,10 +567,10 @@
          */
         this._observer = new MutationObserver(this._watchForInert.bind(this));
 
-        // Add inert style.
+        / Add inert style.
         addInertStyle(document.head || document.body || document.documentElement);
 
-        // Wait for document to be loaded.
+        / Wait for document to be loaded.
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', this._onDocumentLoaded.bind(this));
         } else {
@@ -590,15 +590,15 @@
         value: function setInert(root, inert) {
           if (inert) {
             if (this._inertRoots.has(root)) {
-              // element is already inert
+              / element is already inert
               return;
             }
 
             var inertRoot = new InertRoot(root, this);
             root.setAttribute('inert', '');
             this._inertRoots.set(root, inertRoot);
-            // If not contained in the document, it must be in a shadowRoot.
-            // Ensure inert styles are added there.
+            / If not contained in the document, it must be in a shadowRoot.
+            / Ensure inert styles are added there.
             if (!this._document.body.contains(root)) {
               var parent = root.parentNode;
               while (parent) {
@@ -610,7 +610,7 @@
             }
           } else {
             if (!this._inertRoots.has(root)) {
-              // element is already non-inert
+              / element is already non-inert
               return;
             }
 
@@ -647,7 +647,7 @@
         value: function register(node, inertRoot) {
           var inertNode = this._managedNodes.get(node);
           if (inertNode !== undefined) {
-            // node was already in an inert subtree
+            / node was already in an inert subtree
             inertNode.addInertRoot(inertRoot);
           } else {
             inertNode = new InertNode(node, inertRoot);
@@ -691,13 +691,13 @@
       }, {
         key: '_onDocumentLoaded',
         value: function _onDocumentLoaded() {
-          // Find all inert roots in document and make them actually inert.
+          / Find all inert roots in document and make them actually inert.
           var inertElements = slice.call(this._document.querySelectorAll('[inert]'));
           inertElements.forEach(function (inertElement) {
             this.setInert(inertElement, true);
           }, this);
 
-          // Comment this out to use programmatic API only.
+          / Comment this out to use programmatic API only.
           this._observer.observe(this._document.body || this._document.documentElement, { attributes: true, subtree: true, childList: true });
         }
 
@@ -759,22 +759,22 @@
           callback(element);
         }
 
-        // Descend into node:
-        // If it has a ShadowRoot, ignore all child elements - these will be picked
-        // up by the <content> or <shadow> elements. Descend straight into the
-        // ShadowRoot.
+        / Descend into node:
+        / If it has a ShadowRoot, ignore all child elements - these will be picked
+        / up by the <content> or <shadow> elements. Descend straight into the
+        / ShadowRoot.
         var shadowRoot = /** @type {!HTMLElement} */element.shadowRoot;
         if (shadowRoot) {
           composedTreeWalk(shadowRoot, callback, shadowRoot);
           return;
         }
 
-        // If it is a <content> element, descend into distributed elements - these
-        // are elements from outside the shadow root which are rendered inside the
-        // shadow DOM.
+        / If it is a <content> element, descend into distributed elements - these
+        / are elements from outside the shadow root which are rendered inside the
+        / shadow DOM.
         if (element.localName == 'content') {
           var content = /** @type {!HTMLContentElement} */element;
-          // Verifies if ShadowDom v0 is supported.
+          / Verifies if ShadowDom v0 is supported.
           var distributedNodes = content.getDistributedNodes ? content.getDistributedNodes() : [];
           for (var i = 0; i < distributedNodes.length; i++) {
             composedTreeWalk(distributedNodes[i], callback, shadowRootAncestor);
@@ -782,12 +782,12 @@
           return;
         }
 
-        // If it is a <slot> element, descend into assigned nodes - these
-        // are elements from outside the shadow root which are rendered inside the
-        // shadow DOM.
+        / If it is a <slot> element, descend into assigned nodes - these
+        / are elements from outside the shadow root which are rendered inside the
+        / shadow DOM.
         if (element.localName == 'slot') {
           var slot = /** @type {!HTMLSlotElement} */element;
-          // Verify if ShadowDom v1 is supported.
+          / Verify if ShadowDom v1 is supported.
           var _distributedNodes = slot.assignedNodes ? slot.assignedNodes({ flatten: true }) : [];
           for (var _i = 0; _i < _distributedNodes.length; _i++) {
             composedTreeWalk(_distributedNodes[_i], callback, shadowRootAncestor);
@@ -796,8 +796,8 @@
         }
       }
 
-      // If it is neither the parent of a ShadowRoot, a <content> element, a <slot>
-      // element, nor a <shadow> element recurse normally.
+      / If it is neither the parent of a ShadowRoot, a <content> element, a <slot>
+      / element, nor a <shadow> element recurse normally.
       var child = node.firstChild;
       while (child != null) {
         composedTreeWalk(child, callback, shadowRootAncestor);

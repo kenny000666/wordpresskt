@@ -40,7 +40,7 @@ import '../../scss/resize-detection.scss';
 
 			this.process();
 
-			// Register the event handler after everything is done.
+			/ Register the event handler after everything is done.
 			this.toggle.addEventListener(
 				'click',
 				this.handleToggleClick.bind( this )
@@ -97,7 +97,7 @@ import '../../scss/resize-detection.scss';
 				return true;
 			}
 
-			// Skip 1x1px and 0x0px images.
+			/ Skip 1x1px and 0x0px images.
 			if (
 				image.clientWidth === image.clientHeight &&
 				( 1 === image.clientWidth || 0 === image.clientWidth )
@@ -105,22 +105,22 @@ import '../../scss/resize-detection.scss';
 				return true;
 			}
 
-			// Skip 1x1px and 0x0px placeholders.
+			/ Skip 1x1px and 0x0px placeholders.
 			if ( this.isPlaceholder( image ) ) {
 				return true;
 			}
 
-			// If width attribute is not set, do not continue.
+			/ If width attribute is not set, do not continue.
 			return null === image.clientWidth || null === image.clientHeight;
 		},
 
 		isIgnoredImage( image ) {
-			// Skip avatars.
+			/ Skip avatars.
 			if ( image.classList.contains( 'avatar' ) ) {
 				return true;
 			}
 
-			// Skip images from Smush CDN with auto-resize feature.
+			/ Skip images from Smush CDN with auto-resize feature.
 			return 'string' === typeof image.getAttribute( 'no-resize-detection' );
 		},
 
@@ -215,10 +215,10 @@ import '../../scss/resize-detection.scss';
 				e.currentTarget.dataset.image
 			);
 			if ( 'undefined' !== typeof el[ 0 ] ) {
-				// Display description box.
+				/ Display description box.
 				e.currentTarget.classList.toggle( 'show-description' );
 
-				// Scroll and flash image.
+				/ Scroll and flash image.
 				el[ 0 ].scrollIntoView( {
 					behavior: 'smooth',
 					block: 'center',
@@ -265,7 +265,7 @@ import '../../scss/resize-detection.scss';
 					continue;
 				}
 
-				// Get defined width and height.
+				/ Get defined width and height.
 				const props = {
 					real_width: image.clientWidth,
 					real_height: image.clientHeight,
@@ -278,7 +278,7 @@ import '../../scss/resize-detection.scss';
 					smaller_height: image.clientHeight > image.naturalHeight,
 				};
 
-				// In case image is in correct size, do not continue.
+				/ In case image is in correct size, do not continue.
 				if (
 					! props.bigger_width &&
 					! props.bigger_height &&
@@ -295,7 +295,7 @@ import '../../scss/resize-detection.scss';
 				    imageClass =
 					    `smush-image-${ imgType }-${ this.images[ imgType ].length + 1 }`;
 
-				// Fill the images arrays.
+				/ Fill the images arrays.
 				this.images[ imgType ].push( {
 					src: image,
 					props,
@@ -310,7 +310,7 @@ import '../../scss/resize-detection.scss';
 				image.classList.add( 'smush-detected-img' );
 				image.classList.add( imageClass );
 			}
-		}, // End detectImages()
+		}, / End detectImages()
 
 		/**
 		 * Allows refreshing the list. A good way is to refresh on lazyload actions.
@@ -318,7 +318,7 @@ import '../../scss/resize-detection.scss';
 		 * @since 3.6.0
 		 */
 		refresh() {
-			// Clear out classes on DOM.
+			/ Clear out classes on DOM.
 			for ( let id in this.images.bigger ) {
 				if ( this.images.bigger.hasOwnProperty( id ) ) {
 					this.images.bigger[ id ].src.classList.remove(
@@ -346,8 +346,8 @@ import '../../scss/resize-detection.scss';
 				smaller: [],
 			};
 
-			// This might be overkill - there will probably never be a situation when there are less images than on
-			// initial page load.
+			/ This might be overkill - there will probably never be a situation when there are less images than on
+			/ initial page load.
 			const elements = document.getElementsByClassName(
 				'smush-resize-box'
 			);
@@ -421,7 +421,7 @@ import '../../scss/resize-detection.scss';
 			} );
 		},
 
-	}; // End WP_Smush_IRS
+	}; / End WP_Smush_IRS
 
 	/**
 	 * After page load, initialize toggle event.

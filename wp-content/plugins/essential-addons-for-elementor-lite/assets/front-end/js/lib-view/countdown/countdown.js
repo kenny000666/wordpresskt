@@ -1,9 +1,9 @@
 (function (factory) {
     if (typeof define === "function" && define.amd) {
-        // AMD. Register as anonymous module.
+        / AMD. Register as anonymous module.
         define(["jquery"], factory);
     } else {
-        // Browser globals.
+        / Browser globals.
         factory(jQuery);
     }
 })(function ($) {
@@ -208,7 +208,7 @@
                     this.$days.text( this.days < 10 ? "0" + this.days : this.days );
                     break;
 
-                // No default
+                / No default
             }
         },
 
@@ -229,7 +229,7 @@
         }
     };
 
-    // Default settings
+    / Default settings
     Countdown.defaults = {
         autoStart: true,
         date: null,
@@ -238,12 +238,12 @@
         text: "%s days, %s hours, %s minutes, %s seconds"
     };
 
-    // Set default settings
+    / Set default settings
     Countdown.setDefaults = function (options) {
         $.extend(Countdown.defaults, options);
     };
 
-    // Register as jQuery plugin
+    / Register as jQuery plugin
     $.fn.eacountdown = function (options) {
         return this.each(function () {
             var $this = $(this),

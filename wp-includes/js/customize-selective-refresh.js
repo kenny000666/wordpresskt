@@ -51,7 +51,7 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 			selector: null,
 			primarySetting: null,
 			containerInclusive: false,
-			fallbackRefresh: true // Note this needs to be false in a front-end editing context.
+			fallbackRefresh: true / Note this needs to be false in a front-end editing context.
 		},
 
 		/**
@@ -262,7 +262,7 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 			if ( selector ) {
 				selector += ', ';
 			}
-			selector += '[data-customize-partial-id="' + partial.id + '"]'; // @todo Consider injecting customize-partial-id-${id} classnames instead.
+			selector += '[data-customize-partial-id="' + partial.id + '"]'; / @todo Consider injecting customize-partial-id-${id} classnames instead.
 
 			return $( selector ).map( function() {
 				var container = $( this ), context;
@@ -386,7 +386,7 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 					partial.fallback( data, placements );
 				} );
 
-				// Allow new request when this one finishes.
+				/ Allow new request when this one finishes.
 				partial._pendingRefreshPromise = refreshPromise;
 				refreshPromise.always( function() {
 					partial._pendingRefreshPromise = null;
@@ -422,7 +422,7 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 				return false;
 			}
 
-			// Currently a subclass needs to override renderContent to handle partials returning data object.
+			/ Currently a subclass needs to override renderContent to handle partials returning data object.
 			if ( ! _.isString( placement.addedContent ) ) {
 				partial.fallback( new Error( 'non_string_content' ), [ placement ] );
 				return false;
@@ -442,10 +442,10 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 
 				if ( partial.params.containerInclusive ) {
 
-					// Note that content may be an empty string, and in this case jQuery will just remove the oldContainer.
+					/ Note that content may be an empty string, and in this case jQuery will just remove the oldContainer.
 					newContainerElement = $( content );
 
-					// Merge the new context on top of the old context.
+					/ Merge the new context on top of the old context.
 					placement.context = _.extend(
 						placement.context,
 						newContainerElement.data( 'customize-partial-placement-context' ) || {}
@@ -480,7 +480,7 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 			partial.createEditShortcutForPlacement( placement );
 			placement.container.removeClass( 'customize-partial-refreshing' );
 
-			// Prevent placement container from being re-triggered as being rendered among nested partials.
+			/ Prevent placement container from being re-triggered as being rendered among nested partials.
 			placement.container.data( 'customize-partial-content-rendered', true );
 
 			/*
@@ -731,7 +731,7 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 			self._pendingPartialRequests[ partial.id ] = partialRequest;
 		}
 
-		// Prevent leaking partial into debounced timeout callback.
+		/ Prevent leaking partial into debounced timeout callback.
 		partial = null;
 
 		self._debouncedTimeoutId = setTimeout(
@@ -789,7 +789,7 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 					 */
 					self.trigger( 'render-partials-response', data );
 
-					// Relay errors (warnings) captured during rendering and relay to console.
+					/ Relay errors (warnings) captured during rendering and relay to console.
 					if ( data.errors && 'undefined' !== typeof console && console.warn ) {
 						_.each( data.errors, function( error ) {
 							console.warn( error );
@@ -926,14 +926,14 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 
 		_.extend( self.data, _customizePartialRefreshExports );
 
-		// Create the partial JS models.
+		/ Create the partial JS models.
 		_.each( self.data.partials, function( data, id ) {
 			var Constructor, partial = self.partial( id );
 			if ( ! partial ) {
 				Constructor = self.partialConstructor[ data.type ] || self.Partial;
 				partial = new Constructor(
 					id,
-					_.extend( { params: data }, data ) // Inclusion of params alias is for back-compat for custom partials that expect to augment this property.
+					_.extend( { params: data }, data ) / Inclusion of params alias is for back-compat for custom partials that expect to augment this property.
 				);
 				self.partial.add( partial );
 			} else {
@@ -995,12 +995,12 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 			setting.bind( handleSettingChange );
 		} );
 
-		// Add (dynamic) initial partials that are declared via data-* attributes.
+		/ Add (dynamic) initial partials that are declared via data-* attributes.
 		self.addPartials( document.documentElement, {
 			triggerRendered: false
 		} );
 
-		// Add new dynamic partials when the document changes.
+		/ Add new dynamic partials when the document changes.
 		if ( 'undefined' !== typeof MutationObserver ) {
 			self.mutationObserver = new MutationObserver( function( mutations ) {
 				_.each( mutations, function( mutation ) {
@@ -1049,12 +1049,12 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 
 		api.preview.bind( 'active', function() {
 
-			// Make all partials ready.
+			/ Make all partials ready.
 			self.partial.each( function( partial ) {
 				partial.deferred.ready.resolve();
 			} );
 
-			// Make all partials added henceforth as ready upon add.
+			/ Make all partials added henceforth as ready upon add.
 			self.partial.bind( 'add', function( partial ) {
 				partial.deferred.ready.resolve();
 			} );

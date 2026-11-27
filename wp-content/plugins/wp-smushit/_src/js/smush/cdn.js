@@ -89,7 +89,7 @@
 				return;
 			}
 
-			// Only fetch the new stats, when user is on CDN page.
+			/ Only fetch the new stats, when user is on CDN page.
 			if ( ! window.location.search.includes( 'page=smush-cdn' ) ) {
 				return;
 			}

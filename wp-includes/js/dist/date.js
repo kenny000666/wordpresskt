@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 1681:
@@ -12,7 +12,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"version":"2022g","zones":["Africa/Ab
 /***/ 1685:
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//! moment-timezone-utils.js
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/! moment-timezone-utils.js
 //! version : 0.5.40
 //! Copyright (c) JS Foundation and other contributors
 //! license : MIT
@@ -23,12 +23,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 	/*global define*/
     if ( true && module.exports) {
-        module.exports = factory(__webpack_require__(5537));     // Node
+        module.exports = factory(__webpack_require__(5537));     / Node
     } else if (true) {
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6154)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));                 // AMD
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));                 / AMD
 	} else {}
 }(this, function (moment) {
 	"use strict";
@@ -42,7 +42,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 	************************************/
 
 	var BASE60 = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX',
-		EPSILON = 0.000001; // Used to fix floating point rounding errors
+		EPSILON = 0.000001; / Used to fix floating point rounding errors
 
 	function packBase60Fraction(fraction, precision) {
 		var buffer = '.',
@@ -56,8 +56,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 			buffer     += BASE60[current];
 			fraction   -= current;
 
-			// Only add buffer to output once we have a non-zero value.
-			// This makes '.000' output '', and '.100' output '.1'
+			/ Only add buffer to output once we have a non-zero value.
+			/ This makes '.000' output '', and '.100' output '.1'
 			if (current) {
 				output += buffer;
 				buffer  = '';
@@ -167,10 +167,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 	function pack (source) {
 		validatePackData(source);
 		return [
-			source.name, // 0 - timezone name
-			packAbbrsAndOffsets(source), // 1 - abbrs, 2 - offsets, 3 - indices
-			packUntils(source.untils), // 4 - untils
-			packPopulation(source.population) // 5 - population
+			source.name, / 0 - timezone name
+			packAbbrsAndOffsets(source), / 1 - abbrs, 2 - offsets, 3 - indices
+			packUntils(source.untils), / 4 - untils
+			packPopulation(source.population) / 5 - population
 		].join('|');
 	}
 
@@ -359,7 +359,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /***/ 3849:
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//! moment-timezone.js
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/! moment-timezone.js
 //! version : 0.5.40
 //! Copyright (c) JS Foundation and other contributors
 //! license : MIT
@@ -370,26 +370,26 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 	/*global define*/
 	if ( true && module.exports) {
-		module.exports = factory(__webpack_require__(6154)); // Node
+		module.exports = factory(__webpack_require__(6154)); / Node
 	} else if (true) {
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6154)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));                 // AMD
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));                 / AMD
 	} else {}
 }(this, function (moment) {
 	"use strict";
 
-	// Resolves es6 module loading issue
+	/ Resolves es6 module loading issue
 	if (moment.version === undefined && moment.default) {
 		moment = moment.default;
 	}
 
-	// Do not load moment-timezone a second time.
-	// if (moment.tz !== undefined) {
-	// 	logError('Moment Timezone ' + moment.tz.version + ' was already loaded ' + (moment.tz.dataVersion ? 'with data from ' : 'without any data') + moment.tz.dataVersion);
-	// 	return moment;
-	// }
+	/ Do not load moment-timezone a second time.
+	/ if (moment.tz !== undefined) {
+	/ 	logError('Moment Timezone ' + moment.tz.version + ' was already loaded ' + (moment.tz.dataVersion ? 'with data from ' : 'without any data') + moment.tz.dataVersion);
+	/ 	return moment;
+	/ }
 
 	var VERSION = "0.5.40",
 		zones = {},
@@ -407,7 +407,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 		major = +momentVersion[0],
 		minor = +momentVersion[1];
 
-	// Moment.js version check
+	/ Moment.js version check
 	if (major < 2 || (major === 2 && minor < 6)) {
 		logError('Moment Timezone requires Moment.js >= 2.6.0. You are using Moment.js ' + moment.version + '. See momentjs.com');
 	}
@@ -435,19 +435,19 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 			out = 0,
 			sign = 1;
 
-		// handle negative numbers
+		/ handle negative numbers
 		if (string.charCodeAt(0) === 45) {
 			i = 1;
 			sign = -1;
 		}
 
-		// handle digits before the decimal
+		/ handle digits before the decimal
 		for (i; i < whole.length; i++) {
 			num = charCodeToInt(whole.charCodeAt(i));
 			out = 60 * out + num;
 		}
 
-		// handle digits after the decimal
+		/ handle digits after the decimal
 		for (i = 0; i < fractional.length; i++) {
 			multiplier = multiplier / 60;
 			num = charCodeToInt(fractional.charCodeAt(i));
@@ -465,7 +465,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 	function intToUntil (array, length) {
 		for (var i = 0; i < length; i++) {
-			array[i] = Math.round((array[i - 1] || 0) + (array[i] * 60000)); // minutes to milliseconds
+			array[i] = Math.round((array[i - 1] || 0) + (array[i] * 60000)); / minutes to milliseconds
 		}
 
 		array[length - 1] = Infinity;
@@ -597,13 +597,13 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 		var timeString = at.toTimeString();
 		var abbr = timeString.match(/\([a-z ]+\)/i);
 		if (abbr && abbr[0]) {
-			// 17:56:31 GMT-0600 (CST)
-			// 17:56:31 GMT-0600 (Central Standard Time)
+			/ 17:56:31 GMT-0600 (CST)
+			/ 17:56:31 GMT-0600 (Central Standard Time)
 			abbr = abbr[0].match(/[A-Z]/g);
 			abbr = abbr ? abbr.join('') : undefined;
 		} else {
-			// 17:56:31 CST
-			// 17:56:31 GMT+0800 (台北標準時間)
+			/ 17:56:31 CST
+			/ 17:56:31 GMT+0800 (台北標準時間)
 			abbr = timeString.match(/[A-Z]{3,5}/g);
 			abbr = abbr ? abbr[0] : undefined;
 		}
@@ -718,7 +718,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 	function rebuildGuess () {
 
-		// use Intl API when available and returning valid time zone
+		/ use Intl API when available and returning valid time zone
 		try {
 			var intlName = Intl.DateTimeFormat().resolvedOptions().timeZone;
 			if (intlName && intlName.length > 3) {
@@ -729,7 +729,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 				logError("Moment Timezone found " + intlName + " from the Intl api, but did not have that data loaded.");
 			}
 		} catch (e) {
-			// Intl unavailable, fall back to manual guessing.
+			/ Intl unavailable, fall back to manual guessing.
 		}
 
 		var offsets = userOffsets(),
@@ -763,7 +763,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 	************************************/
 
 	function normalizeName (name) {
-		return (name || '').toLowerCase().replace(/\//g, '_');
+		return (name || '').toLowerCase().replace(/\/g, '_');
 	}
 
 	function addZone (packed) {
@@ -800,7 +800,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 			return zone;
 		}
 
-		// Pass getZone to prevent recursion more than 1 level deep
+		/ Pass getZone to prevent recursion more than 1 level deep
 		if (links[name] && caller !== getZone && (link = getZone(links[name], getZone))) {
 			zone = zones[name] = new Zone();
 			zone._set(link);
@@ -942,7 +942,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 	tz.link         = addLink;
 	tz.load         = loadData;
 	tz.zone         = getZone;
-	tz.zoneExists   = zoneExists; // deprecated in 0.1.0
+	tz.zoneExists   = zoneExists; / deprecated in 0.1.0
 	tz.guess        = guess;
 	tz.names        = getNames;
 	tz.Zone         = Zone;
@@ -1041,18 +1041,18 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 		return moment;
 	};
 
-	// Cloning a moment should include the _z property.
+	/ Cloning a moment should include the _z property.
 	var momentProperties = moment.momentProperties;
 	if (Object.prototype.toString.call(momentProperties) === '[object Array]') {
-		// moment 2.8.1+
+		/ moment 2.8.1+
 		momentProperties.push('_z');
 		momentProperties.push('_a');
 	} else if (momentProperties) {
-		// moment 2.7.0
+		/ moment 2.7.0
 		momentProperties._z = null;
 	}
 
-	// INJECT DATA
+	/ INJECT DATA
 
 	return moment;
 }));
@@ -1079,34 +1079,34 @@ module.exports = window["moment"];
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -1118,7 +1118,7 @@ module.exports = window["moment"];
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -1135,7 +1135,7 @@ module.exports = window["moment"];
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -1174,10 +1174,10 @@ var external_moment_default = /*#__PURE__*/__webpack_require__.n(external_moment
 var moment_timezone = __webpack_require__(3849);
 // EXTERNAL MODULE: ./node_modules/moment-timezone/moment-timezone-utils.js
 var moment_timezone_utils = __webpack_require__(1685);
-;// external ["wp","deprecated"]
+;/ external ["wp","deprecated"]
 const external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
 var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_namespaceObject);
-;// ./node_modules/@wordpress/date/build-module/index.js
+;/ ./node_modules/@wordpress/date/build-module/index.js
 /**
  * External dependencies
  */
@@ -1301,27 +1301,27 @@ function setSettings(dateSettings) {
   settings = dateSettings;
   setupWPTimezone();
 
-  // Does moment already have a locale with the right name?
+  / Does moment already have a locale with the right name?
   if (external_moment_default().locales().includes(dateSettings.l10n.locale)) {
-    // Is that locale misconfigured, e.g. because we are on a site running
-    // WordPress < 6.0?
+    / Is that locale misconfigured, e.g. because we are on a site running
+    / WordPress < 6.0?
     if (external_moment_default().localeData(dateSettings.l10n.locale).longDateFormat('LTS') === null) {
-      // Delete the misconfigured locale.
-      // @ts-ignore Type definitions are incorrect - null is permitted.
+      / Delete the misconfigured locale.
+      / @ts-ignore Type definitions are incorrect - null is permitted.
       external_moment_default().defineLocale(dateSettings.l10n.locale, null);
     } else {
-      // We have a properly configured locale, so no need to create one.
+      / We have a properly configured locale, so no need to create one.
       return;
     }
   }
 
-  // defineLocale() will modify the current locale, so back it up.
+  / defineLocale() will modify the current locale, so back it up.
   const currentLocale = external_moment_default().locale();
 
-  // Create locale.
+  / Create locale.
   external_moment_default().defineLocale(dateSettings.l10n.locale, {
-    // Inherit anything missing from English. We don't load
-    // moment-with-locales.js so English is all there is.
+    / Inherit anything missing from English. We don't load
+    / moment-with-locales.js so English is all there is.
     parentLocale: 'en',
     months: dateSettings.l10n.months,
     monthsShort: dateSettings.l10n.monthsShort,
@@ -1341,12 +1341,12 @@ function setSettings(dateSettings) {
       LLL: dateSettings.formats.datetime,
       LLLL: external_moment_default().localeData('en').longDateFormat('LLLL')
     },
-    // From human_time_diff?
-    // Set to `(number, withoutSuffix, key, isFuture) => {}` instead.
+    / From human_time_diff?
+    / Set to `(number, withoutSuffix, key, isFuture) => {}` instead.
     relativeTime: dateSettings.l10n.relative
   });
 
-  // Restore the locale to what it was.
+  / Restore the locale to what it was.
   external_moment_default().locale(currentLocale);
 }
 
@@ -1373,14 +1373,14 @@ function __experimentalGetSettings() {
   return getSettings();
 }
 function setupWPTimezone() {
-  // Get the current timezone settings from the WP timezone string.
+  / Get the current timezone settings from the WP timezone string.
   const currentTimezone = external_moment_default().tz.zone(settings.timezone.string);
 
-  // Check to see if we have a valid TZ data, if so, use it for the custom WP_ZONE timezone, otherwise just use the offset.
+  / Check to see if we have a valid TZ data, if so, use it for the custom WP_ZONE timezone, otherwise just use the offset.
   if (currentTimezone) {
-    // Create WP timezone based off settings.timezone.string.  We need to include the additional data so that we
-    // don't lose information about daylight savings time and other items.
-    // See https://github.com/WordPress/gutenberg/pull/48083
+    / Create WP timezone based off settings.timezone.string.  We need to include the additional data so that we
+    / don't lose information about daylight savings time and other items.
+    / See https://github.com/WordPress/gutenberg/pull/48083
     external_moment_default().tz.add(external_moment_default().tz.pack({
       name: WP_ZONE,
       abbrs: currentTimezone.abbrs,
@@ -1388,7 +1388,7 @@ function setupWPTimezone() {
       offsets: currentTimezone.offsets
     }));
   } else {
-    // Create WP timezone based off dateSettings.
+    / Create WP timezone based off dateSettings.
     external_moment_default().tz.add(external_moment_default().tz.pack({
       name: WP_ZONE,
       abbrs: [WP_ZONE],
@@ -1429,7 +1429,7 @@ const HOUR_IN_SECONDS = 60 * MINUTE_IN_SECONDS;
  * directly.
  */
 const formatMap = {
-  // Day.
+  / Day.
   d: 'DD',
   D: 'ddd',
   j: 'D',
@@ -1443,7 +1443,7 @@ const formatMap = {
    * @return {string} Formatted date.
    */
   S(momentDate) {
-    // Do - D.
+    / Do - D.
     const num = momentDate.format('D');
     const withOrdinal = momentDate.format('Do');
     return withOrdinal.replace(num, '');
@@ -1457,12 +1457,12 @@ const formatMap = {
    * @return {string} Formatted date.
    */
   z(momentDate) {
-    // DDD - 1.
+    / DDD - 1.
     return (parseInt(momentDate.format('DDD'), 10) - 1).toString();
   },
-  // Week.
+  / Week.
   W: 'W',
-  // Month.
+  / Month.
   F: 'MMMM',
   m: 'MM',
   M: 'MMM',
@@ -1477,7 +1477,7 @@ const formatMap = {
   t(momentDate) {
     return momentDate.daysInMonth();
   },
-  // Year.
+  / Year.
   /**
    * Gets whether the current year is a leap year.
    *
@@ -1491,7 +1491,7 @@ const formatMap = {
   o: 'GGGG',
   Y: 'YYYY',
   y: 'YY',
-  // Time.
+  / Time.
   a: 'a',
   A: 'A',
   /**
@@ -1516,7 +1516,7 @@ const formatMap = {
   s: 'ss',
   u: 'SSSSSS',
   v: 'SSS',
-  // Timezone.
+  / Timezone.
   e: 'zz',
   /**
    * Gets whether the timezone is in DST currently.
@@ -1539,15 +1539,15 @@ const formatMap = {
    * @return {number} Formatted date.
    */
   Z(momentDate) {
-    // Timezone offset in seconds.
+    / Timezone offset in seconds.
     const offset = momentDate.format('Z');
     const sign = offset[0] === '-' ? -1 : 1;
     const parts = offset.substring(1).split(':').map(n => parseInt(n, 10));
     return sign * (parts[0] * HOUR_IN_MINUTES + parts[1]) * MINUTE_IN_SECONDS;
   },
-  // Full date/time.
+  / Full date/time.
   c: 'YYYY-MM-DDTHH:mm:ssZ',
-  // .toISOString.
+  / .toISOString.
   /**
    * Formats the date as RFC2822.
    *
@@ -1577,9 +1577,9 @@ function format(dateFormat, dateValue = new Date()) {
   const momentDate = external_moment_default()(dateValue);
   for (i = 0; i < dateFormat.length; i++) {
     char = dateFormat[i];
-    // Is this an escape?
+    / Is this an escape?
     if ('\\' === char) {
-      // Add next character, then move on.
+      / Add next character, then move on.
       i++;
       newFormat.push('[' + dateFormat[i] + ']');
       continue;
@@ -1587,18 +1587,18 @@ function format(dateFormat, dateValue = new Date()) {
     if (char in formatMap) {
       const formatter = formatMap[(/** @type {keyof formatMap} */char)];
       if (typeof formatter !== 'string') {
-        // If the format is a function, call it.
+        / If the format is a function, call it.
         newFormat.push('[' + formatter(momentDate) + ']');
       } else {
-        // Otherwise, add as a formatting string.
+        / Otherwise, add as a formatting string.
         newFormat.push(formatter);
       }
     } else {
       newFormat.push('[' + char + ']');
     }
   }
-  // Join with [] between to separate characters, and replace
-  // unneeded separators with static text.
+  / Join with [] between to separate characters, and replace
+  / unneeded separators with static text.
   return momentDate.format(newFormat.join('[]'));
 }
 
@@ -1746,7 +1746,7 @@ function humanTimeDiff(from, to) {
 function buildMoment(dateValue, timezone = '') {
   const dateMoment = external_moment_default()(dateValue);
   if (timezone && !isUTCOffset(timezone)) {
-    // The ! isUTCOffset() check guarantees that timezone is a string.
+    / The ! isUTCOffset() check guarantees that timezone is a string.
     return dateMoment.tz(/** @type {string} */timezone);
   }
   if (timezone && isUTCOffset(timezone)) {

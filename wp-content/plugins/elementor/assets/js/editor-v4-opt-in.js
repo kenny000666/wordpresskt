@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../assets/dev/js/utils/react.js":
@@ -39,10 +39,10 @@ function render(app, domElement) {
       root.unmount();
     };
   } catch (e) {
-    // eslint-disable-next-line react/no-deprecated
+    / eslint-disable-next-line react/no-deprecated
     ReactDOM.render(app, domElement);
     unmountFunction = function unmountFunction() {
-      // eslint-disable-next-line react/no-deprecated
+      / eslint-disable-next-line react/no-deprecated
       ReactDOM.unmountComponentAtNode(domElement);
     };
   }
@@ -802,7 +802,7 @@ let {
   freeze,
   seal,
   create
-} = Object; // eslint-disable-line import/no-mutable-exports
+} = Object; / eslint-disable-line import/no-mutable-exports
 let {
   apply,
   construct
@@ -883,9 +883,9 @@ function unconstruct(func) {
 function addToSet(set, array) {
   let transformCaseFunc = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : stringToLowerCase;
   if (setPrototypeOf) {
-    // Make 'in' and truthy checks like Boolean(set.constructor)
-    // independent of any properties defined on Object.prototype.
-    // Prevent prototype setters from intercepting set as a this value.
+    / Make 'in' and truthy checks like Boolean(set.constructor)
+    / independent of any properties defined on Object.prototype.
+    / Prevent prototype setters from intercepting set as a this value.
     setPrototypeOf(set, null);
   }
   let l = array.length;
@@ -894,7 +894,7 @@ function addToSet(set, array) {
     if (typeof element === 'string') {
       const lcElement = transformCaseFunc(element);
       if (lcElement !== element) {
-        // Config presets (e.g. tags.js, attrs.js) are immutable.
+        / Config presets (e.g. tags.js, attrs.js) are immutable.
         if (!isFrozen(array)) {
           array[l] = lcElement;
         }
@@ -988,15 +988,15 @@ const mathMl = freeze(['accent', 'accentunder', 'align', 'bevelled', 'close', 'c
 const xml = freeze(['xlink:href', 'xml:id', 'xlink:title', 'xml:space', 'xmlns:xlink']);
 
 // eslint-disable-next-line unicorn/better-regex
-const MUSTACHE_EXPR = seal(/\{\{[\w\W]*|[\w\W]*\}\}/gm); // Specify template detection regex for SAFE_FOR_TEMPLATES mode
+const MUSTACHE_EXPR = seal(/\{\{[\w\W]*|[\w\W]*\}\}/gm); / Specify template detection regex for SAFE_FOR_TEMPLATES mode
 const ERB_EXPR = seal(/<%[\w\W]*|[\w\W]*%>/gm);
-const TMPLIT_EXPR = seal(/\$\{[\w\W]*/gm); // eslint-disable-line unicorn/better-regex
-const DATA_ATTR = seal(/^data-[\-\w.\u00B7-\uFFFF]+$/); // eslint-disable-line no-useless-escape
-const ARIA_ATTR = seal(/^aria-[\-\w]+$/); // eslint-disable-line no-useless-escape
-const IS_ALLOWED_URI = seal(/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp|matrix):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i // eslint-disable-line no-useless-escape
+const TMPLIT_EXPR = seal(/\$\{[\w\W]*/gm); / eslint-disable-line unicorn/better-regex
+const DATA_ATTR = seal(/^data-[\-\w.\u00B7-\uFFFF]+$/); / eslint-disable-line no-useless-escape
+const ARIA_ATTR = seal(/^aria-[\-\w]+$/); / eslint-disable-line no-useless-escape
+const IS_ALLOWED_URI = seal(/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp|matrix):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i / eslint-disable-line no-useless-escape
 );
 const IS_SCRIPT_OR_DATA = seal(/^(?:\w+script|data):/i);
-const ATTR_WHITESPACE = seal(/[\u0000-\u0020\u00A0\u1680\u180E\u2000-\u2029\u205F\u3000]/g // eslint-disable-line no-control-regex
+const ATTR_WHITESPACE = seal(/[\u0000-\u0020\u00A0\u1680\u180E\u2000-\u2029\u205F\u3000]/g / eslint-disable-line no-control-regex
 );
 const DOCTYPE_NAME = seal(/^html$/i);
 const CUSTOM_ELEMENT = seal(/^[a-z][.\w]*(-[.\w]+)+$/i);
@@ -1023,15 +1023,15 @@ const NODE_TYPE = {
   text: 3,
   cdataSection: 4,
   entityReference: 5,
-  // Deprecated
+  / Deprecated
   entityNode: 6,
-  // Deprecated
+  / Deprecated
   progressingInstruction: 7,
   comment: 8,
   document: 9,
   documentType: 10,
   documentFragment: 11,
-  notation: 12 // Deprecated
+  notation: 12 / Deprecated
 };
 const getGlobal = function getGlobal() {
   return typeof window === 'undefined' ? null : window;
@@ -1048,9 +1048,9 @@ const _createTrustedTypesPolicy = function _createTrustedTypesPolicy(trustedType
   if (typeof trustedTypes !== 'object' || typeof trustedTypes.createPolicy !== 'function') {
     return null;
   }
-  // Allow the callers to control the unique policy name
-  // by adding a data-tt-policy-suffix to the script element with the DOMPurify.
-  // Policy creation with duplicate names throws in Trusted Types.
+  / Allow the callers to control the unique policy name
+  / by adding a data-tt-policy-suffix to the script element with the DOMPurify.
+  / Policy creation with duplicate names throws in Trusted Types.
   let suffix = null;
   const ATTR_NAME = 'data-tt-policy-suffix';
   if (purifyHostElement && purifyHostElement.hasAttribute(ATTR_NAME)) {
@@ -1067,9 +1067,9 @@ const _createTrustedTypesPolicy = function _createTrustedTypesPolicy(trustedType
       }
     });
   } catch (_) {
-    // Policy creation failed (most likely another DOMPurify script has
-    // already run). Skip creating the policy, as this will only cause errors
-    // if TT are enforced.
+    / Policy creation failed (most likely another DOMPurify script has
+    / already run). Skip creating the policy, as this will only cause errors
+    / if TT are enforced.
     console.warn('TrustedTypes policy ' + policyName + ' could not be created.');
     return null;
   }
@@ -1093,8 +1093,8 @@ function createDOMPurify() {
   DOMPurify.version = '3.2.6';
   DOMPurify.removed = [];
   if (!window || !window.document || window.document.nodeType !== NODE_TYPE.document || !window.Element) {
-    // Not running in a browser, provide a factory function
-    // so that you can pass your own Window
+    / Not running in a browser, provide a factory function
+    / so that you can pass your own Window
     DOMPurify.isSupported = false;
     return DOMPurify;
   }
@@ -1120,12 +1120,12 @@ function createDOMPurify() {
   const getNextSibling = lookupGetter(ElementPrototype, 'nextSibling');
   const getChildNodes = lookupGetter(ElementPrototype, 'childNodes');
   const getParentNode = lookupGetter(ElementPrototype, 'parentNode');
-  // As per issue #47, the web-components registry is inherited by a
-  // new document created via createHTMLDocument. As per the spec
-  // (http://w3c.github.io/webcomponents/spec/custom/#creating-and-passing-registries)
-  // a new empty registry is used when creating a template contents owner
-  // document, so we use that as our parent document to ensure nothing
-  // is inherited.
+  / As per issue #47, the web-components registry is inherited by a
+  / new document created via createHTMLDocument. As per the spec
+  / (http://w3c.github.io/webcomponents/spec/custom/#creating-and-passing-registries)
+  / a new empty registry is used when creating a template contents owner
+  / document, so we use that as our parent document to ensure nothing
+  / is inherited.
   if (typeof HTMLTemplateElement === 'function') {
     const template = document.createElement('template');
     if (template.content && template.content.ownerDocument) {
@@ -1282,10 +1282,10 @@ function createDOMPurify() {
   const DEFAULT_ALLOWED_NAMESPACES = addToSet({}, [MATHML_NAMESPACE, SVG_NAMESPACE, HTML_NAMESPACE], stringToString);
   let MATHML_TEXT_INTEGRATION_POINTS = addToSet({}, ['mi', 'mo', 'mn', 'ms', 'mtext']);
   let HTML_INTEGRATION_POINTS = addToSet({}, ['annotation-xml']);
-  // Certain elements are allowed in both SVG and HTML
-  // namespace. We need to specify them explicitly
-  // so that they don't get erroneously deleted from
-  // HTML namespace.
+  / Certain elements are allowed in both SVG and HTML
+  / namespace. We need to specify them explicitly
+  / so that they don't get erroneously deleted from
+  / HTML namespace.
   const COMMON_SVG_AND_HTML_ELEMENTS = addToSet({}, ['title', 'style', 'font', 'a', 'script']);
   /* Parsing of strict XHTML documents */
   let PARSER_MEDIA_TYPE = null;
@@ -1305,7 +1305,7 @@ function createDOMPurify() {
    *
    * @param cfg optional config literal
    */
-  // eslint-disable-next-line complexity
+  / eslint-disable-next-line complexity
   const _parseConfig = function _parseConfig() {
     let cfg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     if (CONFIG && CONFIG === cfg) {
@@ -1318,9 +1318,9 @@ function createDOMPurify() {
     /* Shield configuration object from prototype pollution */
     cfg = clone(cfg);
     PARSER_MEDIA_TYPE =
-    // eslint-disable-next-line unicorn/prefer-includes
+    / eslint-disable-next-line unicorn/prefer-includes
     SUPPORTED_PARSER_MEDIA_TYPES.indexOf(cfg.PARSER_MEDIA_TYPE) === -1 ? DEFAULT_PARSER_MEDIA_TYPE : cfg.PARSER_MEDIA_TYPE;
-    // HTML tags and attributes are not case-sensitive, converting to lowercase. Keeping XHTML as is.
+    / HTML tags and attributes are not case-sensitive, converting to lowercase. Keeping XHTML as is.
     transformCaseFunc = PARSER_MEDIA_TYPE === 'application/xhtml+xml' ? stringToString : stringToLowerCase;
     /* Set configuration parameters */
     ALLOWED_TAGS = objectHasOwnProperty(cfg, 'ALLOWED_TAGS') ? addToSet({}, cfg.ALLOWED_TAGS, transformCaseFunc) : DEFAULT_ALLOWED_TAGS;
@@ -1332,21 +1332,21 @@ function createDOMPurify() {
     FORBID_TAGS = objectHasOwnProperty(cfg, 'FORBID_TAGS') ? addToSet({}, cfg.FORBID_TAGS, transformCaseFunc) : clone({});
     FORBID_ATTR = objectHasOwnProperty(cfg, 'FORBID_ATTR') ? addToSet({}, cfg.FORBID_ATTR, transformCaseFunc) : clone({});
     USE_PROFILES = objectHasOwnProperty(cfg, 'USE_PROFILES') ? cfg.USE_PROFILES : false;
-    ALLOW_ARIA_ATTR = cfg.ALLOW_ARIA_ATTR !== false; // Default true
-    ALLOW_DATA_ATTR = cfg.ALLOW_DATA_ATTR !== false; // Default true
-    ALLOW_UNKNOWN_PROTOCOLS = cfg.ALLOW_UNKNOWN_PROTOCOLS || false; // Default false
-    ALLOW_SELF_CLOSE_IN_ATTR = cfg.ALLOW_SELF_CLOSE_IN_ATTR !== false; // Default true
-    SAFE_FOR_TEMPLATES = cfg.SAFE_FOR_TEMPLATES || false; // Default false
-    SAFE_FOR_XML = cfg.SAFE_FOR_XML !== false; // Default true
-    WHOLE_DOCUMENT = cfg.WHOLE_DOCUMENT || false; // Default false
-    RETURN_DOM = cfg.RETURN_DOM || false; // Default false
-    RETURN_DOM_FRAGMENT = cfg.RETURN_DOM_FRAGMENT || false; // Default false
-    RETURN_TRUSTED_TYPE = cfg.RETURN_TRUSTED_TYPE || false; // Default false
-    FORCE_BODY = cfg.FORCE_BODY || false; // Default false
-    SANITIZE_DOM = cfg.SANITIZE_DOM !== false; // Default true
-    SANITIZE_NAMED_PROPS = cfg.SANITIZE_NAMED_PROPS || false; // Default false
-    KEEP_CONTENT = cfg.KEEP_CONTENT !== false; // Default true
-    IN_PLACE = cfg.IN_PLACE || false; // Default false
+    ALLOW_ARIA_ATTR = cfg.ALLOW_ARIA_ATTR !== false; / Default true
+    ALLOW_DATA_ATTR = cfg.ALLOW_DATA_ATTR !== false; / Default true
+    ALLOW_UNKNOWN_PROTOCOLS = cfg.ALLOW_UNKNOWN_PROTOCOLS || false; / Default false
+    ALLOW_SELF_CLOSE_IN_ATTR = cfg.ALLOW_SELF_CLOSE_IN_ATTR !== false; / Default true
+    SAFE_FOR_TEMPLATES = cfg.SAFE_FOR_TEMPLATES || false; / Default false
+    SAFE_FOR_XML = cfg.SAFE_FOR_XML !== false; / Default true
+    WHOLE_DOCUMENT = cfg.WHOLE_DOCUMENT || false; / Default false
+    RETURN_DOM = cfg.RETURN_DOM || false; / Default false
+    RETURN_DOM_FRAGMENT = cfg.RETURN_DOM_FRAGMENT || false; / Default false
+    RETURN_TRUSTED_TYPE = cfg.RETURN_TRUSTED_TYPE || false; / Default false
+    FORCE_BODY = cfg.FORCE_BODY || false; / Default false
+    SANITIZE_DOM = cfg.SANITIZE_DOM !== false; / Default true
+    SANITIZE_NAMED_PROPS = cfg.SANITIZE_NAMED_PROPS || false; / Default false
+    KEEP_CONTENT = cfg.KEEP_CONTENT !== false; / Default true
+    IN_PLACE = cfg.IN_PLACE || false; / Default false
     IS_ALLOWED_URI$1 = cfg.ALLOWED_URI_REGEXP || IS_ALLOWED_URI;
     NAMESPACE = cfg.NAMESPACE || HTML_NAMESPACE;
     MATHML_TEXT_INTEGRATION_POINTS = cfg.MATHML_TEXT_INTEGRATION_POINTS || MATHML_TEXT_INTEGRATION_POINTS;
@@ -1433,22 +1433,22 @@ function createDOMPurify() {
       if (typeof cfg.TRUSTED_TYPES_POLICY.createScriptURL !== 'function') {
         throw typeErrorCreate('TRUSTED_TYPES_POLICY configuration option must provide a "createScriptURL" hook.');
       }
-      // Overwrite existing TrustedTypes policy.
+      / Overwrite existing TrustedTypes policy.
       trustedTypesPolicy = cfg.TRUSTED_TYPES_POLICY;
-      // Sign local variables required by `sanitize`.
+      / Sign local variables required by `sanitize`.
       emptyHTML = trustedTypesPolicy.createHTML('');
     } else {
-      // Uninitialized policy, attempt to initialize the internal dompurify policy.
+      / Uninitialized policy, attempt to initialize the internal dompurify policy.
       if (trustedTypesPolicy === undefined) {
         trustedTypesPolicy = _createTrustedTypesPolicy(trustedTypes, currentScript);
       }
-      // If creating the internal policy succeeded sign internal variables.
+      / If creating the internal policy succeeded sign internal variables.
       if (trustedTypesPolicy !== null && typeof emptyHTML === 'string') {
         emptyHTML = trustedTypesPolicy.createHTML('');
       }
     }
-    // Prevent further manipulation of configuration.
-    // Not available in IE8, Safari 5, etc.
+    / Prevent further manipulation of configuration.
+    / Not available in IE8, Safari 5, etc.
     if (freeze) {
       freeze(cfg);
     }
@@ -1467,8 +1467,8 @@ function createDOMPurify() {
    */
   const _checkValidNamespace = function _checkValidNamespace(element) {
     let parent = getParentNode(element);
-    // In JSDOM, if we're inside shadow DOM, then parentNode
-    // can be null. We just simulate parent in this case.
+    / In JSDOM, if we're inside shadow DOM, then parentNode
+    / can be null. We just simulate parent in this case.
     if (!parent || !parent.tagName) {
       parent = {
         namespaceURI: NAMESPACE,
@@ -1481,60 +1481,60 @@ function createDOMPurify() {
       return false;
     }
     if (element.namespaceURI === SVG_NAMESPACE) {
-      // The only way to switch from HTML namespace to SVG
-      // is via <svg>. If it happens via any other tag, then
-      // it should be killed.
+      / The only way to switch from HTML namespace to SVG
+      / is via <svg>. If it happens via any other tag, then
+      / it should be killed.
       if (parent.namespaceURI === HTML_NAMESPACE) {
         return tagName === 'svg';
       }
-      // The only way to switch from MathML to SVG is via`
-      // svg if parent is either <annotation-xml> or MathML
-      // text integration points.
+      / The only way to switch from MathML to SVG is via`
+      / svg if parent is either <annotation-xml> or MathML
+      / text integration points.
       if (parent.namespaceURI === MATHML_NAMESPACE) {
         return tagName === 'svg' && (parentTagName === 'annotation-xml' || MATHML_TEXT_INTEGRATION_POINTS[parentTagName]);
       }
-      // We only allow elements that are defined in SVG
-      // spec. All others are disallowed in SVG namespace.
+      / We only allow elements that are defined in SVG
+      / spec. All others are disallowed in SVG namespace.
       return Boolean(ALL_SVG_TAGS[tagName]);
     }
     if (element.namespaceURI === MATHML_NAMESPACE) {
-      // The only way to switch from HTML namespace to MathML
-      // is via <math>. If it happens via any other tag, then
-      // it should be killed.
+      / The only way to switch from HTML namespace to MathML
+      / is via <math>. If it happens via any other tag, then
+      / it should be killed.
       if (parent.namespaceURI === HTML_NAMESPACE) {
         return tagName === 'math';
       }
-      // The only way to switch from SVG to MathML is via
-      // <math> and HTML integration points
+      / The only way to switch from SVG to MathML is via
+      / <math> and HTML integration points
       if (parent.namespaceURI === SVG_NAMESPACE) {
         return tagName === 'math' && HTML_INTEGRATION_POINTS[parentTagName];
       }
-      // We only allow elements that are defined in MathML
-      // spec. All others are disallowed in MathML namespace.
+      / We only allow elements that are defined in MathML
+      / spec. All others are disallowed in MathML namespace.
       return Boolean(ALL_MATHML_TAGS[tagName]);
     }
     if (element.namespaceURI === HTML_NAMESPACE) {
-      // The only way to switch from SVG to HTML is via
-      // HTML integration points, and from MathML to HTML
-      // is via MathML text integration points
+      / The only way to switch from SVG to HTML is via
+      / HTML integration points, and from MathML to HTML
+      / is via MathML text integration points
       if (parent.namespaceURI === SVG_NAMESPACE && !HTML_INTEGRATION_POINTS[parentTagName]) {
         return false;
       }
       if (parent.namespaceURI === MATHML_NAMESPACE && !MATHML_TEXT_INTEGRATION_POINTS[parentTagName]) {
         return false;
       }
-      // We disallow tags that are specific for MathML
-      // or SVG and should never appear in HTML namespace
+      / We disallow tags that are specific for MathML
+      / or SVG and should never appear in HTML namespace
       return !ALL_MATHML_TAGS[tagName] && (COMMON_SVG_AND_HTML_ELEMENTS[tagName] || !ALL_SVG_TAGS[tagName]);
     }
-    // For XHTML and XML documents that support custom namespaces
+    / For XHTML and XML documents that support custom namespaces
     if (PARSER_MEDIA_TYPE === 'application/xhtml+xml' && ALLOWED_NAMESPACES[element.namespaceURI]) {
       return true;
     }
-    // The code should never reach this place (this means
-    // that the element somehow got namespace that is not
-    // HTML, SVG, MathML or allowed via ALLOWED_NAMESPACES).
-    // Return false just in case.
+    / The code should never reach this place (this means
+    / that the element somehow got namespace that is not
+    / HTML, SVG, MathML or allowed via ALLOWED_NAMESPACES).
+    / Return false just in case.
     return false;
   };
   /**
@@ -1547,7 +1547,7 @@ function createDOMPurify() {
       element: node
     });
     try {
-      // eslint-disable-next-line unicorn/prefer-dom-node-remove
+      / eslint-disable-next-line unicorn/prefer-dom-node-remove
       getParentNode(node).removeChild(node);
     } catch (_) {
       remove(node);
@@ -1572,7 +1572,7 @@ function createDOMPurify() {
       });
     }
     element.removeAttribute(name);
-    // We void attribute values for unremovable "is" attributes
+    / We void attribute values for unremovable "is" attributes
     if (name === 'is') {
       if (RETURN_DOM || RETURN_DOM_FRAGMENT) {
         try {
@@ -1603,7 +1603,7 @@ function createDOMPurify() {
       leadingWhitespace = matches && matches[0];
     }
     if (PARSER_MEDIA_TYPE === 'application/xhtml+xml' && NAMESPACE === HTML_NAMESPACE) {
-      // Root of XHTML doc must contain xmlns declaration (see https://www.w3.org/TR/xhtml1/normative.html#strict)
+      / Root of XHTML doc must contain xmlns declaration (see https://www.w3.org/TR/xhtml1/normative.html#strict)
       dirty = '<html xmlns="http://www.w3.org/1999/xhtml"><head></head><body>' + dirty + '</body></html>';
     }
     const dirtyPayload = trustedTypesPolicy ? trustedTypesPolicy.createHTML(dirty) : dirty;
@@ -1622,7 +1622,7 @@ function createDOMPurify() {
       try {
         doc.documentElement.innerHTML = IS_EMPTY_INPUT ? emptyHTML : dirtyPayload;
       } catch (_) {
-        // Syntax error if dirtyPayload is invalid xml
+        / Syntax error if dirtyPayload is invalid xml
       }
     }
     const body = doc.body || doc.documentElement;
@@ -1643,7 +1643,7 @@ function createDOMPurify() {
    */
   const _createNodeIterator = function _createNodeIterator(root) {
     return createNodeIterator.call(root.ownerDocument || root, root,
-    // eslint-disable-next-line no-bitwise
+    / eslint-disable-next-line no-bitwise
     NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_COMMENT | NodeFilter.SHOW_TEXT | NodeFilter.SHOW_PROCESSING_INSTRUCTION | NodeFilter.SHOW_CDATA_SECTION, null);
   };
   /**
@@ -1772,7 +1772,7 @@ function createDOMPurify() {
    * @param value Attribute value.
    * @return Returns true if `value` is valid, otherwise false.
    */
-  // eslint-disable-next-line complexity
+  / eslint-disable-next-line complexity
   const _isValidAttribute = function _isValidAttribute(lcTag, lcName, value) {
     /* Make sure attribute cannot clobber */
     if (SANITIZE_DOM && (lcName === 'id' || lcName === 'name') && (value in document || value in formElement)) {
@@ -1784,12 +1784,12 @@ function createDOMPurify() {
         We don't need to check the value; it's always URI safe. */
     if (ALLOW_DATA_ATTR && !FORBID_ATTR[lcName] && regExpTest(DATA_ATTR, lcName)) ; else if (ALLOW_ARIA_ATTR && regExpTest(ARIA_ATTR, lcName)) ; else if (!ALLOWED_ATTR[lcName] || FORBID_ATTR[lcName]) {
       if (
-      // First condition does a very basic check if a) it's basically a valid custom element tagname AND
-      // b) if the tagName passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
-      // and c) if the attribute name passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.attributeNameCheck
+      / First condition does a very basic check if a) it's basically a valid custom element tagname AND
+      / b) if the tagName passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
+      / and c) if the attribute name passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.attributeNameCheck
       _isBasicCustomElement(lcTag) && (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, lcTag) || CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(lcTag)) && (CUSTOM_ELEMENT_HANDLING.attributeNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.attributeNameCheck, lcName) || CUSTOM_ELEMENT_HANDLING.attributeNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.attributeNameCheck(lcName)) ||
-      // Alternative, second condition checks if it's an `is`-attribute, AND
-      // the value passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
+      / Alternative, second condition checks if it's an `is`-attribute, AND
+      / the value passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
       lcName === 'is' && CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements && (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, value) || CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(value))) ; else {
         return false;
       }
@@ -1853,16 +1853,16 @@ function createDOMPurify() {
       hookEvent.attrName = lcName;
       hookEvent.attrValue = value;
       hookEvent.keepAttr = true;
-      hookEvent.forceKeepAttr = undefined; // Allows developers to see this is a property they can set
+      hookEvent.forceKeepAttr = undefined; / Allows developers to see this is a property they can set
       _executeHooks(hooks.uponSanitizeAttribute, currentNode, hookEvent);
       value = hookEvent.attrValue;
       /* Full DOM Clobbering protection via namespace isolation,
        * Prefix id and name attributes with `user-content-`
        */
       if (SANITIZE_NAMED_PROPS && (lcName === 'id' || lcName === 'name')) {
-        // Remove the attribute with this value
+        / Remove the attribute with this value
         _removeAttribute(name, currentNode);
-        // Prefix the value and later re-create the attribute with the sanitized value
+        / Prefix the value and later re-create the attribute with the sanitized value
         value = SANITIZE_NAMED_PROPS_PREFIX + value;
       }
       /* Work around a security issue with comments inside attributes */
@@ -1960,7 +1960,7 @@ function createDOMPurify() {
     /* Execute a hook if present */
     _executeHooks(hooks.afterSanitizeShadowDOM, fragment, null);
   };
-  // eslint-disable-next-line complexity
+  / eslint-disable-next-line complexity
   DOMPurify.sanitize = function (dirty) {
     let cfg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     let body = null;
@@ -2018,13 +2018,13 @@ function createDOMPurify() {
       } else if (importedNode.nodeName === 'HTML') {
         body = importedNode;
       } else {
-        // eslint-disable-next-line unicorn/prefer-dom-node-append
+        / eslint-disable-next-line unicorn/prefer-dom-node-append
         body.appendChild(importedNode);
       }
     } else {
       /* Exit directly if we have nothing to do */
       if (!RETURN_DOM && !SAFE_FOR_TEMPLATES && !WHOLE_DOCUMENT &&
-      // eslint-disable-next-line unicorn/prefer-includes
+      / eslint-disable-next-line unicorn/prefer-includes
       dirty.indexOf('<') === -1) {
         return trustedTypesPolicy && RETURN_TRUSTED_TYPE ? trustedTypesPolicy.createHTML(dirty) : dirty;
       }
@@ -2061,7 +2061,7 @@ function createDOMPurify() {
       if (RETURN_DOM_FRAGMENT) {
         returnNode = createDocumentFragment.call(body.ownerDocument);
         while (body.firstChild) {
-          // eslint-disable-next-line unicorn/prefer-dom-node-append
+          / eslint-disable-next-line unicorn/prefer-dom-node-append
           returnNode.appendChild(body.firstChild);
         }
       } else {
@@ -2172,16 +2172,16 @@ function shouldUseNative() {
 			return false;
 		}
 
-		// Detect buggy property enumeration order in older V8 versions.
+		/ Detect buggy property enumeration order in older V8 versions.
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc');  / eslint-disable-line no-new-wrappers
 		test1[5] = 'de';
 		if (Object.getOwnPropertyNames(test1)[0] === '5') {
 			return false;
 		}
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=3056
 		var test2 = {};
 		for (var i = 0; i < 10; i++) {
 			test2['_' + String.fromCharCode(i)] = i;
@@ -2193,7 +2193,7 @@ function shouldUseNative() {
 			return false;
 		}
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=3056
 		var test3 = {};
 		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
 			test3[letter] = letter;
@@ -2205,7 +2205,7 @@ function shouldUseNative() {
 
 		return true;
 	} catch (err) {
-		// We don't expect any of the above to throw, but better to be safe.
+		/ We don't expect any of the above to throw, but better to be safe.
 		return false;
 	}
 }
@@ -2269,9 +2269,9 @@ if (true) {
       console.error(message);
     }
     try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
+      / --- Welcome to debugging React ---
+      / This error was thrown as a convenience so that you can use this stack
+      / to find the callsite that caused this warning to fire.
       throw new Error(message);
     } catch (x) { /**/ }
   };
@@ -2293,12 +2293,12 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
     for (var typeSpecName in typeSpecs) {
       if (has(typeSpecs, typeSpecName)) {
         var error;
-        // Prop type validation may throw. In case they do, we don't want to
-        // fail the render phase where it didn't fail before. So we log it.
-        // After these have been cleaned up, we'll let them throw.
+        / Prop type validation may throw. In case they do, we don't want to
+        / fail the render phase where it didn't fail before. So we log it.
+        / After these have been cleaned up, we'll let them throw.
         try {
-          // This is intentionally an invariant that gets caught. It's the same
-          // behavior as without this statement except with a better message.
+          / This is intentionally an invariant that gets caught. It's the same
+          / behavior as without this statement except with a better message.
           if (typeof typeSpecs[typeSpecName] !== 'function') {
             var err = Error(
               (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
@@ -2323,8 +2323,8 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
           );
         }
         if (error instanceof Error && !(error.message in loggedTypeFailures)) {
-          // Only monitor this failure once because there tends to be a lot of the
-          // same error.
+          / Only monitor this failure once because there tends to be a lot of the
+          / same error.
           loggedTypeFailures[error.message] = true;
 
           var stack = getStack ? getStack() : '';
@@ -2386,9 +2386,9 @@ if (true) {
       console.error(message);
     }
     try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
+      / --- Welcome to debugging React ---
+      / This error was thrown as a convenience so that you can use this stack
+      / to find the callsite that caused this warning to fire.
       throw new Error(message);
     } catch (x) {}
   };
@@ -2401,7 +2401,7 @@ function emptyFunctionThatReturnsNull() {
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
   var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
-  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+  var FAUX_ITERATOR_SYMBOL = '@@iterator'; / Before Symbol spec.
 
   /**
    * Returns the iterator method function contained on the iterable object.
@@ -2431,13 +2431,13 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    *   var Props = require('ReactPropTypes');
    *   var MyArticle = React.createClass({
    *     propTypes: {
-   *       // An optional string prop named "description".
+   *       / An optional string prop named "description".
    *       description: Props.string,
    *
-   *       // A required enum prop named "category".
+   *       / A required enum prop named "category".
    *       category: Props.oneOf(['News','Photos']).isRequired,
    *
-   *       // A prop named "dialog" that requires an instance of Dialog.
+   *       / A prop named "dialog" that requires an instance of Dialog.
    *       dialog: Props.instanceOf(Dialog).isRequired
    *     },
    *     render: function() { ... }
@@ -2453,7 +2453,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    *
    *  var MyLink = React.createClass({
    *    propTypes: {
-   *      // An optional string or URI prop named "href".
+   *      / An optional string or URI prop named "href".
    *      href: function(props, propName, componentName) {
    *        var propValue = props[propName];
    *        if (propValue != null && typeof propValue !== 'string' &&
@@ -2473,8 +2473,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
   var ANONYMOUS = '<<anonymous>>';
 
-  // Important!
-  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+  / Important!
+  / Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
   var ReactPropTypes = {
     array: createPrimitiveTypeChecker('array'),
     bigint: createPrimitiveTypeChecker('bigint'),
@@ -2504,13 +2504,13 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    */
   /*eslint-disable no-self-compare*/
   function is(x, y) {
-    // SameValue algorithm
+    / SameValue algorithm
     if (x === y) {
-      // Steps 1-5, 7-10
-      // Steps 6.b-6.e: +0 != -0
+      / Steps 1-5, 7-10
+      / Steps 6.b-6.e: +0 != -0
       return x !== 0 || 1 / x === 1 / y;
     } else {
-      // Step 6.a: NaN == NaN
+      / Step 6.a: NaN == NaN
       return x !== x && y !== y;
     }
   }
@@ -2528,7 +2528,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     this.data = data && typeof data === 'object' ? data: {};
     this.stack = '';
   }
-  // Make `instanceof Error` still work for returned errors.
+  / Make `instanceof Error` still work for returned errors.
   PropTypeError.prototype = Error.prototype;
 
   function createChainableTypeChecker(validate) {
@@ -2542,7 +2542,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
       if (secret !== ReactPropTypesSecret) {
         if (throwOnDirectAccess) {
-          // New behavior only for users of `prop-types` package
+          / New behavior only for users of `prop-types` package
           var err = new Error(
             'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
             'Use `PropTypes.checkPropTypes()` to call them. ' +
@@ -2551,11 +2551,11 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
           err.name = 'Invariant Violation';
           throw err;
         } else if ( true && typeof console !== 'undefined') {
-          // Old behavior for people using React.PropTypes
+          / Old behavior for people using React.PropTypes
           var cacheKey = componentName + ':' + propName;
           if (
             !manualPropTypeCallCache[cacheKey] &&
-            // Avoid spamming the console because they are often not actionable except for lib authors
+            / Avoid spamming the console because they are often not actionable except for lib authors
             manualPropTypeWarningCount < 3
           ) {
             printWarning(
@@ -2594,9 +2594,9 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
       var propValue = props[propName];
       var propType = getPropType(propValue);
       if (propType !== expectedType) {
-        // `propValue` being instance of, say, date/regexp, pass the 'object'
-        // check, but we can offer a more precise error message here rather than
-        // 'of type `object`'.
+        / `propValue` being instance of, say, date/regexp, pass the 'object'
+        / check, but we can offer a more precise error message here rather than
+        / 'of type `object`'.
         var preciseType = getPreciseType(propValue);
 
         return new PropTypeError(
@@ -2809,7 +2809,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
       if (propType !== 'object') {
         return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
       }
-      // We need to check all keys in case some are required but missing from props.
+      / We need to check all keys in case some are required but missing from props.
       var allKeys = assign({}, props[propName], shapeTypes);
       for (var key in allKeys) {
         var checker = shapeTypes[key];
@@ -2861,7 +2861,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
               }
             }
           } else {
-            // Iterator will provide entry [k,v] tuples rather than values.
+            / Iterator will provide entry [k,v] tuples rather than values.
             while (!(step = iterator.next()).done) {
               var entry = step.value;
               if (entry) {
@@ -2882,22 +2882,22 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
   }
 
   function isSymbol(propType, propValue) {
-    // Native Symbol.
+    / Native Symbol.
     if (propType === 'symbol') {
       return true;
     }
 
-    // falsy value can't be a Symbol
+    / falsy value can't be a Symbol
     if (!propValue) {
       return false;
     }
 
-    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
+    / 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
     if (propValue['@@toStringTag'] === 'Symbol') {
       return true;
     }
 
-    // Fallback for non-spec compliant Symbols which are polyfilled.
+    / Fallback for non-spec compliant Symbols which are polyfilled.
     if (typeof Symbol === 'function' && propValue instanceof Symbol) {
       return true;
     }
@@ -2905,16 +2905,16 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return false;
   }
 
-  // Equivalent of `typeof` but with special handling for array and regexp.
+  / Equivalent of `typeof` but with special handling for array and regexp.
   function getPropType(propValue) {
     var propType = typeof propValue;
     if (Array.isArray(propValue)) {
       return 'array';
     }
     if (propValue instanceof RegExp) {
-      // Old webkits (at least until Android 4.0) return 'function' rather than
-      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
-      // passes PropTypes.object.
+      / Old webkits (at least until Android 4.0) return 'function' rather than
+      / 'object' for typeof a RegExp. We'll normalize this here so that /bla/
+      / passes PropTypes.object.
       return 'object';
     }
     if (isSymbol(propType, propValue)) {
@@ -2923,8 +2923,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return propType;
   }
 
-  // This handles more types than `getPropType`. Only used for error messages.
-  // See `createPrimitiveTypeChecker`.
+  / This handles more types than `getPropType`. Only used for error messages.
+  / See `createPrimitiveTypeChecker`.
   function getPreciseType(propValue) {
     if (typeof propValue === 'undefined' || propValue === null) {
       return '' + propValue;
@@ -2940,8 +2940,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return propType;
   }
 
-  // Returns a string that is postfixed to a warning about an invalid type.
-  // For example, "undefined" or "of type array"
+  / Returns a string that is postfixed to a warning about an invalid type.
+  / For example, "undefined" or "of type array"
   function getPostfixForTypeWarning(value) {
     var type = getPreciseType(value);
     switch (type) {
@@ -2957,7 +2957,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     }
   }
 
-  // Returns class name of the object, if any.
+  / Returns class name of the object, if any.
   function getClassName(propValue) {
     if (!propValue.constructor || !propValue.constructor.name) {
       return ANONYMOUS;
@@ -2991,8 +2991,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 if (true) {
   var ReactIs = __webpack_require__(/*! react-is */ "../node_modules/prop-types/node_modules/react-is/index.js");
 
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
+  / By explicitly using `prop-types` you are opting into new development behavior.
+  / http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
   module.exports = __webpack_require__(/*! ./factoryWithTypeCheckers */ "../node_modules/prop-types/factoryWithTypeCheckers.js")(ReactIs.isElement, throwOnDirectAccess);
 } else {}
@@ -3067,7 +3067,7 @@ var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
 var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
 var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
 var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
-var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; / TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
 // (unstable) APIs that have been removed. Can we remove the symbols?
 
 var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
@@ -3083,7 +3083,7 @@ var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
 var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
 
 function isValidElementType(type) {
-  return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+  return typeof type === 'string' || typeof type === 'function' || / Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
   type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
 }
 
@@ -3127,7 +3127,7 @@ function typeOf(object) {
   }
 
   return undefined;
-} // AsyncMode is deprecated along with isAsyncMode
+} / AsyncMode is deprecated along with isAsyncMode
 
 var AsyncMode = REACT_ASYNC_MODE_TYPE;
 var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
@@ -3142,12 +3142,12 @@ var Portal = REACT_PORTAL_TYPE;
 var Profiler = REACT_PROFILER_TYPE;
 var StrictMode = REACT_STRICT_MODE_TYPE;
 var Suspense = REACT_SUSPENSE_TYPE;
-var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
+var hasWarnedAboutDeprecatedIsAsyncMode = false; / AsyncMode should be deprecated
 
 function isAsyncMode(object) {
   {
     if (!hasWarnedAboutDeprecatedIsAsyncMode) {
-      hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+      hasWarnedAboutDeprecatedIsAsyncMode = true; / Using console['warn'] to evade Babel and ESLint
 
       console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
     }
@@ -3990,27 +3990,27 @@ try {
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	

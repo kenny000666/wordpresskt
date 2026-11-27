@@ -87,11 +87,11 @@
 
 										if ( true === data.success ) {
 											return {
-												results: data.data // ,
-												// We'll revisit this later.
-												// pagination: {
-												// more: ( params.page * 20 ) < data.data.length
-												// }.
+												results: data.data / ,
+												/ We'll revisit this later.
+												/ pagination: {
+												/ more: ( params.page * 20 ) < data.data.length
+												/ }.
 											};
 										} else if ( false === data.success ) {
 											alert( data.data );

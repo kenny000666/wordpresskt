@@ -1,6 +1,6 @@
 /* global console, MediaElementPlayer, mejs */
 (function ( window, $ ) {
-	// Reintegrate `plugins` since they don't exist in MEJS anymore; it won't affect anything in the player
+	/ Reintegrate `plugins` since they don't exist in MEJS anymore; it won't affect anything in the player
 	if (mejs.plugins === undefined) {
 		mejs.plugins = {};
 		mejs.plugins.silverlight = [];
@@ -9,12 +9,12 @@
 		});
 	}
 
-	// Inclusion of old `HtmlMediaElementShim` if it doesn't exist
+	/ Inclusion of old `HtmlMediaElementShim` if it doesn't exist
 	mejs.HtmlMediaElementShim = mejs.HtmlMediaElementShim || {
 		getTypeFromFile: mejs.Utils.getTypeFromFile
 	};
 
-	// Add missing global variables for backward compatibility
+	/ Add missing global variables for backward compatibility
 	if (mejs.MediaFeatures === undefined) {
 		mejs.MediaFeatures = mejs.Features;
 	}
@@ -46,13 +46,13 @@
 		ready.apply( this, arguments );
 	};
 
-	// Override method so certain elements can be called with jQuery
+	/ Override method so certain elements can be called with jQuery
 	MediaElementPlayer.prototype.getElement = function ( el ) {
 		return $ !== undefined && el instanceof $ ? el[0] : el;
 	};
 
-	// Add jQuery ONLY to most of custom features' arguments for backward compatibility; default features rely 100%
-	// on the arguments being HTML elements to work properly
+	/ Add jQuery ONLY to most of custom features' arguments for backward compatibility; default features rely 100%
+	/ on the arguments being HTML elements to work properly
 	MediaElementPlayer.prototype.buildfeatures = function ( player, controls, layers, media ) {
 		var defaultFeatures = [
 			'playpause',
@@ -67,7 +67,7 @@
 			var feature = this.options.features[i];
 			if (this['build' + feature]) {
 				try {
-					// Use jQuery for non-default features
+					/ Use jQuery for non-default features
 					if (defaultFeatures.indexOf(feature) === -1) {
 						this['build' + feature]( player, $(controls), $(layers), media );
 					} else {

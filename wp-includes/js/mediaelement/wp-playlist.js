@@ -68,7 +68,7 @@
 				this.settings.success = this.bindResetPlayer;
 			}
 
-			// This is also our bridge to the outside world.
+			/ This is also our bridge to the outside world.
 			this.player = new MediaElementPlayer( this.playerNode.get(0), this.settings );
 		},
 

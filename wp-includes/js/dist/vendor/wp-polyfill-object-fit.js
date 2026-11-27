@@ -10,17 +10,17 @@
 (function() {
   'use strict';
 
-  // if the page is being rendered on the server, don't continue
+  / if the page is being rendered on the server, don't continue
   if (typeof window === 'undefined') return;
 
-  // Workaround for Edge 16-18, which only implemented object-fit for <img> tags
+  / Workaround for Edge 16-18, which only implemented object-fit for <img> tags
   var edgeMatch = window.navigator.userAgent.match(/Edge\/(\d{2})\./);
   var edgeVersion = edgeMatch ? parseInt(edgeMatch[1], 10) : null;
   var edgePartialSupport = edgeVersion
     ? edgeVersion >= 16 && edgeVersion <= 18
     : false;
 
-  // If the browser does support object-fit, we don't need to continue
+  / If the browser does support object-fit, we don't need to continue
   var hasSupport = 'objectFit' in document.documentElement.style !== false;
   if (hasSupport && !edgePartialSupport) {
     window.objectFitPolyfill = function() {
@@ -47,8 +47,8 @@
     if (overflow !== 'hidden') {
       $container.style.overflow = 'hidden';
     }
-    // Guesstimating that people want the parent to act like full width/height wrapper here.
-    // Mostly attempts to target <picture> elements, which default to inline.
+    / Guesstimating that people want the parent to act like full width/height wrapper here.
+    / Mostly attempts to target <picture> elements, which default to inline.
     if (!display || display === 'inline') {
       $container.style.display = 'block';
     }
@@ -56,7 +56,7 @@
       $container.style.height = '100%';
     }
 
-    // Add a CSS class hook, in case people need to override styles for any reason.
+    / Add a CSS class hook, in case people need to override styles for any reason.
     if ($container.className.indexOf('object-fit-polyfill') === -1) {
       $container.className = $container.className + ' object-fit-polyfill';
     }
@@ -123,7 +123,7 @@
       end = 'bottom';
       side = $media.clientHeight;
     } else {
-      return; // Neither x or y axis specified
+      return; / Neither x or y axis specified
     }
 
     if (position === start || other === start) {
@@ -142,7 +142,7 @@
       return;
     }
 
-    // Percentage values (e.g., 30% 10%)
+    / Percentage values (e.g., 30% 10%)
     if (position.indexOf('%') >= 0) {
       position = parseInt(position, 10);
 
@@ -157,7 +157,7 @@
 
       return;
     }
-    // Length-based values (e.g. 10px / 10em)
+    / Length-based values (e.g. 10px / 10em)
     else {
       $media.style[start] = position;
     }
@@ -169,7 +169,7 @@
    * @param {node} $media - img/video/picture element
    */
   var objectFit = function($media) {
-    // IE 10- data polyfill
+    / IE 10- data polyfill
     var fit = $media.dataset
       ? $media.dataset.objectFit
       : $media.getAttribute('data-object-fit');
@@ -177,23 +177,23 @@
       ? $media.dataset.objectPosition
       : $media.getAttribute('data-object-position');
 
-    // Default fallbacks
+    / Default fallbacks
     fit = fit || 'cover';
     position = position || '50% 50%';
 
-    // If necessary, make the parent container work with absolutely positioned elements
+    / If necessary, make the parent container work with absolutely positioned elements
     var $container = $media.parentNode;
     checkParentContainer($container);
 
-    // Check for any pre-set CSS which could mess up image calculations
+    / Check for any pre-set CSS which could mess up image calculations
     checkMediaProperties($media);
 
-    // Reset any pre-set width/height CSS and handle fit positioning
+    / Reset any pre-set width/height CSS and handle fit positioning
     $media.style.position = 'absolute';
     $media.style.width = 'auto';
     $media.style.height = 'auto';
 
-    // `scale-down` chooses either `none` or `contain`, whichever is smaller
+    / `scale-down` chooses either `none` or `contain`, whichever is smaller
     if (fit === 'scale-down') {
       if (
         $media.clientWidth < $container.clientWidth &&
@@ -205,7 +205,7 @@
       }
     }
 
-    // `none` (width/height auto) and `fill` (100%) and are straightforward
+    / `none` (width/height auto) and `fill` (100%) and are straightforward
     if (fit === 'none') {
       setPosition('x', $media, position);
       setPosition('y', $media, position);
@@ -220,7 +220,7 @@
       return;
     }
 
-    // `cover` and `contain` must figure out which side needs covering, and add CSS positioning & centering
+    / `cover` and `contain` must figure out which side needs covering, and add CSS positioning & centering
     $media.style.height = '100%';
 
     if (
@@ -246,16 +246,16 @@
    */
   var objectFitPolyfill = function(media) {
     if (typeof media === 'undefined' || media instanceof Event) {
-      // If left blank, or a default event, all media on the page will be polyfilled.
+      / If left blank, or a default event, all media on the page will be polyfilled.
       media = document.querySelectorAll('[data-object-fit]');
     } else if (media && media.nodeName) {
-      // If it's a single node, wrap it in an array so it works.
+      / If it's a single node, wrap it in an array so it works.
       media = [media];
     } else if (typeof media === 'object' && media.length && media[0].nodeName) {
-      // If it's an array of DOM nodes (e.g. a jQuery selector), it's fine as-is.
+      / If it's an array of DOM nodes (e.g. a jQuery selector), it's fine as-is.
       media = media;
     } else {
-      // Otherwise, if it's invalid or an incorrect type, return false to let people know.
+      / Otherwise, if it's invalid or an incorrect type, return false to let people know.
       return false;
     }
 
@@ -265,7 +265,7 @@
       var mediaType = media[i].nodeName.toLowerCase();
 
       if (mediaType === 'img') {
-        if (edgePartialSupport) continue; // Edge supports object-fit for images (but nothing else), so no need to polyfill
+        if (edgePartialSupport) continue; / Edge supports object-fit for images (but nothing else), so no need to polyfill
 
         if (media[i].complete) {
           objectFit(media[i]);
@@ -291,10 +291,10 @@
   };
 
   if (document.readyState === 'loading') {
-    // Loading hasn't finished yet
+    / Loading hasn't finished yet
     document.addEventListener('DOMContentLoaded', objectFitPolyfill);
   } else {
-    // `DOMContentLoaded` has already fired
+    / `DOMContentLoaded` has already fired
     objectFitPolyfill();
   }
 

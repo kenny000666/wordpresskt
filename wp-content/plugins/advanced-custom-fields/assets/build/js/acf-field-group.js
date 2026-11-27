@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/_browse-fields-modal.js":
@@ -52,7 +52,7 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
     getFieldTypes: function (category, search) {
       let fieldTypes;
       if (!acf.get('is_pro')) {
-        // Add in the pro fields.
+        / Add in the pro fields.
         fieldTypes = Object.values(_objectSpread(_objectSpread({}, acf.get('fieldTypes')), acf.get('PROFieldTypes')));
       } else {
         fieldTypes = Object.values(acf.get('fieldTypes'));
@@ -164,16 +164,16 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       const fieldObject = this.get('openedBy');
       const fieldType = fieldObject === null || fieldObject === void 0 || (_fieldObject$data = fieldObject.data) === null || _fieldObject$data === void 0 ? void 0 : _fieldObject$data.type;
 
-      // Select default field type
+      / Select default field type
       if (fieldType) {
         this.set('currentFieldType', fieldType);
       } else {
         this.set('currentFieldType', 'text');
       }
 
-      // Select first tab with selected field type
-      // If type selected is wthin Popular, select Popular Tab
-      // Else select first tab the type belongs
+      / Select first tab with selected field type
+      / If type selected is wthin Popular, select Popular Tab
+      / Else select first tab the type belongs
       const fieldTypes = this.getFieldTypes();
       const isFieldTypePopular = this.get('popularFieldTypes').includes(fieldType);
       let category = '';
@@ -334,102 +334,102 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
    */
 
   _acf.field_group.field_object = acf.model.extend({
-    // vars
+    / vars
     type: '',
     o: {},
     $field: null,
     $settings: null,
     tag: function (tag) {
-      // vars
+      / vars
       var type = this.type;
 
-      // explode, add 'field' and implode
-      // - open 			=> open_field
-      // - change_type	=> change_field_type
+      / explode, add 'field' and implode
+      / - open 			=> open_field
+      / - change_type	=> change_field_type
       var tags = tag.split('_');
       tags.splice(1, 0, 'field');
       tag = tags.join('_');
 
-      // add type
+      / add type
       if (type) {
         tag += '/type=' + type;
       }
 
-      // return
+      / return
       return tag;
     },
     selector: function () {
-      // vars
+      / vars
       var selector = '.acf-field-object';
       var type = this.type;
 
-      // add type
+      / add type
       if (type) {
         selector += '-' + type;
         selector = acf.str_replace('_', '-', selector);
       }
 
-      // return
+      / return
       return selector;
     },
     _add_action: function (name, callback) {
-      // vars
+      / vars
       var model = this;
 
-      // add action
+      / add action
       acf.add_action(this.tag(name), function ($field) {
-        // focus
+        / focus
         model.set('$field', $field);
 
-        // callback
+        / callback
         model[callback].apply(model, arguments);
       });
     },
     _add_filter: function (name, callback) {
-      // vars
+      / vars
       var model = this;
 
-      // add action
+      / add action
       acf.add_filter(this.tag(name), function ($field) {
-        // focus
+        / focus
         model.set('$field', $field);
 
-        // callback
+        / callback
         model[callback].apply(model, arguments);
       });
     },
     _add_event: function (name, callback) {
-      // vars
+      / vars
       var model = this;
       var event = name.substr(0, name.indexOf(' '));
       var selector = name.substr(name.indexOf(' ') + 1);
       var context = this.selector();
 
-      // add event
+      / add event
       $(document).on(event, context + ' ' + selector, function (e) {
-        // append $el to event object
+        / append $el to event object
         e.$el = $(this);
         e.$field = e.$el.closest('.acf-field-object');
 
-        // focus
+        / focus
         model.set('$field', e.$field);
 
-        // callback
+        / callback
         model[callback].apply(model, [e]);
       });
     },
     _set_$field: function () {
-      // vars
+      / vars
       this.o = this.$field.data();
 
-      // els
+      / els
       this.$settings = this.$field.find('> .settings > table > tbody');
 
-      // focus
+      / focus
       this.focus();
     },
     focus: function () {
-      // do nothing
+      / do nothing
     },
     setting: function (name) {
       return this.$settings.find('> .acf-field-setting-' + name);
@@ -580,23 +580,23 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       acf.disable($div);
     },
     render: function () {
-      // show
+      / show
       if (this.$toggle().prop('checked')) {
         this.$tabLabel().addClass('is-enabled');
         this.renderRules();
         this.open();
 
-        // hide
+        / hide
       } else {
         this.$tabLabel().removeClass('is-enabled');
         this.close();
       }
     },
     renderRules: function () {
-      // vars
+      / vars
       var self = this;
 
-      // loop
+      / loop
       this.$rules().each(function () {
         self.renderRule($(this));
       });
@@ -608,45 +608,45 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       this.renderValue();
     },
     renderField: function () {
-      // vars
+      / vars
       var choices = [];
       var validFieldTypes = [];
       var cid = this.fieldObject.cid;
       var $select = this.$input('field');
 
-      // loop
+      / loop
       acf.getFieldObjects().map(function (fieldObject) {
-        // vars
+        / vars
         var choice = {
           id: fieldObject.getKey(),
           text: fieldObject.getLabel()
         };
 
-        // bail early if is self
+        / bail early if is self
         if (fieldObject.cid === cid) {
           choice.text += ' ' + acf.__('(this field)');
           choice.disabled = true;
         }
 
-        // get selected field conditions
+        / get selected field conditions
         var conditionTypes = acf.getConditionTypes({
           fieldType: fieldObject.getType()
         });
 
-        // bail early if no types
+        / bail early if no types
         if (!conditionTypes.length) {
           choice.disabled = true;
         }
 
-        // calulate indents
+        / calulate indents
         var indents = fieldObject.getParents().length;
         choice.text = '- '.repeat(indents) + choice.text;
 
-        // append
+        / append
         choices.push(choice);
       });
 
-      // allow for scenario where only one field exists
+      / allow for scenario where only one field exists
       if (!choices.length) {
         choices.push({
           id: '',
@@ -654,25 +654,25 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
         });
       }
 
-      // render
+      / render
       acf.renderSelect($select, choices);
 
-      // set
+      / set
       this.ruleData('field', $select.val());
     },
     renderOperator: function () {
-      // bail early if no field selected
+      / bail early if no field selected
       if (!this.ruleData('field')) {
         return;
       }
 
-      // vars
+      / vars
       var $select = this.$input('operator');
       var val = $select.val();
       var choices = [];
 
-      // set saved value on first render
-      // - this allows the 2nd render to correctly select an option
+      / set saved value on first render
+      / - this allows the 2nd render to correctly select an option
       if ($select.val() === null) {
         acf.renderSelect($select, [{
           id: this.ruleData('operator'),
@@ -680,16 +680,16 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
         }]);
       }
 
-      // get selected field
+      / get selected field
       var $field = acf.findFieldObject(this.ruleData('field'));
       var field = acf.getFieldObject($field);
 
-      // get selected field conditions
+      / get selected field conditions
       var conditionTypes = acf.getConditionTypes({
         fieldType: field.getType()
       });
 
-      // html
+      / html
       conditionTypes.map(function (model) {
         choices.push({
           id: model.prototype.operator,
@@ -697,14 +697,14 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
         });
       });
 
-      // render
+      / render
       acf.renderSelect($select, choices);
 
-      // set
+      / set
       this.ruleData('operator', $select.val());
     },
     renderValue: function () {
-      // bail early if no field selected
+      / bail early if no field selected
       if (!this.ruleData('field') || !this.ruleData('operator')) {
         return;
       }
@@ -713,10 +713,10 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       var currentVal = $select.val();
       var savedValue = this.$rule[0].getAttribute('data-value');
 
-      // get selected field
+      / get selected field
       var $field = acf.findFieldObject(this.ruleData('field'));
       var field = acf.getFieldObject($field);
-      // get selected field conditions
+      / get selected field conditions
       var conditionTypes = acf.getConditionTypes({
         fieldType: field.getType(),
         operator: this.ruleData('operator')
@@ -726,7 +726,7 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       let $newSelect;
       if (choices instanceof jQuery && !!choices.data('acfSelect2Props')) {
         $newSelect = $select.clone();
-        // If converting from a disabled input, we need to convert it to an active select.
+        / If converting from a disabled input, we need to convert it to an active select.
         if ($newSelect.is('input')) {
           var classes = $select.attr('class');
           const $rebuiltSelect = $('<select></select>').addClass(classes).val(savedValue);
@@ -744,11 +744,11 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
         $newSelect = $(choices);
       }
 
-      // append
+      / append
       $select.detach();
       $td.html($newSelect);
 
-      // timeout needed to avoid browser bug where "disabled" attribute is not applied
+      / timeout needed to avoid browser bug where "disabled" attribute is not applied
       setTimeout(function () {
         ['class', 'name', 'id'].map(function (attr) {
           $newSelect.attr(attr, $select.attr(attr));
@@ -756,12 +756,12 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
         $select.val(savedValue);
         acf.doAction('acf_conditional_value_rendered');
       }, 0);
-      // select existing value (if not a disabled input)
+      / select existing value (if not a disabled input)
       if (!$newSelect.prop('disabled')) {
         acf.val($newSelect, currentVal, true);
       }
 
-      // set
+      / set
       this.ruleData('value', $newSelect.val());
     },
     onChangeToggle: function () {
@@ -771,69 +771,69 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       this.addGroup();
     },
     addGroup: function () {
-      // vars
+      / vars
       var $group = this.$('.rule-group:last');
 
-      // duplicate
+      / duplicate
       var $group2 = acf.duplicate($group);
 
-      // update h4
+      / update h4
       $group2.find('h4').text(acf.__('or'));
 
-      // remove all tr's except the first one
+      / remove all tr's except the first one
       $group2.find('tr').not(':first').remove();
 
-      // Find the remaining tr and render
+      / Find the remaining tr and render
       var $tr = $group2.find('tr');
       this.renderRule($tr);
 
-      // save field
+      / save field
       this.fieldObject.save();
     },
     onFocusField: function (e, $el) {
       this.renderField();
     },
     onChangeField: function (e, $el) {
-      // scope
+      / scope
       this.scope($el.closest('.rule'));
 
-      // set data
+      / set data
       this.ruleData('field', $el.val());
 
-      // render
+      / render
       this.renderOperator();
       this.renderValue();
     },
     onChangeOperator: function (e, $el) {
-      // scope
+      / scope
       this.scope($el.closest('.rule'));
 
-      // set data
+      / set data
       this.ruleData('operator', $el.val());
 
-      // render
+      / render
       this.renderValue();
     },
     onClickAdd: function (e, $el) {
-      // duplciate
+      / duplciate
       var $rule = acf.duplicate($el.closest('.rule'));
 
-      // render
+      / render
       this.renderRule($rule);
     },
     onClickRemove: function (e, $el) {
-      // vars
+      / vars
       var $rule = $el.closest('.rule');
 
-      // save field
+      / save field
       this.fieldObject.save();
 
-      // remove group
+      / remove group
       if ($rule.siblings('.rule').length == 0) {
         $rule.closest('.rule-group').remove();
       }
 
-      // remove
+      / remove
       $rule.remove();
     }
   });
@@ -856,34 +856,34 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       duplicate_field_objects: 'onDuplicateFieldObjects'
     },
     onDuplicateFieldObjects: function (children, newField, prevField) {
-      // vars
+      / vars
       var data = {};
       var $selects = $();
 
-      // reference change in key
+      / reference change in key
       children.map(function (child) {
-        // store reference of changed key
+        / store reference of changed key
         data[child.get('prevKey')] = child.get('key');
 
-        // append condition select
+        / append condition select
         $selects = $selects.add(child.$('.condition-rule-field'));
       });
 
-      // loop
+      / loop
       $selects.each(function () {
-        // vars
+        / vars
         var $select = $(this);
         var val = $select.val();
 
-        // bail early if val is not a ref key
+        / bail early if val is not a ref key
         if (!val || !data[val]) {
           return;
         }
 
-        // modify selected option
+        / modify selected option
         $select.find('option:selected').attr('value', data[val]);
 
-        // set new val
+        / set new val
         $select.val(data[val]);
       });
     }
@@ -900,11 +900,11 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
 
 (function ($, undefined) {
   acf.FieldObject = acf.Model.extend({
-    // class used to avoid nested event triggers
+    / class used to avoid nested event triggers
     eventScope: '.acf-field-object',
-    // variable for field type select2
+    / variable for field type select2
     fieldTypeSelect2: false,
-    // events
+    / events
     events: {
       'click .copyable': 'onClickCopy',
       'click .handle': 'onClickEdit',
@@ -923,34 +923,34 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       change: 'onChange',
       changed: 'onChanged'
     },
-    // data
+    / data
     data: {
-      // Similar to ID, but used for HTML puposes.
-      // It is possbile for a new field to have an ID of 0, but an id of 'field_123' */
+      / Similar to ID, but used for HTML puposes.
+      / It is possbile for a new field to have an ID of 0, but an id of 'field_123' */
       id: 0,
-      // The field key ('field_123')
+      / The field key ('field_123')
       key: '',
-      // The field type (text, image, etc)
+      / The field type (text, image, etc)
       type: ''
 
-      // The $post->ID of this field
-      //ID: 0,
+      / The $post->ID of this field
+      /ID: 0,
 
-      // The field's parent
-      //parent: 0,
+      / The field's parent
+      /parent: 0,
 
-      // The menu order
-      //menu_order: 0
+      / The menu order
+      /menu_order: 0
     },
     setup: function ($field) {
-      // set $el
+      / set $el
       this.$el = $field;
 
-      // inherit $field data (id, key, type)
+      / inherit $field data (id, key, type)
       this.inherit($field);
 
-      // load additional props
-      // - this won't trigger 'changed'
+      / load additional props
+      / - this won't trigger 'changed'
       this.prop('ID');
       this.prop('parent');
       this.prop('menu_order');
@@ -999,17 +999,17 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       return 'acf_fields-' + this.get('id');
     },
     newInput: function (name, value) {
-      // vars
+      / vars
       var inputId = this.getInputId();
       var inputName = this.getInputName();
 
-      // append name
+      / append name
       if (name) {
         inputId += '-' + name;
         inputName += '[' + name + ']';
       }
 
-      // create input (avoid HTML + JSON value issues)
+      / create input (avoid HTML + JSON value issues)
       var $input = $('<input />').attr({
         id: inputId,
         name: inputName,
@@ -1017,58 +1017,58 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       });
       this.$('> .meta').append($input);
 
-      // return
+      / return
       return $input;
     },
     getProp: function (name) {
-      // check data
+      / check data
       if (this.has(name)) {
         return this.get(name);
       }
 
-      // get input value
+      / get input value
       var $input = this.$input(name);
       var value = $input.length ? $input.val() : null;
 
-      // set data silently (cache)
+      / set data silently (cache)
       this.set(name, value, true);
 
-      // return
+      / return
       return value;
     },
     setProp: function (name, value) {
-      // get input
+      / get input
       var $input = this.$input(name);
       var prevVal = $input.val();
 
-      // create if new
+      / create if new
       if (!$input.length) {
         $input = this.newInput(name, value);
       }
 
-      // remove
+      / remove
       if (value === null) {
         $input.remove();
 
-        // update
+        / update
       } else {
         $input.val(value);
       }
 
-      //console.log('setProp', name, value, this);
+      /console.log('setProp', name, value, this);
 
-      // set data silently (cache)
+      / set data silently (cache)
       if (!this.has(name)) {
-        //console.log('setting silently');
+        /console.log('setting silently');
         this.set(name, value, true);
 
-        // set data allowing 'change' event to fire
+        / set data allowing 'change' event to fire
       } else {
-        //console.log('setting loudly!');
+        /console.log('setting loudly!');
         this.set(name, value);
       }
 
-      // return
+      / return
       return this;
     },
     prop: function (name, value) {
@@ -1084,13 +1084,13 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       }, this);
     },
     getLabel: function () {
-      // get label with empty default
+      / get label with empty default
       var label = this.prop('label');
       if (label === '') {
         label = acf.__('(no label)');
       }
 
-      // return
+      / return
       return label;
     },
     getName: function () {
@@ -1122,10 +1122,10 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
     initializeFieldTypeSelect2: function () {
       if (this.fieldTypeSelect2) return;
 
-      // Support disabling via filter.
+      / Support disabling via filter.
       if (this.$fieldTypeSelect().hasClass('disable-select2')) return;
 
-      // Check for a full modern version of select2, bail loading if not found with a console warning.
+      / Check for a full modern version of select2, bail loading if not found with a console warning.
       try {
         $.fn.select2.amd.require('select2/compat/dropdownCss');
       } catch (err) {
@@ -1162,20 +1162,20 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
         $(e.target).parents('ul:first').find('button.browse-fields').prop('disabled', true);
       });
 
-      // When typing happens on the li element above the select2.
+      / When typing happens on the li element above the select2.
       this.fieldTypeSelect2.$el.parent().on('keydown', '.select2-selection.select2-selection--single', this.onKeyDownSelect);
     },
     addProFields: function () {
-      // Don't run if we have a valid license.
+      / Don't run if we have a valid license.
       if (acf.get('is_pro') && acf.get('isLicenseActive')) {
         return;
       }
 
-      // Make sure we haven't appended these fields before.
+      / Make sure we haven't appended these fields before.
       var $fieldTypeSelect = this.$fieldTypeSelect();
       if ($fieldTypeSelect.hasClass('acf-free-field-type')) return;
 
-      // Loop over each pro field type and append it to the select.
+      / Loop over each pro field type and append it to the select.
       const PROFieldTypes = acf.get('PROFieldTypes');
       if (typeof PROFieldTypes !== 'object') return;
       const $layoutGroup = $fieldTypeSelect.find('optgroup option[value="group"]').parent();
@@ -1185,22 +1185,22 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
         const $existing = $useGroup.children('[value="' + name + '"]');
         const label = `${acf.strEscape(field.label)} (${acf.strEscape(acf.__('PRO Only'))})`;
         if ($existing.length) {
-          // Already added by pro, update existing option.
+          / Already added by pro, update existing option.
           $existing.text(label);
 
-          // Don't disable if already selected (prevents re-save from overriding field type).
+          / Don't disable if already selected (prevents re-save from overriding field type).
           if ($fieldTypeSelect.val() !== name) {
             $existing.attr('disabled', 'disabled');
           }
         } else {
-          // Append new disabled option.
+          / Append new disabled option.
           $useGroup.append(`<option value="null" disabled="disabled">${label}</option>`);
         }
       }
       $fieldTypeSelect.addClass('acf-free-field-type');
     },
     render: function () {
-      // vars
+      / vars
       var $handle = this.$('.handle:first');
       var menu_order = this.prop('menu_order');
       var label = this.getLabel();
@@ -1209,29 +1209,29 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       var key = this.prop('key');
       var required = this.$input('required').prop('checked');
 
-      // update menu order
+      / update menu order
       $handle.find('.acf-icon').html(parseInt(menu_order) + 1);
 
-      // update required
+      / update required
       if (required) {
         label += ' <span class="acf-required">*</span>';
       }
 
-      // update label
+      / update label
       $handle.find('.li-field-label strong a').html(label);
 
-      // update name
+      / update name
       $handle.find('.li-field-name').html(this.makeCopyable(acf.strSanitize(name)));
 
-      // update type
+      / update type
       const iconName = acf.strSlugify(this.getType());
       $handle.find('.field-type-label').text(' ' + type);
       $handle.find('.field-type-icon').removeClass().addClass('field-type-icon field-type-icon-' + iconName);
 
-      // update key
+      / update key
       $handle.find('.li-field-key').html(this.makeCopyable(key));
 
-      // action for 3rd party customization
+      / action for 3rd party customization
       acf.doAction('render_field_object', this);
     },
     refresh: function () {
@@ -1244,7 +1244,7 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       e.stopPropagation();
       if (!navigator.clipboard || $(e.target).is('input')) return;
 
-      // Find the value to copy depending on input or text elements.
+      / Find the value to copy depending on input or text elements.
       let copyValue;
       if ($(e.target).hasClass('acf-input-wrap')) {
         copyValue = $(e.target).find('input').first().val();
@@ -1261,7 +1261,7 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
     onClickEdit: function (e) {
       const $target = $(e.target);
 
-      // Bail out if a pro field without a license.
+      / Bail out if a pro field without a license.
       if (acf.get('is_pro') && !acf.get('isLicenseActive') && !acf.get('isLicenseExpired') && acf.get('PROFieldTypes').hasOwnProperty(this.getType())) {
         return;
       }
@@ -1288,7 +1288,7 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       var focusDelayMilliseconds = 50;
       var $rowOptionsBlurElement = $(e.target).closest('li').find('.row-options');
 
-      // Timeout so that `activeElement` gives the new element in focus instead of the body.
+      / Timeout so that `activeElement` gives the new element in focus instead of the body.
       setTimeout(function () {
         var $rowOptionsFocusElement = $(document.activeElement).closest('li').find('.row-options');
         if (!$rowOptionsBlurElement.is($rowOptionsFocusElement)) {
@@ -1297,106 +1297,106 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       }, focusDelayMilliseconds);
     },
     open: function () {
-      // vars
+      / vars
       var $settings = this.$el.children('.settings');
 
-      // initialise field type select
+      / initialise field type select
       this.addProFields();
       this.initializeFieldTypeSelect2();
 
-      // action (open)
+      / action (open)
       acf.doAction('open_field_object', this);
       this.trigger('openFieldObject');
 
-      // action (show)
+      / action (show)
       acf.doAction('show', $settings);
       this.hideEmptyTabs();
 
-      // open
+      / open
       $settings.slideDown();
       this.$el.addClass('open');
     },
     onKeyDownSelect: function (e) {
-      // Omit events from special keys.
+      / Omit events from special keys.
       if (!(e.which >= 186 && e.which <= 222 ||
-      // punctuation and special characters
+      / punctuation and special characters
       [8, 9, 13, 16, 17, 18, 19, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 91, 92, 93, 144, 145].includes(e.which) ||
-      // Special keys
+      / Special keys
       e.which >= 112 && e.which <= 123)) {
-        // Function keys
+        / Function keys
         $(this).closest('.select2-container').siblings('select:enabled').select2('open');
         return;
       }
     },
     close: function () {
-      // vars
+      / vars
       var $settings = this.$el.children('.settings');
 
-      // close
+      / close
       $settings.slideUp();
       this.$el.removeClass('open');
 
-      // action (close)
+      / action (close)
       acf.doAction('close_field_object', this);
       this.trigger('closeFieldObject');
 
-      // action (hide)
+      / action (hide)
       acf.doAction('hide', $settings);
     },
     serialize: function () {
       return acf.serialize(this.$el, this.getInputName());
     },
     save: function (type) {
-      // defaults
-      type = type || 'settings'; // meta, settings
+      / defaults
+      type = type || 'settings'; / meta, settings
 
-      // vars
+      / vars
       var save = this.getProp('save');
 
-      // bail if already saving settings
+      / bail if already saving settings
       if (save === 'settings') {
         return;
       }
 
-      // prop
+      / prop
       this.setProp('save', type);
 
-      // debug
+      / debug
       this.$el.attr('data-save', type);
 
-      // action
+      / action
       acf.doAction('save_field_object', this, type);
     },
     submit: function () {
-      // vars
+      / vars
       var inputName = this.getInputName();
       var save = this.get('save');
 
-      // close
+      / close
       if (this.isOpen()) {
         this.close();
       }
 
-      // allow all inputs to save
+      / allow all inputs to save
       if (save == 'settings') {
-        // do nothing
-        // allow only meta inputs to save
+        / do nothing
+        / allow only meta inputs to save
       } else if (save == 'meta') {
         this.$('> .settings [name^="' + inputName + '"]').remove();
 
-        // prevent all inputs from saving
+        / prevent all inputs from saving
       } else {
         this.$('[name^="' + inputName + '"]').remove();
       }
 
-      // action
+      / action
       acf.doAction('submit_field_object', this);
     },
     onChange: function (e, $el) {
-      // save settings
+      / save settings
       this.save();
 
-      // action for 3rd party customization
+      / action for 3rd party customization
       acf.doAction('change_field_object', this);
     },
     onChanged: function (e, $el, name, value) {
@@ -1404,35 +1404,35 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
         $('button.acf-btn.browse-fields').prop('disabled', false);
       }
 
-      // ignore 'save'
+      / ignore 'save'
       if (name == 'save') {
         return;
       }
 
-      // save meta
+      / save meta
       if (['menu_order', 'parent'].indexOf(name) > -1) {
         this.save('meta');
 
-        // save field
+        / save field
       } else {
         this.save();
       }
 
-      // render
+      / render
       if (['menu_order', 'label', 'required', 'name', 'type', 'key'].indexOf(name) > -1) {
         this.render();
       }
 
-      // action for 3rd party customization
+      / action for 3rd party customization
       acf.doAction('change_field_object_' + name, this, value);
     },
     onChangeLabel: function (e, $el) {
-      // set
+      / set
       const label = $el.val();
       const safeLabel = acf.encode(label);
       this.set('label', safeLabel);
 
-      // render name
+      / render name
       if (this.prop('name') == '') {
         var name = acf.applyFilters('generate_field_object_name', acf.strSanitize(label), this);
         this.prop('name', name);
@@ -1447,17 +1447,17 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       }
     },
     onChangeRequired: function (e, $el) {
-      // set
+      / set
       var required = $el.prop('checked') ? 1 : 0;
       this.set('required', required);
     },
     delete: function (args) {
-      // defaults
+      / defaults
       args = acf.parseArgs(args, {
         animate: true
       });
 
-      // add to remove list
+      / add to remove list
       var id = this.prop('ID');
       if (id) {
         var $input = $('#_acf_delete_fields');
@@ -1465,10 +1465,10 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
         $input.val(newVal);
       }
 
-      // action
+      / action
       acf.doAction('delete_field_object', this);
 
-      // animate
+      / animate
       if (args.animate) {
         this.removeAnimate();
       } else {
@@ -1476,15 +1476,15 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       }
     },
     onClickDelete: function (e, $el) {
-      // Bypass confirmation when holding down "shift" key.
+      / Bypass confirmation when holding down "shift" key.
       if (e.shiftKey) {
         return this.delete();
       }
 
-      // add class
+      / add class
       this.$el.addClass('-hover');
 
-      // add tooltip
+      / add tooltip
       var tooltip = acf.newTooltip({
         confirmRemove: true,
         target: $el,
@@ -1498,14 +1498,14 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       });
     },
     removeAnimate: function () {
-      // vars
+      / vars
       var field = this;
       var $list = this.$el.parent();
       var $fields = acf.findFieldObjects({
         sibling: this.$el
       });
 
-      // remove
+      / remove
       acf.remove({
         target: this.$el,
         endHeight: $fields.length ? 0 : 50,
@@ -1515,48 +1515,48 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
         }
       });
 
-      // action
+      / action
       acf.doAction('remove_field_object', field, $list);
     },
     duplicate: function () {
-      // vars
+      / vars
       var newKey = acf.uniqid('field_');
 
-      // duplicate
+      / duplicate
       var $newField = acf.duplicate({
         target: this.$el,
         search: this.get('id'),
         replace: newKey
       });
 
-      // set new key
+      / set new key
       $newField.attr('data-key', newKey);
 
-      // get instance
+      / get instance
       var newField = acf.getFieldObject($newField);
 
-      // update newField label / name
+      / update newField label / name
       var label = newField.prop('label');
       var name = newField.prop('name');
       var end = name.split('_').pop();
       var copy = acf.__('copy');
 
-      // increase suffix "1"
+      / increase suffix "1"
       if (acf.isNumeric(end)) {
         var i = end * 1 + 1;
         label = label.replace(end, i);
         name = name.replace(end, i);
 
-        // increase suffix "(copy1)"
+        / increase suffix "(copy1)"
       } else if (end.indexOf(copy) === 0) {
         var i = end.replace(copy, '') * 1;
         i = i ? i + 1 : 2;
 
-        // replace
+        / replace
         label = label.replace(end, copy + i);
         name = name.replace(end, copy + i);
 
-        // add default "(copy)"
+        / add default "(copy)"
       } else {
         label += ' (' + copy + ')';
         name += '_' + copy;
@@ -1566,63 +1566,63 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       newField.prop('name', name);
       newField.prop('key', newKey);
 
-      // close the current field if it's open.
+      / close the current field if it's open.
       if (this.isOpen()) {
         this.close();
       }
 
-      // open the new field and initialise correctly.
+      / open the new field and initialise correctly.
       newField.open();
 
-      // focus label
+      / focus label
       var $label = newField.$setting('label input');
       setTimeout(function () {
         $label.trigger('focus');
       }, 251);
 
-      // action
+      / action
       acf.doAction('duplicate_field_object', this, newField);
       acf.doAction('append_field_object', newField);
     },
     wipe: function () {
-      // vars
+      / vars
       var prevId = this.get('id');
       var prevKey = this.get('key');
       var newKey = acf.uniqid('field_');
 
-      // rename
+      / rename
       acf.rename({
         target: this.$el,
         search: prevId,
         replace: newKey
       });
 
-      // data
+      / data
       this.set('id', newKey);
       this.set('prevId', prevId);
       this.set('prevKey', prevKey);
 
-      // props
+      / props
       this.prop('key', newKey);
       this.prop('ID', 0);
 
-      // attr
+      / attr
       this.$el.attr('data-key', newKey);
       this.$el.attr('data-id', newKey);
 
-      // action
+      / action
       acf.doAction('wipe_field_object', this);
     },
     move: function () {
-      // helper
+      / helper
       var hasChanged = function (field) {
         return field.get('save') == 'settings';
       };
 
-      // vars
+      / vars
       var changed = hasChanged(this);
 
-      // has sub fields changed
+      / has sub fields changed
       if (!changed) {
         acf.getFieldObjects({
           parent: this.$el
@@ -1631,18 +1631,18 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
         });
       }
 
-      // bail early if changed
+      / bail early if changed
       if (changed) {
         alert(acf.__('This field cannot be moved until its changes have been saved'));
         return;
       }
 
-      // step 1.
+      / step 1.
       var id = this.prop('ID');
       var field = this;
       var popup = false;
       var step1 = function () {
-        // popup
+        / popup
         popup = acf.newPopup({
           title: acf.__('Move Custom Field'),
           loading: true,
@@ -1650,13 +1650,13 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
           openedBy: field.$el.find('.move-field')
         });
 
-        // ajax
+        / ajax
         var ajaxData = {
           action: 'acf/field_group/move_field',
           field_id: id
         };
 
-        // get HTML
+        / get HTML
         $.ajax({
           url: acf.get('ajaxurl'),
           data: acf.prepareForAjax(ajaxData),
@@ -1666,28 +1666,28 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
         });
       };
       var step2 = function (html) {
-        // update popup
+        / update popup
         popup.loading(false);
         popup.content(html);
 
-        // submit form
+        / submit form
         popup.on('submit', 'form', step3);
       };
       var step3 = function (e, $el) {
-        // prevent
+        / prevent
         e.preventDefault();
 
-        // disable
+        / disable
         acf.startButtonLoading(popup.$('.button'));
 
-        // ajax
+        / ajax
         var ajaxData = {
           action: 'acf/field_group/move_field',
           field_id: id,
           field_group_id: popup.$('select').val()
         };
 
-        // get HTML
+        / get HTML
         $.ajax({
           url: acf.get('ajaxurl'),
           data: acf.prepareForAjax(ajaxData),
@@ -1705,7 +1705,7 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
         field.removeAnimate();
       };
 
-      // start
+      / start
       step1();
     },
     browseFields: function (e, $el) {
@@ -1715,13 +1715,13 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       });
     },
     onChangeType: function (e, $el) {
-      // clea previous timout
+      / clea previous timout
       if (this.changeTimeout) {
         clearTimeout(this.changeTimeout);
       }
 
-      // set new timeout
-      // - prevents changing type multiple times whilst user types in newType
+      / set new timeout
+      / - prevents changing type multiple times whilst user types in newType
       this.changeTimeout = this.setTimeout(function () {
         this.changeType($el.val());
       }, 300);
@@ -1731,17 +1731,17 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       var prevClass = acf.strSlugify('acf-field-object-' + prevType);
       var newClass = acf.strSlugify('acf-field-object-' + newType);
 
-      // Update props.
+      / Update props.
       this.$el.removeClass(prevClass).addClass(newClass);
       this.$el.attr('data-type', newType);
       this.$el.data('type', newType);
 
-      // Abort XHR if this field is already loading AJAX data.
+      / Abort XHR if this field is already loading AJAX data.
       if (this.has('xhr')) {
         this.get('xhr').abort();
       }
 
-      // Store old settings so they can be reused later.
+      / Store old settings so they can be reused later.
       const $oldSettings = {};
       this.$el.find('.acf-field-settings:first > .acf-field-settings-main > .acf-field-type-settings').each(function () {
         let tab = $(this).data('parent-tab');
@@ -1751,7 +1751,7 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       });
       this.set('settings-' + prevType, $oldSettings);
 
-      // Show the settings if we already have them cached.
+      / Show the settings if we already have them cached.
       if (this.has('settings-' + newType)) {
         let $newSettings = this.get('settings-' + newType);
         this.showFieldTypeSettings($newSettings);
@@ -1759,7 +1759,7 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
         return;
       }
 
-      // Add loading spinner.
+      / Add loading spinner.
       const $loading = $('<div class="acf-field"><div class="acf-input"><div class="acf-loading"></div></div></div>');
       this.$el.find('.acf-field-settings-main-general .acf-field-type-settings').before($loading);
       const ajaxData = {
@@ -1768,7 +1768,7 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
         prefix: this.getInputName()
       };
 
-      // Get the settings for this field type over AJAX.
+      / Get the settings for this field type over AJAX.
       var xhr = $.ajax({
         url: acf.get('ajaxurl'),
         data: acf.prepareForAjax(ajaxData),
@@ -1782,14 +1782,14 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
           this.showFieldTypeSettings(response.data);
         },
         complete: function () {
-          // also triggered by xhr.abort();
+          / also triggered by xhr.abort();
           $loading.remove();
           this.set('type', newType);
-          //this.refresh();
+          /this.refresh();
         }
       });
 
-      // set
+      / set
       this.set('xhr', xhr);
     },
     showFieldTypeSettings: function (settings) {
@@ -1810,16 +1810,16 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       this.hideEmptyTabs();
     },
     updateParent: function () {
-      // vars
+      / vars
       var ID = acf.get('post_id');
 
-      // check parent
+      / check parent
       var parent = this.getParent();
       if (parent) {
         ID = parseInt(parent.prop('ID')) || parent.prop('key');
       }
 
-      // update
+      / update
       this.prop('parent', ID);
     },
     hideEmptyTabs: function () {
@@ -1880,12 +1880,12 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
    */
 
   acf.findFieldObjects = function (args) {
-    // vars
+    / vars
     args = args || {};
     var selector = '.acf-field-object';
     var $fields = false;
 
-    // args
+    / args
     args = acf.parseArgs(args, {
       id: '',
       key: '',
@@ -1897,22 +1897,22 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       child: false
     });
 
-    // id
+    / id
     if (args.id) {
       selector += '[data-id="' + args.id + '"]';
     }
 
-    // key
+    / key
     if (args.key) {
       selector += '[data-key="' + args.key + '"]';
     }
 
-    // type
+    / type
     if (args.type) {
       selector += '[data-type="' + args.type + '"]';
     }
 
-    // query
+    / query
     if (args.list) {
       $fields = args.list.children(selector);
     } else if (args.parent) {
@@ -1925,12 +1925,12 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       $fields = $(selector);
     }
 
-    // limit
+    / limit
     if (args.limit) {
       $fields = $fields.slice(0, args.limit);
     }
 
-    // return
+    / return
     return $fields;
   };
 
@@ -1947,18 +1947,18 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
    */
 
   acf.getFieldObject = function ($field) {
-    // allow key
+    / allow key
     if (typeof $field === 'string') {
       $field = acf.findFieldObject($field);
     }
 
-    // instantiate
+    / instantiate
     var field = $field.data('acf');
     if (!field) {
       field = acf.newFieldObject($field);
     }
 
-    // return
+    / return
     return field;
   };
 
@@ -1975,17 +1975,17 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
    */
 
   acf.getFieldObjects = function (args) {
-    // query
+    / query
     var $fields = acf.findFieldObjects(args);
 
-    // loop
+    / loop
     var fields = [];
     $fields.each(function () {
       var field = acf.getFieldObject($(this));
       fields.push(field);
     });
 
-    // return
+    / return
     return fields;
   };
 
@@ -2002,13 +2002,13 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
    */
 
   acf.newFieldObject = function ($field) {
-    // instantiate
+    / instantiate
     var field = new acf.FieldObject($field);
 
-    // action
+    / action
     acf.doAction('new_field_object', field);
 
-    // return
+    / return
     return field;
   };
 
@@ -2027,77 +2027,77 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
   var eventManager = new acf.Model({
     priority: 5,
     initialize: function () {
-      // actions
+      / actions
       var actions = ['prepare', 'ready', 'append', 'remove'];
 
-      // loop
+      / loop
       actions.map(function (action) {
         this.addFieldActions(action);
       }, this);
     },
     addFieldActions: function (action) {
-      // vars
-      var pluralAction = action + '_field_objects'; // ready_field_objects
-      var singleAction = action + '_field_object'; // ready_field_object
-      var singleEvent = action + 'FieldObject'; // readyFieldObject
+      / vars
+      var pluralAction = action + '_field_objects'; / ready_field_objects
+      var singleAction = action + '_field_object'; / ready_field_object
+      var singleEvent = action + 'FieldObject'; / readyFieldObject
 
-      // global action
+      / global action
       var callback = function ($el /*, arg1, arg2, etc*/) {
-        // vars
+        / vars
         var fieldObjects = acf.getFieldObjects({
           parent: $el
         });
 
-        // call plural
+        / call plural
         if (fieldObjects.length) {
-          /// get args [$el, arg1]
+          // get args [$el, arg1]
           var args = acf.arrayArgs(arguments);
 
-          // modify args [pluralAction, fields, arg1]
+          / modify args [pluralAction, fields, arg1]
           args.splice(0, 1, pluralAction, fieldObjects);
           acf.doAction.apply(null, args);
         }
       };
 
-      // plural action
+      / plural action
       var pluralCallback = function (fieldObjects /*, arg1, arg2, etc*/) {
-        /// get args [fields, arg1]
+        // get args [fields, arg1]
         var args = acf.arrayArgs(arguments);
 
-        // modify args [singleAction, fields, arg1]
+        / modify args [singleAction, fields, arg1]
         args.unshift(singleAction);
 
-        // loop
+        / loop
         fieldObjects.map(function (fieldObject) {
-          // modify args [singleAction, field, arg1]
+          / modify args [singleAction, field, arg1]
           args[1] = fieldObject;
           acf.doAction.apply(null, args);
         });
       };
 
-      // single action
+      / single action
       var singleCallback = function (fieldObject /*, arg1, arg2, etc*/) {
-        /// get args [$field, arg1]
+        // get args [$field, arg1]
         var args = acf.arrayArgs(arguments);
 
-        // modify args [singleAction, $field, arg1]
+        / modify args [singleAction, $field, arg1]
         args.unshift(singleAction);
 
-        // action variations (ready_field/type=image)
+        / action variations (ready_field/type=image)
         var variations = ['type', 'name', 'key'];
         variations.map(function (variation) {
           args[0] = singleAction + '/' + variation + '=' + fieldObject.get(variation);
           acf.doAction.apply(null, args);
         });
 
-        // modify args [arg1]
+        / modify args [arg1]
         args.splice(0, 2);
 
-        // event
+        / event
         fieldObject.trigger(singleEvent, args);
       };
 
-      // add actions
+      / add actions
       acf.addAction(action, callback, 5);
       acf.addAction(pluralAction, pluralCallback, 5);
       acf.addAction(singleAction, singleCallback, 5);
@@ -2131,10 +2131,10 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       duplicate_field_object: 'onDuplicateField'
     },
     onSubmit: function (e, $el) {
-      // vars
+      / vars
       var fields = acf.getFieldObjects();
 
-      // loop
+      / loop
       fields.map(function (field) {
         field.submit();
       });
@@ -2143,13 +2143,13 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       this.renderFields(field.$el.parent());
     },
     onHoverSortable: function (e, $el) {
-      // bail early if already sortable
+      / bail early if already sortable
       if ($el.hasClass('ui-sortable')) return;
 
-      // sortable
+      / sortable
       $el.sortable({
         helper: function (event, element) {
-          // https://core.trac.wordpress.org/ticket/16972#comment:22
+          / https://core.trac.wordpress.org/ticket/16972#comment:22
           return element.clone().find(':input').attr('name', function (i, currentName) {
             return 'sort_' + parseInt(Math.random() * 100000, 10).toString() + '_' + currentName;
           }).end();
@@ -2175,7 +2175,7 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       this.renderFields($list);
     },
     onDeleteField: function (field) {
-      // delete children
+      / delete children
       field.getFields().map(function (child) {
         child.delete({
           animate: false
@@ -2183,52 +2183,52 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       });
     },
     onChangeFieldType: function (field) {
-      // enable browse field modal button
+      / enable browse field modal button
       field.$el.find('button.browse-fields').prop('disabled', false);
     },
     onDuplicateField: function (field, newField) {
-      // check for children
+      / check for children
       var children = newField.getFields();
       if (children.length) {
-        // loop
+        / loop
         children.map(function (child) {
-          // wipe field
+          / wipe field
           child.wipe();
 
-          // if the child is open, re-fire the open method to ensure it's initialised correctly.
+          / if the child is open, re-fire the open method to ensure it's initialised correctly.
           if (child.isOpen()) {
             child.open();
           }
 
-          // update parent
+          / update parent
           child.updateParent();
         });
 
-        // action
+        / action
         acf.doAction('duplicate_field_objects', children, newField, field);
       }
 
-      // set menu order
+      / set menu order
       this.setFieldMenuOrder(newField);
     },
     renderFields: function ($list) {
-      // vars
+      / vars
       var fields = acf.getFieldObjects({
         list: $list
       });
 
-      // no fields
+      / no fields
       if (!fields.length) {
         $list.addClass('-empty');
         $list.parents('.acf-field-list-wrap').first().addClass('-empty');
         return;
       }
 
-      // has fields
+      / has fields
       $list.removeClass('-empty');
       $list.parents('.acf-field-list-wrap').first().removeClass('-empty');
 
-      // prop
+      / prop
       fields.map(function (field, i) {
         field.prop('menu_order', i);
       });
@@ -2247,13 +2247,13 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       this.addField($list);
     },
     addField: function ($list) {
-      // vars
+      / vars
       var html = $('#tmpl-acf-field').html();
       var $el = $(html);
       var prevId = $el.data('id');
       var newKey = acf.uniqid('field_');
 
-      // duplicate
+      / duplicate
       var $newField = acf.duplicate({
         target: $el,
         search: prevId,
@@ -2263,23 +2263,23 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
         }
       });
 
-      // get instance
+      / get instance
       var newField = acf.getFieldObject($newField);
 
-      // props
+      / props
       newField.prop('key', newKey);
       newField.prop('ID', 0);
       newField.prop('label', '');
       newField.prop('name', '');
 
-      // attr
+      / attr
       $newField.attr('data-key', newKey);
       $newField.attr('data-id', newKey);
 
-      // update parent prop
+      / update parent prop
       newField.updateParent();
 
-      // focus type
+      / focus type
       var $type = newField.$input('type');
       setTimeout(function () {
         if ($list.hasClass('acf-auto-add-field')) {
@@ -2289,13 +2289,13 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
         }
       }, 251);
 
-      // open
+      / open
       newField.open();
 
-      // set menu order
+      / set menu order
       this.renderFields($list);
 
-      // action
+      / action
       acf.doAction('add_field_object', newField);
       acf.doAction('append_field_object', newField);
     }
@@ -2338,12 +2338,12 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       this.updateGroupsClass();
     },
     addProLocations: function () {
-      // Make sure we're only running if we don't have a valid license.
+      / Make sure we're only running if we don't have a valid license.
       if (acf.get('is_pro') && acf.get('isLicenseActive')) {
         return;
       }
 
-      // Loop over each pro field type and append it to the select.
+      / Loop over each pro field type and append it to the select.
       const PROLocationTypes = acf.get('PROLocationTypes');
       if (typeof PROLocationTypes !== 'object') return;
       const $formsGroup = this.$el.find('select.refresh-location-rule').find('optgroup[label="Forms"]');
@@ -2383,28 +2383,28 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
         $tr.remove();
       }
 
-      // Update h4
+      / Update h4
       var $group = this.$('.rule-group:first');
       $group.find('h4').text(acf.__('Show this field group if'));
       this.updateGroupsClass();
     },
     changeRule: function ($rule) {
-      // vars
+      / vars
       var $group = $rule.closest('.rule-group');
       var prefix = $rule.find('td.param select').attr('name').replace('[param]', '');
 
-      // ajaxdata
+      / ajaxdata
       var ajaxdata = {};
       ajaxdata.action = 'acf/field_group/render_location_rule';
       ajaxdata.rule = acf.serialize($rule, prefix);
       ajaxdata.rule.id = $rule.data('id');
       ajaxdata.rule.group = $group.data('id');
 
-      // temp disable
+      / temp disable
       acf.disable($rule.find('td.value'));
       const self = this;
 
-      // ajax
+      / ajax
       $.ajax({
         url: acf.get('ajaxurl'),
         data: acf.prepareForAjax(ajaxdata),
@@ -2418,19 +2418,19 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       });
     },
     addGroup: function () {
-      // vars
+      / vars
       var $group = this.$('.rule-group:last');
 
-      // duplicate
+      / duplicate
       $group2 = acf.duplicate($group);
 
-      // update h4
+      / update h4
       $group2.find('h4').text(acf.__('or'));
 
-      // remove all tr's except the first one
+      / remove all tr's except the first one
       $group2.find('tr').not(':first').remove();
 
-      // update the groups class
+      / update the groups class
       this.updateGroupsClass();
     },
     updateGroupsClass: function () {
@@ -2502,19 +2502,19 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
    */
 
   acf.newFieldSetting = function (field) {
-    // vars
+    / vars
     var type = field.get('setting') || '';
     var name = field.get('name') || '';
     var mid = modelId(type + ' ' + name);
     var model = acf.models[mid] || null;
 
-    // bail early if no setting
+    / bail early if no setting
     if (model === null) return false;
 
-    // instantiate
+    / instantiate
     var setting = new model(field);
 
-    // return
+    / return
     return setting;
   };
 
@@ -2531,12 +2531,12 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
    */
 
   acf.getFieldSetting = function (field) {
-    // allow jQuery
+    / allow jQuery
     if (field instanceof jQuery) {
       field = acf.getField(field);
     }
 
-    // return
+    / return
     return field.setting;
   };
 
@@ -2575,23 +2575,23 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       change: 'render'
     },
     setup: function (field) {
-      // vars
+      / vars
       var $field = field.$el;
 
-      // set props
+      / set props
       this.$el = $field;
       this.field = field;
       this.$fieldObject = $field.closest('.acf-field-object');
       this.fieldObject = acf.getFieldObject(this.$fieldObject);
 
-      // inherit data
+      / inherit data
       $.extend(this.data, field.data);
     },
     initialize: function () {
       this.render();
     },
     render: function () {
-      // do nothing
+      / do nothing
     }
   });
 
@@ -2777,7 +2777,7 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       if ((field === null || field === void 0 || (_field$data = field.data) === null || _field$data === void 0 ? void 0 : _field$data.call(field, 'key')) !== 'bidirectional_target') return args;
       args.dropdownCssClass = 'field-type-select-results';
 
-      // Check for a full modern version of select2 like the one provided by ACF.
+      / Check for a full modern version of select2 like the one provided by ACF.
       try {
         $.fn.select2.amd.require('select2/compat/dropdownCss');
       } catch (err) {
@@ -2818,7 +2818,7 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       data.parent_key = fieldObject.get('key');
       data.field_type = fieldObject.get('type');
 
-      // This might not be needed, but I wanted to figure out how to get a field setting in the JS API when the key isn't unique.
+      / This might not be needed, but I wanted to figure out how to get a field setting in the JS API when the key isn't unique.
       data.post_type = acf.getField(acf.findFields({
         parent: $fieldObject,
         key: 'post_type'
@@ -2833,18 +2833,18 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       }
     },
     onSubmit: function (e, $el) {
-      // vars
+      / vars
       var $title = $('.acf-title-wrap #title');
 
-      // empty
+      / empty
       if (!$title.val()) {
-        // prevent default
+        / prevent default
         e.preventDefault();
 
-        // unlock form
+        / unlock form
         acf.unlockForm($el);
 
-        // focus
+        / focus
         $title.trigger('focus');
       }
     },
@@ -2855,7 +2855,7 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       e.preventDefault();
       $el.addClass('-hover');
 
-      // Add confirmation tooltip.
+      / Add confirmation tooltip.
       acf.newTooltip({
         confirm: true,
         target: $el,
@@ -2888,7 +2888,7 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
         args.excludeSubFields = true;
       }
 
-      // If the field has any open subfields, don't exclude subfields as they're already being displayed.
+      / If the field has any open subfields, don't exclude subfields as they're already being displayed.
       if (args.parent && args.parent.find('.acf-field-object.open').length) {
         args.excludeSubFields = false;
       }
@@ -2920,21 +2920,21 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       'change [name="screen_columns"]': 'render'
     },
     initialize: function () {
-      // vars
+      / vars
       var $div = $('#adv-settings');
       var $append = $('#acf-append-show-on-screen');
 
-      // append
+      / append
       $div.find('.metabox-prefs').append($append.html());
       $div.find('.metabox-prefs br').remove();
 
-      // clean up
+      / clean up
       $append.remove();
 
-      // initialize
+      / initialize
       this.$el = $('#screen-options-wrap');
 
-      // render
+      / render
       this.render();
     },
     isFieldKeysChecked: function () {
@@ -2943,7 +2943,7 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
     isFieldSettingsTabsChecked: function () {
       const $input = this.$el.find('#acf-field-settings-tabs');
 
-      // Screen option is hidden by filter.
+      / Screen option is hidden by filter.
       if (!$input.length) {
         return false;
       }
@@ -3013,33 +3013,33 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
       new_field: 'onNewField'
     },
     onNewField: function (field) {
-      // bail early if not append
+      / bail early if not append
       if (!field.has('append')) return;
 
-      // vars
+      / vars
       var append = field.get('append');
       var $sibling = field.$el.siblings('[data-name="' + append + '"]').first();
 
-      // bail early if no sibling
+      / bail early if no sibling
       if (!$sibling.length) return;
 
-      // ul
+      / ul
       var $div = $sibling.children('.acf-input');
       var $ul = $div.children('ul');
 
-      // create ul
+      / create ul
       if (!$ul.length) {
         $div.wrapInner('<ul class="acf-hl"><li></li></ul>');
         $ul = $div.children('ul');
       }
 
-      // li
+      / li
       var html = field.$('.acf-input').html();
       var $li = $('<li>' + html + '</li>');
       $ul.append($li);
       $ul.attr('data-cols', $ul.children().length);
 
-      // clean up
+      / clean up
       field.remove();
     }
   });
@@ -3148,34 +3148,34 @@ function _typeof(o) {
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -3187,7 +3187,7 @@ function _typeof(o) {
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -3204,7 +3204,7 @@ function _typeof(o) {
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });

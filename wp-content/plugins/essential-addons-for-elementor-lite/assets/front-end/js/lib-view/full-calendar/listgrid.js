@@ -50,7 +50,7 @@
         };
         ListEventRenderer.prototype.detachSegs = function () {
         };
-        // generates the HTML for a single event row
+        / generates the HTML for a single event row
         ListEventRenderer.prototype.renderSegHtml = function (seg) {
             var _a = this.context, theme = _a.theme, options = _a.options;
             var eventRange = seg.eventRange;
@@ -66,19 +66,19 @@
             }
             else if (core.isMultiDayRange(eventRange.range)) {
                 if (seg.isStart) {
-                    timeHtml = core.htmlEscape(this._getTimeText(eventInstance.range.start, seg.end, false // allDay
+                    timeHtml = core.htmlEscape(this._getTimeText(eventInstance.range.start, seg.end, false / allDay
                     ));
                 }
                 else if (seg.isEnd) {
-                    timeHtml = core.htmlEscape(this._getTimeText(seg.start, eventInstance.range.end, false // allDay
+                    timeHtml = core.htmlEscape(this._getTimeText(seg.start, eventInstance.range.end, false / allDay
                     ));
                 }
-                else { // inner segment that lasts the whole day
+                else { / inner segment that lasts the whole day
                     timeHtml = core.getAllDayHtml(options);
                 }
             }
             else {
-                // Display the normal time text for the *event's* times
+                / Display the normal time text for the *event's* times
                 timeHtml = core.htmlEscape(this.getTimeText(eventRange));
             }
             if (url) {
@@ -104,7 +104,7 @@
                 '</td>' +
                 '</tr>';
         };
-        // like "4:00am"
+        / like "4:00am"
         ListEventRenderer.prototype.computeEventTimeFormat = function () {
             return {
                 hour: 'numeric',
@@ -132,7 +132,7 @@
         ListView.prototype.firstContext = function (context) {
             context.calendar.registerInteractiveComponent(this, {
                 el: this.el
-                // TODO: make aware that it doesn't do Hits
+                / TODO: make aware that it doesn't do Hits
             });
         };
         ListView.prototype.render = function (props, context) {
@@ -151,35 +151,35 @@
         ListView.prototype._renderSkeleton = function (context) {
             var theme = context.theme;
             this.el.classList.add('fc-list-view');
-            var listViewClassNames = (theme.getClass('listView') || '').split(' '); // wish we didn't have to do this
+            var listViewClassNames = (theme.getClass('listView') || '').split(' '); / wish we didn't have to do this
             for (var _i = 0, listViewClassNames_1 = listViewClassNames; _i < listViewClassNames_1.length; _i++) {
                 var listViewClassName = listViewClassNames_1[_i];
-                if (listViewClassName) { // in case input was empty string
+                if (listViewClassName) { / in case input was empty string
                     this.el.classList.add(listViewClassName);
                 }
             }
-            this.scroller = new core.ScrollComponent('hidden', // overflow x
-            'auto' // overflow y
+            this.scroller = new core.ScrollComponent('hidden', / overflow x
+            'auto' / overflow y
             );
             this.el.appendChild(this.scroller.el);
-            this.contentEl = this.scroller.el; // shortcut
+            this.contentEl = this.scroller.el; / shortcut
         };
         ListView.prototype._unrenderSkeleton = function () {
-            // TODO: remove classNames
-            this.scroller.destroy(); // will remove the Grid too
+            / TODO: remove classNames
+            this.scroller.destroy(); / will remove the Grid too
         };
         ListView.prototype.updateSize = function (isResize, viewHeight, isAuto) {
             _super.prototype.updateSize.call(this, isResize, viewHeight, isAuto);
             this.eventRenderer.computeSizes(isResize);
             this.eventRenderer.assignSizes(isResize);
-            this.scroller.clear(); // sets height to 'auto' and clears overflow
+            this.scroller.clear(); / sets height to 'auto' and clears overflow
             if (!isAuto) {
                 this.scroller.setHeight(this.computeScrollerHeight(viewHeight));
             }
         };
         ListView.prototype.computeScrollerHeight = function (viewHeight) {
             return viewHeight -
-                core.subtractInnerElHeight(this.el, this.scroller.el); // everything that's NOT the scroller
+                core.subtractInnerElHeight(this.el, this.scroller.el); / everything that's NOT the scroller
         };
         ListView.prototype._eventStoreToSegs = function (eventStore, eventUiBases, dayRanges) {
             return this.eventRangesToSegs(core.sliceEventStore(eventStore, eventUiBases, this.props.dateProfile.activeRange, this.context.nextDayThreshold).fg, dayRanges);
@@ -213,8 +213,8 @@
                         dayIndex: dayIndex
                     };
                     segs.push(seg);
-                    // detect when range won't go fully into the next day,
-                    // and mutate the latest seg to the be the end.
+                    / detect when range won't go fully into the next day,
+                    / and mutate the latest seg to the be the end.
                     if (!seg.isEnd && !allDay &&
                         dayIndex + 1 < dayRanges.length &&
                         range.end <
@@ -229,7 +229,7 @@
         };
         ListView.prototype.renderEmptyMessage = function () {
             this.contentEl.innerHTML =
-                '<div class="fc-list-empty-wrap2">' + // TODO: try less wraps
+                '<div class="fc-list-empty-wrap2">' + / TODO: try less wraps
                     '<div class="fc-list-empty-wrap1">' +
                     '<div class="fc-list-empty">' +
                     core.htmlEscape(this.context.options.noEventsMessage) +
@@ -237,10 +237,10 @@
                     '</div>' +
                     '</div>';
         };
-        // called by ListEventRenderer
+        / called by ListEventRenderer
         ListView.prototype.renderSegList = function (allSegs) {
             var theme = this.context.theme;
-            var segsByDay = this.groupSegsByDay(allSegs); // sparse array
+            var segsByDay = this.groupSegsByDay(allSegs); / sparse array
             var dayIndex;
             var daySegs;
             var i;
@@ -248,21 +248,21 @@
             var tbodyEl = tableEl.querySelector('tbody');
             for (dayIndex = 0; dayIndex < segsByDay.length; dayIndex++) {
                 daySegs = segsByDay[dayIndex];
-                if (daySegs) { // sparse array, so might be undefined
-                    // append a day header
+                if (daySegs) { / sparse array, so might be undefined
+                    / append a day header
                     tbodyEl.appendChild(this.buildDayHeaderRow(this.dayDates[dayIndex]));
                     daySegs = this.eventRenderer.sortEventSegs(daySegs);
                     for (i = 0; i < daySegs.length; i++) {
-                        tbodyEl.appendChild(daySegs[i].el); // append event row
+                        tbodyEl.appendChild(daySegs[i].el); / append event row
                     }
                 }
             }
             this.contentEl.innerHTML = '';
             this.contentEl.appendChild(tableEl);
         };
-        // Returns a sparse array of arrays, segs grouped by their dayIndex
+        / Returns a sparse array of arrays, segs grouped by their dayIndex
         ListView.prototype.groupSegsByDay = function (segs) {
-            var segsByDay = []; // sparse array
+            var segsByDay = []; / sparse array
             var i;
             var seg;
             for (i = 0; i < segs.length; i++) {
@@ -272,29 +272,29 @@
             }
             return segsByDay;
         };
-        // generates the HTML for the day headers that live amongst the event rows
+        / generates the HTML for the day headers that live amongst the event rows
         ListView.prototype.buildDayHeaderRow = function (dayDate) {
             var _a = this.context, theme = _a.theme, dateEnv = _a.dateEnv, options = _a.options;
-            var mainFormat = core.createFormatter(options.listDayFormat); // TODO: cache
-            var altFormat = core.createFormatter(options.listDayAltFormat); // TODO: cache
+            var mainFormat = core.createFormatter(options.listDayFormat); / TODO: cache
+            var altFormat = core.createFormatter(options.listDayAltFormat); / TODO: cache
             return core.createElement('tr', {
                 className: 'fc-list-heading',
                 'data-date': dateEnv.formatIso(dayDate, { omitTime: true })
             }, '<td class="' + (theme.getClass('tableListHeading') ||
                 theme.getClass('widgetHeader')) + '" colspan="3">' +
                 (mainFormat ?
-                    core.buildGotoAnchorHtml(options, dateEnv, dayDate, { 'class': 'fc-list-heading-main' }, core.htmlEscape(dateEnv.format(dayDate, mainFormat)) // inner HTML
+                    core.buildGotoAnchorHtml(options, dateEnv, dayDate, { 'class': 'fc-list-heading-main' }, core.htmlEscape(dateEnv.format(dayDate, mainFormat)) / inner HTML
                     ) :
                     '') +
                 (altFormat ?
-                    core.buildGotoAnchorHtml(options, dateEnv, dayDate, { 'class': 'fc-list-heading-alt' }, core.htmlEscape(dateEnv.format(dayDate, altFormat)) // inner HTML
+                    core.buildGotoAnchorHtml(options, dateEnv, dayDate, { 'class': 'fc-list-heading-alt' }, core.htmlEscape(dateEnv.format(dayDate, altFormat)) / inner HTML
                     ) :
                     '') +
                 '</td>');
         };
         return ListView;
     }(core.View));
-    ListView.prototype.fgSegSelector = '.fc-list-item'; // which elements accept event actions
+    ListView.prototype.fgSegSelector = '.fc-list-item'; / which elements accept event actions
     function computeDateVars(dateProfile) {
         var dayStart = core.startOfDay(dateProfile.renderRange.start);
         var viewEnd = dateProfile.renderRange.end;
@@ -316,12 +316,12 @@
             list: {
                 class: ListView,
                 buttonTextKey: 'list',
-                listDayFormat: { month: 'long', day: 'numeric', year: 'numeric' } // like "January 1, 2016"
+                listDayFormat: { month: 'long', day: 'numeric', year: 'numeric' } / like "January 1, 2016"
             },
             listDay: {
                 type: 'list',
                 duration: { days: 1 },
-                listDayFormat: { weekday: 'long' } // day-of-week is all we need. full date is probably in header
+                listDayFormat: { weekday: 'long' } / day-of-week is all we need. full date is probably in header
             },
             listWeek: {
                 type: 'list',
@@ -332,12 +332,12 @@
             listMonth: {
                 type: 'list',
                 duration: { month: 1 },
-                listDayAltFormat: { weekday: 'long' } // day-of-week is nice-to-have
+                listDayAltFormat: { weekday: 'long' } / day-of-week is nice-to-have
             },
             listYear: {
                 type: 'list',
                 duration: { year: 1 },
-                listDayAltFormat: { weekday: 'long' } // day-of-week is nice-to-have
+                listDayAltFormat: { weekday: 'long' } / day-of-week is nice-to-have
             }
         }
     });

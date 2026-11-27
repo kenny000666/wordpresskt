@@ -18,7 +18,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"../version",
@@ -26,7 +26,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -39,7 +39,7 @@ return $.effects.define( "pulsate", "show", function( options, done ) {
 		hide = mode === "hide",
 		showhide = show || hide,
 
-		// Showing or hiding leaves off the "last" animation
+		/ Showing or hiding leaves off the "last" animation
 		anims = ( ( options.times || 5 ) * 2 ) + ( showhide ? 1 : 0 ),
 		duration = options.duration / anims,
 		animateTo = 0,
@@ -51,7 +51,7 @@ return $.effects.define( "pulsate", "show", function( options, done ) {
 		animateTo = 1;
 	}
 
-	// Anims - 1 opacity "toggles"
+	/ Anims - 1 opacity "toggles"
 	for ( ; i < anims; i++ ) {
 		element.animate( { opacity: animateTo }, duration, options.easing );
 		animateTo = 1 - animateTo;

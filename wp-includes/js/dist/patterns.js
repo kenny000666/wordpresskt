@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -23,7 +23,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -60,9 +60,9 @@ __webpack_require__.d(selectors_namespaceObject, {
   isEditingPattern: () => (selectors_isEditingPattern)
 });
 
-;// external ["wp","data"]
+;/ external ["wp","data"]
 const external_wp_data_namespaceObject = window["wp"]["data"];
-;// ./node_modules/@wordpress/patterns/build-module/store/reducer.js
+;/ ./node_modules/@wordpress/patterns/build-module/store/reducer.js
 /**
  * WordPress dependencies
  */
@@ -80,13 +80,13 @@ function isEditingPattern(state = {}, action) {
   isEditingPattern
 }));
 
-;// external ["wp","blocks"]
+;/ external ["wp","blocks"]
 const external_wp_blocks_namespaceObject = window["wp"]["blocks"];
-;// external ["wp","coreData"]
+;/ external ["wp","coreData"]
 const external_wp_coreData_namespaceObject = window["wp"]["coreData"];
-;// external ["wp","blockEditor"]
+;/ external ["wp","blockEditor"]
 const external_wp_blockEditor_namespaceObject = window["wp"]["blockEditor"];
-;// ./node_modules/@wordpress/patterns/build-module/constants.js
+;/ ./node_modules/@wordpress/patterns/build-module/constants.js
 const PATTERN_TYPES = {
   theme: 'pattern',
   user: 'wp_block'
@@ -108,7 +108,7 @@ const PARTIAL_SYNCING_SUPPORTED_BLOCKS = {
 };
 const PATTERN_OVERRIDES_BINDING_SOURCE = 'core/pattern-overrides';
 
-;// ./node_modules/@wordpress/patterns/build-module/store/actions.js
+;/ ./node_modules/@wordpress/patterns/build-module/store/actions.js
 /**
  * WordPress dependencies
  */
@@ -189,15 +189,15 @@ const convertSyncedPatternToStatic = clientId => ({
         };
         delete metadata.id;
         delete metadata.bindings;
-        // Use overridden values of the pattern block if they exist.
+        / Use overridden values of the pattern block if they exist.
         if (existingOverrides?.[metadata.name]) {
-          // Iterate over each overridden attribute.
+          / Iterate over each overridden attribute.
           for (const [attributeName, value] of Object.entries(existingOverrides[metadata.name])) {
-            // Skip if the attribute does not exist in the block type.
+            / Skip if the attribute does not exist in the block type.
             if (!(0,external_wp_blocks_namespaceObject.getBlockType)(block.name)?.attributes[attributeName]) {
               continue;
             }
-            // Update the block attribute with the override value.
+            / Update the block attribute with the override value.
             block.attributes[attributeName] = value;
           }
         }
@@ -226,13 +226,13 @@ function setEditingPattern(clientId, isEditing) {
   };
 }
 
-;// ./node_modules/@wordpress/patterns/build-module/store/constants.js
+;/ ./node_modules/@wordpress/patterns/build-module/store/constants.js
 /**
  * Module Constants
  */
 const STORE_NAME = 'core/patterns';
 
-;// ./node_modules/@wordpress/patterns/build-module/store/selectors.js
+;/ ./node_modules/@wordpress/patterns/build-module/store/selectors.js
 /**
  * Returns true if pattern is in the editing state.
  *
@@ -244,9 +244,9 @@ function selectors_isEditingPattern(state, clientId) {
   return state.isEditingPattern[clientId];
 }
 
-;// external ["wp","privateApis"]
+;/ external ["wp","privateApis"]
 const external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
-;// ./node_modules/@wordpress/patterns/build-module/lock-unlock.js
+;/ ./node_modules/@wordpress/patterns/build-module/lock-unlock.js
 /**
  * WordPress dependencies
  */
@@ -256,7 +256,7 @@ const {
   unlock
 } = (0,external_wp_privateApis_namespaceObject.__dangerousOptInToUnstableAPIsOnlyForCoreModules)('I acknowledge private features are not for use in themes or plugins and doing so will break in the next version of WordPress.', '@wordpress/patterns');
 
-;// ./node_modules/@wordpress/patterns/build-module/store/index.js
+;/ ./node_modules/@wordpress/patterns/build-module/store/index.js
 /**
  * WordPress dependencies
  */
@@ -296,13 +296,13 @@ const store = (0,external_wp_data_namespaceObject.createReduxStore)(STORE_NAME, 
 unlock(store).registerPrivateActions(actions_namespaceObject);
 unlock(store).registerPrivateSelectors(selectors_namespaceObject);
 
-;// external ["wp","components"]
+;/ external ["wp","components"]
 const external_wp_components_namespaceObject = window["wp"]["components"];
-;// external ["wp","element"]
+;/ external ["wp","element"]
 const external_wp_element_namespaceObject = window["wp"]["element"];
-;// external ["wp","i18n"]
+;/ external ["wp","i18n"]
 const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
-;// ./node_modules/@wordpress/patterns/build-module/api/index.js
+;/ ./node_modules/@wordpress/patterns/build-module/api/index.js
 /**
  * Internal dependencies
  */
@@ -335,9 +335,9 @@ function hasOverridableBlocks(blocks) {
   });
 }
 
-;// external "ReactJSXRuntime"
+;/ external "ReactJSXRuntime"
 const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
-;// ./node_modules/@wordpress/patterns/build-module/components/overrides-panel.js
+;/ ./node_modules/@wordpress/patterns/build-module/components/overrides-panel.js
 /**
  * WordPress dependencies
  */
@@ -376,13 +376,13 @@ function OverridesPanel() {
   });
 }
 
-;// external ["wp","notices"]
+;/ external ["wp","notices"]
 const external_wp_notices_namespaceObject = window["wp"]["notices"];
-;// external ["wp","compose"]
+;/ external ["wp","compose"]
 const external_wp_compose_namespaceObject = window["wp"]["compose"];
-;// external ["wp","htmlEntities"]
+;/ external ["wp","htmlEntities"]
 const external_wp_htmlEntities_namespaceObject = window["wp"]["htmlEntities"];
-;// ./node_modules/@wordpress/patterns/build-module/components/category-selector.js
+;/ ./node_modules/@wordpress/patterns/build-module/components/category-selector.js
 /**
  * WordPress dependencies
  */
@@ -434,7 +434,7 @@ function CategorySelector({
   });
 }
 
-;// ./node_modules/@wordpress/patterns/build-module/private-hooks.js
+;/ ./node_modules/@wordpress/patterns/build-module/private-hooks.js
 /**
  * WordPress dependencies
  */
@@ -474,7 +474,7 @@ function useAddPatternCategory() {
     };
   }, []);
   const categoryMap = (0,external_wp_element_namespaceObject.useMemo)(() => {
-    // Merge the user and core pattern categories and remove any duplicates.
+    / Merge the user and core pattern categories and remove any duplicates.
     const uniqueCategories = new Map();
     userPatternCategories.forEach(category => {
       uniqueCategories.set(category.label.toLowerCase(), {
@@ -485,8 +485,8 @@ function useAddPatternCategory() {
     });
     corePatternCategories.forEach(category => {
       if (!uniqueCategories.has(category.label.toLowerCase()) &&
-      // There are two core categories with `Post` label so explicitly remove the one with
-      // the `query` slug to avoid any confusion.
+      / There are two core categories with `Post` label so explicitly remove the one with
+      / the `query` slug to avoid any confusion.
       category.name !== 'query') {
         uniqueCategories.set(category.label.toLowerCase(), {
           label: category.label,
@@ -502,9 +502,9 @@ function useAddPatternCategory() {
       if (existingTerm?.id) {
         return existingTerm.id;
       }
-      // If we have an existing core category we need to match the new user category to the
-      // correct slug rather than autogenerating it to prevent duplicates, eg. the core `Headers`
-      // category uses the singular `header` as the slug.
+      / If we have an existing core category we need to match the new user category to the
+      / correct slug rather than autogenerating it to prevent duplicates, eg. the core `Headers`
+      / category uses the singular `header` as the slug.
       const termData = existingTerm ? {
         name: existingTerm.label,
         slug: existingTerm.name
@@ -529,7 +529,7 @@ function useAddPatternCategory() {
   };
 }
 
-;// ./node_modules/@wordpress/patterns/build-module/components/create-pattern-modal.js
+;/ ./node_modules/@wordpress/patterns/build-module/components/create-pattern-modal.js
 /**
  * WordPress dependencies
  */
@@ -664,7 +664,7 @@ function CreatePatternModalContents({
   });
 }
 
-;// ./node_modules/@wordpress/patterns/build-module/components/duplicate-pattern-modal.js
+;/ ./node_modules/@wordpress/patterns/build-module/components/duplicate-pattern-modal.js
 /**
  * WordPress dependencies
  */
@@ -680,7 +680,7 @@ function CreatePatternModalContents({
 
 
 function getTermLabels(pattern, categories) {
-  // Theme patterns rely on core pattern categories.
+  / Theme patterns rely on core pattern categories.
   if (pattern.type !== PATTERN_TYPES.user) {
     return categories.core?.filter(category => pattern.categories?.includes(category.name)).map(category => category.label);
   }
@@ -709,7 +709,7 @@ function useDuplicatePatternProps({
   return {
     content: pattern.content,
     defaultCategories: getTermLabels(pattern, categories),
-    defaultSyncType: pattern.type !== PATTERN_TYPES.user // Theme patterns are unsynced by default.
+    defaultSyncType: pattern.type !== PATTERN_TYPES.user / Theme patterns are unsynced by default.
     ? PATTERN_SYNC_TYPES.unsynced : pattern.wp_pattern_sync_status || PATTERN_SYNC_TYPES.full,
     defaultTitle: (0,external_wp_i18n_namespaceObject.sprintf)(/* translators: %s: Existing pattern title */
     (0,external_wp_i18n_namespaceObject._x)('%s (Copy)', 'pattern'), typeof pattern.title === 'string' ? pattern.title : pattern.title.raw),
@@ -717,7 +717,7 @@ function useDuplicatePatternProps({
       pattern: newPattern
     }) => {
       createSuccessNotice((0,external_wp_i18n_namespaceObject.sprintf)(
-      // translators: %s: The new pattern's title e.g. 'Call to action (copy)'.
+      / translators: %s: The new pattern's title e.g. 'Call to action (copy)'.
       (0,external_wp_i18n_namespaceObject._x)('"%s" duplicated.', 'pattern'), newPattern.title.raw), {
         type: 'snackbar',
         id: 'patterns-create'
@@ -749,7 +749,7 @@ function DuplicatePatternModal({
   });
 }
 
-;// ./node_modules/@wordpress/patterns/build-module/components/rename-pattern-modal.js
+;/ ./node_modules/@wordpress/patterns/build-module/components/rename-pattern-modal.js
 /**
  * WordPress dependencies
  */
@@ -851,9 +851,9 @@ function RenamePatternModal({
   });
 }
 
-;// external ["wp","primitives"]
+;/ external ["wp","primitives"]
 const external_wp_primitives_namespaceObject = window["wp"]["primitives"];
-;// ./node_modules/@wordpress/icons/build-module/library/symbol.js
+;/ ./node_modules/@wordpress/icons/build-module/library/symbol.js
 /**
  * WordPress dependencies
  */
@@ -868,7 +868,7 @@ const symbol = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ext
 });
 /* harmony default export */ const library_symbol = (symbol);
 
-;// ./node_modules/@wordpress/patterns/build-module/components/pattern-convert-button.js
+;/ ./node_modules/@wordpress/patterns/build-module/components/pattern-convert-button.js
 /**
  * WordPress dependencies
  */
@@ -910,8 +910,8 @@ function PatternConvertButton({
   const {
     replaceBlocks
   } = (0,external_wp_data_namespaceObject.useDispatch)(external_wp_blockEditor_namespaceObject.store);
-  // Ignore reason: false positive of the lint rule.
-  // eslint-disable-next-line @wordpress/no-unused-vars-before-return
+  / Ignore reason: false positive of the lint rule.
+  / eslint-disable-next-line @wordpress/no-unused-vars-before-return
   const {
     setEditingPattern
   } = unlock((0,external_wp_data_namespaceObject.useDispatch)(store));
@@ -929,28 +929,28 @@ function PatternConvertButton({
     const rootId = rootClientId || (clientIds.length > 0 ? getBlockRootClientId(clientIds[0]) : undefined);
     const blocks = (_getBlocksByClientId = getBlocksByClientId(clientIds)) !== null && _getBlocksByClientId !== void 0 ? _getBlocksByClientId : [];
 
-    // Check if the block has reusable support defined.
+    / Check if the block has reusable support defined.
     const hasReusableBlockSupport = blockName => {
       const blockType = (0,external_wp_blocks_namespaceObject.getBlockType)(blockName);
       const hasParent = blockType && 'parent' in blockType;
 
-      // If the block has a parent, check with false as default, otherwise with true.
+      / If the block has a parent, check with false as default, otherwise with true.
       return (0,external_wp_blocks_namespaceObject.hasBlockSupport)(blockName, 'reusable', !hasParent);
     };
     const isReusable = blocks.length === 1 && blocks[0] && (0,external_wp_blocks_namespaceObject.isReusableBlock)(blocks[0]) && !!select(external_wp_coreData_namespaceObject.store).getEntityRecord('postType', 'wp_block', blocks[0].attributes.ref);
     const _canConvert =
-    // Hide when this is already a synced pattern.
+    / Hide when this is already a synced pattern.
     !isReusable &&
-    // Hide when patterns are disabled.
+    / Hide when patterns are disabled.
     canInsertBlockType('core/block', rootId) && blocks.every(block =>
-    // Guard against the case where a regular block has *just* been converted.
+    / Guard against the case where a regular block has *just* been converted.
     !!block &&
-    // Hide on invalid blocks.
+    / Hide on invalid blocks.
     block.isValid &&
-    // Hide when block doesn't support being made into a pattern.
+    / Hide when block doesn't support being made into a pattern.
     hasReusableBlockSupport(block.name)) &&
-    // Hide when current doesn't have permission to do that.
-    // Blocks refers to the wp_block post type, this checks the ability to create a post of that type.
+    / Hide when current doesn't have permission to do that.
+    / Blocks refers to the wp_block post type, this checks the ability to create a post of that type.
     !!canUser('create', {
       kind: 'postType',
       name: 'wp_block'
@@ -976,9 +976,9 @@ function PatternConvertButton({
       closeBlockSettingsMenu();
     }
     createSuccessNotice(pattern.wp_pattern_sync_status === PATTERN_SYNC_TYPES.unsynced ? (0,external_wp_i18n_namespaceObject.sprintf)(
-    // translators: %s: the name the user has given to the pattern.
+    / translators: %s: the name the user has given to the pattern.
     (0,external_wp_i18n_namespaceObject.__)('Unsynced pattern created: %s'), pattern.title.raw) : (0,external_wp_i18n_namespaceObject.sprintf)(
-    // translators: %s: the name the user has given to the pattern.
+    / translators: %s: the name the user has given to the pattern.
     (0,external_wp_i18n_namespaceObject.__)('Synced pattern created: %s'), pattern.title.raw), {
       type: 'snackbar',
       id: 'convert-to-pattern-success'
@@ -1007,9 +1007,9 @@ function PatternConvertButton({
   });
 }
 
-;// external ["wp","url"]
+;/ external ["wp","url"]
 const external_wp_url_namespaceObject = window["wp"]["url"];
-;// ./node_modules/@wordpress/patterns/build-module/components/patterns-manage-button.js
+;/ ./node_modules/@wordpress/patterns/build-module/components/patterns-manage-button.js
 /**
  * WordPress dependencies
  */
@@ -1052,9 +1052,9 @@ function PatternsManageButton({
         id: reusableBlock.attributes.ref
       }),
       innerBlockCount: getBlockCount(clientId),
-      // The site editor and templates both check whether the user
-      // has edit_theme_options capabilities. We can leverage that here
-      // and omit the manage patterns link if the user can't access it.
+      / The site editor and templates both check whether the user
+      / has edit_theme_options capabilities. We can leverage that here
+      / and omit the manage patterns link if the user can't access it.
       managePatternsUrl: canUser('create', {
         kind: 'postType',
         name: 'wp_template'
@@ -1066,8 +1066,8 @@ function PatternsManageButton({
     };
   }, [clientId]);
 
-  // Ignore reason: false positive of the lint rule.
-  // eslint-disable-next-line @wordpress/no-unused-vars-before-return
+  / Ignore reason: false positive of the lint rule.
+  / eslint-disable-next-line @wordpress/no-unused-vars-before-return
   const {
     convertSyncedPatternToStatic
   } = unlock((0,external_wp_data_namespaceObject.useDispatch)(store));
@@ -1086,7 +1086,7 @@ function PatternsManageButton({
 }
 /* harmony default export */ const patterns_manage_button = (PatternsManageButton);
 
-;// ./node_modules/@wordpress/patterns/build-module/components/index.js
+;/ ./node_modules/@wordpress/patterns/build-module/components/index.js
 /**
  * WordPress dependencies
  */
@@ -1117,9 +1117,9 @@ function PatternsMenuItems({
   });
 }
 
-;// external ["wp","a11y"]
+;/ external ["wp","a11y"]
 const external_wp_a11y_namespaceObject = window["wp"]["a11y"];
-;// ./node_modules/@wordpress/patterns/build-module/components/rename-pattern-category-modal.js
+;/ ./node_modules/@wordpress/patterns/build-module/components/rename-pattern-category-modal.js
 /**
  * WordPress dependencies
  */
@@ -1178,10 +1178,10 @@ function RenamePatternCategoryModal({
       return;
     }
 
-    // Check existing categories to avoid creating duplicates.
+    / Check existing categories to avoid creating duplicates.
     if (existingCategories.patternCategories.find(existingCategory => {
-      // Compare the id so that the we don't disallow the user changing the case of their current category
-      // (i.e. renaming 'test' to 'Test').
+      / Compare the id so that the we don't disallow the user changing the case of their current category
+      / (i.e. renaming 'test' to 'Test').
       return existingCategory.id !== category.id && existingCategory.label.toLowerCase() === name.toLowerCase();
     })) {
       const message = (0,external_wp_i18n_namespaceObject.__)('This category already exists. Please use a different name.');
@@ -1193,10 +1193,10 @@ function RenamePatternCategoryModal({
     try {
       setIsSaving(true);
 
-      // User pattern category properties may differ as they can be
-      // normalized for use alongside template part areas, core pattern
-      // categories etc. As a result we won't just destructure the passed
-      // category object.
+      / User pattern category properties may differ as they can be
+      / normalized for use alongside template part areas, core pattern
+      / categories etc. As a result we won't just destructure the passed
+      / category object.
       const savedRecord = await saveEntityRecord('taxonomy', CATEGORY_SLUG, {
         id: category.id,
         slug: category.slug,
@@ -1269,7 +1269,7 @@ function RenamePatternCategoryModal({
   });
 }
 
-;// ./node_modules/@wordpress/patterns/build-module/components/allow-overrides-modal.js
+;/ ./node_modules/@wordpress/patterns/build-module/components/allow-overrides-modal.js
 /**
  * WordPress dependencies
  */
@@ -1292,12 +1292,12 @@ function AllowOverridesModal({
       const message = (0,external_wp_i18n_namespaceObject.sprintf)(/* translators: %s: new name/label for the block */
       (0,external_wp_i18n_namespaceObject.__)('Block name changed to: "%s".'), editedBlockName);
 
-      // Must be assertive to immediately announce change.
+      / Must be assertive to immediately announce change.
       (0,external_wp_a11y_namespaceObject.speak)(message, 'assertive');
     }
     onSave(editedBlockName);
 
-    // Immediate close avoids ability to hit save multiple times.
+    / Immediate close avoids ability to hit save multiple times.
     onClose();
   };
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.Modal, {
@@ -1390,7 +1390,7 @@ function DisallowOverridesModal({
   });
 }
 
-;// ./node_modules/@wordpress/patterns/build-module/components/pattern-overrides-controls.js
+;/ ./node_modules/@wordpress/patterns/build-module/components/pattern-overrides-controls.js
 /**
  * WordPress dependencies
  */
@@ -1436,7 +1436,7 @@ function PatternOverridesControls({
     });
   }
 
-  // Avoid overwriting other (e.g. meta) bindings.
+  / Avoid overwriting other (e.g. meta) bindings.
   if (isConnectedToOtherSources) {
     return null;
   }
@@ -1481,7 +1481,7 @@ function PatternOverridesControls({
 }
 /* harmony default export */ const pattern_overrides_controls = (PatternOverridesControls);
 
-;// ./node_modules/@wordpress/patterns/build-module/components/reset-overrides-control.js
+;/ ./node_modules/@wordpress/patterns/build-module/components/reset-overrides-control.js
 /**
  * WordPress dependencies
  */
@@ -1552,7 +1552,7 @@ function ResetOverridesControl(props) {
   });
 }
 
-;// ./node_modules/@wordpress/icons/build-module/library/copy.js
+;/ ./node_modules/@wordpress/icons/build-module/library/copy.js
 /**
  * WordPress dependencies
  */
@@ -1569,7 +1569,7 @@ const copy = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(exter
 });
 /* harmony default export */ const library_copy = (copy);
 
-;// ./node_modules/@wordpress/patterns/build-module/components/pattern-overrides-block-controls.js
+;/ ./node_modules/@wordpress/patterns/build-module/components/pattern-overrides-block-controls.js
 /**
  * WordPress dependencies
  */
@@ -1612,12 +1612,12 @@ function PatternOverridesToolbarIndicator({
     let _icon;
     if (isSingleBlockSelected) {
       const match = getActiveBlockVariation(_firstBlockTypeName, getBlockAttributes(clientIds[0]));
-      // Take into account active block variations.
+      / Take into account active block variations.
       _icon = match?.icon || firstBlockType.icon;
     } else {
       const isSelectionOfSameType = new Set(blockTypeNames).size === 1;
-      // When selection consists of blocks of multiple types, display an
-      // appropriate icon to communicate the non-uniformity.
+      / When selection consists of blocks of multiple types, display an
+      / appropriate icon to communicate the non-uniformity.
       _icon = isSelectionOfSameType ? firstBlockType.icon : library_copy;
     }
     return {
@@ -1693,7 +1693,7 @@ function PatternOverridesBlockControls() {
   }) : null;
 }
 
-;// ./node_modules/@wordpress/patterns/build-module/private-apis.js
+;/ ./node_modules/@wordpress/patterns/build-module/private-apis.js
 /**
  * Internal dependencies
  */
@@ -1734,7 +1734,7 @@ lock(privateApis, {
   PARTIAL_SYNCING_SUPPORTED_BLOCKS: PARTIAL_SYNCING_SUPPORTED_BLOCKS
 });
 
-;// ./node_modules/@wordpress/patterns/build-module/index.js
+;/ ./node_modules/@wordpress/patterns/build-module/index.js
 /**
  * Internal dependencies
  */

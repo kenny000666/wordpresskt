@@ -9,28 +9,28 @@
  Usage:
 
  dropdownList = WPForms.Admin.Builder.DropdownList.init( {
- 	class: 'insert-field-dropdown',                    // Additional CSS class.
-	title: 'Dropdown Title',                           // Dropdown title.
- 	list: [                                            // Items list.
+ 	class: 'insert-field-dropdown',                    / Additional CSS class.
+	title: 'Dropdown Title',                           / Dropdown title.
+ 	list: [                                            / Items list.
  		{ value: '1', text: 'Item 1' },
  		{ value: '2', text: 'Item 2' },
  		{ value: '3', text: 'Item 3' },
  	],
- 	container: $( '.holder-container' ),               // Holder container. Optional.
- 	scrollableContainer: $( '.scrollable-container' ), // Scrollable container. Optional.
+ 	container: $( '.holder-container' ),               / Holder container. Optional.
+ 	scrollableContainer: $( '.scrollable-container' ), / Scrollable container. Optional.
 	search: {
-		enabled: false,                                // Enable search. Optional.
-		searchBy : [],                                 // Search by fields.
-		placeholder: 'Search',                         // Search input placeholder.
-		noResultsText: 'Sorry, no results found',      // No results text.
+		enabled: false,                                / Enable search. Optional.
+		searchBy : [],                                 / Search by fields.
+		placeholder: 'Search',                         / Search input placeholder.
+		noResultsText: 'Sorry, no results found',      / No results text.
 	},
- 	button: $( '.button' ),                            // Button.
- 	buttonDistance: 21,                                // Distance from dropdown to the button.
-    noLeftOffset: false,                               // Disable left offset for the dropdown.
- 	itemFormat( item ) {                               // Item element renderer. Optional.
+ 	button: $( '.button' ),                            / Button.
+ 	buttonDistance: 21,                                / Distance from dropdown to the button.
+    noLeftOffset: false,                               / Disable left offset for the dropdown.
+ 	itemFormat( item ) {                               / Item element renderer. Optional.
  		return `<span>${ item.text }</span>`;
  	},
- 	onSelect( event, value, text, $item, instance ) {  // On select event handler.
+ 	onSelect( event, value, text, $item, instance ) {  / On select event handler.
 		console.log( 'Item selected:', text );
  		instance.close();
  		$button.removeClass( 'active' );
@@ -39,7 +39,7 @@
 */
 
 // noinspection ES6ConvertVarToLetConst
-var WPForms = window.WPForms || {}; // eslint-disable-line no-var
+var WPForms = window.WPForms || {}; / eslint-disable-line no-var
 
 WPForms.Admin = WPForms.Admin || {};
 WPForms.Admin.Builder = WPForms.Admin.Builder || {};
@@ -52,7 +52,7 @@ WPForms.Admin.Builder.DropdownList = WPForms.Admin.Builder.DropdownList || ( fun
 	 *
 	 * @type {Object}
 	 */
-	function DropdownList( options ) { // eslint-disable-line max-lines-per-function
+	function DropdownList( options ) { / eslint-disable-line max-lines-per-function
 		const self = this;
 
 		/**
@@ -127,7 +127,7 @@ WPForms.Admin.Builder.DropdownList = WPForms.Admin.Builder.DropdownList || ( fun
 		self.close = function() {
 			self.$el.addClass( 'closed' );
 
-			// Clear search input.
+			/ Clear search input.
 			if ( self.options.search.enabled ) {
 				self.clearSearch();
 			}
@@ -142,7 +142,7 @@ WPForms.Admin.Builder.DropdownList = WPForms.Admin.Builder.DropdownList || ( fun
 			self.$el.removeClass( 'closed open-down' );
 			self.setPosition();
 
-			// Close dropdown on click outside.
+			/ Close dropdown on click outside.
 			self.$builder.on( 'click.DropdownList', function( e ) {
 				const $target = $( e.target );
 				const excludedSelectors = '.button-insert-field, .wpforms-smart-tags-enabled, .wpforms-show-smart-tags, .mce-ico';
@@ -177,10 +177,10 @@ WPForms.Admin.Builder.DropdownList = WPForms.Admin.Builder.DropdownList || ( fun
 
 			const itemFormat = typeof self.options.itemFormat === 'function' ? self.options.itemFormat : defaultOptions.itemFormat;
 
-			// Generate HTML list items.
+			/ Generate HTML list items.
 			const items = list.map( ( item ) => `<li data-value='${ item.value }'>${ itemFormat( item ) }</li>` );
 
-			// Generate search HTML if enabled.
+			/ Generate search HTML if enabled.
 			const searchHtml = self.options.search.enabled
 				? `<div class="wpforms-builder-dropdown-list-search-container">
 					<input type="search" class="wpforms-builder-dropdown-list-search-input" placeholder="${ self.options.search.placeholder }">
@@ -206,25 +206,25 @@ WPForms.Admin.Builder.DropdownList = WPForms.Admin.Builder.DropdownList || ( fun
 		self.attach = function() {
 			const html = self.generateHtml();
 
-			// Remove old dropdown.
+			/ Remove old dropdown.
 			if ( self.$el && self.$el.length ) {
 				self.$el.remove();
 			}
 
-			// Create jQuery objects.
+			/ Create jQuery objects.
 			self.$el = $( html );
 			self.$button = $( self.options.button );
 			self.$container = self.options.container ? $( self.options.container ) : self.$button.parent();
 			self.$scrollableContainer = self.options.scrollableContainer ? $( self.options.scrollableContainer ) : null;
 
-			// Init List.js if search is enabled.
+			/ Init List.js if search is enabled.
 			if ( self.options.search.enabled ) {
 				self.searchItems = new List( self.$el[ 0 ], {
 					valueNames: self.options.search.searchBy,
 				} );
 			}
 
-			// Add the dropdown to the container.
+			/ Add the dropdown to the container.
 			self.$container.append( self.$el );
 
 			self.setPosition();
@@ -236,7 +236,7 @@ WPForms.Admin.Builder.DropdownList = WPForms.Admin.Builder.DropdownList || ( fun
 		 * @since 1.8.4
 		 */
 		self.setPosition = function() {
-			// Calculate position.
+			/ Calculate position.
 			const buttonOffset = self.$button.offset(),
 				containerOffset = self.$container.offset(),
 				containerPosition = self.$container.position(),
@@ -245,8 +245,8 @@ WPForms.Admin.Builder.DropdownList = WPForms.Admin.Builder.DropdownList || ( fun
 
 			let top = buttonOffset.top - containerOffset.top - dropdownHeight - self.options.buttonDistance;
 
-			// In the case of the dropdown doesn't fit into the scrollable container to top,
-			// it is necessary to open the dropdown to the bottom.
+			/ In the case of the dropdown doesn't fit into the scrollable container to top,
+			/ it is necessary to open the dropdown to the bottom.
 			if ( scrollTop + containerPosition.top - dropdownHeight < 0 ) {
 				top = buttonOffset.top - containerOffset.top + self.$button.height() + self.options.buttonDistance - 11;
 				self.$el.addClass( 'open-down' );
@@ -254,12 +254,12 @@ WPForms.Admin.Builder.DropdownList = WPForms.Admin.Builder.DropdownList || ( fun
 
 			self.$el.css( 'top', top );
 
-			// If noLeftOffset is set, do not set `left` positioning value.
+			/ If noLeftOffset is set, do not set `left` positioning value.
 			if ( self.options.noLeftOffset ) {
 				return;
 			}
 
-			// The dropdown is outside the field options, it is necessary to set `left` positioning value.
+			/ The dropdown is outside the field options, it is necessary to set `left` positioning value.
 			if ( self.$container.closest( '.wpforms-field-option' ).length === 0 ) {
 				self.$el.css( 'left', buttonOffset.left - containerOffset.left );
 			}
@@ -271,26 +271,26 @@ WPForms.Admin.Builder.DropdownList = WPForms.Admin.Builder.DropdownList || ( fun
 		 * @since 1.8.4
 		 */
 		self.events = function() {
-			// Click (select) the item.
+			/ Click (select) the item.
 			self.$el.find( 'li' ).off()
 				.on( 'click', function( event ) {
-					// Bail if callback is not a function.
+					/ Bail if callback is not a function.
 					if ( typeof self.options.onSelect !== 'function' ) {
 						return;
 					}
 
 					const $item = $( this );
 
-					// Clear search input.
+					/ Clear search input.
 					if ( self.options.search.enabled ) {
 						self.clearSearch();
 					}
 
-					// Trigger callback.
+					/ Trigger callback.
 					self.options.onSelect( event, $item.data( 'value' ), $item.text(), $item, self );
 				} );
 
-			// Search.
+			/ Search.
 			if ( self.options.search.enabled ) {
 				self.$el.find( 'input[type="search"]' ).on( 'keyup search', self.search );
 				self.$el.find( '.wpforms-builder-dropdown-list-search-close' ).on( 'click', self.clearSearch );
@@ -333,15 +333,15 @@ WPForms.Admin.Builder.DropdownList = WPForms.Admin.Builder.DropdownList || ( fun
 			const searchTerm = event.target.value.toLowerCase();
 			const $noResults = self.$el.find( '.wpforms-no-results' );
 
-			// Show/hide close button.
+			/ Show/hide close button.
 			if ( searchTerm !== '' ) {
 				self.$el.find( '.wpforms-builder-dropdown-list-search-close' ).addClass( 'active' );
 			}
 
-			// Search.
+			/ Search.
 			self.searchItems.search( searchTerm );
 
-			// Show/hide no result message.
+			/ Show/hide no result message.
 			$noResults.toggle( self.searchItems.visibleItems.length === 0 );
 		};
 
@@ -351,16 +351,16 @@ WPForms.Admin.Builder.DropdownList = WPForms.Admin.Builder.DropdownList || ( fun
 		 * @since 1.9.5
 		 */
 		self.clearSearch = function() {
-			// Clear search input.
+			/ Clear search input.
 			self.$el.find( 'input[type="search"]' ).val( '' );
 			self.$el.find( '.wpforms-no-results' ).hide();
 			self.$el.find( '.wpforms-builder-dropdown-list-search-close' ).removeClass( 'active' );
 
-			// Clear search results.
+			/ Clear search results.
 			self.searchItems.search();
 		};
 
-		// Initialize.
+		/ Initialize.
 		self.init();
 	}
 

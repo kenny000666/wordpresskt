@@ -170,7 +170,7 @@ EventManager.prototype.unbind = function unbind (element, eventName, handler) {
   ee.unbind(eventName, handler);
 
   if (ee.isEmpty) {
-    // remove
+    / remove
     this.eventElements.splice(this.eventElements.indexOf(ee), 1);
   }
 };
@@ -251,15 +251,15 @@ function processScrollDiff$1(
 
   var element = i.element;
 
-  // reset reach
+  / reset reach
   i.reach[y] = null;
 
-  // 1 for subpixel rounding
+  / 1 for subpixel rounding
   if (element[scrollTop] < 1) {
     i.reach[y] = 'start';
   }
 
-  // 1 for subpixel rounding
+  / 1 for subpixel rounding
   if (element[scrollTop] > i[contentHeight] - i[containerHeight] - 1) {
     i.reach[y] = 'end';
   }
@@ -332,13 +332,13 @@ var updateGeometry = function(i) {
   i.contentHeight = element.scrollHeight;
 
   if (!element.contains(i.scrollbarXRail)) {
-    // clean up and append
+    / clean up and append
     queryChildren(element, cls.element.rail('x')).forEach(function (el) { return remove(el); }
     );
     element.appendChild(i.scrollbarXRail);
   }
   if (!element.contains(i.scrollbarYRail)) {
-    // clean up and append
+    / clean up and append
     queryChildren(element, cls.element.rail('y')).forEach(function (el) { return remove(el); }
     );
     element.appendChild(i.scrollbarYRail);
@@ -637,7 +637,7 @@ var keyboard = function(i) {
       if (activeElement.tagName === 'IFRAME') {
         activeElement = activeElement.contentDocument.activeElement;
       } else {
-        // go deeper if element is a webcomponent
+        / go deeper if element is a webcomponent
         while (activeElement.shadowRoot) {
           activeElement = activeElement.shadowRoot.activeElement;
         }
@@ -651,7 +651,7 @@ var keyboard = function(i) {
     var deltaY = 0;
 
     switch (e.which) {
-      case 37: // left
+      case 37: / left
         if (e.metaKey) {
           deltaX = -i.contentWidth;
         } else if (e.altKey) {
@@ -660,7 +660,7 @@ var keyboard = function(i) {
           deltaX = -30;
         }
         break;
-      case 38: // up
+      case 38: / up
         if (e.metaKey) {
           deltaY = i.contentHeight;
         } else if (e.altKey) {
@@ -669,7 +669,7 @@ var keyboard = function(i) {
           deltaY = 30;
         }
         break;
-      case 39: // right
+      case 39: / right
         if (e.metaKey) {
           deltaX = i.contentWidth;
         } else if (e.altKey) {
@@ -678,7 +678,7 @@ var keyboard = function(i) {
           deltaX = 30;
         }
         break;
-      case 40: // down
+      case 40: / down
         if (e.metaKey) {
           deltaY = -i.contentHeight;
         } else if (e.altKey) {
@@ -687,23 +687,23 @@ var keyboard = function(i) {
           deltaY = -30;
         }
         break;
-      case 32: // space bar
+      case 32: / space bar
         if (e.shiftKey) {
           deltaY = i.containerHeight;
         } else {
           deltaY = -i.containerHeight;
         }
         break;
-      case 33: // page up
+      case 33: / page up
         deltaY = i.containerHeight;
         break;
-      case 34: // page down
+      case 34: / page down
         deltaY = -i.containerHeight;
         break;
-      case 36: // home
+      case 36: / home
         deltaY = i.contentHeight;
         break;
-      case 35: // end
+      case 35: / end
         deltaY = -i.contentHeight;
         break;
       default:
@@ -741,7 +741,7 @@ var wheel = function(i) {
 
     var hitsBound;
 
-    // pick axis with primary direction
+    / pick axis with primary direction
     if (Math.abs(deltaY) > Math.abs(deltaX)) {
       hitsBound = isTop || isBottom;
     } else {
@@ -756,32 +756,32 @@ var wheel = function(i) {
     var deltaY = -1 * e.deltaY;
 
     if (typeof deltaX === 'undefined' || typeof deltaY === 'undefined') {
-      // OS X Safari
+      / OS X Safari
       deltaX = -1 * e.wheelDeltaX / 6;
       deltaY = e.wheelDeltaY / 6;
     }
 
     if (e.deltaMode && e.deltaMode === 1) {
-      // Firefox in deltaMode 1: Line scrolling
+      / Firefox in deltaMode 1: Line scrolling
       deltaX *= 10;
       deltaY *= 10;
     }
 
     if (deltaX !== deltaX && deltaY !== deltaY /* NaN checks */) {
-      // IE in some mouse drivers
+      / IE in some mouse drivers
       deltaX = 0;
       deltaY = e.wheelDelta;
     }
 
     if (e.shiftKey) {
-      // reverse axis with shift key
+      / reverse axis with shift key
       return [-deltaY, -deltaX];
     }
     return [deltaX, deltaY];
   }
 
   function shouldBeConsumedByChild(target, deltaX, deltaY) {
-    // FIXME: this is a workaround for <select> issue in FF and IE #571
+    / FIXME: this is a workaround for <select> issue in FF and IE #571
     if (!env.isWebKit && element.querySelector('select:focus')) {
       return true;
     }
@@ -802,7 +802,7 @@ var wheel = function(i) {
         ''
       );
 
-      // if scrollable
+      / if scrollable
       if (overflow.match(/(scroll|auto)/)) {
         var maxScrollTop = cursor.scrollHeight - cursor.clientHeight;
         if (maxScrollTop > 0) {
@@ -841,13 +841,13 @@ var wheel = function(i) {
 
     var shouldPrevent = false;
     if (!i.settings.useBothWheelAxes) {
-      // deltaX will only be used for horizontal scrolling and deltaY will
-      // only be used for vertical scrolling - this is the default
+      / deltaX will only be used for horizontal scrolling and deltaY will
+      / only be used for vertical scrolling - this is the default
       element.scrollTop -= deltaY * i.settings.wheelSpeed;
       element.scrollLeft += deltaX * i.settings.wheelSpeed;
     } else if (i.scrollbarYActive && !i.scrollbarXActive) {
-      // only vertical scrollbar is active and useBothWheelAxes option is
-      // active, so let's scroll vertical bar using both mouse wheel axes
+      / only vertical scrollbar is active and useBothWheelAxes option is
+      / active, so let's scroll vertical bar using both mouse wheel axes
       if (deltaY) {
         element.scrollTop -= deltaY * i.settings.wheelSpeed;
       } else {
@@ -855,8 +855,8 @@ var wheel = function(i) {
       }
       shouldPrevent = true;
     } else if (i.scrollbarXActive && !i.scrollbarYActive) {
-      // useBothWheelAxes and only horizontal bar is active, so use both
-      // wheel axes for horizontal bar
+      / useBothWheelAxes and only horizontal bar is active, so use both
+      / wheel axes for horizontal bar
       if (deltaX) {
         element.scrollLeft += deltaX * i.settings.wheelSpeed;
       } else {
@@ -895,17 +895,17 @@ var touch = function(i) {
     var magnitudeY = Math.abs(deltaY);
 
     if (magnitudeY > magnitudeX) {
-      // user is perhaps trying to swipe up/down the page
+      / user is perhaps trying to swipe up/down the page
 
       if (
         (deltaY < 0 && scrollTop === i.contentHeight - i.containerHeight) ||
         (deltaY > 0 && scrollTop === 0)
       ) {
-        // set prevent for mobile Chrome refresh
+        / set prevent for mobile Chrome refresh
         return window.scrollY === 0 && deltaY > 0 && env.isChrome;
       }
     } else if (magnitudeX > magnitudeY) {
-      // user is perhaps trying to swipe left/right across the page
+      / user is perhaps trying to swipe left/right across the page
 
       if (
         (deltaX < 0 && scrollLeft === i.contentWidth - i.containerWidth) ||
@@ -934,7 +934,7 @@ var touch = function(i) {
     if (e.targetTouches) {
       return e.targetTouches[0];
     } else {
-      // Maybe IE pointer
+      / Maybe IE pointer
       return e;
     }
   }
@@ -990,7 +990,7 @@ var touch = function(i) {
         ''
       );
 
-      // if scrollable
+      / if scrollable
       if (overflow.match(/(scroll|auto)/)) {
         var maxScrollTop = cursor.scrollHeight - cursor.clientHeight;
         if (maxScrollTop > 0) {
@@ -1179,7 +1179,7 @@ var PerfectScrollbar = function PerfectScrollbar(element, userSettings) {
   }
   this.railBorderXWidth =
     toInt(railXStyle.borderLeftWidth) + toInt(railXStyle.borderRightWidth);
-  // Set rail to display:block to calculate margins
+  / Set rail to display:block to calculate margins
   set(this.scrollbarXRail, { display: 'block' });
   this.railXMarginWidth =
     toInt(railXStyle.marginLeft) + toInt(railXStyle.marginRight);
@@ -1234,8 +1234,8 @@ var PerfectScrollbar = function PerfectScrollbar(element, userSettings) {
 
   this.settings.handlers.forEach(function (handlerName) { return handlers[handlerName](this$1); });
 
-  this.lastScrollTop = Math.floor(element.scrollTop); // for onScroll only
-  this.lastScrollLeft = element.scrollLeft; // for onScroll only
+  this.lastScrollTop = Math.floor(element.scrollTop); / for onScroll only
+  this.lastScrollLeft = element.scrollLeft; / for onScroll only
   this.event.bind(this.element, 'scroll', function (e) { return this$1.onScroll(e); });
   updateGeometry(this);
 };
@@ -1245,12 +1245,12 @@ PerfectScrollbar.prototype.update = function update () {
     return;
   }
 
-  // Recalcuate negative scrollLeft adjustment
+  / Recalcuate negative scrollLeft adjustment
   this.negativeScrollAdjustment = this.isNegativeScroll
     ? this.element.scrollWidth - this.element.clientWidth
     : 0;
 
-  // Recalculate rail margins
+  / Recalculate rail margins
   set(this.scrollbarXRail, { display: 'block' });
   set(this.scrollbarYRail, { display: 'block' });
   this.railXMarginWidth =
@@ -1260,7 +1260,7 @@ PerfectScrollbar.prototype.update = function update () {
     toInt(get(this.scrollbarYRail).marginTop) +
     toInt(get(this.scrollbarYRail).marginBottom);
 
-  // Hide scrollbars not to affect scrollWidth and scrollHeight
+  / Hide scrollbars not to affect scrollWidth and scrollHeight
   set(this.scrollbarXRail, { display: 'none' });
   set(this.scrollbarYRail, { display: 'none' });
 
@@ -1302,7 +1302,7 @@ PerfectScrollbar.prototype.destroy = function destroy () {
   remove(this.scrollbarYRail);
   this.removePsClasses();
 
-  // unset elements
+  / unset elements
   this.element = null;
   this.scrollbarX = null;
   this.scrollbarY = null;

@@ -83,11 +83,11 @@
 
 						e.preventDefault();
 
-						// Extract icon set data.
+						/ Extract icon set data.
 						iconSets = el.find( '.redux-icon-select' ).data( 'icon-sets' );
 						iconSets = JSON.parse( decodeURIComponent( iconSets ) );
 
-						// Fill <select> with icon set options.
+						/ Fill <select> with icon set options.
 						$.each(
 							iconSets,
 							function ( i, item ) {

@@ -10,7 +10,7 @@
 	/** @namespace wp */
 	window.wp = window.wp || {};
 
-	// Fail gracefully in unsupported browsers.
+	/ Fail gracefully in unsupported browsers.
 	if ( ! ( 'addEventListener' in window ) ) {
 		return;
 	}
@@ -63,7 +63,7 @@
 					if ( 'test' in handler && handler.test( settings ) ) {
 						this.activeHandler = handler.initialize.call( handler, settings );
 
-						// Dispatch custom event when the video is loaded.
+						/ Dispatch custom event when the video is loaded.
 						trigger( document, 'wp-custom-header-video-loaded' );
 						break;
 					}
@@ -79,7 +79,7 @@
 		 * @return {boolean}
 		 */
 		supportsVideo: function() {
-			// Don't load video on small screens. @todo Consider bandwidth and other factors.
+			/ Don't load video on small screens. @todo Consider bandwidth and other factors.
 			if ( window.innerWidth < settings.minWidth || window.innerHeight < settings.minHeight ) {
 				return false;
 			}
@@ -123,7 +123,7 @@
 			button.setAttribute( 'class', 'wp-custom-header-video-button wp-custom-header-video-play' );
 			button.innerHTML = settings.l10n.play;
 
-			// Toggle video playback when the button is clicked.
+			/ Toggle video playback when the button is clicked.
 			button.addEventListener( 'click', function() {
 				if ( handler.isPaused() ) {
 					handler.play();
@@ -132,7 +132,7 @@
 				}
 			});
 
-			// Update the button class and text when the video state changes.
+			/ Update the button class and text when the video state changes.
 			this.container.addEventListener( 'play', function() {
 				button.className = 'wp-custom-header-video-button wp-custom-header-video-play';
 				button.innerHTML = settings.l10n.pause;
@@ -380,7 +380,7 @@
 		loadVideo: function() {
 			var handler = this,
 				video = document.createElement( 'div' ),
-				// @link http://stackoverflow.com/a/27728417
+				/ @link http://stackoverflow.com/a/27728417
 				VIDEO_ID_REGEX = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
 
 			video.id = 'wp-custom-header-video';
@@ -444,11 +444,11 @@
 		}
 	});
 
-	// Initialize the custom header when the DOM is ready.
+	/ Initialize the custom header when the DOM is ready.
 	window.wp.customHeader = new CustomHeader();
 	document.addEventListener( 'DOMContentLoaded', window.wp.customHeader.initialize.bind( window.wp.customHeader ), false );
 
-	// Selective refresh support in the Customizer.
+	/ Selective refresh support in the Customizer.
 	if ( 'customize' in window.wp ) {
 		window.wp.customize.selectiveRefresh.bind( 'render-partials-response', function( response ) {
 			if ( 'custom_header_settings' in response ) {

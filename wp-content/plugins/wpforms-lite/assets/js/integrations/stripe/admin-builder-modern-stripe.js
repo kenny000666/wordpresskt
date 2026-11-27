@@ -47,7 +47,7 @@ var WPFormsStripeModernBuilder = window.WPFormsStripeModernBuilder || ( function
 				return;
 			}
 
-			// Cache DOM elements.
+			/ Cache DOM elements.
 			el = {
 				$alert:        $( '#wpforms-stripe-credit-card-alert' ),
 				$panelContent: $( '#wpforms-panel-content-section-payment-stripe' ),
@@ -82,10 +82,10 @@ var WPFormsStripeModernBuilder = window.WPFormsStripeModernBuilder || ( function
 		customMetadataActions() {
 			$( '#wpforms-panel-payments' )
 				.on( 'focusout', '.wpforms-panel-field-stripe-custom-metadata-meta-key', function() {
-					// Remove invalid characters for meta key.
+					/ Remove invalid characters for meta key.
 					$( this ).val( $( this ).val().replace( /[^\p{L}\p{N}_-]/gu, '' ) );
 				} )
-				// Add metadata row.
+				/ Add metadata row.
 				.on( 'click', '.wpforms-panel-content-section-stripe-custom-metadata-add', function( e ) {
 					e.preventDefault();
 
@@ -95,22 +95,22 @@ var WPFormsStripeModernBuilder = window.WPFormsStripeModernBuilder || ( function
 						lastID = $lastRow.data( 'key' ),
 						nextID = lastID + 1;
 
-					// Update row key ID.
+					/ Update row key ID.
 					$clone.attr( 'data-key', nextID );
 
-					// Increment the counter.
+					/ Increment the counter.
 					$clone.html( $clone.html().replaceAll( '[' + lastID + ']', '[' + nextID + ']' ).replaceAll( '-' + lastID + '-', '-' + nextID + '-' ) );
 
-					// Clear values.
+					/ Clear values.
 					$clone.find( 'select, input' ).val( '' );
 
-					// Re-enable "delete" button.
+					/ Re-enable "delete" button.
 					$clone.find( '.wpforms-panel-content-section-stripe-custom-metadata-delete' ).removeClass( 'hidden' );
 
-					// Put it back to the table.
+					/ Put it back to the table.
 					$table.find( 'tbody' ).append( $clone.get( 0 ) );
 				} )
-				// Delete metadata row.
+				/ Delete metadata row.
 				.on( 'click', '.wpforms-panel-content-section-stripe-custom-metadata-delete', function( e ) {
 					e.preventDefault();
 
@@ -220,14 +220,14 @@ var WPFormsStripeModernBuilder = window.WPFormsStripeModernBuilder || ( function
 		 * @since 1.9.5
 		 */
 		settingsRedirect() {
-			// Open the Stripe settings tab.
+			/ Open the Stripe settings tab.
 			$( '.wpforms-panel-payments-button' ).trigger( 'click' );
 			$( '.wpforms-panel-sidebar-section-stripe' ).trigger( 'click' );
 
-			// Scroll to the Stripe settings.
+			/ Scroll to the Stripe settings.
 			window.location.href = window.location.pathname + window.location.search + '#wpforms-panel-field-stripe-enable_recurring-wrap';
 
-			// Close the alert.
+			/ Close the alert.
 			$( this ).closest( '.jconfirm-box' ).find( '.btn-confirm' ).trigger( 'click' );
 		},
 
@@ -369,7 +369,7 @@ var WPFormsStripeModernBuilder = window.WPFormsStripeModernBuilder || ( function
 		 * @since 1.8.4
 		 */
 		toggleContent() {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "WPFormsStripeModernBuilder.toggleContent()" has been deprecated, please use the new "WPFormsPaymentsUtils.toggleContent()" function instead!' );
 
 			WPFormsBuilderPaymentsUtils.toggleContent();
@@ -381,7 +381,7 @@ var WPFormsStripeModernBuilder = window.WPFormsStripeModernBuilder || ( function
 		 * @since 1.8.4
 		 */
 		togglePlan() {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "WPFormsStripeModernBuilder.togglePlan()" has been deprecated, please use the new "WPFormsPaymentsUtils.togglePlan()" function instead!' );
 
 			WPFormsBuilderPaymentsUtils.togglePlan();
@@ -393,7 +393,7 @@ var WPFormsStripeModernBuilder = window.WPFormsStripeModernBuilder || ( function
 		 * @since 1.8.4
 		 */
 		deletePlan() {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "WPFormsStripeModernBuilder.checkPlanName()" has been deprecated, please use the new "WPFormsPaymentsUtils.deletePlan()" function instead!' );
 
 			WPFormsBuilderPaymentsUtils.deletePlan();
@@ -405,7 +405,7 @@ var WPFormsStripeModernBuilder = window.WPFormsStripeModernBuilder || ( function
 		 * @since 1.8.4
 		 */
 		checkPlanName() {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "WPFormsStripeModernBuilder.checkPlanName()" has been deprecated, please use the new "WPFormsPaymentsUtils.checkPlanName()" function instead!' );
 
 			WPFormsBuilderPaymentsUtils.checkPlanName();
@@ -417,7 +417,7 @@ var WPFormsStripeModernBuilder = window.WPFormsStripeModernBuilder || ( function
 		 * @since 1.8.4
 		 */
 		renamePlan() {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "WPFormsStripeModernBuilder.renamePlan()" has been deprecated, please use the new "WPFormsPaymentsUtils.renamePlan()" function instead!' );
 
 			WPFormsBuilderPaymentsUtils.renamePlan();
@@ -435,7 +435,7 @@ var WPFormsStripeModernBuilder = window.WPFormsStripeModernBuilder || ( function
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

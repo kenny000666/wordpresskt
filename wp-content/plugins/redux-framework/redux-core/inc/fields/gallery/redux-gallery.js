@@ -28,7 +28,7 @@
 					return;
 				}
 
-				// When the user clicks on the Add/Edit gallery button, we need to display the gallery editing.
+				/ When the user clicks on the Add/Edit gallery button, we need to display the gallery editing.
 				el.on(
 					{
 						click: function ( event ) {
@@ -40,7 +40,7 @@
 							let spinner;
 							let inline;
 
-							// Hide gallery settings used for posts/pages.
+							/ Hide gallery settings used for posts/pages.
 							wp.media.view.Settings.Gallery = wp.media.view.Settings.Gallery.extend(
 								{
 									template: function () {
@@ -53,23 +53,23 @@
 
 							if ( 'clear-gallery' === event.currentTarget.id ) {
 
-								// Remove value from input.
+								/ Remove value from input.
 								current_gallery.find( '.gallery_values' ).val( '' );
 
-								// Remove preview images.
+								/ Remove preview images.
 								current_gallery.find( '.screenshot' ).html( '' );
 
 								return;
 							}
 
-							// Make sure the media gallery API exists.
+							/ Make sure the media gallery API exists.
 							if ( 'undefined' === typeof wp || ! wp.media || ! wp.media.gallery ) {
 								return;
 							}
 
 							event.preventDefault();
 
-							// Activate the media editor.
+							/ Activate the media editor.
 							val = current_gallery.find( '.gallery_values' ).val();
 
 							if ( ! val ) {
@@ -96,7 +96,7 @@
 								);
 							}
 
-							// When the gallery-edit state is updated, copy the attachment ids across.
+							/ When the gallery-edit state is updated, copy the attachment ids across.
 							frame.state( 'gallery-edit' ).on(
 								'update',
 								function ( selection ) {
@@ -106,7 +106,7 @@
 
 									let preview_html = '';
 
-									// Clear screenshot div so we can append new selected images.
+									/ Clear screenshot div so we can append new selected images.
 									current_gallery.find( '.screenshot' ).html( '' );
 
 									ids = selection.models.map(

@@ -24,28 +24,28 @@
 
   Radio.VERSION = '1.0.4';
 
-  // This allows you to run multiple instances of Radio on the same
-  // webapp. After loading the new version, call `noConflict()` to
-  // get a reference to it. At the same time the old version will be
-  // returned to Backbone.Radio.
+  / This allows you to run multiple instances of Radio on the same
+  / webapp. After loading the new version, call `noConflict()` to
+  / get a reference to it. At the same time the old version will be
+  / returned to Backbone.Radio.
   Radio.noConflict = function () {
     Backbone.Radio = previousRadio;
     return this;
   };
 
-  // Whether or not we're in DEBUG mode or not. DEBUG mode helps you
-  // get around the issues of lack of warnings when events are mis-typed.
+  / Whether or not we're in DEBUG mode or not. DEBUG mode helps you
+  / get around the issues of lack of warnings when events are mis-typed.
   Radio.DEBUG = false;
 
-  // Format debug text.
+  / Format debug text.
   Radio._debugText = function (warning, eventName, channelName) {
     return warning + (channelName ? ' on the ' + channelName + ' channel' : '') + ': "' + eventName + '"';
   };
 
-  // This is the method that's called when an unregistered event was called.
-  // By default, it logs warning to the console. By overriding this you could
-  // make it throw an Error, for instance. This would make firing a nonexistent event
-  // have the same consequence as firing a nonexistent method on an Object.
+  / This is the method that's called when an unregistered event was called.
+  / By default, it logs warning to the console. By overriding this you could
+  / make it throw an Error, for instance. This would make firing a nonexistent event
+  / have the same consequence as firing a nonexistent method on an Object.
   Radio.debugLog = function (warning, eventName, channelName) {
     if (Radio.DEBUG && console && console.warn) {
       console.warn(Radio._debugText(warning, eventName, channelName));
@@ -54,10 +54,10 @@
 
   var eventSplitter = /\s+/;
 
-  // An internal method used to handle Radio's method overloading for Requests.
-  // It's borrowed from Backbone.Events. It differs from Backbone's overload
-  // API (which is used in Backbone.Events) in that it doesn't support space-separated
-  // event names.
+  / An internal method used to handle Radio's method overloading for Requests.
+  / It's borrowed from Backbone.Events. It differs from Backbone's overload
+  / API (which is used in Backbone.Events) in that it doesn't support space-separated
+  / event names.
   Radio._eventsApi = function (obj, action, name, rest) {
     if (!name) {
       return false;
@@ -65,7 +65,7 @@
 
     var results = {};
 
-    // Handle event maps.
+    / Handle event maps.
     if ((typeof name === 'undefined' ? 'undefined' : babelHelpers.typeof(name)) === 'object') {
       for (var key in name) {
         var result = obj[action].apply(obj, [key, name[key]].concat(rest));
@@ -74,7 +74,7 @@
       return results;
     }
 
-    // Handle space separated event names.
+    / Handle space separated event names.
     if (eventSplitter.test(name)) {
       var names = name.split(eventSplitter);
       for (var i = 0, l = names.length; i < l; i++) {
@@ -86,7 +86,7 @@
     return false;
   };
 
-  // An optimized way to execute callbacks.
+  / An optimized way to execute callbacks.
   Radio._callHandler = function (callback, context, args) {
     var a1 = args[0],
         a2 = args[1],
@@ -105,7 +105,7 @@
     }
   };
 
-  // A helper used by `off` methods to the handler from the store
+  / A helper used by `off` methods to the handler from the store
   function removeHandler(store, name, callback, context) {
     var event = store[name];
     if ((!callback || callback === event.callback || callback === event.callback._callback) && (!context || context === event.context)) {
@@ -122,8 +122,8 @@
     for (var i = 0, length = names.length; i < length; i++) {
       name = names[i];
 
-      // If there's no event by this name, log it and continue
-      // with the loop
+      / If there's no event by this name, log it and continue
+      / with the loop
       if (!store[name]) {
         continue;
       }
@@ -145,15 +145,15 @@
 
   var _logs = {};
 
-  // This is to produce an identical function in both tuneIn and tuneOut,
-  // so that Backbone.Events unregisters it.
+  / This is to produce an identical function in both tuneIn and tuneOut,
+  / so that Backbone.Events unregisters it.
   function _partial(channelName) {
     return _logs[channelName] || (_logs[channelName] = _.partial(Radio.log, channelName));
   }
 
   _.extend(Radio, {
 
-    // Log information about the channel and event
+    / Log information about the channel and event
     log: function log(channelName, eventName) {
       if (typeof console === 'undefined') {
         return;
@@ -162,9 +162,9 @@
       console.log('[' + channelName + '] "' + eventName + '"', args);
     },
 
-    // Logs all events on this channel to the console. It sets an
-    // internal value on the channel telling it we're listening,
-    // then sets a listener on the Backbone.Events
+    / Logs all events on this channel to the console. It sets an
+    / internal value on the channel telling it we're listening,
+    / then sets a listener on the Backbone.Events
     tuneIn: function tuneIn(channelName) {
       var channel = Radio.channel(channelName);
       channel._tunedIn = true;
@@ -172,7 +172,7 @@
       return this;
     },
 
-    // Stop logging all of the activities on this channel to the console
+    / Stop logging all of the activities on this channel to the console
     tuneOut: function tuneOut(channelName) {
       var channel = Radio.channel(channelName);
       channel._tunedIn = false;
@@ -197,7 +197,7 @@
 
   Radio.Requests = {
 
-    // Make a request
+    / Make a request
     request: function request(name) {
       var args = _.rest(arguments);
       var results = Radio._eventsApi(this, 'request', name, args);
@@ -207,12 +207,12 @@
       var channelName = this.channelName;
       var requests = this._requests;
 
-      // Check if we should log the request, and if so, do it
+      / Check if we should log the request, and if so, do it
       if (channelName && this._tunedIn) {
         Radio.log.apply(this, [channelName, name].concat(args));
       }
 
-      // If the request isn't handled, log it in DEBUG mode and exit
+      / If the request isn't handled, log it in DEBUG mode and exit
       if (requests && (requests[name] || requests['default'])) {
         var handler = requests[name] || requests['default'];
         args = requests[name] ? args : arguments;
@@ -222,7 +222,7 @@
       }
     },
 
-    // Set up a handler for a request
+    / Set up a handler for a request
     reply: function reply(name, callback, context) {
       if (Radio._eventsApi(this, 'reply', name, [callback, context])) {
         return this;
@@ -242,7 +242,7 @@
       return this;
     },
 
-    // Set up a handler that can only be requested once
+    / Set up a handler that can only be requested once
     replyOnce: function replyOnce(name, callback, context) {
       if (Radio._eventsApi(this, 'replyOnce', name, [callback, context])) {
         return this;
@@ -258,13 +258,13 @@
       return this.reply(name, once, context);
     },
 
-    // Remove handler(s)
+    / Remove handler(s)
     stopReplying: function stopReplying(name, callback, context) {
       if (Radio._eventsApi(this, 'stopReplying', name)) {
         return this;
       }
 
-      // Remove everything if there are no arguments passed
+      / Remove everything if there are no arguments passed
       if (!name && !callback && !context) {
         delete this._requests;
       } else if (!removeHandlers(this._requests, name, callback, context)) {
@@ -310,7 +310,7 @@
 
   _.extend(Radio.Channel.prototype, Backbone.Events, Radio.Requests, {
 
-    // Remove all handlers from the messaging systems of this channel
+    / Remove all handlers from the messaging systems of this channel
     reset: function reset() {
       this.off();
       this.stopListening();

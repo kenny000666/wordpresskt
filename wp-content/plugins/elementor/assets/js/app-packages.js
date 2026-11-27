@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../app/assets/js/molecules/collapse.scss":
@@ -300,7 +300,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 
 var createNamedContext = function createNamedContext(name, defaultValue) {
   var Ctx = create_react_context__WEBPACK_IMPORTED_MODULE_2___default()(defaultValue);
@@ -308,7 +308,7 @@ var createNamedContext = function createNamedContext(name, defaultValue) {
   return Ctx;
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // Location Context/Provider
 var LocationContext = createNamedContext("Location");
 
@@ -380,7 +380,7 @@ var LocationProvider = function (_React$Component) {
     history._onTransitionComplete();
     refs.unlisten = history.listen(function () {
       Promise.resolve().then(function () {
-        // TODO: replace rAF with react deferred update API when it's ready https://github.com/facebook/react/issues/13306
+        / TODO: replace rAF with react deferred update API when it's ready https://github.com/facebook/react/issues/13306
         requestAnimationFrame(function () {
           if (!_this2.unmounted) {
             _this2.setState(function () {
@@ -413,7 +413,7 @@ var LocationProvider = function (_React$Component) {
   return LocationProvider;
 }((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 
 
 LocationProvider.defaultProps = {
@@ -456,11 +456,11 @@ var ServerLocation = function ServerLocation(_ref2) {
     children
   );
 };
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // Sets baseuri and basepath for nested routers and links
 var BaseContext = createNamedContext("Base", { baseuri: "/", basepath: "/" });
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // The main event, welcome to the show everybody.
 var Router = function Router(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default().createElement(
@@ -514,7 +514,7 @@ var RouterImpl = function (_React$PureComponent) {
           route = match.route,
           element = match.route.value;
 
-      // remove the /* from the end for child routes relative paths
+      / remove the /* from the end for child routes relative paths
 
       basepath = route.default ? basepath : route.path.replace(/\*$/, "");
 
@@ -532,9 +532,9 @@ var RouterImpl = function (_React$PureComponent) {
         element.props.children
       ) : undefined);
 
-      // using 'div' for < 16.3 support
+      / using 'div' for < 16.3 support
       var FocusWrapper = primary ? FocusHandler : component;
-      // don't pass any props to 'div'
+      / don't pass any props to 'div'
       var wrapperProps = primary ? _extends({ uri: uri, location: location, component: component }, domProps) : domProps;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default().createElement(
@@ -547,19 +547,19 @@ var RouterImpl = function (_React$PureComponent) {
         )
       );
     } else {
-      // Not sure if we want this, would require index routes at every level
-      // warning(
-      //   false,
-      //   `<Router basepath="${basepath}">\n\nNothing matched:\n\t${
-      //     location.pathname
-      //   }\n\nPaths checked: \n\t${routes
-      //     .map(route => route.path)
-      //     .join(
-      //       "\n\t"
-      //     )}\n\nTo get rid of this warning, add a default NotFound component as child of Router:
-      //   \n\tlet NotFound = () => <div>Not Found!</div>
-      //   \n\t<Router>\n\t  <NotFound default/>\n\t  {/* ... */}\n\t</Router>`
-      // );
+      / Not sure if we want this, would require index routes at every level
+      / warning(
+      /   false,
+      /   `<Router basepath="${basepath}">\n\nNothing matched:\n\t${
+      /     location.pathname
+      /   }\n\nPaths checked: \n\t${routes
+      /     .map(route => route.path)
+      /     .join(
+      /       "\n\t"
+      /     )}\n\nTo get rid of this warning, add a default NotFound component as child of Router:
+      /   \n\tlet NotFound = () => <div>Not Found!</div>
+      /   \n\t<Router>\n\t  <NotFound default/>\n\t  {/* ... */}\n\t</Router>`
+      / );
       return null;
     }
   };
@@ -662,8 +662,8 @@ var FocusHandlerImpl = function (_React$Component2) {
       if (initialRender) {
         initialRender = false;
       } else if (this.node) {
-        // React polyfills [autofocus] and it fires earlier than cDM,
-        // so we were stealing focus away, this line prevents that.
+        / React polyfills [autofocus] and it fires earlier than cDM,
+        / so we were stealing focus away, this line prevents that.
         if (!this.node.contains(document.activeElement)) {
           this.node.focus();
         }
@@ -708,7 +708,7 @@ var FocusHandlerImpl = function (_React$Component2) {
 
 var k = function k() {};
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 var forwardRef = (react__WEBPACK_IMPORTED_MODULE_0___default().forwardRef);
 
 if (typeof forwardRef === "undefined") {
@@ -782,7 +782,7 @@ Link.displayName = "Link";
   to: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().string).isRequired
 } : 0;
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 function RedirectRequest(uri) {
   this.uri = uri;
 }
@@ -804,7 +804,7 @@ var RedirectImpl = function (_React$Component3) {
     return _possibleConstructorReturn(this, _React$Component3.apply(this, arguments));
   }
 
-  // Support React < 16 with this hook
+  / Support React < 16 with this hook
   RedirectImpl.prototype.componentDidMount = function componentDidMount() {
     var _props3 = this.props,
         navigate = _props3.navigate,
@@ -864,7 +864,7 @@ var Redirect = function Redirect(props) {
   to: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().string).isRequired
 } : 0;
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 var Match = function Match(_ref8) {
   var path = _ref8.path,
       children = _ref8.children;
@@ -896,7 +896,7 @@ var Match = function Match(_ref8) {
   );
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // Hooks
 
 var useLocation = function useLocation() {
@@ -953,7 +953,7 @@ var useMatch = function useMatch(path) {
   }) : null;
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // Junk
 var stripSlashes = function stripSlashes(str) {
   return str.replace(/(^\/+|\/+$)/g, "");
@@ -994,7 +994,7 @@ var shouldNavigate = function shouldNavigate(event) {
   return !event.defaultPrevented && event.button === 0 && !(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
 };
 
-////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////
 
 
 /***/ }),
@@ -1094,7 +1094,7 @@ var createHistory = function createHistory(source, options) {
         source.history.go(to);
       } else {
         state = _extends({}, state, { key: Date.now() + "" });
-        // try...catch iOS Safari limits to 100 pushState calls
+        / try...catch iOS Safari limits to 100 pushState calls
         try {
           if (transitioning || replace) {
             source.history.replaceState(state, null, to);
@@ -1119,7 +1119,7 @@ var createHistory = function createHistory(source, options) {
   };
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // Stores history entries in memory for testing or other platforms like Native
 var createMemorySource = function createMemorySource() {
   var initialPath = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/";
@@ -1182,7 +1182,7 @@ var createMemorySource = function createMemorySource() {
   };
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // global history - uses window.history as the source if available, otherwise a
 // memory history
 var canUseDOM = !!(typeof window !== "undefined" && window.document && window.document.createElement);
@@ -1193,7 +1193,7 @@ var getSource = function getSource() {
 var globalHistory = createHistory(getSource());
 var navigate = globalHistory.navigate;
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 
 
 
@@ -1220,13 +1220,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var invariant__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(invariant__WEBPACK_IMPORTED_MODULE_0__);
 
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // startsWith(string, search) - Check if `string` starts with `search`
 var startsWith = function startsWith(string, search) {
   return string.substr(0, search.length) === search;
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // pick(routes, uri)
 //
 // Ranks and picks the best route to match. Each segment gets the highest
@@ -1281,18 +1281,18 @@ var pick = function pick(routes, uri) {
       var uriSegment = uriSegments[index];
 
       if (isSplat(routeSegment)) {
-        // Hit a splat, just grab the rest, and return a match
-        // uri:   /files/documents/work
-        // route: /files/*
+        / Hit a splat, just grab the rest, and return a match
+        / uri:   /files/documents/work
+        / route: /files/*
         var param = routeSegment.slice(1) || "*";
         params[param] = uriSegments.slice(index).map(decodeURIComponent).join("/");
         break;
       }
 
       if (uriSegment === undefined) {
-        // URI is shorter than the route, no match
-        // uri:   /users
-        // route: /users/:userId
+        / URI is shorter than the route, no match
+        / uri:   /users
+        / route: /users/:userId
         missed = true;
         break;
       }
@@ -1305,9 +1305,9 @@ var pick = function pick(routes, uri) {
         var value = decodeURIComponent(uriSegment);
         params[dynamicMatch[1]] = value;
       } else if (routeSegment !== uriSegment) {
-        // Current segments don't match, not dynamic, not splat, so no match
-        // uri:   /users/123/settings
-        // route: /users/:id/profile
+        / Current segments don't match, not dynamic, not splat, so no match
+        / uri:   /users/123/settings
+        / route: /users/:id/profile
         missed = true;
         break;
       }
@@ -1326,13 +1326,13 @@ var pick = function pick(routes, uri) {
   return match || default_ || null;
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // match(path, uri) - Matches just one path to a uri, also lol
 var match = function match(path, uri) {
   return pick([{ path: path }], uri);
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // resolve(to, basepath)
 //
 // Resolves URIs as though every path is a directory, no files.  Relative URIs
@@ -1347,7 +1347,7 @@ var match = function match(path, uri) {
 // their current path. To go deeper you can do this:
 //
 //     <Link to="deeper"/>
-//     // instead of
+//     / instead of
 //     <Link to=`{${props.uri}/deeper}`/>
 //
 // Just like `cd`, if you want to go deeper from the command line, you do this:
@@ -1359,7 +1359,7 @@ var match = function match(path, uri) {
 // By treating every path as a directory, linking to relative paths should
 // require less contextual information and (fingers crossed) be more intuitive.
 var resolve = function resolve(to, base) {
-  // /foo/bar, /baz/qux => /foo/bar
+  / /foo/bar, /baz/qux => /foo/bar
   if (startsWith(to, "/")) {
     return to;
   }
@@ -1374,22 +1374,22 @@ var resolve = function resolve(to, base) {
   var toSegments = segmentize(toPathname);
   var baseSegments = segmentize(basePathname);
 
-  // ?a=b, /users?b=c => /users?a=b
+  / ?a=b, /users?b=c => /users?a=b
   if (toSegments[0] === "") {
     return addQuery(basePathname, toQuery);
   }
 
-  // profile, /users/789 => /users/789/profile
+  / profile, /users/789 => /users/789/profile
   if (!startsWith(toSegments[0], ".")) {
     var pathname = baseSegments.concat(toSegments).join("/");
     return addQuery((basePathname === "/" ? "" : "/") + pathname, toQuery);
   }
 
-  // ./         /users/123  =>  /users/123
-  // ../        /users/123  =>  /users
-  // ../..      /users/123  =>  /
-  // ../../one  /a/b/c/d    =>  /a/b/one
-  // .././one   /a/b/c/d    =>  /a/b/c/one
+  / ./         /users/123  =>  /users/123
+  / ../        /users/123  =>  /users
+  / ../..      /users/123  =>  /
+  / ../../one  /a/b/c/d    =>  /a/b/one
+  / .././one   /a/b/c/d    =>  /a/b/c/one
   var allSegments = baseSegments.concat(toSegments);
   var segments = [];
   for (var i = 0, l = allSegments.length; i < l; i++) {
@@ -1400,7 +1400,7 @@ var resolve = function resolve(to, base) {
   return addQuery("/" + segments.join("/"), toQuery);
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // insertParams(path, params)
 
 var insertParams = function insertParams(path, params) {
@@ -1433,7 +1433,7 @@ var validateRedirect = function validateRedirect(from, to) {
   return fromString === toString;
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // Junk
 var paramRe = /^:(.+)/;
 
@@ -1470,7 +1470,7 @@ var rankRoutes = function rankRoutes(routes) {
 
 var segmentize = function segmentize(uri) {
   return uri
-  // strip starting/ending slashes
+  / strip starting/ending slashes
   .replace(/(^\/+|\/+$)/g, "").split("/");
 };
 
@@ -1499,7 +1499,7 @@ var shallowCompare = function shallowCompare(obj1, obj2) {
   });
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 
 
 /***/ }),
@@ -1523,16 +1523,16 @@ function useAction() {
       if (window.top === window) {
         window.top.location = elementorAppConfig.admin_url;
       } else {
-        // Iframe.
+        / Iframe.
         window.top.$e.run('app/close');
       }
     },
     backToReferrer: function backToReferrer() {
       if (window.top === window) {
-        // Directly - in case that the return_url is the login-page, the target should be the admin-page and not the login-page again.
+        / Directly - in case that the return_url is the login-page, the target should be the admin-page and not the login-page again.
         window.top.location = elementorAppConfig.return_url.includes(elementorAppConfig.login_url) ? elementorAppConfig.admin_url : elementorAppConfig.return_url;
       } else {
-        // Iframe.
+        / Iframe.
         window.top.$e.run('app/close');
       }
     }
@@ -1860,7 +1860,7 @@ function useQueryParams() {
     });
   }
 
-  // Merging the URL params with the hash params.
+  / Merging the URL params with the hash params.
   var queryParams = _objectSpread(_objectSpread({}, urlParams), hashParams);
   return {
     getAll: function getAll() {
@@ -1968,7 +1968,7 @@ var Button = exports["default"] = /*#__PURE__*/function (_BaseButton) {
   }, {
     key: "getClassName",
     value: function getClassName() {
-      // Avoid using the 'eps-app__header-btn' class to make sure it is not override custom styles.
+      / Avoid using the 'eps-app__header-btn' class to make sure it is not override custom styles.
       if (!this.props.includeHeaderBtnClass) {
         return _superPropGet(Button, "getClassName", this, 3)([]);
       }
@@ -2441,7 +2441,7 @@ function UploadFile(props) {
     baseClassName = 'e-app-upload-file',
     classes = [baseClassName, props.className];
 
-  // For 'wp-media' type.
+  / For 'wp-media' type.
   var frame;
   return /*#__PURE__*/_react.default.createElement("div", {
     className: (0, _utils.arrayToClassName)(classes)
@@ -2488,7 +2488,7 @@ function UploadFile(props) {
             return;
           }
 
-          // Initialize the WP Media frame.
+          / Initialize the WP Media frame.
           frame = wp.media({
             multiple: false,
             library: {
@@ -2684,8 +2684,8 @@ var ErrorBoundary = exports["default"] = /*#__PURE__*/function (_React$Component
   return (0, _createClass2.default)(ErrorBoundary, [{
     key: "goBack",
     value: function goBack() {
-      // If the app was opened inside an iframe, it will close it,
-      // if not, it will redirect to the last location.
+      / If the app was opened inside an iframe, it will close it,
+      / if not, it will redirect to the last location.
       if (window.top !== window.self) {
         window.top.$e.run('app/close');
       }
@@ -2775,7 +2775,7 @@ function UnfilteredFilesDialog(props) {
     isEnableError = _useState4[0],
     setIsEnableError = _useState4[1];
 
-  // Sending the enable unfiltered files request.
+  / Sending the enable unfiltered files request.
   (0, _react.useEffect)(function () {
     if (enableUnfilteredFiles) {
       setShow(false);
@@ -2795,7 +2795,7 @@ function UnfilteredFilesDialog(props) {
     }
   }, [enableUnfilteredFiles]);
 
-  // Enabling unfiltered files ajax status.
+  / Enabling unfiltered files ajax status.
   (0, _react.useEffect)(function () {
     switch (ajaxState.status) {
       case 'success':
@@ -3047,7 +3047,7 @@ var Router = /*#__PURE__*/function () {
     value: function getRoutes() {
       return this.routes.map(function (route) {
         var props = route.props || {};
-        // Use the path as a key, and add it as a prop.
+        / Use the path as a key, and add it as a prop.
         props.path = props.key = route.path;
         return React.createElement(route.component, props);
       });
@@ -4036,7 +4036,7 @@ function Dialog(props) {
     onClick: props.dismissButtonOnClick,
     url: props.dismissButtonUrl,
     target: props.dismissButtonTarget
-    // eslint-disable-next-line jsx-a11y/tabindex-no-positive
+    / eslint-disable-next-line jsx-a11y/tabindex-no-positive
     ,
     tabIndex: "2"
   }), /*#__PURE__*/_react.default.createElement(_dialogButton.default, {
@@ -4047,7 +4047,7 @@ function Dialog(props) {
     target: props.approveButtonTarget,
     color: props.approveButtonColor,
     elRef: props.approveButtonRef
-    // eslint-disable-next-line jsx-a11y/tabindex-no-positive
+    / eslint-disable-next-line jsx-a11y/tabindex-no-positive
     ,
     tabIndex: "1"
   })));
@@ -4410,7 +4410,7 @@ function ModalProvider(props) {
     hideModal = function hideModal() {
       setShow(false);
 
-      // The purpose of the props.setShow is to sync an external state with the component inner state.
+      / The purpose of the props.setShow is to sync an external state with the component inner state.
       if (props.setShow) {
         props.setShow(false);
       }
@@ -4418,7 +4418,7 @@ function ModalProvider(props) {
     showModal = function showModal() {
       setShow(true);
 
-      // The purpose of the props.setShow is to sync an external state with the component inner state.
+      / The purpose of the props.setShow is to sync an external state with the component inner state.
       if (props.setShow) {
         props.setShow(true);
       }
@@ -4429,7 +4429,7 @@ function ModalProvider(props) {
       showModal: showModal
     });
   (0, _react.useEffect)(function () {
-    // Sync with external state.
+    / Sync with external state.
     setShow(props.show);
   }, [props.show]);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, props.toggleButtonProps && /*#__PURE__*/_react.default.createElement(_button.default, (0, _extends2.default)({}, props.toggleButtonProps, {
@@ -4459,7 +4459,7 @@ var Modal = exports.Modal = function Modal(props) {
         closeNode = closeRef.current,
         isInCloseNode = closeNode && closeNode.contains(e.target);
 
-      // Ignore if click is inside the modal
+      / Ignore if click is inside the modal
       if (node && node.contains(e.target) && !isInCloseNode) {
         return;
       }
@@ -4483,7 +4483,7 @@ var Modal = exports.Modal = function Modal(props) {
   }
   return (
     /*#__PURE__*/
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+    / eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     _react.default.createElement("div", {
       className: "eps-modal__overlay",
       onClick: closeModal
@@ -4687,7 +4687,7 @@ var Button = exports["default"] = /*#__PURE__*/function (_React$Component) {
         id = this.getCssId(),
         className = this.getClassName();
 
-      // Add attributes only if they are not empty.
+      / Add attributes only if they are not empty.
       if (id) {
         attributes.id = id;
       }
@@ -4712,7 +4712,7 @@ var Button = exports["default"] = /*#__PURE__*/function (_React$Component) {
           }, attributes), buttonContent);
         }
 
-        // @see https://reach.tech/router/example/active-links.
+        / @see https://reach.tech/router/example/active-links.
         attributes.getProps = function (props) {
           if (props.isCurrent) {
             attributes.className += ' active';
@@ -5098,8 +5098,8 @@ var getDefaultSettings = function getDefaultSettings() {
 function Select2(props) {
   var ref = _react.default.useRef(null);
 
-  // Initiate the select 2 library, call to onReady after initiate, and
-  // listen to select event on the select instance.
+  / Initiate the select 2 library, call to onReady after initiate, and
+  / listen to select event on the select instance.
   _react.default.useEffect(function () {
     var $select2 = jQuery(ref.current).select2(_objectSpread(_objectSpread(_objectSpread({}, getDefaultSettings()), props.settings), {}, {
       placeholder: props.placeholder
@@ -5112,7 +5112,7 @@ function Select2(props) {
     };
   }, [props.settings, props.options]);
 
-  // Listen to changes in the prop `value`, if changed update the select 2.
+  / Listen to changes in the prop `value`, if changed update the select 2.
   _react.default.useEffect(function () {
     jQuery(ref.current).val(props.value).trigger('change');
   }, [props.value]);
@@ -6030,7 +6030,7 @@ function createReactContext(defaultValue, calculateChangedBits) {
         var changedBits = void 0;
 
         if (objectIs(oldValue, newValue)) {
-          changedBits = 0; // No change
+          changedBits = 0; / No change
         } else {
           changedBits = typeof calculateChangedBits === 'function' ? calculateChangedBits(oldValue, newValue) : MAX_SIGNED_31_BIT_INT;
           if (true) {
@@ -6080,7 +6080,7 @@ function createReactContext(defaultValue, calculateChangedBits) {
     Consumer.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
       var observedBits = nextProps.observedBits;
 
-      this.observedBits = observedBits === undefined || observedBits === null ? MAX_SIGNED_31_BIT_INT // Subscribe to all changes by default
+      this.observedBits = observedBits === undefined || observedBits === null ? MAX_SIGNED_31_BIT_INT / Subscribe to all changes by default
       : observedBits;
     };
 
@@ -6090,7 +6090,7 @@ function createReactContext(defaultValue, calculateChangedBits) {
       }
       var observedBits = this.props.observedBits;
 
-      this.observedBits = observedBits === undefined || observedBits === null ? MAX_SIGNED_31_BIT_INT // Subscribe to all changes by default
+      this.observedBits = observedBits === undefined || observedBits === null ? MAX_SIGNED_31_BIT_INT / Subscribe to all changes by default
       : observedBits;
     };
 
@@ -6224,7 +6224,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
       error.name = 'Invariant Violation';
     }
 
-    error.framesToPop = 1; // we don't care about invariant's own frame
+    error.framesToPop = 1; / we don't care about invariant's own frame
     throw error;
   }
 };
@@ -6267,16 +6267,16 @@ function shouldUseNative() {
 			return false;
 		}
 
-		// Detect buggy property enumeration order in older V8 versions.
+		/ Detect buggy property enumeration order in older V8 versions.
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc');  / eslint-disable-line no-new-wrappers
 		test1[5] = 'de';
 		if (Object.getOwnPropertyNames(test1)[0] === '5') {
 			return false;
 		}
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=3056
 		var test2 = {};
 		for (var i = 0; i < 10; i++) {
 			test2['_' + String.fromCharCode(i)] = i;
@@ -6288,7 +6288,7 @@ function shouldUseNative() {
 			return false;
 		}
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=3056
 		var test3 = {};
 		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
 			test3[letter] = letter;
@@ -6300,7 +6300,7 @@ function shouldUseNative() {
 
 		return true;
 	} catch (err) {
-		// We don't expect any of the above to throw, but better to be safe.
+		/ We don't expect any of the above to throw, but better to be safe.
 		return false;
 	}
 }
@@ -6364,9 +6364,9 @@ if (true) {
       console.error(message);
     }
     try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
+      / --- Welcome to debugging React ---
+      / This error was thrown as a convenience so that you can use this stack
+      / to find the callsite that caused this warning to fire.
       throw new Error(message);
     } catch (x) { /**/ }
   };
@@ -6388,12 +6388,12 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
     for (var typeSpecName in typeSpecs) {
       if (has(typeSpecs, typeSpecName)) {
         var error;
-        // Prop type validation may throw. In case they do, we don't want to
-        // fail the render phase where it didn't fail before. So we log it.
-        // After these have been cleaned up, we'll let them throw.
+        / Prop type validation may throw. In case they do, we don't want to
+        / fail the render phase where it didn't fail before. So we log it.
+        / After these have been cleaned up, we'll let them throw.
         try {
-          // This is intentionally an invariant that gets caught. It's the same
-          // behavior as without this statement except with a better message.
+          / This is intentionally an invariant that gets caught. It's the same
+          / behavior as without this statement except with a better message.
           if (typeof typeSpecs[typeSpecName] !== 'function') {
             var err = Error(
               (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
@@ -6418,8 +6418,8 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
           );
         }
         if (error instanceof Error && !(error.message in loggedTypeFailures)) {
-          // Only monitor this failure once because there tends to be a lot of the
-          // same error.
+          / Only monitor this failure once because there tends to be a lot of the
+          / same error.
           loggedTypeFailures[error.message] = true;
 
           var stack = getStack ? getStack() : '';
@@ -6481,9 +6481,9 @@ if (true) {
       console.error(message);
     }
     try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
+      / --- Welcome to debugging React ---
+      / This error was thrown as a convenience so that you can use this stack
+      / to find the callsite that caused this warning to fire.
       throw new Error(message);
     } catch (x) {}
   };
@@ -6496,7 +6496,7 @@ function emptyFunctionThatReturnsNull() {
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
   var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
-  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+  var FAUX_ITERATOR_SYMBOL = '@@iterator'; / Before Symbol spec.
 
   /**
    * Returns the iterator method function contained on the iterable object.
@@ -6526,13 +6526,13 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    *   var Props = require('ReactPropTypes');
    *   var MyArticle = React.createClass({
    *     propTypes: {
-   *       // An optional string prop named "description".
+   *       / An optional string prop named "description".
    *       description: Props.string,
    *
-   *       // A required enum prop named "category".
+   *       / A required enum prop named "category".
    *       category: Props.oneOf(['News','Photos']).isRequired,
    *
-   *       // A prop named "dialog" that requires an instance of Dialog.
+   *       / A prop named "dialog" that requires an instance of Dialog.
    *       dialog: Props.instanceOf(Dialog).isRequired
    *     },
    *     render: function() { ... }
@@ -6548,7 +6548,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    *
    *  var MyLink = React.createClass({
    *    propTypes: {
-   *      // An optional string or URI prop named "href".
+   *      / An optional string or URI prop named "href".
    *      href: function(props, propName, componentName) {
    *        var propValue = props[propName];
    *        if (propValue != null && typeof propValue !== 'string' &&
@@ -6568,8 +6568,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
   var ANONYMOUS = '<<anonymous>>';
 
-  // Important!
-  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+  / Important!
+  / Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
   var ReactPropTypes = {
     array: createPrimitiveTypeChecker('array'),
     bigint: createPrimitiveTypeChecker('bigint'),
@@ -6599,13 +6599,13 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    */
   /*eslint-disable no-self-compare*/
   function is(x, y) {
-    // SameValue algorithm
+    / SameValue algorithm
     if (x === y) {
-      // Steps 1-5, 7-10
-      // Steps 6.b-6.e: +0 != -0
+      / Steps 1-5, 7-10
+      / Steps 6.b-6.e: +0 != -0
       return x !== 0 || 1 / x === 1 / y;
     } else {
-      // Step 6.a: NaN == NaN
+      / Step 6.a: NaN == NaN
       return x !== x && y !== y;
     }
   }
@@ -6623,7 +6623,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     this.data = data && typeof data === 'object' ? data: {};
     this.stack = '';
   }
-  // Make `instanceof Error` still work for returned errors.
+  / Make `instanceof Error` still work for returned errors.
   PropTypeError.prototype = Error.prototype;
 
   function createChainableTypeChecker(validate) {
@@ -6637,7 +6637,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
       if (secret !== ReactPropTypesSecret) {
         if (throwOnDirectAccess) {
-          // New behavior only for users of `prop-types` package
+          / New behavior only for users of `prop-types` package
           var err = new Error(
             'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
             'Use `PropTypes.checkPropTypes()` to call them. ' +
@@ -6646,11 +6646,11 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
           err.name = 'Invariant Violation';
           throw err;
         } else if ( true && typeof console !== 'undefined') {
-          // Old behavior for people using React.PropTypes
+          / Old behavior for people using React.PropTypes
           var cacheKey = componentName + ':' + propName;
           if (
             !manualPropTypeCallCache[cacheKey] &&
-            // Avoid spamming the console because they are often not actionable except for lib authors
+            / Avoid spamming the console because they are often not actionable except for lib authors
             manualPropTypeWarningCount < 3
           ) {
             printWarning(
@@ -6689,9 +6689,9 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
       var propValue = props[propName];
       var propType = getPropType(propValue);
       if (propType !== expectedType) {
-        // `propValue` being instance of, say, date/regexp, pass the 'object'
-        // check, but we can offer a more precise error message here rather than
-        // 'of type `object`'.
+        / `propValue` being instance of, say, date/regexp, pass the 'object'
+        / check, but we can offer a more precise error message here rather than
+        / 'of type `object`'.
         var preciseType = getPreciseType(propValue);
 
         return new PropTypeError(
@@ -6904,7 +6904,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
       if (propType !== 'object') {
         return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
       }
-      // We need to check all keys in case some are required but missing from props.
+      / We need to check all keys in case some are required but missing from props.
       var allKeys = assign({}, props[propName], shapeTypes);
       for (var key in allKeys) {
         var checker = shapeTypes[key];
@@ -6956,7 +6956,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
               }
             }
           } else {
-            // Iterator will provide entry [k,v] tuples rather than values.
+            / Iterator will provide entry [k,v] tuples rather than values.
             while (!(step = iterator.next()).done) {
               var entry = step.value;
               if (entry) {
@@ -6977,22 +6977,22 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
   }
 
   function isSymbol(propType, propValue) {
-    // Native Symbol.
+    / Native Symbol.
     if (propType === 'symbol') {
       return true;
     }
 
-    // falsy value can't be a Symbol
+    / falsy value can't be a Symbol
     if (!propValue) {
       return false;
     }
 
-    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
+    / 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
     if (propValue['@@toStringTag'] === 'Symbol') {
       return true;
     }
 
-    // Fallback for non-spec compliant Symbols which are polyfilled.
+    / Fallback for non-spec compliant Symbols which are polyfilled.
     if (typeof Symbol === 'function' && propValue instanceof Symbol) {
       return true;
     }
@@ -7000,16 +7000,16 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return false;
   }
 
-  // Equivalent of `typeof` but with special handling for array and regexp.
+  / Equivalent of `typeof` but with special handling for array and regexp.
   function getPropType(propValue) {
     var propType = typeof propValue;
     if (Array.isArray(propValue)) {
       return 'array';
     }
     if (propValue instanceof RegExp) {
-      // Old webkits (at least until Android 4.0) return 'function' rather than
-      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
-      // passes PropTypes.object.
+      / Old webkits (at least until Android 4.0) return 'function' rather than
+      / 'object' for typeof a RegExp. We'll normalize this here so that /bla/
+      / passes PropTypes.object.
       return 'object';
     }
     if (isSymbol(propType, propValue)) {
@@ -7018,8 +7018,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return propType;
   }
 
-  // This handles more types than `getPropType`. Only used for error messages.
-  // See `createPrimitiveTypeChecker`.
+  / This handles more types than `getPropType`. Only used for error messages.
+  / See `createPrimitiveTypeChecker`.
   function getPreciseType(propValue) {
     if (typeof propValue === 'undefined' || propValue === null) {
       return '' + propValue;
@@ -7035,8 +7035,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return propType;
   }
 
-  // Returns a string that is postfixed to a warning about an invalid type.
-  // For example, "undefined" or "of type array"
+  / Returns a string that is postfixed to a warning about an invalid type.
+  / For example, "undefined" or "of type array"
   function getPostfixForTypeWarning(value) {
     var type = getPreciseType(value);
     switch (type) {
@@ -7052,7 +7052,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     }
   }
 
-  // Returns class name of the object, if any.
+  / Returns class name of the object, if any.
   function getClassName(propValue) {
     if (!propValue.constructor || !propValue.constructor.name) {
       return ANONYMOUS;
@@ -7086,8 +7086,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 if (true) {
   var ReactIs = __webpack_require__(/*! react-is */ "../node_modules/prop-types/node_modules/react-is/index.js");
 
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
+  / By explicitly using `prop-types` you are opting into new development behavior.
+  / http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
   module.exports = __webpack_require__(/*! ./factoryWithTypeCheckers */ "../node_modules/prop-types/factoryWithTypeCheckers.js")(ReactIs.isElement, throwOnDirectAccess);
 } else {}
@@ -7162,7 +7162,7 @@ var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
 var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
 var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
 var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
-var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; / TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
 // (unstable) APIs that have been removed. Can we remove the symbols?
 
 var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
@@ -7178,7 +7178,7 @@ var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
 var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
 
 function isValidElementType(type) {
-  return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+  return typeof type === 'string' || typeof type === 'function' || / Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
   type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
 }
 
@@ -7222,7 +7222,7 @@ function typeOf(object) {
   }
 
   return undefined;
-} // AsyncMode is deprecated along with isAsyncMode
+} / AsyncMode is deprecated along with isAsyncMode
 
 var AsyncMode = REACT_ASYNC_MODE_TYPE;
 var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
@@ -7237,12 +7237,12 @@ var Portal = REACT_PORTAL_TYPE;
 var Profiler = REACT_PROFILER_TYPE;
 var StrictMode = REACT_STRICT_MODE_TYPE;
 var Suspense = REACT_SUSPENSE_TYPE;
-var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
+var hasWarnedAboutDeprecatedIsAsyncMode = false; / AsyncMode should be deprecated
 
 function isAsyncMode(object) {
   {
     if (!hasWarnedAboutDeprecatedIsAsyncMode) {
-      hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+      hasWarnedAboutDeprecatedIsAsyncMode = true; / Using console['warn'] to evade Babel and ESLint
 
       console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
     }
@@ -7356,7 +7356,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 function componentWillMount() {
-  // Call this.constructor.gDSFP to support sub-classes.
+  / Call this.constructor.gDSFP to support sub-classes.
   var state = this.constructor.getDerivedStateFromProps(this.props, this.state);
   if (state !== null && state !== undefined) {
     this.setState(state);
@@ -7364,13 +7364,13 @@ function componentWillMount() {
 }
 
 function componentWillReceiveProps(nextProps) {
-  // Call this.constructor.gDSFP to support sub-classes.
-  // Use the setState() updater to ensure state isn't stale in certain edge cases.
+  / Call this.constructor.gDSFP to support sub-classes.
+  / Use the setState() updater to ensure state isn't stale in certain edge cases.
   function updater(prevState) {
     var state = this.constructor.getDerivedStateFromProps(nextProps, prevState);
     return state !== null && state !== undefined ? state : null;
   }
-  // Binding "this" is important for shallow renderer support.
+  / Binding "this" is important for shallow renderer support.
   this.setState(updater.bind(this));
 }
 
@@ -7411,9 +7411,9 @@ function polyfill(Component) {
     return Component;
   }
 
-  // If new component APIs are defined, "unsafe" lifecycles won't be called.
-  // Error if any of these lifecycles are present,
-  // Because they would work differently between older and newer (16.3+) versions of React.
+  / If new component APIs are defined, "unsafe" lifecycles won't be called.
+  / Error if any of these lifecycles are present,
+  / Because they would work differently between older and newer (16.3+) versions of React.
   var foundWillMountName = null;
   var foundWillReceivePropsName = null;
   var foundWillUpdateName = null;
@@ -7459,17 +7459,17 @@ function polyfill(Component) {
     );
   }
 
-  // React <= 16.2 does not support static getDerivedStateFromProps.
-  // As a workaround, use cWM and cWRP to invoke the new static lifecycle.
-  // Newer versions of React will ignore these lifecycles if gDSFP exists.
+  / React <= 16.2 does not support static getDerivedStateFromProps.
+  / As a workaround, use cWM and cWRP to invoke the new static lifecycle.
+  / Newer versions of React will ignore these lifecycles if gDSFP exists.
   if (typeof Component.getDerivedStateFromProps === 'function') {
     prototype.componentWillMount = componentWillMount;
     prototype.componentWillReceiveProps = componentWillReceiveProps;
   }
 
-  // React <= 16.2 does not support getSnapshotBeforeUpdate.
-  // As a workaround, use cWU to invoke the new lifecycle.
-  // Newer versions of React will ignore that lifecycle if gSBU exists.
+  / React <= 16.2 does not support getSnapshotBeforeUpdate.
+  / As a workaround, use cWU to invoke the new lifecycle.
+  / Newer versions of React will ignore that lifecycle if gSBU exists.
   if (typeof prototype.getSnapshotBeforeUpdate === 'function') {
     if (typeof prototype.componentDidUpdate !== 'function') {
       throw new Error(
@@ -7486,14 +7486,14 @@ function polyfill(Component) {
       prevState,
       maybeSnapshot
     ) {
-      // 16.3+ will not execute our will-update method;
-      // It will pass a snapshot value to did-update though.
-      // Older versions will require our polyfilled will-update value.
-      // We need to handle both cases, but can't just check for the presence of "maybeSnapshot",
-      // Because for <= 15.x versions this might be a "prevContext" object.
-      // We also can't just check "__reactInternalSnapshot",
-      // Because get-snapshot might return a falsy value.
-      // So check for the explicit __reactInternalSnapshotFlag flag to determine behavior.
+      / 16.3+ will not execute our will-update method;
+      / It will pass a snapshot value to did-update though.
+      / Older versions will require our polyfilled will-update value.
+      / We need to handle both cases, but can't just check for the presence of "maybeSnapshot",
+      / Because for <= 15.x versions this might be a "prevContext" object.
+      / We also can't just check "__reactInternalSnapshot",
+      / Because get-snapshot might return a falsy value.
+      / So check for the explicit __reactInternalSnapshotFlag flag to determine behavior.
       var snapshot = this.__reactInternalSnapshotFlag
         ? this.__reactInternalSnapshot
         : maybeSnapshot;
@@ -7553,9 +7553,9 @@ if (__DEV__) {
       console.error(message);
     }
     try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
+      / --- Welcome to debugging React ---
+      / This error was thrown as a convenience so that you can use this stack
+      / to find the callsite that caused this warning to fire.
       throw new Error(message);
     } catch (x) {}
   }
@@ -8424,34 +8424,34 @@ try {
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -8463,7 +8463,7 @@ try {
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -8492,7 +8492,7 @@ try {
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });

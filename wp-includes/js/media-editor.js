@@ -64,7 +64,7 @@
 				});
 			}
 
-			// All attachment-specific settings follow.
+			/ All attachment-specific settings follow.
 			if ( ! attachment ) {
 				return props;
 			}
@@ -81,7 +81,7 @@
 			}
 			props.linkUrl = linkUrl || '';
 
-			// Format properties for images.
+			/ Format properties for images.
 			if ( 'image' === attachment.type ) {
 				props.classes.push( 'wp-image-' + attachment.id );
 
@@ -96,7 +96,7 @@
 				});
 			} else if ( 'video' === attachment.type || 'audio' === attachment.type ) {
 				_.extend( props, _.pick( attachment, 'title', 'type', 'icon', 'mime' ) );
-			// Format properties for non-images.
+			/ Format properties for non-images.
 			} else {
 				props.title = props.title || attachment.filename;
 				props.rel = props.rel || 'attachment wp-att-' + attachment.id;
@@ -189,7 +189,7 @@
 			if ( _.contains( wp.media.view.settings.embedExts, extension ) ) {
 				shortcode[extension] = attachment.url;
 			} else {
-				// Render unsupported audio and video files as links.
+				/ Render unsupported audio and video files as links.
 				return wp.media.string.link( props );
 			}
 
@@ -219,8 +219,8 @@
 			img.src = ! _.isUndefined( attachment ) ? attachment.url : props.url;
 			_.extend( img, _.pick( props, 'width', 'height', 'alt' ) );
 
-			// Only assign the align class to the image if we're not printing
-			// a caption, since the alignment is sent to the shortcode.
+			/ Only assign the align class to the image if we're not printing
+			/ a caption, since the alignment is sent to the shortcode.
 			if ( props.align && ! props.caption ) {
 				classes.push( 'align' + props.align );
 			}
@@ -231,14 +231,14 @@
 
 			img['class'] = _.compact( classes ).join(' ');
 
-			// Generate `img` tag options.
+			/ Generate `img` tag options.
 			options = {
 				tag:    'img',
 				attrs:  img,
 				single: true
 			};
 
-			// Generate the `a` element options, if they exist.
+			/ Generate the `a` element options, if they exist.
 			if ( props.linkUrl ) {
 				options = {
 					tag:   'a',
@@ -251,7 +251,7 @@
 
 			html = wp.html.string( options );
 
-			// Generate the caption shortcode.
+			/ Generate the caption shortcode.
 			if ( props.caption ) {
 				shortcode = {};
 
@@ -360,14 +360,14 @@
 				if ( result ) {
 					return result;
 				}
-				// Fill the default shortcode attributes.
+				/ Fill the default shortcode attributes.
 				attrs = _.defaults( shortcode.attrs.named, this.defaults );
 				args  = _.pick( attrs, 'orderby', 'order' );
 
 				args.type    = this.type;
 				args.perPage = -1;
 
-				// Mark the `orderby` override attribute.
+				/ Mark the `orderby` override attribute.
 				if ( undefined !== attrs.orderby ) {
 					attrs._orderByField = attrs.orderby;
 				}
@@ -376,12 +376,12 @@
 					attrs._orderbyRandom = true;
 				}
 
-				// Map the `orderby` attribute to the corresponding model property.
+				/ Map the `orderby` attribute to the corresponding model property.
 				if ( ! attrs.orderby || /^menu_order(?: ID)?$/i.test( attrs.orderby ) ) {
 					args.orderby = 'menuOrder';
 				}
 
-				// Map the `ids` param to the correct query args.
+				/ Map the `ids` param to the correct query args.
 				if ( attrs.ids ) {
 					args.post__in = attrs.ids.split(',');
 					args.orderby  = 'post__in';
@@ -397,7 +397,7 @@
 					args.uploadedTo = attrs.id;
 				}
 
-				// Collect the attributes that were not included in `args`.
+				/ Collect the attributes that were not included in `args`.
 				others = _.omit( attrs, 'id', 'ids', 'include', 'exclude', 'orderby', 'order' );
 
 				_.each( this.defaults, function( value, key ) {
@@ -438,11 +438,11 @@
 				 */
 				attrs.ids = attachments.pluck('id');
 
-				// Copy the `uploadedTo` post ID.
+				/ Copy the `uploadedTo` post ID.
 				if ( props.uploadedTo ) {
 					attrs.id = props.uploadedTo;
 				}
-				// Check if the gallery is randomly ordered.
+				/ Check if the gallery is randomly ordered.
 				delete attrs.orderby;
 
 				if ( attrs._orderbyRandom ) {
@@ -454,8 +454,8 @@
 				delete attrs._orderbyRandom;
 				delete attrs._orderByField;
 
-				// If the `ids` attribute is set and `orderby` attribute
-				// is the default value, clear it for cleaner output.
+				/ If the `ids` attribute is set and `orderby` attribute
+				/ is the default value, clear it for cleaner output.
 				if ( attrs.ids && 'post__in' === attrs.orderby ) {
 					delete attrs.orderby;
 				}
@@ -468,7 +468,7 @@
 					type:   'single'
 				});
 
-				// Use a cloned version of the gallery.
+				/ Use a cloned version of the gallery.
 				clone = new wp.media.model.Attachments( attachments.models, {
 					props: props
 				});
@@ -493,12 +493,12 @@
 					defaultPostId = this.defaults.id,
 					attachments, selection, state;
 
-				// Bail if we didn't match the shortcode or all of the content.
+				/ Bail if we didn't match the shortcode or all of the content.
 				if ( ! shortcode || shortcode.content !== content ) {
 					return;
 				}
 
-				// Ignore the rest of the match object.
+				/ Ignore the rest of the match object.
 				shortcode = shortcode.shortcode;
 
 				if ( _.isUndefined( shortcode.get('id') ) && ! _.isUndefined( defaultPostId ) ) {
@@ -514,16 +514,16 @@
 
 				selection[ this.tag ] = attachments[ this.tag ];
 
-				// Fetch the query's attachments, and then break ties from the
-				// query to allow for sorting.
+				/ Fetch the query's attachments, and then break ties from the
+				/ query to allow for sorting.
 				selection.more().done( function() {
-					// Break ties with the query.
+					/ Break ties with the query.
 					selection.props.set({ query: false });
 					selection.unmirror();
 					selection.props.unset('orderby');
 				});
 
-				// Destroy the previous gallery frame.
+				/ Destroy the previous gallery frame.
 				if ( this.frame ) {
 					this.frame.dispose();
 				}
@@ -534,7 +534,7 @@
 					state = this.tag + '-edit';
 				}
 
-				// Store the current frame.
+				/ Store the current frame.
 				this.frame = wp.media({
 					frame:     'post',
 					state:     state,
@@ -549,7 +549,7 @@
 
 			setDefaults: function( attrs ) {
 				var self = this;
-				// Remove default attributes from the shortcode.
+				/ Remove default attributes from the shortcode.
 				_.each( this.defaults, function( value, key ) {
 					attrs[ key ] = self.coerce( attrs, key );
 					if ( value === attrs[ key ] ) {
@@ -673,7 +673,7 @@
 
 				this.content.set( view );
 
-				// After bringing in the frame, load the actual editor via an Ajax call.
+				/ After bringing in the frame, load the actual editor via an Ajax call.
 				view.loadEditor();
 
 			}, this._frame );
@@ -705,7 +705,7 @@
 		init: function() {
 			$('#postimagediv').on( 'click', '#set-post-thumbnail', function( event ) {
 				event.preventDefault();
-				// Stop propagation to prevent thickbox from activating.
+				/ Stop propagation to prevent thickbox from activating.
 				event.stopPropagation();
 
 				wp.media.featuredImage.frame().open();
@@ -764,8 +764,8 @@
 				document.getElementById( wpActiveEditor ).value += html;
 			}
 
-			// If the old thickbox remove function exists, call it in case
-			// a theme/plugin overloaded it.
+			/ If the old thickbox remove function exists, call it in case
+			/ a theme/plugin overloaded it.
 			if ( window.tb_remove ) {
 				try { window.tb_remove(); } catch( e ) {}
 			}
@@ -785,7 +785,7 @@
 		add: function( id, options ) {
 			var workflow = this.get( id );
 
-			// Only add once: if exists return existing.
+			/ Only add once: if exists return existing.
 			if ( workflow ) {
 				return workflow;
 			}
@@ -892,15 +892,15 @@
 				return id;
 			}
 
-			// If an empty `id` is provided, default to `wpActiveEditor`.
+			/ If an empty `id` is provided, default to `wpActiveEditor`.
 			id = window.wpActiveEditor;
 
-			// If that doesn't work, fall back to `tinymce.activeEditor.id`.
+			/ If that doesn't work, fall back to `tinymce.activeEditor.id`.
 			if ( ! id && ! _.isUndefined( window.tinymce ) && tinymce.activeEditor ) {
 				id = tinymce.activeEditor.id;
 			}
 
-			// Last but not least, fall back to the empty string.
+			/ Last but not least, fall back to the empty string.
 			id = id || '';
 			return id;
 		},
@@ -942,7 +942,7 @@
 				var caption = attachment.caption,
 					options, html;
 
-				// If captions are disabled, clear the caption.
+				/ If captions are disabled, clear the caption.
 				if ( ! wp.media.view.settings.captions ) {
 					delete attachment.caption;
 				}
@@ -1023,7 +1023,7 @@
 
 			workflow = this.get( id );
 
-			// Redo workflow if state has changed.
+			/ Redo workflow if state has changed.
 			if ( ! workflow || ( workflow.options && options.state !== workflow.options.state ) ) {
 				workflow = this.add( id, options );
 			}
@@ -1058,7 +1058,7 @@
 					wp.media.editor.open( editor, options );
 				});
 
-			// Initialize and render the Editor drag-and-drop uploader.
+			/ Initialize and render the Editor drag-and-drop uploader.
 			new wp.media.view.EditorUploader().render();
 		}
 	};

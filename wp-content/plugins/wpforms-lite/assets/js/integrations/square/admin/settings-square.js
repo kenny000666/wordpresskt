@@ -159,7 +159,7 @@ const WPFormsSettingsSquare = window.WPFormsSettingsSquare || ( function( docume
 
 			let errorMessage = wpforms_admin.square.refresh_error;
 
-			// Perform an Ajax request.
+			/ Perform an Ajax request.
 			$.ajax( settings )
 				.done( function( response ) {
 					if ( response.success ) {
@@ -291,7 +291,7 @@ const WPFormsSettingsSquare = window.WPFormsSettingsSquare || ( function( docume
 			 *
 			 * @since 1.9.5
 			 */
-			// eslint-disable-next-line max-lines-per-function
+			/ eslint-disable-next-line max-lines-per-function
 			displayWebhookConfigPopup() {
 				$.confirm( {
 					title: wpforms_admin.square.webhook_create_title,
@@ -312,31 +312,31 @@ const WPFormsSettingsSquare = window.WPFormsSettingsSquare || ( function( docume
 								const token = tokenField.val().trim();
 								const title = modal.$title;
 
-								// Disable the button to prevent multiple clicks.
+								/ Disable the button to prevent multiple clicks.
 								$el.webhookConnectBtn.addClass( 'inactive' );
 
-								// Reset error message before validation
+								/ Reset error message before validation
 								errorMsg.hide().text( '' );
 
 								if ( token === '' ) {
 									errorMsg.text( wpforms_admin.square.token_is_required ).show();
-									return false; // Prevent modal from closing.
+									return false; / Prevent modal from closing.
 								}
 
-								// Show loading indicator.
+								/ Show loading indicator.
 								modal.buttons.confirm.setText( wpforms_admin.loading );
 								modal.buttons.confirm.disable();
 
-								// Call API.
+								/ Call API.
 								app.createWebhook( token )
 									.then( ( response ) => {
 										modal.setContent( '<p>' + response.data.message + '</p>' );
-										// Hide OK button and rename Cancel to Close.
+										/ Hide OK button and rename Cancel to Close.
 										modal.buttons.confirm.hide();
 										title.text( '' ).hide();
 										modal.buttons.cancel.setText( wpforms_admin.close );
 
-										// Ensure user can manually close the modal.
+										/ Ensure user can manually close the modal.
 										modal.buttons.cancel.action = function() {
 											window.location.reload();
 										};
@@ -344,18 +344,18 @@ const WPFormsSettingsSquare = window.WPFormsSettingsSquare || ( function( docume
 									.catch( ( responseError ) => {
 										errorMsg.text( responseError.data.message ).show();
 
-										// Re-enable confirm button for retrying.
+										/ Re-enable confirm button for retrying.
 										modal.buttons.confirm.setText( wpforms_admin.ok );
 										modal.buttons.confirm.enable();
 									} );
 
-								return false; // Prevent modal from closing immediately.
+								return false; / Prevent modal from closing immediately.
 							},
 						},
 						cancel: {
 							text: wpforms_admin.cancel,
 							action() {
-								// Re-enable the button.
+								/ Re-enable the button.
 								$el.webhookConnectBtn.removeClass( 'inactive' );
 
 								this.close();
@@ -367,7 +367,7 @@ const WPFormsSettingsSquare = window.WPFormsSettingsSquare || ( function( docume
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

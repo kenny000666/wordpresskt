@@ -27,7 +27,7 @@
  *
  * @since 1.9.6
  */
-var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( document, window, $ ) { // eslint-disable-line no-var
+var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( document, window, $ ) { / eslint-disable-line no-var
 	/**
 	 * Localized data aliases.
 	 *
@@ -74,7 +74,7 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 	 */
 	const el = {};
 
-	// noinspection JSUnusedGlobalSymbols
+	/ noinspection JSUnusedGlobalSymbols
 	/**
 	 * Public functions and properties.
 	 *
@@ -102,7 +102,7 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 		 * @since 1.9.6
 		 */
 		events() {
-			// noinspection JSUnusedLocalSymbols
+			/ noinspection JSUnusedLocalSymbols
 			$( window )
 				.on( 'elementor/frontend/init', function() {
 					elementor.channels.editor.on( 'section:activated', app.themesControlSetup );
@@ -136,7 +136,7 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 			const $panelContent = editor.$childViewContainer[ 0 ];
 			const $themesControl = $( $panelContent ).find( '.wpforms-elementor-themes-control' );
 
-			// Scrollbar fix for Mac.
+			/ Scrollbar fix for Mac.
 			if ( app.isMac() ) {
 				$themesControl.addClass( 'wpforms-is-mac' );
 			}
@@ -154,7 +154,7 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 		updateThemesList( editor, $themesControl ) {
 			const selectedTheme = editor.model.attributes.settings.attributes.wpformsTheme ?? 'default';
 
-			// Get all themes.
+			/ Get all themes.
 			const html = app.getThemesListMarkup( selectedTheme );
 
 			$themesControl.html( html );
@@ -188,7 +188,7 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 
 			const $radioButtons = $themesControl.find( '[role="radio"]' );
 
-			// Add event listeners to the radio buttons.
+			/ Add event listeners to the radio buttons.
 			$radioButtons.off( 'click' ).on( 'click', function() {
 				$radioButtons.removeClass( 'is-active' );
 
@@ -199,14 +199,14 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 				app.selectTheme( selectedValue );
 			} );
 
-			// Add event listeners to the theme delete button.
+			/ Add event listeners to the theme delete button.
 			elementor.channels.editor
 				.off( 'WPFormsDeleteThemeButtonClick' )
 				.on( 'WPFormsDeleteThemeButtonClick', () => {
 					app.deleteThemeModal( editor.model.attributes.settings.attributes, editor );
 				} );
 
-			// Listen for the theme name change.
+			/ Listen for the theme name change.
 			editor.model.get( 'settings' )
 				.off( 'change:customThemeName' )
 				.on( 'change:customThemeName', function( model ) {
@@ -259,7 +259,7 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 			const changedAtts = model.changed;
 			const allowedKeys = WPFormsElementorModern.getStyleAttributesKeys();
 
-			// Update only allowed attributes.
+			/ Update only allowed attributes.
 			for ( const element in changedAtts ) {
 				if ( ! allowedKeys.includes( element ) ) {
 					continue;
@@ -280,12 +280,12 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 		 *
 		 * @return {string} Themes items HTML.
 		 */
-		// eslint-disable-next-line complexity
+		/ eslint-disable-next-line complexity
 		getThemesListMarkup( selectedTheme ) {
 			if ( ! themesData.wpforms ) {
 				app.fetchThemesData();
 
-				// Return markup with an error message if themes are not available.
+				/ Return markup with an error message if themes are not available.
 				return `<div class="wpforms-no-themes">${ strings.themes_error }</div>`;
 			}
 
@@ -309,12 +309,12 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 			for ( const key in themes ) {
 				const slug = themes[ key ];
 
-				// Skip the first theme.
+				/ Skip the first theme.
 				if ( firstThemeSlug && firstThemeSlug === slug ) {
 					continue;
 				}
 
-				// Ensure that all the theme settings are present.
+				/ Ensure that all the theme settings are present.
 				theme = { ...allThemes.default, ...( allThemes[ slug ] || {} ) };
 				theme.settings = { ...allThemes.default.settings, ...( theme.settings || {} ) };
 
@@ -457,16 +457,16 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 		 * @since 1.9.6
 		 */
 		fetchThemesData() {
-			// If a fetch is already in progress, exit the function.
+			/ If a fetch is already in progress, exit the function.
 			if ( state.isFetchingThemes || themesData.wpforms ) {
 				return;
 			}
 
-			// Set the flag to true indicating a fetch is in progress.
+			/ Set the flag to true indicating a fetch is in progress.
 			state.isFetchingThemes = true;
 
 			try {
-				// Fetch themes data.
+				/ Fetch themes data.
 				wp.apiFetch( {
 					path: routeNamespace + 'elementor/themes/',
 					method: 'GET',
@@ -477,14 +477,14 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 						themesData.custom = response.custom || {};
 					} )
 					.catch( ( error ) => {
-						// eslint-disable-next-line no-console
+						/ eslint-disable-next-line no-console
 						console.error( error?.message );
 					} )
 					.finally( () => {
 						state.isFetchingThemes = false;
 					} );
 			} catch ( error ) {
-				// eslint-disable-next-line no-console
+				/ eslint-disable-next-line no-console
 				console.error( error );
 			}
 		},
@@ -499,16 +499,16 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 				return;
 			}
 
-			// Custom themes do not exist.
+			/ Custom themes do not exist.
 			if ( state.isSavingThemes || ! themesData.custom ) {
 				return;
 			}
 
-			// Set the flag to true indicating a saving is in progress.
+			/ Set the flag to true indicating a saving is in progress.
 			state.isSavingThemes = true;
 
 			try {
-				// Save themes.
+				/ Save themes.
 				wp.apiFetch( {
 					path: routeNamespace + 'elementor/themes/custom/',
 					method: 'POST',
@@ -516,19 +516,19 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 				} )
 					.then( ( response ) => {
 						if ( ! response?.result ) {
-							// eslint-disable-next-line no-console
+							/ eslint-disable-next-line no-console
 							console.log( response?.error );
 						}
 					} )
 					.catch( ( error ) => {
-						// eslint-disable-next-line no-console
+						/ eslint-disable-next-line no-console
 						console.error( error?.message );
 					} )
 					.finally( () => {
 						state.isSavingThemes = false;
 					} );
 			} catch ( error ) {
-				// eslint-disable-next-line no-console
+				/ eslint-disable-next-line no-console
 				console.error( error );
 			}
 		},
@@ -564,13 +564,13 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 		 *
 		 * @return {boolean} Whether the custom theme is created.
 		 */
-		// eslint-disable-next-line complexity
+		/ eslint-disable-next-line complexity
 		maybeCreateCustomTheme( atts ) {
 			const currentStyles = app.getCurrentStyleAttributes( atts );
 			const isWPFormsTheme = !! themesData.wpforms[ atts.wpformsTheme ];
 			const isCustomTheme = !! themesData.custom[ atts.wpformsTheme ];
 
-			// It is one of the default themes without any changes.
+			/ It is one of the default themes without any changes.
 			if (
 				isWPFormsTheme &&
 				JSON.stringify( themesData.wpforms[ atts.wpformsTheme ]?.settings ) === JSON.stringify( currentStyles )
@@ -578,7 +578,7 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 				return false;
 			}
 
-			// It is a modified default theme OR unknown custom theme.
+			/ It is a modified default theme OR unknown custom theme.
 			if ( isWPFormsTheme || ! isCustomTheme ) {
 				app.createCustomTheme( atts, currentStyles );
 			}
@@ -597,7 +597,7 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 		 *
 		 * @return {boolean} Whether the custom theme is created.
 		 */
-		createCustomTheme( atts, currentStyles = null, migrateToCustomTheme = false ) { // eslint-disable-line complexity
+		createCustomTheme( atts, currentStyles = null, migrateToCustomTheme = false ) { / eslint-disable-line complexity
 			let counter = 0;
 			let themeSlug = atts.wpformsTheme;
 
@@ -611,7 +611,7 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 				themeName = strings.theme_custom;
 			}
 
-			// Determine the theme slug and the number of copies.
+			/ Determine the theme slug and the number of copies.
 			do {
 				counter++;
 				themeSlug = themeSlug + '-copy-' + counter;
@@ -621,10 +621,10 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 
 			themeName += ' (' + copyStr + ')';
 
-			// The first migrated Custom Theme should be without a ` (Copy)` suffix.
+			/ The first migrated Custom Theme should be without a ` (Copy)` suffix.
 			themeName = migrateToCustomTheme && counter < 2 ? strings.theme_custom : themeName;
 
-			// Add the new custom theme.
+			/ Add the new custom theme.
 			themesData.custom[ themeSlug ] = {
 				name: themeName,
 				settings: currentStyles || app.getCurrentStyleAttributes( atts ),
@@ -653,7 +653,7 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 		 *
 		 * @return {string} New theme's slug.
 		 */
-		maybeCreateCustomThemeFromAttributes( attributes ) { // eslint-disable-line complexity
+		maybeCreateCustomThemeFromAttributes( attributes ) { / eslint-disable-line complexity
 			const newThemeSlug = attributes.theme;
 			/**
 			 * @type     {Object|null}
@@ -664,7 +664,7 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 
 			let isExistingTheme = Boolean( existingTheme?.settings );
 
-			// Check if the theme already exists and has the same settings.
+			/ Check if the theme already exists and has the same settings.
 			if ( isExistingTheme ) {
 				for ( const i in keys ) {
 					const key = keys[ i ];
@@ -677,13 +677,13 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 				}
 			}
 
-			// The theme exists and has the same settings.
+			/ The theme exists and has the same settings.
 			if ( isExistingTheme ) {
 				return newThemeSlug;
 			}
 
-			// The theme doesn't exist.
-			// Normalize the attributes to the default theme settings.
+			/ The theme doesn't exist.
+			/ Normalize the attributes to the default theme settings.
 			const defaultAttributes = Object.keys( themesData.wpforms.default.settings );
 			const newSettings = {};
 
@@ -693,7 +693,7 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 				newSettings[ attr ] = attributes[ attr ] ?? '';
 			}
 
-			// Create a new custom theme.
+			/ Create a new custom theme.
 			themesData.custom[ newThemeSlug ] = {
 				name: attributes.themeName ?? strings.theme_custom,
 				settings: newSettings,
@@ -713,10 +713,10 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 		 * @param {string} value     New attribute value.
 		 * @param {Object} atts      Widget properties.
 		 */
-		updateCustomThemeAttribute( attribute, value, atts ) { // eslint-disable-line complexity
+		updateCustomThemeAttribute( attribute, value, atts ) { / eslint-disable-line complexity
 			const themeSlug = atts.wpformsTheme;
 
-			// Skip if it is one of the WPForms themes OR the attribute is not in the theme settings.
+			/ Skip if it is one of the WPForms themes OR the attribute is not in the theme settings.
 			if (
 				themesData.wpforms[ themeSlug ] ||
 				(
@@ -727,12 +727,12 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 				return;
 			}
 
-			// Skip if the custom theme doesn't exist in some rare cases.
+			/ Skip if the custom theme doesn't exist in some rare cases.
 			if ( ! themesData.custom[ themeSlug ] ) {
 				return;
 			}
 
-			// Update the theme data.
+			/ Update the theme data.
 			if ( attribute === 'themeName' ) {
 				themesData.custom[ themeSlug ].name = value;
 			} else {
@@ -750,7 +750,7 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 		 *
 		 * @return {boolean} True on success.
 		 */
-		setWidgetTheme( themeSlug ) { // eslint-disable-line complexity
+		setWidgetTheme( themeSlug ) { / eslint-disable-line complexity
 			if ( app.maybeDisplayUpgradeModal( themeSlug ) ) {
 				return false;
 			}
@@ -766,14 +766,14 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 			const settingsModel = widget.model.get( 'settings' );
 			const isCustomTheme = !! themesData.custom[ themeSlug ];
 
-			// Set the theme attribute.
+			/ Set the theme attribute.
 			settingsModel.setExternalChange( {
 				wpformsTheme: themeSlug,
 				isCustomTheme: isCustomTheme ? 'true' : '',
 				customThemeName: isCustomTheme ? themesData.custom[ themeSlug ].name : '',
 			} );
 
-			// Clean up the attributes.
+			/ Clean up the attributes.
 			const cleanSettings = {};
 
 			for ( const key in attributes ) {
@@ -785,10 +785,10 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 					: value;
 			}
 
-			// Update the theme settings.
+			/ Update the theme settings.
 			app.updateStylesAtts( cleanSettings, settingsModel );
 
-			// Activate the Publish button.
+			/ Activate the Publish button.
 			const $pageView = elementor.getPanelView().getCurrentPageView().$el;
 			$pageView.find( '.elementor-control-isCustomTheme input' ).trigger( 'input' );
 
@@ -803,7 +803,7 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 		 * @param {Object} themeSettings Theme settings.
 		 * @param {Object} settingsModel Settings model.
 		 */
-		// eslint-disable-next-line complexity
+		/ eslint-disable-next-line complexity
 		updateStylesAtts( themeSettings, settingsModel ) {
 			const allowedKeys = WPFormsElementorModern.getStyleAttributesKeys();
 			const validSettings = {};
@@ -827,7 +827,7 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 				validSettings[ key ] = value;
 			}
 
-			// Update the widget settings.
+			/ Update the widget settings.
 			if ( Object.keys( validSettings ).length ) {
 				settingsModel.setExternalChange( validSettings );
 			}
@@ -909,7 +909,7 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 				headerMessage: strings.theme_delete_title,
 
 				onConfirm: () => {
-					// Remove theme from the theme storage.
+					/ Remove theme from the theme storage.
 					delete themesData.custom[ atts.wpformsTheme ];
 					app.selectTheme( 'default' );
 					app.updateThemesList( editor, $themesControl );
@@ -931,7 +931,7 @@ var WPFormsElementorThemes = window.WPFormsElementorThemes || ( function( docume
 				return;
 			}
 
-			// Check only WPForms themes.
+			/ Check only WPForms themes.
 			if ( ! app.isWPFormsTheme( themeSlug ) ) {
 				return;
 			}

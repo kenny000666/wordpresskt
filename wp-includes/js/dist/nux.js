@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -18,7 +18,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -35,7 +35,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -74,12 +74,12 @@ __webpack_require__.d(selectors_namespaceObject, {
   isTipVisible: () => (isTipVisible)
 });
 
-;// external ["wp","deprecated"]
+;/ external ["wp","deprecated"]
 const external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
 var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_namespaceObject);
-;// external ["wp","data"]
+;/ external ["wp","data"]
 const external_wp_data_namespaceObject = window["wp"]["data"];
-;// ./node_modules/@wordpress/nux/build-module/store/reducer.js
+;/ ./node_modules/@wordpress/nux/build-module/store/reducer.js
 /**
  * WordPress dependencies
  */
@@ -150,7 +150,7 @@ const preferences = (0,external_wp_data_namespaceObject.combineReducers)({
   preferences
 }));
 
-;// ./node_modules/@wordpress/nux/build-module/store/actions.js
+;/ ./node_modules/@wordpress/nux/build-module/store/actions.js
 /**
  * Returns an action object that, when dispatched, presents a guide that takes
  * the user through a series of tips step by step.
@@ -204,7 +204,7 @@ function enableTips() {
   };
 }
 
-;// ./node_modules/@wordpress/nux/build-module/store/selectors.js
+;/ ./node_modules/@wordpress/nux/build-module/store/selectors.js
 /**
  * WordPress dependencies
  */
@@ -278,7 +278,7 @@ function selectors_areTipsEnabled(state) {
   return state.preferences.areTipsEnabled;
 }
 
-;// ./node_modules/@wordpress/nux/build-module/store/index.js
+;/ ./node_modules/@wordpress/nux/build-module/store/index.js
 /**
  * WordPress dependencies
  */
@@ -315,19 +315,19 @@ const store = (0,external_wp_data_namespaceObject.createReduxStore)(STORE_NAME, 
   persist: ['preferences']
 });
 
-;// external ["wp","compose"]
+;/ external ["wp","compose"]
 const external_wp_compose_namespaceObject = window["wp"]["compose"];
-;// external ["wp","components"]
+;/ external ["wp","components"]
 const external_wp_components_namespaceObject = window["wp"]["components"];
-;// external ["wp","i18n"]
+;/ external ["wp","i18n"]
 const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
-;// external ["wp","element"]
+;/ external ["wp","element"]
 const external_wp_element_namespaceObject = window["wp"]["element"];
-;// external ["wp","primitives"]
+;/ external ["wp","primitives"]
 const external_wp_primitives_namespaceObject = window["wp"]["primitives"];
-;// external "ReactJSXRuntime"
+;/ external "ReactJSXRuntime"
 const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
-;// ./node_modules/@wordpress/icons/build-module/library/close.js
+;/ ./node_modules/@wordpress/icons/build-module/library/close.js
 /**
  * WordPress dependencies
  */
@@ -342,7 +342,7 @@ const close_close = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx
 });
 /* harmony default export */ const library_close = (close_close);
 
-;// ./node_modules/@wordpress/nux/build-module/components/dot-tip/index.js
+;/ ./node_modules/@wordpress/nux/build-module/components/dot-tip/index.js
 /**
  * WordPress dependencies
  */
@@ -359,8 +359,8 @@ const close_close = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx
 
 
 function onClick(event) {
-  // Tips are often nested within buttons. We stop propagation so that clicking
-  // on a tip doesn't result in the button being clicked.
+  / Tips are often nested within buttons. We stop propagation so that clicking
+  / on a tip doesn't result in the button being clicked.
   event.stopPropagation();
 }
 function DotTip({
@@ -439,7 +439,7 @@ function DotTip({
   };
 }))(DotTip));
 
-;// ./node_modules/@wordpress/nux/build-module/index.js
+;/ ./node_modules/@wordpress/nux/build-module/index.js
 /**
  * WordPress dependencies
  */

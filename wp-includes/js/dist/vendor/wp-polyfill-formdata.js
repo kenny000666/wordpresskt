@@ -10,23 +10,23 @@ if (typeof Blob !== 'undefined' && (typeof FormData === 'undefined' || !FormData
       ? window
       : typeof self === 'object' ? self : this
 
-  // keep a reference to native implementation
+  / keep a reference to native implementation
   const _FormData = global.FormData
 
-  // To be monkey patched
+  / To be monkey patched
   const _send = global.XMLHttpRequest && global.XMLHttpRequest.prototype.send
   const _fetch = global.Request && global.fetch
   const _sendBeacon = global.navigator && global.navigator.sendBeacon
-  // Might be a worker thread...
+  / Might be a worker thread...
   const _match = global.Element && global.Element.prototype
 
-  // Unable to patch Request/Response constructor correctly #109
-  // only way is to use ES6 class extend
-  // https://github.com/babel/babel/issues/1966
+  / Unable to patch Request/Response constructor correctly #109
+  / only way is to use ES6 class extend
+  / https://github.com/babel/babel/issues/1966
 
   const stringTag = global.Symbol && Symbol.toStringTag
 
-  // Add missing stringTags to blob and files
+  / Add missing stringTags to blob and files
   if (stringTag) {
     if (!Blob.prototype[stringTag]) {
       Blob.prototype[stringTag] = 'Blob'
@@ -37,9 +37,9 @@ if (typeof Blob !== 'undefined' && (typeof FormData === 'undefined' || !FormData
     }
   }
 
-  // Fix so you can construct your own File
+  / Fix so you can construct your own File
   try {
-    new File([], '') // eslint-disable-line
+    new File([], '') / eslint-disable-line
   } catch (a) {
     global.File = function File (b, d, c) {
       const blob = new Blob(b, c || {})
@@ -96,8 +96,8 @@ if (typeof Blob !== 'undefined' && (typeof FormData === 'undefined' || !FormData
     return [String(name), String(value)]
   }
 
-  // normalize line feeds for textarea
-  // https://html.spec.whatwg.org/multipage/form-elements.html#textarea-line-break-normalisation-transformation
+  / normalize line feeds for textarea
+  / https://html.spec.whatwg.org/multipage/form-elements.html#textarea-line-break-normalisation-transformation
   function normalizeLinefeeds (value) {
     return value.replace(/\r?\n|\r/g, '\r\n')
   }
@@ -141,7 +141,7 @@ if (typeof Blob !== 'undefined' && (typeof FormData === 'undefined' || !FormData
         if (elm.type === 'file') {
           const files = elm.files && elm.files.length
             ? elm.files
-            : [new File([], '', { type: 'application/octet-stream' })] // #78
+            : [new File([], '', { type: 'application/octet-stream' })] / #78
 
           each(files, file => {
             self.append(elm.name, file)
@@ -293,9 +293,9 @@ if (typeof Blob !== 'undefined' && (typeof FormData === 'undefined' || !FormData
       const args = normalizeArgs(name, value, filename)
       let replace = true
 
-      // - replace the first occurrence with same name
-      // - discards the remaining with same name
-      // - while keeping the same order items where added
+      / - replace the first occurrence with same name
+      / - discards the remaining with same name
+      / - while keeping the same order items where added
       each(this._data, data => {
         data[0] === name
           ? replace && (replace = !result.push(args))
@@ -395,7 +395,7 @@ if (typeof Blob !== 'undefined' && (typeof FormData === 'undefined' || !FormData
     FormDataPolyfill.prototype[stringTag] = 'FormData'
   }
 
-  // Patch xhr's send method to call _blob transparently
+  / Patch xhr's send method to call _blob transparently
   if (_send) {
     const setRequestHeader = global.XMLHttpRequest.prototype.setRequestHeader
 
@@ -405,7 +405,7 @@ if (typeof Blob !== 'undefined' && (typeof FormData === 'undefined' || !FormData
     }
 
     global.XMLHttpRequest.prototype.send = function (data) {
-      // need to patch send b/c old IE don't send blob's type (#44)
+      / need to patch send b/c old IE don't send blob's type (#44)
       if (data instanceof FormDataPolyfill) {
         const blob = data['_blob']()
         if (!this._hasContentType) this.setRequestHeader('Content-Type', blob.type)
@@ -416,7 +416,7 @@ if (typeof Blob !== 'undefined' && (typeof FormData === 'undefined' || !FormData
     }
   }
 
-  // Patch fetch's function to call _blob transparently
+  / Patch fetch's function to call _blob transparently
   if (_fetch) {
     global.fetch = function (input, init) {
       if (init && init.body && init.body instanceof FormDataPolyfill) {
@@ -427,7 +427,7 @@ if (typeof Blob !== 'undefined' && (typeof FormData === 'undefined' || !FormData
     }
   }
 
-  // Patch navigator.sendBeacon to use native FormData
+  / Patch navigator.sendBeacon to use native FormData
   if (_sendBeacon) {
     global.navigator.sendBeacon = function (url, data) {
       if (data instanceof FormDataPolyfill) {

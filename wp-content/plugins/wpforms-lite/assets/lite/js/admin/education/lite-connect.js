@@ -28,9 +28,9 @@ WPFormsEducation.liteConnect = window.WPFormsEducation.liteConnect || ( function
 		init() {
 			$( app.ready );
 
-			// Page load.
+			/ Page load.
 			$( window ).on( 'load', function() {
-				// In the case of jQuery 3.+, we need to wait for a ready event first.
+				/ In the case of jQuery 3.+, we need to wait for a ready event first.
 				if ( typeof $.ready.then === 'function' ) {
 					$.ready.then( app.load );
 				} else {
@@ -186,7 +186,7 @@ WPFormsEducation.liteConnect = window.WPFormsEducation.liteConnect || ( function
 					app.saveSettingAjaxPost( true, $(), function() {
 						app.switchSettingView( true, $( '#wpforms-builder-lite-connect-top-bar .wpforms-toggle-control' ) );
 
-						// Finalize the Lite Connect keys setup.
+						/ Finalize the Lite Connect keys setup.
 						app.finalizeLiteConnectSetup()
 							.done( () => {
 								app.removeLiteConnectModalOnAIButtons();
@@ -205,15 +205,15 @@ WPFormsEducation.liteConnect = window.WPFormsEducation.liteConnect || ( function
 			$( '.enable-lite-connect-modal.wpforms-prevent-default' ).each( function() {
 				const $button = $( this );
 
-				// Update button class.
+				/ Update button class.
 				$button.removeClass( 'enable-lite-connect-modal wpforms-prevent-default' );
 
-				// Open AI Form Generator.
+				/ Open AI Form Generator.
 				if ( $button.hasClass( 'wpforms-template-generate' ) ) {
 					$button.trigger( 'click' );
 				}
 
-				// Close the top bar in the form builder.
+				/ Close the top bar in the form builder.
 				if ( $( '#wpforms-builder-lite-connect-top-bar' ).length ) {
 					app.toggleBuilderTopBar( false );
 				}
@@ -285,7 +285,7 @@ WPFormsEducation.liteConnect = window.WPFormsEducation.liteConnect || ( function
 				theme: 'modern, ai-modal',
 			};
 
-			// eslint-disable-next-line camelcase
+			/ eslint-disable-next-line camelcase
 			wpforms_education_lite_connect.update_result.enabled_title = wpforms_education_lite_connect.enable_ai.enabled_title;
 
 			app.enableModal( $args );
@@ -316,9 +316,9 @@ WPFormsEducation.liteConnect = window.WPFormsEducation.liteConnect || ( function
 								$args.confirm.callback();
 							}
 
-							// Maybe close Challenge popup.
+							/ Maybe close Challenge popup.
 							if ( window.WPFormsChallenge ) {
-								// eslint-disable-next-line no-var
+								/ eslint-disable-next-line no-var
 								var completeChallenge = WPFormsChallenge.embed && WPFormsChallenge.embed.completeChallenge;
 							}
 
@@ -394,7 +394,7 @@ WPFormsEducation.liteConnect = window.WPFormsEducation.liteConnect || ( function
 
 			const $input = $toggle.find( 'input' );
 
-			// Perform AJAX request.
+			/ Perform AJAX request.
 			$.post(
 				wpforms_education_lite_connect.ajax_url,
 				{
@@ -441,7 +441,7 @@ WPFormsEducation.liteConnect = window.WPFormsEducation.liteConnect || ( function
 						app.switchSettingView( isEnabled, $toggle );
 						app.removeLiteConnectModalOnAIButtons();
 
-						// Finalize the Lite Connect keys setup.
+						/ Finalize the Lite Connect keys setup.
 						app.finalizeLiteConnectSetup();
 					} );
 				}
@@ -505,7 +505,7 @@ WPFormsEducation.liteConnect = window.WPFormsEducation.liteConnect || ( function
 		 * @since 1.7.4
 		 */
 		maybeRevealBuilderTopBar() {
-			// Skip it is not Form Builder or Entry Backups is already enabled or top bar is dismissed.
+			/ Skip it is not Form Builder or Entry Backups is already enabled or top bar is dismissed.
 			if (
 				! window.wpforms_builder ||
 				wpforms_education_lite_connect.is_enabled === '1' ||
@@ -557,7 +557,7 @@ WPFormsEducation.liteConnect = window.WPFormsEducation.liteConnect || ( function
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

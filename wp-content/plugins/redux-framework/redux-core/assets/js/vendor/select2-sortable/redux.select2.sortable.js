@@ -26,7 +26,7 @@
 						var optArr  = [];
 						var $select = $( this );
 
-						// skip elements not select2-ed.
+						/ skip elements not select2-ed.
 						if ( typeof ($select.data( 'select2' )) !== 'object' ) {
 							return false;
 						}
@@ -109,7 +109,7 @@
 
 				if ( args.length === 0 || typeof (args[0]) === 'object' ) {
 					var defaultOptions = {
-						bindOrder: 'formSubmit', // or sortableStop.
+						bindOrder: 'formSubmit', / or sortableStop.
 						sortableOptions: {
 							placeholder: 'ui-state-highlight',
 							items: 'li:not(.select2-search__field)',
@@ -119,7 +119,7 @@
 
 					var options = $.extend( defaultOptions, args[0] );
 
-					// Init select2 only if not already initialized to prevent select2 configuration loss.
+					/ Init select2 only if not already initialized to prevent select2 configuration loss.
 					if ( typeof ($this.data( 'select2' )) !== 'object' ) {
 						$this.select2();
 					}
@@ -129,12 +129,12 @@
 							var $select         = $( this );
 							var $select2choices = $select.siblings( '.select2-container' ).find( '.select2-selection__rendered' );
 
-							// Init jQuery UI Sortable.
+							/ Init jQuery UI Sortable.
 							$select2choices.sortable( options.sortableOptions );
 
 							switch ( options.bindOrder ) {
 								case 'sortableStop':
-									// apply options ordering in sortstop event.
+									/ apply options ordering in sortstop event.
 									$select2choices.on(
 										"sortstop.select2sortable",
 										function( event, ui ) {
@@ -151,7 +151,7 @@
 									break;
 
 								default:
-									// apply options ordering in form submit.
+									/ apply options ordering in form submit.
 									$select.closest( 'form' ).off( 'submit.select2sortable' ).on(
 										'submit.select2sortable',
 										function() {
@@ -183,13 +183,13 @@
 						var $select         = $( this );
 						var $select2choices = $select.parent().find( '.select2-selection__rendered' );
 
-						// unbind form submit event.
+						/ unbind form submit event.
 						$select.closest( 'form' ).off( 'submit.select2sortable' );
 
-						// unbind sortstop event.
+						/ unbind sortstop event.
 						$select2choices.off( "sortstop.select2sortable" );
 
-						// destroy select2Sortable.
+						/ destroy select2Sortable.
 						$select2choices.sortable( 'destroy' );
 					}
 				);

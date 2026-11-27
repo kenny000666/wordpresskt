@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/_acf-hooks.js":
@@ -176,7 +176,7 @@
         context: context
       };
 
-      // Utilize 'prop itself' : http://jsperf.com/hasownproperty-vs-in-vs-undefined/19
+      / Utilize 'prop itself' : http://jsperf.com/hasownproperty-vs-in-vs-undefined/19
       var hooks = STORAGE[type][hook];
       if (hooks) {
         hooks.push(hookObject);
@@ -235,11 +235,11 @@
       return type === 'filters' ? args[0] : true;
     }
 
-    // return all of the publicly available methods
+    / return all of the publicly available methods
     return MethodsAvailable;
   };
 
-  // instantiate
+  / instantiate
   acf.hooks = new EventManager();
 })(window);
 
@@ -270,21 +270,21 @@
       this.open();
     },
     render: function () {
-      // Extract vars.
+      / Extract vars.
       var title = this.get('title');
       var content = this.get('content');
       var toolbar = this.get('toolbar');
 
-      // Create element.
+      / Create element.
       var $el = $(['<div>', '<div class="acf-modal">', '<div class="acf-modal-title">', '<h2>' + title + '</h2>', '<button class="acf-modal-close" type="button"><span class="dashicons dashicons-no"></span></button>', '</div>', '<div class="acf-modal-content">' + content + '</div>', '<div class="acf-modal-toolbar">' + toolbar + '</div>', '</div>', '<div class="acf-modal-backdrop acf-modal-close"></div>', '</div>'].join(''));
 
-      // Update DOM.
+      / Update DOM.
       if (this.$el) {
         this.$el.replaceWith($el);
       }
       this.$el = $el;
 
-      // Trigger action.
+      / Trigger action.
       acf.doAction('append', $el);
     },
     update: function (props) {
@@ -363,7 +363,7 @@
 /***/ (() => {
 
 (function ($, undefined) {
-  // Cached regex to split keys for `addEvent`.
+  / Cached regex to split keys for `addEvent`.
   var delegateEventSplitter = /^(\S+)\s*(.*)$/;
 
   /**
@@ -380,13 +380,13 @@
    */
 
   var extend = function (protoProps) {
-    // vars
+    / vars
     var Parent = this;
     var Child;
 
-    // The constructor function for the new subclass is either defined by you
-    // (the "constructor" property in your `extend` definition), or defaulted
-    // by us to simply call the parent constructor.
+    / The constructor function for the new subclass is either defined by you
+    / (the "constructor" property in your `extend` definition), or defaulted
+    / by us to simply call the parent constructor.
     if (protoProps && protoProps.hasOwnProperty('constructor')) {
       Child = protoProps.constructor;
     } else {
@@ -395,19 +395,19 @@
       };
     }
 
-    // Add static properties to the constructor function, if supplied.
+    / Add static properties to the constructor function, if supplied.
     $.extend(Child, Parent);
 
-    // Set the prototype chain to inherit from `parent`, without calling
-    // `parent`'s constructor function and add the prototype properties.
+    / Set the prototype chain to inherit from `parent`, without calling
+    / `parent`'s constructor function and add the prototype properties.
     Child.prototype = Object.create(Parent.prototype);
     $.extend(Child.prototype, protoProps);
     Child.prototype.constructor = Child;
 
-    // Set a convenience property in case the parent's prototype is needed later.
-    //Child.prototype.__parent__ = Parent.prototype;
+    / Set a convenience property in case the parent's prototype is needed later.
+    /Child.prototype.__parent__ = Parent.prototype;
 
-    // return
+    / return
     return Child;
   };
 
@@ -424,21 +424,21 @@
    */
 
   var Model = acf.Model = function () {
-    // generate uique client id
+    / generate uique client id
     this.cid = acf.uniqueId('acf');
 
-    // set vars to avoid modifying prototype
+    / set vars to avoid modifying prototype
     this.data = $.extend(true, {}, this.data);
 
-    // pass props to setup function
+    / pass props to setup function
     this.setup.apply(this, arguments);
 
-    // store on element (allow this.setup to create this.$el)
+    / store on element (allow this.setup to create this.$el)
     if (this.$el && !this.$el.data('acf')) {
       this.$el.data('acf', this);
     }
 
-    // initialize
+    / initialize
     var initialize = function () {
       this.initialize();
       this.addEvents();
@@ -446,38 +446,38 @@
       this.addFilters();
     };
 
-    // initialize on action
+    / initialize on action
     if (this.wait && !acf.didAction(this.wait)) {
       this.addAction(this.wait, initialize);
 
-      // initialize now
+      / initialize now
     } else {
       initialize.apply(this);
     }
   };
 
-  // Attach all inheritable methods to the Model prototype.
+  / Attach all inheritable methods to the Model prototype.
   $.extend(Model.prototype, {
-    // Unique model id
+    / Unique model id
     id: '',
-    // Unique client id
+    / Unique client id
     cid: '',
-    // jQuery element
+    / jQuery element
     $el: null,
-    // Data specific to this instance
+    / Data specific to this instance
     data: {},
-    // toggle used when changing data
+    / toggle used when changing data
     busy: false,
     changed: false,
-    // Setup events hooks
+    / Setup events hooks
     events: {},
     actions: {},
     filters: {},
-    // class used to avoid nested event triggers
+    / class used to avoid nested event triggers
     eventScope: '',
-    // action to wait until initialize
+    / action to wait until initialize
     wait: false,
-    // action priority default
+    / action priority default
     priority: 10,
     /**
      *  get
@@ -523,23 +523,23 @@
      */
 
     set: function (name, value, silent) {
-      // bail if unchanged
+      / bail if unchanged
       var prevValue = this.get(name);
       if (prevValue == value) {
         return this;
       }
 
-      // set data
+      / set data
       this.data[name] = value;
 
-      // trigger events
+      / trigger events
       if (!silent) {
         this.changed = true;
         this.trigger('changed:' + name, [value, prevValue]);
         this.trigger('changed', [name, value, prevValue]);
       }
 
-      // return
+      / return
       return this;
     },
     /**
@@ -555,15 +555,15 @@
      */
 
     inherit: function (data) {
-      // allow jQuery
+      / allow jQuery
       if (data instanceof jQuery) {
         data = data.data();
       }
 
-      // extend
+      / extend
       $.extend(this.data, data);
 
-      // return
+      / return
       return this;
     },
     /**
@@ -733,17 +733,17 @@
 
     proxyEvent: function (callback) {
       return this.proxy(function (e) {
-        // validate
+        / validate
         if (!this.validateEvent(e)) {
           return;
         }
 
-        // construct args
+        / construct args
         var args = acf.arrayArgs(arguments);
         var extraArgs = args.slice(1);
         var eventArgs = [e, $(e.currentTarget)].concat(extraArgs);
 
-        // callback
+        / callback
         callback.apply(this, eventArgs);
       });
     },
@@ -762,57 +762,57 @@
      */
 
     on: function (a1, a2, a3, a4) {
-      // vars
+      / vars
       var $el, event, selector, callback, args;
 
-      // find args
+      / find args
       if (a1 instanceof jQuery) {
-        // 1. args( $el, event, selector, callback )
+        / 1. args( $el, event, selector, callback )
         if (a4) {
           $el = a1;
           event = a2;
           selector = a3;
           callback = a4;
 
-          // 2. args( $el, event, callback )
+          / 2. args( $el, event, callback )
         } else {
           $el = a1;
           event = a2;
           callback = a3;
         }
       } else {
-        // 3. args( event, selector, callback )
+        / 3. args( event, selector, callback )
         if (a3) {
           event = a1;
           selector = a2;
           callback = a3;
 
-          // 4. args( event, callback )
+          / 4. args( event, callback )
         } else {
           event = a1;
           callback = a2;
         }
       }
 
-      // element
+      / element
       $el = this.getEventTarget($el);
 
-      // modify callback
+      / modify callback
       if (typeof callback === 'string') {
         callback = this.proxyEvent(this[callback]);
       }
 
-      // modify event
+      / modify event
       event = event + '.' + this.cid;
 
-      // args
+      / args
       if (selector) {
         args = [event, selector, callback];
       } else {
         args = [event, callback];
       }
 
-      // on()
+      / on()
       $el.on.apply($el, args);
     },
     /**
@@ -829,48 +829,48 @@
      */
 
     off: function (a1, a2, a3) {
-      // vars
+      / vars
       var $el, event, selector, args;
 
-      // find args
+      / find args
       if (a1 instanceof jQuery) {
-        // 1. args( $el, event, selector )
+        / 1. args( $el, event, selector )
         if (a3) {
           $el = a1;
           event = a2;
           selector = a3;
 
-          // 2. args( $el, event )
+          / 2. args( $el, event )
         } else {
           $el = a1;
           event = a2;
         }
       } else {
-        // 3. args( event, selector )
+        / 3. args( event, selector )
         if (a2) {
           event = a1;
           selector = a2;
 
-          // 4. args( event )
+          / 4. args( event )
         } else {
           event = a1;
         }
       }
 
-      // element
+      / element
       $el = this.getEventTarget($el);
 
-      // modify event
+      / modify event
       event = event + '.' + this.cid;
 
-      // args
+      / args
       if (selector) {
         args = [event, selector];
       } else {
         args = [event];
       }
 
-      // off()
+      / off()
       $el.off.apply($el, args);
     },
     /**
@@ -947,16 +947,16 @@
      */
 
     addAction: function (name, callback, priority) {
-      //console.log('addAction', name, priority);
-      // defaults
+      /console.log('addAction', name, priority);
+      / defaults
       priority = priority || this.priority;
 
-      // modify callback
+      / modify callback
       if (typeof callback === 'string') {
         callback = this[callback];
       }
 
-      // add
+      / add
       acf.addAction(name, callback, priority, this);
     },
     /**
@@ -1008,15 +1008,15 @@
      */
 
     addFilter: function (name, callback, priority) {
-      // defaults
+      / defaults
       priority = priority || this.priority;
 
-      // modify callback
+      / modify callback
       if (typeof callback === 'string') {
         callback = this[callback];
       }
 
-      // add
+      / add
       acf.addFilter(name, callback, priority, this);
     },
     /**
@@ -1179,10 +1179,10 @@
     }
   });
 
-  // Set up inheritance for the model
+  / Set up inheritance for the model
   Model.extend = extend;
 
-  // Global model storage
+  / Global model storage
   acf.models = {};
 
   /**
@@ -1252,39 +1252,39 @@
       this.$el = $(this.tmpl());
     },
     initialize: function () {
-      // render
+      / render
       this.render();
 
-      // show
+      / show
       this.show();
     },
     render: function () {
-      // class
+      / class
       this.type(this.get('type'));
 
-      // text
+      / text
       this.html('<p>' + this.get('text') + '</p>');
 
-      // close
+      / close
       if (this.get('dismiss')) {
         this.$el.append('<a href="#" class="acf-notice-dismiss acf-icon -cancel small"></a>');
         this.$el.addClass('-dismiss');
       }
 
-      // timeout
+      / timeout
       var timeout = this.get('timeout');
       if (timeout) {
         this.away(timeout);
       }
     },
     update: function (props) {
-      // update
+      / update
       $.extend(this.data, props);
 
-      // re-initialize
+      / re-initialize
       this.initialize();
 
-      // refresh events
+      / refresh events
       this.removeEvents();
       this.addEvents();
     },
@@ -1308,16 +1308,16 @@
       }, timeout);
     },
     type: function (type) {
-      // remove prev type
+      / remove prev type
       var prevType = this.get('type');
       if (prevType) {
         this.$el.removeClass('-' + prevType);
       }
 
-      // add new type
+      / add new type
       this.$el.addClass('-' + type);
 
-      // backwards compatibility
+      / backwards compatibility
       if (type == 'error') {
         this.$el.addClass('acf-error-message');
       }
@@ -1335,14 +1335,14 @@
     }
   });
   acf.newNotice = function (props) {
-    // ensure object
+    / ensure object
     if (typeof props !== 'object') {
       props = {
         text: props
       };
     }
 
-    // instantiate
+    / instantiate
     return new Notice(props);
   };
   var noticeManager = new acf.Model({
@@ -1443,14 +1443,14 @@
       return ['<div id="acf-popup" role="dialog" tabindex="-1">', '<div class="acf-popup-box acf-box">', '<div class="title"><h3></h3><a href="#" class="acf-icon -cancel grey" data-event="close" aria-label="' + acf.__('Close modal') + '"></a></div>', '<div class="inner"></div>', '<div class="loading"><i class="acf-loading"></i></div>', '</div>', '<div class="bg" data-event="close"></div>', '</div>'].join('');
     },
     render: function () {
-      // Extract Vars.
+      / Extract Vars.
       var title = this.get('title');
       var content = this.get('content');
       var loading = this.get('loading');
       var width = this.get('width');
       var height = this.get('height');
 
-      // Update.
+      / Update.
       this.title(title);
       this.content(content);
       if (width) {
@@ -1461,7 +1461,7 @@
       }
       this.loading(loading);
 
-      // Trigger action.
+      / Trigger action.
       acf.doAction('append', this.$el);
     },
     /**
@@ -1557,24 +1557,24 @@
 
 (function ($, undefined) {
   acf.newTooltip = function (props) {
-    // ensure object
+    / ensure object
     if (typeof props !== 'object') {
       props = {
         text: props
       };
     }
 
-    // confirmRemove
+    / confirmRemove
     if (props.confirmRemove !== undefined) {
       props.textConfirm = acf.__('Remove');
       props.textCancel = acf.__('Cancel');
       return new TooltipConfirm(props);
 
-      // confirm
+      / confirm
     } else if (props.confirm !== undefined) {
       return new TooltipConfirm(props);
 
-      // default
+      / default
     } else {
       return new Tooltip(props);
     }
@@ -1593,16 +1593,16 @@
       this.$el = $(this.tmpl());
     },
     initialize: function () {
-      // render
+      / render
       this.render();
 
-      // append
+      / append
       this.show();
 
-      // position
+      / position
       this.position();
 
-      // timeout
+      / timeout
       var timeout = this.get('timeout');
       if (timeout) {
         setTimeout($.proxy(this.fade, this), timeout);
@@ -1622,10 +1622,10 @@
       this.$el.remove();
     },
     fade: function () {
-      // add class
+      / add class
       this.$el.addClass('acf-fade-up');
 
-      // remove
+      / remove
       this.setTimeout(function () {
         this.remove();
       }, 250);
@@ -1634,58 +1634,58 @@
       this.$el.html(html);
     },
     position: function () {
-      // vars
+      / vars
       var $tooltip = this.$el;
       var $target = this.get('target');
       if (!$target) return;
 
-      // Reset position.
+      / Reset position.
       $tooltip.removeClass('right left bottom top').css({
         top: 0,
         left: 0
       });
 
-      // Declare tollerance to edge of screen.
+      / Declare tollerance to edge of screen.
       var tolerance = 10;
 
-      // Find target position.
+      / Find target position.
       var targetWidth = $target.outerWidth();
       var targetHeight = $target.outerHeight();
       var targetTop = $target.offset().top;
       var targetLeft = $target.offset().left;
 
-      // Find tooltip position.
+      / Find tooltip position.
       var tooltipWidth = $tooltip.outerWidth();
       var tooltipHeight = $tooltip.outerHeight();
-      var tooltipTop = $tooltip.offset().top; // Should be 0, but WP media grid causes this to be 32 (toolbar padding).
+      var tooltipTop = $tooltip.offset().top; / Should be 0, but WP media grid causes this to be 32 (toolbar padding).
 
-      // Assume default top alignment.
+      / Assume default top alignment.
       var top = targetTop - tooltipHeight - tooltipTop;
       var left = targetLeft + targetWidth / 2 - tooltipWidth / 2;
 
-      // Check if too far left.
+      / Check if too far left.
       if (left < tolerance) {
         $tooltip.addClass('right');
         left = targetLeft + targetWidth;
         top = targetTop + targetHeight / 2 - tooltipHeight / 2 - tooltipTop;
 
-        // Check if too far right.
+        / Check if too far right.
       } else if (left + tooltipWidth + tolerance > $(window).width()) {
         $tooltip.addClass('left');
         left = targetLeft - tooltipWidth;
         top = targetTop + targetHeight / 2 - tooltipHeight / 2 - tooltipTop;
 
-        // Check if too far up.
+        / Check if too far up.
       } else if (top - $(window).scrollTop() < tolerance) {
         $tooltip.addClass('bottom');
         top = targetTop + targetHeight - tooltipTop;
 
-        // No colision with edges.
+        / No colision with edges.
       } else {
         $tooltip.addClass('top');
       }
 
-      // update css
+      / update css
       $tooltip.css({
         top: top,
         left: left
@@ -1708,81 +1708,81 @@
       'click [data-event="confirm"]': 'onConfirm'
     },
     addEvents: function () {
-      // add events
+      / add events
       acf.Model.prototype.addEvents.apply(this);
 
-      // vars
+      / vars
       var $document = $(document);
       var $target = this.get('target');
 
-      // add global 'cancel' click event
-      // - use timeout to avoid the current 'click' event triggering the onCancel function
+      / add global 'cancel' click event
+      / - use timeout to avoid the current 'click' event triggering the onCancel function
       this.setTimeout(function () {
         this.on($document, 'click', 'onCancel');
       });
 
-      // add target 'confirm' click event
-      // - allow setting to control this feature
+      / add target 'confirm' click event
+      / - allow setting to control this feature
       if (this.get('targetConfirm')) {
         this.on($target, 'click', 'onConfirm');
       }
     },
     removeEvents: function () {
-      // remove events
+      / remove events
       acf.Model.prototype.removeEvents.apply(this);
 
-      // vars
+      / vars
       var $document = $(document);
       var $target = this.get('target');
 
-      // remove custom events
+      / remove custom events
       this.off($document, 'click');
       this.off($target, 'click');
     },
     render: function () {
-      // defaults
+      / defaults
       var text = this.get('text') || acf.__('Are you sure?');
       var textConfirm = this.get('textConfirm') || acf.__('Yes');
       var textCancel = this.get('textCancel') || acf.__('No');
 
-      // html
+      / html
       var html = [text, '<a href="#" data-event="confirm">' + textConfirm + '</a>', '<a href="#" data-event="cancel">' + textCancel + '</a>'].join(' ');
 
-      // html
+      / html
       this.html(html);
 
-      // class
+      / class
       this.$el.addClass('-confirm');
     },
     onCancel: function (e, $el) {
-      // prevent default
+      / prevent default
       e.preventDefault();
       e.stopImmediatePropagation();
 
-      // callback
+      / callback
       var callback = this.get('cancel');
       var context = this.get('context') || this;
       callback.apply(context, arguments);
 
-      //remove
+      /remove
       this.remove();
     },
     onConfirm: function (e, $el) {
-      // Prevent event from propagating completely to allow "targetConfirm" to be clicked.
+      / Prevent event from propagating completely to allow "targetConfirm" to be clicked.
       e.preventDefault();
       e.stopImmediatePropagation();
 
-      // callback
+      / callback
       var callback = this.get('confirm');
       var context = this.get('context') || this;
       callback.apply(context, arguments);
 
-      //remove
+      /remove
       this.remove();
     }
   });
 
-  // storage
+  / storage
   acf.models.Tooltip = Tooltip;
   acf.models.TooltipConfirm = TooltipConfirm;
 
@@ -1809,25 +1809,25 @@
       'keyup .acf-js-tooltip': 'onKeyUp'
     },
     showTitle: function (e, $el) {
-      // vars
+      / vars
       var title = $el.attr('title');
 
-      // bail early if no title
+      / bail early if no title
       if (!title) {
         return;
       }
 
-      // clear title to avoid default browser tooltip
+      / clear title to avoid default browser tooltip
       $el.attr('title', '');
 
-      // create
+      / create
       if (!this.tooltip) {
         this.tooltip = acf.newTooltip({
           text: title,
           target: $el
         });
 
-        // update
+        / update
       } else {
         this.tooltip.update({
           text: title,
@@ -1836,10 +1836,10 @@
       }
     },
     hideTitle: function (e, $el) {
-      // hide tooltip
+      / hide tooltip
       this.tooltip.hide();
 
-      // restore title
+      / restore title
       $el.attr('title', this.tooltip.get('text'));
     },
     onKeyUp: function (e, $el) {
@@ -1871,10 +1871,10 @@
    *  @return	type Description.
    */
 
-  // The global acf object
+  / The global acf object
   var acf = {};
 
-  // Set as a browser global
+  / Set as a browser global
   window.acf = acf;
 
   /** @var object Data sent from PHP */
@@ -1983,45 +1983,45 @@
 
   var uniqidSeed = '';
   acf.uniqid = function (prefix, moreEntropy) {
-    //  discuss at: http://locutus.io/php/uniqid/
-    // original by: Kevin van Zonneveld (http://kvz.io)
-    //  revised by: Kankrelune (http://www.webfaktory.info/)
-    //      note 1: Uses an internal counter (in locutus global) to avoid collision
-    //   example 1: var $id = uniqid()
-    //   example 1: var $result = $id.length === 13
-    //   returns 1: true
-    //   example 2: var $id = uniqid('foo')
-    //   example 2: var $result = $id.length === (13 + 'foo'.length)
-    //   returns 2: true
-    //   example 3: var $id = uniqid('bar', true)
-    //   example 3: var $result = $id.length === (23 + 'bar'.length)
-    //   returns 3: true
+    /  discuss at: http://locutus.io/php/uniqid/
+    / original by: Kevin van Zonneveld (http://kvz.io)
+    /  revised by: Kankrelune (http://www.webfaktory.info/)
+    /      note 1: Uses an internal counter (in locutus global) to avoid collision
+    /   example 1: var $id = uniqid()
+    /   example 1: var $result = $id.length === 13
+    /   returns 1: true
+    /   example 2: var $id = uniqid('foo')
+    /   example 2: var $result = $id.length === (13 + 'foo'.length)
+    /   returns 2: true
+    /   example 3: var $id = uniqid('bar', true)
+    /   example 3: var $result = $id.length === (23 + 'bar'.length)
+    /   returns 3: true
     if (typeof prefix === 'undefined') {
       prefix = '';
     }
     var retId;
     var formatSeed = function (seed, reqWidth) {
-      seed = parseInt(seed, 10).toString(16); // to hex str
+      seed = parseInt(seed, 10).toString(16); / to hex str
       if (reqWidth < seed.length) {
-        // so long we split
+        / so long we split
         return seed.slice(seed.length - reqWidth);
       }
       if (reqWidth > seed.length) {
-        // so short we pad
+        / so short we pad
         return Array(1 + (reqWidth - seed.length)).join('0') + seed;
       }
       return seed;
     };
     if (!uniqidSeed) {
-      // init seed with big random int
+      / init seed with big random int
       uniqidSeed = Math.floor(Math.random() * 0x75bcd15);
     }
     uniqidSeed++;
-    retId = prefix; // start with prefix, add current milliseconds hex string
+    retId = prefix; / start with prefix, add current milliseconds hex string
     retId += formatSeed(parseInt(new Date().getTime() / 1000, 10), 8);
-    retId += formatSeed(uniqidSeed, 5); // add seed hex string
+    retId += formatSeed(uniqidSeed, 5); / add seed hex string
     if (moreEntropy) {
-      // for more entropy we add a float lower to 10
+      / for more entropy we add a float lower to 10
       retId += (Math.random() * 10).toFixed(8).toString();
     }
     return retId;
@@ -2100,7 +2100,7 @@
     return acf.strReplace('_', '-', str.toLowerCase());
   };
   acf.strSanitize = function (str, toLowerCase = true) {
-    // chars (https://jsperf.com/replace-foreign-characters)
+    / chars (https://jsperf.com/replace-foreign-characters)
     var map = {
       À: 'A',
       Á: 'A',
@@ -2313,7 +2313,7 @@
       ǽ: 'ae',
       Ǿ: 'O',
       ǿ: 'o',
-      // extra
+      / extra
       ' ': '_',
       "'": '',
       '?': '',
@@ -2334,21 +2334,21 @@
       ')': ''
     };
 
-    // vars
+    / vars
     var nonWord = /\W/g;
     var mapping = function (c) {
       return map[c] !== undefined ? map[c] : c;
     };
 
-    // replace
+    / replace
     str = str.replace(nonWord, mapping);
 
-    // lowercase
+    / lowercase
     if (toLowerCase) {
       str = str.toLowerCase();
     }
 
-    // return
+    / return
     return str;
   };
 
@@ -2365,11 +2365,11 @@
    */
 
   acf.strMatch = function (s1, s2) {
-    // vars
+    / vars
     var val = 0;
     var min = Math.min(s1.length, s2.length);
 
-    // loop
+    / loop
     for (var i = 0; i < min; i++) {
       if (s1[i] !== s2[i]) {
         break;
@@ -2377,7 +2377,7 @@
       val++;
     }
 
-    // return
+    / return
     return val;
   };
 
@@ -2403,11 +2403,11 @@
     });
   };
 
-  // Tests.
-  //console.log( acf.strEscape('Test 1') );
-  //console.log( acf.strEscape('Test & 1') );
-  //console.log( acf.strEscape('Test\'s &amp; 1') );
-  //console.log( acf.strEscape('<script>js</script>') );
+  / Tests.
+  /console.log( acf.strEscape('Test 1') );
+  /console.log( acf.strEscape('Test & 1') );
+  /console.log( acf.strEscape('Test\'s &amp; 1') );
+  /console.log( acf.strEscape('<script>js</script>') );
 
   /**
    * Unescapes HTML entities from a string.
@@ -2431,11 +2431,11 @@
     });
   };
 
-  // Tests.
-  //console.log( acf.strUnescape( acf.strEscape('Test 1') ) );
-  //console.log( acf.strUnescape( acf.strEscape('Test & 1') ) );
-  //console.log( acf.strUnescape( acf.strEscape('Test\'s &amp; 1') ) );
-  //console.log( acf.strUnescape( acf.strEscape('<script>js</script>') ) );
+  / Tests.
+  /console.log( acf.strUnescape( acf.strEscape('Test 1') ) );
+  /console.log( acf.strUnescape( acf.strEscape('Test & 1') ) );
+  /console.log( acf.strUnescape( acf.strEscape('Test\'s &amp; 1') ) );
+  /console.log( acf.strUnescape( acf.strEscape('<script>js</script>') ) );
 
   /**
    * Escapes HTML entities from a string.
@@ -2463,10 +2463,10 @@
     });
   };
 
-  // Tests.
-  //console.log( acf.escHtml('<script>js</script>') );
-  //console.log( acf.escHtml( acf.strEscape('<script>js</script>') ) );
-  //console.log( acf.escHtml( '<script>js1</script><script>js2</script>' ) );
+  / Tests.
+  /console.log( acf.escHtml('<script>js</script>') );
+  /console.log( acf.escHtml( acf.strEscape('<script>js</script>') ) );
+  /console.log( acf.escHtml( '<script>js1</script><script>js2</script>' ) );
 
   /**
    * Encode a string potentially containing HTML into it's HTML entities equivalent.
@@ -2588,59 +2588,59 @@
    */
 
   var buildObject = function (obj, name, value) {
-    // replace [] with placeholder
+    / replace [] with placeholder
     name = name.replace('[]', '[%%index%%]');
 
-    // vars
+    / vars
     var keys = name.match(/([^\[\]])+/g);
     if (!keys) return;
     var length = keys.length;
     var ref = obj;
 
-    // loop
+    / loop
     for (var i = 0; i < length; i++) {
-      // vars
+      / vars
       var key = String(keys[i]);
 
-      // value
+      / value
       if (i == length - 1) {
-        // %%index%%
+        / %%index%%
         if (key === '%%index%%') {
           ref.push(value);
 
-          // default
+          / default
         } else {
           ref[key] = value;
         }
 
-        // path
+        / path
       } else {
-        // array
+        / array
         if (keys[i + 1] === '%%index%%') {
           if (!acf.isArray(ref[key])) {
             ref[key] = [];
           }
 
-          // object
+          / object
         } else {
           if (!acf.isObject(ref[key])) {
             ref[key] = {};
           }
         }
 
-        // crawl
+        / crawl
         ref = ref[key];
       }
     }
   };
   acf.serialize = function ($el, prefix) {
-    // vars
+    / vars
     var obj = {};
     var inputs = acf.serializeArray($el);
 
-    // prefix
+    / prefix
     if (prefix !== undefined) {
-      // filter and modify
+      / filter and modify
       inputs = inputs.filter(function (item) {
         return item.name.indexOf(prefix) === 0;
       }).map(function (item) {
@@ -2649,12 +2649,12 @@
       });
     }
 
-    // loop
+    / loop
     for (var i = 0; i < inputs.length; i++) {
       buildObject(obj, inputs[i].name, inputs[i].value);
     }
 
-    // return
+    / return
     return obj;
   };
 
@@ -2686,26 +2686,26 @@
    *  @return	object
    */
   acf.serializeForAjax = function ($el) {
-    // vars
+    / vars
     var data = {};
     var index = {};
 
-    // Serialize inputs.
+    / Serialize inputs.
     var inputs = acf.serializeArray($el);
 
-    // Loop over inputs and build data.
+    / Loop over inputs and build data.
     inputs.map(function (item) {
-      // Append to array.
+      / Append to array.
       if (item.name.slice(-2) === '[]') {
         data[item.name] = data[item.name] || [];
         data[item.name].push(item.value);
-        // Append
+        / Append
       } else {
         data[item.name] = item.value;
       }
     });
 
-    // return
+    / return
     return data;
   };
 
@@ -2728,7 +2728,7 @@
   */
 
   acf.addAction = function (action, callback, priority, context) {
-    //action = prefixAction(action);
+    /action = prefixAction(action);
     acf.hooks.addAction.apply(this, arguments);
     return this;
   };
@@ -2746,7 +2746,7 @@
    */
 
   acf.removeAction = function (action, callback) {
-    //action = prefixAction(action);
+    /action = prefixAction(action);
     acf.hooks.removeAction.apply(this, arguments);
     return this;
   };
@@ -2764,10 +2764,10 @@
    */
 
   var actionHistory = {};
-  //var currentAction = false;
+  /var currentAction = false;
   acf.doAction = function (action) {
-    //action = prefixAction(action);
-    //currentAction = action;
+    /action = prefixAction(action);
+    /currentAction = action;
     actionHistory[action] = 1;
     acf.hooks.doAction.apply(this, arguments);
     actionHistory[action] = 0;
@@ -2787,7 +2787,7 @@
    */
 
   acf.doingAction = function (action) {
-    //action = prefixAction(action);
+    /action = prefixAction(action);
     return actionHistory[action] === 1;
   };
 
@@ -2804,7 +2804,7 @@
    */
 
   acf.didAction = function (action) {
-    //action = prefixAction(action);
+    /action = prefixAction(action);
     return actionHistory[action] !== undefined;
   };
 
@@ -2842,7 +2842,7 @@
    */
 
   acf.addFilter = function (action) {
-    //action = prefixAction(action);
+    /action = prefixAction(action);
     acf.hooks.addFilter.apply(this, arguments);
     return this;
   };
@@ -2860,7 +2860,7 @@
    */
 
   acf.removeFilter = function (action) {
-    //action = prefixAction(action);
+    /action = prefixAction(action);
     acf.hooks.removeFilter.apply(this, arguments);
     return this;
   };
@@ -2878,7 +2878,7 @@
    */
 
   acf.applyFilters = function (action) {
-    //action = prefixAction(action);
+    /action = prefixAction(action);
     return acf.hooks.applyFilters.apply(this, arguments);
   };
 
@@ -2920,8 +2920,8 @@
   };
   */
 
-  // Preferences
-  // - use try/catch to avoid JS error if cookies are disabled on front-end form
+  / Preferences
+  / - use try/catch to avoid JS error if cookies are disabled on front-end form
   try {
     var preferences = JSON.parse(localStorage.getItem('acf')) || {};
   } catch (e) {
@@ -3017,28 +3017,28 @@
    */
 
   acf.remove = function (props) {
-    // allow jQuery
+    / allow jQuery
     if (props instanceof jQuery) {
       props = {
         target: props
       };
     }
 
-    // defaults
+    / defaults
     props = acf.parseArgs(props, {
       target: false,
       endHeight: 0,
       complete: function () {}
     });
 
-    // action
+    / action
     acf.doAction('remove', props.target);
 
-    // tr
+    / tr
     if (props.target.is('tr')) {
       removeTr(props);
 
-      // div
+      / div
     } else {
       removeDiv(props);
     }
@@ -3057,19 +3057,19 @@
    */
 
   var removeDiv = function (props) {
-    // vars
+    / vars
     var $el = props.target;
     var height = $el.height();
     var width = $el.width();
     var margin = $el.css('margin');
     var outerHeight = $el.outerHeight(true);
-    var style = $el.attr('style') + ''; // needed to copy
+    var style = $el.attr('style') + ''; / needed to copy
 
-    // wrap
+    / wrap
     $el.wrap('<div class="acf-temp-remove" style="height:' + outerHeight + 'px"></div>');
     var $wrap = $el.parent();
 
-    // set pos
+    / set pos
     $el.css({
       height: height,
       width: width,
@@ -3077,7 +3077,7 @@
       position: 'absolute'
     });
 
-    // fade wrap
+    / fade wrap
     setTimeout(function () {
       $wrap.css({
         opacity: 0,
@@ -3085,7 +3085,7 @@
       });
     }, 50);
 
-    // remove
+    / remove
     setTimeout(function () {
       $el.attr('style', style);
       $wrap.remove();
@@ -3106,34 +3106,34 @@
    */
 
   var removeTr = function (props) {
-    // vars
+    / vars
     var $tr = props.target;
     var height = $tr.height();
     var children = $tr.children().length;
 
-    // create dummy td
+    / create dummy td
     var $td = $('<td class="acf-temp-remove" style="padding:0; height:' + height + 'px" colspan="' + children + '"></td>');
 
-    // fade away tr
+    / fade away tr
     $tr.addClass('acf-remove-element');
 
-    // update HTML after fade animation
+    / update HTML after fade animation
     setTimeout(function () {
       $tr.html($td);
     }, 251);
 
-    // allow .acf-temp-remove to exist before changing CSS
+    / allow .acf-temp-remove to exist before changing CSS
     setTimeout(function () {
-      // remove class
+      / remove class
       $tr.removeClass('acf-remove-element');
 
-      // collapse
+      / collapse
       $td.css({
         height: props.endHeight
       });
     }, 300);
 
-    // remove
+    / remove
     setTimeout(function () {
       $tr.remove();
       props.complete();
@@ -3153,14 +3153,14 @@
    */
 
   acf.duplicate = function (args) {
-    // allow jQuery
+    / allow jQuery
     if (args instanceof jQuery) {
       args = {
         target: args
       };
     }
 
-    // defaults
+    / defaults
     args = acf.parseArgs(args, {
       target: false,
       search: '',
@@ -3173,26 +3173,26 @@
       }
     });
 
-    // compatibility
+    / compatibility
     args.target = args.target || args.$el;
 
-    // vars
+    / vars
     var $el = args.target;
 
-    // search
+    / search
     args.search = args.search || $el.attr('data-id');
     args.replace = args.replace || acf.uniqid();
 
-    // before
-    // - allow acf to modify DOM
-    // - fixes bug where select field option is not selected
+    / before
+    / - allow acf to modify DOM
+    / - fixes bug where select field option is not selected
     args.before($el);
     acf.doAction('before_duplicate', $el);
 
-    // clone
+    / clone
     var $el2 = $el.clone();
 
-    // rename
+    / rename
     if (args.rename) {
       acf.rename({
         target: $el2,
@@ -3202,28 +3202,28 @@
       });
     }
 
-    // remove classes
+    / remove classes
     $el2.removeClass('acf-clone');
     $el2.find('.ui-sortable').removeClass('ui-sortable');
 
-    // remove any initialised select2s prevent the duplicated object stealing the previous select2.
+    / remove any initialised select2s prevent the duplicated object stealing the previous select2.
     $el2.find('[data-select2-id]').removeAttr('data-select2-id');
     $el2.find('.select2').remove();
 
-    // subfield select2 renames happen after init and contain a duplicated ID. force change those IDs to prevent this.
+    / subfield select2 renames happen after init and contain a duplicated ID. force change those IDs to prevent this.
     $el2.find('.acf-is-subfields select[data-ui="1"]').each(function () {
       $(this).prop('id', $(this).prop('id').replace('acf_fields', acf.uniqid('duplicated_') + '_acf_fields'));
     });
 
-    // remove tab wrapper to ensure proper init
+    / remove tab wrapper to ensure proper init
     $el2.find('.acf-field-settings > .acf-tab-wrap').remove();
 
-    // after
-    // - allow acf to modify DOM
+    / after
+    / - allow acf to modify DOM
     args.after($el, $el2);
     acf.doAction('after_duplicate', $el, $el2);
 
-    // append
+    / append
     args.append($el, $el2);
 
     /**
@@ -3237,10 +3237,10 @@
      */
     acf.doAction('duplicate', $el, $el2);
 
-    // append
+    / append
     acf.doAction('append', $el2);
 
-    // return
+    / return
     return $el2;
   };
 
@@ -3257,14 +3257,14 @@
    */
 
   acf.rename = function (args) {
-    // Allow jQuery param.
+    / Allow jQuery param.
     if (args instanceof jQuery) {
       args = {
         target: args
       };
     }
 
-    // Apply default args.
+    / Apply default args.
     args = acf.parseArgs(args, {
       target: false,
       destructive: false,
@@ -3273,10 +3273,10 @@
       replacer: null
     });
 
-    // Extract args.
+    / Extract args.
     var $el = args.target;
 
-    // Provide backup for empty args.
+    / Provide backup for empty args.
     if (!args.search) {
       args.search = $el.attr('data-id');
     }
@@ -3289,19 +3289,19 @@
       };
     }
 
-    // Callback function for jQuery replacing.
+    / Callback function for jQuery replacing.
     var withReplacer = function (name) {
       return function (i, value) {
         return args.replacer(name, value, args.search, args.replace);
       };
     };
 
-    // Destructive Replace.
+    / Destructive Replace.
     if (args.destructive) {
       var html = acf.strReplace(args.search, args.replace, $el.outerHTML());
       $el.replaceWith(html);
 
-      // Standard Replace.
+      / Standard Replace.
     } else {
       $el.attr('data-id', args.replace);
       $el.find('[id*="' + args.search + '"]').attr('id', withReplacer('id'));
@@ -3309,7 +3309,7 @@
       $el.find('[name*="' + args.search + '"]').attr('name', withReplacer('name'));
     }
 
-    // return
+    / return
     return $el;
   };
 
@@ -3323,7 +3323,7 @@
    * @return Object The prepared data.
    */
   acf.prepareForAjax = function (data, use_global_nonce = false) {
-    // Set a default nonce if we don't have one already.
+    / Set a default nonce if we don't have one already.
     if (use_global_nonce || 'undefined' === typeof data.nonce) {
       data.nonce = acf.get('nonce');
     }
@@ -3332,7 +3332,7 @@
       data.lang = acf.get('language');
     }
 
-    // Filter for 3rd party customization.
+    / Filter for 3rd party customization.
     data = acf.applyFilters('prepare_for_ajax', data);
     return data;
   };
@@ -3416,29 +3416,29 @@
    */
 
   acf.val = function ($input, value, silent) {
-    // vars
+    / vars
     var prevValue = $input.val();
 
-    // bail if no change
+    / bail if no change
     if (value === prevValue) {
       return false;
     }
 
-    // update value
+    / update value
     $input.val(value);
 
-    // prevent select elements displaying blank value if option doesn't exist
+    / prevent select elements displaying blank value if option doesn't exist
     if ($input.is('select') && $input.val() === null) {
       $input.val(prevValue);
       return false;
     }
 
-    // update with trigger
+    / update with trigger
     if (silent !== true) {
       $input.trigger('change');
     }
 
-    // return
+    / return
     return true;
   };
 
@@ -3455,23 +3455,23 @@
    */
 
   acf.show = function ($el, lockKey) {
-    // unlock
+    / unlock
     if (lockKey) {
       acf.unlock($el, 'hidden', lockKey);
     }
 
-    // bail early if $el is still locked
+    / bail early if $el is still locked
     if (acf.isLocked($el, 'hidden')) {
-      //console.log( 'still locked', getLocks( $el, 'hidden' ));
+      /console.log( 'still locked', getLocks( $el, 'hidden' ));
       return false;
     }
 
-    // $el is hidden, remove class and return true due to change in visibility
+    / $el is hidden, remove class and return true due to change in visibility
     if ($el.hasClass('acf-hidden')) {
       $el.removeClass('acf-hidden');
       return true;
 
-      // $el is visible, return false due to no change in visibility
+      / $el is visible, return false due to no change in visibility
     } else {
       return false;
     }
@@ -3490,16 +3490,16 @@
    */
 
   acf.hide = function ($el, lockKey) {
-    // lock
+    / lock
     if (lockKey) {
       acf.lock($el, 'hidden', lockKey);
     }
 
-    // $el is hidden, return false due to no change in visibility
+    / $el is hidden, return false due to no change in visibility
     if ($el.hasClass('acf-hidden')) {
       return false;
 
-      // $el is visible, add class and return true due to change in visibility
+      / $el is visible, add class and return true due to change in visibility
     } else {
       $el.addClass('acf-hidden');
       return true;
@@ -3551,27 +3551,27 @@
    */
 
   var enable = function ($el, lockKey) {
-    // check class. Allow .acf-disabled to overrule all JS
+    / check class. Allow .acf-disabled to overrule all JS
     if ($el.hasClass('acf-disabled')) {
       return false;
     }
 
-    // unlock
+    / unlock
     if (lockKey) {
       acf.unlock($el, 'disabled', lockKey);
     }
 
-    // bail early if $el is still locked
+    / bail early if $el is still locked
     if (acf.isLocked($el, 'disabled')) {
       return false;
     }
 
-    // $el is disabled, remove prop and return true due to change
+    / $el is disabled, remove prop and return true due to change
     if ($el.prop('disabled')) {
       $el.prop('disabled', false);
       return true;
 
-      // $el is enabled, return false due to no change
+      / $el is enabled, return false due to no change
     } else {
       return false;
     }
@@ -3590,13 +3590,13 @@
    */
 
   acf.enable = function ($el, lockKey) {
-    // enable single input
+    / enable single input
     if ($el.attr('name')) {
       return enable($el, lockKey);
     }
 
-    // find and enable child inputs
-    // return true if any inputs have changed
+    / find and enable child inputs
+    / return true if any inputs have changed
     var results = false;
     $el.find('[name]').each(function () {
       var result = enable($(this), lockKey);
@@ -3620,16 +3620,16 @@
    */
 
   var disable = function ($el, lockKey) {
-    // lock
+    / lock
     if (lockKey) {
       acf.lock($el, 'disabled', lockKey);
     }
 
-    // $el is disabled, return false due to no change
+    / $el is disabled, return false due to no change
     if ($el.prop('disabled')) {
       return false;
 
-      // $el is enabled, add prop and return true due to change
+      / $el is enabled, add prop and return true due to change
     } else {
       $el.prop('disabled', true);
       return true;
@@ -3649,13 +3649,13 @@
    */
 
   acf.disable = function ($el, lockKey) {
-    // disable single input
+    / disable single input
     if ($el.attr('name')) {
       return disable($el, lockKey);
     }
 
-    // find and enable child inputs
-    // return true if any inputs have changed
+    / find and enable child inputs
+    / return true if any inputs have changed
     var results = false;
     $el.find('[name]').each(function () {
       var result = disable($(this), lockKey);
@@ -3723,33 +3723,33 @@
    */
 
   acf.getFileInputData = function ($input, callback) {
-    // vars
+    / vars
     var value = $input.val();
 
-    // bail early if no value
+    / bail early if no value
     if (!value) {
       return false;
     }
 
-    // data
+    / data
     var data = {
       url: value
     };
 
-    // modern browsers
+    / modern browsers
     var file = $input[0].files.length ? acf.isget($input[0].files, 0) : false;
     if (file) {
-      // update data
+      / update data
       data.size = file.size;
       data.type = file.type;
 
-      // image
+      / image
       if (file.type.indexOf('image') > -1) {
-        // vars
+        / vars
         var windowURL = window.URL || window.webkitURL;
         var img = new Image();
         img.onload = function () {
-          // update
+          / update
           data.width = this.width;
           data.height = this.height;
           callback(data);
@@ -3822,12 +3822,12 @@
    */
   acf.getXhrError = function (xhr) {
     if (xhr.responseJSON) {
-      // Responses via `return new WP_Error();`
+      / Responses via `return new WP_Error();`
       if (xhr.responseJSON.message) {
         return xhr.responseJSON.message;
       }
 
-      // Responses via `wp_send_json_error();`.
+      / Responses via `wp_send_json_error();`.
       if (xhr.responseJSON.data && xhr.responseJSON.data.error) {
         return xhr.responseJSON.data.error;
       }
@@ -3851,46 +3851,46 @@
    */
 
   acf.renderSelect = function ($select, choices) {
-    // vars
+    / vars
     var value = $select.val();
     var values = [];
 
-    // callback
+    / callback
     var crawl = function (items) {
-      // vars
+      / vars
       var itemsHtml = '';
 
-      // loop
+      / loop
       items.map(function (item) {
-        // vars
+        / vars
         var text = item.text || item.label || '';
         var id = item.id || item.value || '';
 
-        // append
+        / append
         values.push(id);
 
-        //  optgroup
+        /  optgroup
         if (item.children) {
           itemsHtml += '<optgroup label="' + acf.escAttr(text) + '">' + crawl(item.children) + '</optgroup>';
 
-          // option
+          / option
         } else {
           itemsHtml += '<option value="' + acf.escAttr(id) + '"' + (item.disabled ? ' disabled="disabled"' : '') + '>' + acf.strEscape(text) + '</option>';
         }
       });
-      // return
+      / return
       return itemsHtml;
     };
 
-    // update HTML
+    / update HTML
     $select.html(crawl(choices));
 
-    // update value
+    / update value
     if (values.indexOf(value) > -1) {
       $select.val(value);
     }
 
-    // return selected value
+    / return selected value
     return $select.val();
   };
 
@@ -3945,7 +3945,7 @@
       setLocks($el, type, locks);
     }
 
-    // return true if is unlocked (no locks)
+    / return true if is unlocked (no locks)
     return locks.length === 0;
   };
 
@@ -4087,11 +4087,11 @@
    * @param	function callback The callback function.
    */
   acf.onceInView = function () {
-    // Define list.
+    / Define list.
     var items = [];
     var id = 0;
 
-    // Define check function.
+    / Define check function.
     var check = function () {
       items.forEach(function (item) {
         if (acf.isInView(item.el)) {
@@ -4101,17 +4101,17 @@
       });
     };
 
-    // And create a debounced version.
+    / And create a debounced version.
     var debounced = acf.debounce(check, 300);
 
-    // Define add function.
+    / Define add function.
     var push = function (el, callback) {
-      // Add event listener.
+      / Add event listener.
       if (!items.length) {
         $(window).on('scroll resize', debounced).on('acfrefresh orientationchange', check);
       }
 
-      // Append to list.
+      / Append to list.
       items.push({
         id: id++,
         el: el,
@@ -4119,25 +4119,25 @@
       });
     };
 
-    // Define remove function.
+    / Define remove function.
     var pop = function (id) {
-      // Remove from list.
+      / Remove from list.
       items = items.filter(function (item) {
         return item.id !== id;
       });
 
-      // Clean up listener.
+      / Clean up listener.
       if (!items.length) {
         $(window).off('scroll resize', debounced).off('acfrefresh orientationchange', check);
       }
     };
 
-    // Define returned function.
+    / Define returned function.
     return function (el, callback) {
-      // Allow jQuery object.
+      / Allow jQuery object.
       if (el instanceof jQuery) el = el[0];
 
-      // Execute callback if already in view or add to watch list.
+      / Execute callback if already in view or add to watch list.
       if (acf.isInView(el)) {
         callback.apply(this);
       } else {
@@ -4179,10 +4179,10 @@
   acf.focusAttention = function ($el) {
     var wait = 1000;
 
-    // Apply class to focus attention.
+    / Apply class to focus attention.
     $el.addClass('acf-attention -focused');
 
-    // Scroll to element if needed.
+    / Scroll to element if needed.
     var scrollTime = 500;
     if (!acf.isInView($el)) {
       $('body, html').animate({
@@ -4191,7 +4191,7 @@
       wait += scrollTime;
     }
 
-    // Remove class after $wait amount of time.
+    / Remove class after $wait amount of time.
     var fadeTime = 250;
     setTimeout(function () {
       $el.removeClass('-focused');
@@ -4211,16 +4211,16 @@
    * @return	type Description.
    */
   acf.onFocus = function ($el, callback) {
-    // Only run once per element.
-    // if( $el.data('acf.onFocus') ) {
-    // 	return false;
-    // }
+    / Only run once per element.
+    / if( $el.data('acf.onFocus') ) {
+    / 	return false;
+    / }
 
-    // Vars.
+    / Vars.
     var ignoreBlur = false;
     var focus = false;
 
-    // Functions.
+    / Functions.
     var onFocus = function () {
       ignoreBlur = true;
       setTimeout(function () {
@@ -4235,12 +4235,12 @@
     };
     var addEvents = function () {
       $(document).on('click', onBlur);
-      //$el.on('acfBlur', onBlur);
+      /$el.on('acfBlur', onBlur);
       $el.on('blur', 'input, select, textarea', onBlur);
     };
     var removeEvents = function () {
       $(document).off('click', onBlur);
-      //$el.off('acfBlur', onBlur);
+      /$el.off('acfBlur', onBlur);
       $el.off('blur', 'input, select, textarea', onBlur);
     };
     var setFocus = function (value) {
@@ -4256,11 +4256,11 @@
       callback(value);
     };
 
-    // Add events and set data.
+    / Add events and set data.
     $el.on('click', onFocus);
-    //$el.on('acfFocus', onFocus);
+    /$el.on('acfFocus', onFocus);
     $el.on('focus', 'input, select, textarea', onFocus);
-    //$el.data('acf.onFocus', true);
+    /$el.data('acf.onFocus', true);
   };
 
   /**
@@ -4272,7 +4272,7 @@
    * @returns void
    */
   acf.disableForm = function (e) {
-    // Disable submit button.
+    / Disable submit button.
     if (e.submitter) e.submitter.classList.add('disabled');
   };
 
@@ -4366,12 +4366,12 @@
     if (acf.get('debug')) console.log.apply(null, arguments);
   };
 
-  // Set up actions from events
+  / Set up actions from events
   $(document).ready(function () {
     acf.doAction('ready');
   });
   $(window).on('load', function () {
-    // Use timeout to ensure action runs after Gutenberg has modified DOM elements during "DOMContentLoaded".
+    / Use timeout to ensure action runs after Gutenberg has modified DOM elements during "DOMContentLoaded".
     setTimeout(function () {
       acf.doAction('load');
     });
@@ -4394,34 +4394,34 @@
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -4433,7 +4433,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -4450,7 +4450,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });

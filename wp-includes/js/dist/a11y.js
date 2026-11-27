@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -18,7 +18,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -35,7 +35,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -55,10 +55,10 @@ __webpack_require__.d(__webpack_exports__, {
   speak: () => (/* reexport */ speak)
 });
 
-;// external ["wp","domReady"]
+;/ external ["wp","domReady"]
 const external_wp_domReady_namespaceObject = window["wp"]["domReady"];
 var external_wp_domReady_default = /*#__PURE__*/__webpack_require__.n(external_wp_domReady_namespaceObject);
-;// ./node_modules/@wordpress/a11y/build-module/script/add-container.js
+;/ ./node_modules/@wordpress/a11y/build-module/script/add-container.js
 /**
  * Build the live regions markup.
  *
@@ -83,9 +83,9 @@ function addContainer(ariaLive = 'polite') {
   return container;
 }
 
-;// external ["wp","i18n"]
+;/ external ["wp","i18n"]
 const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
-;// ./node_modules/@wordpress/a11y/build-module/script/add-intro-text.js
+;/ ./node_modules/@wordpress/a11y/build-module/script/add-intro-text.js
 /**
  * WordPress dependencies
  */
@@ -115,7 +115,7 @@ function addIntroText() {
   return introText;
 }
 
-;// ./node_modules/@wordpress/a11y/build-module/shared/clear.js
+;/ ./node_modules/@wordpress/a11y/build-module/shared/clear.js
 /**
  * Clears the a11y-speak-region elements and hides the explanatory text.
  */
@@ -126,13 +126,13 @@ function clear() {
     regions[i].textContent = '';
   }
 
-  // Make sure the explanatory text is hidden from assistive technologies.
+  / Make sure the explanatory text is hidden from assistive technologies.
   if (introText) {
     introText.setAttribute('hidden', 'hidden');
   }
 }
 
-;// ./node_modules/@wordpress/a11y/build-module/shared/filter-message.js
+;/ ./node_modules/@wordpress/a11y/build-module/shared/filter-message.js
 let previousMessage = '';
 
 /**
@@ -163,7 +163,7 @@ function filterMessage(message) {
   return message;
 }
 
-;// ./node_modules/@wordpress/a11y/build-module/shared/index.js
+;/ ./node_modules/@wordpress/a11y/build-module/shared/index.js
 /**
  * Internal dependencies
  */
@@ -181,10 +181,10 @@ function filterMessage(message) {
  * ```js
  * import { speak } from '@wordpress/a11y';
  *
- * // For polite messages that shouldn't interrupt what screen readers are currently announcing.
+ * / For polite messages that shouldn't interrupt what screen readers are currently announcing.
  * speak( 'The message you want to send to the ARIA live region' );
  *
- * // For assertive messages that should interrupt what screen readers are currently announcing.
+ * / For assertive messages that should interrupt what screen readers are currently announcing.
  * speak( 'The message you want to send to the ARIA live region', 'assertive' );
  * ```
  */
@@ -213,7 +213,7 @@ function speak(message, ariaLive) {
   }
 }
 
-;// ./node_modules/@wordpress/a11y/build-module/index.js
+;/ ./node_modules/@wordpress/a11y/build-module/index.js
 /**
  * WordPress dependencies
  */

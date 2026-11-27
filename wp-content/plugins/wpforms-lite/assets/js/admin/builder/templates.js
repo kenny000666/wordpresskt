@@ -65,7 +65,7 @@ WPForms.Admin.Builder.Templates = WPForms.Admin.Builder.Templates || ( function(
 					? field.label.toString().trim()
 					: wpforms_builder.field + ' #' + key;
 
-				// Add data for Name field in "extended" format (Full, First, Middle and Last).
+				/ Add data for Name field in "extended" format (Full, First, Middle and Last).
 				_.each( wpforms_builder.name_field_formats, function( formatLabel, valueSlug ) {
 					if ( -1 !== field.format.indexOf( valueSlug ) || valueSlug === 'full' ) {
 						extendedFieldsList[ counter++ ] = {
@@ -98,7 +98,7 @@ WPForms.Admin.Builder.Templates = WPForms.Admin.Builder.Templates || ( function(
 		 * @since 1.4.8
 		 */
 		init() {
-			// Do that when DOM is ready.
+			/ Do that when DOM is ready.
 			$( app.ready );
 		},
 
@@ -150,7 +150,7 @@ WPForms.Admin.Builder.Templates = WPForms.Admin.Builder.Templates || ( function(
 
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

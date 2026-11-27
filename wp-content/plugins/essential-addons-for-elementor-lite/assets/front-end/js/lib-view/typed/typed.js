@@ -8,45 +8,45 @@
 	else
 		root["Typed"] = factory();
 })(this, function() {
-return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
+return /******/ (function(modules) { / webpackBootstrap
+/******/ 	/ The module cache
 /******/ 	var installedModules = {};
 /******/
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		if(installedModules[moduleId])
 /******/ 			return installedModules[moduleId].exports;
 /******/
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			exports: {},
 /******/ 			id: moduleId,
 /******/ 			loaded: false
 /******/ 		};
 /******/
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/
-/******/ 		// Flag the module as loaded
+/******/ 		/ Flag the module as loaded
 /******/ 		module.loaded = true;
 /******/
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/
 /******/
-/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	/ expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
 /******/
-/******/ 	// expose the module cache
+/******/ 	/ expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
 /******/
-/******/ 	// __webpack_public_path__
+/******/ 	/ __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
-/******/ 	// Load entry module and return exports
+/******/ 	/ Load entry module and return exports
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
@@ -79,9 +79,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function Typed(elementId, options) {
 	    _classCallCheck(this, Typed);
 	
-	    // Initialize it up
+	    / Initialize it up
 	    _initializerJs.initializer.load(this, options, elementId);
-	    // All systems go!
+	    / All systems go!
 	    this.begin();
 	  }
 	
@@ -180,11 +180,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	      this.insertCursor();
 	      if (this.bindInputFocusEvents) this.bindFocusEvents();
 	      this.timeout = setTimeout(function () {
-	        // Check if there is some text in the element, if yes start by backspacing the default message
+	        / Check if there is some text in the element, if yes start by backspacing the default message
 	        if (!_this.currentElContent || _this.currentElContent.length === 0) {
 	          _this.typewrite(_this.strings[_this.sequence[_this.arrayPos]], _this.strPos);
 	        } else {
-	          // Start typing
+	          / Start typing
 	          _this.backspace(_this.currentElContent, _this.currentElContent.length);
 	        }
 	      }, this.startDelay);
@@ -214,38 +214,38 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return;
 	      }
 	
-	      // contain typing function in a timeout humanize'd delay
+	      / contain typing function in a timeout humanize'd delay
 	      this.timeout = setTimeout(function () {
-	        // skip over any HTML chars
+	        / skip over any HTML chars
 	        curStrPos = _htmlParserJs.htmlParser.typeHtmlChars(curString, curStrPos, _this2);
 	
 	        var pauseTime = 0;
 	        var substr = curString.substr(curStrPos);
-	        // check for an escape character before a pause value
-	        // format: \^\d+ .. eg: ^1000 .. should be able to print the ^ too using ^^
-	        // single ^ are removed from string
+	        / check for an escape character before a pause value
+	        / format: \^\d+ .. eg: ^1000 .. should be able to print the ^ too using ^^
+	        / single ^ are removed from string
 	        if (substr.charAt(0) === '^') {
 	          if (/^\^\d+/.test(substr)) {
-	            var skip = 1; // skip at least 1
+	            var skip = 1; / skip at least 1
 	            substr = /\d+/.exec(substr)[0];
 	            skip += substr.length;
 	            pauseTime = parseInt(substr);
 	            _this2.temporaryPause = true;
 	            _this2.options.onTypingPaused(_this2.arrayPos, _this2);
-	            // strip out the escape character and pause value so they're not printed
+	            / strip out the escape character and pause value so they're not printed
 	            curString = curString.substring(0, curStrPos) + curString.substring(curStrPos + skip);
 	            _this2.toggleBlinking(true);
 	          }
 	        }
 	
-	        // check for skip characters formatted as
-	        // "this is a `string to print NOW` ..."
+	        / check for skip characters formatted as
+	        / "this is a `string to print NOW` ..."
 	        if (substr.charAt(0) === '`') {
 	          while (curString.substr(curStrPos + numChars).charAt(0) !== '`') {
 	            numChars++;
 	            if (curStrPos + numChars > curString.length) break;
 	          }
-	          // strip out the escape characters and append all the string in between
+	          / strip out the escape characters and append all the string in between
 	          var stringBeforeSkip = curString.substring(0, curStrPos);
 	          var stringSkipped = curString.substring(stringBeforeSkip.length + 1, curStrPos + numChars);
 	          var stringAfterSkip = curString.substring(curStrPos + numChars + 1);
@@ -253,25 +253,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	          numChars--;
 	        }
 	
-	        // timeout for any pause after a character
+	        / timeout for any pause after a character
 	        _this2.timeout = setTimeout(function () {
-	          // Accounts for blinking while paused
+	          / Accounts for blinking while paused
 	          _this2.toggleBlinking(false);
 	
-	          // We're done with this sentence!
+	          / We're done with this sentence!
 	          if (curStrPos >= curString.length) {
 	            _this2.doneTyping(curString, curStrPos);
 	          } else {
 	            _this2.keepTyping(curString, curStrPos, numChars);
 	          }
-	          // end of character pause
+	          / end of character pause
 	          if (_this2.temporaryPause) {
 	            _this2.temporaryPause = false;
 	            _this2.options.onTypingResumed(_this2.arrayPos, _this2);
 	          }
 	        }, pauseTime);
 	
-	        // humanized value for typing
+	        / humanized value for typing
 	      }, humanize);
 	    }
 	
@@ -284,17 +284,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'keepTyping',
 	    value: function keepTyping(curString, curStrPos, numChars) {
-	      // call before functions if applicable
+	      / call before functions if applicable
 	      if (curStrPos === 0) {
 	        this.toggleBlinking(false);
 	        this.options.preStringTyped(this.arrayPos, this);
 	      }
-	      // start typing each new char into existing string
-	      // curString: arg, this.el.html: original text inside element
+	      / start typing each new char into existing string
+	      / curString: arg, this.el.html: original text inside element
 	      curStrPos += numChars;
 	      var nextString = curString.substr(0, curStrPos);
 	      this.replaceText(nextString);
-	      // loop the function
+	      / loop the function
 	      this.typewrite(curString, curStrPos);
 	    }
 	
@@ -309,14 +309,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function doneTyping(curString, curStrPos) {
 	      var _this3 = this;
 	
-	      // fires callback function
+	      / fires callback function
 	      this.options.onStringTyped(this.arrayPos, this);
 	      this.toggleBlinking(true);
-	      // is this the final string
+	      / is this the final string
 	      if (this.arrayPos === this.strings.length - 1) {
-	        // callback that occurs on the last typed string
+	        / callback that occurs on the last typed string
 	        this.complete();
-	        // quit if we wont loop back
+	        / quit if we wont loop back
 	        if (this.loop === false || this.curLoop === this.loopCount) {
 	          return;
 	        }
@@ -348,13 +348,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	      this.timeout = setTimeout(function () {
 	        curStrPos = _htmlParserJs.htmlParser.backSpaceHtmlChars(curString, curStrPos, _this4);
-	        // replace text with base text + typed characters
+	        / replace text with base text + typed characters
 	        var curStringAtPosition = curString.substr(0, curStrPos);
 	        _this4.replaceText(curStringAtPosition);
 	
-	        // if smartBack is enabled
+	        / if smartBack is enabled
 	        if (_this4.smartBackspace) {
-	          // the remaining part of the current string is equal of the same part of the new string
+	          / the remaining part of the current string is equal of the same part of the new string
 	          var nextString = _this4.strings[_this4.arrayPos + 1];
 	          if (nextString && curStringAtPosition === nextString.substr(0, curStrPos)) {
 	            _this4.stopNum = curStrPos;
@@ -363,18 +363,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	          }
 	        }
 	
-	        // if the number (id of character in current string) is
-	        // less than the stop number, keep going
+	        / if the number (id of character in current string) is
+	        / less than the stop number, keep going
 	        if (curStrPos > _this4.stopNum) {
-	          // subtract characters one by one
+	          / subtract characters one by one
 	          curStrPos--;
-	          // loop the function
+	          / loop the function
 	          _this4.backspace(curString, curStrPos);
 	        } else if (curStrPos <= _this4.stopNum) {
-	          // if the stop number has been reached, increase
-	          // array position to next string
+	          / if the stop number has been reached, increase
+	          / array position to next string
 	          _this4.arrayPos++;
-	          // When looping, begin at the beginning after backspace complete
+	          / When looping, begin at the beginning after backspace complete
 	          if (_this4.arrayPos === _this4.strings.length) {
 	            _this4.arrayPos = 0;
 	            _this4.options.onLastStringBackspaced();
@@ -384,7 +384,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            _this4.typewrite(_this4.strings[_this4.sequence[_this4.arrayPos]], curStrPos);
 	          }
 	        }
-	        // humanized value for typing
+	        / humanized value for typing
 	      }, humanize);
 	    }
 	
@@ -427,7 +427,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: 'toggleBlinking',
 	    value: function toggleBlinking(isBlinking) {
 	      if (!this.cursor) return;
-	      // if in paused state, don't toggle blinking a 2nd time
+	      / if in paused state, don't toggle blinking a 2nd time
 	      if (this.pause.status) return;
 	      if (this.cursorBlinking === isBlinking) return;
 	      this.cursorBlinking = isBlinking;
@@ -477,7 +477,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _this5.arrayPos++;
 	        _this5.replaceText('');
 	
-	        // Resets current string if end of loop reached
+	        / Resets current string if end of loop reached
 	        if (_this5.strings.length > _this5.arrayPos) {
 	          _this5.typewrite(_this5.strings[_this5.sequence[_this5.arrayPos]], 0);
 	        } else {
@@ -596,7 +596,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     */
 	
 	    value: function load(self, options, elementId) {
-	      // chosen element to manipulate text
+	      / chosen element to manipulate text
 	      if (typeof elementId === 'string') {
 	        self.el = document.querySelector(elementId);
 	      } else {
@@ -605,55 +605,55 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	      self.options = _extends({}, _defaultsJs2['default'], options);
 	
-	      // attribute to type into
+	      / attribute to type into
 	      self.isInput = self.el.tagName.toLowerCase() === 'input';
 	      self.attr = self.options.attr;
 	      self.bindInputFocusEvents = self.options.bindInputFocusEvents;
 	
-	      // show cursor
+	      / show cursor
 	      self.showCursor = self.isInput ? false : self.options.showCursor;
 	
-	      // custom cursor
+	      / custom cursor
 	      self.cursorChar = self.options.cursorChar;
 	
-	      // Is the cursor blinking
+	      / Is the cursor blinking
 	      self.cursorBlinking = true;
 	
-	      // text content of element
+	      / text content of element
 	      self.elContent = self.attr ? self.el.getAttribute(self.attr) : self.el.textContent;
 	
-	      // html or plain text
+	      / html or plain text
 	      self.contentType = self.options.contentType;
 	
-	      // typing speed
+	      / typing speed
 	      self.typeSpeed = self.options.typeSpeed;
 	
-	      // add a delay before typing starts
+	      / add a delay before typing starts
 	      self.startDelay = self.options.startDelay;
 	
-	      // backspacing speed
+	      / backspacing speed
 	      self.backSpeed = self.options.backSpeed;
 	
-	      // only backspace what doesn't match the previous string
+	      / only backspace what doesn't match the previous string
 	      self.smartBackspace = self.options.smartBackspace;
 	
-	      // amount of time to wait before backspacing
+	      / amount of time to wait before backspacing
 	      self.backDelay = self.options.backDelay;
 	
-	      // Fade out instead of backspace
+	      / Fade out instead of backspace
 	      self.fadeOut = self.options.fadeOut;
 	      self.fadeOutClass = self.options.fadeOutClass;
 	      self.fadeOutDelay = self.options.fadeOutDelay;
 	
-	      // variable to check whether typing is currently paused
+	      / variable to check whether typing is currently paused
 	      self.isPaused = false;
 	
-	      // input strings of text
+	      / input strings of text
 	      self.strings = self.options.strings.map(function (s) {
 	        return s.trim();
 	      });
 	
-	      // div containing strings
+	      / div containing strings
 	      if (typeof self.options.stringsElement === 'string') {
 	        self.stringsElement = document.querySelector(self.options.stringsElement);
 	      } else {
@@ -674,23 +674,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	      }
 	
-	      // character number position of current string
+	      / character number position of current string
 	      self.strPos = 0;
 	
-	      // current array position
+	      / current array position
 	      self.arrayPos = 0;
 	
-	      // index of string to stop backspacing on
+	      / index of string to stop backspacing on
 	      self.stopNum = 0;
 	
-	      // Looping logic
+	      / Looping logic
 	      self.loop = self.options.loop;
 	      self.loopCount = self.options.loopCount;
 	      self.curLoop = 0;
 	
-	      // shuffle the strings
+	      / shuffle the strings
 	      self.shuffle = self.options.shuffle;
-	      // the order of strings
+	      / the order of strings
 	      self.sequence = [];
 	
 	      self.pause = {
@@ -700,15 +700,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	        curStrPos: 0
 	      };
 	
-	      // When the typing is complete (when not looped)
+	      / When the typing is complete (when not looped)
 	      self.typingComplete = false;
 	
-	      // Set the order in which the strings are typed
+	      / Set the order in which the strings are typed
 	      for (var i in self.strings) {
 	        self.sequence[i] = i;
 	      }
 	
-	      // If there is some text in the element
+	      / If there is some text in the element
 	      self.currentElContent = this.getCurrentElContent(self);
 	
 	      self.autoInsertCss = self.options.autoInsertCss;

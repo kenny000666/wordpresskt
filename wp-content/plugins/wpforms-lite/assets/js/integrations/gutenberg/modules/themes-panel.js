@@ -126,7 +126,7 @@ export default ( function( document, window, $ ) {
 		 * @since 1.8.8
 		 */
 		events() {
-			wp.data.subscribe( function() { // eslint-disable-line complexity
+			wp.data.subscribe( function() { / eslint-disable-line complexity
 				if ( ! isAdmin ) {
 					return;
 				}
@@ -142,7 +142,7 @@ export default ( function( document, window, $ ) {
 				}
 
 				if ( isBlockOrTemplate ) {
-					// Delay saving if this is FSE for better performance.
+					/ Delay saving if this is FSE for better performance.
 					_.debounce( app.saveCustomThemes, 500 )();
 
 					return;
@@ -255,16 +255,16 @@ export default ( function( document, window, $ ) {
 		 * @since 1.8.8
 		 */
 		fetchThemesData() {
-			// If a fetch is already in progress, exit the function.
+			/ If a fetch is already in progress, exit the function.
 			if ( state.isFetchingThemes || themesData.wpforms ) {
 				return;
 			}
 
-			// Set the flag to true indicating a fetch is in progress.
+			/ Set the flag to true indicating a fetch is in progress.
 			state.isFetchingThemes = true;
 
 			try {
-				// Fetch themes data.
+				/ Fetch themes data.
 				wp.apiFetch( {
 					path: routeNamespace + 'themes/',
 					method: 'GET',
@@ -275,14 +275,14 @@ export default ( function( document, window, $ ) {
 						themesData.custom = response.custom || {};
 					} )
 					.catch( ( error ) => {
-						// eslint-disable-next-line no-console
+						/ eslint-disable-next-line no-console
 						console.error( error?.message );
 					} )
 					.finally( () => {
 						state.isFetchingThemes = false;
 					} );
 			} catch ( error ) {
-				// eslint-disable-next-line no-console
+				/ eslint-disable-next-line no-console
 				console.error( error );
 			}
 		},
@@ -293,16 +293,16 @@ export default ( function( document, window, $ ) {
 		 * @since 1.8.8
 		 */
 		saveCustomThemes() {
-			// Custom themes do not exist.
+			/ Custom themes do not exist.
 			if ( state.isSavingThemes || ! themesData.custom ) {
 				return;
 			}
 
-			// Set the flag to true indicating a saving is in progress.
+			/ Set the flag to true indicating a saving is in progress.
 			state.isSavingThemes = true;
 
 			try {
-				// Save themes.
+				/ Save themes.
 				wp.apiFetch( {
 					path: routeNamespace + 'themes/custom/',
 					method: 'POST',
@@ -310,19 +310,19 @@ export default ( function( document, window, $ ) {
 				} )
 					.then( ( response ) => {
 						if ( ! response?.result ) {
-							// eslint-disable-next-line no-console
+							/ eslint-disable-next-line no-console
 							console.log( response?.error );
 						}
 					} )
 					.catch( ( error ) => {
-						// eslint-disable-next-line no-console
+						/ eslint-disable-next-line no-console
 						console.error( error?.message );
 					} )
 					.finally( () => {
 						state.isSavingThemes = false;
 					} );
 			} catch ( error ) {
-				// eslint-disable-next-line no-console
+				/ eslint-disable-next-line no-console
 				console.error( error );
 			}
 		},
@@ -358,14 +358,14 @@ export default ( function( document, window, $ ) {
 		 *
 		 * @return {boolean} Whether the custom theme is created.
 		 */
-		maybeCreateCustomTheme( props ) { // eslint-disable-line complexity
+		maybeCreateCustomTheme( props ) { / eslint-disable-line complexity
 			const currentStyles = app.getCurrentStyleAttributes( props );
 			const isWPFormsTheme = !! themesData.wpforms[ props.attributes.theme ];
 			const isCustomTheme = !! themesData.custom[ props.attributes.theme ];
 
 			let migrateToCustomTheme = false;
 
-			// It is one of the default themes without any changes.
+			/ It is one of the default themes without any changes.
 			if (
 				isWPFormsTheme &&
 				JSON.stringify( themesData.wpforms[ props.attributes.theme ]?.settings ) === JSON.stringify( currentStyles )
@@ -375,13 +375,13 @@ export default ( function( document, window, $ ) {
 
 			const prevAttributes = formSelectorCommon.getBlockRuntimeStateVar( props.clientId, 'prevAttributesState' );
 
-			// It is a block added in FS 1.0, so it doesn't have a theme.
-			// The `prevAttributes` is `undefined` means that we are in the first render of the existing block.
+			/ It is a block added in FS 1.0, so it doesn't have a theme.
+			/ The `prevAttributes` is `undefined` means that we are in the first render of the existing block.
 			if ( props.attributes.theme === 'default' && props.attributes.themeName === '' && ! prevAttributes ) {
 				migrateToCustomTheme = true;
 			}
 
-			// It is a modified default theme OR unknown custom theme.
+			/ It is a modified default theme OR unknown custom theme.
 			if ( isWPFormsTheme || ! isCustomTheme || migrateToCustomTheme ) {
 				app.createCustomTheme( props, currentStyles, migrateToCustomTheme );
 			}
@@ -400,7 +400,7 @@ export default ( function( document, window, $ ) {
 		 *
 		 * @return {boolean} Whether the custom theme is created.
 		 */
-		createCustomTheme( props, currentStyles = null, migrateToCustomTheme = false ) { // eslint-disable-line complexity
+		createCustomTheme( props, currentStyles = null, migrateToCustomTheme = false ) { / eslint-disable-line complexity
 			let counter = 0;
 			let themeSlug = props.attributes.theme;
 
@@ -414,7 +414,7 @@ export default ( function( document, window, $ ) {
 				themeName = strings.theme_custom;
 			}
 
-			// Determine the theme slug and the number of copies.
+			/ Determine the theme slug and the number of copies.
 			do {
 				counter++;
 				themeSlug = themeSlug + '-copy-' + counter;
@@ -424,10 +424,10 @@ export default ( function( document, window, $ ) {
 
 			themeName += ' (' + copyStr + ')';
 
-			// The first migrated Custom Theme should be without `(Copy)` suffix.
+			/ The first migrated Custom Theme should be without `(Copy)` suffix.
 			themeName = migrateToCustomTheme && counter < 2 ? strings.theme_custom : themeName;
 
-			// Add the new custom theme.
+			/ Add the new custom theme.
 			themesData.custom[ themeSlug ] = {
 				name: themeName,
 				settings: currentStyles || app.getCurrentStyleAttributes( props ),
@@ -435,7 +435,7 @@ export default ( function( document, window, $ ) {
 
 			app.updateEnabledThemes( themeSlug, themesData.custom[ themeSlug ] );
 
-			// Update the block attributes with the new custom theme settings.
+			/ Update the block attributes with the new custom theme settings.
 			props.setAttributes( {
 				theme: themeSlug,
 				themeName,
@@ -453,14 +453,14 @@ export default ( function( document, window, $ ) {
 		 *
 		 * @return {string} New theme's slug.
 		 */
-		maybeCreateCustomThemeFromAttributes( attributes ) { // eslint-disable-line complexity
+		maybeCreateCustomThemeFromAttributes( attributes ) { / eslint-disable-line complexity
 			const newThemeSlug = attributes.theme;
 			const existingTheme = app.getTheme( attributes.theme );
 			const keys = Object.keys( attributes );
 
 			let isExistingTheme = Boolean( existingTheme?.settings );
 
-			// Check if the theme already exists and has the same settings.
+			/ Check if the theme already exists and has the same settings.
 			if ( isExistingTheme ) {
 				for ( const i in keys ) {
 					const key = keys[ i ];
@@ -473,13 +473,13 @@ export default ( function( document, window, $ ) {
 				}
 			}
 
-			// The theme exists and has the same settings.
+			/ The theme exists and has the same settings.
 			if ( isExistingTheme ) {
 				return newThemeSlug;
 			}
 
-			// The theme doesn't exist.
-			// Normalize the attributes to the default theme settings.
+			/ The theme doesn't exist.
+			/ Normalize the attributes to the default theme settings.
 			const defaultAttributes = Object.keys( themesData.wpforms.default.settings );
 			const newSettings = {};
 
@@ -489,7 +489,7 @@ export default ( function( document, window, $ ) {
 				newSettings[ attr ] = attributes[ attr ] ?? '';
 			}
 
-			// Create a new custom theme.
+			/ Create a new custom theme.
 			themesData.custom[ newThemeSlug ] = {
 				name: attributes.themeName ?? strings.theme_custom,
 				settings: newSettings,
@@ -509,10 +509,10 @@ export default ( function( document, window, $ ) {
 		 * @param {string} value     New attribute value.
 		 * @param {Object} props     Block properties.
 		 */
-		updateCustomThemeAttribute( attribute, value, props ) { // eslint-disable-line complexity
+		updateCustomThemeAttribute( attribute, value, props ) { / eslint-disable-line complexity
 			const themeSlug = props.attributes.theme;
 
-			// Skip if it is one of the WPForms themes OR the attribute is not in the theme settings.
+			/ Skip if it is one of the WPForms themes OR the attribute is not in the theme settings.
 			if (
 				themesData.wpforms[ themeSlug ] ||
 				(
@@ -523,13 +523,13 @@ export default ( function( document, window, $ ) {
 				return;
 			}
 
-			// Skip if the custom theme doesn't exist.
-			// It should never happen, only in some unique circumstances.
+			/ Skip if the custom theme doesn't exist.
+			/ It should never happen, only in some unique circumstances.
 			if ( ! themesData.custom[ themeSlug ] ) {
 				return;
 			}
 
-			// Update theme data.
+			/ Update theme data.
 			if ( attribute === 'themeName' ) {
 				themesData.custom[ themeSlug ].name = value;
 			} else {
@@ -537,7 +537,7 @@ export default ( function( document, window, $ ) {
 				themesData.custom[ themeSlug ].settings[ attribute ] = value;
 			}
 
-			// Trigger event for developers.
+			/ Trigger event for developers.
 			el.$window.trigger( 'wpformsFormSelectorUpdateTheme', [ themeSlug, themesData.custom[ themeSlug ], props ] );
 		},
 
@@ -553,19 +553,19 @@ export default ( function( document, window, $ ) {
 		 * @return {Object} Themes panel JSX code.
 		 */
 		getThemesPanel( props, formSelectorCommonModule, stockPhotosModule ) {
-			// Store common module in app.
+			/ Store common module in app.
 			formSelectorCommon = formSelectorCommonModule;
 			state.stockPhotos = stockPhotosModule;
 
-			// If there are no themes data, it is necessary to fetch it firstly.
+			/ If there are no themes data, it is necessary to fetch it firstly.
 			if ( ! themesData.wpforms ) {
 				app.fetchThemesData();
 
-				// Return empty JSX code.
+				/ Return empty JSX code.
 				return ( <></> );
 			}
 
-			// Get event handlers.
+			/ Get event handlers.
 			const handlers = app.getEventHandlers( props );
 			const showCustomThemeOptions = isAdmin && formSelectorCommonModule.isFullStylingEnabled() && app.maybeCreateCustomTheme( props );
 			const checked = formSelectorCommonModule.isFullStylingEnabled() ? props.attributes.theme : 'classic';
@@ -630,7 +630,7 @@ export default ( function( document, window, $ ) {
 		 *
 		 * @return {Array} Themes items JSX code.
 		 */
-		getThemesItemsJSX( props ) { // eslint-disable-line complexity
+		getThemesItemsJSX( props ) { / eslint-disable-line complexity
 			const allThemesData = app.getAllThemes();
 
 			if ( ! allThemesData ) {
@@ -641,7 +641,7 @@ export default ( function( document, window, $ ) {
 			const themes = Object.keys( allThemesData );
 			let theme, firstThemeSlug;
 
-			// Display the current custom theme on the top of the list.
+			/ Display the current custom theme on the top of the list.
 			if ( ! app.isWPFormsTheme( props.attributes.theme ) ) {
 				firstThemeSlug = props.attributes.theme;
 
@@ -656,12 +656,12 @@ export default ( function( document, window, $ ) {
 			for ( const key in themes ) {
 				const slug = themes[ key ];
 
-				// Skip the first theme.
+				/ Skip the first theme.
 				if ( firstThemeSlug && firstThemeSlug === slug ) {
 					continue;
 				}
 
-				// Ensure that all the theme settings are present.
+				/ Ensure that all the theme settings are present.
 				theme = { ...allThemesData.default, ...( allThemesData[ slug ] || {} ) };
 				theme.settings = { ...allThemesData.default.settings, ...( theme.settings || {} ) };
 
@@ -737,11 +737,11 @@ export default ( function( document, window, $ ) {
 			const block = formSelectorCommon.getBlockContainer( props );
 			const container = block.querySelector( `#wpforms-${ props.attributes.formId }` );
 
-			// Overwrite block attributes with the new theme settings.
-			// It is needed to rely on the theme settings only.
+			/ Overwrite block attributes with the new theme settings.
+			/ It is needed to rely on the theme settings only.
 			const newProps = { ...props, attributes: { ...props.attributes, ...theme.settings } };
 
-			// Update the preview with the new theme settings.
+			/ Update the preview with the new theme settings.
 			for ( const key in attributes ) {
 				const attr = attributes[ key ];
 
@@ -755,7 +755,7 @@ export default ( function( document, window, $ ) {
 				);
 			}
 
-			// Prepare the new attributes to be set.
+			/ Prepare the new attributes to be set.
 			const setAttributes = {
 				theme: themeSlug,
 				themeName: theme.name,
@@ -763,11 +763,11 @@ export default ( function( document, window, $ ) {
 			};
 
 			if ( props.setAttributes ) {
-				// Update the block attributes with the new theme settings.
+				/ Update the block attributes with the new theme settings.
 				props.setAttributes( setAttributes );
 			}
 
-			// Trigger event for developers.
+			/ Trigger event for developers.
 			el.$window.trigger( 'wpformsFormSelectorSetTheme', [ block, themeSlug, props ] );
 
 			return true;
@@ -811,7 +811,7 @@ export default ( function( document, window, $ ) {
 		 *
 		 * @type {Object}
 		 */
-		getEventHandlers( props ) { // eslint-disable-line max-lines-per-function
+		getEventHandlers( props ) { / eslint-disable-line max-lines-per-function
 			const commonHandlers = formSelectorCommon.getSettingsFieldsHandlers( props );
 
 			const handlers = {
@@ -827,7 +827,7 @@ export default ( function( document, window, $ ) {
 						return;
 					}
 
-					// Maybe open Stock Photo installation window.
+					/ Maybe open Stock Photo installation window.
 					state?.stockPhotos?.onSelectTheme( value, props, app, commonHandlers );
 
 					const block = formSelectorCommon.getBlockContainer( props );
@@ -835,7 +835,7 @@ export default ( function( document, window, $ ) {
 					formSelectorCommon.setTriggerServerRender( false );
 					commonHandlers.updateCopyPasteContent();
 
-					// Trigger event for developers.
+					/ Trigger event for developers.
 					el.$window.trigger( 'wpformsFormSelectorSelectTheme', [ block, props, value ] );
 				},
 
@@ -861,10 +861,10 @@ export default ( function( document, window, $ ) {
 				deleteTheme() {
 					const deleteThemeSlug = props.attributes.theme;
 
-					// Remove theme from the theme storage.
+					/ Remove theme from the theme storage.
 					delete themesData.custom[ deleteThemeSlug ];
 
-					// Open the confirmation modal window.
+					/ Open the confirmation modal window.
 					app.deleteThemeModal( props, deleteThemeSlug, handlers );
 				},
 			};
@@ -896,10 +896,10 @@ export default ( function( document, window, $ ) {
 						btnClass: 'btn-confirm',
 						keys: [ 'enter' ],
 						action() {
-							// Switch to the default theme.
+							/ Switch to the default theme.
 							handlers.selectTheme( 'default' );
 
-							// Trigger event for developers.
+							/ Trigger event for developers.
 							el.$window.trigger( 'wpformsFormSelectorDeleteTheme', [ deleteThemeSlug, props ] );
 						},
 					},
@@ -923,6 +923,6 @@ export default ( function( document, window, $ ) {
 
 	app.init();
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );

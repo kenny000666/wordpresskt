@@ -39,7 +39,7 @@
 
 			$( 'fieldset.redux-container-divide' ).css( 'display', 'none' );
 
-			// Weed out multiple instances of duplicate Redux instance.
+			/ Weed out multiple instances of duplicate Redux instance.
 			if ( redux.customizer ) {
 				$( '.wp-full-overlay-sidebar' ).addClass( 'redux-container' );
 			}
@@ -82,7 +82,7 @@
 
 	$.redux.flyoutSubmenu = function () {
 
-		// Close flyouts when a new menu item is activated.
+		/ Close flyouts when a new menu item is activated.
 		$( '.redux-group-tab-link-li a' ).on(
 			'click',
 			function () {
@@ -94,7 +94,7 @@
 
 		if ( true === redux.optName.args.flyout_submenus ) {
 
-			// Submenus flyout when a main menu item is hovered.
+			/ Submenus flyout when a main menu item is hovered.
 			$( '.redux-group-tab-link-li.hasSubSections' ).each(
 				function () {
 					$( this ).on(
@@ -154,7 +154,7 @@
 			optName = $( el ).parents( '.redux-wrap-div' ).data( 'opt-name' );
 		}
 
-		// Compatibility for metaboxes.
+		/ Compatibility for metaboxes.
 		if ( undefined === optName ) {
 			metabox = $( el ).parents( '.postbox' );
 			if ( 0 === metabox.length ) {
@@ -179,7 +179,7 @@
 			optName = $( el ).find( '.redux-form-wrapper' ).data( 'opt-name' );
 		}
 
-		// Shim, let's just get an opt_name shall we?!
+		/ Shim, let's just get an opt_name shall we?!
 		if ( undefined === optName ) {
 			optName = redux.opt_names[0];
 		}

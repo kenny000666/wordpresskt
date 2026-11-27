@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -18,7 +18,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -61,8 +61,8 @@
 /******/ 				}
 /******/ 			}
 /******/ 		}
-/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
-/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		/ When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		/ or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
 /******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
 /******/ 		scriptUrl = scriptUrl.replace(/^blob:/, "").replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
 /******/ 		__webpack_require__.p = scriptUrl;
@@ -70,16 +70,16 @@
 /******/ 	
 /************************************************************************/
 
-;// external ["wp","element"]
+;/ external ["wp","element"]
 const external_wp_element_namespaceObject = window["wp"]["element"];
-;// external "React"
+;/ external "React"
 const external_React_namespaceObject = window["React"];
 var external_React_default = /*#__PURE__*/__webpack_require__.n(external_React_namespaceObject);
-;// external ["wp","i18n"]
+;/ external ["wp","i18n"]
 const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
-;// ./src/images/hero/hero-cross-sell.png
+;/ ./src/images/hero/hero-cross-sell.png
 const hero_cross_sell_namespaceObject = __webpack_require__.p + "1af739d41f996f2d6ff1.png";
-;// ./src/components/hero/hero.jsx
+;/ ./src/components/hero/hero.jsx
 var _jsxFileName = "/opt/atlassian/pipelines/agent/build/src/components/hero/hero.jsx",
   _this = undefined;
 
@@ -144,9 +144,9 @@ var HeroSection = function HeroSection() {
   }, (0,external_wp_i18n_namespaceObject.__)("Check out these top-rated tools for securing, optimizing and growing your site.", "plugin-cross-sell-textdomain")))));
 };
 
-;// ./src/components/hero/index.jsx
+;/ ./src/components/hero/index.jsx
 
-;// ./src/components/tabs/tabs.jsx
+;/ ./src/components/tabs/tabs.jsx
 var tabs_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/components/tabs/tabs.jsx",
   tabs_this = undefined;
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
@@ -270,9 +270,9 @@ var TabPanel = function TabPanel(_ref5) {
   }, children));
 };
 
-;// ./src/components/tabs/index.jsx
+;/ ./src/components/tabs/index.jsx
 
-;// ./src/icons/arrow-alt.jsx
+;/ ./src/icons/arrow-alt.jsx
 var arrow_alt_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/icons/arrow-alt.jsx",
   arrow_alt_this = undefined;
 function _objectDestructuringEmpty(t) { if (null == t) throw new TypeError("Cannot destructure " + t); }
@@ -304,7 +304,7 @@ var ArrowAltIcon = function ArrowAltIcon(_ref) {
   }));
 };
 
-;// ./src/icons/arrow.jsx
+;/ ./src/icons/arrow.jsx
 var arrow_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/icons/arrow.jsx",
   arrow_this = undefined;
 function arrow_objectDestructuringEmpty(t) { if (null == t) throw new TypeError("Cannot destructure " + t); }
@@ -336,7 +336,7 @@ var ArrowIcon = function ArrowIcon(_ref) {
   }));
 };
 
-;// ./src/icons/business.jsx
+;/ ./src/icons/business.jsx
 var _excluded = ["fill"];
 var business_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/icons/business.jsx",
   business_this = undefined;
@@ -373,7 +373,7 @@ var BusinessIcon = function BusinessIcon(_ref) {
   }));
 };
 
-;// ./src/icons/check.jsx
+;/ ./src/icons/check.jsx
 var check_excluded = ["fill"];
 var check_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/icons/check.jsx",
   check_this = undefined;
@@ -410,7 +410,7 @@ var CheckIcon = function CheckIcon(_ref) {
   }));
 };
 
-;// ./src/icons/cloud.jsx
+;/ ./src/icons/cloud.jsx
 var cloud_excluded = ["fill"];
 var cloud_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/icons/cloud.jsx",
   cloud_this = undefined;
@@ -447,7 +447,7 @@ var CloudIcon = function CloudIcon(_ref) {
   }));
 };
 
-;// ./src/icons/email.jsx
+;/ ./src/icons/email.jsx
 var email_excluded = ["fill"];
 var email_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/icons/email.jsx",
   email_this = undefined;
@@ -484,7 +484,7 @@ var EmailIcon = function EmailIcon(_ref) {
   }));
 };
 
-;// ./src/icons/globe.jsx
+;/ ./src/icons/globe.jsx
 var globe_excluded = ["fill"];
 var globe_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/icons/globe.jsx",
   globe_this = undefined;
@@ -521,7 +521,7 @@ var GlobeIcon = function GlobeIcon(_ref) {
   }));
 };
 
-;// ./src/icons/layers.jsx
+;/ ./src/icons/layers.jsx
 var layers_excluded = ["fill"];
 var layers_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/icons/layers.jsx",
   layers_this = undefined;
@@ -558,7 +558,7 @@ var LayersIcon = function LayersIcon(_ref) {
   }));
 };
 
-;// ./src/icons/review.jsx
+;/ ./src/icons/review.jsx
 var review_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/icons/review.jsx",
   review_this = undefined;
 function review_objectDestructuringEmpty(t) { if (null == t) throw new TypeError("Cannot destructure " + t); }
@@ -591,7 +591,7 @@ var ReviewIcon = function ReviewIcon(_ref) {
   }));
 };
 
-;// ./src/icons/star.jsx
+;/ ./src/icons/star.jsx
 var star_excluded = ["fill"];
 var star_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/icons/star.jsx",
   star_this = undefined;
@@ -628,7 +628,7 @@ var StarIcon = function StarIcon(_ref) {
   }));
 };
 
-;// ./src/icons/star-alt.jsx
+;/ ./src/icons/star-alt.jsx
 var star_alt_excluded = ["fill"];
 var star_alt_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/icons/star-alt.jsx",
   star_alt_this = undefined;
@@ -665,7 +665,7 @@ var StarAltIcon = function StarAltIcon(_ref) {
   }));
 };
 
-;// ./src/icons/support.jsx
+;/ ./src/icons/support.jsx
 var support_excluded = ["fill"];
 var support_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/icons/support.jsx",
   support_this = undefined;
@@ -702,7 +702,7 @@ var SupportIcon = function SupportIcon(_ref) {
   }));
 };
 
-;// ./src/icons/settings.jsx
+;/ ./src/icons/settings.jsx
 var settings_excluded = ["fill"];
 var settings_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/icons/settings.jsx",
   settings_this = undefined;
@@ -739,7 +739,7 @@ var SettingsIcon = function SettingsIcon(_ref) {
   }));
 };
 
-;// ./src/icons/server.jsx
+;/ ./src/icons/server.jsx
 var server_excluded = ["fill"];
 var server_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/icons/server.jsx",
   server_this = undefined;
@@ -776,7 +776,7 @@ var ServerIcon = function ServerIcon(_ref) {
   }));
 };
 
-;// ./src/icons/google.jsx
+;/ ./src/icons/google.jsx
 var google_excluded = ["fill"];
 var google_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/icons/google.jsx",
   google_this = undefined;
@@ -858,7 +858,7 @@ var GoogleIcon = function GoogleIcon(_ref) {
   }));
 };
 
-;// ./src/icons/reviews.jsx
+;/ ./src/icons/reviews.jsx
 var reviews_excluded = ["fill"];
 var reviews_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/icons/reviews.jsx",
   reviews_this = undefined;
@@ -1011,7 +1011,7 @@ var ReviewsIcon = function ReviewsIcon(_ref) {
   }));
 };
 
-;// ./src/icons/trustpilot.jsx
+;/ ./src/icons/trustpilot.jsx
 var trustpilot_excluded = ["fill"];
 var trustpilot_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/icons/trustpilot.jsx",
   trustpilot_this = undefined;
@@ -1059,7 +1059,7 @@ var TrustPilotIcon = function TrustPilotIcon(_ref) {
   }));
 };
 
-;// ./src/icons/index.jsx
+;/ ./src/icons/index.jsx
 
 
 
@@ -1077,7 +1077,7 @@ var TrustPilotIcon = function TrustPilotIcon(_ref) {
 
 
 
-;// ./src/components/footer/review-item.jsx
+;/ ./src/components/footer/review-item.jsx
 var review_item_excluded = ["link", "logo", "ratings", "reviews"];
 var review_item_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/components/footer/review-item.jsx",
   review_item_this = undefined;
@@ -1186,7 +1186,7 @@ var ReviewItem = function ReviewItem(_ref) {
   })));
 };
 
-;// ./src/utils/utm-url.js
+;/ ./src/utils/utm-url.js
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function utm_url_slicedToArray(r, e) { return utm_url_arrayWithHoles(r) || utm_url_iterableToArrayLimit(r, e) || utm_url_unsupportedIterableToArray(r, e) || utm_url_nonIterableRest(); }
 function utm_url_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1221,7 +1221,7 @@ var getUtmUrl = function getUtmUrl(url) {
     utm_content: 'plugins-cross-sell'
   };
 
-  // Merge default params with any overrides
+  / Merge default params with any overrides
   var mergedParams = _objectSpread(_objectSpread({}, defaultParams), params);
   var urlObj = new URL(url);
   Object.entries(mergedParams).forEach(function (_ref2) {
@@ -1234,7 +1234,7 @@ var getUtmUrl = function getUtmUrl(url) {
   });
   return urlObj.toString();
 };
-;// ./src/components/footer/footer.jsx
+;/ ./src/components/footer/footer.jsx
 var footer_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/components/footer/footer.jsx",
   footer_this = undefined;
 function footer_extends() { return footer_extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, footer_extends.apply(null, arguments); }
@@ -1382,9 +1382,9 @@ var Footer = function Footer() {
   }, (0,external_wp_i18n_namespaceObject.__)("WPMU DEV", "plugin-cross-sell-textdomain"))))));
 };
 
-;// ./src/components/footer/index.jsx
+;/ ./src/components/footer/index.jsx
 
-;// ./src/components/highlights/highlights.jsx
+;/ ./src/components/highlights/highlights.jsx
 var highlights_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/components/highlights/highlights.jsx",
   highlights_this = undefined;
 
@@ -1454,9 +1454,9 @@ var Highlights = function Highlights() {
   })));
 };
 
-;// ./src/components/highlights/index.jsx
+;/ ./src/components/highlights/index.jsx
 
-;// ./src/components/section/section.jsx
+;/ ./src/components/section/section.jsx
 var section_excluded = ["title", "titleUnderline", "className", "tag", "description", "children"];
 var section_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/components/section/section.jsx",
   section_this = undefined;
@@ -1526,9 +1526,9 @@ var Section = function Section(_ref) {
   }, description)), children);
 };
 
-;// ./src/components/section/index.jsx
+;/ ./src/components/section/index.jsx
 
-;// ./node_modules/.pnpm/@wpmudev+react-button@1.1.2/node_modules/@wpmudev/react-button/dist/react-button.esm.js
+;/ ./node_modules/.pnpm/@wpmudev+react-button@1.1.2/node_modules/@wpmudev/react-button/dist/react-button.esm.js
 
 
 function react_button_esm_ownKeys(object, enumerableOnly) {
@@ -1635,7 +1635,7 @@ var Button = function Button(_ref) {
     className: 'sui-icon-' + icon,
     "aria-hidden": "true"
   }));
-  className = "sui-button".concat(iconRight ? ' sui-button-icon-right' : '').concat(className ? ' ' + className : ''); // Set button color.
+  className = "sui-button".concat(iconRight ? ' sui-button-icon-right' : '').concat(className ? ' ' + className : ''); / Set button color.
 
   switch (color) {
     case 'blue':
@@ -1652,7 +1652,7 @@ var Button = function Button(_ref) {
     default:
       className += '';
       break;
-  } // Set button style.
+  } / Set button style.
 
 
   switch (design) {
@@ -1665,7 +1665,7 @@ var Button = function Button(_ref) {
     default:
       className += '';
       break;
-  } // Set loading class.
+  } / Set loading class.
 
 
   if (loading) {
@@ -1688,10 +1688,10 @@ var Button = function Button(_ref) {
 
 
 
-;// external ["wp","apiFetch"]
+;/ external ["wp","apiFetch"]
 const external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
 var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_namespaceObject);
-;// ./node_modules/.pnpm/@wpmudev+react-notifications@1.1.1/node_modules/@wpmudev/react-notifications/dist/react-notifications.esm.js
+;/ ./node_modules/.pnpm/@wpmudev+react-notifications@1.1.1/node_modules/@wpmudev/react-notifications/dist/react-notifications.esm.js
 
 
 function _classCallCheck(instance, Constructor) {
@@ -1921,7 +1921,7 @@ var ButtonIcon = function ButtonIcon(_ref) {
   }), /*#__PURE__*/external_React_default().createElement("span", {
     className: "sui-screen-reader-text"
   }, label));
-  className = "sui-button-icon ".concat(className || ''); // Set button color.
+  className = "sui-button-icon ".concat(className || ''); / Set button color.
 
   switch (color) {
     case 'blue':
@@ -1938,7 +1938,7 @@ var ButtonIcon = function ButtonIcon(_ref) {
     default:
       className += '';
       break;
-  } // Set button style.
+  } / Set button style.
 
 
   switch (design) {
@@ -1951,7 +1951,7 @@ var ButtonIcon = function ButtonIcon(_ref) {
     default:
       className += '';
       break;
-  } // Set loading class.
+  } / Set loading class.
 
 
   if (loading) {
@@ -2063,7 +2063,7 @@ var Notifications = /*#__PURE__*/function (_Component) {
 
 
 
-;// ./src/components/plugins/plugin-card.jsx
+;/ ./src/components/plugins/plugin-card.jsx
 function plugin_card_typeof(o) { "@babel/helpers - typeof"; return plugin_card_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, plugin_card_typeof(o); }
 var plugin_card_excluded = ["as", "logo", "title", "rating", "active_installs", "description", "features", "url", "active", "installed", "slug", "cta", "path"];
 var plugin_card_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/components/plugins/plugin-card.jsx",
@@ -2128,7 +2128,7 @@ var PluginCard = function PluginCard(_ref) {
     });
     setTimeout(function () {
       return setNotification(null);
-    }, 5000); // Hide after 5 seconds
+    }, 5000); / Hide after 5 seconds
   };
   var handleInstallPlugin = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -2435,7 +2435,7 @@ var PluginCard = function PluginCard(_ref) {
   })))));
 };
 
-;// ./src/components/plugins/plugins-free.jsx
+;/ ./src/components/plugins/plugins-free.jsx
 var plugins_free_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/components/plugins/plugins-free.jsx",
   plugins_free_this = undefined;
 function plugins_free_extends() { return plugins_free_extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, plugins_free_extends.apply(null, arguments); }
@@ -2481,7 +2481,7 @@ var PluginsFree = function PluginsFree() {
   })));
 };
 
-;// ./src/components/plugins/plugins-pro.jsx
+;/ ./src/components/plugins/plugins-pro.jsx
 var plugins_pro_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/components/plugins/plugins-pro.jsx",
   plugins_pro_this = undefined;
 function plugins_pro_extends() { return plugins_pro_extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, plugins_pro_extends.apply(null, arguments); }
@@ -2548,11 +2548,11 @@ var PluginsPro = function PluginsPro() {
   }, (0,external_wp_i18n_namespaceObject.__)("View all pro plugins", "plugin-cross-sell-textdomain"))));
 };
 
-;// ./src/components/plugins/index.jsx
+;/ ./src/components/plugins/index.jsx
 
 
 
-;// ./src/cross-sell-page/free.jsx
+;/ ./src/cross-sell-page/free.jsx
 var free_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/cross-sell-page/free.jsx",
   free_this = undefined;
 function free_objectDestructuringEmpty(t) { if (null == t) throw new TypeError("Cannot destructure " + t); }
@@ -2571,7 +2571,7 @@ var FreeContent = function FreeContent(_ref) {
   }));
 };
 
-;// ./src/components/horizontal-line/line.jsx
+;/ ./src/components/horizontal-line/line.jsx
 var line_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/components/horizontal-line/line.jsx",
   line_this = undefined;
 
@@ -2587,9 +2587,9 @@ var HorizontalLine = function HorizontalLine() {
   });
 };
 
-;// ./src/components/horizontal-line/index.jsx
+;/ ./src/components/horizontal-line/index.jsx
 
-;// ./src/components/features/features.jsx
+;/ ./src/components/features/features.jsx
 var features_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/components/features/features.jsx",
   features_this = undefined;
 
@@ -2710,17 +2710,17 @@ var Features = function Features() {
   })));
 };
 
-;// ./src/components/features/index.jsx
+;/ ./src/components/features/index.jsx
 
-;// ./src/images/services/development.png
+;/ ./src/images/services/development.png
 const development_namespaceObject = __webpack_require__.p + "f3b30d2cd7abe535ba1c.png";
-;// ./src/images/services/malware.png
+;/ ./src/images/services/malware.png
 const malware_namespaceObject = __webpack_require__.p + "da1fd17bdf7158f7c6a7.png";
-;// ./src/images/services/monitoring.png
+;/ ./src/images/services/monitoring.png
 const monitoring_namespaceObject = __webpack_require__.p + "27c3b14bfd1aaf450606.png";
-;// ./src/images/services/optimization.png
+;/ ./src/images/services/optimization.png
 const optimization_namespaceObject = __webpack_require__.p + "97bad02a1bd53924a709.png";
-;// ./src/components/services/services.jsx
+;/ ./src/components/services/services.jsx
 var services_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/components/services/services.jsx",
   services_this = undefined;
 
@@ -2844,9 +2844,9 @@ var Services = function Services() {
   })));
 };
 
-;// ./src/components/services/index.jsx
+;/ ./src/components/services/index.jsx
 
-;// ./src/components/button/button.jsx
+;/ ./src/components/button/button.jsx
 var button_excluded = ["as", "className", "children"];
 var button_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/components/button/button.jsx",
   button_this = undefined;
@@ -2874,7 +2874,7 @@ var button_Button = function Button(_ref) {
   }), children);
 };
 
-;// ./src/cross-sell-page/pro.jsx
+;/ ./src/cross-sell-page/pro.jsx
 var pro_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/cross-sell-page/pro.jsx",
   pro_this = undefined;
 
@@ -3018,7 +3018,7 @@ var ProContent = function ProContent() {
   }, (0,external_wp_i18n_namespaceObject.__)("30 day guarantee: If you don’t love it, we’ll give you your money back - no questions asked.", "plugin-cross-sell-textdomain")))));
 };
 
-;// ./src/cross-sell-page/wrapper.jsx
+;/ ./src/cross-sell-page/wrapper.jsx
 var wrapper_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/cross-sell-page/wrapper.jsx",
   wrapper_this = undefined;
 
@@ -3141,7 +3141,7 @@ var Wrapper = function Wrapper() {
   }))));
 };
 
-;// ./src/cross-sell-page/main.jsx
+;/ ./src/cross-sell-page/main.jsx
 var main_jsxFileName = "/opt/atlassian/pipelines/agent/build/src/cross-sell-page/main.jsx";
 
 

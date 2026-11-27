@@ -20,7 +20,7 @@
  *
  * @return {Object} The preview module object.
  */
-export default function( generator, $ ) { // eslint-disable-line max-lines-per-function
+export default function( generator, $ ) { / eslint-disable-line max-lines-per-function
 	/**
 	 * Localized strings.
 	 *
@@ -69,7 +69,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 		 * @since 1.9.2
 		 */
 		events() {
-			// Track mouse coordinates.
+			/ Track mouse coordinates.
 			$( document ).on( 'mousemove', ( e ) => {
 				preview.mouse.x = e.pageX;
 				preview.mouse.y = e.pageY;
@@ -83,7 +83,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 		 *
 		 * @since 1.9.2
 		 */
-		update() { // eslint-disable-line complexity
+		update() { / eslint-disable-line complexity
 			/**
 			 * @param response.fieldsOrder.length
 			 * @param response.settings.submit_text
@@ -94,16 +94,16 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 				return;
 			}
 
-			// Set the preview update flag.
+			/ Set the preview update flag.
 			generator.state.isPreviewUpdate = true;
 
-			// Reset preview fields. Here we will store the field ids that where added to the preview.
+			/ Reset preview fields. Here we will store the field ids that where added to the preview.
 			generator.state.previewFields = [];
 
-			// Remove existing fields and hide empty state.
+			/ Remove existing fields and hide empty state.
 			preview.clear( false );
 
-			// Display the form header.
+			/ Display the form header.
 			preview.displayHeader( response );
 
 			for ( const key in response.fieldsOrder ) {
@@ -111,14 +111,14 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 				preview.field( response.fields[ fieldId ], key );
 			}
 
-			// Add submit button.
+			/ Add submit button.
 			if ( response.fieldsOrder?.length ) {
 				preview.displaySubmit( response.settings?.submit_text || strings.panel.submitButton );
 
 				return;
 			}
 
-			// Show the empty state if there are no fields.
+			/ Show the empty state if there are no fields.
 			preview.el.$emptyState.removeClass( 'wpforms-hidden-strict' );
 
 			generator.state.isPreviewUpdate = false;
@@ -133,7 +133,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 		 * @param {number} key           Field key.
 		 */
 		async field( fieldSettings, key ) {
-			// Add a field placeholder to the preview.
+			/ Add a field placeholder to the preview.
 			const html = `
 				<div id="wpforms-generator-field-${ fieldSettings.id ?? '' }" class="wpforms-ai-form-generator-preview-field">
 					<div class="placeholder"></div>
@@ -149,10 +149,10 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 				field: fieldSettings,
 			};
 
-			// Delay the AJAX request to simulate one-by-one field loading.
+			/ Delay the AJAX request to simulate one-by-one field loading.
 			await preview.delay( 300 * key );
 
-			// Field preview AJAX request.
+			/ Field preview AJAX request.
 			$.post( strings.ajaxUrl, data )
 				.done( function( res ) {
 					if ( ! res.success ) {
@@ -190,16 +190,16 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 			$field
 				.html( fieldHtml ?? '' )
 				.addClass( 'fade-in' )
-				.toggleClass( 'wpforms-hidden', ! fieldHtml ) // Hide preview if the field is empty.
-				.toggleClass( 'required', fieldSettings.required === '1' ) // Display the required field mark (asterisk) on the field label.
-				.toggleClass( 'label_empty', ! fieldSettings.label ); // The field with an empty label.
+				.toggleClass( 'wpforms-hidden', ! fieldHtml ) / Hide preview if the field is empty.
+				.toggleClass( 'required', fieldSettings.required === '1' ) / Display the required field mark (asterisk) on the field label.
+				.toggleClass( 'label_empty', ! fieldSettings.label ); / The field with an empty label.
 
 			preview.initTooltip( $field );
 			preview.initPageBreak( $field, fieldSettings );
 
 			generator.state.previewFields.push( fieldSettings.id );
 
-			// Detect whether all the fields are loaded.
+			/ Detect whether all the fields are loaded.
 			if ( generator.state.previewFields.length !== Object.keys( generator.state.aiResponse?.fields ).length ) {
 				return;
 			}
@@ -214,7 +214,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 		 *
 		 * @return {string} Addons used in the response.
 		 */
-		getAddonsUsedInResponse() { // eslint-disable-line complexity
+		getAddonsUsedInResponse() { / eslint-disable-line complexity
 			const response = generator.state.aiResponse;
 
 			if ( ! response || ! response.fields ) {
@@ -282,7 +282,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 				side: [ 'top' ],
 				contentAsHTML: true,
 				functionPosition: ( instance, helper, position ) => {
-					// Set the tooltip position based on the mouse coordinates.
+					/ Set the tooltip position based on the mouse coordinates.
 					position.coord.top = preview.mouse.y - 57;
 					position.coord.left = preview.mouse.x - ( width / 2 );
 
@@ -290,7 +290,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 				},
 			};
 
-			// Initialize.
+			/ Initialize.
 			$field.tooltipster( args );
 			preview.toggleTooltipOnClick( $field );
 		},
@@ -304,7 +304,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 		 */
 		toggleTooltipOnClick( $field ) {
 			$field.on( 'click', () => {
-				// Close opened tooltips on other fields.
+				/ Close opened tooltips on other fields.
 				preview.closeTooltips();
 
 				const status = $field.tooltipster( 'status' );
@@ -317,7 +317,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 
 				const instance = $field.tooltipster( 'instance' );
 
-				// Adjust tooltip styling.
+				/ Adjust tooltip styling.
 				instance._$tooltip.css( {
 					height: 'auto',
 				} );
@@ -326,7 +326,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 					left: '50%',
 				} );
 
-				// Close the tooltip after 5 seconds.
+				/ Close the tooltip after 5 seconds.
 				setTimeout( function() {
 					preview.closeTooltips();
 				}, 5000 );
@@ -358,7 +358,7 @@ export default function( generator, $ ) { // eslint-disable-line max-lines-per-f
 		displayHeader( response ) {
 			const title = `<h2 class="wpforms-ai-form-generator-preview-title">${ response.form_title ?? '' }</h2>`;
 
-			// Add form title.
+			/ Add form title.
 			preview.el.$content.prepend( title );
 		},
 

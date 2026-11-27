@@ -47,7 +47,7 @@ class TextPathHandler extends elementorModules.frontend.handlers.Base {
   onInit() {
     this.elements = this.getDefaultElements();
     this.fetchSVG().then(() => {
-      // Generate unique IDs using the wrapper's `data-id`.
+      / Generate unique IDs using the wrapper's `data-id`.
       this.pathId = `e-path-${this.elements.widgetWrapper.dataset.id}`;
       this.textPathId = `e-text-path-${this.elements.widgetWrapper.dataset.id}`;
       if (!this.elements.svg) {
@@ -72,7 +72,7 @@ class TextPathHandler extends elementorModules.frontend.handlers.Base {
     return fetch(url).then(res => res.text()).then(svg => {
       this.elements.pathContainer.innerHTML = _dompurify.default.sanitize(svg);
 
-      // Re-initialize the elements, so the SVG tag will be added.
+      / Re-initialize the elements, so the SVG tag will be added.
       this.elements = this.getDefaultElements();
     });
   }
@@ -130,7 +130,7 @@ class TextPathHandler extends elementorModules.frontend.handlers.Base {
    * @return {void}
    */
   attachIdToPath() {
-    // Prioritize the custom `data` attribute over the `path` element, and fallback to the first `path`.
+    / Prioritize the custom `data` attribute over the `path` element, and fallback to the first `path`.
     const path = this.elements.svg.querySelector('[data-path-anchor]') || this.elements.svg.querySelector('path');
     path.id = this.pathId;
   }
@@ -147,14 +147,14 @@ class TextPathHandler extends elementorModules.frontend.handlers.Base {
     const text = this.elements.pathContainer.dataset.text;
     this.attachIdToPath();
 
-    // Generate the `textPath` element with its settings.
+    / Generate the `textPath` element with its settings.
     this.elements.svg.innerHTML += `
 			<text>
 				<textPath id="${this.textPathId}" href="#${this.pathId}"></textPath>
 			</text>
 		`;
 
-    // Regenerate the elements object to have access to `this.elements.textPath`.
+    / Regenerate the elements object to have access to `this.elements.textPath`.
     this.elements.textPath = this.elements.svg.querySelector(`#${this.textPathId}`);
     this.setOffset(startPoint.size);
     this.setText(text);
@@ -178,7 +178,7 @@ class TextPathHandler extends elementorModules.frontend.handlers.Base {
     const target = isExternal ? '_blank' : '',
       rel = nofollow ? 'nofollow' : '';
 
-    // Add link attributes.
+    / Add link attributes.
     if (url) {
       newText = `<a href="${(0, _utils.escapeHTML)(url)}" rel="${rel}" target="${target}">${(0, _utils.escapeHTML)(newText)}</a>`;
       newText = _dompurify.default.sanitize(newText, {
@@ -186,18 +186,18 @@ class TextPathHandler extends elementorModules.frontend.handlers.Base {
       });
     }
 
-    // Set the text.
+    / Set the text.
     this.elements.textPath.innerHTML = newText;
 
-    // Remove the cloned element if exists.
+    / Remove the cloned element if exists.
     const existingClone = this.elements.svg.querySelector(`#${this.textPathId}-clone`);
     if (existingClone) {
       existingClone.remove();
     }
 
-    // Reverse the text if needed.
+    / Reverse the text if needed.
     if (this.shouldReverseText()) {
-      // Keep an invisible selectable copy of original element for better a11y.
+      / Keep an invisible selectable copy of original element for better a11y.
       const clone = this.elements.textPath.cloneNode();
       clone.id += '-clone';
       clone.classList.add('elementor-hidden');
@@ -261,19 +261,19 @@ class TextPathHandler extends elementorModules.frontend.handlers.Base {
    * @return {void}
    */
   reverseToRTL() {
-    // Make sure to use the inner `a` tag if exists.
+    / Make sure to use the inner `a` tag if exists.
     let parentElement = this.elements.textPath;
     parentElement = parentElement.querySelector('a') || parentElement;
 
-    // Catch all RTL chars and reverse their order.
+    / Catch all RTL chars and reverse their order.
     const pattern = /([\u0591-\u07FF\u200F\u202B\u202E\uFB1D-\uFDFD\uFE70-\uFEFC\s$&+,:;=?@#|'<>.^*()%!-]+)/ig;
 
-    // Reverse the text.
+    / Reverse the text.
     parentElement.textContent = parentElement.textContent.replace(pattern, word => {
       return word.split('').reverse().join('');
     });
 
-    // Add a11y attributes.
+    / Add a11y attributes.
     parentElement.setAttribute('aria-hidden', true);
   }
 }
@@ -302,7 +302,7 @@ let {
   freeze,
   seal,
   create
-} = Object; // eslint-disable-line import/no-mutable-exports
+} = Object; / eslint-disable-line import/no-mutable-exports
 let {
   apply,
   construct
@@ -383,9 +383,9 @@ function unconstruct(func) {
 function addToSet(set, array) {
   let transformCaseFunc = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : stringToLowerCase;
   if (setPrototypeOf) {
-    // Make 'in' and truthy checks like Boolean(set.constructor)
-    // independent of any properties defined on Object.prototype.
-    // Prevent prototype setters from intercepting set as a this value.
+    / Make 'in' and truthy checks like Boolean(set.constructor)
+    / independent of any properties defined on Object.prototype.
+    / Prevent prototype setters from intercepting set as a this value.
     setPrototypeOf(set, null);
   }
   let l = array.length;
@@ -394,7 +394,7 @@ function addToSet(set, array) {
     if (typeof element === 'string') {
       const lcElement = transformCaseFunc(element);
       if (lcElement !== element) {
-        // Config presets (e.g. tags.js, attrs.js) are immutable.
+        / Config presets (e.g. tags.js, attrs.js) are immutable.
         if (!isFrozen(array)) {
           array[l] = lcElement;
         }
@@ -488,15 +488,15 @@ const mathMl = freeze(['accent', 'accentunder', 'align', 'bevelled', 'close', 'c
 const xml = freeze(['xlink:href', 'xml:id', 'xlink:title', 'xml:space', 'xmlns:xlink']);
 
 // eslint-disable-next-line unicorn/better-regex
-const MUSTACHE_EXPR = seal(/\{\{[\w\W]*|[\w\W]*\}\}/gm); // Specify template detection regex for SAFE_FOR_TEMPLATES mode
+const MUSTACHE_EXPR = seal(/\{\{[\w\W]*|[\w\W]*\}\}/gm); / Specify template detection regex for SAFE_FOR_TEMPLATES mode
 const ERB_EXPR = seal(/<%[\w\W]*|[\w\W]*%>/gm);
-const TMPLIT_EXPR = seal(/\$\{[\w\W]*/gm); // eslint-disable-line unicorn/better-regex
-const DATA_ATTR = seal(/^data-[\-\w.\u00B7-\uFFFF]+$/); // eslint-disable-line no-useless-escape
-const ARIA_ATTR = seal(/^aria-[\-\w]+$/); // eslint-disable-line no-useless-escape
-const IS_ALLOWED_URI = seal(/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp|matrix):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i // eslint-disable-line no-useless-escape
+const TMPLIT_EXPR = seal(/\$\{[\w\W]*/gm); / eslint-disable-line unicorn/better-regex
+const DATA_ATTR = seal(/^data-[\-\w.\u00B7-\uFFFF]+$/); / eslint-disable-line no-useless-escape
+const ARIA_ATTR = seal(/^aria-[\-\w]+$/); / eslint-disable-line no-useless-escape
+const IS_ALLOWED_URI = seal(/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp|matrix):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i / eslint-disable-line no-useless-escape
 );
 const IS_SCRIPT_OR_DATA = seal(/^(?:\w+script|data):/i);
-const ATTR_WHITESPACE = seal(/[\u0000-\u0020\u00A0\u1680\u180E\u2000-\u2029\u205F\u3000]/g // eslint-disable-line no-control-regex
+const ATTR_WHITESPACE = seal(/[\u0000-\u0020\u00A0\u1680\u180E\u2000-\u2029\u205F\u3000]/g / eslint-disable-line no-control-regex
 );
 const DOCTYPE_NAME = seal(/^html$/i);
 const CUSTOM_ELEMENT = seal(/^[a-z][.\w]*(-[.\w]+)+$/i);
@@ -523,15 +523,15 @@ const NODE_TYPE = {
   text: 3,
   cdataSection: 4,
   entityReference: 5,
-  // Deprecated
+  / Deprecated
   entityNode: 6,
-  // Deprecated
+  / Deprecated
   progressingInstruction: 7,
   comment: 8,
   document: 9,
   documentType: 10,
   documentFragment: 11,
-  notation: 12 // Deprecated
+  notation: 12 / Deprecated
 };
 const getGlobal = function getGlobal() {
   return typeof window === 'undefined' ? null : window;
@@ -548,9 +548,9 @@ const _createTrustedTypesPolicy = function _createTrustedTypesPolicy(trustedType
   if (typeof trustedTypes !== 'object' || typeof trustedTypes.createPolicy !== 'function') {
     return null;
   }
-  // Allow the callers to control the unique policy name
-  // by adding a data-tt-policy-suffix to the script element with the DOMPurify.
-  // Policy creation with duplicate names throws in Trusted Types.
+  / Allow the callers to control the unique policy name
+  / by adding a data-tt-policy-suffix to the script element with the DOMPurify.
+  / Policy creation with duplicate names throws in Trusted Types.
   let suffix = null;
   const ATTR_NAME = 'data-tt-policy-suffix';
   if (purifyHostElement && purifyHostElement.hasAttribute(ATTR_NAME)) {
@@ -567,9 +567,9 @@ const _createTrustedTypesPolicy = function _createTrustedTypesPolicy(trustedType
       }
     });
   } catch (_) {
-    // Policy creation failed (most likely another DOMPurify script has
-    // already run). Skip creating the policy, as this will only cause errors
-    // if TT are enforced.
+    / Policy creation failed (most likely another DOMPurify script has
+    / already run). Skip creating the policy, as this will only cause errors
+    / if TT are enforced.
     console.warn('TrustedTypes policy ' + policyName + ' could not be created.');
     return null;
   }
@@ -593,8 +593,8 @@ function createDOMPurify() {
   DOMPurify.version = '3.2.6';
   DOMPurify.removed = [];
   if (!window || !window.document || window.document.nodeType !== NODE_TYPE.document || !window.Element) {
-    // Not running in a browser, provide a factory function
-    // so that you can pass your own Window
+    / Not running in a browser, provide a factory function
+    / so that you can pass your own Window
     DOMPurify.isSupported = false;
     return DOMPurify;
   }
@@ -620,12 +620,12 @@ function createDOMPurify() {
   const getNextSibling = lookupGetter(ElementPrototype, 'nextSibling');
   const getChildNodes = lookupGetter(ElementPrototype, 'childNodes');
   const getParentNode = lookupGetter(ElementPrototype, 'parentNode');
-  // As per issue #47, the web-components registry is inherited by a
-  // new document created via createHTMLDocument. As per the spec
-  // (http://w3c.github.io/webcomponents/spec/custom/#creating-and-passing-registries)
-  // a new empty registry is used when creating a template contents owner
-  // document, so we use that as our parent document to ensure nothing
-  // is inherited.
+  / As per issue #47, the web-components registry is inherited by a
+  / new document created via createHTMLDocument. As per the spec
+  / (http://w3c.github.io/webcomponents/spec/custom/#creating-and-passing-registries)
+  / a new empty registry is used when creating a template contents owner
+  / document, so we use that as our parent document to ensure nothing
+  / is inherited.
   if (typeof HTMLTemplateElement === 'function') {
     const template = document.createElement('template');
     if (template.content && template.content.ownerDocument) {
@@ -782,10 +782,10 @@ function createDOMPurify() {
   const DEFAULT_ALLOWED_NAMESPACES = addToSet({}, [MATHML_NAMESPACE, SVG_NAMESPACE, HTML_NAMESPACE], stringToString);
   let MATHML_TEXT_INTEGRATION_POINTS = addToSet({}, ['mi', 'mo', 'mn', 'ms', 'mtext']);
   let HTML_INTEGRATION_POINTS = addToSet({}, ['annotation-xml']);
-  // Certain elements are allowed in both SVG and HTML
-  // namespace. We need to specify them explicitly
-  // so that they don't get erroneously deleted from
-  // HTML namespace.
+  / Certain elements are allowed in both SVG and HTML
+  / namespace. We need to specify them explicitly
+  / so that they don't get erroneously deleted from
+  / HTML namespace.
   const COMMON_SVG_AND_HTML_ELEMENTS = addToSet({}, ['title', 'style', 'font', 'a', 'script']);
   /* Parsing of strict XHTML documents */
   let PARSER_MEDIA_TYPE = null;
@@ -805,7 +805,7 @@ function createDOMPurify() {
    *
    * @param cfg optional config literal
    */
-  // eslint-disable-next-line complexity
+  / eslint-disable-next-line complexity
   const _parseConfig = function _parseConfig() {
     let cfg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     if (CONFIG && CONFIG === cfg) {
@@ -818,9 +818,9 @@ function createDOMPurify() {
     /* Shield configuration object from prototype pollution */
     cfg = clone(cfg);
     PARSER_MEDIA_TYPE =
-    // eslint-disable-next-line unicorn/prefer-includes
+    / eslint-disable-next-line unicorn/prefer-includes
     SUPPORTED_PARSER_MEDIA_TYPES.indexOf(cfg.PARSER_MEDIA_TYPE) === -1 ? DEFAULT_PARSER_MEDIA_TYPE : cfg.PARSER_MEDIA_TYPE;
-    // HTML tags and attributes are not case-sensitive, converting to lowercase. Keeping XHTML as is.
+    / HTML tags and attributes are not case-sensitive, converting to lowercase. Keeping XHTML as is.
     transformCaseFunc = PARSER_MEDIA_TYPE === 'application/xhtml+xml' ? stringToString : stringToLowerCase;
     /* Set configuration parameters */
     ALLOWED_TAGS = objectHasOwnProperty(cfg, 'ALLOWED_TAGS') ? addToSet({}, cfg.ALLOWED_TAGS, transformCaseFunc) : DEFAULT_ALLOWED_TAGS;
@@ -832,21 +832,21 @@ function createDOMPurify() {
     FORBID_TAGS = objectHasOwnProperty(cfg, 'FORBID_TAGS') ? addToSet({}, cfg.FORBID_TAGS, transformCaseFunc) : clone({});
     FORBID_ATTR = objectHasOwnProperty(cfg, 'FORBID_ATTR') ? addToSet({}, cfg.FORBID_ATTR, transformCaseFunc) : clone({});
     USE_PROFILES = objectHasOwnProperty(cfg, 'USE_PROFILES') ? cfg.USE_PROFILES : false;
-    ALLOW_ARIA_ATTR = cfg.ALLOW_ARIA_ATTR !== false; // Default true
-    ALLOW_DATA_ATTR = cfg.ALLOW_DATA_ATTR !== false; // Default true
-    ALLOW_UNKNOWN_PROTOCOLS = cfg.ALLOW_UNKNOWN_PROTOCOLS || false; // Default false
-    ALLOW_SELF_CLOSE_IN_ATTR = cfg.ALLOW_SELF_CLOSE_IN_ATTR !== false; // Default true
-    SAFE_FOR_TEMPLATES = cfg.SAFE_FOR_TEMPLATES || false; // Default false
-    SAFE_FOR_XML = cfg.SAFE_FOR_XML !== false; // Default true
-    WHOLE_DOCUMENT = cfg.WHOLE_DOCUMENT || false; // Default false
-    RETURN_DOM = cfg.RETURN_DOM || false; // Default false
-    RETURN_DOM_FRAGMENT = cfg.RETURN_DOM_FRAGMENT || false; // Default false
-    RETURN_TRUSTED_TYPE = cfg.RETURN_TRUSTED_TYPE || false; // Default false
-    FORCE_BODY = cfg.FORCE_BODY || false; // Default false
-    SANITIZE_DOM = cfg.SANITIZE_DOM !== false; // Default true
-    SANITIZE_NAMED_PROPS = cfg.SANITIZE_NAMED_PROPS || false; // Default false
-    KEEP_CONTENT = cfg.KEEP_CONTENT !== false; // Default true
-    IN_PLACE = cfg.IN_PLACE || false; // Default false
+    ALLOW_ARIA_ATTR = cfg.ALLOW_ARIA_ATTR !== false; / Default true
+    ALLOW_DATA_ATTR = cfg.ALLOW_DATA_ATTR !== false; / Default true
+    ALLOW_UNKNOWN_PROTOCOLS = cfg.ALLOW_UNKNOWN_PROTOCOLS || false; / Default false
+    ALLOW_SELF_CLOSE_IN_ATTR = cfg.ALLOW_SELF_CLOSE_IN_ATTR !== false; / Default true
+    SAFE_FOR_TEMPLATES = cfg.SAFE_FOR_TEMPLATES || false; / Default false
+    SAFE_FOR_XML = cfg.SAFE_FOR_XML !== false; / Default true
+    WHOLE_DOCUMENT = cfg.WHOLE_DOCUMENT || false; / Default false
+    RETURN_DOM = cfg.RETURN_DOM || false; / Default false
+    RETURN_DOM_FRAGMENT = cfg.RETURN_DOM_FRAGMENT || false; / Default false
+    RETURN_TRUSTED_TYPE = cfg.RETURN_TRUSTED_TYPE || false; / Default false
+    FORCE_BODY = cfg.FORCE_BODY || false; / Default false
+    SANITIZE_DOM = cfg.SANITIZE_DOM !== false; / Default true
+    SANITIZE_NAMED_PROPS = cfg.SANITIZE_NAMED_PROPS || false; / Default false
+    KEEP_CONTENT = cfg.KEEP_CONTENT !== false; / Default true
+    IN_PLACE = cfg.IN_PLACE || false; / Default false
     IS_ALLOWED_URI$1 = cfg.ALLOWED_URI_REGEXP || IS_ALLOWED_URI;
     NAMESPACE = cfg.NAMESPACE || HTML_NAMESPACE;
     MATHML_TEXT_INTEGRATION_POINTS = cfg.MATHML_TEXT_INTEGRATION_POINTS || MATHML_TEXT_INTEGRATION_POINTS;
@@ -933,22 +933,22 @@ function createDOMPurify() {
       if (typeof cfg.TRUSTED_TYPES_POLICY.createScriptURL !== 'function') {
         throw typeErrorCreate('TRUSTED_TYPES_POLICY configuration option must provide a "createScriptURL" hook.');
       }
-      // Overwrite existing TrustedTypes policy.
+      / Overwrite existing TrustedTypes policy.
       trustedTypesPolicy = cfg.TRUSTED_TYPES_POLICY;
-      // Sign local variables required by `sanitize`.
+      / Sign local variables required by `sanitize`.
       emptyHTML = trustedTypesPolicy.createHTML('');
     } else {
-      // Uninitialized policy, attempt to initialize the internal dompurify policy.
+      / Uninitialized policy, attempt to initialize the internal dompurify policy.
       if (trustedTypesPolicy === undefined) {
         trustedTypesPolicy = _createTrustedTypesPolicy(trustedTypes, currentScript);
       }
-      // If creating the internal policy succeeded sign internal variables.
+      / If creating the internal policy succeeded sign internal variables.
       if (trustedTypesPolicy !== null && typeof emptyHTML === 'string') {
         emptyHTML = trustedTypesPolicy.createHTML('');
       }
     }
-    // Prevent further manipulation of configuration.
-    // Not available in IE8, Safari 5, etc.
+    / Prevent further manipulation of configuration.
+    / Not available in IE8, Safari 5, etc.
     if (freeze) {
       freeze(cfg);
     }
@@ -967,8 +967,8 @@ function createDOMPurify() {
    */
   const _checkValidNamespace = function _checkValidNamespace(element) {
     let parent = getParentNode(element);
-    // In JSDOM, if we're inside shadow DOM, then parentNode
-    // can be null. We just simulate parent in this case.
+    / In JSDOM, if we're inside shadow DOM, then parentNode
+    / can be null. We just simulate parent in this case.
     if (!parent || !parent.tagName) {
       parent = {
         namespaceURI: NAMESPACE,
@@ -981,60 +981,60 @@ function createDOMPurify() {
       return false;
     }
     if (element.namespaceURI === SVG_NAMESPACE) {
-      // The only way to switch from HTML namespace to SVG
-      // is via <svg>. If it happens via any other tag, then
-      // it should be killed.
+      / The only way to switch from HTML namespace to SVG
+      / is via <svg>. If it happens via any other tag, then
+      / it should be killed.
       if (parent.namespaceURI === HTML_NAMESPACE) {
         return tagName === 'svg';
       }
-      // The only way to switch from MathML to SVG is via`
-      // svg if parent is either <annotation-xml> or MathML
-      // text integration points.
+      / The only way to switch from MathML to SVG is via`
+      / svg if parent is either <annotation-xml> or MathML
+      / text integration points.
       if (parent.namespaceURI === MATHML_NAMESPACE) {
         return tagName === 'svg' && (parentTagName === 'annotation-xml' || MATHML_TEXT_INTEGRATION_POINTS[parentTagName]);
       }
-      // We only allow elements that are defined in SVG
-      // spec. All others are disallowed in SVG namespace.
+      / We only allow elements that are defined in SVG
+      / spec. All others are disallowed in SVG namespace.
       return Boolean(ALL_SVG_TAGS[tagName]);
     }
     if (element.namespaceURI === MATHML_NAMESPACE) {
-      // The only way to switch from HTML namespace to MathML
-      // is via <math>. If it happens via any other tag, then
-      // it should be killed.
+      / The only way to switch from HTML namespace to MathML
+      / is via <math>. If it happens via any other tag, then
+      / it should be killed.
       if (parent.namespaceURI === HTML_NAMESPACE) {
         return tagName === 'math';
       }
-      // The only way to switch from SVG to MathML is via
-      // <math> and HTML integration points
+      / The only way to switch from SVG to MathML is via
+      / <math> and HTML integration points
       if (parent.namespaceURI === SVG_NAMESPACE) {
         return tagName === 'math' && HTML_INTEGRATION_POINTS[parentTagName];
       }
-      // We only allow elements that are defined in MathML
-      // spec. All others are disallowed in MathML namespace.
+      / We only allow elements that are defined in MathML
+      / spec. All others are disallowed in MathML namespace.
       return Boolean(ALL_MATHML_TAGS[tagName]);
     }
     if (element.namespaceURI === HTML_NAMESPACE) {
-      // The only way to switch from SVG to HTML is via
-      // HTML integration points, and from MathML to HTML
-      // is via MathML text integration points
+      / The only way to switch from SVG to HTML is via
+      / HTML integration points, and from MathML to HTML
+      / is via MathML text integration points
       if (parent.namespaceURI === SVG_NAMESPACE && !HTML_INTEGRATION_POINTS[parentTagName]) {
         return false;
       }
       if (parent.namespaceURI === MATHML_NAMESPACE && !MATHML_TEXT_INTEGRATION_POINTS[parentTagName]) {
         return false;
       }
-      // We disallow tags that are specific for MathML
-      // or SVG and should never appear in HTML namespace
+      / We disallow tags that are specific for MathML
+      / or SVG and should never appear in HTML namespace
       return !ALL_MATHML_TAGS[tagName] && (COMMON_SVG_AND_HTML_ELEMENTS[tagName] || !ALL_SVG_TAGS[tagName]);
     }
-    // For XHTML and XML documents that support custom namespaces
+    / For XHTML and XML documents that support custom namespaces
     if (PARSER_MEDIA_TYPE === 'application/xhtml+xml' && ALLOWED_NAMESPACES[element.namespaceURI]) {
       return true;
     }
-    // The code should never reach this place (this means
-    // that the element somehow got namespace that is not
-    // HTML, SVG, MathML or allowed via ALLOWED_NAMESPACES).
-    // Return false just in case.
+    / The code should never reach this place (this means
+    / that the element somehow got namespace that is not
+    / HTML, SVG, MathML or allowed via ALLOWED_NAMESPACES).
+    / Return false just in case.
     return false;
   };
   /**
@@ -1047,7 +1047,7 @@ function createDOMPurify() {
       element: node
     });
     try {
-      // eslint-disable-next-line unicorn/prefer-dom-node-remove
+      / eslint-disable-next-line unicorn/prefer-dom-node-remove
       getParentNode(node).removeChild(node);
     } catch (_) {
       remove(node);
@@ -1072,7 +1072,7 @@ function createDOMPurify() {
       });
     }
     element.removeAttribute(name);
-    // We void attribute values for unremovable "is" attributes
+    / We void attribute values for unremovable "is" attributes
     if (name === 'is') {
       if (RETURN_DOM || RETURN_DOM_FRAGMENT) {
         try {
@@ -1103,7 +1103,7 @@ function createDOMPurify() {
       leadingWhitespace = matches && matches[0];
     }
     if (PARSER_MEDIA_TYPE === 'application/xhtml+xml' && NAMESPACE === HTML_NAMESPACE) {
-      // Root of XHTML doc must contain xmlns declaration (see https://www.w3.org/TR/xhtml1/normative.html#strict)
+      / Root of XHTML doc must contain xmlns declaration (see https://www.w3.org/TR/xhtml1/normative.html#strict)
       dirty = '<html xmlns="http://www.w3.org/1999/xhtml"><head></head><body>' + dirty + '</body></html>';
     }
     const dirtyPayload = trustedTypesPolicy ? trustedTypesPolicy.createHTML(dirty) : dirty;
@@ -1122,7 +1122,7 @@ function createDOMPurify() {
       try {
         doc.documentElement.innerHTML = IS_EMPTY_INPUT ? emptyHTML : dirtyPayload;
       } catch (_) {
-        // Syntax error if dirtyPayload is invalid xml
+        / Syntax error if dirtyPayload is invalid xml
       }
     }
     const body = doc.body || doc.documentElement;
@@ -1143,7 +1143,7 @@ function createDOMPurify() {
    */
   const _createNodeIterator = function _createNodeIterator(root) {
     return createNodeIterator.call(root.ownerDocument || root, root,
-    // eslint-disable-next-line no-bitwise
+    / eslint-disable-next-line no-bitwise
     NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_COMMENT | NodeFilter.SHOW_TEXT | NodeFilter.SHOW_PROCESSING_INSTRUCTION | NodeFilter.SHOW_CDATA_SECTION, null);
   };
   /**
@@ -1272,7 +1272,7 @@ function createDOMPurify() {
    * @param value Attribute value.
    * @return Returns true if `value` is valid, otherwise false.
    */
-  // eslint-disable-next-line complexity
+  / eslint-disable-next-line complexity
   const _isValidAttribute = function _isValidAttribute(lcTag, lcName, value) {
     /* Make sure attribute cannot clobber */
     if (SANITIZE_DOM && (lcName === 'id' || lcName === 'name') && (value in document || value in formElement)) {
@@ -1284,12 +1284,12 @@ function createDOMPurify() {
         We don't need to check the value; it's always URI safe. */
     if (ALLOW_DATA_ATTR && !FORBID_ATTR[lcName] && regExpTest(DATA_ATTR, lcName)) ; else if (ALLOW_ARIA_ATTR && regExpTest(ARIA_ATTR, lcName)) ; else if (!ALLOWED_ATTR[lcName] || FORBID_ATTR[lcName]) {
       if (
-      // First condition does a very basic check if a) it's basically a valid custom element tagname AND
-      // b) if the tagName passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
-      // and c) if the attribute name passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.attributeNameCheck
+      / First condition does a very basic check if a) it's basically a valid custom element tagname AND
+      / b) if the tagName passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
+      / and c) if the attribute name passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.attributeNameCheck
       _isBasicCustomElement(lcTag) && (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, lcTag) || CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(lcTag)) && (CUSTOM_ELEMENT_HANDLING.attributeNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.attributeNameCheck, lcName) || CUSTOM_ELEMENT_HANDLING.attributeNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.attributeNameCheck(lcName)) ||
-      // Alternative, second condition checks if it's an `is`-attribute, AND
-      // the value passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
+      / Alternative, second condition checks if it's an `is`-attribute, AND
+      / the value passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
       lcName === 'is' && CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements && (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, value) || CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(value))) ; else {
         return false;
       }
@@ -1353,16 +1353,16 @@ function createDOMPurify() {
       hookEvent.attrName = lcName;
       hookEvent.attrValue = value;
       hookEvent.keepAttr = true;
-      hookEvent.forceKeepAttr = undefined; // Allows developers to see this is a property they can set
+      hookEvent.forceKeepAttr = undefined; / Allows developers to see this is a property they can set
       _executeHooks(hooks.uponSanitizeAttribute, currentNode, hookEvent);
       value = hookEvent.attrValue;
       /* Full DOM Clobbering protection via namespace isolation,
        * Prefix id and name attributes with `user-content-`
        */
       if (SANITIZE_NAMED_PROPS && (lcName === 'id' || lcName === 'name')) {
-        // Remove the attribute with this value
+        / Remove the attribute with this value
         _removeAttribute(name, currentNode);
-        // Prefix the value and later re-create the attribute with the sanitized value
+        / Prefix the value and later re-create the attribute with the sanitized value
         value = SANITIZE_NAMED_PROPS_PREFIX + value;
       }
       /* Work around a security issue with comments inside attributes */
@@ -1460,7 +1460,7 @@ function createDOMPurify() {
     /* Execute a hook if present */
     _executeHooks(hooks.afterSanitizeShadowDOM, fragment, null);
   };
-  // eslint-disable-next-line complexity
+  / eslint-disable-next-line complexity
   DOMPurify.sanitize = function (dirty) {
     let cfg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     let body = null;
@@ -1518,13 +1518,13 @@ function createDOMPurify() {
       } else if (importedNode.nodeName === 'HTML') {
         body = importedNode;
       } else {
-        // eslint-disable-next-line unicorn/prefer-dom-node-append
+        / eslint-disable-next-line unicorn/prefer-dom-node-append
         body.appendChild(importedNode);
       }
     } else {
       /* Exit directly if we have nothing to do */
       if (!RETURN_DOM && !SAFE_FOR_TEMPLATES && !WHOLE_DOCUMENT &&
-      // eslint-disable-next-line unicorn/prefer-includes
+      / eslint-disable-next-line unicorn/prefer-includes
       dirty.indexOf('<') === -1) {
         return trustedTypesPolicy && RETURN_TRUSTED_TYPE ? trustedTypesPolicy.createHTML(dirty) : dirty;
       }
@@ -1561,7 +1561,7 @@ function createDOMPurify() {
       if (RETURN_DOM_FRAGMENT) {
         returnNode = createDocumentFragment.call(body.ownerDocument);
         while (body.firstChild) {
-          // eslint-disable-next-line unicorn/prefer-dom-node-append
+          / eslint-disable-next-line unicorn/prefer-dom-node-append
           returnNode.appendChild(body.firstChild);
         }
       } else {

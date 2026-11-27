@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../modules/container-converter/assets/js/editor/commands/convert-all.js":
@@ -129,11 +129,11 @@ var Convert = exports.Convert = /*#__PURE__*/function (_$e$modules$editor$do) {
         elType = container.type,
         isFirst = rootContainer === container.parent;
 
-      // TODO: Maybe use `view._parent.collection.indexOf( this.model )`.
-      // Get the converted element index. The first converted element should be put after the original one.
+      / TODO: Maybe use `view._parent.collection.indexOf( this.model )`.
+      / Get the converted element index. The first converted element should be put after the original one.
       var at = isFirst ? view._index + 1 : view._index;
 
-      // Copy the element as is without converting.
+      / Copy the element as is without converting.
       if (!_migrator.default.canConvertToContainer(elType)) {
         $e.run('document/elements/create', {
           model: {
@@ -170,7 +170,7 @@ var Convert = exports.Convert = /*#__PURE__*/function (_$e$modules$editor$do) {
         }
       });
 
-      // Recursively convert children to Containers.
+      / Recursively convert children to Containers.
       container.children.forEach(function (child) {
         $e.run('container-converter/convert', {
           container: child,
@@ -263,8 +263,8 @@ var _default = exports["default"] = /*#__PURE__*/function (_$e$modules$Component
         var loadingClass = 'e-loading';
         button.classList.add(loadingClass);
 
-        // Defer the conversion process in order to force a re-render of the button, since the conversion is
-        // synchronous and blocks the main thread from re-rendering.
+        / Defer the conversion process in order to force a re-render of the button, since the conversion is
+        / synchronous and blocks the main thread from re-rendering.
         setTimeout(function () {
           if ('document' === container.type) {
             $e.run('container-converter/convert-all');
@@ -410,7 +410,7 @@ var map = function map(_ref) {
           value = sectionSettings.custom_height || {
             size: 400,
             unit: 'px'
-          }; // Default section's height.
+          }; / Default section's height.
           break;
         default:
           return false;
@@ -484,7 +484,7 @@ function responsive(key, value) {
   return Object.fromEntries(breakpoints.map(function (breakpoint) {
     var deviceKey = getDeviceKey(key, breakpoint);
 
-    // Simple responsive rename with string:
+    / Simple responsive rename with string:
     if ('string' === typeof value) {
       var newDeviceKey = getDeviceKey(value, breakpoint);
       return [deviceKey, function (_ref) {
@@ -493,7 +493,7 @@ function responsive(key, value) {
       }];
     }
 
-    // Advanced responsive rename with callback:
+    / Advanced responsive rename with callback:
     return [deviceKey, function (_ref2) {
       var settings = _ref2.settings,
         desktopValue = _ref2.value;
@@ -573,19 +573,19 @@ var Migrator = exports["default"] = /*#__PURE__*/function () {
           value = _ref2[1];
         var mapped = map[key];
 
-        // Remove setting.
+        / Remove setting.
         if (null === mapped) {
           return null;
         }
 
-        // Simple key conversion:
-        // { old_setting: 'new_setting' }
+        / Simple key conversion:
+        / { old_setting: 'new_setting' }
         if ('string' === typeof mapped) {
           return [mapped, value];
         }
 
-        // Advanced conversion using a callback:
-        // { old_setting: ( { key, value, settings } ) => [ 'new_setting', value ] }
+        / Advanced conversion using a callback:
+        / { old_setting: ( { key, value, settings } ) => [ 'new_setting', value ] }
         if ('function' === typeof mapped) {
           return mapped({
             key: key,
@@ -659,8 +659,8 @@ var Migrator = exports["default"] = /*#__PURE__*/function () {
       var isInner = _ref3.isInner;
       return _objectSpread(_objectSpread({}, settings), {}, {
         flex_direction: 'row',
-        // Force it to be row.
-        // Defaults (since default settings are removed):
+        / Force it to be row.
+        / Defaults (since default settings are removed):
         flex_align_items: settings.flex_align_items || 'stretch',
         flex_gap: settings.flex_gap || {
           size: 10,
@@ -1077,27 +1077,27 @@ module.exports = _unsupportedIterableToArray, module.exports.__esModule = true, 
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	

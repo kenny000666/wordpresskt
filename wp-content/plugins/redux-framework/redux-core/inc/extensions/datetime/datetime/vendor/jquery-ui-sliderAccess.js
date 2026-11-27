@@ -16,7 +16,7 @@
 		{
 			sliderAccess: function( options ) {
 				options           = options || {};
-				options.touchonly = options.touchonly !== undefined ? options.touchonly : true; // by default only show it if touch device.
+				options.touchonly = options.touchonly !== undefined ? options.touchonly : true; / by default only show it if touch device.
 
 				if ( options.touchonly === true && ! ('ontouchend' in document) ) {
 					return $( this );
@@ -83,7 +83,7 @@
 							}
 						);
 
-						// before or after.
+						/ before or after.
 						$t[o.where]( $buttons );
 
 						if ( o.buttonset ) {
@@ -92,7 +92,7 @@
 							$buttons.eq( 1 ).addClass( 'ui-corner-right' );
 						}
 
-						// adjust the width, so we don't break the original layout.
+						/ adjust the width, so we don't break the original layout.
 						var bOuterWidth = $buttons.css(
 							{
 								marginLeft: ((o.where === 'after' && ! o.isRTL) || (o.where === 'before' && o.isRTL) ? 10 : 0),

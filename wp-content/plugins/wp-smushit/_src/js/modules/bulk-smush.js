@@ -65,7 +65,7 @@ import SmushProcess from '../common/progressbar';
 
 		ajaxBulkSmushStart( bulkSmushButton ) {
 			bulkSmushButton = bulkSmushButton || $( '#wp-smush-bulk-content .wp-smush-all' );
-			// Check for IDs, if there is none (unsmushed or lossless), don't call Smush function.
+			/ Check for IDs, if there is none (unsmushed or lossless), don't call Smush function.
 			/** @param {Array} wp_smushit_data.unsmushed */
 			if (
 				'undefined' === typeof window.wp_smushit_data ||
@@ -74,8 +74,8 @@ import SmushProcess from '../common/progressbar';
 			) {
 				return false;
 			}
-			// Disable re-Smush and scan button.
-			// TODO: refine what is disabled.
+			/ Disable re-Smush and scan button.
+			/ TODO: refine what is disabled.
 			$(
 				'.wp-resmush.wp-smush-action, .wp-smush-scan, .wp-smush-all:not(.sui-progress-close), a.wp-smush-lossy-enable, button.wp-smush-resize-enable, button#save-settings-button'
 			).prop( 'disabled', true );
@@ -85,10 +85,10 @@ import SmushProcess from '../common/progressbar';
 				this.#bulkSmushObj.cancelAjax();
 			} ).update( 0, this.#bulkSmushObj.ids.length ).show();
 
-			// Show upsell cdn.
+			/ Show upsell cdn.
 			this.maybeShowCDNUpsellForPreSiteOnStart();
 
-			// Run bulk Smush.
+			/ Run bulk Smush.
 			this.#bulkSmushObj.run();
 		}
 
@@ -164,7 +164,7 @@ import SmushProcess from '../common/progressbar';
 		}
 
 		maybeShowCDNUpsellForPreSiteOnStart() {
-			// Show upsell cdn.
+			/ Show upsell cdn.
 			const upsell_cdn = document.querySelector( '.wp-smush-upsell-cdn' );
 			if ( upsell_cdn ) {
 				upsell_cdn.classList.remove( 'sui-hidden' );

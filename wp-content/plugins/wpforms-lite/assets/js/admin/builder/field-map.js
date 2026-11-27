@@ -11,7 +11,7 @@
  *
  * @since 1.9.5
  */
-var WPForms = window.WPForms || {}; // eslint-disable-line no-var
+var WPForms = window.WPForms || {}; / eslint-disable-line no-var
 
 WPForms.Admin = WPForms.Admin || {};
 WPForms.Admin.Builder = WPForms.Admin.Builder || {};
@@ -60,7 +60,7 @@ WPForms.Admin.Builder.FieldMap = WPForms.Admin.Builder.FieldMap || ( function( d
 		 * @since 1.9.5
 		 */
 		setup() {
-			// Cache DOM elements.
+			/ Cache DOM elements.
 			el.$builder = $( '#wpforms-builder' );
 		},
 
@@ -70,7 +70,7 @@ WPForms.Admin.Builder.FieldMap = WPForms.Admin.Builder.FieldMap || ( function( d
 		 * @since 1.9.5
 		 */
 		events() {
-			// Field map table, update key source
+			/ Field map table, update key source
 			el.$builder.on( 'input', '.wpforms-field-map-table .key-source', function() {
 				const value = $( this ).val(),
 					$dest = $( this ).parent().parent().find( '.key-destination' ),
@@ -81,19 +81,19 @@ WPForms.Admin.Builder.FieldMap = WPForms.Admin.Builder.FieldMap || ( function( d
 				}
 			} );
 
-			// Field map table, delete row
+			/ Field map table, delete row
 			el.$builder.on( 'click', '.wpforms-field-map-table .remove', function( e ) {
 				e.preventDefault();
 				app.fieldMapTableDeleteRow( e, $( this ) );
 			} );
 
-			// Field map table, Add row
+			/ Field map table, Add row
 			el.$builder.on( 'click', '.wpforms-field-map-table .add', function( e ) {
 				e.preventDefault();
 				app.fieldMapTableAddRow( e, $( this ) );
 			} );
 
-			// Global select field mapping
+			/ Global select field mapping
 			$( document ).on( 'wpformsFieldUpdate', app.fieldMapSelect );
 		},
 
@@ -151,26 +151,26 @@ WPForms.Admin.Builder.FieldMap = WPForms.Admin.Builder.FieldMap || ( function( d
 		 * @param {Event}  e      Event.
 		 * @param {Object} fields Fields.
 		 */
-		fieldMapSelect( e, fields ) { // eslint-disable-line max-lines-per-function
+		fieldMapSelect( e, fields ) { / eslint-disable-line max-lines-per-function
 			const event = WPFormsUtils.triggerEvent( el.$builder, 'wpformsBeforeFieldMapSelectUpdate' );
 
-			// Allow callbacks on `wpformsBeforeFieldMapSelectUpdate` to cancel adding field
-			// by triggering `event.preventDefault()`.
+			/ Allow callbacks on `wpformsBeforeFieldMapSelectUpdate` to cancel adding field
+			/ by triggering `event.preventDefault()`.
 			if ( event.isDefaultPrevented() ) {
 				return;
 			}
 
-			$( '.wpforms-field-map-select' ).each( function() { // eslint-disable-line complexity, no-unused-vars
+			$( '.wpforms-field-map-select' ).each( function() { / eslint-disable-line complexity, no-unused-vars
 				const $this = $( this );
 				let allowedFields = $this.data( 'field-map-allowed' ),
 					placeholder = $this.data( 'field-map-placeholder' );
 
-				// Check if custom placeholder was provided.
+				/ Check if custom placeholder was provided.
 				if ( typeof placeholder === 'undefined' || ! placeholder ) {
 					placeholder = wpforms_builder.select_field;
 				}
 
-				// If allowed, fields are not defined, bail.
+				/ If allowed, fields are not defined, bail.
 				if ( typeof allowedFields !== 'undefined' && allowedFields ) {
 					allowedFields = allowedFields.split( ' ' );
 				} else {
@@ -179,10 +179,10 @@ WPForms.Admin.Builder.FieldMap = WPForms.Admin.Builder.FieldMap || ( function( d
 
 				const selected = $this.find( 'option:selected' ).val();
 
-				// Reset select and add a placeholder option.
+				/ Reset select and add a placeholder option.
 				$this.empty().append( $( '<option>', { value: '', text: placeholder } ) );
 
-				// Loop through the current fields, if we have fields for the form.
+				/ Loop through the current fields, if we have fields for the form.
 				if ( fields && ! $.isEmptyObject( fields ) ) {
 					for ( const fieldID in fields ) {
 						let label = '';
@@ -191,26 +191,26 @@ WPForms.Admin.Builder.FieldMap = WPForms.Admin.Builder.FieldMap || ( function( d
 							continue;
 						}
 
-						// Prepare the label.
+						/ Prepare the label.
 						if ( typeof fields[ fieldID ].label !== 'undefined' && fields[ fieldID ].label.toString().trim() !== '' ) {
 							label = wpf.sanitizeHTML( fields[ fieldID ].label.toString().trim() );
 						} else {
 							label = wpforms_builder.field + ' #' + fieldID;
 						}
 
-						// Add to select if it is a field type allowed.
+						/ Add to select if it is a field type allowed.
 						if ( $.inArray( fields[ fieldID ].type, allowedFields ) >= 0 || $.inArray( 'all-fields', allowedFields ) >= 0 ) {
 							$this.append( $( '<option>', { value: fields[ fieldID ].id, text: label } ) );
 						}
 					}
 				}
 
-				// Restore previous value if found.
+				/ Restore previous value if found.
 				if ( selected ) {
 					$this.find( 'option[value="' + selected + '"]' ).prop( 'selected', true );
 				}
 
-				// Add a "Custom Value" option if it is supported.
+				/ Add a "Custom Value" option if it is supported.
 				const customValueSupport = $this.data( 'custom-value-support' );
 
 				if ( typeof customValueSupport === 'boolean' && customValueSupport ) {
@@ -228,7 +228,7 @@ WPForms.Admin.Builder.FieldMap = WPForms.Admin.Builder.FieldMap || ( function( d
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

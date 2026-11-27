@@ -1,7 +1,7 @@
 /* global wpforms_builder, wpforms_builder_providers, wpf */
 
 // noinspection ES6ConvertVarToLetConst
-var WPForms = window.WPForms || {}; // eslint-disable-line no-var
+var WPForms = window.WPForms || {}; / eslint-disable-line no-var
 WPForms.Admin = WPForms.Admin || {};
 WPForms.Admin.Builder = WPForms.Admin.Builder || {};
 
@@ -133,7 +133,7 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 			_mergeData( provider, custom ) {
 				const data = {
 					id: app.form.data( 'id' ),
-					// eslint-disable-next-line camelcase
+					/ eslint-disable-next-line camelcase
 					revision_id: app.form.data( 'revision' ),
 					nonce: wpforms_builder.nonce,
 					action: 'wpforms_builder_provider_ajax_' + provider,
@@ -169,7 +169,7 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 					},
 				};
 
-				// Hidden class is used only for initial get connections request when connections are not set yet.
+				/ Hidden class is used only for initial get connections request when connections are not set yet.
 				if ( custom.data.task !== 'connections_get' ) {
 					$holder.find( '.wpforms-builder-provider-title-spinner' ).removeClass( 'wpforms-hidden' );
 				}
@@ -177,21 +177,21 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 				custom.data = app.ajax._mergeData( provider, custom.data || {} );
 				$.extend( params, custom );
 
-				// noinspection SpellCheckingInspection, JSUnusedLocalSymbols
+				/ noinspection SpellCheckingInspection, JSUnusedLocalSymbols
 				return $.ajax( params )
-					.fail( function( jqXHR, textStatus, errorThrown ) { // eslint-disable-line no-unused-vars
+					.fail( function( jqXHR, textStatus, errorThrown ) { / eslint-disable-line no-unused-vars
 						/*
 						 * Right now we are logging into the browser console.
 						 * In the future, that might be better.
 						 */
-						console.error( 'provider:', provider ); // eslint-disable-line no-console
-						console.error( jqXHR ); // eslint-disable-line no-console
-						console.error( textStatus ); // eslint-disable-line no-console
+						console.error( 'provider:', provider ); / eslint-disable-line no-console
+						console.error( jqXHR ); / eslint-disable-line no-console
+						console.error( textStatus ); / eslint-disable-line no-console
 
 						$lock.val( 1 );
 						app.ui.showError( provider );
 					} )
-					.always( function( dataOrjqXHR, textStatus, jqXHROrerrorThrown ) { // eslint-disable-line no-unused-vars
+					.always( function( dataOrjqXHR, textStatus, jqXHROrerrorThrown ) { / eslint-disable-line no-unused-vars
 						$holder.removeClass( 'loading' );
 
 						if ( 'success' === textStatus ) {
@@ -389,7 +389,7 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 		 * @since 1.4.7
 		 */
 		init() {
-			// Do that when DOM is ready.
+			/ Do that when DOM is ready.
 			$( app.ready );
 		},
 
@@ -401,7 +401,7 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 		 * @since 1.6.1.2 Added initialization for `__private.fields` property.
 		 */
 		ready() {
-			// Save a current form fields state.
+			/ Save a current form fields state.
 			__private.fields = $.extend( {}, wpf.getFields( false, true ) );
 
 			app.panelHolder = $( '#wpforms-panel-providers, #wpforms-panel-settings' );
@@ -422,7 +422,7 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 		 * @since 1.6.1.2 Added a calling `app.updateMapSelects()` method.
 		 */
 		bindActions() {
-			// On Form save - notify user about required fields.
+			/ On Form save - notify user about required fields.
 			$( document ).on( 'wpformsSaved', function() {
 				__private.hasUnsavedNewConnection = false;
 
@@ -432,13 +432,13 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 					return;
 				}
 
-				// We need to show him "Required fields empty" popup only once.
+				/ We need to show him "Required fields empty" popup only once.
 				let isShownOnce = false;
 
 				$connectionBlocks.each( function() {
 					let isRequiredEmpty = false;
 
-					// Do actually require fields checking.
+					/ Do actually require fields checking.
 					$( this ).find( 'input.wpforms-required, select.wpforms-required, textarea.wpforms-required' ).each( function() {
 						const $this = $( this ),
 							value = $this.val();
@@ -453,7 +453,7 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 						$( this ).removeClass( 'wpforms-error' );
 					} );
 
-					// Notify user.
+					/ Notify user.
 					if ( isRequiredEmpty && ! isShownOnce ) {
 						const $titleArea = $( this ).closest( '.wpforms-builder-provider' ).find( '.wpforms-builder-provider-title' ).clone();
 						$titleArea.find( 'button' ).remove();
@@ -473,12 +473,12 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 							},
 						} );
 
-						// Save that we have already showed the user, so we won't bug it anymore.
+						/ Save that we have already showed the user, so we won't bug it anymore.
 						isShownOnce = true;
 					}
 				} );
 
-				// On the "Fields" page additional update provider's field mapped items.
+				/ On the "Fields" page additional update provider's field mapped items.
 				if ( 'fields' === wpf.getQueryString( 'view' ) ) {
 					app.updateMapSelects( $connectionBlocks );
 				}
@@ -508,14 +508,14 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 					return;
 				}
 
-				// We need to save the form next tick to ensure that JS fields are already initialized.
+				/ We need to save the form next tick to ensure that JS fields are already initialized.
 				setTimeout( () => {
 					const currentState = wpf._getCurrentFormState();
 
 					for ( const [ key, value ] of Object.entries( currentState ) ) {
-						// What it matches:
-						// - `[provider]`
-						// - `provider[`
+						/ What it matches:
+						/ - `[provider]`
+						/ - `provider[`
 						const providerRegex = new RegExp( `\\[?${ provider }[\\[\\]]` );
 
 						if ( providerRegex.test( key ) && typeof wpf.savedFormState[ key ] === 'undefined' ) {
@@ -533,23 +533,23 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 		 *
 		 * @param {Object} $connections jQuery selector for active connections.
 		 */
-		// eslint-disable-next-line max-lines-per-function,complexity
+		/ eslint-disable-next-line max-lines-per-function,complexity
 		updateMapSelects( $connections ) {
 			const fields = $.extend( {}, wpf.getFields() );
 
-			// We should detect changes for labels only.
+			/ We should detect changes for labels only.
 
-			// noinspection JSUnusedLocalSymbols
-			const currentSaveFields = _.mapObject( fields, function( field, key ) { // eslint-disable-line no-unused-vars
+			/ noinspection JSUnusedLocalSymbols
+			const currentSaveFields = _.mapObject( fields, function( field, key ) { / eslint-disable-line no-unused-vars
 				return field.label;
 			} );
 
-			// noinspection JSUnusedLocalSymbols
-			const prevSaveFields = _.mapObject( __private.fields, function( field, key ) { // eslint-disable-line no-unused-vars
+			/ noinspection JSUnusedLocalSymbols
+			const prevSaveFields = _.mapObject( __private.fields, function( field, key ) { / eslint-disable-line no-unused-vars
 				return field.label;
 			} );
 
-			// Check if a form has any fields and if they have changed labels after a previous saving process.
+			/ Check if a form has any fields and if they have changed labels after a previous saving process.
 			if (
 				( _.isEmpty( currentSaveFields ) && _.isEmpty( prevSaveFields ) ) ||
 				( JSON.stringify( currentSaveFields ) === JSON.stringify( prevSaveFields ) )
@@ -557,13 +557,13 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 				return;
 			}
 
-			// Prepare a current form field IDs.
+			/ Prepare a current form field IDs.
 			const fieldIds = Object.keys( currentSaveFields )
 				.map( function( id ) {
 					return parseInt( id, 10 );
 				} );
 
-			// Determine deleted field IDs - it's a diff between previous and current form state.
+			/ Determine deleted field IDs - it's a diff between previous and current form state.
 			const deleted = Object.keys( prevSaveFields )
 				.map( function( id ) {
 					return parseInt( id, 10 );
@@ -572,7 +572,7 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 					return ! fieldIds.includes( id );
 				} );
 
-			// Remove from mapping selects "deleted" fields.
+			/ Remove from mapping selects "deleted" fields.
 			for ( let index = 0; index < deleted.length; index++ ) {
 				$( '.wpforms-builder-provider-connection-fields-table .wpforms-builder-provider-connection-field-value option[value="' + deleted[ index ] + '"]', $connections ).remove();
 			}
@@ -601,15 +601,15 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 				} );
 			}
 
-			// Add ability to filter options for providers before rendering them.
+			/ Add ability to filter options for providers before rendering them.
 			app.panelHolder.trigger( 'WPForms.Admin.Builder.Providers.FilterOptions', [ options ] );
 			app.panelHolder.trigger( 'WPForms.Admin.Builder.Providers.FilterOptionsWithSubfields', [ optionsWithSubfields ] );
 			$( '.wpforms-builder-provider-connection-fields-table .wpforms-builder-provider-connection-field-value' ).each( function() {
 				const $select = $( this );
 				const value = $select.val();
 				const $newSelect = $select.clone().empty();
-				// Some providers have their own implementation of first/last name subfields
-				// and don't have the support-subfields attribute.
+				/ Some providers have their own implementation of first/last name subfields
+				/ and don't have the support-subfields attribute.
 				const isSupportSubfields = $select.data( 'support-subfields' ) || Boolean( $select.find( 'option[value$=".first"]' ).length );
 				const newOptions = isSupportSubfields ? optionsWithSubfields : options;
 				const placeholder = $select.data( 'placeholder' ) && $select.data( 'placeholder' ).length ? $select.data( 'placeholder' ) : wpforms_builder_providers.custom_fields_placeholder;
@@ -630,7 +630,7 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 				$select.replaceWith( $newSelect );
 			} );
 
-			// Save form fields state for the next saving process.
+			/ Save form fields state for the next saving process.
 			__private.fields = fields;
 
 			app.panelHolder.trigger( 'WPForms.Admin.Builder.Providers.updatedMapSelects', [ $connections, fields ] );
@@ -648,8 +648,8 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 			 *
 			 * @since 1.4.7
 			 */
-			bindActions() { // eslint-disable-line max-lines-per-function
-				// CONNECTION: ADD/DELETE.
+			bindActions() { / eslint-disable-line max-lines-per-function
+				/ CONNECTION: ADD/DELETE.
 				app.panelHolder
 					.on( 'click', '.js-wpforms-builder-provider-account-add', function( e ) {
 						e.preventDefault();
@@ -670,7 +670,7 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 						);
 					} );
 
-				// CONNECTION: FIELDS - ADD/DELETE.
+				/ CONNECTION: FIELDS - ADD/DELETE.
 				app.panelHolder
 					.on( 'click', '.js-wpforms-builder-provider-connection-fields-add', function( e ) {
 						e.preventDefault();
@@ -679,7 +679,7 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 							$clone = $table.find( 'tr' ).last().clone( true ),
 							nextID = parseInt( /\[.+]\[.+]\[.+]\[(\d+)]/.exec( $clone.find( '.wpforms-builder-provider-connection-field-name' ).attr( 'name' ) )[ 1 ], 10 ) + 1;
 
-						// Clear the row and increment the counter.
+						/ Clear the row and increment the counter.
 						$clone.find( '.wpforms-builder-provider-connection-field-name' )
 							.attr( 'name', $clone.find( '.wpforms-builder-provider-connection-field-name' ).attr( 'name' ).replace( /\[fields_meta\]\[(\d+)\]/g, '[fields_meta][' + nextID + ']' ) )
 							.val( '' );
@@ -687,10 +687,10 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 							.attr( 'name', $clone.find( '.wpforms-builder-provider-connection-field-value' ).attr( 'name' ).replace( /\[fields_meta\]\[(\d+)\]/g, '[fields_meta][' + nextID + ']' ) )
 							.val( '' );
 
-						// Re-enable "delete" button.
+						/ Re-enable "delete" button.
 						$clone.find( '.js-wpforms-builder-provider-connection-fields-delete' ).removeClass( 'hidden' );
 
-						// Put it back to the table.
+						/ Put it back to the table.
 						$table.find( 'tbody' ).append( $clone.get( 0 ) );
 					} )
 					.on( 'click', '.js-wpforms-builder-provider-connection-fields-delete', function( e ) {
@@ -701,11 +701,11 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 						$row.remove();
 					} );
 
-				// CONNECTION: Generated.
+				/ CONNECTION: Generated.
 				app.panelHolder.on( 'connectionGenerated', function( e, data ) {
 					wpf.initTooltips();
 
-					// Hide provider default settings screen.
+					/ Hide provider default settings screen.
 					$( this )
 						.find( '.wpforms-builder-provider-connection[data-connection_id="' + data.connection.id + '"]' )
 						.closest( '.wpforms-panel-content-section' )
@@ -713,12 +713,12 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 						.addClass( 'wpforms-hidden' );
 				} );
 
-				// CONNECTION: Rendered.
+				/ CONNECTION: Rendered.
 				app.panelHolder.on( 'connectionRendered', function( e, provider, connectionId ) {
 					wpf.initTooltips();
 
-					// Some our addons have another argument for this trigger.
-					// We will fix it asap.
+					/ Some our addons have another argument for this trigger.
+					/ We will fix it asap.
 					if ( typeof connectionId === 'undefined' ) {
 						if ( ! _.isObject( provider ) || ! _.has( provider, 'connection_id' ) ) {
 							return;
@@ -726,13 +726,13 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 						connectionId = provider.connection_id;
 					}
 
-					// If connection has mapped select fields - call `wpformsFieldUpdate` trigger.
+					/ If connection has mapped select fields - call `wpformsFieldUpdate` trigger.
 					if ( $( this ).find( '.wpforms-builder-provider-connection[data-connection_id="' + connectionId + '"] .wpforms-field-map-select' ).length ) {
 						wpf.fieldUpdate();
 					}
 				} );
 
-				// Remove error class in required fields if a value is supplied.
+				/ Remove error class in required fields if a value is supplied.
 				app.panelHolder.on( 'change', '.wpforms-builder-provider select.wpforms-required', function() {
 					const $this = $( this );
 
@@ -743,7 +743,7 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 					$this.removeClass( 'wpforms-error' );
 				} );
 
-				// Remove the checked icon near the provider title if all its connections are removed.
+				/ Remove the checked icon near the provider title if all its connections are removed.
 				app.panelHolder.on( 'connectionDeleted', function( $connection ) {
 					app.ui.updateStatus( $connection );
 				} );
@@ -790,7 +790,7 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 						},
 					},
 					onContentReady() {
-						// Update autofocus to be at the end of string when the default value is set.
+						/ Update autofocus to be at the end of string when the default value is set.
 						const input = this.$content.find( '#wpforms-builder-provider-connection-name' )[ 0 ];
 
 						if ( defaultValue ) {
@@ -822,7 +822,7 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 							btnClass: 'btn-confirm',
 							keys: [ 'enter' ],
 							action() {
-								// We need this BEFORE removing, as some handlers might need a DOM element.
+								/ We need this BEFORE removing, as some handlers might need a DOM element.
 								app.getProviderHolder( provider ).trigger( 'connectionDelete', [ $connection ] );
 
 								const $section = $connection.closest( '.wpforms-panel-content-section' );
@@ -924,11 +924,11 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 				const templateId = `wpforms-${ provider }-builder-content-connection-default-error`;
 				const $holder = app.getProviderHolder( provider ).find( '.wpforms-builder-provider-connections' );
 
-				// Register and prepend template.
+				/ Register and prepend template.
 				app.Templates.add( [ templateId ] );
 				$holder.prepend( app.Templates.get( templateId )() );
 
-				// Show error.
+				/ Show error.
 				app.ui.getProviderError( provider ).show();
 			},
 
@@ -975,10 +975,10 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 				 *
 				 * @since 1.4.8
 				 */
-				add() { // eslint-disable-line max-lines-per-function
+				add() { / eslint-disable-line max-lines-per-function
 					const account = this;
 
-					// noinspection JSUnusedGlobalSymbols, JSUnusedLocalSymbols
+					/ noinspection JSUnusedGlobalSymbols, JSUnusedLocalSymbols
 					$.confirm( {
 						title: false,
 						smoothContent: true,
@@ -1017,16 +1017,16 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 									app.getProviderHolder( account.provider ).trigger( 'accountAddModal.content.always', [ modal, account.provider ] );
 								} );
 						},
-						contentLoaded( data, status, xhr ) { // eslint-disable-line no-unused-vars
+						contentLoaded( data, status, xhr ) { / eslint-disable-line no-unused-vars
 							const modal = this;
 
-							// Data is already set in content.
+							/ Data is already set in content.
 							this.buttons.add.enable();
 							this.buttons.cancel.enable();
 
 							app.getProviderHolder( account.provider ).trigger( 'accountAddModal.contentLoaded', [ modal ] );
 						},
-						onOpenBefore() { // Before the modal is displayed.
+						onOpenBefore() { / Before the modal is displayed.
 							const modal = this;
 
 							modal.buttons.add.disable();
@@ -1035,8 +1035,8 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 
 							app.getProviderHolder( account.provider ).trigger( 'accountAddModal.onOpenBefore', [ modal ] );
 						},
-						onClose() { // Before the modal is hidden.
-							// If an account was configured successfully - show a modal with adding a new connection.
+						onClose() { / Before the modal is hidden.
+							/ If an account was configured successfully - show a modal with adding a new connection.
 							if ( true === app.ui.account.isConfigured( account.provider ) ) {
 								app.ui.connectionAdd( account.provider );
 							}
@@ -1092,7 +1092,7 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 				 * @return {boolean} Account status.
 				 */
 				isConfigured( provider ) {
-					// Check if `Add New Account` button is hidden.
+					/ Check if `Add New Account` button is hidden.
 					return app.getProviderHolder( provider ).find( '.js-wpforms-builder-provider-account-add' ).hasClass( 'hidden' );
 				},
 			},
@@ -1122,15 +1122,15 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 		 * @return {Object|null} Return provider object or null.
 		 */
 		getProviderClass( provider ) {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "WPForms.Admin.Builder.Providers.getProviderClass()" has been deprecated!' );
 
-			// Convert part of the provider name to uppercase.
+			/ Convert part of the provider name to uppercase.
 			const upperProviderPart = ( providerPart ) => (
 				providerPart.charAt( 0 ).toUpperCase() + providerPart.slice( 1 )
 			);
 
-			// Convert provider name to a class name.
+			/ Convert provider name to a class name.
 			const getClassName = provider.split( '-' ).map( upperProviderPart ).join( '' );
 
 			if ( typeof WPForms.Admin.Builder.Providers[ getClassName ] === 'undefined' ) {
@@ -1140,7 +1140,7 @@ WPForms.Admin.Builder.Providers = WPForms.Admin.Builder.Providers || ( function(
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

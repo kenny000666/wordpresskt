@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -18,7 +18,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -35,7 +35,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -59,15 +59,15 @@ __webpack_require__.d(__webpack_exports__, {
   syncSelect: () => (/* binding */ syncSelect)
 });
 
-;// external ["wp","apiFetch"]
+;/ external ["wp","apiFetch"]
 const external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
 var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_namespaceObject);
-;// external ["wp","data"]
+;/ external ["wp","data"]
 const external_wp_data_namespaceObject = window["wp"]["data"];
-;// external ["wp","deprecated"]
+;/ external ["wp","deprecated"]
 const external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
 var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_namespaceObject);
-;// ./node_modules/@wordpress/data-controls/build-module/index.js
+;/ ./node_modules/@wordpress/data-controls/build-module/index.js
 /**
  * WordPress dependencies
  */
@@ -83,11 +83,11 @@ var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external
  * ```js
  * import { apiFetch } from '@wordpress/data-controls';
  *
- * // Action generator using apiFetch
+ * / Action generator using apiFetch
  * export function* myAction() {
  * 	const path = '/v2/my-api/items';
  * 	const items = yield apiFetch( { path } );
- * 	// do something with the items.
+ * 	/ do something with the items.
  * }
  * ```
  *
@@ -157,11 +157,11 @@ function dispatch(storeNameOrDescriptor, actionName, ...args) {
  * ```js
  * import { __unstableAwaitPromise } from '@wordpress/data-controls';
  *
- * // Action generator using apiFetch
+ * / Action generator using apiFetch
  * export function* myAction() {
  * 	const promise = getItemsAsync();
  * 	const items = yield __unstableAwaitPromise( promise );
- * 	// do something with the items.
+ * 	/ do something with the items.
  * }
  * ```
  *
@@ -180,11 +180,11 @@ const __unstableAwaitPromise = function (promise) {
  *
  * @example
  * ```js
- * // WordPress dependencies
+ * / WordPress dependencies
  * import { controls } from '@wordpress/data-controls';
  * import { registerStore } from '@wordpress/data';
  *
- * // Internal dependencies
+ * / Internal dependencies
  * import reducer from './reducer';
  * import * as selectors from './selectors';
  * import * as actions from './actions';

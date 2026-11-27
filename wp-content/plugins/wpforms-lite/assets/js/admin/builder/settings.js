@@ -32,7 +32,7 @@ WPForms.Admin.Builder.Settings = WPForms.Admin.Builder.Settings || ( function( d
 	 */
 	const vars = {};
 
-	// noinspection JSUnusedLocalSymbols,ES6ConvertVarToLetConst
+	/ noinspection JSUnusedLocalSymbols,ES6ConvertVarToLetConst
 	/**
 	 * Public functions and properties.
 	 *
@@ -40,7 +40,7 @@ WPForms.Admin.Builder.Settings = WPForms.Admin.Builder.Settings || ( function( d
 	 *
 	 * @type {Object}
 	 */
-	// eslint-disable-next-line no-var
+	/ eslint-disable-next-line no-var
 	var app = {
 
 		/**
@@ -69,14 +69,14 @@ WPForms.Admin.Builder.Settings = WPForms.Admin.Builder.Settings || ( function( d
 		 * @since 1.7.5
 		 */
 		setup() {
-			// Cache DOM elements.
+			/ Cache DOM elements.
 			el = {
 				$builder:    $( '#wpforms-builder' ),
 				$panel:      $( '#wpforms-panel-settings' ),
 				$selectTags: $( '#wpforms-panel-field-settings-form_tags' ),
 			};
 
-			// Give a chance to interact with "Disable entry..." option immediately.
+			/ Give a chance to interact with "Disable entry..." option immediately.
 			app.allowEditDisabledEntriesOption();
 		},
 
@@ -105,7 +105,7 @@ WPForms.Admin.Builder.Settings = WPForms.Admin.Builder.Settings || ( function( d
 		 * @since 1.9.0
 		 */
 		enableAntispamV3() {
-			// Hide and disable old anti-spam.
+			/ Hide and disable old anti-spam.
 			$( '#wpforms-panel-field-settings-antispam' )
 				.prop( 'checked', false )
 				.closest( '.wpforms-panel-field' )
@@ -123,7 +123,7 @@ WPForms.Admin.Builder.Settings = WPForms.Admin.Builder.Settings || ( function( d
 			const isStoreSpamEntriesChecked = $( '#wpforms-panel-field-settings-store_spam_entries' ).prop( 'checked' );
 
 			app.toggleFilteringMessages( ! isChecked && isStoreSpamEntriesChecked );
-			// Toggle the store spam entries toggle.
+			/ Toggle the store spam entries toggle.
 			$( '#wpforms-panel-field-settings-store_spam_entries-wrap' ).toggleClass( 'wpforms-hidden', $this.prop( 'checked' ) );
 
 			if ( ! $this.prop( 'checked' ) ) {
@@ -132,8 +132,8 @@ WPForms.Admin.Builder.Settings = WPForms.Admin.Builder.Settings || ( function( d
 
 			const entryRequirement = app.getEntryRequirement();
 
-			// Don't allow users to disable entries if some third-party integrations
-			// require it.
+			/ Don't allow users to disable entries if some third-party integrations
+			/ require it.
 			if ( entryRequirement.required ) {
 				$.confirm( {
 					title: wpforms_builder.entry_storage_required,
@@ -189,10 +189,10 @@ WPForms.Admin.Builder.Settings = WPForms.Admin.Builder.Settings || ( function( d
 				return;
 			}
 
-			// Toggle Country Filter Message.
+			/ Toggle Country Filter Message.
 			$( '#wpforms-panel-field-anti_spam-country_filter-message-wrap' ).toggleClass( 'wpforms-hidden', $hide );
 
-			// Toggle Keyywords Filter Message.
+			/ Toggle Keyywords Filter Message.
 			$( '#wpforms-panel-field-anti_spam-keyword_filter-message-wrap' ).toggleClass( 'wpforms-hidden', $hide );
 		},
 
@@ -205,7 +205,7 @@ WPForms.Admin.Builder.Settings = WPForms.Admin.Builder.Settings || ( function( d
 		initTags( $el = null ) {
 			$el = $el?.length ? $el : el.$selectTags;
 
-			// Skip in certain cases.
+			/ Skip in certain cases.
 			if (
 				! $el.length ||
 				typeof window.Choices !== 'function'
@@ -213,13 +213,13 @@ WPForms.Admin.Builder.Settings = WPForms.Admin.Builder.Settings || ( function( d
 				return;
 			}
 
-			// Init Choices.js object instance.
+			/ Init Choices.js object instance.
 			vars.tagsChoicesObj = new Choices( $el[ 0 ], wpforms_builder_settings.choicesjs_config );
 
-			// Backup current value.
+			/ Backup current value.
 			const	currentValue = vars.tagsChoicesObj.getValue( true );
 
-			// Update all tags choices.
+			/ Update all tags choices.
 			vars.tagsChoicesObj
 				.clearStore()
 				.setChoices(
@@ -241,13 +241,13 @@ WPForms.Admin.Builder.Settings = WPForms.Admin.Builder.Settings || ( function( d
 		 * @since 1.7.5
 		 */
 		initTagsHiddenInput() {
-			// Create additional hidden input.
+			/ Create additional hidden input.
 			el.$selectTagsHiddenInput = $( '<input type="hidden" name="settings[form_tags_json]">' );
 			el.$selectTags
 				.closest( '.wpforms-panel-field' )
 				.append( el.$selectTagsHiddenInput );
 
-			// Update hidden input value.
+			/ Update hidden input value.
 			app.changeTags( null );
 		},
 
@@ -299,7 +299,7 @@ WPForms.Admin.Builder.Settings = WPForms.Admin.Builder.Settings || ( function( d
 				return;
 			}
 
-			// We should remove new tag from the list of choices.
+			/ We should remove new tag from the list of choices.
 			const choicesObj = $( event.target ).data( 'choicesjs' ),
 				currentValue = choicesObj.getValue( true ),
 				choices = _.filter( choicesObj._currentState.choices, function( item ) {
@@ -349,7 +349,7 @@ WPForms.Admin.Builder.Settings = WPForms.Admin.Builder.Settings || ( function( d
 		 *
 		 * @param {Object} event Event object.
 		 */
-		// eslint-disable-next-line no-unused-vars
+		/ eslint-disable-next-line no-unused-vars
 		changeTags( event ) {
 			const tagsValue = vars.tagsChoicesObj.getValue(),
 				tags = [];
@@ -361,7 +361,7 @@ WPForms.Admin.Builder.Settings = WPForms.Admin.Builder.Settings || ( function( d
 				} );
 			}
 
-			// Update Tags field hidden input value.
+			/ Update Tags field hidden input value.
 			el.$selectTagsHiddenInput.val(
 				JSON.stringify( tags )
 			);
@@ -388,14 +388,14 @@ WPForms.Admin.Builder.Settings = WPForms.Admin.Builder.Settings || ( function( d
 				const linkHTML = `<a href="${ href }" target="_blank">${ text }</a>`;
 
 				if ( index === arr.length - 1 && arr.length > 1 ) {
-					// The very last item when array has multiple items, prepend with "and".
+					/ The very last item when array has multiple items, prepend with "and".
 					return `and ${ linkHTML }`;
 				} else if ( index < arr.length - 2 ) {
-					// Any item except the last two, append comma.
+					/ Any item except the last two, append comma.
 					return `${ linkHTML },`;
 				}
 
-				// Second-to-last item, no comma needed as next item will prepend "and".
+				/ Second-to-last item, no comma needed as next item will prepend "and".
 				return linkHTML;
 			} ).join( ' ' );
 
@@ -445,7 +445,7 @@ WPForms.Admin.Builder.Settings = WPForms.Admin.Builder.Settings || ( function( d
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

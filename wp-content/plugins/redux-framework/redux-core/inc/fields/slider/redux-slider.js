@@ -72,13 +72,13 @@
 							rtl = 'ltr';
 						}
 
-						// Range array.
+						/ Range array.
 						range = [minVal, maxVal];
 
-						// Set default values for dual slides.
+						/ Set default values for dual slides.
 						startTwo = [defValOne, defValTwo];
 
-						// Set default value for single slide.
+						/ Set default value for single slide.
 						startOne = [defValOne];
 
 						if ( displayValue === DISPLAY_TEXT ) {
@@ -216,12 +216,12 @@
 		);
 	};
 
-	// Return true for float value, false otherwise.
+	/ Return true for float value, false otherwise.
 	redux.field_objects.slider.isFloat = function ( mixed_var ) {
 		return + mixed_var === mixed_var && ( ! ( isFinite( mixed_var ) ) ) || Boolean( ( mixed_var % 1 ) );
 	};
 
-	// Return number of integers after the decimal point.
+	/ Return number of integers after the decimal point.
 	redux.field_objects.slider.decimalCount = function ( res ) {
 		const q = res.toString().split( '.' );
 

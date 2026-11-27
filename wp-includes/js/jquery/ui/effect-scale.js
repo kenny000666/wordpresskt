@@ -18,7 +18,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"../version",
@@ -27,7 +27,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -35,7 +35,7 @@
 
 return $.effects.define( "scale", function( options, done ) {
 
-	// Create element
+	/ Create element
 	var el = $( this ),
 		mode = options.mode,
 		percent = parseInt( options.percent, 10 ) ||
@@ -47,7 +47,7 @@ return $.effects.define( "scale", function( options, done ) {
 			origin: options.origin || [ "middle", "center" ]
 		}, options );
 
-	// Fade option to support puff
+	/ Fade option to support puff
 	if ( options.fade ) {
 		newOptions.from.opacity = 1;
 		newOptions.to.opacity = 0;

@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../node_modules/@babel/runtime/helpers/defineProperty.js":
@@ -94,27 +94,27 @@ module.exports = _typeof, module.exports.__esModule = true, module.exports["defa
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
@@ -141,20 +141,20 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
   wp.media.view.Attachment.Details = wp.media.view.Attachment.Details.extend({
     _tmpl: "<div class=\"e-hint__container\" style=\"clear:both\" data-event=\"<%= dismissible %>\">\n\t\t<div class=\"elementor-control-notice elementor-control-notice-type-<%= type %>\" data-display=\"<%= display %>\">\n\t\t\t<div class=\"elementor-control-notice-icon\">\n\t\t\t\t<svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t\t\t\t<path d=\"M2.25 9H3M9 2.25V3M15 9H15.75M4.2 4.2L4.725 4.725M13.8 4.2L13.275 4.725M7.27496 12.75H10.725M6.75 12C6.12035 11.5278 5.65525 10.8694 5.42057 10.1181C5.1859 9.36687 5.19355 8.56082 5.44244 7.81415C5.69133 7.06748 6.16884 6.41804 6.80734 5.95784C7.44583 5.49764 8.21294 5.25 9 5.25C9.78706 5.25 10.5542 5.49764 11.1927 5.95784C11.8312 6.41804 12.3087 7.06748 12.5576 7.81415C12.8065 8.56082 12.8141 9.36687 12.5794 10.1181C12.3448 10.8694 11.8796 11.5278 11.25 12C10.9572 12.2899 10.7367 12.6446 10.6064 13.0355C10.4761 13.4264 10.4397 13.8424 10.5 14.25C10.5 14.6478 10.342 15.0294 10.0607 15.3107C9.77936 15.592 9.39782 15.75 9 15.75C8.60218 15.75 8.22064 15.592 7.93934 15.3107C7.65804 15.0294 7.5 14.6478 7.5 14.25C7.56034 13.8424 7.52389 13.4264 7.3936 13.0355C7.2633 12.6446 7.04282 12.2899 6.75 12Z\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n\t\t\t\t</svg>\n\t\t\t</div>\n\t\t\t<div class=\"elementor-control-notice-main action-handler\" data-event=\"<%= button_event %>\" data-settings=\"<%= button_data %>\">\n\t\t\t\t<div class=\"elementor-control-notice-main-content\"><%= content %></div>\n\t\t\t\t<div class=\"elementor-control-notice-main-actions\">\n\t\t\t\t<% if ( typeof(button_text) !== \"undefined\" ) { %>\n\t\t\t\t\t<button class=\"e-btn e-<%= type %> e-btn-1\">\n\t\t\t\t\t\t<%= button_text %>\n\t\t\t\t\t</button>\n\t\t\t\t<% } %>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<button class=\"elementor-control-notice-dismiss\" data-event=\"<%= dismissible %>\" aria-label=\"<%= dismiss %>\">\n\t\t\t\t<i class=\"eicon eicon-close\" aria-hidden=\"true\"></i>\n\t\t\t</button>\n\t\t</div>\n\t</div>",
     template: function template(view) {
-      // Get the template and parse it
-      var html = wp.media.template('attachment-details')(view); // The template to extend
+      / Get the template and parse it
+      var html = wp.media.template('attachment-details')(view); / The template to extend
       var dom = document.createElement('div');
       dom.innerHTML = html;
       if (!this.shouldDisplayHint(view)) {
         return dom.innerHTML;
       }
-      var hint = document.createElement('div'); // Create a new element
-      hint.classList.add('e-hint'); // Add a class to the element for styling
-      hint.innerHTML = _.template(this._tmpl)(elementorAdminHints.mediaHint); // Add the content to the new element
+      var hint = document.createElement('div'); / Create a new element
+      hint.classList.add('e-hint'); / Add a class to the element for styling
+      hint.innerHTML = _.template(this._tmpl)(elementorAdminHints.mediaHint); / Add the content to the new element
 
-      // Insert the new element at the correct spot
+      / Insert the new element at the correct spot
       var details = dom.querySelector('.attachment-info');
-      details.appendChild(hint); // Add new element at the correct spot
+      details.appendChild(hint); / Add new element at the correct spot
 
       return dom.innerHTML;
     },

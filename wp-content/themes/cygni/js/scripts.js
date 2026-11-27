@@ -1,7 +1,7 @@
 (function ($) {
     "use strict";
 
-    ///////////////////////////////////////////// Site Navigation  /////////////////////////////////////////////
+    ////////////////////////////// Site Navigation  //////////////////////////////
 
 
 
@@ -56,7 +56,7 @@
 
     scA.marquee('pause');
 
-    //// Menu Animations End
+    /// Menu Animations End
 
 
     if (!$('.site-navigation').hasClass('classic')) {
@@ -195,7 +195,7 @@
 
             setTimeout(function () {
                 $('.sub-menu').removeClass('sub-menu-in');
-                //  $('.sub-menu .sub-menu').removeClass('sub-sub-in')
+                /  $('.sub-menu .sub-menu').removeClass('sub-sub-in')
                 $('.sub-toggle').removeClass('st-active');
                 $('.sub-toggle').removeClass('st-in')
             }, 5);
@@ -236,7 +236,7 @@
 
         setTimeout(function () {
             $('.sub-menu').removeClass('sub-menu-in');
-            //  $('.sub-menu .sub-menu').removeClass('sub-sub-in')
+            /  $('.sub-menu .sub-menu').removeClass('sub-sub-in')
             $('.sub-toggle').removeClass('st-active');
             $('.sub-toggle').removeClass('st-in')
         }, 5);
@@ -309,7 +309,7 @@
     })
 
 
-    ///////////////////////////////////////////// Site Navigation  /////////////////////////////////////////////
+    ////////////////////////////// Site Navigation  //////////////////////////////
 
     function showcaseOpening() {
 
@@ -781,7 +781,7 @@
 
         /* Search Form */
 
-        ///////////// Blog Posts Page /////////////
+        ///////// Blog Posts Page /////////
         if (($('.pe-blog-posts').length) || ($('.archive').length) || ($('.search-res').length)) {
 
             $('.site-footer').addClass('blog-footer');
@@ -855,9 +855,9 @@
             $('.site-footer').addClass('blog-footer');
 
         };
-        ///////////// Blog Posts Page /////////////
+        ///////// Blog Posts Page /////////
 
-        ///////////// Single Project Page /////////////
+        ///////// Single Project Page /////////
         if ($('.single-project').length > 0) {
 
 
@@ -874,10 +874,10 @@
 
 
         }
-        ///////////// Single Project Page /////////////
+        ///////// Single Project Page /////////
 
 
-        ///////////// Single Page /////////////
+        ///////// Single Page /////////
 
         if ($('.post-password-form').length) {
 
@@ -890,10 +890,10 @@
 
         }
 
-        ///////////// Single Page /////////////
+        ///////// Single Page /////////
     }
 
-    ///////////////////////////////////////////// Scroll Animations /////////////////////////////////////////////
+    ////////////////////////////// Scroll Animations //////////////////////////////
 
 
     if ($('.has-animation').length > 0) {
@@ -964,7 +964,7 @@
 
 
 
-    ///////////////////////////////////////////// Scroll Animations /////////////////////////////////////////////
+    ////////////////////////////// Scroll Animations //////////////////////////////
 
     $(window).on('load', function () {
         window.scrollTo(0, 0);
@@ -977,7 +977,7 @@
 
         pageScripts();
         lineAnimations();
-        ////////// Page Loader /////////
+        /////// Page Loader //////
 
 
 
@@ -1082,16 +1082,16 @@
             }
         })
 
-        ////////// Page Loader /////////
+        /////// Page Loader //////
 
     });
 
 
-    ///////////// Elementor Widgets /////////////
+    ///////// Elementor Widgets /////////
     $(window).on('elementor/frontend/init', function () {
 
 
-        /// Showcase Widgets ///
+        // Showcase Widgets //
 
         elementorFrontend.hooks.addAction('frontend/element_ready/horizontal.default', function ($scope, $) {
             /* Horizontal */
@@ -1336,7 +1336,7 @@
                         }
                     },
                     breakpoints: {
-                        // when window width is >= 320px
+                        / when window width is >= 320px
                         750: {
                             centeredSlides: true,
                             spaceBetween: 250,
@@ -2070,7 +2070,7 @@
                     percentPosition: true
                 });
 
-                // layout Masonry after each image loads
+                / layout Masonry after each image loads
                 $pgrid.imagesLoaded().progress(function () {
                     $pgrid.masonry('layout');
 
@@ -2221,9 +2221,9 @@
             /* List V2 End */
         });
 
-        /// Showcase Widgets ///
+        // Showcase Widgets //
 
-        /// Content Widgets ///
+        // Content Widgets //
 
 
         elementorFrontend.hooks.addAction('frontend/element_ready/cygnisingleimage.default', function ($scope, $) {
@@ -2280,30 +2280,30 @@
 
                 if (imageWrapper.hasClass('image-lightbox')) {
 
-                    ////////// Image Lightbox Start //////////
+                    /////// Image Lightbox Start ///////
 
                     var dataMfpSrc = imImg.attr('src');
 
                     imImg.attr('data-mfp-src', dataMfpSrc);
 
                     $('.image-lightbox').magnificPopup({
-                        delegate: 'img', // child items selector, by clicking on it popup will open
+                        delegate: 'img', / child items selector, by clicking on it popup will open
                         type: 'image',
                         closeOnContentClick: true,
                         closeBtnInside: false,
-                        mainClass: 'image-lightbox', // class to remove default margin from left and right side
+                        mainClass: 'image-lightbox', / class to remove default margin from left and right side
                         image: {
                             verticalFit: true
                         },
                         zoom: {
                             enabled: true,
-                            duration: 300 // don't foget to change the duration also in CSS
+                            duration: 300 / don't foget to change the duration also in CSS
                         },
 
-                        // other options
+                        / other options
                     });
 
-                    ////////// Image Lightbox End //////////
+                    /////// Image Lightbox End ///////
 
 
                 }
@@ -2535,7 +2535,7 @@
 
 
         });
-        /// Content Widgets ///
+        // Content Widgets //
 
         elementorFrontend.hooks.addAction('frontend/element_ready/global', function ($scope) {
 
@@ -2553,13 +2553,13 @@
     });
 
 
-    ///////////// Elementor Widgets /////////////
+    ///////// Elementor Widgets /////////
 
 
-    ///////////// Page Transitions /////////////
+    ///////// Page Transitions /////////
     if ($('#page').hasClass('ajax-enabled')) {
 
-        // Wrap every letter in a span
+        / Wrap every letter in a span
         var textWrapper = document.querySelector('.loading-text');
         textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
@@ -2703,7 +2703,7 @@
 
             var $newPageHead = $('<head />').html(
                 $.parseHTML(
-                    data.next.html.match(/<head[^>]*>([\s\S.]*)<\/head>/i)[0], // <- use data argument
+                    data.next.html.match(/<head[^>]*>([\s\S.]*)<\/head>/i)[0], / <- use data argument
                     document,
                     true
                 )
@@ -2721,9 +2721,9 @@
 			'link[rel="alternate"]',
 			'link[rel="shortlink"]',
 			'link[id*="elementor"]',
-			'link[id*="eael"]', // Essential Addons plugin post CSS
+			'link[id*="eael"]', / Essential Addons plugin post CSS
 			'style[id*="elementor"]',
-			'style[id*="eael"]', // Essential Addons plugin inline CSS
+			'style[id*="eael"]', / Essential Addons plugin inline CSS
 
     ].join(',');
 
@@ -2774,7 +2774,7 @@
 
         });
     }
-    ///////////// Page Transitions /////////////
+    ///////// Page Transitions /////////
 
 
 })(jQuery);

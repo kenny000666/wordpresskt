@@ -392,7 +392,7 @@ window.wp = window.wp || {};
 		ready: function() {
 			this.view.trigger('ready');
 
-			// Find all attached subviews, and call ready on them.
+			/ Find all attached subviews, and call ready on them.
 			_.chain( this.all() ).map( function( view ) {
 				return view.views;
 			}).flatten().where({ attached: true }).invoke('ready');
@@ -419,13 +419,13 @@ window.wp = window.wp || {};
 			var $selector = selector ? this.view.$( selector ) : this.view.$el,
 				managers;
 
-			// Check if we found a location to attach the views.
+			/ Check if we found a location to attach the views.
 			if ( ! $selector.length )
 				return this;
 
 			managers = _.chain( views ).pluck('views').flatten().value();
 
-			// Render the views if necessary.
+			/ Render the views if necessary.
 			_.each( managers, function( manager ) {
 				if ( manager.rendered )
 					return;
@@ -434,7 +434,7 @@ window.wp = window.wp || {};
 				manager.rendered = true;
 			}, this );
 
-			// Insert or replace the views.
+			/ Insert or replace the views.
 			this[ options.add ? 'insert' : 'replace' ]( $selector, _.pluck( views, 'el' ), options );
 
 			/*
@@ -474,7 +474,7 @@ window.wp = window.wp || {};
 
 	wp.Backbone.View = Backbone.View.extend({
 
-		// The constructor for the `Views` manager.
+		/ The constructor for the `Views` manager.
 		Subviews: wp.Backbone.Subviews,
 
 		/**
@@ -513,7 +513,7 @@ window.wp = window.wp || {};
 		remove: function() {
 			var result = Backbone.View.prototype.remove.apply( this, arguments );
 
-			// Recursively remove child views.
+			/ Recursively remove child views.
 			if ( this.views )
 				this.views.remove();
 

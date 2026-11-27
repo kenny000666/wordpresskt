@@ -4,8 +4,8 @@
 
 const confirmOnPageExit = function ( e ) {
 
-	// Return; // ONLY FOR DEBUGGING.
-	// If we haven't been passed the event get the window.event.
+	/ Return; / ONLY FOR DEBUGGING.
+	/ If we haven't been passed the event get the window.event.
 	'use strict';
 
 	let message;
@@ -14,14 +14,14 @@ const confirmOnPageExit = function ( e ) {
 
 	message = redux.optName.args.save_pending;
 
-	// For IE6-8 and Firefox prior to version 4.
+	/ For IE6-8 and Firefox prior to version 4.
 	if ( e ) {
 		e.returnValue = message;
 	}
 
 	window.onbeforeunload = null;
 
-	// For Chrome, Safari, IE8+ and Opera 12+.
+	/ For Chrome, Safari, IE8+ and Opera 12+.
 	return message;
 };
 
@@ -52,7 +52,7 @@ function redux_change( variable ) {
 
 		parentID = $( variable ).closest( '.redux-group-tab' ).attr( 'id' );
 
-		// Let's count down the errors now. Fancy.  ;).
+		/ Let's count down the errors now. Fancy.  ;).
 		id = parentID.split( '_' );
 
 		id = id[0];
@@ -106,7 +106,7 @@ function redux_change( variable ) {
 				$( '#redux_metaboxes_warnings' ).slideUp();
 			} else {
 
-				// Let's count down the warnings now. Fancy.  ;).
+				/ Let's count down the warnings now. Fancy.  ;).
 				warningsLeft = ( parseInt( th.find( '.redux-menu-warning:first' ).text(), 0 ) - 1 );
 
 				if ( warningsLeft <= 0 ) {
@@ -125,7 +125,7 @@ function redux_change( variable ) {
 			}
 		}
 
-		// Don't show the changed value notice while save_notice is visible.
+		/ Don't show the changed value notice while save_notice is visible.
 		if ( rContainer.find( '.saved_notice:visible' ).length > 0 ) {
 			return;
 		}

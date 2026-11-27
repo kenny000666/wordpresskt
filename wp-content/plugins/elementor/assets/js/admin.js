@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../assets/dev/js/admin/maintenance-mode.js":
@@ -132,9 +132,9 @@ var MenuHandler = exports["default"] = /*#__PURE__*/function (_elementorModules$
       };
     }
 
-    // This method highlights the currently visited submenu item for the slug provided as an argument to this handler.
-    // This method also accepts a jQuery instance of a custom submenu item to highlight. If provided, the provided
-    // item will be the one highlighted.
+    / This method highlights the currently visited submenu item for the slug provided as an argument to this handler.
+    / This method also accepts a jQuery instance of a custom submenu item to highlight. If provided, the provided
+    / item will be the one highlighted.
   }, {
     key: "highlightSubMenuItem",
     value: function highlightSubMenuItem() {
@@ -145,7 +145,7 @@ var MenuHandler = exports["default"] = /*#__PURE__*/function (_elementorModules$
       }
       $submenuItem.addClass('current');
 
-      // Need to add the 'current' class to the link element's parent `<li>` element as well.
+      / Need to add the 'current' class to the link element's parent `<li>` element as well.
       $submenuItem.parent().addClass('current');
     }
   }, {
@@ -314,7 +314,7 @@ var FilesUploadHandler = exports["default"] = /*#__PURE__*/function () {
         onConfirm: function onConfirm() {
           elementorCommon.ajax.addRequest('enable_unfiltered_files_upload', {
             success: function success() {
-              // This utility is used in both the admin and the Editor.
+              / This utility is used in both the admin and the Editor.
               elementorCommon.config.filesUpload.unfilteredFiles = true;
               callback();
             }
@@ -369,18 +369,18 @@ var Events = exports.Events = /*#__PURE__*/function () {
     function dispatch(context, event) {
       var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var bcEvent = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-      // Make sure to use the native context if it's a jQuery instance.
+      / Make sure to use the native context if it's a jQuery instance.
       context = context instanceof jQuery ? context[0] : context;
 
-      // Dispatch the BC event only if exists.
+      / Dispatch the BC event only if exists.
       if (bcEvent) {
         context.dispatchEvent(new CustomEvent(bcEvent, {
           detail: data
         }));
       }
 
-      // jQuery's `.on()` listens also to native custom events, so there is no need
-      // to dispatch also a jQuery event.
+      / jQuery's `.on()` listens also to native custom events, so there is no need
+      / to dispatch also a jQuery event.
       context.dispatchEvent(new CustomEvent(event, {
         detail: data
       }));
@@ -428,7 +428,7 @@ function showJsonUploadWarningMessageIfNeeded(_ref) {
   var dialog = genericWarningModal.getDialog();
   return new Promise(function (resolve, reject) {
     dialog.onHide = function () {
-      // When closing the dialog (esc, click on background, etc.) we need to reject the promise.
+      / When closing the dialog (esc, click on background, etc.) we need to reject the promise.
       reject();
     };
     dialog.onConfirm = /*#__PURE__*/(0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
@@ -451,8 +451,8 @@ function showJsonUploadWarningMessageIfNeeded(_ref) {
           case 6:
             genericWarningModal.setViewed();
           case 7:
-            // Hack: we need to resolve the promise and then hide it manually, to avoid rejecting the promise.
-            // this because when closing the dialog (esc, click on background, etc.) it does not trigger `onCancel` method.
+            / Hack: we need to resolve the promise and then hide it manually, to avoid rejecting the promise.
+            / this because when closing the dialog (esc, click on background, etc.) it does not trigger `onCancel` method.
             resolve();
             dialog.hide();
           case 9:
@@ -501,7 +501,7 @@ function createGenericWarningModal(IntroductionClass) {
     checkbox = _createCheckboxAndLab.checkbox,
     label = _createCheckboxAndLab.label;
   introduction.getDialog().addElement('checkbox-dont-show-again', checkbox);
-  (_introduction$getDial = introduction.getDialog().getElements('message')) === null || _introduction$getDial === void 0 || (_introduction$getDial2 = _introduction$getDial.append) === null || _introduction$getDial2 === void 0 || _introduction$getDial2.call(_introduction$getDial, label); // `getElements` return JQuery object.
+  (_introduction$getDial = introduction.getDialog().getElements('message')) === null || _introduction$getDial === void 0 || (_introduction$getDial2 = _introduction$getDial.append) === null || _introduction$getDial2 === void 0 || _introduction$getDial2.call(_introduction$getDial, label); / `getElements` return JQuery object.
 
   return introduction;
 }
@@ -543,25 +543,25 @@ var matchUserAgent = function matchUserAgent(UserAgentStr) {
     return userAgent.indexOf(UserAgentStr) >= 0;
   },
   userAgent = navigator.userAgent,
-  // Solution influenced by https://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser
+  / Solution influenced by https://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser
 
-  // Opera 8.0+
+  / Opera 8.0+
   isOpera = !!window.opr && !!opr.addons || !!window.opera || matchUserAgent(' OPR/'),
-  // Firefox 1.0+
+  / Firefox 1.0+
   isFirefox = matchUserAgent('Firefox'),
-  // Safari 3.0+ "[object HTMLElementConstructor]"
+  / Safari 3.0+ "[object HTMLElementConstructor]"
   isSafari = /^((?!chrome|android).)*safari/i.test(userAgent) || /constructor/i.test(window.HTMLElement) || function (p) {
     return '[object SafariRemoteNotification]' === p.toString();
   }(!window.safari || typeof safari !== 'undefined' && safari.pushNotification),
-  // Internet Explorer 6-11
+  / Internet Explorer 6-11
   isIE = /Trident|MSIE/.test(userAgent) && (/* @cc_on!@*/ false || !!document.documentMode),
-  // Edge 20+
+  / Edge 20+
   isEdge = !isIE && !!window.StyleMedia || matchUserAgent('Edg'),
-  // Google Chrome (Not accurate)
+  / Google Chrome (Not accurate)
   isChrome = !!window.chrome && matchUserAgent('Chrome') && !(isEdge || isOpera),
-  // Blink engine
+  / Blink engine
   isBlink = matchUserAgent('Chrome') && !!window.CSS,
-  // Apple Webkit engine
+  / Apple Webkit engine
   isAppleWebkit = matchUserAgent('AppleWebKit') && !isBlink,
   isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0,
   environment = {
@@ -689,7 +689,7 @@ var ExperimentsMessages = exports["default"] = /*#__PURE__*/function () {
         return state;
       }
 
-      // Normalize the "default" state to the actual state value.
+      / Normalize the "default" state to the actual state value.
       return this.isExperimentActiveByDefault(experimentId) ? STATE_ACTIVE : STATE_INACTIVE;
     }
   }, {
@@ -767,7 +767,7 @@ var ExperimentsMessages = exports["default"] = /*#__PURE__*/function () {
     key: "getSiteLanguageCode",
     value: function getSiteLanguageCode() {
       var languageCode = document.querySelector('html').getAttribute('lang');
-      return languageCode !== null && languageCode !== void 0 ? languageCode : 'en'; // Fallback to English if no language code found.
+      return languageCode !== null && languageCode !== void 0 ? languageCode : 'en'; / Fallback to English if no language code found.
     }
   }, {
     key: "formatDependenciesList",
@@ -786,7 +786,7 @@ var ExperimentsMessages = exports["default"] = /*#__PURE__*/function () {
         experimentName = experiment.title,
         dependenciesList = this.formatDependenciesList(this.getExperimentDependencies(experimentId));
 
-      // Translators: %1$s: Experiment title, %2$s: Comma-separated dependencies list
+      / Translators: %1$s: Experiment title, %2$s: Comma-separated dependencies list
       var message = __('In order to use %1$s, first you need to activate %2$s.', 'elementor').replace('%1$s', "<strong>".concat(experimentName, "</strong>")).replace('%2$s', dependenciesList);
       this.showDialog({
         message: message,
@@ -982,7 +982,7 @@ var FloatingButtonsHandler = exports["default"] = /*#__PURE__*/function (_AdminM
     value: function getDefaultSettings() {
       var pageName = 'e-floating-buttons',
         adminMenuSelectors = {
-          // The escaping is done because jQuery requires it for selectors.
+          / The escaping is done because jQuery requires it for selectors.
           contactPagesTablePage: 'a[href="edit.php?post_type=' + pageName + '"]',
           contactPagesAddNewPage: 'a[href="edit.php?post_type=elementor_library&page=' + pageName + '"]'
         };
@@ -1013,8 +1013,8 @@ var FloatingButtonsHandler = exports["default"] = /*#__PURE__*/function (_AdminM
         isContactPagesTrashPage = !!window.location.href.includes(settings.paths.contactPagesTrashPage),
         isLContactPagesCreateYourFirstPage = !!window.location.href.includes(settings.paths.contactPagesAddNewPage);
 
-      // We need this because there is a complex bug in the WordPress admin menu that causes the Contact Menu to be broken
-      // When the links page has at least one post and the contact page has none.
+      / We need this because there is a complex bug in the WordPress admin menu that causes the Contact Menu to be broken
+      / When the links page has at least one post and the contact page has none.
       if ((_elementorAdminConfig = elementorAdminConfig.urls) !== null && _elementorAdminConfig !== void 0 && _elementorAdminConfig.viewContactPageUrl) {
         this.elements.$templatesMenuItem.find('li.submenu-e-contact a').attr('href', elementorAdminConfig.urls.viewContactPageUrl);
       }
@@ -1075,8 +1075,8 @@ var _default = exports["default"] = /*#__PURE__*/function (_elementorModules$Mod
           paths: paths
         };
 
-      // This class modifies elements in the WordPress admin that are rendered "wrong" by the WordPress core
-      // and could not be modified in the backend.
+      / This class modifies elements in the WordPress admin that are rendered "wrong" by the WordPress core
+      / and could not be modified in the backend.
       new _floatingButtons.default(args);
     }
   }]);
@@ -1119,7 +1119,7 @@ var LandingPagesHandler = exports["default"] = /*#__PURE__*/function (_AdminMenu
     value: function getDefaultSettings() {
       var pageName = 'e-landing-page',
         adminMenuSelectors = {
-          // The escaping is done because jQuery requires it for selectors.
+          / The escaping is done because jQuery requires it for selectors.
           landingPagesTablePage: 'a[href="edit.php?post_type=' + pageName + '"]',
           landingPagesAddNewPage: 'a[href="edit.php?post_type=elementor_library&page=' + pageName + '"]'
         };
@@ -1151,14 +1151,14 @@ var LandingPagesHandler = exports["default"] = /*#__PURE__*/function (_AdminMenu
         isLandingPagesTrashPage = !!window.location.href.includes(settings.paths.landingPagesTrashPage),
         isLandingPagesCreateYourFirstPage = !!window.location.href.includes(settings.paths.landingPagesAddNewPage);
 
-      // If the current page is a Landing Pages Page (the Posts Table page, "Create Your First.." page, or a native
-      // WordPress dashboard page edit screen when using WordPress' Classic Editor).
+      / If the current page is a Landing Pages Page (the Posts Table page, "Create Your First.." page, or a native
+      / WordPress dashboard page edit screen when using WordPress' Classic Editor).
       if (isLandingPagesTablePage || isLandingPagesTrashPage || isLandingPagesCreateYourFirstPage || settings.isLandingPageAdminEdit) {
-        // Make sure the active admin top level menu item is 'Templates', and not 'Pages'.
+        / Make sure the active admin top level menu item is 'Templates', and not 'Pages'.
         this.highlightTopLevelMenuItem(this.elements.$templatesMenuItem, this.elements.$pagesMenuItemAndLink);
         this.highlightSubMenuItem(this.elements.$landingPagesMenuItem);
 
-        // Overwrite the 'Add New' button at the top of the page to open in Elementor with the library module open.
+        / Overwrite the 'Add New' button at the top of the page to open in Elementor with the library module open.
         jQuery(settings.selectors.addButton).attr('href', elementorAdminConfig.urls.addNewLandingPageUrl);
       }
     }
@@ -1216,8 +1216,8 @@ var _default = exports["default"] = /*#__PURE__*/function (_elementorModules$Mod
           paths: paths
         };
 
-      // This class modifies elements in the WordPress admin that are rendered "wrong" by the WordPress core
-      // and could not be modified in the backend.
+      / This class modifies elements in the WordPress admin that are rendered "wrong" by the WordPress core
+      / and could not be modified in the backend.
       new _landingPages.default(args);
     }
   }]);
@@ -1968,27 +1968,27 @@ try {
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
@@ -2228,10 +2228,10 @@ var _module3 = _interopRequireDefault(__webpack_require__(/*! elementor/modules/
       self.elements.$settingsTabs.on({
         click: function click(event) {
           event.preventDefault();
-          event.currentTarget.focus(); // Safari does not focus the tab automatically
+          event.currentTarget.focus(); / Safari does not focus the tab automatically
         },
         focus: function focus() {
-          // Using focus event to enable navigation by tab key
+          / Using focus event to enable navigation by tab key
           var hrefWithoutHash = location.href.replace(/#.*/, '');
           history.pushState({}, '', hrefWithoutHash + this.hash);
           self.goToSettingsTabFromHash();
@@ -2325,7 +2325,7 @@ var _module3 = _interopRequireDefault(__webpack_require__(/*! elementor/modules/
     openLinksInNewTab: function openLinksInNewTab() {
       var elements = [this.elements.$menuGetHelpLink, this.elements.$menuGoProLink];
       elements.forEach(function ($element) {
-        // Only add the attribute if the element is found.
+        / Only add the attribute if the element is found.
         if ($element.length) {
           $element.attr('target', '_blank');
         }

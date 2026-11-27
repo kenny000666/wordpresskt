@@ -166,7 +166,7 @@ class CarouselHandlerBase extends _baseSwiper.default {
     swiperOptions.breakpoints = {};
     let lastBreakpointSlidesToShowValue = slidesToShow;
     Object.keys(elementorBreakpoints).reverse().forEach(breakpointName => {
-      // Tablet has a specific default `slides_to_show`.
+      / Tablet has a specific default `slides_to_show`.
       const defaultSlidesToShow = defaultSlidesToShowMap[breakpointName] ? defaultSlidesToShowMap[breakpointName] : lastBreakpointSlidesToShowValue;
       swiperOptions.breakpoints[elementorBreakpoints[breakpointName].value] = {
         slidesPerView: +elementSettings['slides_to_show_' + breakpointName] || defaultSlidesToShow,
@@ -286,7 +286,7 @@ class CarouselHandlerBase extends _baseSwiper.default {
     const Swiper = elementorFrontend.utils.swiper;
     this.swiper = await new Swiper(this.elements.$swiperContainer, this.getSwiperSettings());
 
-    // Expose the swiper instance in the frontend
+    / Expose the swiper instance in the frontend
     this.elements.$swiperContainer.data('swiper', this.swiper);
   }
   bindEvents() {
@@ -326,7 +326,7 @@ class CarouselHandlerBase extends _baseSwiper.default {
       newSettingValue = elementSettings[propertyName],
       params = this.swiper.params;
 
-    // Handle special cases where the value to update is not the value that the Swiper library accepts.
+    / Handle special cases where the value to update is not the value that the Swiper library accepts.
     switch (propertyName) {
       case 'autoplay_speed':
         params.autoplay.delay = newSettingValue;
@@ -342,7 +342,7 @@ class CarouselHandlerBase extends _baseSwiper.default {
       pause_on_hover: 'pauseOnHover',
       autoplay_speed: 'delay',
       speed: 'speed',
-      arrows_position: 'arrows_position' // Not a Swiper setting.
+      arrows_position: 'arrows_position' / Not a Swiper setting.
     };
   }
   onElementChange(propertyName) {
@@ -352,7 +352,7 @@ class CarouselHandlerBase extends _baseSwiper.default {
     }
     const changeableProperties = this.getChangeableProperties();
     if (changeableProperties[propertyName]) {
-      // 'pause_on_hover' is implemented by the handler with event listeners, not the Swiper library.
+      / 'pause_on_hover' is implemented by the handler with event listeners, not the Swiper library.
       if ('pause_on_hover' === propertyName) {
         const newSettingValue = this.getElementSettings('pause_on_hover');
         this.togglePauseOnHover('yes' === newSettingValue);
@@ -427,7 +427,7 @@ class CarouselHandlerBase extends _baseSwiper.default {
     });
   }
 
-  // Empty method which can be overwritten by child methods.
+  / Empty method which can be overwritten by child methods.
   handleElementHandlers() {}
 }
 exports["default"] = CarouselHandlerBase;
@@ -458,7 +458,7 @@ class SwiperHandlerBase extends _base.default {
     return this.elements.$slides.length;
   }
 
-  // This method live-handles the 'Pause On Hover' control's value being changed in the Editor Panel
+  / This method live-handles the 'Pause On Hover' control's value being changed in the Editor Panel
   togglePauseOnHover(toggleOn) {
     if (toggleOn) {
       this.elements.$swiperContainer.on({
@@ -534,7 +534,7 @@ module.exports = elementorModules.ViewModule.extend({
   findElement(selector) {
     var $mainElement = this.$element;
     return $mainElement.find(selector).filter(function () {
-      // Start `closest` from parent since self can be `.elementor-element`.
+      / Start `closest` from parent since self can be `.elementor-element`.
       return jQuery(this).parent().closest('.elementor-element').is($mainElement);
     });
   },
@@ -865,7 +865,7 @@ module.exports = elementorModules.ViewModule.extend({
     let $container;
     try {
       $container = jQuery(settings.selectors.container);
-      // eslint-disable-next-line no-empty
+      / eslint-disable-next-line no-empty
     } catch (e) {}
     if (!$container || !$container.length) {
       $container = jQuery(this.getDefaultSettings().selectors.container);
@@ -897,7 +897,7 @@ module.exports = elementorModules.ViewModule.extend({
       correctOffset = -correctOffset;
     }
 
-    // Consider margin
+    / Consider margin
     if (settings.margin) {
       correctOffset += settings.margin;
     }
@@ -1048,8 +1048,8 @@ class ArgsObject extends _instanceType.default {
     let args = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.args;
     this.requireArgument(property, args);
 
-    // Note: Converting the constructor to string in order to avoid equation issues
-    // due to different memory addresses between iframes (window.Object !== window.top.Object).
+    / Note: Converting the constructor to string in order to avoid equation issues
+    / due to different memory addresses between iframes (window.Object !== window.top.Object).
     if (args[property].constructor.toString() !== type.prototype.constructor.toString()) {
       throw Error(`${property} invalid constructor type.`);
     }
@@ -1081,9 +1081,9 @@ class ForceMethodImplementation extends Error {
     let args = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     super(`${info.isStatic ? 'static ' : ''}${info.fullName}() should be implemented, please provide '${info.functionName || info.fullName}' functionality.`, args);
 
-    // Allow to pass custom properties to the error.
+    / Allow to pass custom properties to the error.
     if (Object.keys(args).length) {
-      // eslint-disable-next-line no-console
+      / eslint-disable-next-line no-console
       console.error(args);
     }
     Error.captureStackTrace(this, ForceMethodImplementation);
@@ -1135,7 +1135,7 @@ class InstanceType {
      */
     let result = super[Symbol.hasInstance](target);
 
-    // Act normal when validate a class, which does not have instance type.
+    / Act normal when validate a class, which does not have instance type.
     if (target && !target.constructor.getInstanceType) {
       return result;
     }
@@ -1156,7 +1156,7 @@ class InstanceType {
       }
     }
     if (!result && target) {
-      // Check if the given 'target', is instance of known types.
+      / Check if the given 'target', is instance of known types.
       result = target.instanceTypes && Array.isArray(target.instanceTypes) && -1 !== target.instanceTypes.indexOf(this.getInstanceType());
     }
     return result;
@@ -1165,7 +1165,7 @@ class InstanceType {
     elementorModules.ForceMethodImplementation();
   }
   constructor() {
-    // Since anonymous classes sometimes do not get validated by babel, do it manually.
+    / Since anonymous classes sometimes do not get validated by babel, do it manually.
     let target = new.target;
     const prototypes = [];
     while (target.__proto__ && target.__proto__.name) {
@@ -1270,7 +1270,7 @@ const Module = function () {
     return message;
   };
 
-  // TODO: This function should be deleted ?.
+  / TODO: This function should be deleted ?.
   this.forceMethodImplementation = function (functionName) {
     throw new Error(this.getErrorMessage('forceMethodImplementation', functionName));
   };
@@ -1302,7 +1302,7 @@ const Module = function () {
     if (-1 !== callbackIndex) {
       delete events[eventName][callbackIndex];
 
-      // Reset array index (for next off on same event).
+      / Reset array index (for next off on same event).
       events[eventName] = events[eventName].filter(val => val);
     }
     return self;
@@ -1431,8 +1431,8 @@ class Scroll {
   static scrollObserver(obj) {
     let lastScrollY = 0;
 
-    // Generating thresholds points along the animation height
-    // More thresholds points = more trigger points of the callback
+    / Generating thresholds points along the animation height
+    / More thresholds points = more trigger points of the callback
     const buildThresholds = function () {
       let sensitivityPercentage = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
       const thresholds = [];
@@ -1706,13 +1706,13 @@ var createMethod = function (IS_INCLUDES) {
     if (length === 0) return !IS_INCLUDES && -1;
     var index = toAbsoluteIndex(fromIndex, length);
     var value;
-    // Array#includes uses SameValueZero equality algorithm
-    // eslint-disable-next-line no-self-compare -- NaN check
+    / Array#includes uses SameValueZero equality algorithm
+    / eslint-disable-next-line no-self-compare -- NaN check
     if (IS_INCLUDES && el !== el) while (length > index) {
       value = O[index++];
-      // eslint-disable-next-line no-self-compare -- NaN check
+      / eslint-disable-next-line no-self-compare -- NaN check
       if (value !== value) return true;
-    // Array#indexOf ignores holes, Array#includes - not
+    / Array#indexOf ignores holes, Array#includes - not
     } else for (;length > index; index++) {
       if ((IS_INCLUDES || index in O) && O[index] === el) return IS_INCLUDES || index || 0;
     } return !IS_INCLUDES && -1;
@@ -1720,11 +1720,11 @@ var createMethod = function (IS_INCLUDES) {
 };
 
 module.exports = {
-  // `Array.prototype.includes` method
-  // https://tc39.es/ecma262/#sec-array.prototype.includes
+  / `Array.prototype.includes` method
+  / https://tc39.es/ecma262/#sec-array.prototype.includes
   includes: createMethod(true),
-  // `Array.prototype.indexOf` method
-  // https://tc39.es/ecma262/#sec-array.prototype.indexof
+  / `Array.prototype.indexOf` method
+  / https://tc39.es/ecma262/#sec-array.prototype.indexof
   indexOf: createMethod(false)
 };
 
@@ -1748,10 +1748,10 @@ var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
 
 // Safari < 13 does not throw an error in this case
 var SILENT_ON_NON_WRITABLE_LENGTH_SET = DESCRIPTORS && !function () {
-  // makes no sense without proper strict mode support
+  / makes no sense without proper strict mode support
   if (this !== undefined) return true;
   try {
-    // eslint-disable-next-line es/no-object-defineproperty -- safe
+    / eslint-disable-next-line es/no-object-defineproperty -- safe
     Object.defineProperty([], 'length', { writable: false }).length = 1;
   } catch (error) {
     return error instanceof TypeError;
@@ -1842,11 +1842,11 @@ var tryGet = function (it, key) {
 module.exports = TO_STRING_TAG_SUPPORT ? classofRaw : function (it) {
   var O, tag, result;
   return it === undefined ? 'Undefined' : it === null ? 'Null'
-    // @@toStringTag case
+    / @@toStringTag case
     : typeof (tag = tryGet(O = $Object(it), TO_STRING_TAG)) == 'string' ? tag
-    // builtinTag case
+    / builtinTag case
     : CORRECT_ARGUMENTS ? classofRaw(O)
-    // ES3 arguments fallback
+    / ES3 arguments fallback
     : (result = classofRaw(O)) === 'Object' && isCallable(O.callee) ? 'Arguments' : result;
 };
 
@@ -1894,7 +1894,7 @@ var fails = __webpack_require__(/*! ../internals/fails */ "../node_modules/core-
 module.exports = !fails(function () {
   function F() { /* empty */ }
   F.prototype.constructor = null;
-  // eslint-disable-next-line es/no-object-getprototypeof -- required for testing
+  / eslint-disable-next-line es/no-object-getprototypeof -- required for testing
   return Object.getPrototypeOf(new F()) !== F.prototype;
 });
 
@@ -2093,7 +2093,7 @@ var fails = __webpack_require__(/*! ../internals/fails */ "../node_modules/core-
 
 // Detect IE8's incomplete defineProperty implementation
 module.exports = !fails(function () {
-  // eslint-disable-next-line es/no-object-defineproperty -- required for testing
+  / eslint-disable-next-line es/no-object-defineproperty -- required for testing
   return Object.defineProperty({}, 1, { get: function () { return 7; } })[1] !== 7;
 });
 
@@ -2131,7 +2131,7 @@ module.exports = function (it) {
 "use strict";
 
 var $TypeError = TypeError;
-var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF; // 2 ** 53 - 1 == 9007199254740991
+var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF; / 2 ** 53 - 1 == 9007199254740991
 
 module.exports = function (it) {
   if (it > MAX_SAFE_INTEGER) throw $TypeError('Maximum allowed index exceeded');
@@ -2200,8 +2200,8 @@ var match, version;
 
 if (v8) {
   match = v8.split('.');
-  // in old Chrome, versions of V8 isn't V8 = Chrome / 10
-  // but their correct versions are not interesting for us
+  / in old Chrome, versions of V8 isn't V8 = Chrome / 10
+  / but their correct versions are not interesting for us
   version = match[0] > 0 && match[0] < 4 ? 1 : +(match[0] + match[1]);
 }
 
@@ -2270,12 +2270,12 @@ module.exports = function (options, source) {
       targetProperty = descriptor && descriptor.value;
     } else targetProperty = target[key];
     FORCED = isForced(GLOBAL ? key : TARGET + (STATIC ? '.' : '#') + key, options.forced);
-    // contained in target
+    / contained in target
     if (!FORCED && targetProperty !== undefined) {
       if (typeof sourceProperty == typeof targetProperty) continue;
       copyConstructorProperties(sourceProperty, targetProperty);
     }
-    // add a flag to not completely full polyfills
+    / add a flag to not completely full polyfills
     if (options.sham || (targetProperty && targetProperty.sham)) {
       createNonEnumerableProperty(sourceProperty, 'sham', true);
     }
@@ -2341,9 +2341,9 @@ module.exports = function (fn, that) {
 var fails = __webpack_require__(/*! ../internals/fails */ "../node_modules/core-js/internals/fails.js");
 
 module.exports = !fails(function () {
-  // eslint-disable-next-line es/no-function-prototype-bind -- safe
+  / eslint-disable-next-line es/no-function-prototype-bind -- safe
   var test = (function () { /* empty */ }).bind();
-  // eslint-disable-next-line no-prototype-builtins -- safe
+  / eslint-disable-next-line no-prototype-builtins -- safe
   return typeof test != 'function' || test.hasOwnProperty('prototype');
 });
 
@@ -2410,9 +2410,9 @@ var classofRaw = __webpack_require__(/*! ../internals/classof-raw */ "../node_mo
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "../node_modules/core-js/internals/function-uncurry-this.js");
 
 module.exports = function (fn) {
-  // Nashorn bug:
-  //   https://github.com/zloirock/core-js/issues/1128
-  //   https://github.com/zloirock/core-js/issues/1130
+  / Nashorn bug:
+  /   https://github.com/zloirock/core-js/issues/1128
+  /   https://github.com/zloirock/core-js/issues/1130
   if (classofRaw(fn) === 'Function') return uncurryThis(fn);
 };
 
@@ -2570,14 +2570,14 @@ var check = function (it) {
 
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
 module.exports =
-  // eslint-disable-next-line es/no-global-this -- safe
+  / eslint-disable-next-line es/no-global-this -- safe
   check(typeof globalThis == 'object' && globalThis) ||
   check(typeof window == 'object' && window) ||
-  // eslint-disable-next-line no-restricted-globals -- safe
+  / eslint-disable-next-line no-restricted-globals -- safe
   check(typeof self == 'object' && self) ||
   check(typeof __webpack_require__.g == 'object' && __webpack_require__.g) ||
   check(typeof this == 'object' && this) ||
-  // eslint-disable-next-line no-new-func -- fallback
+  / eslint-disable-next-line no-new-func -- fallback
   (function () { return this; })() || Function('return this')();
 
 
@@ -2648,7 +2648,7 @@ var createElement = __webpack_require__(/*! ../internals/document-create-element
 
 // Thanks to IE8 for its funny defineProperty
 module.exports = !DESCRIPTORS && !fails(function () {
-  // eslint-disable-next-line es/no-object-defineproperty -- required for testing
+  / eslint-disable-next-line es/no-object-defineproperty -- required for testing
   return Object.defineProperty(createElement('div'), 'a', {
     get: function () { return 7; }
   }).a !== 7;
@@ -2674,8 +2674,8 @@ var split = uncurryThis(''.split);
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
 module.exports = fails(function () {
-  // throws an error in rhino, see https://github.com/mozilla/rhino/issues/346
-  // eslint-disable-next-line no-prototype-builtins -- safe
+  / throws an error in rhino, see https://github.com/mozilla/rhino/issues/346
+  / eslint-disable-next-line no-prototype-builtins -- safe
   return !$Object('z').propertyIsEnumerable(0);
 }) ? function (it) {
   return classof(it) === 'String' ? split(it, '') : $Object(it);
@@ -3019,7 +3019,7 @@ module.exports = function (iterable, unboundFunction, options) {
   } else {
     iterFn = getIteratorMethod(iterable);
     if (!iterFn) throw new $TypeError(tryToString(iterable) + ' is not iterable');
-    // optimisation for array iterators
+    / optimisation for array iterators
     if (isArrayIteratorMethod(iterFn)) {
       for (index = 0, length = lengthOfArrayLike(iterable); length > index; index++) {
         result = callFn(iterable[index]);
@@ -3108,9 +3108,9 @@ var createIteratorProxyPrototype = function (IS_ITERATOR) {
   return defineBuiltIns(create(IteratorPrototype), {
     next: function next() {
       var state = getInternalState(this);
-      // for simplification:
-      //   for `%WrapForValidIteratorPrototype%.next` our `nextHandler` returns `IterResultObject`
-      //   for `%IteratorHelperPrototype%.next` - just a value
+      / for simplification:
+      /   for `%WrapForValidIteratorPrototype%.next` our `nextHandler` returns `IterResultObject`
+      /   for `%IteratorHelperPrototype%.next` - just a value
       if (IS_ITERATOR) return state.nextHandler();
       try {
         var result = state.done ? undefined : state.nextHandler();
@@ -3192,7 +3192,7 @@ var IteratorPrototype, PrototypeOfArrayIteratorPrototype, arrayIterator;
 /* eslint-disable es/no-array-prototype-keys -- safe */
 if ([].keys) {
   arrayIterator = [].keys();
-  // Safari 8 has buggy iterators w/o `next`
+  / Safari 8 has buggy iterators w/o `next`
   if (!('next' in arrayIterator)) BUGGY_SAFARI_ITERATORS = true;
   else {
     PrototypeOfArrayIteratorPrototype = getPrototypeOf(getPrototypeOf(arrayIterator));
@@ -3202,7 +3202,7 @@ if ([].keys) {
 
 var NEW_ITERATOR_PROTOTYPE = !isObject(IteratorPrototype) || fails(function () {
   var test = {};
-  // FF44- legacy iterators case
+  / FF44- legacy iterators case
   return IteratorPrototype[ITERATOR].call(test) !== test;
 });
 
@@ -3305,7 +3305,7 @@ var makeBuiltIn = module.exports = function (value, name, options) {
   try {
     if (options && hasOwn(options, 'constructor') && options.constructor) {
       if (DESCRIPTORS) defineProperty(value, 'prototype', { writable: false });
-    // in V8 ~ Chrome 53, prototypes of some methods, like `Array.prototype.values`, are non-writable
+    / in V8 ~ Chrome 53, prototypes of some methods, like `Array.prototype.values`, are non-writable
     } else if (value.prototype) value.prototype = undefined;
   } catch (error) { /* empty */ }
   var state = enforceInternalState(value);
@@ -3379,20 +3379,20 @@ var NullProtoObjectViaActiveX = function (activeXDocument) {
   activeXDocument.write(scriptTag(''));
   activeXDocument.close();
   var temp = activeXDocument.parentWindow.Object;
-  // eslint-disable-next-line no-useless-assignment -- avoid memory leak
+  / eslint-disable-next-line no-useless-assignment -- avoid memory leak
   activeXDocument = null;
   return temp;
 };
 
 // Create object with fake `null` prototype: use iframe Object with cleared prototype
 var NullProtoObjectViaIFrame = function () {
-  // Thrash, waste and sodomy: IE GC bug
+  / Thrash, waste and sodomy: IE GC bug
   var iframe = documentCreateElement('iframe');
   var JS = 'java' + SCRIPT + ':';
   var iframeDocument;
   iframe.style.display = 'none';
   html.appendChild(iframe);
-  // https://github.com/zloirock/core-js/issues/475
+  / https://github.com/zloirock/core-js/issues/475
   iframe.src = String(JS);
   iframeDocument = iframe.contentWindow.document;
   iframeDocument.open();
@@ -3413,9 +3413,9 @@ var NullProtoObject = function () {
   } catch (error) { /* ignore */ }
   NullProtoObject = typeof document != 'undefined'
     ? document.domain && activeXDocument
-      ? NullProtoObjectViaActiveX(activeXDocument) // old IE
+      ? NullProtoObjectViaActiveX(activeXDocument) / old IE
       : NullProtoObjectViaIFrame()
-    : NullProtoObjectViaActiveX(activeXDocument); // WSH
+    : NullProtoObjectViaActiveX(activeXDocument); / WSH
   var length = enumBugKeys.length;
   while (length--) delete NullProtoObject[PROTOTYPE][enumBugKeys[length]];
   return NullProtoObject();
@@ -3432,7 +3432,7 @@ module.exports = Object.create || function create(O, Properties) {
     EmptyConstructor[PROTOTYPE] = anObject(O);
     result = new EmptyConstructor();
     EmptyConstructor[PROTOTYPE] = null;
-    // add "__proto__" for Object.getPrototypeOf polyfill
+    / add "__proto__" for Object.getPrototypeOf polyfill
     result[IE_PROTO] = O;
   } else result = NullProtoObject();
   return Properties === undefined ? result : definePropertiesModule.f(result, Properties);
@@ -3669,7 +3669,7 @@ module.exports = function (object, names) {
   var result = [];
   var key;
   for (key in O) !hasOwn(hiddenKeys, key) && hasOwn(O, key) && push(result, key);
-  // Don't enum bug & hidden keys
+  / Don't enum bug & hidden keys
   while (names.length > i) if (hasOwn(O, key = names[i++])) {
     ~indexOf(result, key) || push(result, key);
   }
@@ -3881,12 +3881,12 @@ var $String = globalThis.String;
 // eslint-disable-next-line es/no-object-getownpropertysymbols -- required for testing
 module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
   var symbol = Symbol('symbol detection');
-  // Chrome 38 Symbol has incorrect toString conversion
-  // `get-own-property-symbols` polyfill symbols converted to object are not Symbol instances
-  // nb: Do not call `String` directly to avoid this being optimized out to `symbol+''` which will,
-  // of course, fail.
+  / Chrome 38 Symbol has incorrect toString conversion
+  / `get-own-property-symbols` polyfill symbols converted to object are not Symbol instances
+  / nb: Do not call `String` directly to avoid this being optimized out to `symbol+''` which will,
+  / of course, fail.
   return !$String(symbol) || !(Object(symbol) instanceof Symbol) ||
-    // Chrome 38-40 symbols are not inherited from DOM collections prototypes to instances
+    / Chrome 38-40 symbols are not inherited from DOM collections prototypes to instances
     !Symbol.sham && V8_VERSION && V8_VERSION < 41;
 });
 
@@ -3950,7 +3950,7 @@ var trunc = __webpack_require__(/*! ../internals/math-trunc */ "../node_modules/
 // https://tc39.es/ecma262/#sec-tointegerorinfinity
 module.exports = function (argument) {
   var number = +argument;
-  // eslint-disable-next-line no-self-compare -- NaN check
+  / eslint-disable-next-line no-self-compare -- NaN check
   return number !== number || number === 0 ? 0 : trunc(number);
 };
 
@@ -3973,7 +3973,7 @@ var min = Math.min;
 // https://tc39.es/ecma262/#sec-tolength
 module.exports = function (argument) {
   var len = toIntegerOrInfinity(argument);
-  return len > 0 ? min(len, 0x1FFFFFFFFFFFFF) : 0; // 2 ** 53 - 1 == 9007199254740991
+  return len > 0 ? min(len, 0x1FFFFFFFFFFFFF) : 0; / 2 ** 53 - 1 == 9007199254740991
 };
 
 
@@ -4152,7 +4152,7 @@ var fails = __webpack_require__(/*! ../internals/fails */ "../node_modules/core-
 // V8 ~ Chrome 36-
 // https://bugs.chromium.org/p/v8/issues/detail?id=3334
 module.exports = DESCRIPTORS && fails(function () {
-  // eslint-disable-next-line es/no-object-defineproperty -- required for testing
+  / eslint-disable-next-line es/no-object-defineproperty -- required for testing
   return Object.defineProperty(function () { /* empty */ }, 'prototype', {
     value: 42,
     writable: false
@@ -4225,7 +4225,7 @@ var addToUnscopables = __webpack_require__(/*! ../internals/add-to-unscopables *
 
 // FF99+ bug
 var BROKEN_ON_SPARSE = fails(function () {
-  // eslint-disable-next-line es/no-array-prototype-includes -- detection
+  / eslint-disable-next-line es/no-array-prototype-includes -- detection
   return !Array(1).includes();
 });
 
@@ -4266,7 +4266,7 @@ var INCORRECT_TO_LENGTH = fails(function () {
 // https://bugs.chromium.org/p/v8/issues/detail?id=12681
 var properErrorOnNonWritableLength = function () {
   try {
-    // eslint-disable-next-line es/no-object-defineproperty -- safe
+    / eslint-disable-next-line es/no-object-defineproperty -- safe
     Object.defineProperty([], 'length', { writable: false }).push();
   } catch (error) {
     return error instanceof TypeError;
@@ -4278,7 +4278,7 @@ var FORCED = INCORRECT_TO_LENGTH || !properErrorOnNonWritableLength();
 // `Array.prototype.push` method
 // https://tc39.es/ecma262/#sec-array.prototype.push
 $({ target: 'Array', proto: true, arity: 1, forced: FORCED }, {
-  // eslint-disable-next-line no-unused-vars -- required for `.length`
+  / eslint-disable-next-line no-unused-vars -- required for `.length`
   push: function push(item) {
     var O = toObject(this);
     var len = lengthOfArrayLike(O);
@@ -4330,7 +4330,7 @@ var NativeIterator = globalThis[ITERATOR];
 var FORCED = IS_PURE
   || !isCallable(NativeIterator)
   || NativeIterator.prototype !== IteratorPrototype
-  // FF44- non-standard `Iterator` passes previous tests
+  / FF44- non-standard `Iterator` passes previous tests
   || !fails(function () { NativeIterator({}); });
 
 var IteratorConstructor = function Iterator() {
@@ -4537,7 +4537,7 @@ __webpack_require__(/*! ../modules/es.iterator.for-each */ "../node_modules/core
 /***/ })
 
 },
-/******/ __webpack_require__ => { // webpackRuntimeModules
+/******/ __webpack_require__ => { / webpackRuntimeModules
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
 /******/ var __webpack_exports__ = (__webpack_exec__("../assets/dev/js/frontend/modules.js"));
 /******/ }

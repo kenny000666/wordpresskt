@@ -193,31 +193,31 @@
 		addLoaderIcon( type = 'spinner' ) {
 			let frame;
 
-			// If the media frame already exists, reopen it.
+			/ If the media frame already exists, reopen it.
 			if ( frame ) {
 				frame.open();
 				return;
 			}
 
-			// Create a new media frame
+			/ Create a new media frame
 			frame = wp.media( {
 				title: 'Select or upload an icon',
 				button: {
 					text: 'Select icon',
 				},
-				multiple: false, // Set to true to allow multiple files to be selected
+				multiple: false, / Set to true to allow multiple files to be selected
 			} );
 
-			// When an image is selected in the media frame...
+			/ When an image is selected in the media frame...
 			frame.on( 'select', function() {
-				// Get media attachment details from the frame state
+				/ Get media attachment details from the frame state
 				const attachment = frame
 					.state()
 					.get( 'selection' )
 					.first()
 					.toJSON();
 
-				// Send the attachment URL to our custom image input field.
+				/ Send the attachment URL to our custom image input field.
 				const imageIcon = document.getElementById(
 					'smush-' + type + '-icon-preview'
 				);
@@ -225,17 +225,17 @@
 					'url("' + attachment.url + '")';
 				imageIcon.style.display = 'block';
 
-				// Send the attachment id to our hidden input
+				/ Send the attachment id to our hidden input
 				document
 					.getElementById( 'smush-' + type + '-icon-file' )
 					.setAttribute( 'value', attachment.id );
 
-				// Hide the add image link
+				/ Hide the add image link
 				document.getElementById(
 					'smush-upload-' + type
 				).style.display = 'none';
 
-				// Unhide the remove image link
+				/ Unhide the remove image link
 				const removeDiv = document.getElementById(
 					'smush-remove-' + type
 				);
@@ -244,7 +244,7 @@
 				removeDiv.style.display = 'block';
 			} );
 
-			// Finally, open the modal on click
+			/ Finally, open the modal on click
 			frame.open();
 		},
 
@@ -255,22 +255,22 @@
 		 * @param {string} type  Accepts: spinner, placeholder.
 		 */
 		removeLoaderIcon: ( type = 'spinner' ) => {
-			// Clear out the preview image
+			/ Clear out the preview image
 			const imageIcon = document.getElementById(
 				'smush-' + type + '-icon-preview'
 			);
 			imageIcon.style.backgroundImage = '';
 			imageIcon.style.display = 'none';
 
-			// Un-hide the add image link
+			/ Un-hide the add image link
 			document.getElementById( 'smush-upload-' + type ).style.display =
 				'block';
 
-			// Hide the delete image link
+			/ Hide the delete image link
 			document.getElementById( 'smush-remove-' + type ).style.display =
 				'none';
 
-			// Delete the image id from the hidden input
+			/ Delete the image id from the hidden input
 			document
 				.getElementById( 'smush-' + type + '-icon-file' )
 				.setAttribute( 'value', '' );

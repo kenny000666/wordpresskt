@@ -81,7 +81,7 @@
 			if (
 				typeof item === 'object' &&
 				typeof item.timestamp === 'number' &&
-				new Date().valueOf() < item.timestamp + 604800 && // Note: Number is a week in seconds.
+				new Date().valueOf() < item.timestamp + 604800 && / Note: Number is a week in seconds.
 				typeof item.supportTests === 'object'
 			) {
 				return item.supportTests;
@@ -136,7 +136,7 @@
 	 * @return {boolean} True if the two sets render the same.
 	 */
 	function emojiSetsRenderIdentically( context, set1, set2 ) {
-		// Cleanup from previous test.
+		/ Cleanup from previous test.
 		context.clearRect( 0, 0, context.canvas.width, context.canvas.height );
 		context.fillText( set1, 0, 0 );
 		var rendered1 = new Uint32Array(
@@ -148,7 +148,7 @@
 			).data
 		);
 
-		// Cleanup from previous test.
+		/ Cleanup from previous test.
 		context.clearRect( 0, 0, context.canvas.width, context.canvas.height );
 		context.fillText( set2, 0, 0 );
 		var rendered2 = new Uint32Array(
@@ -185,15 +185,15 @@
 	 * @return {boolean} True if the center point is empty.
 	 */
 	function emojiRendersEmptyCenterPoint( context, emoji ) {
-		// Cleanup from previous test.
+		/ Cleanup from previous test.
 		context.clearRect( 0, 0, context.canvas.width, context.canvas.height );
 		context.fillText( emoji, 0, 0 );
 
-		// Test if the center point (16, 16) is empty (0,0,0,0).
+		/ Test if the center point (16, 16) is empty (0,0,0,0).
 		var centerPoint = context.getImageData(16, 16, 1, 1);
 		for ( var i = 0; i < centerPoint.data.length; i++ ) {
 			if ( centerPoint.data[ i ] !== 0 ) {
-				// Stop checking the moment it's known not to be empty.
+				/ Stop checking the moment it's known not to be empty.
 				return false;
 			}
 		}
@@ -231,8 +231,8 @@
 				 */
 				isIdentical = emojiSetsRenderIdentically(
 					context,
-					'\uD83C\uDFF3\uFE0F\u200D\u26A7\uFE0F', // as a zero-width joiner sequence
-					'\uD83C\uDFF3\uFE0F\u200B\u26A7\uFE0F' // separated by a zero-width space
+					'\uD83C\uDFF3\uFE0F\u200D\u26A7\uFE0F', / as a zero-width joiner sequence
+					'\uD83C\uDFF3\uFE0F\u200B\u26A7\uFE0F' / separated by a zero-width space
 				);
 
 				if ( isIdentical ) {
@@ -248,8 +248,8 @@
 				 */
 				isIdentical = emojiSetsRenderIdentically(
 					context,
-					'\uD83C\uDDE8\uD83C\uDDF6', // as the sequence of two code points
-					'\uD83C\uDDE8\u200B\uD83C\uDDF6' // as the two code points separated by a zero-width space
+					'\uD83C\uDDE8\uD83C\uDDF6', / as the sequence of two code points
+					'\uD83C\uDDE8\u200B\uD83C\uDDF6' / as the two code points separated by a zero-width space
 				);
 
 				if ( isIdentical ) {
@@ -265,9 +265,9 @@
 				 */
 				isIdentical = emojiSetsRenderIdentically(
 					context,
-					// as the flag sequence
+					/ as the flag sequence
 					'\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC65\uDB40\uDC6E\uDB40\uDC67\uDB40\uDC7F',
-					// with each code point separated by a zero-width space
+					/ with each code point separated by a zero-width space
 					'\uD83C\uDFF4\u200B\uDB40\uDC67\u200B\uDB40\uDC62\u200B\uDB40\uDC65\u200B\uDB40\uDC6E\u200B\uDB40\uDC67\u200B\uDB40\uDC7F'
 				);
 
@@ -317,7 +317,7 @@
 			typeof WorkerGlobalScope !== 'undefined' &&
 			self instanceof WorkerGlobalScope
 		) {
-			canvas = new OffscreenCanvas( 300, 150 ); // Dimensions are default for HTMLCanvasElement.
+			canvas = new OffscreenCanvas( 300, 150 ); / Dimensions are default for HTMLCanvasElement.
 		} else {
 			canvas = document.createElement( 'canvas' );
 		}
@@ -362,14 +362,14 @@
 		everythingExceptFlag: true
 	};
 
-	// Create a promise for DOMContentLoaded since the worker logic may finish after the event has fired.
+	/ Create a promise for DOMContentLoaded since the worker logic may finish after the event has fired.
 	var domReadyPromise = new Promise( function ( resolve ) {
 		document.addEventListener( 'DOMContentLoaded', resolve, {
 			once: true
 		} );
 	} );
 
-	// Obtain the emoji support from the browser, asynchronously when possible.
+	/ Obtain the emoji support from the browser, asynchronously when possible.
 	new Promise( function ( resolve ) {
 		var supportTests = getSessionSupportTests();
 		if ( supportTests ) {
@@ -379,7 +379,7 @@
 
 		if ( supportsWorkerOffloading() ) {
 			try {
-				// Note that the functions are being passed as arguments due to minification.
+				/ Note that the functions are being passed as arguments due to minification.
 				var workerScript =
 					'postMessage(' +
 					testEmojiSupports.toString() +
@@ -409,7 +409,7 @@
 		setSessionSupportTests( supportTests );
 		resolve( supportTests );
 	} )
-		// Once the browser emoji support has been obtained from the session, finalize the settings.
+		/ Once the browser emoji support has been obtained from the session, finalize the settings.
 		.then( function ( supportTests ) {
 			/*
 			 * Tests the browser support for flag emojis and other emojis, and adjusts the
@@ -432,7 +432,7 @@
 				settings.supports.everythingExceptFlag &&
 				! settings.supports.flag;
 
-			// Sets DOMReady to false and assigns a ready function to settings.
+			/ Sets DOMReady to false and assigns a ready function to settings.
 			settings.DOMReady = false;
 			settings.readyCallback = function () {
 				settings.DOMReady = true;
@@ -442,7 +442,7 @@
 			return domReadyPromise;
 		} )
 		.then( function () {
-			// When the browser can not render everything we need to load a polyfill.
+			/ When the browser can not render everything we need to load a polyfill.
 			if ( ! settings.supports.everything ) {
 				settings.readyCallback();
 

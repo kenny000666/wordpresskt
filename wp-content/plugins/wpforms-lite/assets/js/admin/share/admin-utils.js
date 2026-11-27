@@ -33,7 +33,7 @@ const wpf = {
 		choices: {},
 	},
 
-	// This file contains a collection of utility functions.
+	/ This file contains a collection of utility functions.
 
 	/**
 	 * Start the engine.
@@ -43,7 +43,7 @@ const wpf = {
 	init() {
 		wpf.bindUIActions();
 
-		// Init Radio Group for Checkboxes.
+		/ Init Radio Group for Checkboxes.
 		wpf.initRadioGroupForCheckboxes();
 
 		jQuery( wpf.ready );
@@ -55,7 +55,7 @@ const wpf = {
 	 * @since 1.0.1
 	 */
 	ready() {
-		// Save field and choice order for sorting later.
+		/ Save field and choice order for sorting later.
 		wpf.setFieldOrders();
 		wpf.setChoicesOrders();
 	},
@@ -66,7 +66,7 @@ const wpf = {
 	 * @since 1.0.1
 	 */
 	bindUIActions() {
-		// The following items should all trigger the fieldUpdate trigger.
+		/ The following items should all trigger the fieldUpdate trigger.
 		jQuery( document )
 			.on( 'wpformsFieldAdd', wpf.setFieldOrders )
 			.on( 'wpformsFieldDuplicated', wpf.setFieldOrders )
@@ -152,18 +152,18 @@ const wpf = {
 			$input = jQuery( self.input.element );
 
 		if ( $element.prop( 'multiple' ) ) {
-			// On init event.
+			/ On init event.
 			$input.data( 'placeholder', $input.attr( 'placeholder' ) );
-			// We need to save the style attribute to restore it later and make placeholder visible.
+			/ We need to save the style attribute to restore it later and make placeholder visible.
 			$input.data( 'style', $input.attr( 'style' ) );
 
 			if ( self.getValue( true ).length ) {
 				$input.removeAttr( 'placeholder' );
 			}
 
-			// On change event.
+			/ On change event.
 			$element.on( 'change', function() {
-				// eslint-disable-next-line no-unused-expressions
+				/ eslint-disable-next-line no-unused-expressions
 				self.getValue( true ).length
 					? $input.removeAttr( 'placeholder' )
 					: $input.attr( 'placeholder', $input.data( 'placeholder' ) ).attr( 'style', $input.data( 'style' ) );
@@ -199,12 +199,12 @@ const wpf = {
 	 * @since 1.9.0
 	 */
 	initializeChoicesEventHandlers() {
-		// Show more button for choices.
+		/ Show more button for choices.
 		jQuery( document ).on( 'addItem removeItem', '.choices:not(.is-disabled)', function() {
 			wpf.showMoreButtonForChoices( this );
 		} );
 
-		// Remove focus from input when dropdown is hidden.
+		/ Remove focus from input when dropdown is hidden.
 		jQuery( document ).on( 'hideDropdown', '.choices:not(.is-disabled)', function() {
 			jQuery( this ).find( '.choices__inner input.choices__input' ).trigger( 'blur' );
 		} );
@@ -252,18 +252,18 @@ const wpf = {
 	 *
 	 * @return {Object} Fields.
 	 */
-	getFields( allowedFields = undefined, useCache = undefined, isAllowedRepeaterFields = undefined, fieldsToExclude = undefined ) { // eslint-disable-line complexity, max-lines-per-function
+	getFields( allowedFields = undefined, useCache = undefined, isAllowedRepeaterFields = undefined, fieldsToExclude = undefined ) { / eslint-disable-line complexity, max-lines-per-function
 		useCache = useCache || false;
 
 		let fields;
 
 		if ( useCache && ! jQuery.isEmptyObject( wpf.cachedFields ) ) {
-			// Use cache if told and cache is primed.
+			/ Use cache if told and cache is primed.
 			fields = jQuery.extend( {}, wpf.cachedFields );
 
 			wpf.debug( 'getFields triggered (cached)' );
 		} else {
-			// Normal processing, get fields from builder and prime cache.
+			/ Normal processing, get fields from builder and prime cache.
 			const formData = wpf.formObject( '#wpforms-field-options' );
 
 			fields = formData.fields;
@@ -304,10 +304,10 @@ const wpf = {
 				}
 			}
 
-			// Add additional fields to the fields object.
+			/ Add additional fields to the fields object.
 			wpf.addAdditionalFields( fields );
 
-			// Cache the all the fields now that they have been ordered and initially processed.
+			/ Cache the all the fields now that they have been ordered and initially processed.
 			wpf.cachedFields = jQuery.extend( {}, fields );
 
 			wpf.debug( 'getFields triggered' );
@@ -327,7 +327,7 @@ const wpf = {
 			}
 		}
 
-		// If we should only return specific field types, remove the others.
+		/ If we should only return specific field types, remove the others.
 		if ( allowedFields && allowedFields.constructor === Array ) {
 			for ( const key in fields ) {
 				if ( jQuery.inArray( fields[ key ].type, allowedFields ) === -1 ) {
@@ -367,25 +367,25 @@ const wpf = {
 	addAdditionalFields( fields ) {
 		for ( const key in fields ) {
 			if ( [ 'name', 'date-time' ].includes( fields[ key ]?.type ) ) {
-				// Get the name format and split it into an array.
+				/ Get the name format and split it into an array.
 				const nameFormat = fields[ key ].format;
 
 				if ( nameFormat ) {
-					// Add the name fields to the field object
+					/ Add the name fields to the field object
 					fields[ key ].additional = nameFormat.split( '-' );
 				}
 			}
 
 			if ( fields[ key ]?.type === 'address' ) {
-				// Get all keys with "_placeholder" in the name (address1_placeholder, address2_placeholder, etc.)
+				/ Get all keys with "_placeholder" in the name (address1_placeholder, address2_placeholder, etc.)
 				const addressFields = Object.keys( fields[ key ] ).filter( ( fieldKey ) => fieldKey.includes( '_placeholder' ) );
 
-				// Remove "_placeholder" from the keys
+				/ Remove "_placeholder" from the keys
 				addressFields.forEach( ( fieldKey, index ) => {
 					addressFields[ index ] = fieldKey.replace( '_placeholder', '' );
 				} );
 
-				// Add the address fields to the fields object
+				/ Add the address fields to the fields object
 				fields[ key ].additional = addressFields;
 			}
 		}
@@ -449,9 +449,9 @@ const wpf = {
 	 * @return {string} Form state.
 	 */
 	getFormState( el ) {
-		// eslint-disable-next-line
+		/ eslint-disable-next-line
 		console.warn( 'WARNING! Function "wpf.getFormState( el )" has been deprecated.' );
-		// Serialize tested the most performant string we can use for comparisons.
+		/ Serialize tested the most performant string we can use for comparisons.
 		return jQuery( el ).serialize();
 	},
 
@@ -517,10 +517,10 @@ const wpf = {
 		const urlObj = new URL( url );
 
 		if ( typeof value !== 'undefined' && value !== null ) {
-			// Update value.
+			/ Update value.
 			urlObj.searchParams.set( key, value );
 		} else {
-			// Remove param from the URL.
+			/ Remove param from the URL.
 			urlObj.searchParams.delete( key );
 		}
 
@@ -556,7 +556,7 @@ const wpf = {
 			const replace = '[\\?&]' + name + '=[^&]+',
 				re = new RegExp( replace );
 
-			// eslint-disable-next-line no-unused-expressions
+			/ eslint-disable-next-line no-unused-expressions
 			history.replaceState && history.replaceState(
 				null, '', location.pathname + location.search.replace( re, '' ).replace( /^&/, '?' ) + location.hash
 			);
@@ -585,8 +585,8 @@ const wpf = {
 	 *
 	 * @return {string} Sanitized amount.
 	 */
-	amountSanitize( amount ) { // eslint-disable-line complexity
-		// Convert to string, remove a currency symbol, and allow only numbers, dots, and commas.
+	amountSanitize( amount ) { / eslint-disable-line complexity
+		/ Convert to string, remove a currency symbol, and allow only numbers, dots, and commas.
 		amount = String( amount ).replace( wpforms_builder.currency_symbol, '' ).replace( /[^0-9.,]/g, '' );
 
 		if ( wpforms_builder.currency_decimal === ',' ) {
@@ -615,14 +615,14 @@ const wpf = {
 	amountFormat( amount ) {
 		amount = String( amount );
 
-		// Format the amount
+		/ Format the amount
 		if ( wpforms_builder.currency_decimal === ',' && ( amount.indexOf( wpforms_builder.currency_decimal ) !== -1 ) ) {
 			const sepFound = amount.indexOf( wpforms_builder.currency_decimal );
 
 			amount = amount.substr( 0, sepFound ) + '.' + amount.substr( sepFound + 1, amount.length - 1 );
 		}
 
-		// Strip "," from the amount (if set as the thousand separators)
+		/ Strip "," from the amount (if set as the thousand separators)
 		if ( wpforms_builder.currency_thousands === ',' && ( amount.indexOf( wpforms_builder.currency_thousands ) !== -1 ) ) {
 			amount = amount.replace( /,/g, '' );
 		}
@@ -672,7 +672,7 @@ const wpf = {
 	 *
 	 * @return {string} Formatted number.
 	 */
-	numberFormat( number, decimals, decimalSep, thousandsSep ) { // eslint-disable-line complexity
+	numberFormat( number, decimals, decimalSep, thousandsSep ) { / eslint-disable-line complexity
 		number = ( number + '' ).replace( /[^0-9+\-Ee.]/g, '' );
 		const n = ! isFinite( +number ) ? 0 : +number;
 		const precision = ! isFinite( +decimals ) ? 0 : Math.abs( decimals );
@@ -685,7 +685,7 @@ const wpf = {
 			return '' + ( Math.round( fixedN * k ) / k ).toFixed( fixedPrecision );
 		};
 
-		// @todo: for IE parseFloat(0.55).toFixed(0) = 0;
+		/ @todo: for IE parseFloat(0.55).toFixed(0) = 0;
 		s = ( precision ? toFixedFix( n, precision ) : '' + Math.round( n ) ).split( '.' );
 		if ( s[ 0 ].length > 3 ) {
 			s[ 0 ] = s[ 0 ].replace( /\B(?=(?:\d{3})+(?!\d))/g, sep );
@@ -745,7 +745,7 @@ const wpf = {
 			return;
 		}
 
-		// eslint-disable-next-line no-console
+		/ eslint-disable-next-line no-console
 		console.log( '%cWPForms Debug: ', 'color: #cd6622;', ...msg );
 	},
 
@@ -784,7 +784,7 @@ const wpf = {
 	 *
 	 * @return {Object} Object.
 	 */
-	formObject( el ) { // eslint-disable-line max-lines-per-function, complexity
+	formObject( el ) { / eslint-disable-line max-lines-per-function, complexity
 		const form = jQuery( el ),
 			fields = form.find( '[name]' ),
 			json = {},
@@ -905,7 +905,7 @@ const wpf = {
 		$scope.each( function() {
 			const $this = jQuery( this );
 			if ( jQuery.tooltipster.instances( this ).length !== 0 ) {
-				// Restoring title.
+				/ Restoring title.
 				$this.attr( 'title', $this.tooltipster( 'content' ) );
 			}
 		} );
@@ -922,7 +922,7 @@ const wpf = {
 	 * @return {boolean} True if `url` is a valid URL.
 	 */
 	isURL( url ) {
-		// noinspection RegExpUnnecessaryNonCapturingGroup
+		/ noinspection RegExpUnnecessaryNonCapturingGroup
 		/**
 		 * RegExps.
 		 * A URL must match #1 and then at least one of #2/#3.
@@ -930,9 +930,9 @@ const wpf = {
 		 */
 		const protocolAndDomainRE = /^(?:http(?:s?):)?\/\/(\S+)/;
 		/* eslint-disable no-useless-escape */
-		// noinspection RegExpRedundantEscape
+		/ noinspection RegExpRedundantEscape
 		const localhostDomainRE = /^localhost[\:?\d]*(?:[^\:?\d]\S*)?$/;
-		// noinspection RegExpRedundantEscape
+		/ noinspection RegExpRedundantEscape
 		const nonLocalhostDomainRE = /^[^\s\.]+\.\S{2,}$/;
 		/* eslint-enable no-useless-escape */
 
@@ -1110,7 +1110,7 @@ const wpf = {
 	 * @return {Event} Event object.
 	 */
 	triggerEvent( $element, eventName ) {
-		// eslint-disable-next-line no-console
+		/ eslint-disable-next-line no-console
 		console.warn( 'WARNING! Function "wpf.triggerEvent( $element, eventName )" has been deprecated, please use the new "WPFormsUtils.triggerEvent( $element, eventName, args )" function instead!' );
 
 		return WPFormsUtils.triggerEvent( $element, eventName );
@@ -1130,7 +1130,7 @@ const wpf = {
 	 *
 	 * @return {string} Text with replaced paragraphs.
 	 */
-	wpautop( pee, br = true ) { // eslint-disable-line max-lines-per-function, complexity
+	wpautop( pee, br = true ) { / eslint-disable-line max-lines-per-function, complexity
 		const preTags = new Map();
 		const _autopNewlinePreservationHelper = function( matches ) {
 			return matches[ 0 ].replace( '\n', '<WPPreserveNewline />' );
@@ -1144,7 +1144,7 @@ const wpf = {
 			return '';
 		}
 
-		pee = pee + '\n'; // Just to make things a little easier, pad the end.
+		pee = pee + '\n'; / Just to make things a little easier, pad the end.
 
 		if ( pee.indexOf( '<pre' ) > -1 ) {
 			const peeParts = pee.split( '</pre>' ),
@@ -1156,7 +1156,7 @@ const wpf = {
 				function( peePart, index ) {
 					const start = peePart.indexOf( '<pre' );
 
-					// Malformed html?
+					/ Malformed html?
 					if ( start === -1 ) {
 						pee += peePart;
 						return;
@@ -1173,25 +1173,25 @@ const wpf = {
 
 		pee = pee.replace( /<br \/>\s*<br \/>/, '\n\n' );
 
-		// Space things out a little.
+		/ Space things out a little.
 		const allBlocks = '(?:table|thead|tfoot|caption|col|colgroup|tbody|tr|td|th|div|dl|dd|dt|ul|ol|li|pre|form|map|area|blockquote|address|math|style|p|h[1-6]|hr|fieldset|legend|section|article|aside|hgroup|header|footer|nav|figure|figcaption|details|menu|summary)';
 
 		pee = pee.replace( new RegExp( '(<' + allBlocks + '[^>]*>)', 'gmi' ), '\n$1' );
 		pee = pee.replace( new RegExp( '(</' + allBlocks + '>)', 'gmi' ), '$1\n\n' );
-		pee = pee.replace( /\r\n|\r/, '\n' ); // cross-platform newlines.
+		pee = pee.replace( /\r\n|\r/, '\n' ); / cross-platform newlines.
 
 		if ( pee.indexOf( '\n' ) === 0 ) {
 			pee = pee.substring( 1 );
 		}
 
 		if ( pee.indexOf( '<option' ) > -1 ) {
-			// no P/BR around option.
+			/ no P/BR around option.
 			pee = pee.replace( /(?=(\s*))\2<option'/gmi, '<option' );
 			pee = pee.replace( /<\/option>\s*/gmi, '</option>' );
 		}
 
 		if ( pee.indexOf( '</object>' ) > -1 ) {
-			// no P/BR around param and embed.
+			/ no P/BR around param and embed.
 			pee = pee.replace( /(<object[^>]*>)\s*/gmi, '$1' );
 			pee = pee.replace( /(?=(\s*))\2<\/object>/gmi, '</object>' );
 			pee = pee.replace( /(?=(\s*))\2(<\/?(?:param|embed)[^>]*>)((?=(\s*))\2)/gmi, '$1' );
@@ -1200,15 +1200,15 @@ const wpf = {
 		/* eslint-disable no-useless-escape */
 
 		if ( pee.indexOf( '<source' ) > -1 || pee.indexOf( '<track' ) > -1 ) {
-			// no P/BR around source and track.
+			/ no P/BR around source and track.
 			pee = pee.replace( /([<\[](?:audio|video)[^>\]]*[>\]])\s*/gmi, '$1' );
 			pee = pee.replace( /(?=(\s*))\2([<\[]\/(?:audio|video)[>\]])/gmi, '$1' );
 			pee = pee.replace( /(?=(\s*))\2(<(?:source|track)[^>]*>)(?=(\s*))\2/gmi, '$1' );
 		}
 
-		pee = pee.replace( /\n\n+/gmi, '\n\n' ); // take care of duplicates.
+		pee = pee.replace( /\n\n+/gmi, '\n\n' ); / take care of duplicates.
 
-		// make paragraphs, including one at the end.
+		/ make paragraphs, including one at the end.
 		const pees = pee.split( /\n\s*\n/ );
 
 		pee = '';
@@ -1219,18 +1219,18 @@ const wpf = {
 			}
 		);
 
-		pee = pee.replace( /<p>\s*<\/p>/gmi, '' ); // Under certain strange conditions, it could create a P of entire whitespace.
+		pee = pee.replace( /<p>\s*<\/p>/gmi, '' ); / Under certain strange conditions, it could create a P of entire whitespace.
 		pee = pee.replace( /<p>([^<]+)<\/(div|address|form)>/gmi, '<p>$1</p></$2>' );
-		pee = pee.replace( new RegExp( '<p>\s*(</?' + allBlocks + '[^>]*>)\s*</p>', 'gmi' ), '$1', pee ); // don't pee all over a tag.
-		pee = pee.replace( /<p>(<li.+?)<\/p>/gmi, '$1' ); // problem with nested lists.
+		pee = pee.replace( new RegExp( '<p>\s*(</?' + allBlocks + '[^>]*>)\s*</p>', 'gmi' ), '$1', pee ); / don't pee all over a tag.
+		pee = pee.replace( /<p>(<li.+?)<\/p>/gmi, '$1' ); / problem with nested lists.
 		pee = pee.replace( /<p><blockquote([^>]*)>/gmi, '<blockquote$1><p>' );
 		pee = pee.replace( /<\/blockquote><\/p>/gmi, '</p></blockquote>' );
 		pee = pee.replace( new RegExp( '<p>\s*(</?' + allBlocks + '[^>]*>)', 'gmi' ), '$1' );
 		pee = pee.replace( new RegExp( '(</?' + allBlocks + '[^>]*>)\s*</p>', 'gmi' ), '$1' );
 
 		if ( br ) {
-			pee = pee.replace( /<(script|style)(?:.|\n)*?<\/\\1>/gmi, _autopNewlinePreservationHelper ); // /s modifier from php PCRE regexp replaced with (?:.|\n).
-			pee = pee.replace( /(<br \/>)?((?=(\s*))\2)\n/gmi, '<br />\n' ); // optionally make line breaks.
+			pee = pee.replace( /<(script|style)(?:.|\n)*?<\/\\1>/gmi, _autopNewlinePreservationHelper ); / /s modifier from php PCRE regexp replaced with (?:.|\n).
+			pee = pee.replace( /(<br \/>)?((?=(\s*))\2)\n/gmi, '<br />\n' ); / optionally make line breaks.
 			pee = pee.replace( '<WPPreserveNewline />', '\n' );
 		}
 
@@ -1281,7 +1281,7 @@ const wpf = {
 			const attachment = mediaFrame.state().get( 'selection' ).first().toJSON();
 
 			if ( ! args.extensions.includes( attachment.file.type ) ) {
-				// eslint-disable-next-line no-alert
+				/ eslint-disable-next-line no-alert
 				alert( args.extensionsError );
 				mediaFrame.state().get( 'selection' ).reset();
 			}
@@ -1322,7 +1322,7 @@ const wpf = {
 	copyValueToClipboard( event, $copyButton, targetElement ) {
 		event.preventDefault();
 
-		// Use Clipboard API for modern browsers and HTTPS connections, in other cases use old-fashioned way.
+		/ Use Clipboard API for modern browsers and HTTPS connections, in other cases use old-fashioned way.
 		if ( navigator.clipboard ) {
 			navigator.clipboard.writeText( targetElement.val() ).then(
 				function() {
@@ -1376,20 +1376,20 @@ const wpf = {
 	 *
 	 * @return {Object} Object with all field names and their values.
 	 */
-	_getCurrentFormState() { // eslint-disable-line complexity
+	_getCurrentFormState() { / eslint-disable-line complexity
 		const currentState = Object.fromEntries( new FormData( document.getElementById( 'wpforms-builder-form' ) ).entries() );
 
-		// noinspection JSUnusedLocalSymbols
-		// eslint-disable-next-line no-unused-vars
+		/ noinspection JSUnusedLocalSymbols
+		/ eslint-disable-next-line no-unused-vars
 		for ( const [ key, value ] of Object.entries( currentState ) ) {
-			// The lock option is used to keep AJAX requests up to date.
+			/ The lock option is used to keep AJAX requests up to date.
 			if ( key.includes( '[__lock__]' ) ) {
 				delete currentState[ key ];
 			}
 		}
 
-		// Textarea created by tinyMCE updates only before form saving.
-		// We should determine if these fields where updated and update the form state separately.
+		/ Textarea created by tinyMCE updates only before form saving.
+		/ We should determine if these fields where updated and update the form state separately.
 		if ( typeof tinyMCE !== 'undefined' && tinyMCE.editors ) {
 			for ( const key in tinyMCE.editors ) {
 				const editor = tinyMCE.editors[ key ];
@@ -1407,7 +1407,7 @@ const wpf = {
 
 		currentState.fieldsOrder = wpf.orders.fields.toString();
 
-		// Keyword filter stores separately and doesn't have a name attribute.
+		/ Keyword filter stores separately and doesn't have a name attribute.
 		const $keywordFilter = jQuery( '.wpforms-panel-field-keyword-keywords textarea' );
 
 		if ( $keywordFilter.length ) {

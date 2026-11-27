@@ -15,12 +15,12 @@
 ;(function (factory) {
 	'use strict';
 	if (typeof define === 'function' && define.amd) {
-		// AMD is used - Register as an anonymous module.
+		/ AMD is used - Register as an anonymous module.
 		define(['jquery'], factory);
 	} else if (typeof exports === 'object') {
 		factory(require('jquery'));
 	} else {
-		// Neither AMD nor CommonJS used. Use global variables.
+		/ Neither AMD nor CommonJS used. Use global variables.
 		if (typeof jQuery === 'undefined') {
 			throw 'jquery-numerator requires jQuery to be loaded first';
 		}
@@ -77,11 +77,11 @@
 
 				step: function(now, fx) {
 					$(self.element).text(self.format(now));
-					// accepts two params - (now, fx)
+					/ accepts two params - (now, fx)
 					self.settings.onStep(now, fx);
 				},
 
-				// accepts three params - (animation object, progress ratio, time remaining(ms))
+				/ accepts three params - (animation object, progress ratio, time remaining(ms))
 				progress: self.settings.onProgress,
 
 				complete: self.settings.onComplete
@@ -104,7 +104,7 @@
 			}
 		},
 
-		// TODO: Add comments to this function
+		/ TODO: Add comments to this function
 		delimit: function(value){
 			var self = this;
 

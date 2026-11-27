@@ -21,12 +21,12 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 
-			// These are only for backcompat
-			// TODO: Remove after 1.12
+			/ These are only for backcompat
+			/ TODO: Remove after 1.12
 			"./controlgroup",
 			"./checkboxradio",
 
@@ -35,7 +35,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -58,8 +58,8 @@ $.widget( "ui.button", {
 	_getCreateOptions: function() {
 		var disabled,
 
-			// This is to support cases like in jQuery Mobile where the base widget does have
-			// an implementation of _getCreateOptions
+			/ This is to support cases like in jQuery Mobile where the base widget does have
+			/ an implementation of _getCreateOptions
 			options = this._super() || {};
 
 		this.isInput = this.element.is( "input" );
@@ -82,16 +82,16 @@ $.widget( "ui.button", {
 			this.options.showLabel = true;
 		}
 
-		// We have to check the option again here even though we did in _getCreateOptions,
-		// because null may have been passed on init which would override what was set in
-		// _getCreateOptions
+		/ We have to check the option again here even though we did in _getCreateOptions,
+		/ because null may have been passed on init which would override what was set in
+		/ _getCreateOptions
 		if ( this.options.disabled == null ) {
 			this.options.disabled = this.element[ 0 ].disabled || false;
 		}
 
 		this.hasTitle = !!this.element.attr( "title" );
 
-		// Check to see if the label needs to be set or if its already correct
+		/ Check to see if the label needs to be set or if its already correct
 		if ( this.options.label && this.options.label !== this.originalLabel ) {
 			if ( this.isInput ) {
 				this.element.val( this.options.label );
@@ -109,9 +109,9 @@ $.widget( "ui.button", {
 					if ( event.keyCode === $.ui.keyCode.SPACE ) {
 						event.preventDefault();
 
-						// Support: PhantomJS <= 1.9, IE 8 Only
-						// If a native click is available use it so we actually cause navigation
-						// otherwise just trigger a click event
+						/ Support: PhantomJS <= 1.9, IE 8 Only
+						/ If a native click is available use it so we actually cause navigation
+						/ otherwise just trigger a click event
 						if ( this.element[ 0 ].click ) {
 							this.element[ 0 ].click();
 						} else {
@@ -147,7 +147,7 @@ $.widget( "ui.button", {
 			position = icon ? this.options.iconPosition : value,
 			displayBlock = position === "top" || position === "bottom";
 
-		// Create icon
+		/ Create icon
 		if ( !this.icon ) {
 			this.icon = $( "<span>" );
 
@@ -158,19 +158,19 @@ $.widget( "ui.button", {
 			}
 		} else if ( icon ) {
 
-			// If we are updating the icon remove the old icon class
+			/ If we are updating the icon remove the old icon class
 			this._removeClass( this.icon, null, this.options.icon );
 		}
 
-		// If we are updating the icon add the new icon class
+		/ If we are updating the icon add the new icon class
 		if ( icon ) {
 			this._addClass( this.icon, null, value );
 		}
 
 		this._attachIcon( position );
 
-		// If the icon is on top or bottom we need to add the ui-widget-icon-block class and remove
-		// the iconSpace if there is one.
+		/ If the icon is on top or bottom we need to add the ui-widget-icon-block class and remove
+		/ the iconSpace if there is one.
 		if ( displayBlock ) {
 			this._addClass( this.icon, null, "ui-widget-icon-block" );
 			if ( this.iconSpace ) {
@@ -178,8 +178,8 @@ $.widget( "ui.button", {
 			}
 		} else {
 
-			// Position is beginning or end so remove the ui-widget-icon-block class and add the
-			// space if it does not exist
+			/ Position is beginning or end so remove the ui-widget-icon-block class and add the
+			/ space if it does not exist
 			if ( !this.iconSpace ) {
 				this.iconSpace = $( "<span> </span>" );
 				this._addClass( this.iconSpace, "ui-button-icon-space" );
@@ -239,7 +239,7 @@ $.widget( "ui.button", {
 			this._updateIcon( key, value );
 		}
 
-		// Make sure we can't end up with a button that has neither text nor icon
+		/ Make sure we can't end up with a button that has neither text nor icon
 		if ( key === "showLabel" ) {
 				this._toggleClass( "ui-button-icon-only", null, !value );
 				this._updateTooltip();
@@ -250,8 +250,8 @@ $.widget( "ui.button", {
 				this.element.val( value );
 			} else {
 
-				// If there is an icon, append it, else nothing then append the value
-				// this avoids removal of the icon when setting label text
+				/ If there is an icon, append it, else nothing then append the value
+				/ this avoids removal of the icon when setting label text
 				this.element.html( value );
 				if ( this.icon ) {
 					this._attachIcon( this.options.iconPosition );
@@ -273,8 +273,8 @@ $.widget( "ui.button", {
 
 	refresh: function() {
 
-		// Make sure to only check disabled if its an element that supports this otherwise
-		// check for the disabled class to determine state
+		/ Make sure to only check disabled if its an element that supports this otherwise
+		/ check for the disabled class to determine state
 		var isDisabled = this.element.is( "input, button" ) ?
 			this.element[ 0 ].disabled : this.element.hasClass( "ui-button-disabled" );
 
@@ -289,7 +289,7 @@ $.widget( "ui.button", {
 // DEPRECATED
 if ( $.uiBackCompat !== false ) {
 
-	// Text and Icons options
+	/ Text and Icons options
 	$.widget( "ui.button", $.ui.button, {
 		options: {
 			text: true,
@@ -352,8 +352,8 @@ if ( $.uiBackCompat !== false ) {
 
 			if ( isMethodCall ) {
 
-				// If this is an empty collection, we need to have the instance method
-				// return undefined instead of the jQuery instance
+				/ If this is an empty collection, we need to have the instance method
+				/ return undefined instead of the jQuery instance
 				if ( !this.length && options === "instance" ) {
 					returnValue = undefined;
 				} else {
@@ -394,7 +394,7 @@ if ( $.uiBackCompat !== false ) {
 				}
 			} else {
 
-				// Allow multiple hashes to be passed on init
+				/ Allow multiple hashes to be passed on init
 				if ( args.length ) {
 					options = $.widget.extend.apply( null, [ options ].concat( args ) );
 				}

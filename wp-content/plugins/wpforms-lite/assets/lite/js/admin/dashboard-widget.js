@@ -36,7 +36,7 @@ const WPFormsDashboardWidget = window.WPFormsDashboardWidget || ( function( docu
 	 *
 	 * @type {Object}
 	 */
-	// eslint-disable-next-line no-var
+	/ eslint-disable-next-line no-var
 	var chart = {
 
 		/**
@@ -78,7 +78,7 @@ const WPFormsDashboardWidget = window.WPFormsDashboardWidget || ( function( docu
 							minRotation: 25,
 							maxRotation: 25,
 							callback( value, index, values ) {
-								// Distribute the ticks equally starting from a right side of xAxis.
+								/ Distribute the ticks equally starting from a right side of xAxis.
 								const gap = Math.floor( values.length / 7 );
 
 								if ( gap < 1 ) {
@@ -96,7 +96,7 @@ const WPFormsDashboardWidget = window.WPFormsDashboardWidget || ( function( docu
 							maxTicksLimit: 6,
 							padding      : 20,
 							callback( value ) {
-								// Make sure the tick value has no decimals.
+								/ Make sure the tick value has no decimals.
 								if ( Math.floor( value ) === value ) {
 									return value;
 								}
@@ -186,7 +186,7 @@ const WPFormsDashboardWidget = window.WPFormsDashboardWidget || ( function( docu
 	 *
 	 * @type {Object}
 	 */
-	// eslint-disable-next-line no-var
+	/ eslint-disable-next-line no-var
 	var app = {
 
 		/**
@@ -266,7 +266,7 @@ const WPFormsDashboardWidget = window.WPFormsDashboardWidget || ( function( docu
 		 * @deprecated Use WPFormsDashboardWidget.handleWidgetBlockClose() instead.
 		 */
 		handleRecommendedPluginsClose() {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! WPFormsDashboardWidget.handleRecommendedPluginsClose() has been deprecated, please use WPFormsDashboardWidget.handleWidgetBlockClose() instead.' );
 
 			el.$recommendedBlockDismissButton.on( 'click', function() {
@@ -337,7 +337,7 @@ const WPFormsDashboardWidget = window.WPFormsDashboardWidget || ( function( docu
 		 * @deprecated Use WPFormsDashboardWidget.dismissWidgetBlock() instead.
 		 */
 		dismissRecommendedBlock() {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! WPFormsDashboardWidget.dismissRecommendedBlock() has been deprecated, please use WPFormsDashboardWidget.dismissWidgetBlock() instead.' );
 
 			$( '.wpforms-dash-widget-recommended-plugin-block' ).remove();
@@ -345,7 +345,7 @@ const WPFormsDashboardWidget = window.WPFormsDashboardWidget || ( function( docu
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

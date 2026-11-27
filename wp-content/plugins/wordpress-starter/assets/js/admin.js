@@ -1,7 +1,7 @@
 /*global ajaxurl*/
 ;(function( $ ) {
     $(document).ready(function() {
-        // Switch to default dashboard.
+        / Switch to default dashboard.
         $('.switch-dashboard').on('click', function(e) {
             e.preventDefault();
 
@@ -16,7 +16,7 @@
 
         })
 
-        // Switch to default dashboard.
+        / Switch to default dashboard.
         $('.sg-restart-wizard').on('click', function(e) {
             e.preventDefault();
 

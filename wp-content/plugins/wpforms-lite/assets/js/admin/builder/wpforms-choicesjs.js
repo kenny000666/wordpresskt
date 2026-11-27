@@ -38,8 +38,8 @@ WPForms.Admin.Builder.WPFormsChoicesJS = WPForms.Admin.Builder.WPFormsChoicesJS 
 		setup: function( element, choicesJSArgs, ajaxArgs ) {
 
 			choicesJSArgs.searchEnabled = true;
-			choicesJSArgs.allowHTML = false; // TODO: Remove after next Choices.js release.
-			choicesJSArgs.searchChoices = ajaxArgs.nonce === null; // Enable searchChoices when not using AJAX.
+			choicesJSArgs.allowHTML = false; / TODO: Remove after next Choices.js release.
+			choicesJSArgs.searchChoices = ajaxArgs.nonce === null; / Enable searchChoices when not using AJAX.
 			choicesJSArgs.renderChoiceLimit = -1;
 			choicesJSArgs.noChoicesText = choicesJSArgs.noChoicesText || wpforms_builder.no_pages_found;
 			choicesJSArgs.noResultsText = choicesJSArgs.noResultsText || wpforms_builder.no_pages_found;
@@ -58,7 +58,7 @@ WPForms.Admin.Builder.WPFormsChoicesJS = WPForms.Admin.Builder.WPFormsChoicesJS 
 			 */
 			choicesJS.input.element.addEventListener( 'keyup', function( ev ) {
 
-				// Only capture backspace and delete keypress that results to empty string.
+				/ Only capture backspace and delete keypress that results to empty string.
 				if (
 					( ev.which !== 8 && ev.which !== 46 ) ||
 					ev.target.value.length > 0
@@ -71,7 +71,7 @@ WPForms.Admin.Builder.WPFormsChoicesJS = WPForms.Admin.Builder.WPFormsChoicesJS 
 
 			choicesJS.passedElement.element.addEventListener( 'search', _.debounce( function( ev ) {
 
-				// Make sure that the search term is actually changed.
+				/ Make sure that the search term is actually changed.
 				if ( choicesJS.input.element.value.length === 0 ) {
 					return;
 				}
@@ -100,14 +100,14 @@ WPForms.Admin.Builder.WPFormsChoicesJS = WPForms.Admin.Builder.WPFormsChoicesJS 
 				$hidden.val( JSON.stringify( selected ) );
 			} );
 
-			// Add ability to close the drop-down menu.
+			/ Add ability to close the drop-down menu.
 			choicesJS.containerOuter.element.addEventListener( 'click', function() {
 				if ( $( this ).hasClass( 'is-open' ) ) {
 					choicesJS.hideDropdown();
 				}
 			} );
 
-			// Show more button for choices after the group is toggled.
+			/ Show more button for choices after the group is toggled.
 			$( document )
 				.on( 'wpformsFieldOptionGroupToggled', function() {
 					wpf.showMoreButtonForChoices( choicesJS.containerOuter.element );
@@ -192,7 +192,7 @@ WPForms.Admin.Builder.WPFormsChoicesJS = WPForms.Admin.Builder.WPFormsChoicesJS 
 		 * @return {Promise} jQuery ajax call promise.
 		 */
 		ajaxSearchPages( action, searchTerm, nonce ) {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WPForms.Admin.Builder.WPFormsChoicesJS.ajaxSearchPages is deprecated. Use WPForms.Admin.Builder.WPFormsChoicesJS.ajaxSearch instead.' );
 
 			return app.ajaxSearch( action, searchTerm, nonce );
@@ -229,7 +229,7 @@ WPForms.Admin.Builder.WPFormsChoicesJS = WPForms.Admin.Builder.WPFormsChoicesJS 
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 
 }( document, window, jQuery ) );

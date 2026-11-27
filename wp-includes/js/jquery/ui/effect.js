@@ -20,7 +20,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"./jquery-var-for-color",
@@ -29,7 +29,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -95,7 +95,7 @@ function getElementStyles( elem ) {
 			}
 		}
 
-	// Support: Opera, IE <9
+	/ Support: Opera, IE <9
 	} else {
 		for ( key in style ) {
 			if ( typeof style[ key ] === "string" ) {
@@ -143,7 +143,7 @@ $.effects.animateClass = function( value, duration, easing, callback ) {
 			applyClassChange,
 			allAnimations = o.children ? animated.find( "*" ).addBack() : animated;
 
-		// Map the animated objects to store the original styles.
+		/ Map the animated objects to store the original styles.
 		allAnimations = allAnimations.map( function() {
 			var el = $( this );
 			return {
@@ -152,7 +152,7 @@ $.effects.animateClass = function( value, duration, easing, callback ) {
 			};
 		} );
 
-		// Apply class change
+		/ Apply class change
 		applyClassChange = function() {
 			$.each( classAnimationActions, function( i, action ) {
 				if ( value[ action ] ) {
@@ -162,17 +162,17 @@ $.effects.animateClass = function( value, duration, easing, callback ) {
 		};
 		applyClassChange();
 
-		// Map all animated objects again - calculate new styles and diff
+		/ Map all animated objects again - calculate new styles and diff
 		allAnimations = allAnimations.map( function() {
 			this.end = getElementStyles( this.el[ 0 ] );
 			this.diff = styleDifference( this.start, this.end );
 			return this;
 		} );
 
-		// Apply original class
+		/ Apply original class
 		animated.attr( "class", baseClass );
 
-		// Map all animated objects again - this time collecting a promise
+		/ Map all animated objects again - this time collecting a promise
 		allAnimations = allAnimations.map( function() {
 			var styleInfo = this,
 				dfd = $.Deferred(),
@@ -187,14 +187,14 @@ $.effects.animateClass = function( value, duration, easing, callback ) {
 			return dfd.promise();
 		} );
 
-		// Once all animations have completed:
+		/ Once all animations have completed:
 		$.when.apply( $, allAnimations.get() ).done( function() {
 
-			// Set the final class
+			/ Set the final class
 			applyClassChange();
 
-			// For each animated element,
-			// clear all css properties that were animated
+			/ For each animated element,
+			/ clear all css properties that were animated
 			$.each( arguments, function() {
 				var el = this.el;
 				$.each( this.diff, function( key ) {
@@ -202,8 +202,8 @@ $.effects.animateClass = function( value, duration, easing, callback ) {
 				} );
 			} );
 
-			// This is guarnteed to be there if you use jQuery.speed()
-			// it also handles dequeuing the next anim...
+			/ This is guarnteed to be there if you use jQuery.speed()
+			/ it also handles dequeuing the next anim...
 			o.complete.call( animated[ 0 ] );
 		} );
 	} );
@@ -233,7 +233,7 @@ $.fn.extend( {
 			if ( typeof force === "boolean" || force === undefined ) {
 				if ( !speed ) {
 
-					// Without speed parameter
+					/ Without speed parameter
 					return orig.apply( this, arguments );
 				} else {
 					return $.effects.animateClass.call( this,
@@ -242,7 +242,7 @@ $.fn.extend( {
 				}
 			} else {
 
-				// Without force parameter
+				/ Without force parameter
 				return $.effects.animateClass.call( this,
 					{ toggle: classNames }, force, speed, easing );
 			}
@@ -276,7 +276,7 @@ if ( $.expr && $.expr.pseudos && $.expr.pseudos.animated ) {
 if ( $.uiBackCompat !== false ) {
 	$.extend( $.effects, {
 
-		// Saves a set of properties in a data storage
+		/ Saves a set of properties in a data storage
 		save: function( element, set ) {
 			var i = 0, length = set.length;
 			for ( ; i < length; i++ ) {
@@ -286,7 +286,7 @@ if ( $.uiBackCompat !== false ) {
 			}
 		},
 
-		// Restores a set of previously saved properties from a data storage
+		/ Restores a set of previously saved properties from a data storage
 		restore: function( element, set ) {
 			var val, i = 0, length = set.length;
 			for ( ; i < length; i++ ) {
@@ -304,15 +304,15 @@ if ( $.uiBackCompat !== false ) {
 			return mode;
 		},
 
-		// Wraps the element around a wrapper that copies position properties
+		/ Wraps the element around a wrapper that copies position properties
 		createWrapper: function( element ) {
 
-			// If the element is already wrapped, return it
+			/ If the element is already wrapped, return it
 			if ( element.parent().is( ".ui-effects-wrapper" ) ) {
 				return element.parent();
 			}
 
-			// Wrap the element
+			/ Wrap the element
 			var props = {
 					width: element.outerWidth( true ),
 					height: element.outerHeight( true ),
@@ -328,18 +328,18 @@ if ( $.uiBackCompat !== false ) {
 						padding: 0
 					} ),
 
-				// Store the size in case width/height are defined in % - Fixes #5245
+				/ Store the size in case width/height are defined in % - Fixes #5245
 				size = {
 					width: element.width(),
 					height: element.height()
 				},
 				active = document.activeElement;
 
-			// Support: Firefox
-			// Firefox incorrectly exposes anonymous content
-			// https://bugzilla.mozilla.org/show_bug.cgi?id=561664
+			/ Support: Firefox
+			/ Firefox incorrectly exposes anonymous content
+			/ https://bugzilla.mozilla.org/show_bug.cgi?id=561664
 			try {
-				// eslint-disable-next-line no-unused-expressions
+				/ eslint-disable-next-line no-unused-expressions
 				active.id;
 			} catch ( e ) {
 				active = document.body;
@@ -347,16 +347,16 @@ if ( $.uiBackCompat !== false ) {
 
 			element.wrap( wrapper );
 
-			// Fixes #7595 - Elements lose focus when wrapped.
+			/ Fixes #7595 - Elements lose focus when wrapped.
 			if ( element[ 0 ] === active || $.contains( element[ 0 ], active ) ) {
 				$( active ).trigger( "focus" );
 			}
 
-			// Hotfix for jQuery 1.4 since some change in wrap() seems to actually
-			// lose the reference to the wrapped element
+			/ Hotfix for jQuery 1.4 since some change in wrap() seems to actually
+			/ lose the reference to the wrapped element
 			wrapper = element.parent();
 
-			// Transfer positioning properties to the wrapper
+			/ Transfer positioning properties to the wrapper
 			if ( element.css( "position" ) === "static" ) {
 				wrapper.css( { position: "relative" } );
 				element.css( { position: "relative" } );
@@ -390,7 +390,7 @@ if ( $.uiBackCompat !== false ) {
 			if ( element.parent().is( ".ui-effects-wrapper" ) ) {
 				element.parent().replaceWith( element );
 
-				// Fixes #7595 - Elements lose focus when wrapped.
+				/ Fixes #7595 - Elements lose focus when wrapped.
 				if ( element[ 0 ] === active || $.contains( element[ 0 ], active ) ) {
 					$( active ).trigger( "focus" );
 				}
@@ -447,7 +447,7 @@ $.extend( $.effects, {
 		};
 	},
 
-	// Injects recently queued functions to be first in line (after "inprogress")
+	/ Injects recently queued functions to be first in line (after "inprogress")
 	unshift: function( element, queueLength, count ) {
 		var queue = element.queue();
 
@@ -479,7 +479,7 @@ $.extend( $.effects, {
 		return mode;
 	},
 
-	// Translates a [top,left] array into a baseline value
+	/ Translates a [top,left] array into a baseline value
 	getBaseline: function( origin, original ) {
 		var y, x;
 
@@ -517,16 +517,16 @@ $.extend( $.effects, {
 		};
 	},
 
-	// Creates a placeholder element so that the original element can be made absolute
+	/ Creates a placeholder element so that the original element can be made absolute
 	createPlaceholder: function( element ) {
 		var placeholder,
 			cssPosition = element.css( "position" ),
 			position = element.position();
 
-		// Lock in margins first to account for form elements, which
-		// will change margin if you explicitly set height
-		// see: https://jsfiddle.net/JZSMt/3/ https://bugs.webkit.org/show_bug.cgi?id=107380
-		// Support: Safari
+		/ Lock in margins first to account for form elements, which
+		/ will change margin if you explicitly set height
+		/ see: https://jsfiddle.net/JZSMt/3/ https://bugs.webkit.org/show_bug.cgi?id=107380
+		/ Support: Safari
 		element.css( {
 			marginTop: element.css( "marginTop" ),
 			marginBottom: element.css( "marginBottom" ),
@@ -541,14 +541,14 @@ $.extend( $.effects, {
 
 			placeholder = $( "<" + element[ 0 ].nodeName + ">" ).insertAfter( element ).css( {
 
-				// Convert inline to inline block to account for inline elements
-				// that turn to inline block based on content (like img)
+				/ Convert inline to inline block to account for inline elements
+				/ that turn to inline block based on content (like img)
 				display: /^(inline|ruby)/.test( element.css( "display" ) ) ?
 					"inline-block" :
 					"block",
 				visibility: "hidden",
 
-				// Margins need to be set to account for margin collapse
+				/ Margins need to be set to account for margin collapse
 				marginTop: element.css( "marginTop" ),
 				marginBottom: element.css( "marginBottom" ),
 				marginLeft: element.css( "marginLeft" ),
@@ -581,8 +581,8 @@ $.extend( $.effects, {
 		}
 	},
 
-	// Removes a placeholder if it exists and restores
-	// properties that were modified during placeholder creation
+	/ Removes a placeholder if it exists and restores
+	/ properties that were modified during placeholder creation
 	cleanUp: function( element ) {
 		$.effects.restoreStyle( element );
 		$.effects.removePlaceholder( element );
@@ -603,41 +603,41 @@ $.extend( $.effects, {
 // Return an effect options object for the given parameters:
 function _normalizeArguments( effect, options, speed, callback ) {
 
-	// Allow passing all options as the first parameter
+	/ Allow passing all options as the first parameter
 	if ( $.isPlainObject( effect ) ) {
 		options = effect;
 		effect = effect.effect;
 	}
 
-	// Convert to an object
+	/ Convert to an object
 	effect = { effect: effect };
 
-	// Catch (effect, null, ...)
+	/ Catch (effect, null, ...)
 	if ( options == null ) {
 		options = {};
 	}
 
-	// Catch (effect, callback)
+	/ Catch (effect, callback)
 	if ( typeof options === "function" ) {
 		callback = options;
 		speed = null;
 		options = {};
 	}
 
-	// Catch (effect, speed, ?)
+	/ Catch (effect, speed, ?)
 	if ( typeof options === "number" || $.fx.speeds[ options ] ) {
 		callback = speed;
 		speed = options;
 		options = {};
 	}
 
-	// Catch (effect, options, callback)
+	/ Catch (effect, options, callback)
 	if ( typeof speed === "function" ) {
 		callback = speed;
 		speed = null;
 	}
 
-	// Add options to effect
+	/ Add options to effect
 	if ( options ) {
 		$.extend( effect, options );
 	}
@@ -655,27 +655,27 @@ function _normalizeArguments( effect, options, speed, callback ) {
 
 function standardAnimationOption( option ) {
 
-	// Valid standard speeds (nothing, number, named speed)
+	/ Valid standard speeds (nothing, number, named speed)
 	if ( !option || typeof option === "number" || $.fx.speeds[ option ] ) {
 		return true;
 	}
 
-	// Invalid strings - treat as "normal" speed
+	/ Invalid strings - treat as "normal" speed
 	if ( typeof option === "string" && !$.effects.effect[ option ] ) {
 		return true;
 	}
 
-	// Complete callback
+	/ Complete callback
 	if ( typeof option === "function" ) {
 		return true;
 	}
 
-	// Options hash (but not naming an effect)
+	/ Options hash (but not naming an effect)
 	if ( typeof option === "object" && !option.effect ) {
 		return true;
 	}
 
-	// Didn't match any standard API
+	/ Didn't match any standard API
 	return false;
 }
 
@@ -693,15 +693,15 @@ $.fn.extend( {
 				var el = $( this ),
 					normalizedMode = $.effects.mode( el, mode ) || defaultMode;
 
-				// Sentinel for duck-punching the :animated pseudo-selector
+				/ Sentinel for duck-punching the :animated pseudo-selector
 				el.data( dataSpaceAnimated, true );
 
-				// Save effect mode for later use,
-				// we can't just call $.effects.mode again later,
-				// as the .show() below destroys the initial state
+				/ Save effect mode for later use,
+				/ we can't just call $.effects.mode again later,
+				/ as the .show() below destroys the initial state
 				modes.push( normalizedMode );
 
-				// See $.uiBackCompat inside of run() for removal of defaultMode in 1.14
+				/ See $.uiBackCompat inside of run() for removal of defaultMode in 1.14
 				if ( defaultMode && ( normalizedMode === "show" ||
 						( normalizedMode === defaultMode && normalizedMode === "hide" ) ) ) {
 					el.show();
@@ -718,7 +718,7 @@ $.fn.extend( {
 
 		if ( $.fx.off || !effectMethod ) {
 
-			// Delegate to the original method (e.g., .show()) if possible
+			/ Delegate to the original method (e.g., .show()) if possible
 			if ( mode ) {
 				return this[ mode ]( args.duration, complete );
 			} else {
@@ -755,14 +755,14 @@ $.fn.extend( {
 				}
 			}
 
-			// Override mode option on a per element basis,
-			// as toggle can be either show or hide depending on element state
+			/ Override mode option on a per element basis,
+			/ as toggle can be either show or hide depending on element state
 			args.mode = modes.shift();
 
 			if ( $.uiBackCompat !== false && !defaultMode ) {
 				if ( elem.is( ":hidden" ) ? mode === "hide" : mode === "show" ) {
 
-					// Call the core method to track "olddisplay" properly
+					/ Call the core method to track "olddisplay" properly
 					elem[ mode ]();
 					done();
 				} else {
@@ -771,7 +771,7 @@ $.fn.extend( {
 			} else {
 				if ( args.mode === "none" ) {
 
-					// Call the core method to track "olddisplay" properly
+					/ Call the core method to track "olddisplay" properly
 					elem[ mode ]();
 					done();
 				} else {
@@ -780,9 +780,9 @@ $.fn.extend( {
 			}
 		}
 
-		// Run prefilter on all elements first to ensure that
-		// any showing or hiding happens before placeholder creation,
-		// which ensures that any layout changes are correctly captured.
+		/ Run prefilter on all elements first to ensure that
+		/ any showing or hiding happens before placeholder creation,
+		/ which ensures that any layout changes are correctly captured.
 		return queue === false ?
 			this.each( prefilter ).each( run ) :
 			this.queue( queueName, prefilter ).queue( queueName, run );

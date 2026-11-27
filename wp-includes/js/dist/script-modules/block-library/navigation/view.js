@@ -1,11 +1,11 @@
 import * as __WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__ from "@wordpress/interactivity";
-/******/ // The require scope
+/******/ / The require scope
 /******/ var __webpack_require__ = {};
 /******/ 
 /************************************************************************/
 /******/ /* webpack/runtime/define property getters */
 /******/ (() => {
-/******/ 	// define getter functions for harmony exports
+/******/ 	/ define getter functions for harmony exports
 /******/ 	__webpack_require__.d = (exports, definition) => {
 /******/ 		for(var key in definition) {
 /******/ 			if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -23,13 +23,13 @@ import * as __WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__ from "
 /************************************************************************/
 var __webpack_exports__ = {};
 
-;// external "@wordpress/interactivity"
+;/ external "@wordpress/interactivity"
 var x = (y) => {
 	var x = {}; __webpack_require__.d(x, y); return x
 } 
 var y = (x) => (() => (x))
 const interactivity_namespaceObject = x({ ["getContext"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.getContext), ["getElement"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.getElement), ["store"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.store), ["withSyncEvent"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.withSyncEvent) });
-;// ./node_modules/@wordpress/block-library/build-module/navigation/view.js
+;/ ./node_modules/@wordpress/block-library/build-module/navigation/view.js
 /**
  * WordPress dependencies
  */
@@ -58,7 +58,7 @@ const {
       return ctx.type === 'overlay' && state.isMenuOpen ? ctx.ariaLabel : null;
     },
     get isMenuOpen() {
-      // The menu is opened if either `click`, `hover` or `focus` is true.
+      / The menu is opened if either `click`, `hover` or `focus` is true.
       return Object.values(state.menuOpenedBy).filter(Boolean).length > 0;
     },
     get menuOpenedBy() {
@@ -73,7 +73,7 @@ const {
         overlayOpenedBy
       } = (0,interactivity_namespaceObject.getContext)();
       if (type === 'submenu' &&
-      // Only open on hover if the overlay is closed.
+      / Only open on hover if the overlay is closed.
       Object.values(overlayOpenedBy || {}).filter(Boolean).length === 0) {
         actions.openMenu('hover');
       }
@@ -84,7 +84,7 @@ const {
         overlayOpenedBy
       } = (0,interactivity_namespaceObject.getContext)();
       if (type === 'submenu' &&
-      // Only close on hover if the overlay is closed.
+      / Only close on hover if the overlay is closed.
       Object.values(overlayOpenedBy || {}).filter(Boolean).length === 0) {
         actions.closeMenu('hover');
       }
@@ -109,7 +109,7 @@ const {
       const {
         ref
       } = (0,interactivity_namespaceObject.getElement)();
-      // Safari won't send focus to the clicked element, so we need to manually place it: https://bugs.webkit.org/show_bug.cgi?id=22261
+      / Safari won't send focus to the clicked element, so we need to manually place it: https://bugs.webkit.org/show_bug.cgi?id=22261
       if (window.document.activeElement !== ref) {
         ref.focus();
       }
@@ -131,16 +131,16 @@ const {
         lastFocusableElement
       } = (0,interactivity_namespaceObject.getContext)();
       if (state.menuOpenedBy.click) {
-        // If Escape close the menu.
+        / If Escape close the menu.
         if (event?.key === 'Escape') {
           actions.closeMenu('click');
           actions.closeMenu('focus');
           return;
         }
 
-        // Trap focus if it is an overlay (main menu).
+        / Trap focus if it is an overlay (main menu).
         if (type === 'overlay' && event.key === 'Tab') {
-          // If shift + tab it change the direction.
+          / If shift + tab it change the direction.
           if (event.shiftKey && window.document.activeElement === firstFocusableElement) {
             event.preventDefault();
             lastFocusableElement.focus();
@@ -156,13 +156,13 @@ const {
         modal,
         type
       } = (0,interactivity_namespaceObject.getContext)();
-      // If focus is outside modal, and in the document, close menu
-      // event.target === The element losing focus
-      // event.relatedTarget === The element receiving focus (if any)
-      // When focusout is outside the document,
-      // `window.document.activeElement` doesn't change.
+      / If focus is outside modal, and in the document, close menu
+      / event.target === The element losing focus
+      / event.relatedTarget === The element receiving focus (if any)
+      / When focusout is outside the document,
+      / `window.document.activeElement` doesn't change.
 
-      // The event.relatedTarget is null when something outside the navigation menu is clicked. This is only necessary for Safari.
+      / The event.relatedTarget is null when something outside the navigation menu is clicked. This is only necessary for Safari.
       if (event.relatedTarget === null || !modal?.contains(event.relatedTarget) && event.target !== window.document.activeElement && type === 'submenu') {
         actions.closeMenu('click');
         actions.closeMenu('focus');
@@ -174,14 +174,14 @@ const {
       } = (0,interactivity_namespaceObject.getContext)();
       state.menuOpenedBy[menuOpenedOn] = true;
       if (type === 'overlay') {
-        // Add a `has-modal-open` class to the <html> root.
+        / Add a `has-modal-open` class to the <html> root.
         document.documentElement.classList.add('has-modal-open');
       }
     },
     closeMenu(menuClosedOn = 'click') {
       const ctx = (0,interactivity_namespaceObject.getContext)();
       state.menuOpenedBy[menuClosedOn] = false;
-      // Check if the menu is still open or not.
+      / Check if the menu is still open or not.
       if (!state.isMenuOpen) {
         if (ctx.modal?.contains(window.document.activeElement)) {
           ctx.previousFocus?.focus();

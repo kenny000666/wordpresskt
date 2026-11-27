@@ -59,69 +59,69 @@
 		redux.field_objects.color_rgba.fieldID = el.find( '.redux-color_rgba-container' ).data( 'id' );
 	};
 
-	// Initialize colour picker.
+	/ Initialize colour picker.
 	redux.field_objects.color_rgba.initColorPicker = function ( el ) {
 
-		// Get field ID.
+		/ Get field ID.
 		const field_id = redux.field_objects.color_rgba.fieldID;
 
-		// Get the color scheme container.
+		/ Get the color scheme container.
 		const colorpickerInput = el.find( '.redux-color-rgba' );
 
-		// Get colour value and sanitize it.
+		/ Get colour value and sanitize it.
 		let currentColor = colorpickerInput.data( 'current-color' );
 
 		let outputTransparent = colorpickerInput.data( 'output-transparent' );
 
-		// Color picker arguments.
+		/ Color picker arguments.
 		const container = el.find( '.redux-color-rgba-container' );
 
-		// Get, decode and parse palette.
+		/ Get, decode and parse palette.
 		let palette = container.data( 'palette' );
 
-		// Get and sanitize show input argument.
+		/ Get and sanitize show input argument.
 		let showInput = container.data( 'show-input' );
 
-		// Get and sanitize show initial argument.
+		/ Get and sanitize show initial argument.
 		let showInitial = container.data( 'show-initial' );
 
-		// Get and sanitize show alpha argument.
+		/ Get and sanitize show alpha argument.
 		let showAlpha = container.data( 'show-alpha' );
 
-		// Get and sanitize to allow empty argument.
+		/ Get and sanitize to allow empty argument.
 		let allowEmpty = container.data( 'allow-empty' );
 
-		// Get and sanitize show palette argument.
+		/ Get and sanitize show palette argument.
 		let showPalette = container.data( 'show-palette' );
 
-		// Get and sanitize show palette only argument.
+		/ Get and sanitize show palette only argument.
 		let showPaletteOnly = container.data( 'show-palette-only' );
 
-		// Get and sanitize show selection palette argument.
+		/ Get and sanitize show selection palette argument.
 		let showSelectionPalette = container.data( 'show-selection-palette' );
 
-		// Get max palette size.
+		/ Get max palette size.
 		const maxPaletteSize = Number( container.data( 'max-palette-size' ) );
 
-		// Get and sanitize clickout fires change argument.
+		/ Get and sanitize clickout fires change argument.
 		let clickoutFiresChange = container.data( 'clickout-fires-change' );
 
-		// Get choose button text.
+		/ Get choose button text.
 		const chooseText = String( container.data( 'choose-text' ) );
 
-		// Get cancel button text.
+		/ Get cancel button text.
 		const cancelText = String( container.data( 'cancel-text' ) );
 
-		// Get cancel button text.
+		/ Get cancel button text.
 		const inputText = String( container.data( 'input-text' ) );
 
-		// Get and sanitize show buttons argument.
+		/ Get and sanitize show buttons argument.
 		let showButtons = container.data( 'show-buttons' );
 
-		// Get container class.
+		/ Get container class.
 		const containerClass = String( container.data( 'container-class' ) );
 
-		// Get replacer class.
+		/ Get replacer class.
 		const replacerClass = String( container.data( 'replacer-class' ) );
 
 		currentColor      = ( '' === currentColor || 'transparent' === currentColor ) ? '' : currentColor;
@@ -130,7 +130,7 @@
 		palette = decodeURIComponent( palette );
 		palette = JSON.parse( palette );
 
-		// Default palette.
+		/ Default palette.
 		if ( null === palette ) {
 			palette = [
 				['#000000', '#434343', '#666666', '#999999', '#b7b7b7', '#cccccc', '#d9d9d9', '#efefef', '#f3f3f3', '#ffffff'],
@@ -154,7 +154,7 @@
 		clickoutFiresChange  = Boolean( ( '' === clickoutFiresChange ) ? false : clickoutFiresChange );
 		showButtons          = Boolean( ( '' === showButtons ) ? false : showButtons );
 
-		// Color picker options.
+		/ Color picker options.
 		colorpickerInput.spectrum(
 			{
 				color: currentColor,
@@ -178,7 +178,7 @@
 				palette: palette,
 				inputText: inputText,
 
-				// On change.
+				/ On change.
 				change: function ( color ) {
 					let blockID;
 					let colorVal;
@@ -205,13 +205,13 @@
 
 					blockID = $( this ).data( 'block-id' );
 
-					// Update HTML color value.
+					/ Update HTML color value.
 					el.find( 'input#' + blockID + '-color' ).val( colorVal );
 
-					// Update HTML alpha value.
+					/ Update HTML alpha value.
 					el.find( 'input#' + blockID + '-alpha' ).val( alphaVal );
 
-					// Update RGBA alpha value.
+					/ Update RGBA alpha value.
 					el.find( 'input#' + blockID + '-rgba' ).val( rgbaVal );
 
 					redux_change( el.find( '.redux-color-rgba-container' ) );

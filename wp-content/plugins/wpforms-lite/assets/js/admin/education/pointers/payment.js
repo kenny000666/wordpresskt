@@ -74,7 +74,7 @@ var WPFormsPointersPayment = window.WPFormsPointersPayment || ( function( docume
 		 * @since 1.8.8
 		 */
 		setup() {
-			// Cache DOM elements.
+			/ Cache DOM elements.
 			el.$document = $( document );
 		},
 
@@ -95,23 +95,23 @@ var WPFormsPointersPayment = window.WPFormsPointersPayment || ( function( docume
 		 * @param {Object} event An event which takes place in the DOM.
 		 */
 		handleOnClick( event ) {
-			// Prevent the default action.
+			/ Prevent the default action.
 			event.preventDefault();
 
 			const $this = $( this );
 
-			// Get the href attribute.
+			/ Get the href attribute.
 			const href = $this.attr( 'href' );
 
-			// Return early if href is missing.
+			/ Return early if href is missing.
 			if ( ! href ) {
 				return;
 			}
 
-			// Hide the pointer before redirecting.
+			/ Hide the pointer before redirecting.
 			$this.closest( '.wp-pointer-content' ).parent().hide();
 
-			// Send AJAX request.
+			/ Send AJAX request.
 			$.post(
 				ajaxurl,
 				{
@@ -125,7 +125,7 @@ var WPFormsPointersPayment = window.WPFormsPointersPayment || ( function( docume
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery, wpforms_education_pointers_payment ) );
 

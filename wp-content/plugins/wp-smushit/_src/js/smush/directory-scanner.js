@@ -23,7 +23,7 @@ const DirectoryScanner = ( totalSteps, currentStep ) => {
 		scan() {
 			const remainingSteps = totalSteps - currentStep;
 			if ( currentStep !== 0 ) {
-				// Scan started on a previous page load.
+				/ Scan started on a previous page load.
 				step( remainingSteps ).fail( this.showScanError );
 			} else {
 				jQuery
@@ -49,7 +49,7 @@ const DirectoryScanner = ( totalSteps, currentStep ) => {
 			if ( cancelling ) {
 				return 0;
 			}
-			// O M G ... Logic at it's finest!
+			/ O M G ... Logic at it's finest!
 			const remainingSteps = totalSteps - currentStep;
 			return Math.min(
 				Math.round(
@@ -86,17 +86,17 @@ const DirectoryScanner = ( totalSteps, currentStep ) => {
 		showScanError( res ) {
 			const dialog = jQuery( '#wp-smush-progress-dialog' );
 
-			// Add the error class to show/hide elements in the dialog.
+			/ Add the error class to show/hide elements in the dialog.
 			dialog
 				.removeClass( 'wp-smush-exceed-limit' )
 				.addClass( 'wp-smush-scan-error' );
 
-			// Add the error status and description to the error message.
+			/ Add the error status and description to the error message.
 			dialog
 				.find( '#smush-scan-error' )
 				.text( `${ res.status } ${ res.statusText }` );
 
-			// Show/hide the 403 error specific instructions.
+			/ Show/hide the 403 error specific instructions.
 			const forbiddenMessage = dialog.find( '.smush-403-error-message' );
 			if ( 403 !== res.status ) {
 				forbiddenMessage.addClass( 'sui-hidden' );
@@ -155,7 +155,7 @@ const DirectoryScanner = ( totalSteps, currentStep ) => {
 					step: currentStep,
 				},
 				( response ) => {
-					// We're good - continue on.
+					/ We're good - continue on.
 					if (
 						'undefined' !== typeof response.success &&
 						response.success
@@ -176,10 +176,10 @@ const DirectoryScanner = ( totalSteps, currentStep ) => {
 						'undefined' !== typeof response.data.error &&
 						'dir_smush_limit_exceeded' === response.data.error
 					) {
-						// Limit reached. Stop.
+						/ Limit reached. Stop.
 						obj.limitReached();
 					} else {
-						// Error? never mind, continue, but count them.
+						/ Error? never mind, continue, but count them.
 						failedItems++;
 						currentStep++;
 						remainingSteps = remainingSteps - 1;

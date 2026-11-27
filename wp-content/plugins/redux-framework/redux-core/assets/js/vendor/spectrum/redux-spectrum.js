@@ -9,14 +9,14 @@
 (function( window, $, undefined ) {
 	var defaultOpts                      = {
 
-			// Callbacks
+			/ Callbacks
 			beforeShow: noop,
 			move: noop,
 			change: noop,
 			show: noop,
 			hide: noop,
 
-			// Options
+			/ Options
 			color: false,
 			flat: false,
 			showInput: false,
@@ -34,7 +34,7 @@
 			chooseText: 'choose',
 			clearText: 'Clear Color Selection',
 			preferredFormat: false,
-			className: '', // Deprecated - use containerClassName and replacerClassName instead.
+			className: '', / Deprecated - use containerClassName and replacerClassName instead.
 			containerClassName: '',
 			replacerClassName: '',
 			showAlpha: false,
@@ -57,11 +57,11 @@
 			var colorInput = $( '<input type=\'color\' value=\'#ffffff\' />' )[0];
 			return colorInput.type === 'color' && colorInput.value !== '#ffffff';
 		})(),
-		replaceInput                     = ['<div class=\'sp-replacer\'>', '<div class=\'sp-preview\'><div class=\'sp-preview-inner\'></div></div>', '<div class=\'sp-dd\'>&#9660;</div>', //"<div class='sp-dd'>" + opts.inputText + "</div>",
+		replaceInput                     = ['<div class=\'sp-replacer\'>', '<div class=\'sp-preview\'><div class=\'sp-preview-inner\'></div></div>', '<div class=\'sp-dd\'>&#9660;</div>', /"<div class='sp-dd'>" + opts.inputText + "</div>",
 			'</div>'].join( '' ), markup = (function() {
 
-			// IE does not support gradients with multiple stops, so we need to simulate
-			//  that for the rainbow slider with 8 divs that each have a single gradient
+			/ IE does not support gradients with multiple stops, so we need to simulate
+			/  that for the rainbow slider with 8 divs that each have a single gradient
 			var gradientFix = '';
 			if ( IE ) {
 				for ( var i = 1; i <= 6; i ++ ) {
@@ -227,10 +227,10 @@
 				disable();
 			}
 
-			// Prevent clicks from bubbling up to document.  This would cause it to be hidden.
+			/ Prevent clicks from bubbling up to document.  This would cause it to be hidden.
 			container.on( 'click', stopPropagation );
 
-			// Handle user typed input
+			/ Handle user typed input
 			textInput.on( 'change', setFromTextInput );
 			textInput.on( 'paste', function() {
 				setTimeout( setFromTextInput, 1 );
@@ -256,7 +256,7 @@
 				move();
 
 				if ( flat ) {
-					//for the flat style, this is a change event
+					/for the flat style, this is a change event
 					updateOriginalInput( true );
 				}
 			} );
@@ -293,7 +293,7 @@
 
 			draggable( dragger, function( dragX, dragY, e ) {
 
-				// shift+drag should snap the movement to either the x or y axis.
+				/ shift+drag should snap the movement to either the x or y axis.
 				if ( ! e.shiftKey ) {
 					shiftMovementDirection = null;
 				} else if ( ! shiftMovementDirection ) {
@@ -326,8 +326,8 @@
 			if ( ! ! initialColor ) {
 				set( initialColor );
 
-				// In case color was black - update the preview UI and set the format
-				// since the set function will not run (default color is black).
+				/ In case color was black - update the preview UI and set the format
+				/ since the set function will not run (default color is black).
 				updateUI();
 				currentPreferredFormat = preferredFormat || tinycolor( initialColor ).format;
 
@@ -363,7 +363,7 @@
 
 			if ( localStorageKey && window.localStorage ) {
 
-				// Migrate old palettes over to new format.  May want to remove this eventually.
+				/ Migrate old palettes over to new format.  May want to remove this eventually.
 				try {
 					var oldPalette = window.localStorage[localStorageKey].split( ',#' );
 					if ( oldPalette.length > 1 ) {
@@ -515,12 +515,12 @@
 
 		function hide( e ) {
 
-			// Return on right click
+			/ Return on right click
 			if ( e && e.type == 'click' && e.button == 2 ) {
 				return;
 			}
 
-			// Return if hiding is unnecessary
+			/ Return if hiding is unnecessary
 			if ( ! visible || flat ) {
 				return;
 			}
@@ -552,8 +552,8 @@
 
 		function set( color, ignoreFormatChange ) {
 			if ( tinycolor.equals( color, get() ) ) {
-				// Update UI just in case a validation error needs
-				// to be cleared.
+				/ Update UI just in case a validation error needs
+				/ to be cleared.
 				updateUI();
 				return;
 			}
@@ -607,11 +607,11 @@
 
 			updateHelperLocations();
 
-			// Update dragger background color (gradients take care of saturation and value).
+			/ Update dragger background color (gradients take care of saturation and value).
 			var flatColor = tinycolor.fromRatio( {h: currentHue, s: 1, v: 1} );
 			dragger.css( 'background-color', flatColor.toHexString() );
 
-			// Get a format that alpha will be included in (hex and names ignore alpha)
+			/ Get a format that alpha will be included in (hex and names ignore alpha)
 			var format = currentPreferredFormat;
 			if ( currentAlpha < 1 && ! (currentAlpha === 0 && format === 'name') ) {
 				if ( format === 'hex' || format === 'hex3' || format === 'hex6' || format === 'name' ) {
@@ -621,17 +621,17 @@
 
 			var realColor = get( {format: format} ), displayColor = '';
 
-			//reset background info for preview element
+			/reset background info for preview element
 			previewElement.removeClass( 'sp-clear-display' );
 			previewElement.css( 'background-color', 'transparent' );
 
 			if ( ! realColor && allowEmpty ) {
-				// Update the replaced elements background with icon indicating no color selection
+				/ Update the replaced elements background with icon indicating no color selection
 				previewElement.addClass( 'sp-clear-display' );
 			} else {
 				var realHex = realColor.toHexString(), realRgb = realColor.toRgbString();
 
-				// Update the replaced elements background color (with actual selected color)
+				/ Update the replaced elements background color (with actual selected color)
 				if ( rgbaSupport || realColor.alpha === 1 ) {
 					previewElement.css( 'background-color', realRgb );
 				} else {
@@ -651,7 +651,7 @@
 						alphaSliderInner.css( 'background', '-webkit-' + gradient );
 						alphaSliderInner.css( 'background', '-moz-' + gradient );
 						alphaSliderInner.css( 'background', '-ms-' + gradient );
-						// Use current syntax gradient on unprefixed property.
+						/ Use current syntax gradient on unprefixed property.
 						alphaSliderInner.css( 'background', 'linear-gradient(to right, ' + realAlpha + ', ' + realHex + ')' );
 					}
 				}
@@ -659,7 +659,7 @@
 				displayColor = realColor.toString( format );
 			}
 
-			// Update the text entry input as it changes happen
+			/ Update the text entry input as it changes happen
 			if ( opts.showInput ) {
 				textInput.val( displayColor );
 			}
@@ -676,17 +676,17 @@
 			var v = currentValue;
 
 			if ( allowEmpty && isEmpty ) {
-				//if selected color is empty, hide the helpers
+				/if selected color is empty, hide the helpers
 				alphaSlideHelper.hide();
 				slideHelper.hide();
 				dragHelper.hide();
 			} else {
-				//make sure helpers are visible
+				/make sure helpers are visible
 				alphaSlideHelper.show();
 				slideHelper.show();
 				dragHelper.show();
 
-				// Where to show the little circle in that displays your current selected color
+				/ Where to show the little circle in that displays your current selected color
 				var dragX = s * dragWidth;
 				var dragY = dragHeight - (v * dragHeight);
 				dragX     = Math.max( - dragHelperHeight, Math.min( dragWidth - dragHelperHeight, dragX - dragHelperHeight ) );
@@ -700,7 +700,7 @@
 					'left': (alphaX - (alphaSlideHelperWidth / 2)) + 'px'
 				} );
 
-				// Where to show the bar that displays your current selected hue
+				/ Where to show the bar that displays your current selected hue
 				var slideY = (currentHue) * slideHeight;
 				slideHelper.css( {
 					'top': (slideY - slideHelperHeight) + 'px'
@@ -713,7 +713,7 @@
 
 			if ( color ) {
 				displayColor = color.toString( currentPreferredFormat );
-				// Update the selection palette with the current color
+				/ Update the selection palette with the current color
 				addColorToSelectionPalette( color );
 			}
 
@@ -895,7 +895,7 @@
 
 		function move( e ) {
 			if ( dragging ) {
-				// Mouseup happened outside of window
+				/ Mouseup happened outside of window
 				if ( IE && document.documentMode < 9 && ! e.button ) {
 					return stop();
 				}
@@ -908,7 +908,7 @@
 				var dragY = Math.max( 0, Math.min( pageY - offset.top, maxHeight ) );
 
 				if ( hasTouch ) {
-					// Stop scrolling in iOS
+					/ Stop scrolling in iOS
 					prevent( e );
 				}
 
@@ -1010,7 +1010,7 @@
 			return returnValue;
 		}
 
-		// Initializing a new instance of spectrum
+		/ Initializing a new instance of spectrum
 		return this.spectrum( 'destroy' ).each( function() {
 			var options = $.extend( {}, opts, $( this ).data() );
 			var spect   = spectrum( this, options );
@@ -1035,9 +1035,9 @@
 		}
 	};
 
-	// TinyColor v0.9.17
-	// https://github.com/bgrins/TinyColor
-	// 2013-08-10, Brian Grinstead, MIT License
+	/ TinyColor v0.9.17
+	/ https://github.com/bgrins/TinyColor
+	/ 2013-08-10, Brian Grinstead, MIT License
 
 	(function() {
 
@@ -1049,7 +1049,7 @@
 			color = (color) ? color : '';
 			opts  = opts || {};
 
-			// If input is already a tinycolor, return itself
+			/ If input is already a tinycolor, return itself
 			if ( typeof color == 'object' && color.hasOwnProperty( '_tc_id' ) ) {
 				return color;
 			}
@@ -1058,10 +1058,10 @@
 			var r = rgb.r, g = rgb.g, b = rgb.b, a = rgb.a, roundA = mathRound( 100 * a ) / 100,
 				format                                             = opts.format || rgb.format;
 
-			// Don't let the range of [0,255] come back in [0,1].
-			// Potentially lose a little bit of precision here, but will fix issues where
-			// .5 gets interpreted as half of the total, instead of half of 1
-			// If it was supposed to be 128, this was already taken care of by `inputToRgb`
+			/ Don't let the range of [0,255] come back in [0,1].
+			/ Potentially lose a little bit of precision here, but will fix issues where
+			/ .5 gets interpreted as half of the total, instead of half of 1
+			/ If it was supposed to be 128, this was already taken care of by `inputToRgb`
 			if ( r < 1 ) {
 				r = mathRound( r );
 			}
@@ -1172,8 +1172,8 @@
 			};
 		}
 
-		// If input is an object, force 1 into "1.0" to handle ratios properly
-		// String input requires "1.0" as input, so 1 will be treated as 1
+		/ If input is an object, force 1 into "1.0" to handle ratios properly
+		/ String input requires "1.0" as input, so 1 will be treated as 1
 		tinycolor.fromRatio = function( color, opts ) {
 			if ( typeof color == 'object' ) {
 				var newColor = {};
@@ -1192,21 +1192,21 @@
 			return tinycolor( color, opts );
 		};
 
-		// Given a string or object, convert that input to RGB
-		// Possible string inputs:
-		//
-		//     "red"
-		//     "#f00" or "f00"
-		//     "#ff0000" or "ff0000"
-		//     "#ff000000" or "ff000000"
-		//     "rgb 255 0 0" or "rgb (255, 0, 0)"
-		//     "rgb 1.0 0 0" or "rgb (1, 0, 0)"
-		//     "rgba (255, 0, 0, 1)" or "rgba 255, 0, 0, 1"
-		//     "rgba (1.0, 0, 0, 1)" or "rgba 1.0, 0, 0, 1"
-		//     "hsl(0, 100%, 50%)" or "hsl 0 100% 50%"
-		//     "hsla(0, 100%, 50%, 1)" or "hsla 0 100% 50%, 1"
-		//     "hsv(0, 100%, 100%)" or "hsv 0 100% 100%"
-		//
+		/ Given a string or object, convert that input to RGB
+		/ Possible string inputs:
+		/
+		/     "red"
+		/     "#f00" or "f00"
+		/     "#ff0000" or "ff0000"
+		/     "#ff000000" or "ff000000"
+		/     "rgb 255 0 0" or "rgb (255, 0, 0)"
+		/     "rgb 1.0 0 0" or "rgb (1, 0, 0)"
+		/     "rgba (255, 0, 0, 1)" or "rgba 255, 0, 0, 1"
+		/     "rgba (1.0, 0, 0, 1)" or "rgba 1.0, 0, 0, 1"
+		/     "hsl(0, 100%, 50%)" or "hsl 0 100% 50%"
+		/     "hsla(0, 100%, 50%, 1)" or "hsla 0 100% 50%, 1"
+		/     "hsv(0, 100%, 100%)" or "hsv 0 100% 100%"
+		/
 		function inputToRGB( color ) {
 
 			var rgb    = {r: 0, g: 0, b: 0};
@@ -1254,27 +1254,27 @@
 			};
 		}
 
-		// Conversion Functions
-		// --------------------
+		/ Conversion Functions
+		/ --------------------
 
-		// `rgbToHsl`, `rgbToHsv`, `hslToRgb`, `hsvToRgb` modified from:
-		// <http://mjijackson.com/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript>
+		/ `rgbToHsl`, `rgbToHsv`, `hslToRgb`, `hsvToRgb` modified from:
+		/ <http://mjijackson.com/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript>
 
-		// `rgbToRgb`
-		// Handle bounds / percentage checking to conform to CSS color spec
-		// <http://www.w3.org/TR/css3-color/>
-		// *Assumes:* r, g, b in [0, 255] or [0, 1]
-		// *Returns:* { r, g, b } in [0, 255]
+		/ `rgbToRgb`
+		/ Handle bounds / percentage checking to conform to CSS color spec
+		/ <http://www.w3.org/TR/css3-color/>
+		/ *Assumes:* r, g, b in [0, 255] or [0, 1]
+		/ *Returns:* { r, g, b } in [0, 255]
 		function rgbToRgb( r, g, b ) {
 			return {
 				r: bound01( r, 255 ) * 255, g: bound01( g, 255 ) * 255, b: bound01( b, 255 ) * 255
 			};
 		}
 
-		// `rgbToHsl`
-		// Converts an RGB color value to HSL.
-		// *Assumes:* r, g, and b are contained in [0, 255] or [0, 1]
-		// *Returns:* { h, s, l } in [0,1]
+		/ `rgbToHsl`
+		/ Converts an RGB color value to HSL.
+		/ *Assumes:* r, g, and b are contained in [0, 255] or [0, 1]
+		/ *Returns:* { h, s, l } in [0,1]
 		function rgbToHsl( r, g, b ) {
 
 			r = bound01( r, 255 );
@@ -1285,7 +1285,7 @@
 			var h, s, l = (max + min) / 2;
 
 			if ( max == min ) {
-				h = s = 0; // achromatic
+				h = s = 0; / achromatic
 			} else {
 				var d = max - min;
 				s     = l > 0.5 ? d / (2 - max - min) : d / (max + min);
@@ -1307,10 +1307,10 @@
 			return {h: h, s: s, l: l};
 		}
 
-		// `hslToRgb`
-		// Converts an HSL color value to RGB.
-		// *Assumes:* h is contained in [0, 1] or [0, 360] and s and l are contained [0, 1] or [0, 100]
-		// *Returns:* { r, g, b } in the set [0, 255]
+		/ `hslToRgb`
+		/ Converts an HSL color value to RGB.
+		/ *Assumes:* h is contained in [0, 1] or [0, 360] and s and l are contained [0, 1] or [0, 100]
+		/ *Returns:* { r, g, b } in the set [0, 255]
 		function hslToRgb( h, s, l ) {
 			var r, g, b;
 
@@ -1328,7 +1328,7 @@
 			}
 
 			if ( s === 0 ) {
-				r = g = b = l; // achromatic
+				r = g = b = l; / achromatic
 			} else {
 				var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
 				var p = 2 * l - q;
@@ -1340,10 +1340,10 @@
 			return {r: r * 255, g: g * 255, b: b * 255};
 		}
 
-		// `rgbToHsv`
-		// Converts an RGB color value to HSV
-		// *Assumes:* r, g, and b are contained in the set [0, 255] or [0, 1]
-		// *Returns:* { h, s, v } in [0,1]
+		/ `rgbToHsv`
+		/ Converts an RGB color value to HSV
+		/ *Assumes:* r, g, and b are contained in the set [0, 255] or [0, 1]
+		/ *Returns:* { h, s, v } in [0,1]
 		function rgbToHsv( r, g, b ) {
 
 			r = bound01( r, 255 );
@@ -1357,7 +1357,7 @@
 			s     = max === 0 ? 0 : d / max;
 
 			if ( max == min ) {
-				h = 0; // achromatic
+				h = 0; / achromatic
 			} else {
 				switch ( max ) {
 					case r:
@@ -1375,10 +1375,10 @@
 			return {h: h, s: s, v: v};
 		}
 
-		// `hsvToRgb`
-		// Converts an HSV color value to RGB.
-		// *Assumes:* h is contained in [0, 1] or [0, 360] and s and v are contained in [0, 1] or [0, 100]
-		// *Returns:* { r, g, b } in the set [0, 255]
+		/ `hsvToRgb`
+		/ Converts an HSV color value to RGB.
+		/ *Assumes:* h is contained in [0, 1] or [0, 360] and s and v are contained in [0, 1] or [0, 100]
+		/ *Returns:* { r, g, b } in the set [0, 255]
 		function hsvToRgb( h, s, v ) {
 
 			h = bound01( h, 360 ) * 6;
@@ -1391,15 +1391,15 @@
 			return {r: r * 255, g: g * 255, b: b * 255};
 		}
 
-		// `rgbToHex`
-		// Converts an RGB color to hex
-		// Assumes r, g, and b are contained in the set [0, 255]
-		// Returns a 3 or 6 character hex
+		/ `rgbToHex`
+		/ Converts an RGB color to hex
+		/ Assumes r, g, and b are contained in the set [0, 255]
+		/ Returns a 3 or 6 character hex
 		function rgbToHex( r, g, b, allow3Char ) {
 
 			var hex = [pad2( mathRound( r ).toString( 16 ) ), pad2( mathRound( g ).toString( 16 ) ), pad2( mathRound( b ).toString( 16 ) )];
 
-			// Return a 3 character hex if possible
+			/ Return a 3 character hex if possible
 			if ( allow3Char && hex[0].charAt( 0 ) == hex[0].charAt( 1 ) && hex[1].charAt( 0 ) == hex[1].charAt( 1 ) && hex[2].charAt( 0 ) == hex[2].charAt( 1 ) ) {
 				return hex[0].charAt( 0 ) + hex[1].charAt( 0 ) + hex[2].charAt( 0 );
 			}
@@ -1407,10 +1407,10 @@
 			return hex.join( '' );
 		}
 
-		// `rgbaToHex`
-		// Converts an RGBA color plus alpha transparency to hex
-		// Assumes r, g, b and a are contained in the set [0, 255]
-		// Returns an 8 character hex
+		/ `rgbaToHex`
+		/ Converts an RGBA color plus alpha transparency to hex
+		/ Assumes r, g, b and a are contained in the set [0, 255]
+		/ Returns an 8 character hex
 		function rgbaToHex( r, g, b, a ) {
 
 			var hex = [pad2( convertDecimalToHex( a ) ), pad2( mathRound( r ).toString( 16 ) ), pad2( mathRound( g ).toString( 16 ) ), pad2( mathRound( b ).toString( 16 ) )];
@@ -1418,8 +1418,8 @@
 			return hex.join( '' );
 		}
 
-		// `equals`
-		// Can be called with any tinycolor input
+		/ `equals`
+		/ Can be called with any tinycolor input
 		tinycolor.equals = function( color1, color2 ) {
 			if ( ! color1 || ! color2 ) {
 				return false;
@@ -1432,10 +1432,10 @@
 			} );
 		};
 
-		// Modification Functions
-		// ----------------------
-		// Thanks to less.js for some of the basics here
-		// <https://github.com/cloudhead/less.js/blob/master/lib/less/functions.js>
+		/ Modification Functions
+		/ ----------------------
+		/ Thanks to less.js for some of the basics here
+		/ <https://github.com/cloudhead/less.js/blob/master/lib/less/functions.js>
 
 		tinycolor.desaturate = function( color, amount ) {
 			amount  = (amount === 0) ? 0 : (amount || 10);
@@ -1474,10 +1474,10 @@
 			return tinycolor( hsl );
 		};
 
-		// Combination Functions
-		// ---------------------
-		// Thanks to jQuery xColor for some of the ideas behind these
-		// <https://github.com/infusion/jQuery-xcolor/blob/master/jquery.xcolor.js>
+		/ Combination Functions
+		/ ---------------------
+		/ Thanks to jQuery xColor for some of the ideas behind these
+		/ <https://github.com/infusion/jQuery-xcolor/blob/master/jquery.xcolor.js>
 
 		tinycolor.triad           = function( color ) {
 			var hsl = tinycolor( color ).toHsl();
@@ -1531,14 +1531,14 @@
 			return ret;
 		};
 
-		// Readability Functions
-		// ---------------------
-		// <http://www.w3.org/TR/AERT#color-contrast>
+		/ Readability Functions
+		/ ---------------------
+		/ <http://www.w3.org/TR/AERT#color-contrast>
 
-		// `readability`
-		// Analyze the 2 colors and returns an object with the following properties:
-		//    `brightness`: difference in brightness between the two colors
-		//    `color`: difference in color/hue between the two colors
+		/ `readability`
+		/ Analyze the 2 colors and returns an object with the following properties:
+		/    `brightness`: difference in brightness between the two colors
+		/    `color`: difference in color/hue between the two colors
 		tinycolor.readability = function( color1, color2 ) {
 			var a           = tinycolor( color1 ).toRgb();
 			var b           = tinycolor( color2 ).toRgb();
@@ -1551,29 +1551,29 @@
 			};
 		};
 
-		// `readable`
-		// http://www.w3.org/TR/AERT#color-contrast
-		// Ensure that foreground and background color combinations provide sufficient contrast.
-		// *Example*
-		//    tinycolor.readable("#000", "#111") => false
+		/ `readable`
+		/ http://www.w3.org/TR/AERT#color-contrast
+		/ Ensure that foreground and background color combinations provide sufficient contrast.
+		/ *Example*
+		/    tinycolor.readable("#000", "#111") => false
 		tinycolor.readable = function( color1, color2 ) {
 			var readability = tinycolor.readability( color1, color2 );
 			return readability.brightness > 125 && readability.color > 500;
 		};
 
-		// `mostReadable`
-		// Given a base color and a list of possible foreground or background
-		// colors for that base, returns the most readable color.
-		// *Example*
-		//    tinycolor.mostReadable("#123", ["#fff", "#000"]) => "#000"
+		/ `mostReadable`
+		/ Given a base color and a list of possible foreground or background
+		/ colors for that base, returns the most readable color.
+		/ *Example*
+		/    tinycolor.mostReadable("#123", ["#fff", "#000"]) => "#000"
 		tinycolor.mostReadable = function( baseColor, colorList ) {
 			var bestColor      = null;
 			var bestScore      = 0;
 			var bestIsReadable = false;
 			for ( var i = 0; i < colorList.length; i ++ ) {
 
-				// We normalize both around the "acceptable" breaking point,
-				// but rank brightness constrast higher than hue.
+				/ We normalize both around the "acceptable" breaking point,
+				/ but rank brightness constrast higher than hue.
 
 				var readability = tinycolor.readability( baseColor, colorList[i] );
 				var readable    = readability.brightness > 125 && readability.color > 500;
@@ -1588,9 +1588,9 @@
 			return bestColor;
 		};
 
-		// Big List of Colors
-		// ------------------
-		// <http://www.w3.org/TR/css3-color/#svg-color>
+		/ Big List of Colors
+		/ ------------------
+		/ <http://www.w3.org/TR/css3-color/#svg-color>
 		var names = tinycolor.names = {
 			aliceblue: 'f0f8ff',
 			antiquewhite: 'faebd7',
@@ -1742,13 +1742,13 @@
 			yellowgreen: '9acd32'
 		};
 
-		// Make it easy to access colors via `hexNames[hex]`
+		/ Make it easy to access colors via `hexNames[hex]`
 		var hexNames = tinycolor.hexNames = flip( names );
 
-		// Utilities
-		// ---------
+		/ Utilities
+		/ ---------
 
-		// `{ 'name1': 'val1' }` becomes `{ 'val1': 'name1' }`
+		/ `{ 'name1': 'val1' }` becomes `{ 'val1': 'name1' }`
 		function flip( o ) {
 			var flipped = {};
 			for ( var i in o ) {
@@ -1759,7 +1759,7 @@
 			return flipped;
 		}
 
-		// Return a valid alpha value [0,1] with all invalid values being set to 1
+		/ Return a valid alpha value [0,1] with all invalid values being set to 1
 		function boundAlpha( a ) {
 			a = parseFloat( a );
 
@@ -1770,7 +1770,7 @@
 			return a;
 		}
 
-		// Take input from [0, n] and return it as [0, 1]
+		/ Take input from [0, n] and return it as [0, 1]
 		function bound01( n, max ) {
 			if ( isOnePointZero( n ) ) {
 				n = '100%';
@@ -1779,47 +1779,47 @@
 			var processPercent = isPercentage( n );
 			n                  = mathMin( max, mathMax( 0, parseFloat( n ) ) );
 
-			// Automatically convert percentage into number
+			/ Automatically convert percentage into number
 			if ( processPercent ) {
 				n = parseInt( n * max, 10 ) / 100;
 			}
 
-			// Handle floating point rounding errors
+			/ Handle floating point rounding errors
 			if ( (math.abs( n - max ) < 0.000001) ) {
 				return 1;
 			}
 
-			// Convert into [0, 1] range if it isn't already
+			/ Convert into [0, 1] range if it isn't already
 			return (n % max) / parseFloat( max );
 		}
 
-		// Force a number between 0 and 1
+		/ Force a number between 0 and 1
 		function clamp01( val ) {
 			return mathMin( 1, mathMax( 0, val ) );
 		}
 
-		// Parse a base-16 hex value into a base-10 integer
+		/ Parse a base-16 hex value into a base-10 integer
 		function parseIntFromHex( val ) {
 			return parseInt( val, 16 );
 		}
 
-		// Need to handle 1.0 as 100%, since once it is a number, there is no difference between it and 1
-		// <http://stackoverflow.com/questions/7422072/javascript-how-to-detect-number-as-a-decimal-including-1-0>
+		/ Need to handle 1.0 as 100%, since once it is a number, there is no difference between it and 1
+		/ <http://stackoverflow.com/questions/7422072/javascript-how-to-detect-number-as-a-decimal-including-1-0>
 		function isOnePointZero( n ) {
 			return typeof n == 'string' && n.indexOf( '.' ) != - 1 && parseFloat( n ) === 1;
 		}
 
-		// Check to see if string passed in is a percentage
+		/ Check to see if string passed in is a percentage
 		function isPercentage( n ) {
 			return typeof n === 'string' && n.indexOf( '%' ) != - 1;
 		}
 
-		// Force a hex value to have 2 characters
+		/ Force a hex value to have 2 characters
 		function pad2( c ) {
 			return c.length == 1 ? '0' + c : '' + c;
 		}
 
-		// Replace a decimal with it's percentage value
+		/ Replace a decimal with it's percentage value
 		function convertToPercentage( n ) {
 			if ( n <= 1 ) {
 				n = (n * 100) + '%';
@@ -1828,30 +1828,30 @@
 			return n;
 		}
 
-		// Converts a decimal to a hex value
+		/ Converts a decimal to a hex value
 		function convertDecimalToHex( d ) {
 			return Math.round( parseFloat( d ) * 255 ).toString( 16 );
 		}
 
-		// Converts a hex value to a decimal
+		/ Converts a hex value to a decimal
 		function convertHexToDecimal( h ) {
 			return (parseIntFromHex( h ) / 255);
 		}
 
 		var matchers = (function() {
 
-			// <http://www.w3.org/TR/css3-values/#integers>
+			/ <http://www.w3.org/TR/css3-values/#integers>
 			var CSS_INTEGER = '[-\\+]?\\d+%?';
 
-			// <http://www.w3.org/TR/css3-values/#number-value>
+			/ <http://www.w3.org/TR/css3-values/#number-value>
 			var CSS_NUMBER = '[-\\+]?\\d*\\.\\d+%?';
 
-			// Allow positive/negative integer/number.  Don't capture the either/or, just the entire outcome.
+			/ Allow positive/negative integer/number.  Don't capture the either/or, just the entire outcome.
 			var CSS_UNIT = '(?:' + CSS_NUMBER + ')|(?:' + CSS_INTEGER + ')';
 
-			// Actual matching.
-			// Parentheses and commas are optional, but not required.
-			// Whitespace can take the place of commas or opening paren
+			/ Actual matching.
+			/ Parentheses and commas are optional, but not required.
+			/ Whitespace can take the place of commas or opening paren
 			var PERMISSIVE_MATCH3 = '[\\s|\\(]+(' + CSS_UNIT + ')[,|\\s]+(' + CSS_UNIT + ')[,|\\s]+(' + CSS_UNIT + ')\\s*\\)?';
 			var PERMISSIVE_MATCH4 = '[\\s|\\(]+(' + CSS_UNIT + ')[,|\\s]+(' + CSS_UNIT + ')[,|\\s]+(' + CSS_UNIT + ')[,|\\s]+(' + CSS_UNIT + ')\\s*\\)?';
 
@@ -1867,9 +1867,9 @@
 			};
 		})();
 
-		// `stringInputToObject`
-		// Permissive string parsing.  Take in a number of formats, and output an object
-		// based on detected format.  Returns `{ r, g, b }` or `{ h, s, l }` or `{ h, s, v}`
+		/ `stringInputToObject`
+		/ Permissive string parsing.  Take in a number of formats, and output an object
+		/ based on detected format.  Returns `{ r, g, b }` or `{ h, s, l }` or `{ h, s, v}`
 		function stringInputToObject( color ) {
 
 			color     = color.replace( trimLeft, '' ).replace( trimRight, '' ).toLowerCase();
@@ -1881,10 +1881,10 @@
 				return {r: 0, g: 0, b: 0, a: 0, format: 'name'};
 			}
 
-			// Try to match string input using regular expressions.
-			// Keep most of the number bounding out of this function - don't worry about [0,1] or [0,100] or [0,360]
-			// Just return an object and let the conversion functions handle that.
-			// This way the result will be the same whether the tinycolor is initialized with string or object.
+			/ Try to match string input using regular expressions.
+			/ Keep most of the number bounding out of this function - don't worry about [0,1] or [0,100] or [0,360]
+			/ Just return an object and let the conversion functions handle that.
+			/ This way the result will be the same whether the tinycolor is initialized with string or object.
 			var match;
 			if ( (match = matchers.rgb.exec( color )) ) {
 				return {r: match[1], g: match[2], b: match[3]};
@@ -1930,7 +1930,7 @@
 			return false;
 		}
 
-		// Expose tinycolor to window, does not need to run in non-browser context.
+		/ Expose tinycolor to window, does not need to run in non-browser context.
 		window.tinycolor = tinycolor;
 
 	})();

@@ -2,7 +2,7 @@ import { isSmushLazySizesInstance } from './helper/lazysizes';
 
 ( () => {
 	'use strict';
-	// Lazyload for background images.
+	/ Lazyload for background images.
 	const lazyloadBackground = ( element ) => {
 		const backgroundValue = element.getAttribute( 'data-bg-image' ) || element.getAttribute( 'data-bg' );
 		const cssProperty = element.hasAttribute( 'data-bg-image' ) ? 'background-image' : 'background';
@@ -28,7 +28,7 @@ import { isSmushLazySizesInstance } from './helper/lazysizes';
 			return;
 		}
 
-		// Lazy background image.
+		/ Lazy background image.
 		lazyloadBackground( e.target );
 	} );
 } )();

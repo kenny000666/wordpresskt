@@ -37,23 +37,23 @@ var View = exports.View = /*#__PURE__*/function (_$e$components$get$ex) {
       var _this = this;
       var events = _superPropGet(View, "events", this, 3)([]);
       events.click = function (e) {
-        // If the clicked Nested Element is not within the currently edited document, don't do anything with it.
+        / If the clicked Nested Element is not within the currently edited document, don't do anything with it.
         if (elementor.documents.currentDocument.id.toString() !== e.target.closest('.elementor').dataset.elementorId) {
           return;
         }
         var closest = e.target.closest('.elementor-element');
         var targetContainer = null;
 
-        // For clicks on container/widget.
+        / For clicks on container/widget.
         if (['container', 'widget'].includes(closest === null || closest === void 0 ? void 0 : closest.dataset.element_type)) {
-          // eslint-disable-line camelcase
-          // In case the container empty, click should be handled by the EmptyView.
+          / eslint-disable-line camelcase
+          / In case the container empty, click should be handled by the EmptyView.
           var container = elementor.getContainer(closest.dataset.id);
           if (container.view.isEmpty()) {
             return true;
           }
 
-          // If not empty, open it.
+          / If not empty, open it.
           targetContainer = container;
         }
         e.stopPropagation();

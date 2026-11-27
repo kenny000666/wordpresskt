@@ -99,20 +99,20 @@
 
     function getDocumentElement(element)
     {
-        // $FlowFixMe[incompatible-return]: assume body is always available
-        return ((isElement(element) ? element.ownerDocument : // $FlowFixMe[prop-missing]
+        / $FlowFixMe[incompatible-return]: assume body is always available
+        return ((isElement(element) ? element.ownerDocument : / $FlowFixMe[prop-missing]
             element.document) || window.document).documentElement;
     }
 
     function getWindowScrollBarX(element)
     {
-        // If <html> has a CSS width greater than the viewport, then this will be
-        // incorrect for RTL.
-        // Popper 1 is broken in this case and never had a bug report so let's assume
-        // it's not an issue. I don't think anyone ever specifies width on <html>
-        // anyway.
-        // Browsers where the left scrollbar doesn't cause an issue report `0` for
-        // this (e.g. Edge 2019, IE11, Safari)
+        / If <html> has a CSS width greater than the viewport, then this will be
+        / incorrect for RTL.
+        / Popper 1 is broken in this case and never had a bug report so let's assume
+        / it's not an issue. I don't think anyone ever specifies width on <html>
+        / anyway.
+        / Browsers where the left scrollbar doesn't cause an issue report `0` for
+        / this (e.g. Edge 2019, IE11, Safari)
         return getBoundingClientRect(getDocumentElement(element)).left + getWindowScroll(element).scrollLeft;
     }
 
@@ -123,7 +123,7 @@
 
     function isScrollParent(element)
     {
-        // Firefox wants us to check `-x` and `-y` variations as well
+        / Firefox wants us to check `-x` and `-y` variations as well
         var _getComputedStyle = getComputedStyle(element),
             overflow = _getComputedStyle.overflow,
             overflowX = _getComputedStyle.overflowX,
@@ -132,7 +132,7 @@
         return /auto|scroll|overlay|hidden/.test(overflow + overflowY + overflowX);
     }
 
-    // Composite means it takes into account transforms as well as layout.
+    / Composite means it takes into account transforms as well as layout.
 
     function getCompositeRect(elementOrVirtualElement, offsetParent, isFixed)
     {
@@ -153,7 +153,7 @@
         };
 
         if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
-            if (getNodeName(offsetParent) !== 'body' || // https://github.com/popperjs/popper-core/issues/1078
+            if (getNodeName(offsetParent) !== 'body' || / https://github.com/popperjs/popper-core/issues/1078
                 isScrollParent(documentElement)) {
                 scroll = getNodeScroll(offsetParent);
             }
@@ -175,8 +175,8 @@
         };
     }
 
-    // Returns the layout rect of an element relative to its offsetParent. Layout
-    // means it doesn't take into account transforms.
+    / Returns the layout rect of an element relative to its offsetParent. Layout
+    / means it doesn't take into account transforms.
     function getLayoutRect(element)
     {
         return {
@@ -193,15 +193,15 @@
             return element;
         }
 
-        return ( // this is a quicker (but less type safe) way to save quite some bytes from the bundle
-            // $FlowFixMe[incompatible-return]
-            // $FlowFixMe[prop-missing]
-            element.assignedSlot || // step into the shadow DOM of the parent of a slotted node
-            element.parentNode || // DOM Element detected
-            // $FlowFixMe[incompatible-return]: need a better way to handle this...
-            element.host || // ShadowRoot detected
-            // $FlowFixMe[incompatible-call]: HTMLElement is a Node
-            getDocumentElement(element) // fallback
+        return ( / this is a quicker (but less type safe) way to save quite some bytes from the bundle
+            / $FlowFixMe[incompatible-return]
+            / $FlowFixMe[prop-missing]
+            element.assignedSlot || / step into the shadow DOM of the parent of a slotted node
+            element.parentNode || / DOM Element detected
+            / $FlowFixMe[incompatible-return]: need a better way to handle this...
+            element.host || / ShadowRoot detected
+            / $FlowFixMe[incompatible-call]: HTMLElement is a Node
+            getDocumentElement(element) / fallback
 
         );
     }
@@ -209,7 +209,7 @@
     function getScrollParent(node)
     {
         if (['html', 'body', '#document'].indexOf(getNodeName(node)) >= 0) {
-            // $FlowFixMe[incompatible-return]: assume body is always available
+            / $FlowFixMe[incompatible-return]: assume body is always available
             return node.ownerDocument.body;
         }
 
@@ -238,7 +238,7 @@
         var win = getWindow(scrollParent);
         var target = isBody ? [win].concat(win.visualViewport || [], isScrollParent(scrollParent) ? scrollParent : []) : scrollParent;
         var updatedList = list.concat(target);
-        return isBody ? updatedList : // $FlowFixMe[incompatible-call]: isBody tells us target will be an HTMLElement here
+        return isBody ? updatedList : / $FlowFixMe[incompatible-call]: isBody tells us target will be an HTMLElement here
             updatedList.concat(listScrollParents(getParentNode(target)));
     }
 
@@ -249,7 +249,7 @@
 
     function getTrueOffsetParent(element)
     {
-        if (!isHTMLElement(element) || // https://github.com/popperjs/popper-core/issues/837
+        if (!isHTMLElement(element) || / https://github.com/popperjs/popper-core/issues/837
             getComputedStyle(element).position === 'fixed') {
             return null;
         }
@@ -265,8 +265,8 @@
         }
 
         return offsetParent;
-    } // `.offsetParent` reports `null` for fixed elements, while absolute elements
-    // return the containing block
+    } / `.offsetParent` reports `null` for fixed elements, while absolute elements
+    / return the containing block
 
 
     function getContainingBlock(element)
@@ -274,8 +274,8 @@
         var currentNode = getParentNode(element);
 
         while (isHTMLElement(currentNode) && ['html', 'body'].indexOf(getNodeName(currentNode)) < 0) {
-            var css = getComputedStyle(currentNode); // This is non-exhaustive but covers the most common CSS properties that
-            // create a containing block.
+            var css = getComputedStyle(currentNode); / This is non-exhaustive but covers the most common CSS properties that
+            / create a containing block.
 
             if (css.transform !== 'none' || css.perspective !== 'none' || css.willChange && css.willChange !== 'auto') {
                 return currentNode;
@@ -285,8 +285,8 @@
         }
 
         return null;
-    } // Gets the closest ancestor positioned element. Handles some edge cases,
-    // such as table ancestors and cross browser bugs.
+    } / Gets the closest ancestor positioned element. Handles some edge cases,
+    / such as table ancestors and cross browser bugs.
 
 
     function getOffsetParent(element)
@@ -322,15 +322,15 @@
     }, []);
     var placements = /*#__PURE__*/ [].concat(basePlacements, [auto]).reduce(function (acc, placement) {
         return acc.concat([placement, placement + "-" + start, placement + "-" + end]);
-    }, []); // modifiers that need to read the DOM
+    }, []); / modifiers that need to read the DOM
 
     var beforeRead = 'beforeRead';
     var read = 'read';
-    var afterRead = 'afterRead'; // pure-logic modifiers
+    var afterRead = 'afterRead'; / pure-logic modifiers
 
     var beforeMain = 'beforeMain';
     var main = 'main';
-    var afterMain = 'afterMain'; // modifier with the purpose to write to the DOM (or write into a framework state)
+    var afterMain = 'afterMain'; / modifier with the purpose to write to the DOM (or write into a framework state)
 
     var beforeWrite = 'beforeWrite';
     var write = 'write';
@@ -344,7 +344,7 @@
         var result = [];
         modifiers.forEach(function (modifier) {
             map.set(modifier.name, modifier);
-        }); // On visiting object, check for its dependencies and visit them recursively
+        }); / On visiting object, check for its dependencies and visit them recursively
 
         function sort(modifier)
         {
@@ -364,7 +364,7 @@
 
         modifiers.forEach(function (modifier) {
             if (!visited.has(modifier.name)) {
-                // check for visited object
+                / check for visited object
                 sort(modifier);
             }
         });
@@ -373,8 +373,8 @@
 
     function orderModifiers(modifiers)
     {
-        // order based on dependencies
-        var orderedModifiers = order(modifiers); // order based on phase
+        / order based on dependencies
+        var orderedModifiers = order(modifiers); / order based on phase
 
         return modifierPhases.reduce(function (acc, phase) {
             return acc.concat(orderedModifiers.filter(function (modifier) {
@@ -515,7 +515,7 @@
                 data: Object.assign(Object.assign({}, existing.data), current.data)
             }) : current;
             return merged;
-        }, {}); // IE11 does not support Object.values
+        }, {}); / IE11 does not support Object.values
 
         return Object.keys(merged).map(function (key) {
             return merged[key];
@@ -530,22 +530,22 @@
         var width = html.clientWidth;
         var height = html.clientHeight;
         var x = 0;
-        var y = 0; // NB: This isn't supported on iOS <= 12. If the keyboard is open, the popper
-        // can be obscured underneath it.
-        // Also, `html.clientHeight` adds the bottom bar height in Safari iOS, even
-        // if it isn't open, so if this isn't available, the popper will be detected
-        // to overflow the bottom of the screen too early.
+        var y = 0; / NB: This isn't supported on iOS <= 12. If the keyboard is open, the popper
+        / can be obscured underneath it.
+        / Also, `html.clientHeight` adds the bottom bar height in Safari iOS, even
+        / if it isn't open, so if this isn't available, the popper will be detected
+        / to overflow the bottom of the screen too early.
 
         if (visualViewport) {
             width = visualViewport.width;
-            height = visualViewport.height; // Uses Layout Viewport (like Chrome; Safari does not currently)
-            // In Chrome, it returns a value very close to 0 (+/-) but contains rounding
-            // errors due to floating point numbers, so we need to check precision.
-            // Safari returns a number <= 0, usually < -1 when pinch-zoomed
-            // Feature detection fails in mobile emulation mode in Chrome.
-            // Math.abs(win.innerWidth / visualViewport.scale - visualViewport.width) <
-            // 0.001
-            // Fallback here: "Not Safari" userAgent
+            height = visualViewport.height; / Uses Layout Viewport (like Chrome; Safari does not currently)
+            / In Chrome, it returns a value very close to 0 (+/-) but contains rounding
+            / errors due to floating point numbers, so we need to check precision.
+            / Safari returns a number <= 0, usually < -1 when pinch-zoomed
+            / Feature detection fails in mobile emulation mode in Chrome.
+            / Math.abs(win.innerWidth / visualViewport.scale - visualViewport.width) <
+            / 0.001
+            / Fallback here: "Not Safari" userAgent
 
             if (!/^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
                 x = visualViewport.offsetLeft;
@@ -561,7 +561,7 @@
         };
     }
 
-    // of the `<html>` and `<body>` rect bounds if horizontally scrollable
+    / of the `<html>` and `<body>` rect bounds if horizontally scrollable
 
     function getDocumentRect(element)
     {
@@ -587,8 +587,8 @@
 
     function contains(parent, child)
     {
-        var rootNode = child.getRootNode && child.getRootNode(); // First, attempt with faster native method
-        // then fallback to custom implementation with Shadow DOM support
+        var rootNode = child.getRootNode && child.getRootNode(); / First, attempt with faster native method
+        / then fallback to custom implementation with Shadow DOM support
         if (parent.contains(child)) {
             return true;
         } else if (rootNode && isShadowRoot(rootNode)) {
@@ -597,12 +597,12 @@
             do {
                 if (next && parent.isSameNode(next)) {
                     return true;
-                } // $FlowFixMe[prop-missing]: need a better way to handle this...
+                } / $FlowFixMe[prop-missing]: need a better way to handle this...
 
 
                 next = next.parentNode || next.host;
             } while (next);
-        } // Give up, the result is false
+        } / Give up, the result is false
 
 
         return false;
@@ -635,9 +635,9 @@
     function getClientRectFromMixedType(element, clippingParent)
     {
         return clippingParent === viewport ? rectToClientRect(getViewportRect(element)) : isHTMLElement(clippingParent) ? getInnerBoundingClientRect(clippingParent) : rectToClientRect(getDocumentRect(getDocumentElement(element)));
-    } // A "clipping parent" is an overflowable container with the characteristic of
-    // clipping (or hiding) overflowing elements with a position different from
-    // `initial`
+    } / A "clipping parent" is an overflowable container with the characteristic of
+    / clipping (or hiding) overflowing elements with a position different from
+    / `initial`
 
 
     function getClippingParents(element)
@@ -648,14 +648,14 @@
 
         if (!isElement(clipperElement)) {
             return [];
-        } // $FlowFixMe[incompatible-return]: https://github.com/facebook/flow/issues/1414
+        } / $FlowFixMe[incompatible-return]: https://github.com/facebook/flow/issues/1414
 
 
         return clippingParents.filter(function (clippingParent) {
             return isElement(clippingParent) && contains(clippingParent, clipperElement) && getNodeName(clippingParent) !== 'body';
         });
-    } // Gets the maximum area that the element is visible in due to any number of
-    // clipping parents
+    } / Gets the maximum area that the element is visible in due to any number of
+    / clipping parents
 
 
     function getClippingRect(element, boundary, rootBoundary)
@@ -810,8 +810,8 @@
             placement: placement
         });
         var popperClientRect = rectToClientRect(Object.assign(Object.assign({}, popperRect), popperOffsets));
-        var elementClientRect = elementContext === popper ? popperClientRect : referenceClientRect; // positive = overflowing the clipping rect
-        // 0 or negative = within the clipping rect
+        var elementClientRect = elementContext === popper ? popperClientRect : referenceClientRect; / positive = overflowing the clipping rect
+        / 0 or negative = within the clipping rect
 
         var overflowOffsets = {
             top: clippingClientRect.top - elementClientRect.top + paddingObject.top,
@@ -819,7 +819,7 @@
             left: clippingClientRect.left - elementClientRect.left + paddingObject.left,
             right: elementClientRect.right - clippingClientRect.right + paddingObject.right
         };
-        var offsetData = state.modifiersData.offset; // Offsets can be applied only to the popper element
+        var offsetData = state.modifiersData.offset; / Offsets can be applied only to the popper element
 
         if (elementContext === popper && offsetData) {
             var offset = offsetData[placement];
@@ -892,15 +892,15 @@
                     state.scrollParents = {
                         reference: isElement(reference) ? listScrollParents(reference) : reference.contextElement ? listScrollParents(reference.contextElement) : [],
                         popper: listScrollParents(popper)
-                    }; // Orders the modifiers based on their dependencies and `phase`
-                    // properties
+                    }; / Orders the modifiers based on their dependencies and `phase`
+                    / properties
 
-                    var orderedModifiers = orderModifiers(mergeByName([].concat(defaultModifiers, state.options.modifiers))); // Strip out disabled modifiers
+                    var orderedModifiers = orderModifiers(mergeByName([].concat(defaultModifiers, state.options.modifiers))); / Strip out disabled modifiers
 
                     state.orderedModifiers = orderedModifiers.filter(function (m) {
                         return m.enabled;
-                    }); // Validate the provided modifiers so that the consumer will get warned
-                    // if one of the modifiers is invalid for any reason
+                    }); / Validate the provided modifiers so that the consumer will get warned
+                    / if one of the modifiers is invalid for any reason
 
                     {
                         var modifiers = uniqueBy([].concat(orderedModifiers, state.options.modifiers), function (_ref) {
@@ -924,8 +924,8 @@
                             marginTop = _getComputedStyle.marginTop,
                             marginRight = _getComputedStyle.marginRight,
                             marginBottom = _getComputedStyle.marginBottom,
-                            marginLeft = _getComputedStyle.marginLeft; // We no longer take into account `margins` on the popper, and it can
-                        // cause bugs with positioning, so we'll warn the consumer
+                            marginLeft = _getComputedStyle.marginLeft; / We no longer take into account `margins` on the popper, and it can
+                        / cause bugs with positioning, so we'll warn the consumer
 
 
                     if ([marginTop, marginRight, marginBottom, marginLeft].some(function (margin) {
@@ -938,11 +938,11 @@
                     runModifierEffects();
                     return instance.update();
                 },
-                // Sync update – it will always be executed, even if not necessary. This
-                // is useful for low frequency updates where sync behavior simplifies the
-                // logic.
-                // For high frequency updates (e.g. `resize` and `scroll` events), always
-                // prefer the async Popper#update method
+                / Sync update – it will always be executed, even if not necessary. This
+                / is useful for low frequency updates where sync behavior simplifies the
+                / logic.
+                / For high frequency updates (e.g. `resize` and `scroll` events), always
+                / prefer the async Popper#update method
                 forceUpdate: function forceUpdate()
                 {
                     if (isDestroyed) {
@@ -951,8 +951,8 @@
 
                     var _state$elements = state.elements,
                         reference = _state$elements.reference,
-                        popper = _state$elements.popper; // Don't proceed if `reference` or `popper` are not valid elements
-                    // anymore
+                        popper = _state$elements.popper; / Don't proceed if `reference` or `popper` are not valid elements
+                    / anymore
 
                     if (!areValidElements(reference, popper)) {
                         {
@@ -960,23 +960,23 @@
                         }
 
                         return;
-                    } // Store the reference and popper rects to be read by modifiers
+                    } / Store the reference and popper rects to be read by modifiers
 
 
                     state.rects = {
                         reference: getCompositeRect(reference, getOffsetParent(popper), state.options.strategy === 'fixed'),
                         popper: getLayoutRect(popper)
-                    }; // Modifiers have the ability to reset the current update cycle. The
-                    // most common use case for this is the `flip` modifier changing the
-                    // placement, which then needs to re-run all the modifiers, because the
-                    // logic was previously ran for the previous placement and is therefore
-                    // stale/incorrect
+                    }; / Modifiers have the ability to reset the current update cycle. The
+                    / most common use case for this is the `flip` modifier changing the
+                    / placement, which then needs to re-run all the modifiers, because the
+                    / logic was previously ran for the previous placement and is therefore
+                    / stale/incorrect
 
                     state.reset = false;
-                    state.placement = state.options.placement; // On each update cycle, the `modifiersData` property for each modifier
-                    // is filled with the initial data specified by the modifier. This means
-                    // it doesn't persist and is fresh on each update.
-                    // To ensure persistent data, use `${name}#persistent`
+                    state.placement = state.options.placement; / On each update cycle, the `modifiersData` property for each modifier
+                    / is filled with the initial data specified by the modifier. This means
+                    / it doesn't persist and is fresh on each update.
+                    / To ensure persistent data, use `${name}#persistent`
 
                     state.orderedModifiers.forEach(function (modifier) {
                         return state.modifiersData[modifier.name] = Object.assign({}, modifier.data);
@@ -1015,8 +1015,8 @@
                         }
                     }
                 },
-                // Async and optimistically optimized update – it will not be executed if
-                // not necessary (debounced to run at most once-per-tick)
+                / Async and optimistically optimized update – it will not be executed if
+                / not necessary (debounced to run at most once-per-tick)
                 update: debounce(function () {
                     return new Promise(function (resolve) {
                         instance.forceUpdate();
@@ -1042,11 +1042,11 @@
                 if (!isDestroyed && options.onFirstUpdate) {
                     options.onFirstUpdate(state);
                 }
-            }); // Modifiers have the ability to execute arbitrary code before the first
-            // update cycle runs. They will be executed in the same order as the update
-            // cycle. This is useful when a modifier adds some persistent data that
-            // other modifiers need to use, but the modifier is run after the dependent
-            // one.
+            }); / Modifiers have the ability to execute arbitrary code before the first
+            / update cycle runs. They will be executed in the same order as the update
+            / cycle. This is useful when a modifier adds some persistent data that
+            / other modifiers need to use, but the modifier is run after the dependent
+            / one.
 
             function runModifierEffects()
             {
@@ -1121,7 +1121,7 @@
                 window.removeEventListener('resize', instance.update, passive);
             }
         };
-    } // eslint-disable-next-line import/no-unused-modules
+    } / eslint-disable-next-line import/no-unused-modules
 
 
     var eventListeners = {
@@ -1138,17 +1138,17 @@
     {
         var state = _ref.state,
             name = _ref.name;
-        // Offsets are the actual position the popper needs to have to be
-        // properly positioned near its reference element
-        // This is the most basic placement, and will be adjusted by
-        // the modifiers in the next step
+        / Offsets are the actual position the popper needs to have to be
+        / properly positioned near its reference element
+        / This is the most basic placement, and will be adjusted by
+        / the modifiers in the next step
         state.modifiersData[name] = computeOffsets({
             reference: state.rects.reference,
             element: state.rects.popper,
             strategy: 'absolute',
             placement: state.placement
         });
-    } // eslint-disable-next-line import/no-unused-modules
+    } / eslint-disable-next-line import/no-unused-modules
 
 
     var popperOffsets$1 = {
@@ -1164,9 +1164,9 @@
         right: 'auto',
         bottom: 'auto',
         left: 'auto'
-    }; // Round the offsets to the nearest suitable subpixel based on the DPR.
-    // Zooming can change the DPR, but it seems to report a value that will
-    // cleanly divide the values into the appropriate subpixels.
+    }; / Round the offsets to the nearest suitable subpixel based on the DPR.
+    / Zooming can change the DPR, but it seems to report a value that will
+    / cleanly divide the values into the appropriate subpixels.
 
     function roundOffsetsByDPR(_ref)
     {
@@ -1210,7 +1210,7 @@
 
             if (offsetParent === getWindow(popper)) {
                 offsetParent = getDocumentElement(popper);
-            } // $FlowFixMe[incompatible-cast]: force type refinement, we compare offsetParent with window above, but Flow doesn't detect it
+            } / $FlowFixMe[incompatible-cast]: force type refinement, we compare offsetParent with window above, but Flow doesn't detect it
 
             /*:: offsetParent = (offsetParent: Element); */
 
@@ -1290,7 +1290,7 @@
         state.attributes.popper = Object.assign(Object.assign({}, state.attributes.popper), {}, {
             'data-popper-placement': state.placement
         });
-    } // eslint-disable-next-line import/no-unused-modules
+    } / eslint-disable-next-line import/no-unused-modules
 
 
     var computeStyles$1 = {
@@ -1301,7 +1301,7 @@
         data: {}
     };
 
-    // and applies them to the HTMLElements such as popper and arrow
+    / and applies them to the HTMLElements such as popper and arrow
 
     function applyStyles(_ref)
     {
@@ -1309,13 +1309,13 @@
         Object.keys(state.elements).forEach(function (name) {
             var style = state.styles[name] || {};
             var attributes = state.attributes[name] || {};
-            var element = state.elements[name]; // arrow is optional + virtual elements
+            var element = state.elements[name]; / arrow is optional + virtual elements
 
             if (!isHTMLElement(element) || !getNodeName(element)) {
                 return;
-            } // Flow doesn't support to extend this property, but it's the most
-            // effective way to apply styles to an HTMLElement
-            // $FlowFixMe[cannot-write]
+            } / Flow doesn't support to extend this property, but it's the most
+            / effective way to apply styles to an HTMLElement
+            / $FlowFixMe[cannot-write]
 
 
             Object.assign(element.style, style);
@@ -1356,12 +1356,12 @@
             Object.keys(state.elements).forEach(function (name) {
                 var element = state.elements[name];
                 var attributes = state.attributes[name] || {};
-                var styleProperties = Object.keys(state.styles.hasOwnProperty(name) ? state.styles[name] : initialStyles[name]); // Set all values to an empty string to unset them
+                var styleProperties = Object.keys(state.styles.hasOwnProperty(name) ? state.styles[name] : initialStyles[name]); / Set all values to an empty string to unset them
 
                 var style = styleProperties.reduce(function (style, property) {
                     style[property] = '';
                     return style;
-                }, {}); // arrow is optional + virtual elements
+                }, {}); / arrow is optional + virtual elements
 
                 if (!isHTMLElement(element) || !getNodeName(element)) {
                     return;
@@ -1373,7 +1373,7 @@
                 });
             });
         };
-    } // eslint-disable-next-line import/no-unused-modules
+    } / eslint-disable-next-line import/no-unused-modules
 
 
     var applyStyles$1 = {
@@ -1428,7 +1428,7 @@
         }
 
         state.modifiersData[name] = data;
-    } // eslint-disable-next-line import/no-unused-modules
+    } / eslint-disable-next-line import/no-unused-modules
 
 
     var offset$1 = {
@@ -1496,7 +1496,7 @@
             {
                 console.error(['Popper: The `allowedAutoPlacements` option did not allow any', 'placements. Ensure the `placement` option matches the variation', 'of the allowed placements.', 'For example, "auto" cannot be used to allow "bottom-start".', 'Use "auto-start" instead.'].join(' '));
             }
-        } // $FlowFixMe[incompatible-type]: Flow seems to have problems with two array unions...
+        } / $FlowFixMe[incompatible-type]: Flow seems to have problems with two array unions...
 
 
         var overflows = allowedPlacements.reduce(function (acc, placement) {
@@ -1609,7 +1609,7 @@
         }
 
         if (makeFallbackChecks) {
-            // `2` may be desired in some cases – research later
+            / `2` may be desired in some cases – research later
             var numberOfChecks = flipVariations ? 3 : 1;
 
             var _loop = function _loop(_i)
@@ -1644,7 +1644,7 @@
             state.placement = firstFittingPlacement;
             state.reset = true;
         }
-    } // eslint-disable-next-line import/no-unused-modules
+    } / eslint-disable-next-line import/no-unused-modules
 
 
     var flip$1 = {
@@ -1720,8 +1720,8 @@
             var max = popperOffsets[mainAxis] - overflow[altSide];
             var additive = tether ? -popperRect[len] / 2 : 0;
             var minLen = variation === start ? referenceRect[len] : popperRect[len];
-            var maxLen = variation === start ? -popperRect[len] : -referenceRect[len]; // We need to include the arrow in the calculation so the arrow doesn't go
-            // outside the reference bounds
+            var maxLen = variation === start ? -popperRect[len] : -referenceRect[len]; / We need to include the arrow in the calculation so the arrow doesn't go
+            / outside the reference bounds
 
             var arrowElement = state.elements.arrow;
             var arrowRect = tether && arrowElement ? getLayoutRect(arrowElement) : {
@@ -1730,11 +1730,11 @@
             };
             var arrowPaddingObject = state.modifiersData['arrow#persistent'] ? state.modifiersData['arrow#persistent'].padding : getFreshSideObject();
             var arrowPaddingMin = arrowPaddingObject[mainSide];
-            var arrowPaddingMax = arrowPaddingObject[altSide]; // If the reference length is smaller than the arrow length, we don't want
-            // to include its full size in the calculation. If the reference is small
-            // and near the edge of a boundary, the popper can overflow even if the
-            // reference is not overflowing as well (e.g. virtual elements with no
-            // width or height)
+            var arrowPaddingMax = arrowPaddingObject[altSide]; / If the reference length is smaller than the arrow length, we don't want
+            / to include its full size in the calculation. If the reference is small
+            / and near the edge of a boundary, the popper can overflow even if the
+            / reference is not overflowing as well (e.g. virtual elements with no
+            / width or height)
 
             var arrowLen = within(0, referenceRect[len], arrowRect[len]);
             var minOffset = isBasePlacement ? referenceRect[len] / 2 - additive - arrowLen - arrowPaddingMin - tetherOffsetValue : minLen - arrowLen - arrowPaddingMin - tetherOffsetValue;
@@ -1767,7 +1767,7 @@
         }
 
         state.modifiersData[name] = data;
-    } // eslint-disable-next-line import/no-unused-modules
+    } / eslint-disable-next-line import/no-unused-modules
 
 
     var preventOverflow$1 = {
@@ -1803,13 +1803,13 @@
         var startDiff = popperOffsets[axis] - state.rects.reference[axis];
         var arrowOffsetParent = getOffsetParent(arrowElement);
         var clientSize = arrowOffsetParent ? axis === 'y' ? arrowOffsetParent.clientHeight || 0 : arrowOffsetParent.clientWidth || 0 : 0;
-        var centerToReference = endDiff / 2 - startDiff / 2; // Make sure the arrow doesn't overflow the popper if the center point is
-        // outside of the popper bounds
+        var centerToReference = endDiff / 2 - startDiff / 2; / Make sure the arrow doesn't overflow the popper if the center point is
+        / outside of the popper bounds
 
         var min = paddingObject[minProp];
         var max = clientSize - arrowRect[len] - paddingObject[maxProp];
         var center = clientSize / 2 - arrowRect[len] / 2 + centerToReference;
-        var offset = within(min, center, max); // Prevents breaking syntax highlighting...
+        var offset = within(min, center, max); / Prevents breaking syntax highlighting...
 
         var axisProp = axis;
         state.modifiersData[name] = (_state$modifiersData$ = {}, _state$modifiersData$[axisProp] = offset, _state$modifiersData$.centerOffset = offset - center, _state$modifiersData$);
@@ -1827,7 +1827,7 @@
 
         if (arrowElement == null) {
             return;
-        } // CSS selector
+        } / CSS selector
 
 
         if (typeof arrowElement === 'string') {
@@ -1856,7 +1856,7 @@
         state.modifiersData[name + "#persistent"] = {
             padding: mergePaddingObject(typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements))
         };
-    } // eslint-disable-next-line import/no-unused-modules
+    } / eslint-disable-next-line import/no-unused-modules
 
 
     var arrow$1 = {
@@ -1920,7 +1920,7 @@
             'data-popper-reference-hidden': isReferenceHidden,
             'data-popper-escaped': hasPopperEscaped
         });
-    } // eslint-disable-next-line import/no-unused-modules
+    } / eslint-disable-next-line import/no-unused-modules
 
 
     var hide$1 = {
@@ -1934,12 +1934,12 @@
     var defaultModifiers = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1];
     var createPopper = /*#__PURE__*/ popperGenerator({
         defaultModifiers: defaultModifiers
-    }); // eslint-disable-next-line import/no-unused-modules
+    }); / eslint-disable-next-line import/no-unused-modules
 
     var defaultModifiers$1 = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1, offset$1, flip$1, preventOverflow$1, arrow$1, hide$1];
     var createPopper$1 = /*#__PURE__*/ popperGenerator({
         defaultModifiers: defaultModifiers$1
-    }); // eslint-disable-next-line import/no-unused-modules
+    }); / eslint-disable-next-line import/no-unused-modules
 
     exports.applyStyles = applyStyles$1;
     exports.arrow = arrow$1;

@@ -29,7 +29,7 @@
         loadSelector: function (selector) {
             $(selector).each(function () {
                 if (this._tippy) {
-                    // already init
+                    / already init
                     return;
                 }
 
@@ -54,7 +54,7 @@
         loadCopySelector: function (selector) {
             $(selector).each(function () {
                 if (this._tippy) {
-                    // already init
+                    / already init
                     return;
                 }
 
@@ -75,7 +75,7 @@
                 var copyTitle = element.is('[data-dup-copy-title]') ? element.data('dup-copy-title') : DuplicatorTooltip.messages.copy;
                 tippyElement.setContent('<div class="dup-tippy-content">' + copyTitle + '</div>');
 
-                //Have to set manually otherwise might hide on click.
+                /Have to set manually otherwise might hide on click.
                 element.mouseover(function () {
                     tippyElement.show();
                 }).mouseout(function () {

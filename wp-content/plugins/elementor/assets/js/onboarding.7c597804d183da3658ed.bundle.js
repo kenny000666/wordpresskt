@@ -29,7 +29,7 @@ function PopoverDialog(props) {
     popoverRef = (0, _react.useCallback)(function (popoverEl) {
       var target = targetRef === null || targetRef === void 0 ? void 0 : targetRef.current;
 
-      // If the target or the popover element does not exist on the page anymore after a re-render, do nothing.
+      / If the target or the popover element does not exist on the page anymore after a re-render, do nothing.
       if (!target || !popoverEl) {
         return;
       }
@@ -46,7 +46,7 @@ function PopoverDialog(props) {
         popoverEl.style.top = targetRect.bottom + offsetTop + 'px';
         popoverEl.style.left = targetRect.left - widthDifference / 2 - offsetLeft + 'px';
 
-        // 16px to compensate for the arrow width.
+        / 16px to compensate for the arrow width.
         popoverEl.style.setProperty('--popover-arrow-offset-end', (popoverRect.width - 16) / 2 + 'px');
       };
 
@@ -65,13 +65,13 @@ function PopoverDialog(props) {
         var hideOnMouseOut = true,
           timeOut = null;
 
-        // Show popover on hover of the target
+        / Show popover on hover of the target
         target.addEventListener('mouseover', function () {
           hideOnMouseOut = true;
           showPopover();
         });
 
-        // Hide popover when not overing over the target or the popover itself
+        / Hide popover when not overing over the target or the popover itself
         target.addEventListener('mouseleave', function () {
           timeOut = setTimeout(function () {
             if (hideOnMouseOut) {
@@ -82,7 +82,7 @@ function PopoverDialog(props) {
           }, hideAfter);
         });
 
-        // Don't hide the popover if the user is still hovering over it.
+        / Don't hide the popover if the user is still hovering over it.
         popoverEl.addEventListener('mouseover', function () {
           hideOnMouseOut = false;
           if (timeOut) {
@@ -91,7 +91,7 @@ function PopoverDialog(props) {
           }
         });
 
-        // Once the user stops hovering over the popover, hide it.
+        / Once the user stops hovering over the popover, hide it.
         popoverEl.addEventListener('mouseleave', function () {
           timeOut = setTimeout(function () {
             if (hideOnMouseOut) {
@@ -121,12 +121,12 @@ function PopoverDialog(props) {
           }
         });
 
-        // Make sure the popover doesn't close when it is clicked on.
+        / Make sure the popover doesn't close when it is clicked on.
         popoverEl.addEventListener('click', function (e) {
           e.stopPropagation();
         });
 
-        // Hide the popover when clicking outside of it.
+        / Hide the popover when clicking outside of it.
         document.body.addEventListener('click', function () {
           if (popoverIsActive) {
             hidePopover();
@@ -199,10 +199,10 @@ var _chooseFeatures = _interopRequireDefault(__webpack_require__(/*! ./pages/cho
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function App() {
-  // Send an AJAX request to update the database option which makes sure the Onboarding process only runs once,
-  // for new Elementor sites.
+  / Send an AJAX request to update the database option which makes sure the Onboarding process only runs once,
+  / for new Elementor sites.
   (0, _react.useEffect)(function () {
-    // This is to prevent dark theme in onboarding app from the frontend and not backend
+    / This is to prevent dark theme in onboarding app from the frontend and not backend
     var darkThemeClassName = 'eps-theme-dark';
     var hasDarkMode = document.body.classList.contains(darkThemeClassName);
     if (hasDarkMode) {
@@ -429,7 +429,7 @@ function GoProPopover(props) {
     state = _useContext.state,
     updateState = _useContext.updateState;
 
-  // Handle the Pro Upload popup window.
+  / Handle the Pro Upload popup window.
   var alreadyHaveProButtonRef = (0, _react.useCallback)(function (alreadyHaveProButton) {
     if (!alreadyHaveProButton) {
       return;
@@ -445,10 +445,10 @@ function GoProPopover(props) {
         }
       });
 
-      // Open the Pro Upload screen in a popup.
+      / Open the Pro Upload screen in a popup.
       window.open(alreadyHaveProButton.href + '&mode=popup', 'elementorUploadPro', "toolbar=no, menubar=no, width=728, height=531, top=100, left=100");
 
-      // Run the callback for when the upload succeeds.
+      / Run the callback for when the upload succeeds.
       elementorCommon.elements.$body.on('elementor/upload-and-install-pro/success', function () {
         updateState({
           hasPro: true,
@@ -462,7 +462,7 @@ function GoProPopover(props) {
     });
   }, []);
 
-  // The buttonsConfig prop is an array of objects. To find the 'Upgrade Now' button, we need to iterate over the object.
+  / The buttonsConfig prop is an array of objects. To find the 'Upgrade Now' button, we need to iterate over the object.
   var goProButton = props.buttonsConfig.find(function (button) {
       return 'go-pro' === button.id;
     }),
@@ -654,7 +654,7 @@ function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return 
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function Layout(props) {
   (0, _react.useEffect)(function () {
-    // Send modal load event for current step.
+    / Send modal load event for current step.
     elementorCommon.events.dispatchEvent({
       event: 'modal load',
       version: '',
@@ -928,7 +928,7 @@ function ProgressBarItem(props) {
   }
   return (
     /*#__PURE__*/
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+    / eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     _react.default.createElement("div", {
       onClick: props.onClick,
       className: itemClasses
@@ -981,7 +981,7 @@ function ProgressBar() {
       route: 'account'
     }];
 
-  // If hello theme is already activated when onboarding starts, don't show this step in the onboarding.
+  / If hello theme is already activated when onboarding starts, don't show this step in the onboarding.
   if (!elementorAppConfig.onboarding.helloActivated) {
     progressBarItemsConfig.push({
       id: 'hello',
@@ -1076,10 +1076,10 @@ function SkipButton(props) {
     },
     action = button.action || skipStep;
 
-  // Make sure the 'action' prop doesn't get printed on the button markup which causes an error.
+  / Make sure the 'action' prop doesn't get printed on the button markup which causes an error.
   delete button.action;
 
-  // If the button is a link, no onClick functionality should be added.
+  / If the button is a link, no onClick functionality should be added.
   button.onClick = function () {
     elementorCommon.events.dispatchEvent({
       event: 'skip',
@@ -1133,7 +1133,7 @@ var OnboardingContext = exports.OnboardingContext = (0, _react.createContext)({}
 function ContextProvider(props) {
   var onboardingConfig = elementorAppConfig.onboarding,
     initialState = {
-      // eslint-disable-next-line camelcase
+      / eslint-disable-next-line camelcase
       hasPro: elementorAppConfig.hasPro,
       isLibraryConnected: onboardingConfig.isLibraryConnected,
       isHelloThemeInstalled: onboardingConfig.helloInstalled,
@@ -1241,8 +1241,8 @@ function Account() {
     };
   }
 
-  // If the user is not connected, the on-click action is handled by the <Connect> component, so there is no onclick
-  // property.
+  / If the user is not connected, the on-click action is handled by the <Connect> component, so there is no onclick
+  / property.
   var actionButton = {
     role: 'button'
   };
@@ -1561,7 +1561,7 @@ function GoodToGo() {
     text: __('Choose a professionally-designed template or import your own', 'elementor'),
     link: kitLibraryLink,
     clickAction: function clickAction() {
-      // The location is reloaded to make sure the Kit Library's state is re-created.
+      / The location is reloaded to make sure the Kit Library's state is re-created.
       location.href = kitLibraryLink;
       location.reload();
     }
@@ -1663,7 +1663,7 @@ function HelloTheme() {
     }
   }, []);
   var resetScreenContent = function resetScreenContent() {
-    // Clear any active timeouts for changing the action button text during installation.
+    / Clear any active timeouts for changing the action button text during installation.
     activeTimeouts.forEach(function (timeoutID) {
       return clearTimeout(timeoutID);
     });
@@ -1847,7 +1847,7 @@ function HelloTheme() {
           message: __('There was a problem activating Hello Biz Theme.', 'elementor')
         });
 
-        // Clear any active timeouts for changing the action button text during installation.
+        / Clear any active timeouts for changing the action button text during installation.
         resetScreenContent();
       }
     }
@@ -1948,7 +1948,7 @@ function SiteLogo() {
           if (file.id !== state.siteLogo.id) {
             updateSiteLogo();
           } else {
-            // If the currently displayed logo is already set as the site logo, just go to the next screen.
+            / If the currently displayed logo is already set as the site logo, just go to the next screen.
             var stateToUpdate = getStateObjectToUpdate(state, 'steps', pageId, 'completed');
             updateState(stateToUpdate);
             navigate('onboarding/' + nextStep);
@@ -2024,7 +2024,7 @@ function SiteLogo() {
   /**
    * Ajax Callbacks
    */
-  // Run the callback for the new image upload AJAX request.
+  / Run the callback for the new image upload AJAX request.
   (0, _react.useEffect)(function () {
     if ('initial' !== uploadImageAjaxState.status) {
       var _uploadImageAjaxState;
@@ -2063,7 +2063,7 @@ function SiteLogo() {
     }
   }, [uploadImageAjaxState.status]);
 
-  // Run the callback for the site logo update AJAX request.
+  / Run the callback for the site logo update AJAX request.
   (0, _react.useEffect)(function () {
     if ('initial' !== updateLogoAjaxState.status) {
       var _updateLogoAjaxState$;
@@ -2142,7 +2142,7 @@ function SiteLogo() {
       return _onFileSelect(selectedFile);
     },
     onWpMediaSelect: function onWpMediaSelect(frame) {
-      // Get media attachment details from the frame state
+      / Get media attachment details from the frame state
       var attachment = frame.state().get('selection').first().toJSON();
       setFileSource('browse');
       setFile(attachment);
@@ -2158,7 +2158,7 @@ function SiteLogo() {
         }
       });
     }
-    // TODO: DEAL WITH ERROR
+    / TODO: DEAL WITH ERROR
     ,
     onError: function onError(error) {
       if ('file_not_allowed' === error.id) {
@@ -2256,7 +2256,7 @@ function SiteName() {
           }
         });
 
-        // Only run the site name update AJAX if the new name is different than the existing one and it isn't empty.
+        / Only run the site name update AJAX if the new name is different than the existing one and it isn't empty.
         if (nameInputRef.current.value !== state.siteName && '' !== nameInputRef.current.value) {
           setAjax({
             data: {
@@ -2287,7 +2287,7 @@ function SiteName() {
     actionButton.className = 'e-onboarding__button--disabled';
   }
 
-  // Run the callback for the site name update AJAX request.
+  / Run the callback for the site name update AJAX request.
   (0, _react.useEffect)(function () {
     if ('initial' !== ajaxState.status) {
       var _ajaxState$response;
@@ -2419,7 +2419,7 @@ function UploadAndInstallPro() {
   /**
    * Ajax Callbacks
    */
-  // Run the callback that runs when the Pro Upload Ajax returns a response.
+  / Run the callback that runs when the Pro Upload Ajax returns a response.
   (0, _react.useEffect)(function () {
     if ('initial' !== installProZipAjaxState.status) {
       var _installProZipAjaxSta;

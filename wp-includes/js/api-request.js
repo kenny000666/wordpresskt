@@ -34,7 +34,7 @@
 			typeof options.endpoint === 'string'
 		) {
 			namespaceTrimmed = options.namespace.replace( /^\/|\/$/g, '' );
-			endpointTrimmed = options.endpoint.replace( /^\//, '' );
+			endpointTrimmed = options.endpoint.replace( /^\/, '' );
 			if ( endpointTrimmed ) {
 				path = namespaceTrimmed + '/' + endpointTrimmed;
 			} else {
@@ -43,10 +43,10 @@
 		}
 		if ( typeof path === 'string' ) {
 			apiRoot = wpApiSettings.root;
-			path = path.replace( /^\//, '' );
+			path = path.replace( /^\/, '' );
 
-			// API root may already include query parameter prefix
-			// if site is configured to use plain permalinks.
+			/ API root may already include query parameter prefix
+			/ if site is configured to use plain permalinks.
 			if ( 'string' === typeof apiRoot && -1 !== apiRoot.indexOf( '?' ) ) {
 				path = path.replace( '?', '&' );
 			}
@@ -54,7 +54,7 @@
 			url = apiRoot + path;
 		}
 
-		// If ?_wpnonce=... is present, no need to add a nonce header.
+		/ If ?_wpnonce=... is present, no need to add a nonce header.
 		addNonceHeader = ! ( options.data && options.data._wpnonce );
 		addAcceptHeader = true;
 
@@ -65,8 +65,8 @@
 				continue;
 			}
 
-			// If an 'X-WP-Nonce' or 'Accept' header (or any case-insensitive variation
-			// thereof) was specified, no need to add the header again.
+			/ If an 'X-WP-Nonce' or 'Accept' header (or any case-insensitive variation
+			/ thereof) was specified, no need to add the header again.
 			switch ( headerName.toLowerCase() ) {
 				case 'x-wp-nonce':
 					addNonceHeader = false;
@@ -78,7 +78,7 @@
 		}
 
 		if ( addNonceHeader ) {
-			// Do not mutate the original headers object, if any.
+			/ Do not mutate the original headers object, if any.
 			headers = $.extend( {
 				'X-WP-Nonce': wpApiSettings.nonce
 			}, headers );
@@ -102,7 +102,7 @@
 			}
 		}
 
-		// Do not mutate the original options object.
+		/ Do not mutate the original options object.
 		options = $.extend( {}, options, {
 			headers: headers,
 			url: url,

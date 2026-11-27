@@ -90,7 +90,7 @@
             window.tmPromo.destroy();
         })
 
-        // install/activate plugin
+        / install/activate plugin
         $(document).on("click", ".wpdeveloper-plugin-installer", function (ev) {
             ev.preventDefault();
 

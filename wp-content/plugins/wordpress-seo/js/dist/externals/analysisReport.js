@@ -2,10 +2,10 @@
 	display: grid;
 	grid-template-rows: 1fr;
 	max-width: 32px;
-	// This gap value is half the gap value between assessment result list items, which is 12px.
+	/ This gap value is half the gap value between assessment result list items, which is 12px.
 	gap: 6px;
 `,b=p().li`
-	// This is the height of the IconButtonToggle.
+	/ This is the height of the IconButtonToggle.
 	min-height: 24px;
 	margin-bottom: 12px;
 	padding: 0;
@@ -27,14 +27,14 @@
 (0,o.__)("Edit your %1$s","wordpress-seo"),y);return(0,s.createElement)(x,{key:e.id,id:e.id,text:e.text,marker:e.marker,bulletColor:l,hasMarksButton:e.hasMarks,hasEditButton:e.hasJumps,hasAIFixes:e.hasAIFixes,ariaLabelMarks:C,ariaLabelEdit:f,pressed:k,suppressedText:"upsell"===e.rating,buttonIdMarks:B,buttonIdEdit:b,onButtonClickMarks:()=>u(e.id,e.marker),onButtonClickEdit:()=>d(e.id),marksButtonClassName:n,editButtonClassName:i,marksButtonStatus:r,hasBetaBadgeLabel:e.hasBetaBadge,isPremium:p,onResultChange:m,markButtonFactory:a,shouldUpsellHighlighting:g,renderAIOptimizeButton:h,renderHighlightingUpsell:c})})))}v.propTypes={results:u().array.isRequired,marksButtonActivatedResult:u().string,marksButtonStatus:u().string,marksButtonClassName:u().string,editButtonClassName:u().string,markButtonFactory:u().func,onMarksButtonClick:u().func,onEditButtonClick:u().func,isPremium:u().bool,onResultChange:u().func,shouldUpsellHighlighting:u().bool,renderHighlightingUpsell:u().func,renderAIOptimizeButton:u().func};const _=p().div`
 	width: 100%;
 	background-color: white;
-	border-bottom: 1px solid transparent; // Avoid parent and child margin collapsing.
+	border-bottom: 1px solid transparent; / Avoid parent and child margin collapsing.
 `,I=p()(m.Collapsible)`
 	margin-bottom: 8px;
 
 	${m.StyledIconsButton} {
 		padding: 8px 0;
 		color: ${n.colors.$color_blue};
-		margin: -2px 8px 0 -2px; // Compensate icon size set to 18px.
+		margin: -2px 8px 0 -2px; / Compensate icon size set to 18px.
 	}
 `;class N extends r().Component{renderCollapsible(e,t,r){return(0,s.createElement)(I,{initialIsOpen:!0,title:`${e} (${r.length})`,prefixIcon:{icon:"angle-up",color:n.colors.$color_grey_dark,size:"18px"},prefixIconCollapsed:{icon:"angle-down",color:n.colors.$color_grey_dark,size:"18px"},suffixIcon:null,suffixIconCollapsed:null,headingProps:{level:t,fontSize:"13px",fontWeight:"500",color:"#1e1e1e"}},(0,s.createElement)(v,{results:r,marksButtonActivatedResult:this.props.activeMarker,marksButtonStatus:this.props.marksButtonStatus,marksButtonClassName:this.props.marksButtonClassName,editButtonClassName:this.props.editButtonClassName,markButtonFactory:this.props.markButtonFactory,onMarksButtonClick:this.props.onMarkButtonClick,onEditButtonClick:this.props.onEditButtonClick,renderAIOptimizeButton:this.props.renderAIOptimizeButton,isPremium:this.props.isPremium,onResultChange:this.props.onResultChange,shouldUpsellHighlighting:this.props.shouldUpsellHighlighting,renderHighlightingUpsell:this.props.renderHighlightingUpsell}))}render(){const{problemsResults:e,improvementsResults:t,goodResults:r,considerationsResults:n,errorsResults:i,upsellResults:l,headingLevel:a,resultCategoryLabels:u}=this.props,d=i.length,p=e.length,m=t.length,g=n.length,c=r.length,h=l.length,k={errors:(0,o.__)("Errors","wordpress-seo"),problems:(0,o.__)("Problems","wordpress-seo"),improvements:(0,o.__)("Improvements","wordpress-seo"),considerations:(0,o.__)("Considerations","wordpress-seo"),goodResults:(0,o.__)("Good results","wordpress-seo")},B=Object.assign(k,u);return(0,s.createElement)(_,null,d>0&&this.renderCollapsible(B.errors,a,i),p+h>0&&this.renderCollapsible(B.problems,a,[...l,...e]),m>0&&this.renderCollapsible(B.improvements,a,t),g>0&&this.renderCollapsible(B.considerations,a,n),c>0&&this.renderCollapsible(B.goodResults,a,r))}}N.propTypes={onMarkButtonClick:u().func,onEditButtonClick:u().func,problemsResults:u().array,improvementsResults:u().array,goodResults:u().array,considerationsResults:u().array,errorsResults:u().array,upsellResults:u().array,headingLevel:u().number,marksButtonStatus:u().string,marksButtonClassName:u().string,markButtonFactory:u().func,editButtonClassName:u().string,activeMarker:u().string,isPremium:u().bool,resultCategoryLabels:u().shape({errors:u().string,problems:u().string,improvements:u().string,considerations:u().string,goodResults:u().string}),onResultChange:u().func,shouldUpsellHighlighting:u().bool,renderHighlightingUpsell:u().func,renderAIOptimizeButton:u().func},N.defaultProps={onMarkButtonClick:()=>{},onEditButtonClick:()=>{},problemsResults:[],improvementsResults:[],goodResults:[],considerationsResults:[],errorsResults:[],upsellResults:[],headingLevel:4,marksButtonStatus:"enabled",marksButtonClassName:"",markButtonFactory:null,editButtonClassName:"",activeMarker:"",isPremium:!1,resultCategoryLabels:{},onResultChange:()=>{},shouldUpsellHighlighting:!1,renderHighlightingUpsell:()=>{},renderAIOptimizeButton:()=>{}};const A=N,M=p().div`
 `,S=p().p`

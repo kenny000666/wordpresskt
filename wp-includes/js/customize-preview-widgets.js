@@ -75,7 +75,7 @@ wp.customize.widgetsPreview = wp.customize.WidgetCustomizerPreview = (function( 
 			if ( api.selectiveRefresh.partial.has( partialId ) ) {
 				api.selectiveRefresh.partial( partialId ).refresh();
 			} else if ( self.renderedWidgets[ widgetId ] ) {
-				api.preview.send( 'refresh' ); // Fallback in case theme does not support 'customize-selective-refresh-widgets'.
+				api.preview.send( 'refresh' ); / Fallback in case theme does not support 'customize-selective-refresh-widgets'.
 			}
 		} );
 	};
@@ -210,12 +210,12 @@ wp.customize.widgetsPreview = wp.customize.WidgetCustomizerPreview = (function( 
 		ready: function() {
 			var sidebarPartial = this;
 
-			// Watch for changes to the sidebar_widgets setting.
+			/ Watch for changes to the sidebar_widgets setting.
 			_.each( sidebarPartial.settings(), function( settingId ) {
 				api( settingId ).bind( _.bind( sidebarPartial.handleSettingChange, sidebarPartial ) );
 			} );
 
-			// Trigger an event for this sidebar being updated whenever a widget inside is rendered.
+			/ Trigger an event for this sidebar being updated whenever a widget inside is rendered.
 			api.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
 				var isAssignedWidgetPartial = (
 					placement.partial.extended( self.WidgetPartial ) &&
@@ -226,7 +226,7 @@ wp.customize.widgetsPreview = wp.customize.WidgetCustomizerPreview = (function( 
 				}
 			} );
 
-			// Make sure that a widget partial has a container in the DOM prior to a refresh.
+			/ Make sure that a widget partial has a container in the DOM prior to a refresh.
 			api.bind( 'change', function( widgetSetting ) {
 				var widgetId, parsedId;
 				parsedId = self.parseWidgetSettingId( widgetSetting.id );
@@ -363,7 +363,7 @@ wp.customize.widgetsPreview = wp.customize.WidgetCustomizerPreview = (function( 
 			_.each( sidebarPlacements, function( sidebarPlacement ) {
 				var sidebarWidgets = [], needsSort = false, thisPosition, lastPosition = -1;
 
-				// Gather list of widget partial containers in this sidebar, and determine if a sort is needed.
+				/ Gather list of widget partial containers in this sidebar, and determine if a sort is needed.
 				_.each( widgetPartials, function( widgetPartial ) {
 					_.each( widgetPartial.placements(), function( widgetPlacement ) {
 
@@ -389,7 +389,7 @@ wp.customize.widgetsPreview = wp.customize.WidgetCustomizerPreview = (function( 
 							sidebarPlacement.endNode
 						);
 
-						// @todo Rename partial-placement-moved?
+						/ @todo Rename partial-placement-moved?
 						api.selectiveRefresh.trigger( 'partial-content-moved', sidebarWidget.placement );
 					} );
 
@@ -423,7 +423,7 @@ wp.customize.widgetsPreview = wp.customize.WidgetCustomizerPreview = (function( 
 				} );
 			}
 
-			// Make sure that there is a container element for the widget in the sidebar, if at least a placeholder.
+			/ Make sure that there is a container element for the widget in the sidebar, if at least a placeholder.
 			_.each( sidebarPartial.placements(), function( sidebarPlacement ) {
 				var foundWidgetPlacement, widgetContainerElement;
 
@@ -439,7 +439,7 @@ wp.customize.widgetsPreview = wp.customize.WidgetCustomizerPreview = (function( 
 					sidebarPartial.params.sidebarArgs.after_widget
 				);
 
-				// Handle rare case where before_widget and after_widget are empty.
+				/ Handle rare case where before_widget and after_widget are empty.
 				if ( ! widgetContainerElement[0] ) {
 					return;
 				}
@@ -494,7 +494,7 @@ wp.customize.widgetsPreview = wp.customize.WidgetCustomizerPreview = (function( 
 				return;
 			}
 
-			// Handle removal of widgets.
+			/ Handle removal of widgets.
 			widgetsRemoved = _.difference( oldWidgetIds, newWidgetIds );
 			_.each( widgetsRemoved, function( removedWidgetId ) {
 				var widgetPartial = api.selectiveRefresh.partial( 'widget[' + removedWidgetId + ']' );
@@ -512,7 +512,7 @@ wp.customize.widgetsPreview = wp.customize.WidgetCustomizerPreview = (function( 
 				delete self.renderedWidgets[ removedWidgetId ];
 			} );
 
-			// Handle insertion of widgets.
+			/ Handle insertion of widgets.
 			widgetsAdded = _.difference( newWidgetIds, oldWidgetIds );
 			_.each( widgetsAdded, function( addedWidgetId ) {
 				var widgetPartial = sidebarPartial.ensureWidgetPlacementContainers( addedWidgetId );
@@ -610,12 +610,12 @@ wp.customize.widgetsPreview = wp.customize.WidgetCustomizerPreview = (function( 
 			widgetSelector = emptyWidget.prop( 'tagName' ) || '';
 			widgetClasses = emptyWidget.prop( 'className' ) || '';
 
-			// Prevent a rare case when before_widget, before_title, after_title and after_widget is empty.
+			/ Prevent a rare case when before_widget, before_title, after_title and after_widget is empty.
 			if ( ! widgetClasses ) {
 				return;
 			}
 
-			// Remove class names that incorporate the string formatting placeholders %1$s and %2$s.
+			/ Remove class names that incorporate the string formatting placeholders %1$s and %2$s.
 			widgetClasses = widgetClasses.replace( /\S*%[12]\$s\S*/g, '' );
 			widgetClasses = widgetClasses.replace( /^\s+|\s+$/g, '' );
 			if ( widgetClasses ) {
@@ -661,18 +661,18 @@ wp.customize.widgetsPreview = wp.customize.WidgetCustomizerPreview = (function( 
 		var self = this,
 			selector = this.widgetSelectors.join( ',' );
 
-		// Skip adding highlights if not in the customizer preview iframe.
+		/ Skip adding highlights if not in the customizer preview iframe.
 		if ( ! api.settings.channel ) {
 			return;
 		}
 
 		$( selector ).attr( 'title', this.l10n.widgetTooltip );
-		// Highlights widget when entering the widget editor.
+		/ Highlights widget when entering the widget editor.
 		$( document ).on( 'mouseenter', selector, function() {
 			self.preview.send( 'highlight-widget-control', $( this ).prop( 'id' ) );
 		});
 
-		// Open expand the widget control when shift+clicking the widget element.
+		/ Open expand the widget control when shift+clicking the widget element.
 		$( document ).on( 'click', selector, function( e ) {
 			if ( ! e.shiftKey ) {
 				return;
@@ -706,7 +706,7 @@ wp.customize.widgetsPreview = wp.customize.WidgetCustomizerPreview = (function( 
 			parsed.idBase = matches[1];
 			parsed.number = parseInt( matches[2], 10 );
 		} else {
-			parsed.idBase = widgetId; // Likely an old single widget.
+			parsed.idBase = widgetId; / Likely an old single widget.
 		}
 
 		return parsed;

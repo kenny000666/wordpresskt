@@ -42,7 +42,7 @@ function collapse( evt ) {
 }
 
 function addCollapser( item ) {
-	// This mainly filters out the root object (which shouldn't be collapsible).
+	/ This mainly filters out the root object (which shouldn't be collapsible).
 	if ( item.nodeName !== 'LI' ) {
 		return;
 	}
@@ -83,22 +83,22 @@ function jsonView( id, target ) {
 			return;
 		}
 	}
-	// Note: now using "*.json*" URI matching rather than these page regexes -- save CPU cycles!
-	// var is_json = /^\s*(\{.*\})\s*$/.test(this.data);
-	// var is_jsonp = /^.*\(\s*(\{.*\})\s*\)$/.test(this.data);
-	// if(is_json || is_jsonp){
-	// Our manifest specifies that we only do URLs matching '.json', so attempt to sanitize any HTML
-	// added by Chrome's "text/plain" or "text/html" handlers.
+	/ Note: now using "*.json*" URI matching rather than these page regexes -- save CPU cycles!
+	/ var is_json = /^\s*(\{.*\})\s*$/.test(this.data);
+	/ var is_jsonp = /^.*\(\s*(\{.*\})\s*\)$/.test(this.data);
+	/ if(is_json || is_jsonp){
+	/ Our manifest specifies that we only do URLs matching '.json', so attempt to sanitize any HTML
+	/ added by Chrome's "text/plain" or "text/html" handlers.
 	if ( /^\<pre.*\>(.*)\<\/pre\>$/.test( this.data ) ) {
 		if ( this.debug ) {
 			console.log( 'JSONView: data is wrapped in <pre>...</pre>, stripping HTML...' );
 		}
-		this.data = this.data.replace( /<(?:.|\s)*?>/g, '' ); // Aggressively strip HTML.
+		this.data = this.data.replace( /<(?:.|\s)*?>/g, '' ); / Aggressively strip HTML.
 	}
-	// Test if what remains is JSON or JSONp.
-	var json_regex   = /^\s*([\[\{].*[\}\]])\s*$/; // Ghetto, but it works.
+	/ Test if what remains is JSON or JSONp.
+	var json_regex   = /^\s*([\[\{].*[\}\]])\s*$/; / Ghetto, but it works.
 	var jsonp_regex  = /^[\s\u200B\uFEFF]*([\w$\[\]\.]+)[\s\u200B\uFEFF]*\([\s\u200B\uFEFF]*([\[{][\s\S]*[\]}])[\s\u200B\uFEFF]*\);?[\s\u200B\uFEFF]*$/;
-	var jsonp_regex2 = /([\[\{][\s\S]*[\]\}])\)/; // more liberal support... this allows us to pass the jsonp.json & jsonp2.json tests.
+	var jsonp_regex2 = /([\[\{][\s\S]*[\]\}])\)/; / more liberal support... this allows us to pass the jsonp.json & jsonp2.json tests.
 	var is_json      = json_regex.test( this.data );
 	var is_jsonp     = jsonp_regex.test( this.data );
 	if ( this.debug ) {
@@ -108,10 +108,10 @@ function jsonView( id, target ) {
 		if ( this.debug ) {
 			console.log( 'JSONView: sexytime!' );
 		}
-		// JSONFormatter json->HTML prototype straight from Firefox JSONView
-		// For reference: http://code.google.com/p/jsonview.
+		/ JSONFormatter json->HTML prototype straight from Firefox JSONView
+		/ For reference: http://code.google.com/p/jsonview.
 		function JSONFormatter() {
-			// No magic required.
+			/ No magic required.
 		}
 
 		JSONFormatter.prototype = {
@@ -119,7 +119,7 @@ function jsonView( id, target ) {
 				return t != null ? t.toString().replace( /&/g, '&amp;' ).replace( /"/g, '&quot;' ).replace( /</g, '&lt;' ).replace( />/g, '&gt;' ) : '';
 			}, decorateWithSpan: function( value, className ) {
 				return '<span class="' + className + '">' + this.htmlEncode( value ) + '</span>';
-			}, // Convert a basic JSON datatype (number, string, boolean, null, object, array) into an HTML fragment.
+			}, / Convert a basic JSON datatype (number, string, boolean, null, object, array) into an HTML fragment.
 			valueToHTML: function( value ) {
 				var valueType = typeof value;
 				var output    = '';
@@ -141,7 +141,7 @@ function jsonView( id, target ) {
 					output += this.decorateWithSpan( value, 'bool' );
 				}
 				return output;
-			}, // Convert an array into an HTML fragment
+			}, / Convert an array into an HTML fragment
 			arrayToHTML: function( json ) {
 				var output      = '[<ul class="array collapsible">';
 				var hasContents = false;
@@ -156,7 +156,7 @@ function jsonView( id, target ) {
 					output = '[ ]';
 				}
 				return output;
-			}, // Convert a JSON object to an HTML fragment
+			}, / Convert a JSON object to an HTML fragment
 			objectToHTML: function( json ) {
 				var output      = '{<ul class="obj collapsible">';
 				var hasContents = false;
@@ -172,7 +172,7 @@ function jsonView( id, target ) {
 					output = '{ }';
 				}
 				return output;
-			}, // Convert a whole JSON object into a formatted HTML document.
+			}, / Convert a whole JSON object into a formatted HTML document.
 			jsonToHTML: function( json, callback, uri ) {
 				var output = '';
 				if ( callback ) {
@@ -187,35 +187,35 @@ function jsonView( id, target ) {
 					output += '<div class="callback">)</div>';
 				}
 				return this.toHTML( output, uri );
-			}, // Produce an error document for when parsing fails.
+			}, / Produce an error document for when parsing fails.
 			errorPage: function( error, data, uri ) {
-				// var output = '<div id="error">' + this.stringbundle.GetStringFromName('errorParsing') + '</div>';
-				// output += '<h1>' + this.stringbundle.GetStringFromName('docContents') + ':</h1>';.
+				/ var output = '<div id="error">' + this.stringbundle.GetStringFromName('errorParsing') + '</div>';
+				/ output += '<h1>' + this.stringbundle.GetStringFromName('docContents') + ':</h1>';.
 				var output = '<div id="error">Error parsing JSON: ' + error.message + '</div>';
 				output    += '<h1>' + error.stack + ':</h1>';
 				output    += '<div id="json">' + this.htmlEncode( data ) + '</div>';
 				return this.toHTML( output, uri + ' - Error' );
-			}, // Wrap the HTML fragment in a full document. Used by jsonToHTML and errorPage.
+			}, / Wrap the HTML fragment in a full document. Used by jsonToHTML and errorPage.
 			toHTML: function( content ) {
 				return content;
 			}
 		};
-		// Sanitize & output -- all magic from JSONView Firefox.
+		/ Sanitize & output -- all magic from JSONView Firefox.
 		this.jsonFormatter = new JSONFormatter();
-		// This regex attempts to match a JSONP structure:
-		// * Any amount of whitespace (including unicode nonbreaking spaces) between the start of the file and the callback name.
-		// * Callback name (any valid JavaScript function name according to ECMA-262 Edition 3 spec).
-		// * Any amount of whitespace (including unicode nonbreaking spaces).
-		// * Open parentheses.
-		// * Any amount of whitespace (including unicode nonbreaking spaces).
-		// * Either { or [, the only two valid characters to start a JSON string.
-		// * Any character, any number of times.
-		// * Either } or ], the only two valid closing characters of a JSON string.
-		// * Any amount of whitespace (including unicode nonbreaking spaces).
-		// * A closing parenthesis, an optional semicolon, and any amount of whitespace (including unicode nonbreaking spaces) until the end of the file.
-		// This will miss anything that has comments, or more than one callback, or requires modification before use.
+		/ This regex attempts to match a JSONP structure:
+		/ * Any amount of whitespace (including unicode nonbreaking spaces) between the start of the file and the callback name.
+		/ * Callback name (any valid JavaScript function name according to ECMA-262 Edition 3 spec).
+		/ * Any amount of whitespace (including unicode nonbreaking spaces).
+		/ * Open parentheses.
+		/ * Any amount of whitespace (including unicode nonbreaking spaces).
+		/ * Either { or [, the only two valid characters to start a JSON string.
+		/ * Any character, any number of times.
+		/ * Either } or ], the only two valid closing characters of a JSON string.
+		/ * Any amount of whitespace (including unicode nonbreaking spaces).
+		/ * A closing parenthesis, an optional semicolon, and any amount of whitespace (including unicode nonbreaking spaces) until the end of the file.
+		/ This will miss anything that has comments, or more than one callback, or requires modification before use.
 		var outputDoc = '';
-		// text = text.match(jsonp_regex)[1]; .
+		/ text = text.match(jsonp_regex)[1]; .
 		var cleanData        = '', callback = '';
 		var callback_results = jsonp_regex.exec( this.data );
 		if ( callback_results && callback_results.length === 3 ) {
@@ -233,9 +233,9 @@ function jsonView( id, target ) {
 		if ( this.debug ) {
 			console.log( cleanData );
 		}
-		// Covert, and catch exceptions on failure.
+		/ Covert, and catch exceptions on failure.
 		try {
-			// var jsonObj = this.nativeJSON.decode(cleanData); .
+			/ var jsonObj = this.nativeJSON.decode(cleanData); .
 			var jsonObj = JSON.parse( cleanData );
 			if ( jsonObj ) {
 				outputDoc = this.jsonFormatter.jsonToHTML( jsonObj, callback );
@@ -275,6 +275,6 @@ function jsonView( id, target ) {
 			addCollapser( items[i].parentNode );
 		}
 	} else {
-		// console.log("JSONView: this is not json, not formatting."); .
+		/ console.log("JSONView: this is not json, not formatting."); .
 	}
 }

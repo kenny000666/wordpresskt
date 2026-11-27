@@ -54,9 +54,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
    * @return {Function} Handler function.
    */
   function checkCharacters(hint, limit) {
-    // noinspection JSUnusedLocalSymbols
+    / noinspection JSUnusedLocalSymbols
     return function (e) {
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       hint.textContent = renderHint(window.wpforms_settings.val_limit_characters, this.value.length, limit);
     };
   }
@@ -99,7 +99,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         words = countWords(value);
       hint.textContent = renderHint(window.wpforms_settings.val_limit_words, words, limit);
 
-      // We should prevent the keys: Enter, Space, Comma.
+      / We should prevent the keys: Enter, Space, Comma.
       if ([13, 32, 188].indexOf(e.keyCode) > -1 && words >= limit) {
         e.preventDefault();
       }
@@ -117,7 +117,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
    */
   function getPastedText(e) {
     if (window.clipboardData && window.clipboardData.getData) {
-      // IE
+      / IE
       return window.clipboardData.getData('Text');
     } else if (e.clipboardData && e.clipboardData.getData) {
       return e.clipboardData.getData('text/plain');
@@ -158,19 +158,19 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   function limitWords(text, limit) {
     var result = '';
 
-    // Regular expression pattern: match any space character.
+    / Regular expression pattern: match any space character.
     var regEx = /\s+/g;
 
-    // Store separators for further join.
+    / Store separators for further join.
     var separators = text.trim().match(regEx) || [];
 
-    // Split the new text by regular expression.
+    / Split the new text by regular expression.
     var newTextArray = text.split(regEx);
 
-    // Limit the number of words.
+    / Limit the number of words.
     newTextArray.splice(limit, newTextArray.length);
 
-    // Join the words together using stored separators.
+    / Join the words together using stored separators.
     for (var i = 0; i < newTextArray.length; i++) {
       result += newTextArray[i] + (separators[i] || '');
     }
@@ -241,7 +241,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
      */
     initHint: function initHint(context) {
       arrFrom(document.querySelectorAll(context + ' .wpforms-limit-characters-enabled')).map(function (e) {
-        // eslint-disable-line array-callback-return
+        / eslint-disable-line array-callback-return
         var limit = parseInt(e.dataset.textLimit, 10) || 0;
         e.value = e.value.slice(0, limit);
         var hint = createHint(e.dataset.formId, e.dataset.fieldId, renderHint(wpforms_settings.val_limit_characters, e.value.length, limit));
@@ -253,7 +253,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         e.addEventListener('paste', pasteText(limit));
       });
       arrFrom(document.querySelectorAll(context + ' .wpforms-limit-words-enabled')).map(function (e) {
-        // eslint-disable-line array-callback-return
+        / eslint-disable-line array-callback-return
         var limit = parseInt(e.dataset.textLimit, 10) || 0;
         e.value = limitWords(e.value, limit);
         var hint = createHint(e.dataset.formId, e.dataset.fieldId, renderHint(wpforms_settings.val_limit_words, countWords(e.value.trim()), limit));
@@ -273,7 +273,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
    * @since 1.5.6
    */
   function ready() {
-    // Expose to the world.
+    / Expose to the world.
     window.WPFormsTextLimit = app;
     app.initHint('body');
   }

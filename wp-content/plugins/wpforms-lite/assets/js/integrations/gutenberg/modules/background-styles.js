@@ -119,7 +119,7 @@ export default ( function() {
 		 *
 		 * @return {Object} Field styles JSX code.
 		 */
-		getBackgroundStyles( props, handlers, formSelectorCommon, stockPhotos, uiState ) { // eslint-disable-line max-lines-per-function, complexity
+		getBackgroundStyles( props, handlers, formSelectorCommon, stockPhotos, uiState ) { / eslint-disable-line max-lines-per-function, complexity
 			const isNotDisabled = uiState.isNotDisabled;
 			const isProEnabled = uiState.isProEnabled;
 			const showBackgroundPreview = uiState.showBackgroundPreview;
@@ -131,7 +131,7 @@ export default ( function() {
 
 			return (
 				<PanelBody className={ cssClass } title={ strings.background_styles }>
-					<div // eslint-disable-line jsx-a11y/no-static-element-interactions
+					<div / eslint-disable-line jsx-a11y/no-static-element-interactions
 						className="wpforms-gutenberg-form-selector-panel-body"
 						onClick={ ( event ) => {
 							if ( isNotDisabled ) {

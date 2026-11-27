@@ -22,12 +22,12 @@
 	 ******************************************************************************/
 	redux.field_objects.multi_media.init = function ( selector ) {
 
-		// If no selector is passed, grab one from the HTML.
+		/ If no selector is passed, grab one from the HTML.
 		if ( ! selector ) {
 			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-multi_media:visible' );
 		}
 
-		// Enum instances of our object.
+		/ Enum instances of our object.
 		$( selector ).each(
 			function () {
 				const el   = $( this );
@@ -47,10 +47,10 @@
 					return;
 				}
 
-				// Handle clicking of the delete button.
+				/ Handle clicking of the delete button.
 				redux.field_objects.multi_media.bindDelete( el );
 
-				// Handle clicking of the upload icon.
+				/ Handle clicking of the upload icon.
 				el.find( '.redux_upload_button' ).off().on(
 					'click',
 					function ( event ) {
@@ -58,7 +58,7 @@
 					}
 				);
 
-				// Init module level code.
+				/ Init module level code.
 				redux.field_objects.multi_media.modInit( el );
 			}
 		);
@@ -85,7 +85,7 @@
 	 ******************************************************************************/
 	redux.field_objects.multi_media.modInit = function () {
 
-		// Localization variable.
+		/ Localization variable.
 		l10n = redux_multi_media_l10;
 	};
 
@@ -96,10 +96,10 @@
 	 * button.
 	 ******************************************************************************/
 
-	// Removes error message(s) when clicking the Upload button.
+	/ Removes error message(s) when clicking the Upload button.
 	redux.field_objects.multi_media.removeErrMsgs = function ( mainID ) {
 
-		// Enumerate and remove existing 'file exists' messages.
+		/ Enumerate and remove existing 'file exists' messages.
 		$( '#' + mainID + ' .attach_list li.redux-file-exists' ).each(
 			function ( idx, li ) {
 				idx = null;
@@ -108,7 +108,7 @@
 			}
 		);
 
-		// Enumerate and remove existing 'max upload' messages.
+		/ Enumerate and remove existing 'max upload' messages.
 		$( '#' + mainID + ' .attach_list li.redux-max-limit' ).each(
 			function ( idx, li ) {
 				idx = null;
@@ -118,21 +118,21 @@
 		);
 	};
 
-	// Checks for duplicate after file selection.
+	/ Checks for duplicate after file selection.
 	redux.field_objects.multi_media.selExists = function ( mainID, item ) {
 		let len;
 
 		let val = false;
 
-		// Enumerate existing files.
+		/ Enumerate existing files.
 		$( '#' + mainID + ' .attach_list li' ).each(
 			function ( idx, li ) {
 				idx = null;
 
-				// Check for duplicate based on ID.
+				/ Check for duplicate based on ID.
 				len = $( li ).find( 'input#filelist-' + item );
 
-				// If it exists, exit .each.
+				/ If it exists, exit .each.
 				if ( 0 !== len.length ) {
 					val = true;
 					return false;
@@ -140,7 +140,7 @@
 			}
 		);
 
-		// Return value.
+		/ Return value.
 		return val;
 	};
 
@@ -151,7 +151,7 @@
 	 ******************************************************************************/
 	redux.field_objects.multi_media.addFile = function ( event, selector, self ) {
 
-		// Variables.
+		/ Variables.
 		let frame;
 		let libFilter;
 		let filter;
@@ -160,43 +160,43 @@
 		const isList     = true;
 		let uploadStatus = true;
 
-		// Get input ID.
+		/ Get input ID.
 		const inputID = self.prev( 'input' ).attr( 'id' );
 
-		// Make form field ID.
+		/ Make form field ID.
 		const $formfield = $( '#' + inputID );
 
-		// Get form name.
+		/ Get form name.
 		const formName = $formfield.data( 'name' );
 
 		const mainID = selector.attr( 'data-id' );
 
-		// Prevent default action.
+		/ Prevent default action.
 		event.preventDefault();
 
-		// If the media frame already exists, reopen it.
+		/ If the media frame already exists, reopen it.
 		if ( frame ) {
 			frame.open();
 			return;
 		}
 
-		// Remove existing error messages.
+		/ Remove existing error messages.
 		redux.field_objects.multi_media.removeErrMsgs( mainID );
 
-		// Get library filter data.
+		/ Get library filter data.
 		filter = $( selector ).find( '.library-filter' ).data( 'lib-filter' );
 
-		// Get max file upload number.
+		/ Get max file upload number.
 		maxFileUpload = $( selector ).find( '.redux-multi-media-container' ).data( 'max-file-upload' );
 
-		// Library filter MUST exist to do decoding.
+		/ Library filter MUST exist to do decoding.
 		if ( undefined !== filter ) {
 			if ( '' !== filter ) {
 				libFilter = [];
 				filter    = decodeURIComponent( filter );
 				filter    = JSON.parse( filter );
 
-				// Enum file extensions.
+				/ Enum file extensions.
 				$.each(
 					filter,
 					function ( index, value ) {
@@ -208,7 +208,7 @@
 			}
 		}
 
-		// Create the media frame.
+		/ Create the media frame.
 		frame = wp.media(
 			{
 				multiple: isList,
@@ -222,41 +222,41 @@
 			}
 		);
 
-		// When an image is selected, run a callback.
+		/ When an image is selected, run a callback.
 		frame.on(
 			'select',
 			function () {
 				let addCount = 0;
 				let doChange;
 
-				// Set up our fileGroup array.
+				/ Set up our fileGroup array.
 				const fileGroup = [];
 				const fileArr   = [];
 				const imgArr    = [];
 				const msgArr    = [];
 
-				// Grab the selected attachment.
+				/ Grab the selected attachment.
 				const selection = frame.state().get( 'selection' );
 
-				// Get all of our selected files.
+				/ Get all of our selected files.
 				const attachment = selection.toJSON();
 
-				// Get existing file count.
+				/ Get existing file count.
 				const childCount = $( '#' + mainID + ' .attach_list' ).children().length;
 
 				$formfield.val( attachment.url );
 				$( '#' + inputID + '_id' ).val( attachment.id );
 
-				// Enum through each attachment.
+				/ Enum through each attachment.
 				$( attachment ).each(
 					function () {
 						let dupMsg;
 						let maxMsg;
 
-						// Respect max upload limit.
+						/ Respect max upload limit.
 						if ( maxFileUpload <= 0 || ( addCount + childCount ) < maxFileUpload ) {
 
-							// Check for duplicates and format duplicate message.
+							/ Check for duplicates and format duplicate message.
 							if ( redux.field_objects.multi_media.selExists( mainID, this.id ) ) {
 								dupMsg       = l10n.dup_warn;
 								dupMsg       = dupMsg.replace( '%s', '<strong>' + this.filename + '</strong>' );
@@ -264,39 +264,39 @@
 
 								msgArr.push( uploadStatus );
 
-								// If only file, then don't ask to save changes.
+								/ If only file, then don't ask to save changes.
 								doChange = false;
 
-								// Continue equivalent.
+								/ Continue equivalent.
 								return true;
 							}
 
-							// Handle images.
+							/ Handle images.
 							if ( this.type && 'image' === this.type ) {
 
-								// Image preview.
+								/ Image preview.
 								/* jscs:disable maximumLineLength */
 								uploadStatus = '<li class="img_status"><img width="50" height="50" src="' + this.url + '" class="attachment-50x50" alt="' + this.filename + '"><p><a href="#" class="redux_remove_file_button" rel="' + inputID + '[' + this.id + ']">' + l10n.remove_image + '</a></p><input type="hidden" id="filelist-' + this.id + '" name="' + formName + '[' + this.id + ']" value="' + this.url + '"></li>';
 
-								// Add our file to our fileGroup array.
+								/ Add our file to our fileGroup array.
 								imgArr.push( uploadStatus );
 
-								// Set change flag.
+								/ Set change flag.
 								doChange = true;
 
-								// Handle everything else.
+								/ Handle everything else.
 							} else {
 
-								// Standard generic output if it's not an image.
+								/ Standard generic output if it's not an image.
 								uploadStatus = '<li>' + l10n.file + ' <strong>' + this.filename + '</strong>&nbsp;&nbsp;&nbsp; (<a href="' + this.url + '" target="_blank" rel="external">' + l10n.download + '</a> / <a href="#" class="redux_remove_file_button" rel="' + inputID + '[' + this.id + ']">' + l10n.remove_file + '</a>)<input type="hidden" id="filelist-' + this.id + '" name="' + formName + '[' + this.id + ']" value="' + this.url + '"></li>';
 
 								fileArr.push( uploadStatus );
 							}
 
-							// Increment count of added files.
-							addCount++; // += 1;
+							/ Increment count of added files.
+							addCount++; / += 1;
 
-							// If max file upload reached, generate error message.
+							/ If max file upload reached, generate error message.
 						} else {
 							maxMsg       = l10n.max_warn;
 							maxMsg       = maxMsg.replace( '%s', '<strong>' + maxFileUpload + '</strong>' );
@@ -304,13 +304,13 @@
 
 							msgArr.push( uploadStatus );
 
-							// Bail out of .each for good!
+							/ Bail out of .each for good!
 							return false;
 						}
 					}
 				);
 
-				// Push images files onto end of stack.
+				/ Push images files onto end of stack.
 				if ( ! $.isEmptyObject( imgArr ) ) {
 					$( imgArr ).each(
 						function ( idx, val ) {
@@ -322,7 +322,7 @@
 					);
 				}
 
-				// Push none image files onto end of stack.
+				/ Push none image files onto end of stack.
 				if ( ! $.isEmptyObject( fileArr ) ) {
 					$( fileArr ).each(
 						function ( idx, val ) {
@@ -334,7 +334,7 @@
 					);
 				}
 
-				// Push errors onto end of stack.
+				/ Push errors onto end of stack.
 				if ( ! $.isEmptyObject( msgArr ) ) {
 					$( msgArr ).each(
 						function ( idx, val ) {
@@ -345,17 +345,17 @@
 					);
 				}
 
-				// Append each item from our fileGroup array to .redux_media_status.
+				/ Append each item from our fileGroup array to .redux_media_status.
 				$( fileGroup ).each(
 					function () {
 						$formfield.siblings( '.redux_media_status' ).slideDown().append( this );
 					}
 				);
 
-				// Close media frame.
+				/ Close media frame.
 				frame.close();
 
-				// Prompt for save changes, if necessary.
+				/ Prompt for save changes, if necessary.
 				if ( true === doChange ) {
 					redux.field_objects.multi_media.bindDelete( selector );
 
@@ -364,7 +364,7 @@
 			}
 		);
 
-		// Finally, open the modal.
+		/ Finally, open the modal.
 		frame.open();
 	};
 
@@ -379,23 +379,23 @@
 
 		const $self = self;
 
-		// Prevent default action.
+		/ Prevent default action.
 		event.preventDefault();
 
-		// If delete icon is clicked.
+		/ If delete icon is clicked.
 		if ( $self.is( '.attach_list .redux_remove_file_button' ) ) {
 
-			// Remove image from page.
+			/ Remove image from page.
 			$self.parents( 'li' ).remove();
 
-			// Prompt for save changes.
+			/ Prompt for save changes.
 			redux_change( $( selector ).find( '.redux_media_status' ) );
 
-			// Bail out.
+			/ Bail out.
 			return false;
 		}
 
-		// Remove file link from page.
+		/ Remove file link from page.
 		inputID    = $self.attr( 'rel' );
 		$container = $self.parents( '.img_status' );
 

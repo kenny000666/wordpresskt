@@ -43,12 +43,12 @@ const WPFormsChocolateChoices = {
 			const id = `choice-${ index }-${ getRandomId() }`;
 			const itemValue = String( typeof itemData === 'object' ? itemData.value : itemData );
 
-			// Create the container div.
+			/ Create the container div.
 			const $itemDiv = $( '<div>', {
 				class: 'choice-item',
 			} );
 
-			// Create the checkbox input.
+			/ Create the checkbox input.
 			const $checkbox = $( '<input>', {
 				type: 'checkbox',
 				id,
@@ -57,21 +57,21 @@ const WPFormsChocolateChoices = {
 				name: options.name.replace( '{index}', index ),
 			} );
 
-			// Create the label.
+			/ Create the label.
 			const $label = $( '<label>', { for: id } );
 			$label.text( itemData.label ?? itemData );
 
-			// Append elements.
+			/ Append elements.
 			$itemDiv.append( $checkbox, $label );
 
 			return $itemDiv;
 		};
 
-		// Clear existing content.
+		/ Clear existing content.
 		$grid.html( '' );
 		const choices = [];
 
-		// Populate the grid with items.
+		/ Populate the grid with items.
 		$.each( options.choices, function( index, choiceData ) {
 			choices.push( createChoiceItem( choiceData, index ) );
 		} );

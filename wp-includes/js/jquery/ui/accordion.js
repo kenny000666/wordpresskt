@@ -23,7 +23,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"../version",
@@ -33,7 +33,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -60,7 +60,7 @@ return $.widget( "ui.accordion", {
 			header: "ui-icon-triangle-1-e"
 		},
 
-		// Callbacks
+		/ Callbacks
 		activate: null,
 		beforeActivate: null
 	},
@@ -88,14 +88,14 @@ return $.widget( "ui.accordion", {
 		this._addClass( "ui-accordion", "ui-widget ui-helper-reset" );
 		this.element.attr( "role", "tablist" );
 
-		// Don't allow collapsible: false and active: false / null
+		/ Don't allow collapsible: false and active: false / null
 		if ( !options.collapsible && ( options.active === false || options.active == null ) ) {
 			options.active = 0;
 		}
 
 		this._processPanels();
 
-		// handle negative values
+		/ handle negative values
 		if ( options.active < 0 ) {
 			options.active += this.headers.length;
 		}
@@ -132,17 +132,17 @@ return $.widget( "ui.accordion", {
 	_destroy: function() {
 		var contents;
 
-		// Clean up main element
+		/ Clean up main element
 		this.element.removeAttr( "role" );
 
-		// Clean up headers
+		/ Clean up headers
 		this.headers
 			.removeAttr( "role aria-expanded aria-selected aria-controls tabIndex" )
 			.removeUniqueId();
 
 		this._destroyIcons();
 
-		// Clean up content panels
+		/ Clean up content panels
 		contents = this.headers.next()
 			.css( "display", "" )
 			.removeAttr( "role aria-hidden aria-labelledby" )
@@ -156,7 +156,7 @@ return $.widget( "ui.accordion", {
 	_setOption: function( key, value ) {
 		if ( key === "active" ) {
 
-			// _activate() will handle invalid values and update this.options
+			/ _activate() will handle invalid values and update this.options
 			this._activate( value );
 			return;
 		}
@@ -170,7 +170,7 @@ return $.widget( "ui.accordion", {
 
 		this._super( key, value );
 
-		// Setting collapsible: false while collapsed; open first panel
+		/ Setting collapsible: false while collapsed; open first panel
 		if ( key === "collapsible" && !value && this.options.active === false ) {
 			this._activate( 0 );
 		}
@@ -188,9 +188,9 @@ return $.widget( "ui.accordion", {
 
 		this.element.attr( "aria-disabled", value );
 
-		// Support: IE8 Only
-		// #5332 / #6059 - opacity doesn't cascade to positioned elements in IE
-		// so we need to add the disabled class to the headers and panels
+		/ Support: IE8 Only
+		/ #5332 / #6059 - opacity doesn't cascade to positioned elements in IE
+		/ so we need to add the disabled class to the headers and panels
 		this._toggleClass( null, "ui-state-disabled", !!value );
 		this._toggleClass( this.headers.add( this.headers.next() ), null, "ui-state-disabled",
 			!!value );
@@ -245,33 +245,33 @@ return $.widget( "ui.accordion", {
 		var options = this.options;
 		this._processPanels();
 
-		// Was collapsed or no panel
+		/ Was collapsed or no panel
 		if ( ( options.active === false && options.collapsible === true ) ||
 				!this.headers.length ) {
 			options.active = false;
 			this.active = $();
 
-		// active false only when collapsible is true
+		/ active false only when collapsible is true
 		} else if ( options.active === false ) {
 			this._activate( 0 );
 
-		// was active, but active panel is gone
+		/ was active, but active panel is gone
 		} else if ( this.active.length && !$.contains( this.element[ 0 ], this.active[ 0 ] ) ) {
 
-			// all remaining panel are disabled
+			/ all remaining panel are disabled
 			if ( this.headers.length === this.headers.find( ".ui-state-disabled" ).length ) {
 				options.active = false;
 				this.active = $();
 
-			// activate previous panel
+			/ activate previous panel
 			} else {
 				this._activate( Math.max( 0, options.active - 1 ) );
 			}
 
-		// was active, active panel still exists
+		/ was active, active panel still exists
 		} else {
 
-			// make sure active index is correct
+			/ make sure active index is correct
 			options.active = this.headers.index( this.active );
 		}
 
@@ -295,7 +295,7 @@ return $.widget( "ui.accordion", {
 		this.panels = this.headers.next().filter( ":not(.ui-accordion-content-active)" ).hide();
 		this._addClass( this.panels, "ui-accordion-content", "ui-helper-reset ui-widget-content" );
 
-		// Avoid memory leaks (#10056)
+		/ Avoid memory leaks (#10056)
 		if ( prevPanels ) {
 			this._off( prevHeaders.not( this.headers ) );
 			this._off( prevPanels.not( this.panels ) );
@@ -340,7 +340,7 @@ return $.widget( "ui.accordion", {
 					} )
 					.hide();
 
-		// Make sure at least one header is in the tab order
+		/ Make sure at least one header is in the tab order
 		if ( !this.active.length ) {
 			this.headers.eq( 0 ).attr( "tabIndex", 0 );
 		} else {
@@ -401,12 +401,12 @@ return $.widget( "ui.accordion", {
 	_activate: function( index ) {
 		var active = this._findActive( index )[ 0 ];
 
-		// Trying to activate the already active panel
+		/ Trying to activate the already active panel
 		if ( active === this.active[ 0 ] ) {
 			return;
 		}
 
-		// Trying to collapse, simulate a click on the currently active header
+		/ Trying to collapse, simulate a click on the currently active header
 		active = active || this.active[ 0 ];
 
 		this._eventHandler( {
@@ -457,23 +457,23 @@ return $.widget( "ui.accordion", {
 
 		if (
 
-				// click on active header, but not collapsible
+				/ click on active header, but not collapsible
 				( clickedIsActive && !options.collapsible ) ||
 
-				// allow canceling activation
+				/ allow canceling activation
 				( this._trigger( "beforeActivate", event, eventData ) === false ) ) {
 			return;
 		}
 
 		options.active = collapsing ? false : this.headers.index( clicked );
 
-		// When the call to ._toggle() comes after the class changes
-		// it causes a very odd bug in IE 8 (see #6720)
+		/ When the call to ._toggle() comes after the class changes
+		/ it causes a very odd bug in IE 8 (see #6720)
 		this.active = clickedIsActive ? $() : clicked;
 		this._toggle( eventData );
 
-		// Switch classes
-		// corner classes on the previously active header stay after the animation
+		/ Switch classes
+		/ corner classes on the previously active header stay after the animation
 		this._removeClass( active, "ui-accordion-header-active", "ui-state-active" );
 		if ( options.icons ) {
 			activeChildren = active.children( ".ui-accordion-header-icon" );
@@ -498,7 +498,7 @@ return $.widget( "ui.accordion", {
 		var toShow = data.newPanel,
 			toHide = this.prevShow.length ? this.prevShow : data.oldPanel;
 
-		// Handle activating a panel during the animation for another activation
+		/ Handle activating a panel during the animation for another activation
 		this.prevShow.add( this.prevHide ).stop( true, true );
 		this.prevShow = toShow;
 		this.prevHide = toHide;
@@ -519,9 +519,9 @@ return $.widget( "ui.accordion", {
 			"aria-expanded": "false"
 		} );
 
-		// if we're switching panels, remove the old header from the tab order
-		// if we're opening from collapsed state, remove the previous header from the tab order
-		// if we're collapsing, then keep the collapsing header in the tab order
+		/ if we're switching panels, remove the old header from the tab order
+		/ if we're opening from collapsed state, remove the previous header from the tab order
+		/ if we're collapsing, then keep the collapsing header in the tab order
 		if ( toShow.length && toHide.length ) {
 			toHide.prev().attr( {
 				"tabIndex": -1,
@@ -564,7 +564,7 @@ return $.widget( "ui.accordion", {
 			easing = options;
 		}
 
-		// fall back from options to animation in case of partial down settings
+		/ fall back from options to animation in case of partial down settings
 		easing = easing || options.easing || animate.easing;
 		duration = duration || options.duration || animate.duration;
 
@@ -611,7 +611,7 @@ return $.widget( "ui.accordion", {
 		this._removeClass( prev, "ui-accordion-header-active" )
 			._addClass( prev, "ui-accordion-header-collapsed" );
 
-		// Work around for rendering bug in IE (#5421)
+		/ Work around for rendering bug in IE (#5421)
 		if ( toHide.length ) {
 			toHide.parent()[ 0 ].className = toHide.parent()[ 0 ].className;
 		}

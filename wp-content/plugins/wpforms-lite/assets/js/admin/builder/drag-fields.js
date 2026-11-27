@@ -11,7 +11,7 @@
  * @since 1.7.7
  */
 
-var WPForms = window.WPForms || {}; // eslint-disable-line no-var
+var WPForms = window.WPForms || {}; / eslint-disable-line no-var
 
 WPForms.Admin = WPForms.Admin || {};
 WPForms.Admin.Builder = WPForms.Admin.Builder || {};
@@ -42,7 +42,7 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 	 *
 	 * @type {Object}
 	 */
-	let fieldLayout; // eslint-disable-line prefer-const
+	let fieldLayout; / eslint-disable-line prefer-const
 
 	/**
 	 * Public functions and properties.
@@ -80,7 +80,7 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 		 * @since 1.7.7
 		 */
 		setup() {
-			// Cache DOM elements.
+			/ Cache DOM elements.
 			el = {
 				$builder:            $( '#wpforms-builder' ),
 				$sortableFieldsWrap: $( '#wpforms-panel-fields .wpforms-field-wrap' ),
@@ -97,7 +97,7 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 			el.$builder
 				.on( 'wpformsFieldDragToggle', app.fieldDragToggleEvent )
 				.on( 'wpformsFieldAdd', function( e, id, type ) {
-					// If a layout field is added, initialize its columns.
+					/ If a layout field is added, initialize its columns.
 					if ( type === 'layout' ) {
 						setTimeout( function() {
 							$( '#wpforms-field-' + id ).find( '.wpforms-layout-column' ).each( function() {
@@ -152,7 +152,7 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 		 */
 		fieldDragDisable( $field, showPopUp = true ) {
 			if ( $field.hasClass( 'ui-draggable-disabled' ) ) {
-				// noinspection JSUnresolvedReference
+				/ noinspection JSUnresolvedReference
 				$field.draggable( 'enable' );
 
 				return;
@@ -160,7 +160,7 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 
 			let startTopPosition;
 
-			// noinspection JSUnresolvedReference
+			/ noinspection JSUnresolvedReference
 			$field.draggable( {
 				revert: true,
 				axis: 'y',
@@ -195,7 +195,7 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 				return;
 			}
 
-			// noinspection JSUnresolvedReference
+			/ noinspection JSUnresolvedReference
 			$field.draggable( 'disable' );
 		},
 
@@ -252,7 +252,7 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 		initSortableFields() {
 			app.initSortableContainer( el.$sortableFieldsWrap );
 
-			// Function to initialize all layout columns.
+			/ Function to initialize all layout columns.
 			const initAllLayoutColumns = function() {
 				el.$builder.find( '.wpforms-layout-column' ).each( function() {
 					app.initSortableHandler( $( this ) );
@@ -260,10 +260,10 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 				} );
 			};
 
-			// Initialize immediately.
+			/ Initialize immediately.
 			initAllLayoutColumns();
 
-			// And again after a short delay to ensure all DOM elements are loaded.
+			/ And again after a short delay to ensure all DOM elements are loaded.
 			setTimeout( initAllLayoutColumns, 500 );
 
 			app.fieldDragDisable( $( '.wpforms-field-not-draggable, .wpforms-field-stick' ) );
@@ -289,16 +289,16 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 		 * @param {Object} event        Event object.
 		 * @param {Object} fieldOptions Field options.
 		 */
-		async layoutPresetChanged( event, fieldOptions ) { // eslint-disable-line no-unused-vars
+		async layoutPresetChanged( event, fieldOptions ) { / eslint-disable-line no-unused-vars
 			const $fieldOptions = $( fieldOptions ),
 				fieldId = $fieldOptions.data( 'field-id' ),
 				$sortable = $( `#wpforms-field-${ fieldId } .wpforms-layout-column` );
 
-			// Immediately initialize all columns in this layout.
+			/ Immediately initialize all columns in this layout.
 			$sortable.each( function() {
 				app.initSortableHandler( $( this ) );
 
-				// Make sure sortable is not disabled, prevents from double initialization.
+				/ Make sure sortable is not disabled, prevents from double initialization.
 				$( this ).sortable( 'enable' );
 			} );
 		},
@@ -310,7 +310,7 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 		 *
 		 * @param {jQuery} $sortable Sortable container.
 		 */
-		initSortableHandler( $sortable ) { // eslint-disable-line max-lines-per-function
+		initSortableHandler( $sortable ) { / eslint-disable-line max-lines-per-function
 			const $fieldOptions = $( '#wpforms-field-options' );
 			const $scrollContainer = $( '#wpforms-panel-fields .wpforms-panel-content-wrap' );
 
@@ -352,16 +352,16 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 						return;
 					}
 
-					// Before processing in the `stop` method, we need to perform the last check.
+					/ Before processing in the `stop` method, we need to perform the last check.
 					if ( ! fieldLayout.isFieldAllowedInColum( fieldType, ui.item.first().parent() ) ) {
 						vars.fieldRejected = true;
 					}
 				},
-				stop( e, ui ) { // eslint-disable-line complexity
+				stop( e, ui ) { / eslint-disable-line complexity
 					const $field = ui.item.first();
 					const $parent = $field.parent();
 
-					// If this is a layout field, initialize its columns.
+					/ If this is a layout field, initialize its columns.
 					if ( $field.hasClass( 'wpforms-field-layout' ) ) {
 						$field.find( '.wpforms-layout-column' ).each( function() {
 							app.initSortableHandler( $( this ) );
@@ -369,7 +369,7 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 						} );
 					}
 
-					// If the field is in the main container but was attempted to be added to a column, move it to the column.
+					/ If the field is in the main container but was attempted to be added to a column, move it to the column.
 					if (
 						$parent.hasClass( 'wpforms-field-wrap' ) &&
 						window.wpformsLastReceive &&
@@ -377,14 +377,14 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 						! $field.hasClass( 'wpforms-field-layout' ) &&
 						! $field.hasClass( 'wpforms-field-repeater' )
 					) {
-						// Move the field to the column that was last trying to receive it.
+						/ Move the field to the column that was last trying to receive it.
 						$field.detach();
 						window.wpformsLastReceive.sortable.append( $field );
 
-						// Mark the field as rejected to prevent further processing in the main container.
+						/ Mark the field as rejected to prevent further processing in the main container.
 						vars.fieldRejected = true;
 
-						// Reset tracking variables.
+						/ Reset tracking variables.
 						window.wpformsLastReceive = null;
 						window.wpformsLastReceiveForMainWrap = null;
 					}
@@ -392,7 +392,7 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 					ui.placeholder.removeClass( 'wpforms-field-drag-not-allowed' );
 					$field.removeClass( 'wpforms-field-drag-not-allowed' );
 
-					// Reject not allowed fields.
+					/ Reject not allowed fields.
 					if ( vars.fieldRejected ) {
 						const $targetColumn = isNewField ? $sortable : $field.parent();
 
@@ -411,8 +411,8 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 						$fieldOptions.prepend( $fieldOption );
 					}
 
-					// In the case of changing fields' order inside the same column,
-					// we just need to change the position of the field.
+					/ In the case of changing fields' order inside the same column,
+					/ we just need to change the position of the field.
 					if ( ! isNewField && $field.closest( '.wpforms-layout-column' ).is( $sortable ) ) {
 						fieldLayout.positionFieldInColumn(
 							fieldId,
@@ -438,7 +438,7 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 
 					vars.fieldReceived = false;
 				},
-				over( e, ui ) { // eslint-disable-line complexity
+				over( e, ui ) { / eslint-disable-line complexity
 					const $field = ui.item.first(),
 						$target = $( e.target ),
 						$placeholder = $target.find( '.wpforms-field-drag-placeholder' ),
@@ -461,7 +461,7 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 					fieldType = $field.data( 'field-type' ) || vars.fieldType;
 					isNewField = typeof fieldId === 'undefined';
 
-					// Adjust helper size according to the placeholder size.
+					/ Adjust helper size according to the placeholder size.
 					$field
 						.addClass( 'wpforms-field-dragging' + targetClass );
 
@@ -475,14 +475,14 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 
 					const placeholderHeight = isColumn ? 90 : helper.height;
 
-					// Adjust placeholder height according to the height of the helper.
+					/ Adjust placeholder height according to the height of the helper.
 					$placeholder
 						.removeClass( 'wpforms-field-drag-not-allowed' )
 						.css( {
 							height: isNewField ? placeholderHeight + 18 : helper.height,
 						} );
 
-					// Drop to this place is not allowed.
+					/ Drop to this place is not allowed.
 					if ( isColumn && ! fieldLayout.isFieldAllowedInColum( fieldType, $target ) ) {
 						$placeholder.addClass( 'wpforms-field-drag-not-allowed' );
 						$field.addClass( 'wpforms-field-drag-not-allowed' );
@@ -490,7 +490,7 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 
 					el.$builder.trigger( 'wpformsFieldDragOver', [ fieldId, $target ] );
 
-					// Skip if it is the existing field.
+					/ Skip if it is the existing field.
 					if ( ! isNewField ) {
 						return;
 					}
@@ -501,9 +501,9 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 				},
 				out( e, ui ) {
 					const $field = ui.item.first(),
-						// eslint-disable-next-line no-shadow
+						/ eslint-disable-next-line no-shadow
 						fieldId = $field.data( 'field-id' ),
-						// eslint-disable-next-line no-shadow
+						/ eslint-disable-next-line no-shadow
 						isNewField = typeof fieldId === 'undefined';
 
 					$field
@@ -518,11 +518,11 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 						return;
 					}
 
-					// Skip if it is the existing field.
+					/ Skip if it is the existing field.
 					if ( ! isNewField ) {
-						// Remove extra class from the parent layout field.
-						// Fixes disappearing of duplicate/delete field icons
-						// after moving the field outside the layout field.
+						/ Remove extra class from the parent layout field.
+						/ Fixes disappearing of duplicate/delete field icons
+						/ after moving the field outside the layout field.
 						$( ui.sender )
 							.closest( '.wpforms-field-layout, .wpforms-field-repeater' )
 							.removeClass( 'wpforms-field-child-hovered' );
@@ -534,12 +534,12 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 						.addClass( 'wpforms-field-drag-out' )
 						.removeClass( 'wpforms-field-drag-over' );
 				},
-				receive( e, ui ) { // eslint-disable-line complexity
+				receive( e, ui ) { / eslint-disable-line complexity
 					const $field = $( ui.helper || ui.item );
 					const isColumn = $sortable.hasClass( 'wpforms-layout-column' );
 					const isMainWrap = $sortable.hasClass( 'wpforms-field-wrap' );
 
-					// Save current field receive as the last one.
+					/ Save current field receive as the last one.
 					window.wpformsLastReceive = {
 						isColumn,
 						isMainWrap,
@@ -548,21 +548,21 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 						time: new Date().getTime(),
 					};
 
-					// Check if this is a second receive for a field that was already handled by the main container.
+					/ Check if this is a second receive for a field that was already handled by the main container.
 					if (
 						isColumn &&
 						window.wpformsLastReceiveForMainWrap &&
 						( new Date().getTime() - window.wpformsLastReceiveForMainWrap.time < 100 )
 					) {
-						// We need to stop this receive and cancel the operation for the main container.
-						// Mark the field as rejected, which will cause it to be removed from the main container.
+						/ We need to stop this receive and cancel the operation for the main container.
+						/ Mark the field as rejected, which will cause it to be removed from the main container.
 						vars.fieldRejected = true;
 						window.wpformsLastReceiveForMainWrap = null;
 						window.wpformsLastReceive = null;
 						return;
 					}
 
-					// If this is the main container, remember this event.
+					/ If this is the main container, remember this event.
 					if ( isMainWrap ) {
 						window.wpformsLastReceiveForMainWrap = window.wpformsLastReceive;
 					}
@@ -570,10 +570,10 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 					fieldId = $field.data( 'field-id' );
 					fieldType = $field.data( 'field-type' ) || vars.fieldType;
 
-					// eslint-disable-next-line no-shadow
+					/ eslint-disable-next-line no-shadow
 					const isNewField = typeof fieldId === 'undefined';
 
-					// Drop to this place is not allowed.
+					/ Drop to this place is not allowed.
 					if (
 						isColumn &&
 						! fieldLayout.isFieldAllowedInColum( fieldType, $sortable )
@@ -587,7 +587,7 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 
 					$field.removeClass( 'wpforms-field-drag-over' );
 
-					// Move existing field.
+					/ Move existing field.
 					if ( ! isNewField ) {
 						fieldLayout.receiveFieldToColumn(
 							fieldId,
@@ -598,7 +598,7 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 						return;
 					}
 
-					// Add new field.
+					/ Add new field.
 					const position = $sortable.data( 'ui-sortable' )?.currentItem?.index() || 0;
 
 					$field
@@ -626,8 +626,8 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 
 					vars.glitchChange = false;
 
-					// In some cases sortable widget display placeholder in wrong sortable instance.
-					// It's happens when you drag the field over/out the last column of the last Layout field.
+					/ In some cases sortable widget display placeholder in wrong sortable instance.
+					/ It's happens when you drag the field over/out the last column of the last Layout field.
 					if (
 						! $sortable.is( $placeholderSortable ) &&
 						$sortable.hasClass( 'wpforms-field-wrap' ) &&
@@ -724,8 +724,8 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 						[ vars.fieldType, ui ]
 					);
 
-					// Allow callbacks on `wpformsFieldAddDragStart` to cancel dragging the field
-					// by triggering `event.preventDefault()`.
+					/ Allow callbacks on `wpformsFieldAddDragStart` to cancel dragging the field
+					/ by triggering `event.preventDefault()`.
 					if ( event.isDefaultPrevented() ) {
 						return false;
 					}
@@ -738,8 +738,8 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 						[ vars.fieldType, ui ]
 					);
 
-					// Allow callbacks on `wpformsFieldAddDragStop` to cancel dragging the field
-					// by triggering `event.preventDefault()`.
+					/ Allow callbacks on `wpformsFieldAddDragStop` to cancel dragging the field
+					/ by triggering `event.preventDefault()`.
 					if ( event.isDefaultPrevented() ) {
 						return false;
 					}
@@ -758,13 +758,13 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 			const isNewField = $field.data( 'field-id' ) === undefined;
 
 			if ( isNewField ) {
-				// Remove the field.
+				/ Remove the field.
 				$field.remove();
 
 				return;
 			}
 
-			// Restore existing field on the previous position.
+			/ Restore existing field on the previous position.
 			$field = $field.detach();
 
 			const $fieldInStartPosition = vars.$sortableStart
@@ -911,7 +911,7 @@ WPForms.Admin.Builder.DragFields = WPForms.Admin.Builder.DragFields || ( functio
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

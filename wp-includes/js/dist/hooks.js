@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -23,7 +23,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -63,7 +63,7 @@ __webpack_require__.d(__webpack_exports__, {
   removeFilter: () => (/* binding */ removeFilter)
 });
 
-;// ./node_modules/@wordpress/hooks/build-module/validateNamespace.js
+;/ ./node_modules/@wordpress/hooks/build-module/validateNamespace.js
 /**
  * Validate a namespace string.
  *
@@ -74,12 +74,12 @@ __webpack_require__.d(__webpack_exports__, {
  */
 function validateNamespace(namespace) {
   if ('string' !== typeof namespace || '' === namespace) {
-    // eslint-disable-next-line no-console
+    / eslint-disable-next-line no-console
     console.error('The namespace must be a non-empty string.');
     return false;
   }
   if (!/^[a-zA-Z][a-zA-Z0-9_.\-\/]*$/.test(namespace)) {
-    // eslint-disable-next-line no-console
+    / eslint-disable-next-line no-console
     console.error('The namespace can only contain numbers, letters, dashes, periods, underscores and slashes.');
     return false;
   }
@@ -87,7 +87,7 @@ function validateNamespace(namespace) {
 }
 /* harmony default export */ const build_module_validateNamespace = (validateNamespace);
 
-;// ./node_modules/@wordpress/hooks/build-module/validateHookName.js
+;/ ./node_modules/@wordpress/hooks/build-module/validateHookName.js
 /**
  * Validate a hookName string.
  *
@@ -99,17 +99,17 @@ function validateNamespace(namespace) {
  */
 function validateHookName(hookName) {
   if ('string' !== typeof hookName || '' === hookName) {
-    // eslint-disable-next-line no-console
+    / eslint-disable-next-line no-console
     console.error('The hook name must be a non-empty string.');
     return false;
   }
   if (/^__/.test(hookName)) {
-    // eslint-disable-next-line no-console
+    / eslint-disable-next-line no-console
     console.error('The hook name cannot begin with `__`.');
     return false;
   }
   if (!/^[a-zA-Z][a-zA-Z0-9_.-]*$/.test(hookName)) {
-    // eslint-disable-next-line no-console
+    / eslint-disable-next-line no-console
     console.error('The hook name can only contain numbers, letters, dashes, periods and underscores.');
     return false;
   }
@@ -117,7 +117,7 @@ function validateHookName(hookName) {
 }
 /* harmony default export */ const build_module_validateHookName = (validateHookName);
 
-;// ./node_modules/@wordpress/hooks/build-module/createAddHook.js
+;/ ./node_modules/@wordpress/hooks/build-module/createAddHook.js
 /**
  * Internal dependencies
  */
@@ -153,14 +153,14 @@ function createAddHook(hooks, storeKey) {
       return;
     }
     if ('function' !== typeof callback) {
-      // eslint-disable-next-line no-console
+      / eslint-disable-next-line no-console
       console.error('The hook callback must be a function.');
       return;
     }
 
-    // Validate numeric priority
+    / Validate numeric priority
     if ('number' !== typeof priority) {
-      // eslint-disable-next-line no-console
+      / eslint-disable-next-line no-console
       console.error('If specified, the hook priority must be a number.');
       return;
     }
@@ -170,7 +170,7 @@ function createAddHook(hooks, storeKey) {
       namespace
     };
     if (hooksStore[hookName]) {
-      // Find the correct insert index of the new hook.
+      / Find the correct insert index of the new hook.
       const handlers = hooksStore[hookName].handlers;
 
       /** @type {number} */
@@ -181,24 +181,24 @@ function createAddHook(hooks, storeKey) {
         }
       }
       if (i === handlers.length) {
-        // If append, operate via direct assignment.
+        / If append, operate via direct assignment.
         handlers[i] = handler;
       } else {
-        // Otherwise, insert before index via splice.
+        / Otherwise, insert before index via splice.
         handlers.splice(i, 0, handler);
       }
 
-      // We may also be currently executing this hook.  If the callback
-      // we're adding would come after the current callback, there's no
-      // problem; otherwise we need to increase the execution index of
-      // any other runs by 1 to account for the added element.
+      / We may also be currently executing this hook.  If the callback
+      / we're adding would come after the current callback, there's no
+      / problem; otherwise we need to increase the execution index of
+      / any other runs by 1 to account for the added element.
       hooksStore.__current.forEach(hookInfo => {
         if (hookInfo.name === hookName && hookInfo.currentIndex >= i) {
           hookInfo.currentIndex++;
         }
       });
     } else {
-      // This is the first hook of its type.
+      / This is the first hook of its type.
       hooksStore[hookName] = {
         handlers: [handler],
         runs: 0
@@ -211,7 +211,7 @@ function createAddHook(hooks, storeKey) {
 }
 /* harmony default export */ const build_module_createAddHook = (createAddHook);
 
-;// ./node_modules/@wordpress/hooks/build-module/createRemoveHook.js
+;/ ./node_modules/@wordpress/hooks/build-module/createRemoveHook.js
 /**
  * Internal dependencies
  */
@@ -252,7 +252,7 @@ function createRemoveHook(hooks, storeKey, removeAll = false) {
       return;
     }
 
-    // Bail if no hooks exist by this name.
+    / Bail if no hooks exist by this name.
     if (!hooksStore[hookName]) {
       return 0;
     }
@@ -264,17 +264,17 @@ function createRemoveHook(hooks, storeKey, removeAll = false) {
         handlers: []
       };
     } else {
-      // Try to find the specified callback to remove.
+      / Try to find the specified callback to remove.
       const handlers = hooksStore[hookName].handlers;
       for (let i = handlers.length - 1; i >= 0; i--) {
         if (handlers[i].namespace === namespace) {
           handlers.splice(i, 1);
           handlersRemoved++;
-          // This callback may also be part of a hook that is
-          // currently executing.  If the callback we're removing
-          // comes after the current callback, there's no problem;
-          // otherwise we need to decrease the execution index of any
-          // other runs by 1 to account for the removed element.
+          / This callback may also be part of a hook that is
+          / currently executing.  If the callback we're removing
+          / comes after the current callback, there's no problem;
+          / otherwise we need to decrease the execution index of any
+          / other runs by 1 to account for the removed element.
           hooksStore.__current.forEach(hookInfo => {
             if (hookInfo.name === hookName && hookInfo.currentIndex >= i) {
               hookInfo.currentIndex--;
@@ -291,7 +291,7 @@ function createRemoveHook(hooks, storeKey, removeAll = false) {
 }
 /* harmony default export */ const build_module_createRemoveHook = (createRemoveHook);
 
-;// ./node_modules/@wordpress/hooks/build-module/createHasHook.js
+;/ ./node_modules/@wordpress/hooks/build-module/createHasHook.js
 /**
  * @callback HasHook
  *
@@ -317,7 +317,7 @@ function createHasHook(hooks, storeKey) {
   return function hasHook(hookName, namespace) {
     const hooksStore = hooks[storeKey];
 
-    // Use the namespace if provided.
+    / Use the namespace if provided.
     if ('undefined' !== typeof namespace) {
       return hookName in hooksStore && hooksStore[hookName].handlers.some(hook => hook.namespace === namespace);
     }
@@ -326,7 +326,7 @@ function createHasHook(hooks, storeKey) {
 }
 /* harmony default export */ const build_module_createHasHook = (createHasHook);
 
-;// ./node_modules/@wordpress/hooks/build-module/createRunHook.js
+;/ ./node_modules/@wordpress/hooks/build-module/createRunHook.js
 /**
  * Returns a function which, when invoked, will execute all callbacks
  * registered to a hook of the specified type, optionally returning the final
@@ -351,7 +351,7 @@ function createRunHook(hooks, storeKey, returnFirstArg, async) {
     hooksStore[hookName].runs++;
     const handlers = hooksStore[hookName].handlers;
 
-    // The following code is stripped from production builds.
+    / The following code is stripped from production builds.
     if (false) {}
     if (!handlers || !handlers.length) {
       return returnFirstArg ? args[0] : undefined;
@@ -399,7 +399,7 @@ function createRunHook(hooks, storeKey, returnFirstArg, async) {
 }
 /* harmony default export */ const build_module_createRunHook = (createRunHook);
 
-;// ./node_modules/@wordpress/hooks/build-module/createCurrentHook.js
+;/ ./node_modules/@wordpress/hooks/build-module/createCurrentHook.js
 /**
  * Returns a function which, when invoked, will return the name of the
  * currently running hook, or `null` if no hook of the given type is currently
@@ -420,7 +420,7 @@ function createCurrentHook(hooks, storeKey) {
 }
 /* harmony default export */ const build_module_createCurrentHook = (createCurrentHook);
 
-;// ./node_modules/@wordpress/hooks/build-module/createDoingHook.js
+;/ ./node_modules/@wordpress/hooks/build-module/createDoingHook.js
 /**
  * @callback DoingHook
  * Returns whether a hook is currently being executed.
@@ -445,18 +445,18 @@ function createDoingHook(hooks, storeKey) {
   return function doingHook(hookName) {
     const hooksStore = hooks[storeKey];
 
-    // If the hookName was not passed, check for any current hook.
+    / If the hookName was not passed, check for any current hook.
     if ('undefined' === typeof hookName) {
       return hooksStore.__current.size > 0;
     }
 
-    // Find if the `hookName` hook is in `__current`.
+    / Find if the `hookName` hook is in `__current`.
     return Array.from(hooksStore.__current).some(hook => hook.name === hookName);
   };
 }
 /* harmony default export */ const build_module_createDoingHook = (createDoingHook);
 
-;// ./node_modules/@wordpress/hooks/build-module/createDidHook.js
+;/ ./node_modules/@wordpress/hooks/build-module/createDidHook.js
 /**
  * Internal dependencies
  */
@@ -492,7 +492,7 @@ function createDidHook(hooks, storeKey) {
 }
 /* harmony default export */ const build_module_createDidHook = (createDidHook);
 
-;// ./node_modules/@wordpress/hooks/build-module/createHooks.js
+;/ ./node_modules/@wordpress/hooks/build-module/createHooks.js
 /**
  * Internal dependencies
  */
@@ -553,7 +553,7 @@ function createHooks() {
 }
 /* harmony default export */ const build_module_createHooks = (createHooks);
 
-;// ./node_modules/@wordpress/hooks/build-module/index.js
+;/ ./node_modules/@wordpress/hooks/build-module/index.js
 /**
  * Internal dependencies
  */

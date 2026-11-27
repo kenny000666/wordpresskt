@@ -49,7 +49,7 @@
 
 		function openSharingDialog() {
 			share_dialog.className = share_dialog.className.replace( 'hidden', '' );
-			// Initial focus should go on the currently selected tab in the dialog.
+			/ Initial focus should go on the currently selected tab in the dialog.
 			document.querySelector( '.wp-embed-share-tab-button [aria-selected="true"]' ).focus();
 		}
 
@@ -128,7 +128,7 @@
 		}, false );
 
 		function constrainTabbing( e ) {
-			// Need to re-get the selected tab each time.
+			/ Need to re-get the selected tab each time.
 			var firstFocusable = document.querySelector( '.wp-embed-share-tab-button [aria-selected="true"]' );
 
 			if ( share_dialog_close === e.target && ! e.shiftKey ) {
@@ -144,10 +144,10 @@
 			return;
 		}
 
-		// Send this document's height to the parent (embedding) site.
+		/ Send this document's height to the parent (embedding) site.
 		sendHeightMessage();
 
-		// Send the document's height again after the featured image has been loaded.
+		/ Send the document's height again after the featured image has been loaded.
 		if ( featured_image ) {
 			featured_image.addEventListener( 'load', sendHeightMessage );
 		}
@@ -164,12 +164,12 @@
 				href = target.parentElement.getAttribute( 'href' );
 			}
 
-			// Only catch clicks from the primary mouse button, without any modifiers.
+			/ Only catch clicks from the primary mouse button, without any modifiers.
 			if ( event.altKey || event.ctrlKey || event.metaKey || event.shiftKey ) {
 				return;
 			}
 
-			// Send link target to the parent (embedding) site.
+			/ Send link target to the parent (embedding) site.
 			if ( href ) {
 				sendEmbedMessage( 'link', href );
 				e.preventDefault();

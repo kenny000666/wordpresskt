@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -18,7 +18,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -35,7 +35,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -60,7 +60,7 @@ __webpack_require__.d(__webpack_exports__, {
   withPluginContext: () => (/* reexport */ withPluginContext)
 });
 
-;// ./node_modules/memize/dist/index.js
+;/ ./node_modules/memize/dist/index.js
 /**
  * Memize options object.
  *
@@ -118,19 +118,19 @@ function memize(fn, options) {
 			i;
 
 		searchCache: while (node) {
-			// Perform a shallow equality test to confirm that whether the node
-			// under test is a candidate for the arguments passed. Two arrays
-			// are shallowly equal if their length matches and each entry is
-			// strictly equal between the two sets. Avoid abstracting to a
-			// function which could incur an arguments leaking deoptimization.
+			/ Perform a shallow equality test to confirm that whether the node
+			/ under test is a candidate for the arguments passed. Two arrays
+			/ are shallowly equal if their length matches and each entry is
+			/ strictly equal between the two sets. Avoid abstracting to a
+			/ function which could incur an arguments leaking deoptimization.
 
-			// Check whether node arguments match arguments length
+			/ Check whether node arguments match arguments length
 			if (node.args.length !== arguments.length) {
 				node = node.next;
 				continue;
 			}
 
-			// Check whether node arguments match arguments values
+			/ Check whether node arguments match arguments values
 			for (i = 0; i < len; i++) {
 				if (node.args[i] !== arguments[i]) {
 					node = node.next;
@@ -138,18 +138,18 @@ function memize(fn, options) {
 				}
 			}
 
-			// At this point we can assume we've found a match
+			/ At this point we can assume we've found a match
 
-			// Surface matched node to head if not already
+			/ Surface matched node to head if not already
 			if (node !== head) {
-				// As tail, shift to previous. Must only shift if not also
-				// head, since if both head and tail, there is no previous.
+				/ As tail, shift to previous. Must only shift if not also
+				/ head, since if both head and tail, there is no previous.
 				if (node === tail) {
 					tail = node.prev;
 				}
 
-				// Adjust siblings to point to each other. If node was tail,
-				// this also handles new tail's empty `next` assignment.
+				/ Adjust siblings to point to each other. If node was tail,
+				/ this also handles new tail's empty `next` assignment.
 				/** @type {MemizeCacheNode} */ (node.prev).next = node.next;
 				if (node.next) {
 					node.next.prev = node.prev;
@@ -161,13 +161,13 @@ function memize(fn, options) {
 				head = node;
 			}
 
-			// Return immediately
+			/ Return immediately
 			return node.val;
 		}
 
-		// No cached value found. Continue to insertion phase:
+		/ No cached value found. Continue to insertion phase:
 
-		// Create a copy of arguments (avoid leaking deoptimization)
+		/ Create a copy of arguments (avoid leaking deoptimization)
 		args = new Array(len);
 		for (i = 0; i < len; i++) {
 			args[i] = arguments[i];
@@ -176,23 +176,23 @@ function memize(fn, options) {
 		node = {
 			args: args,
 
-			// Generate the result from original function
+			/ Generate the result from original function
 			val: fn.apply(null, args),
 		};
 
-		// Don't need to check whether node is already head, since it would
-		// have been returned above already if it was
+		/ Don't need to check whether node is already head, since it would
+		/ have been returned above already if it was
 
-		// Shift existing head down list
+		/ Shift existing head down list
 		if (head) {
 			head.prev = node;
 			node.next = head;
 		} else {
-			// If no head, follows that there's no tail (at initial or reset)
+			/ If no head, follows that there's no tail (at initial or reset)
 			tail = node;
 		}
 
-		// Trim tail if we're reached max size and are pending cache insertion
+		/ Trim tail if we're reached max size and are pending cache insertion
 		if (size === /** @type {MemizeOptions} */ (options).maxSize) {
 			tail = /** @type {MemizeCacheNode} */ (tail).prev;
 			/** @type {MemizeCacheNode} */ (tail).next = null;
@@ -211,32 +211,32 @@ function memize(fn, options) {
 		size = 0;
 	};
 
-	// Ignore reason: There's not a clear solution to create an intersection of
-	// the function with additional properties, where the goal is to retain the
-	// function signature of the incoming argument and add control properties
-	// on the return value.
+	/ Ignore reason: There's not a clear solution to create an intersection of
+	/ the function with additional properties, where the goal is to retain the
+	/ function signature of the incoming argument and add control properties
+	/ on the return value.
 
-	// @ts-ignore
+	/ @ts-ignore
 	return memoized;
 }
 
 
 
-;// external ["wp","element"]
+;/ external ["wp","element"]
 const external_wp_element_namespaceObject = window["wp"]["element"];
-;// external ["wp","hooks"]
+;/ external ["wp","hooks"]
 const external_wp_hooks_namespaceObject = window["wp"]["hooks"];
-;// external ["wp","isShallowEqual"]
+;/ external ["wp","isShallowEqual"]
 const external_wp_isShallowEqual_namespaceObject = window["wp"]["isShallowEqual"];
 var external_wp_isShallowEqual_default = /*#__PURE__*/__webpack_require__.n(external_wp_isShallowEqual_namespaceObject);
-;// external ["wp","compose"]
+;/ external ["wp","compose"]
 const external_wp_compose_namespaceObject = window["wp"]["compose"];
-;// external ["wp","deprecated"]
+;/ external ["wp","deprecated"]
 const external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
 var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_namespaceObject);
-;// external "ReactJSXRuntime"
+;/ external "ReactJSXRuntime"
 const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
-;// ./node_modules/@wordpress/plugins/build-module/components/plugin-context/index.js
+;/ ./node_modules/@wordpress/plugins/build-module/components/plugin-context/index.js
 /**
  * WordPress dependencies
  */
@@ -288,7 +288,7 @@ const withPluginContext = mapContextToProps => (0,external_wp_compose_namespaceO
   });
 }, 'withPluginContext');
 
-;// ./node_modules/@wordpress/plugins/build-module/components/plugin-error-boundary/index.js
+;/ ./node_modules/@wordpress/plugins/build-module/components/plugin-error-boundary/index.js
 /**
  * WordPress dependencies
  */
@@ -329,9 +329,9 @@ class PluginErrorBoundary extends external_wp_element_namespaceObject.Component 
   }
 }
 
-;// external ["wp","primitives"]
+;/ external ["wp","primitives"]
 const external_wp_primitives_namespaceObject = window["wp"]["primitives"];
-;// ./node_modules/@wordpress/icons/build-module/library/plugins.js
+;/ ./node_modules/@wordpress/icons/build-module/library/plugins.js
 /**
  * WordPress dependencies
  */
@@ -346,7 +346,7 @@ const plugins = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ex
 });
 /* harmony default export */ const library_plugins = (plugins);
 
-;// ./node_modules/@wordpress/plugins/build-module/api/index.js
+;/ ./node_modules/@wordpress/plugins/build-module/api/index.js
 /* eslint no-console: [ 'error', { allow: [ 'error' ] } ] */
 /**
  * External dependencies
@@ -376,13 +376,13 @@ const api_plugins = {};
  *
  * @example
  * ```js
- * // Using ES5 syntax
+ * / Using ES5 syntax
  * var el = React.createElement;
  * var Fragment = wp.element.Fragment;
  * var PluginSidebar = wp.editor.PluginSidebar;
  * var PluginSidebarMoreMenuItem = wp.editor.PluginSidebarMoreMenuItem;
  * var registerPlugin = wp.plugins.registerPlugin;
- * var moreIcon = React.createElement( 'svg' ); //... svg element.
+ * var moreIcon = React.createElement( 'svg' ); /... svg element.
  *
  * function Component() {
  * 	return el(
@@ -414,7 +414,7 @@ const api_plugins = {};
  *
  * @example
  * ```js
- * // Using ESNext syntax
+ * / Using ESNext syntax
  * import { PluginSidebar, PluginSidebarMoreMenuItem } from '@wordpress/editor';
  * import { registerPlugin } from '@wordpress/plugins';
  * import { more } from '@wordpress/icons';
@@ -495,7 +495,7 @@ function registerPlugin(name, settings) {
  *
  * @example
  * ```js
- * // Using ES5 syntax
+ * / Using ES5 syntax
  * var unregisterPlugin = wp.plugins.unregisterPlugin;
  *
  * unregisterPlugin( 'plugin-name' );
@@ -503,7 +503,7 @@ function registerPlugin(name, settings) {
  *
  * @example
  * ```js
- * // Using ESNext syntax
+ * / Using ESNext syntax
  * import { unregisterPlugin } from '@wordpress/plugins';
  *
  * unregisterPlugin( 'plugin-name' );
@@ -546,7 +546,7 @@ function getPlugins(scope) {
   return Object.values(api_plugins).filter(plugin => plugin.scope === scope);
 }
 
-;// ./node_modules/@wordpress/plugins/build-module/components/plugin-area/index.js
+;/ ./node_modules/@wordpress/plugins/build-module/components/plugin-area/index.js
 /**
  * External dependencies
  */
@@ -579,7 +579,7 @@ const getPluginContext = memize((icon, name) => ({
  * @param  props.onError
  * @example
  * ```js
- * // Using ES5 syntax
+ * / Using ES5 syntax
  * var el = React.createElement;
  * var PluginArea = wp.plugins.PluginArea;
  *
@@ -595,7 +595,7 @@ const getPluginContext = memize((icon, name) => ({
  *
  * @example
  * ```js
- * // Using ESNext syntax
+ * / Using ESNext syntax
  * import { PluginArea } from '@wordpress/plugins';
  *
  * const Layout = () => (
@@ -653,11 +653,11 @@ function PluginArea({
 }
 /* harmony default export */ const plugin_area = (PluginArea);
 
-;// ./node_modules/@wordpress/plugins/build-module/components/index.js
+;/ ./node_modules/@wordpress/plugins/build-module/components/index.js
 
 
 
-;// ./node_modules/@wordpress/plugins/build-module/index.js
+;/ ./node_modules/@wordpress/plugins/build-module/index.js
 
 
 

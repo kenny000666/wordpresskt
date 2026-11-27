@@ -2,7 +2,7 @@
 
 	$( function() {
 
-		// Close modal.
+		/ Close modal.
 		var wpformsModalClose = function() {
 
 			if ( $( '#wpforms-modal-select-form' ).length ) {
@@ -14,7 +14,7 @@
 			$( document.body ).removeClass( 'modal-open' );
 		};
 
-		// Open modal when media button is clicked.
+		/ Open modal when media button is clicked.
 		$( document ).on( 'click', '.wpforms-insert-form-button', function( event ) {
 
 			event.preventDefault();
@@ -22,14 +22,14 @@
 			$( document.body ).addClass( 'modal-open' );
 		} );
 
-		// Close modal on close or cancel links.
+		/ Close modal on close or cancel links.
 		$( document ).on( 'click', '#wpforms-modal-close, #wpforms-modal-cancel a', function( event ) {
 
 			event.preventDefault();
 			wpformsModalClose();
 		} );
 
-		// Insert shortcode into TinyMCE.
+		/ Insert shortcode into TinyMCE.
 		$( document ).on( 'click', '#wpforms-modal-submit', function( event ) {
 
 			event.preventDefault();

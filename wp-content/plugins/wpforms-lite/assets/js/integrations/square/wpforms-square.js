@@ -76,7 +76,7 @@ const WPFormsSquare = window.WPFormsSquare || ( function( document, window, $ ) 
 		init() {
 			app.payments = app.getPaymentsInstance();
 
-			// Bail if a Square payments object isn't initialized.
+			/ Bail if a Square payments object isn't initialized.
 			if ( app.payments === null ) {
 				return;
 			}
@@ -99,7 +99,7 @@ const WPFormsSquare = window.WPFormsSquare || ( function( document, window, $ ) 
 			}
 
 			$( '.wpforms-square form' )
-				.filter( ( _, form ) => typeof $( form ).data( 'formid' ) === 'number' ) // filter out forms which are locked (formid changed to 'locked-...').
+				.filter( ( _, form ) => typeof $( form ).data( 'formid' ) === 'number' ) / filter out forms which are locked (formid changed to 'locked-...').
 				.each( app.updateSubmitHandler );
 		},
 
@@ -116,20 +116,20 @@ const WPFormsSquare = window.WPFormsSquare || ( function( document, window, $ ) 
 				return;
 			}
 
-			// if the form is inside the "raw" elementor popup, we should not initialize the Square and wait for the popup to be opened.
+			/ if the form is inside the "raw" elementor popup, we should not initialize the Square and wait for the popup to be opened.
 			if ( $form.closest( '.elementor-location-popup' ).length && ! $form.closest( '.elementor-popup-modal' ).length ) {
 				return;
 			}
 
 			$form.addClass( 'wpforms-square-initialization' );
 
-			// Store the original submitHandler.
+			/ Store the original submitHandler.
 			originalSubmitHandler = validator.settings.submitHandler;
 
-			// Replace the default submit handler.
+			/ Replace the default submit handler.
 			validator.settings.submitHandler = app.submitHandler;
 
-			// Get a new Card object.
+			/ Get a new Card object.
 			await app.getCardInstance( $form );
 		},
 
@@ -249,8 +249,8 @@ const WPFormsSquare = window.WPFormsSquare || ( function( document, window, $ ) 
 		 * @return {Object|null} Square Card object or null.
 		 */
 		async getCardInstance( $form ) {
-			// Applying the modern styles to the card config if needed.
-			// eslint-disable-next-line prefer-const
+			/ Applying the modern styles to the card config if needed.
+			/ eslint-disable-next-line prefer-const
 			let cardConfig = {};
 
 			cardConfig.style = wpforms_square.card_config.style ? wpforms_square.card_config.style : app.getModernMarkupCardStyles( $form );
@@ -258,17 +258,17 @@ const WPFormsSquare = window.WPFormsSquare || ( function( document, window, $ ) 
 			try {
 				const card = await app.payments.card( cardConfig );
 
-				// Attach the Card form to the page.
+				/ Attach the Card form to the page.
 				await card.attach( $form.find( '.wpforms-field-square-cardnumber' ).get( 0 ) );
 
 				const eventsList = [ 'focusClassAdded', 'focusClassRemoved' ];
 				const eventsLength = eventsList.length;
 				let counter = 0;
 
-				// Bind the Card events.
+				/ Bind the Card events.
 				for ( ; counter < eventsLength; counter++ ) {
 					card.addEventListener( eventsList[ counter ], function( e ) {
-						// Card field is filled.
+						/ Card field is filled.
 						cardData[ e.detail.field ].empty = e.detail.currentState.isEmpty;
 						cardData[ e.detail.field ].valid = e.detail.currentState.isCompletelyValid;
 					} );
@@ -285,8 +285,8 @@ const WPFormsSquare = window.WPFormsSquare || ( function( document, window, $ ) 
 
 				$form.removeClass( 'wpforms-square-initialization' );
 
-				console.log( 'Error:', e ); // eslint-disable-line no-console
-				console.log( 'Config', cardConfig ); // eslint-disable-line no-console
+				console.log( 'Error:', e ); / eslint-disable-line no-console
+				console.log( 'Config', cardConfig ); / eslint-disable-line no-console
 
 				return null;
 			}
@@ -377,19 +377,19 @@ const WPFormsSquare = window.WPFormsSquare || ( function( document, window, $ ) 
 		 *
 		 * @return {Object} Billing contact details.
 		 */
-		getBillingContactDetails( $form ) { // eslint-disable-line complexity
-			// Get the form ID and billing mapping for this form, if available.
+		getBillingContactDetails( $form ) { / eslint-disable-line complexity
+			/ Get the form ID and billing mapping for this form, if available.
 			const formId = $form.data( 'formid' );
 			const mapping = ( wpforms_square.billing_details && wpforms_square.billing_details[ formId ] ) || {};
 			const result = {};
 
-			// Use mapped selectors if provided.
+			/ Use mapped selectors if provided.
 			const $emailField = mapping.buyer_email ? $( `.wpforms-field-email[data-field-id="${ mapping.buyer_email }"]` ) : '';
 			const $nameField = mapping.billing_name ? $( `.wpforms-field-name[data-field-id="${ mapping.billing_name }"]` ) : '';
 			const $addressField = mapping.billing_address ? $( `.wpforms-field-address[data-field-id="${ mapping.billing_address }"]` ) : '';
 
 			if ( $emailField.length ) {
-				const emailValue = $emailField.find( 'input' ).first().val(); // Use the first input field knowing there could be confirmation email input as well.
+				const emailValue = $emailField.find( 'input' ).first().val(); / Use the first input field knowing there could be confirmation email input as well.
 				if ( emailValue && emailValue.trim() !== '' ) {
 					result.email = emailValue;
 				}
@@ -415,18 +415,18 @@ const WPFormsSquare = window.WPFormsSquare || ( function( document, window, $ ) 
 		 *
 		 * @return {Object} Billing name details.
 		 */
-		getBillingNameDetails( $field ) { // eslint-disable-line complexity
+		getBillingNameDetails( $field ) { / eslint-disable-line complexity
 			const result = {};
 
 			let givenName = '';
 			let familyName = '';
 
-			// Try to find separate first and last name fields.
+			/ Try to find separate first and last name fields.
 			const $firstNameField = $field.find( '.wpforms-field-name-first' );
 			const $lastNameField = $field.find( '.wpforms-field-name-last' );
 
 			if ( $firstNameField.length && $lastNameField.length ) {
-				// Use separate fields if both are present.
+				/ Use separate fields if both are present.
 				givenName = $firstNameField.val() || '';
 				familyName = $lastNameField.val() || '';
 
@@ -441,7 +441,7 @@ const WPFormsSquare = window.WPFormsSquare || ( function( document, window, $ ) 
 				return result;
 			}
 
-			// Otherwise, fall back to a single name input field.
+			/ Otherwise, fall back to a single name input field.
 			const $nameField = $field.find( 'input' );
 
 			if ( ! $nameField.length ) {
@@ -453,8 +453,8 @@ const WPFormsSquare = window.WPFormsSquare || ( function( document, window, $ ) 
 				return result;
 			}
 
-			// Split full name by space; the first part is givenName,
-			// the rest (if any) are combined as familyName.
+			/ Split full name by space; the first part is givenName,
+			/ the rest (if any) are combined as familyName.
 			const nameParts = fullName.split( ' ' );
 			givenName = nameParts.shift() || '';
 			familyName = nameParts.join( ' ' ) || '';
@@ -479,13 +479,13 @@ const WPFormsSquare = window.WPFormsSquare || ( function( document, window, $ ) 
 		 *
 		 * @return {Object} Billing address details.
 		 */
-		getBillingAddressDetails( $addressField ) { // eslint-disable-line complexity
+		getBillingAddressDetails( $addressField ) { / eslint-disable-line complexity
 			const result = {};
 
-			// For address fields, use the closest wrapper.
+			/ For address fields, use the closest wrapper.
 			const $addressWrapper = $addressField.closest( '.wpforms-field' );
 
-			// Retrieve address components, defaulting to empty strings if not found.
+			/ Retrieve address components, defaulting to empty strings if not found.
 			const addressLine1 = $addressWrapper.find( '.wpforms-field-address-address1' ).val() || '';
 			const addressLine2 = $addressWrapper.find( '.wpforms-field-address-address2' ).val() || '';
 			const city = $addressWrapper.find( '.wpforms-field-address-city' ).val() || '';
@@ -663,10 +663,10 @@ const WPFormsSquare = window.WPFormsSquare || ( function( document, window, $ ) 
 		 * @param {jQuery} $form       Current form.
 		 * @param {string} action      The navigation action.
 		 */
-		pageChange( event, currentPage, $form, action ) { // eslint-disable-line complexity
+		pageChange( event, currentPage, $form, action ) { / eslint-disable-line complexity
 			const $squareDiv = $form.find( '.wpforms-field-square-cardnumber' );
 
-			// Stop navigation through page break pages.
+			/ Stop navigation through page break pages.
 			if (
 				! $squareDiv.is( ':visible' ) ||
 				( ! $squareDiv.data( 'required' ) && ! app.isCardDataNotEmpty() ) ||
@@ -726,8 +726,8 @@ const WPFormsSquare = window.WPFormsSquare || ( function( document, window, $ ) 
 		 * @return {boolean} True if the form needs styles.
 		 */
 		needsStyles() {
-			// Styles are not needed if the classic markup is used
-			// and it's neither conversational nor lead form.
+			/ Styles are not needed if the classic markup is used
+			/ and it's neither conversational nor lead form.
 			if (
 				( ! window.WPForms || ! WPForms.FrontendModern ) &&
 				! $( '#wpforms-conversational-form-page' ).length &&
@@ -761,7 +761,7 @@ const WPFormsSquare = window.WPFormsSquare || ( function( document, window, $ ) 
 					colorTextPlaceholder: hiddenInputColor,
 				};
 
-			// Check if WPFormsUtils.cssColorsUtils object is available.
+			/ Check if WPFormsUtils.cssColorsUtils object is available.
 			if ( WPFormsUtils.hasOwnProperty( 'cssColorsUtils' ) &&
 				typeof WPFormsUtils.cssColorsUtils.getColorWithOpacity === 'function' ) {
 				inputStyle.colorText = WPFormsUtils.cssColorsUtils.getColorWithOpacity( hiddenInputColor );
@@ -783,7 +783,7 @@ const WPFormsSquare = window.WPFormsSquare || ( function( document, window, $ ) 
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../node_modules/@babel/runtime/helpers/arrayLikeToArray.js":
@@ -351,27 +351,27 @@ module.exports = _unsupportedIterableToArray, module.exports.__esModule = true, 
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
@@ -417,15 +417,15 @@ var Screenshot = /*#__PURE__*/function (_elementorModules$Vie) {
           height: ((_ElementorScreenshotC2 = ElementorScreenshotConfig) === null || _ElementorScreenshotC2 === void 0 || (_ElementorScreenshotC2 = _ElementorScreenshotC2.crop) === null || _ElementorScreenshotC2 === void 0 ? void 0 : _ElementorScreenshotC2.height) || 1500
         },
         excluded_external_css_urls: ['https://kit-pro.fontawesome.com'],
-        external_images_urls: ['https://i.ytimg.com' // Youtube images domain.
+        external_images_urls: ['https://i.ytimg.com' / Youtube images domain.
         ],
         timeout: 15000,
-        // Wait until screenshot taken or fail in 15 secs.
+        / Wait until screenshot taken or fail in 15 secs.
         render_timeout: 5000,
-        // Wait until all the element will be loaded or 5 sec and then take screenshot.
+        / Wait until all the element will be loaded or 5 sec and then take screenshot.
         timerLabel: null,
         timer_label: "".concat(ElementorScreenshotConfig.post_id, " - timer"),
-        image_placeholder: 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=',
+        image_placeholder: 'data:image/gif;base64,R0lGODlhAQABAIAAAP//wAAACwAAAAAAQABAAACAkQBADs=',
         isDebug: elementorCommonConfig.isElementorDebug,
         isDebugSvg: false
       }, ElementorScreenshotConfig);
@@ -563,7 +563,7 @@ var Screenshot = /*#__PURE__*/function (_elementorModules$Vie) {
       var _this3 = this;
       var currentHeight = 0;
 
-      // We need to keep all elements as for Kit we render the entire homepage
+      / We need to keep all elements as for Kit we render the entire homepage
       if (this.getSettings('kit_id')) {
         return;
       }
@@ -578,8 +578,8 @@ var Screenshot = /*#__PURE__*/function (_elementorModules$Vie) {
         el.remove();
       });
 
-      // Some 3rd party plugins inject elements into the dom, so this method removes all
-      // the elements that was injected, to make sure that it capture a screenshot only of the post itself.
+      / Some 3rd party plugins inject elements into the dom, so this method removes all
+      / the elements that was injected, to make sure that it capture a screenshot only of the post itself.
       this.elements.$notElementorElements.remove();
     }
 
@@ -634,12 +634,12 @@ var Screenshot = /*#__PURE__*/function (_elementorModules$Vie) {
           return Promise.reject('Debug SVG.');
         }
 
-        // TODO: Extract to util function.
+        / TODO: Extract to util function.
         var isSafari = /^((?!chrome|android).)*safari/i.test(window.userAgent);
 
-        // Safari browser has some problems with the images that dom-to-images
-        // library creates, so in this specific case the screenshot uses html2canvas.
-        // Note that dom-to-image creates more accurate screenshot in "not safari" browsers.
+        / Safari browser has some problems with the images that dom-to-images
+        / library creates, so in this specific case the screenshot uses html2canvas.
+        / Note that dom-to-image creates more accurate screenshot in "not safari" browsers.
         if (isSafari) {
           _this4.log('Creating screenshot with "html2canvas"');
           return html2canvas(document.body).then(function (canvas) {
@@ -833,9 +833,9 @@ var Screenshot = /*#__PURE__*/function (_elementorModules$Vie) {
         message = _this$getSaveAction2.message,
         key = _this$getSaveAction2.key;
 
-      // Send the message to the parent window and not to the top.
-      // e.g: The `Theme builder` is loaded into an iFrame so the message of the screenshot
-      // should be sent to the `Theme builder` window and not to the top window.
+      / Send the message to the parent window and not to the top.
+      / e.g: The `Theme builder` is loaded into an iFrame so the message of the screenshot
+      / should be sent to the `Theme builder` window and not to the top window.
       window.parent.postMessage({
         name: message,
         success: success,
@@ -859,10 +859,10 @@ var Screenshot = /*#__PURE__*/function (_elementorModules$Vie) {
         return;
       }
 
-      // eslint-disable-next-line no-console
+      / eslint-disable-next-line no-console
       console.log('string' === typeof message ? "".concat(this.getSettings('post_id'), " - ").concat(message) : message);
       if (timerMethod) {
-        // eslint-disable-next-line no-console
+        / eslint-disable-next-line no-console
         console[timerMethod](this.getSettings('timer_label'));
       }
     }

@@ -36,7 +36,7 @@
 		color: ${C.colors.$color_snippet_focus};	
 	}
 	
-	// Overwrite the default blue active color for links.
+	/ Overwrite the default blue active color for links.
 	&:active {
 		color: ${C.colors.$color_help_text};	
 	}
@@ -61,9 +61,9 @@
 	flex: 1 !important;
 	box-sizing: border-box;
 	max-width: 100%;
-	margin: 0; // Reset margins inherited from WordPress.
+	margin: 0; / Reset margins inherited from WordPress.
 
-	// Hide native X in Edge and IE11.
+	/ Hide native X in Edge and IE11.
 	&::-ms-clear {
 		display: none;
 	}
@@ -243,7 +243,7 @@
 (0,s.__)("Unlock with %s","wordpress-seo"),"Yoast SEO Premium"),upsellButton:{href:e.buyLink,className:"yoast-button-upsell",rel:null,"data-ctb-id":"f6a84663-465f-4cb5-8ba5-f7a6d72224b2","data-action":"load-nfd-ctb"},upsellButtonLabel:(0,s.__)("1 year free support and updates included!","wordpress-seo")});Vt.propTypes={buyLink:i().string.isRequired};const Qt=Vt,Zt=e=>(0,t.createElement)(Se,{title:(0,s.__)("Reach a wider audience","wordpress-seo"),description:(0,s.__)("Get help optimizing for up to 5 related keyphrases. This helps you reach a wider audience and get more traffic.","wordpress-seo"),benefitsTitle:(0,s.sprintf)(/* translators: %s expands to 'Yoast SEO Premium'. */
 (0,s.__)("%s also gives you:","wordpress-seo"),"Yoast SEO Premium"),benefits:ye(),upsellButtonText:(0,s.sprintf)(/* translators: %s expands to 'Yoast SEO Premium'. */
 (0,s.__)("Unlock with %s","wordpress-seo"),"Yoast SEO Premium"),upsellButton:{href:e.buyLink,className:"yoast-button-upsell",rel:null,"data-ctb-id":"f6a84663-465f-4cb5-8ba5-f7a6d72224b2","data-action":"load-nfd-ctb"},upsellButtonLabel:(0,s.__)("1 year free support and updates included!","wordpress-seo")});Zt.propTypes={buyLink:i().string.isRequired};const Jt=Zt,Xt=d().button`
-	// Increase specificity to override WP rules.
+	/ Increase specificity to override WP rules.
 	&& {
 		display: flex;
 		align-items: center;
@@ -277,7 +277,7 @@
 	display: flex;
 	align-items: flex-start;
 `,ps=d()(o.SvgIcon)`
-	margin: 3px 11px 0 0; // icon 13 + 11 right margin = 24 for the 8px grid.
+	margin: 3px 11px 0 0; / icon 13 + 11 right margin = 24 for the 8px grid.
 `,ms=e=>{const r=wpseoAdminL10n["shortlinks.inclusive_language_analysis_info"];function n(){return(0,t.createElement)(l.Fragment,null,(0,t.createElement)(ls,null,(0,s.__)("Analysis results","wordpress-seo"),(0,t.createElement)(ds,{href:r,className:"dashicons"},(0,t.createElement)("span",{className:"screen-reader-text"},/* translators: Hidden accessibility text. */
 (0,s.__)("Learn more about the inclusive language analysis","wordpress-seo")))),(0,t.createElement)(Te,{results:e.results,marksButtonClassName:"yoast-tooltip yoast-tooltip-w",marksButtonStatus:e.marksButtonStatus,resultCategoryLabels:{problems:(0,s.__)("Non-inclusive","wordpress-seo"),improvements:(0,s.__)("Potentially non-inclusive","wordpress-seo")},highlightingUpsellLink:"shortlinks.upsell.sidebar.highlighting_inclusive_analysis",shouldUpsellHighlighting:e.shouldUpsellHighlighting}))}const a=ge((0,s.sprintf)(/* Translators: %1$s expands to a link on yoast.com, %2$s expands to the anchor end tag. */
 (0,s.__)("%1$sInclusive language%2$s: We haven't detected any potentially non-inclusive phrases. Great work!","wordpress-seo"),"<a>","</a>"),{a:(0,t.createElement)("a",{href:r,target:"_blank",rel:"noreferrer"})});function i(){const e=(0,s.__)("We noticed that you are using a multilingual plugin. Please be aware that this analysis feedback is intended only for texts written in English.","wordpress-seo");return(0,t.createElement)(o.Alert,{type:"info"},e)}function c(){return(0,t.createElement)(l.Fragment,null,(0,t.createElement)(ls,null,(0,s.__)("Analysis results","wordpress-seo"),(0,t.createElement)(ds,{href:r,className:"dashicons"},(0,t.createElement)("span",{className:"screen-reader-text"},/* translators: Hidden accessibility text. */

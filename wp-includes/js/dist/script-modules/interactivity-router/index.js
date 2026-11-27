@@ -10,34 +10,34 @@ module.exports = import("@wordpress/a11y");;
 
 /******/ });
 /************************************************************************/
-/******/ // The module cache
+/******/ / The module cache
 /******/ var __webpack_module_cache__ = {};
 /******/ 
-/******/ // The require function
+/******/ / The require function
 /******/ function __webpack_require__(moduleId) {
-/******/ 	// Check if module is in cache
+/******/ 	/ Check if module is in cache
 /******/ 	var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 	if (cachedModule !== undefined) {
 /******/ 		return cachedModule.exports;
 /******/ 	}
-/******/ 	// Create a new module (and put it into the cache)
+/******/ 	/ Create a new module (and put it into the cache)
 /******/ 	var module = __webpack_module_cache__[moduleId] = {
-/******/ 		// no module.id needed
-/******/ 		// no module.loaded needed
+/******/ 		/ no module.id needed
+/******/ 		/ no module.loaded needed
 /******/ 		exports: {}
 /******/ 	};
 /******/ 
-/******/ 	// Execute the module function
+/******/ 	/ Execute the module function
 /******/ 	__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 
-/******/ 	// Return the exports of the module
+/******/ 	/ Return the exports of the module
 /******/ 	return module.exports;
 /******/ }
 /******/ 
 /************************************************************************/
 /******/ /* webpack/runtime/define property getters */
 /******/ (() => {
-/******/ 	// define getter functions for harmony exports
+/******/ 	/ define getter functions for harmony exports
 /******/ 	__webpack_require__.d = (exports, definition) => {
 /******/ 		for(var key in definition) {
 /******/ 			if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -61,13 +61,13 @@ __webpack_require__.d(__webpack_exports__, {
   w: () => (/* binding */ state)
 });
 
-;// external "@wordpress/interactivity"
+;/ external "@wordpress/interactivity"
 var x = (y) => {
 	var x = {}; __webpack_require__.d(x, y); return x
 } 
 var y = (x) => (() => (x))
 const interactivity_namespaceObject = x({ ["getConfig"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.getConfig), ["privateApis"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.privateApis), ["store"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.store) });
-;// ./node_modules/@wordpress/interactivity-router/build-module/head.js
+;/ ./node_modules/@wordpress/interactivity-router/build-module/head.js
 /**
  * The cache of prefetched stylesheets and scripts.
  */
@@ -80,20 +80,20 @@ const headElements = new Map();
  * @param newHead The head elements of the new page.
  */
 const updateHead = async newHead => {
-  // Helper to get the tag id store in the cache.
+  / Helper to get the tag id store in the cache.
   const getTagId = tag => tag.id || tag.outerHTML;
 
-  // Map incoming head tags by their content.
+  / Map incoming head tags by their content.
   const newHeadMap = new Map();
   for (const child of newHead) {
     newHeadMap.set(getTagId(child), child);
   }
   const toRemove = [];
 
-  // Detect nodes that should be added or removed.
+  / Detect nodes that should be added or removed.
   for (const child of document.head.children) {
     const id = getTagId(child);
-    // Always remove styles and links as they might change.
+    / Always remove styles and links as they might change.
     if (child.nodeName === 'LINK' || child.nodeName === 'STYLE') {
       toRemove.push(child);
     } else if (newHeadMap.has(id)) {
@@ -108,10 +108,10 @@ const updateHead = async newHead => {
     await import(/* webpackIgnore: true */url);
   }));
 
-  // Prepare new assets.
+  / Prepare new assets.
   const toAppend = [...newHeadMap.values()];
 
-  // Apply the changes.
+  / Apply the changes.
   toRemove.forEach(n => n.remove());
   document.head.append(...toAppend);
 };
@@ -127,14 +127,14 @@ const updateHead = async newHead => {
 const fetchHeadAssets = async doc => {
   const headTags = [];
 
-  // We only want to fetch module scripts because regular scripts (without
-  // `async` or `defer` attributes) can depend on the execution of other scripts.
-  // Scripts found in the head are blocking and must be executed in order.
+  / We only want to fetch module scripts because regular scripts (without
+  / `async` or `defer` attributes) can depend on the execution of other scripts.
+  / Scripts found in the head are blocking and must be executed in order.
   const scripts = doc.querySelectorAll('script[type="module"][src]');
   scripts.forEach(script => {
     const src = script.getAttribute('src');
     if (!headElements.has(src)) {
-      // add the <link> elements to prefetch the module scripts
+      / add the <link> elements to prefetch the module scripts
       const link = doc.createElement('link');
       link.rel = 'modulepreload';
       link.href = src;
@@ -159,7 +159,7 @@ const fetchHeadAssets = async doc => {
           text
         });
       } catch (e) {
-        // eslint-disable-next-line no-console
+        / eslint-disable-next-line no-console
         console.error(e);
       }
     }
@@ -171,7 +171,7 @@ const fetchHeadAssets = async doc => {
   return [doc.querySelector('title'), ...doc.querySelectorAll('style'), ...headTags];
 };
 
-;// ./node_modules/@wordpress/interactivity-router/build-module/index.js
+;/ ./node_modules/@wordpress/interactivity-router/build-module/index.js
 var _getConfig$navigation;
 /**
  * WordPress dependencies
@@ -288,11 +288,11 @@ const forcePageReload = href => {
 // Listen to the back and forward buttons and restore the page if it's in the
 // cache.
 window.addEventListener('popstate', async () => {
-  const pagePath = getPagePath(window.location.href); // Remove hash.
+  const pagePath = getPagePath(window.location.href); / Remove hash.
   const page = pages.has(pagePath) && (await pages.get(pagePath));
   if (page) {
     await renderRegions(page);
-    // Update the URL in the state.
+    / Update the URL in the state.
     state.url = window.location.href;
   } else {
     window.location.reload();
@@ -377,11 +377,11 @@ const {
       navigatingTo = href;
       actions.prefetch(pagePath, options);
 
-      // Create a promise that resolves when the specified timeout ends.
-      // The timeout value is 10 seconds by default.
+      / Create a promise that resolves when the specified timeout ends.
+      / The timeout value is 10 seconds by default.
       const timeoutPromise = new Promise(resolve => setTimeout(resolve, timeout));
 
-      // Don't update the navigation status immediately, wait 400 ms.
+      / Don't update the navigation status immediately, wait 400 ms.
       const loadingTimeout = setTimeout(() => {
         if (navigatingTo !== href) {
           return;
@@ -396,12 +396,12 @@ const {
       }, 400);
       const page = yield Promise.race([pages.get(pagePath), timeoutPromise]);
 
-      // Dismiss loading message if it hasn't been added yet.
+      / Dismiss loading message if it hasn't been added yet.
       clearTimeout(loadingTimeout);
 
-      // Once the page is fetched, the destination URL could have changed
-      // (e.g., by clicking another link in the meantime). If so, bail
-      // out, and let the newer execution to update the HTML.
+      / Once the page is fetched, the destination URL could have changed
+      / (e.g., by clicking another link in the meantime). If so, bail
+      / out, and let the newer execution to update the HTML.
       if (navigatingTo !== href) {
         return;
       }
@@ -409,11 +409,11 @@ const {
         yield renderRegions(page);
         window.history[options.replace ? 'replaceState' : 'pushState']({}, '', href);
 
-        // Update the URL in the state.
+        / Update the URL in the state.
         state.url = href;
 
-        // Update the navigation status once the the new page rendering
-        // has been completed.
+        / Update the navigation status once the the new page rendering
+        / has been completed.
         if (loadingAnimation) {
           navigation.hasStarted = false;
           navigation.hasFinished = true;
@@ -422,7 +422,7 @@ const {
           a11ySpeak('loaded');
         }
 
-        // Scroll to the anchor if exits in the link.
+        / Scroll to the anchor if exits in the link.
         const {
           hash
         } = new URL(href, window.location.href);
@@ -484,17 +484,17 @@ function a11ySpeak(messageKey) {
         }
       } catch {}
     } else {
-      // Fallback to localized strings from Interactivity API state.
-      // @todo This block is for Core < 6.7.0. Remove when support is dropped.
+      / Fallback to localized strings from Interactivity API state.
+      / @todo This block is for Core < 6.7.0. Remove when support is dropped.
 
-      // @ts-expect-error
+      / @ts-expect-error
       if (state.navigation.texts?.loading) {
-        // @ts-expect-error
+        / @ts-expect-error
         navigationTexts.loading = state.navigation.texts.loading;
       }
-      // @ts-expect-error
+      / @ts-expect-error
       if (state.navigation.texts?.loaded) {
-        // @ts-expect-error
+        / @ts-expect-error
         navigationTexts.loaded = state.navigation.texts.loaded;
       }
     }
@@ -503,7 +503,7 @@ function a11ySpeak(messageKey) {
   Promise.resolve(/* import() */).then(__webpack_require__.bind(__webpack_require__, 317)).then(({
     speak
   }) => speak(message),
-  // Ignore failures to load the a11y module.
+  / Ignore failures to load the a11y module.
   () => {});
 }
 

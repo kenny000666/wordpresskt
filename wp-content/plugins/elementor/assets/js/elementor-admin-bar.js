@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../node_modules/@babel/runtime/helpers/assertThisInitialized.js":
@@ -229,27 +229,27 @@ module.exports = _typeof, module.exports.__esModule = true, module.exports["defa
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
@@ -343,13 +343,13 @@ var AdminBar = /*#__PURE__*/function (_elementorModules$Vie) {
     value: function createMenu(adminBarConfig) {
       var $items = this.createMenuItems(Object.values(adminBarConfig));
       if (this.elements.$editMenuItem.length) {
-        // This is the normal case, when user visit a preview page of single post.
+        / This is the normal case, when user visit a preview page of single post.
         this.elements.$editMenuItem.after($items);
       } else if (this.elements.$newMenuItem.length) {
-        // This is another case, when user visit a preview page that cannot be edited e.g: archive page.
+        / This is another case, when user visit a preview page that cannot be edited e.g: archive page.
         this.elements.$newMenuItem.after($items);
       } else {
-        // Default fallback in case there are no "new" or "edit" button.
+        / Default fallback in case there are no "new" or "edit" button.
         this.elements.$adminBar.append($items);
       }
     }

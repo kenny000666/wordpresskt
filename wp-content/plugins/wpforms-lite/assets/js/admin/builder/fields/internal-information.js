@@ -7,7 +7,7 @@
  *
  * @since 1.7.6
  */
-var WPFormsInternalInformationField = window.WPFormsInternalInformationField || ( function( document, window, $ ) { // eslint-disable-line
+var WPFormsInternalInformationField = window.WPFormsInternalInformationField || ( function( document, window, $ ) { / eslint-disable-line
 
 	/**
 	 * WPForms builder element.
@@ -182,12 +182,12 @@ var WPFormsInternalInformationField = window.WPFormsInternalInformationField || 
 
 			WPFormsBuilder.updateDescription( $wrapper.find( '.expanded-description' ), newLines );
 
-			if ( value.length !== 0 ) { // Expanded description has content.
+			if ( value.length !== 0 ) { / Expanded description has content.
 				if ( $expandable.hasClass( 'expanded' ) ) {
 					return;
 				}
 
-				// Update CTA button.
+				/ Update CTA button.
 				$buttonContainer.html( app.notExpandedButton() );
 
 				return;
@@ -195,7 +195,7 @@ var WPFormsInternalInformationField = window.WPFormsInternalInformationField || 
 
 			$expandable.hide().removeClass( 'expanded' );
 
-			if ( link.length === 0 ) { // Expanded description does not have value and button has no link.
+			if ( link.length === 0 ) { / Expanded description does not have value and button has no link.
 				$buttonContainer.html( '' );
 
 				return;

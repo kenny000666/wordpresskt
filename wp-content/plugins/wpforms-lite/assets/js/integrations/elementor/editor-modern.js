@@ -11,7 +11,7 @@
  *
  * @since 1.8.3
  */
-var WPFormsElementorModern = window.WPFormsElementorModern || ( function( document, window, $ ) { // eslint-disable-line no-var
+var WPFormsElementorModern = window.WPFormsElementorModern || ( function( document, window, $ ) { / eslint-disable-line no-var
 	/**
 	 * Localized data aliases.
 	 *
@@ -100,10 +100,10 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 		 * @since 1.8.3
 		 */
 		events() {
-			// Widget events.
-			// noinspection JSUnusedLocalSymbols
+			/ Widget events.
+			/ noinspection JSUnusedLocalSymbols
 			$( window )
-				// eslint-disable-next-line no-unused-vars
+				/ eslint-disable-next-line no-unused-vars
 				.on( 'elementor/frontend/init', function( event, id, instance ) {
 					elementor.channels.editor.on( 'section:activated', app.onSectionActivated );
 					elementor.hooks.addAction( 'panel/open_editor/widget/wpforms', app.widgetPanelOpen );
@@ -133,17 +133,17 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 		 * @param {string} sectionName The current section name.
 		 * @param {Object} editor      Editor instance.
 		 */
-		// eslint-disable-next-line complexity
+		/ eslint-disable-next-line complexity
 		blockProControls( sectionName, editor ) {
 			if ( ( wpformsElementorVars.isPro && wpformsElementorVars.isLicenseActive ) || editor.activeTab !== 'style' ) {
 				return;
 			}
 
-			// Disable all PRO sections.
+			/ Disable all PRO sections.
 			editor.$el.find( '.elementor-control-background_styles' ).addClass( 'wpforms-elementor-section-disabled' ).attr( 'data-wpforms-section', 'background' );
 			editor.$el.find( '.elementor-control-container_styles' ).addClass( 'wpforms-elementor-section-disabled' ).attr( 'data-wpforms-section', 'container' );
 
-			// Disable all PRO controls and add overlay.
+			/ Disable all PRO controls and add overlay.
 			if ( sectionName === 'background_styles' || sectionName === 'container_styles' ) {
 				editor.$el
 					.find( '.elementor-control:not(.elementor-control-type-section)' )
@@ -157,7 +157,7 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 					} );
 			}
 
-			// Add overlay handler.
+			/ Add overlay handler.
 			if ( ! editor.$el.data( 'wpforms-overlay-handler-bound' ) ) {
 				editor.$el.on( 'click', '.wpforms-disabled-control-overlay', function( event ) {
 					event.preventDefault();
@@ -224,12 +224,12 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 		widgetPanelOpen( panel, model, view ) {
 			const settingsModel = model.get( 'settings' );
 
-			// Apply settings from the textarea.
+			/ Apply settings from the textarea.
 			settingsModel.on( 'change:copyPasteJsonValue', ( changedModel ) => {
 				app.pasteSettings( changedModel, view );
 			} );
 
-			// Change style settings.
+			/ Change style settings.
 			settingsModel.on( 'change', ( changedModel ) => {
 				app.changeStyleSettings( changedModel, view );
 
@@ -238,7 +238,7 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 				}
 			} );
 
-			// Update copy/paste content when form_id is changed and copyPasteJsonValue is not set.
+			/ Update copy/paste content when form_id is changed and copyPasteJsonValue is not set.
 			settingsModel.on( 'change:form_id', ( changedModel ) => {
 				if ( ! changedModel.attributes.copyPasteJsonValue ) {
 					setTimeout( function() {
@@ -272,7 +272,7 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 		 * @param {Object} changedModel Changed model.
 		 * @param {Object} view         View.
 		 */
-		// eslint-disable-next-line complexity
+		/ eslint-disable-next-line complexity
 		changeStyleSettings( changedModel, view ) {
 			const wpformsContainer = view.$el.find( '.wpforms-container' )[ 0 ];
 
@@ -303,7 +303,7 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 				const property = element.replace( /[A-Z]/g, ( letter ) => `-${ letter.toLowerCase() }` );
 				attrValue = app.prepareComplexAttrValues( attrValue, element );
 
-				// Check for custom handlers.
+				/ Check for custom handlers.
 				if ( typeof app.getStyleHandlers()[ property ] === 'function' ) {
 					app.getStyleHandlers()[ property ]( wpformsContainer, attrValue, parsedAtts );
 					continue;
@@ -363,7 +363,7 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 		 *
 		 * @return {string|Object} Prepared attribute value.
 		 */
-		prepareComplexAttrValues( attrValue, element ) { // eslint-disable-line complexity
+		prepareComplexAttrValues( attrValue, element ) { / eslint-disable-line complexity
 			const pxItems = [
 				'fieldBorderRadius',
 				'fieldBorderSize',
@@ -383,7 +383,7 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 			}
 
 			if ( element === 'backgroundUrl' ) {
-				// noinspection JSUnresolvedReference
+				/ noinspection JSUnresolvedReference
 				let url = typeof attrValue === 'object' ? attrValue?.url : attrValue;
 
 				if ( typeof url === 'string' && ! url.trim().startsWith( 'url(' ) ) {
@@ -584,7 +584,7 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 		 * @param {number} formId Form ID.
 		 */
 		initRichTextField( formId ) {
-			// Set default tab to `Visual`.
+			/ Set default tab to `Visual`.
 			$( `#wpforms-${ formId } .wp-editor-wrap` ).removeClass( 'html-active' ).addClass( 'tmce-active' );
 		},
 
@@ -642,7 +642,7 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 						$input = $( self.input.element ),
 						sizeClass = $element.data( 'size-class' );
 
-					// Add a CSS class for size.
+					/ Add a CSS class for size.
 					if ( sizeClass ) {
 						$( self.containerOuter.element ).addClass( sizeClass );
 					}
@@ -652,7 +652,7 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 					 * In case if select is empty - we return placeholder text.
 					 */
 					if ( $element.prop( 'multiple' ) ) {
-						// On init event.
+						/ On init event.
 						$input.data( 'placeholder', $input.attr( 'placeholder' ) );
 
 						if ( self.getValue( true ).length ) {
@@ -667,10 +667,10 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 				try {
 					const choicesInstance = new Choices( el, args );
 
-					// Save the Choices.js instance for future access.
+					/ Save the Choices.js instance for future access.
 					$el.data( 'choicesjs', choicesInstance );
 				} catch ( e ) {
-				} // eslint-disable-line no-empty
+				} / eslint-disable-line no-empty
 			} );
 		},
 
@@ -684,11 +684,11 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 		initRepeaterField( formId ) {
 			const $rowButtons = $( `.wpforms-form[data-formid="${ formId }"] .wpforms-field-repeater > .wpforms-field-repeater-display-rows .wpforms-field-repeater-display-rows-buttons` );
 
-			// Get the label height and set the button position.
+			/ Get the label height and set the button position.
 			$rowButtons.each( function() {
 				const $cont = $( this );
 
-				// noinspection JSCheckFunctionSignatures
+				/ noinspection JSCheckFunctionSignatures
 				const $label = $cont.siblings( '.wpforms-layout-column' )
 					.find( '.wpforms-field' ).first()
 					.find( '.wpforms-field-label' );
@@ -700,7 +700,7 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 				$cont.css( { top } );
 			} );
 
-			// Init buttons and descriptions for each repeater in each form.
+			/ Init buttons and descriptions for each repeater in each form.
 			$( `.wpforms-form[data-formid="${ formId }"]` ).each( function() {
 				const $repeater = $( this ).find( '.wpforms-field-repeater' );
 
@@ -724,8 +724,8 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 			const message = wpforms_education.upgrade[ type ].message_plural.replace( /%name%/g, feature );
 			const editor = elementor.getPanelView().$el;
 
-			// noinspection JSUnusedLocalSymbols
-			const utmContent = { // eslint-disable-line no-unused-vars
+			/ noinspection JSUnusedLocalSymbols
+			const utmContent = { / eslint-disable-line no-unused-vars
 				container: 'Upgrade to Pro - Container Styles',
 				background: 'Upgrade to Pro - Background Styles',
 				themes: 'Upgrade to Pro - Themes',
@@ -741,12 +741,12 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 				theme: 'modern,wpforms-education',
 				closeIcon: true,
 				onOpen() {
-					// To not lose the focus on our widget.
+					/ To not lose the focus on our widget.
 					this.$el.on( 'click', function( e ) {
 						e.stopPropagation();
 					} );
 				},
-				onOpenBefore: function() { // eslint-disable-line object-shorthand
+				onOpenBefore: function() { / eslint-disable-line object-shorthand
 					this.$btnc.after( '<div class="discount-note">' + wpforms_education.upgrade_bonus + '</div>' );
 					this.$btnc.after( wpforms_education.upgrade[ type ].doc.replace( /%25name%25/g, 'AP - ' + feature ).replace( 'gutenberg', 'elementor' ) );
 					this.$body.find( '.jconfirm-content' ).addClass( 'lite-upgrade' );
@@ -790,7 +790,7 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 					editor.addClass( 'wpforms-elementor-disabled' );
 				},
 				onOpen() {
-					// To not lose the focus on our widget.
+					/ To not lose the focus on our widget.
 					this.$el.on( 'click', function( e ) {
 						e.stopPropagation();
 					} );
@@ -1016,7 +1016,7 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 					useBootstrap: false,
 					boxWidth: '400px',
 					onOpen() {
-						// To not lose the focus on our widget.
+						/ To not lose the focus on our widget.
 						this.$el.on( 'click', function( e ) {
 							e.stopPropagation();
 						} );
@@ -1033,11 +1033,11 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 							btnClass: 'btn-confirm',
 							keys: [ 'enter' ],
 							action() {
-								// noinspection JSUnresolvedReference
+								/ noinspection JSUnresolvedReference
 								this.$$continue.prop( 'disabled', true )
 									.html( spinner + strings.installing );
 
-								// noinspection JSUnresolvedReference
+								/ noinspection JSUnresolvedReference
 								this.$$cancel
 									.prop( 'disabled', true );
 
@@ -1089,7 +1089,7 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 						editor.addClass( 'wpforms-elementor-disabled' );
 					},
 					onOpen() {
-						// To not lose the focus on our widget.
+						/ To not lose the focus on our widget.
 						this.$el.on( 'click', function( e ) {
 							e.stopPropagation();
 						} );
@@ -1113,12 +1113,12 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 			 * @param {string} from  From where the modal was triggered, `themes` or `bg-styles`.
 			 */
 			install( modal, from ) {
-				// If a fetch is already in progress, exit the function.
+				/ If a fetch is already in progress, exit the function.
 				if ( state.isInstalling ) {
 					return;
 				}
 
-				// Set the flag to true indicating a fetch is in progress.
+				/ Set the flag to true indicating a fetch is in progress.
 				state.isInstalling = true;
 
 				wp.apiFetch( {
@@ -1130,10 +1130,10 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 						return;
 					}
 
-					// Store the pictures' data.
+					/ Store the pictures' data.
 					pictures = response.pictures || [];
 
-					// Show the pictures modal.
+					/ Show the pictures modal.
 					if ( from !== 'themes' ) {
 						app.stockPhotos.picturesModal();
 					}
@@ -1194,7 +1194,7 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 			selectPicture() {
 				const pictureUrl = $( this ).data( 'url' );
 
-				// Get the current widget model
+				/ Get the current widget model
 				/**
 				 * @param elementor.getPanelView
 				 * @param elementor.getPanelView.getCurrentPageView
@@ -1209,7 +1209,7 @@ var WPFormsElementorModern = window.WPFormsElementorModern || ( function( docume
 					},
 				} );
 
-				// Close the modal window.
+				/ Close the modal window.
 				state.picturesModal?.close();
 			},
 

@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -18,7 +18,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -36,11 +36,11 @@
 /************************************************************************/
 var __webpack_exports__ = {};
 
-;// external ["wp","element"]
+;/ external ["wp","element"]
 const external_wp_element_namespaceObject = window["wp"]["element"];
-;// external ["wp","i18n"]
+;/ external ["wp","i18n"]
 const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
-;// ./node_modules/tslib/tslib.es6.mjs
+;/ ./node_modules/tslib/tslib.es6.mjs
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -400,7 +400,7 @@ function __disposeResources(env) {
 }
 
 function __rewriteRelativeImportExtension(path, preserveJsx) {
-  if (typeof path === "string" && /^\.\.?\//.test(path)) {
+  if (typeof path === "string" && /^\.\.?\/.test(path)) {
       return path.replace(/\.(tsx)$|((?:\.d)?)((?:\.[^./]+?)?)\.([cm]?)ts$/i, function (m, tsx, d, ext, cm) {
           return tsx ? preserveJsx ? ".jsx" : ".js" : d && (!ext || !cm) ? m : (d + ext + "." + cm.toLowerCase() + "js");
       });
@@ -443,7 +443,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
   __rewriteRelativeImportExtension,
 });
 
-;// ./node_modules/lower-case/dist.es2015/index.js
+;/ ./node_modules/lower-case/dist.es2015/index.js
 /**
  * Source: ftp://ftp.unicode.org/Public/UCD/latest/ucd/SpecialCasing.txt
  */
@@ -492,7 +492,7 @@ function lowerCase(str) {
     return str.toLowerCase();
 }
 
-;// ./node_modules/no-case/dist.es2015/index.js
+;/ ./node_modules/no-case/dist.es2015/index.js
 
 // Support camel case ("camelCase" -> "camel Case" and "CAMELCase" -> "CAMEL Case").
 var DEFAULT_SPLIT_REGEXP = [/([a-z0-9])([A-Z])/g, /([A-Z])([A-Z][a-z])/g];
@@ -507,12 +507,12 @@ function noCase(input, options) {
     var result = replace(replace(input, splitRegexp, "$1\0$2"), stripRegexp, "\0");
     var start = 0;
     var end = result.length;
-    // Trim the delimiter from around the output string.
+    / Trim the delimiter from around the output string.
     while (result.charAt(start) === "\0")
         start++;
     while (result.charAt(end - 1) === "\0")
         end--;
-    // Transform each token independently.
+    / Transform each token independently.
     return result.slice(start, end).split("\0").map(transform).join(delimiter);
 }
 /**
@@ -524,7 +524,7 @@ function replace(input, re, value) {
     return re.reduce(function (input, re) { return input.replace(re, value); }, input);
 }
 
-;// ./node_modules/dot-case/dist.es2015/index.js
+;/ ./node_modules/dot-case/dist.es2015/index.js
 
 
 function dotCase(input, options) {
@@ -532,7 +532,7 @@ function dotCase(input, options) {
     return noCase(input, __assign({ delimiter: "." }, options));
 }
 
-;// ./node_modules/param-case/dist.es2015/index.js
+;/ ./node_modules/param-case/dist.es2015/index.js
 
 
 function paramCase(input, options) {
@@ -540,12 +540,12 @@ function paramCase(input, options) {
     return dotCase(input, __assign({ delimiter: "-" }, options));
 }
 
-;// external ["wp","apiFetch"]
+;/ external ["wp","apiFetch"]
 const external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
 var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_namespaceObject);
-;// external ["wp","blob"]
+;/ external ["wp","blob"]
 const external_wp_blob_namespaceObject = window["wp"]["blob"];
-;// ./node_modules/@wordpress/list-reusable-blocks/build-module/utils/export.js
+;/ ./node_modules/@wordpress/list-reusable-blocks/build-module/utils/export.js
 /**
  * External dependencies
  */
@@ -587,11 +587,11 @@ async function exportReusableBlock(id) {
 }
 /* harmony default export */ const utils_export = (exportReusableBlock);
 
-;// external ["wp","compose"]
+;/ external ["wp","compose"]
 const external_wp_compose_namespaceObject = window["wp"]["compose"];
-;// external ["wp","components"]
+;/ external ["wp","components"]
 const external_wp_components_namespaceObject = window["wp"]["components"];
-;// ./node_modules/@wordpress/list-reusable-blocks/build-module/utils/file.js
+;/ ./node_modules/@wordpress/list-reusable-blocks/build-module/utils/file.js
 /**
  * Reads the textual content of the given file.
  *
@@ -608,7 +608,7 @@ function readTextFile(file) {
   });
 }
 
-;// ./node_modules/@wordpress/list-reusable-blocks/build-module/utils/import.js
+;/ ./node_modules/@wordpress/list-reusable-blocks/build-module/utils/import.js
 /**
  * WordPress dependencies
  */
@@ -655,9 +655,9 @@ async function importReusableBlock(file) {
 }
 /* harmony default export */ const utils_import = (importReusableBlock);
 
-;// external "ReactJSXRuntime"
+;/ external "ReactJSXRuntime"
 const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
-;// ./node_modules/@wordpress/list-reusable-blocks/build-module/components/import-form/index.js
+;/ ./node_modules/@wordpress/list-reusable-blocks/build-module/components/import-form/index.js
 /**
  * WordPress dependencies
  */
@@ -750,7 +750,7 @@ function ImportForm({
 }
 /* harmony default export */ const import_form = ((0,external_wp_compose_namespaceObject.withInstanceId)(ImportForm));
 
-;// ./node_modules/@wordpress/list-reusable-blocks/build-module/components/import-dropdown/index.js
+;/ ./node_modules/@wordpress/list-reusable-blocks/build-module/components/import-dropdown/index.js
 /**
  * WordPress dependencies
  */
@@ -791,7 +791,7 @@ function ImportDropdown({
 }
 /* harmony default export */ const import_dropdown = (ImportDropdown);
 
-;// ./node_modules/@wordpress/list-reusable-blocks/build-module/index.js
+;/ ./node_modules/@wordpress/list-reusable-blocks/build-module/index.js
 /**
  * WordPress dependencies
  */

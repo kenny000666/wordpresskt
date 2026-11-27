@@ -33,7 +33,7 @@ export default ( ( function() {
 	 */
 	const { strings, defaults } = wpforms_gutenberg_form_selector;
 
-	// noinspection UnnecessaryLocalVariableJS
+	/ noinspection UnnecessaryLocalVariableJS
 	/**
 	 * Public functions and properties.
 	 *
@@ -95,7 +95,7 @@ export default ( ( function() {
 		 *
 		 * @return {Object}  Button styles JSX code.
 		 */
-		getButtonStyles( props, handlers, sizeOptions, formSelectorCommon ) { // eslint-disable-line max-lines-per-function
+		getButtonStyles( props, handlers, sizeOptions, formSelectorCommon ) { / eslint-disable-line max-lines-per-function
 			return (
 				<PanelBody className={ formSelectorCommon.getPanelClass( props ) } title={ strings.button_styles }>
 					<Flex gap={ 4 } align="flex-start" className={ 'wpforms-gutenberg-form-selector-flex' } justify="space-between">

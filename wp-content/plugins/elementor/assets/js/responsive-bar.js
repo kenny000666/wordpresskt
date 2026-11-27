@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../assets/dev/js/editor/regions/responsive-bar/responsive-bar.js":
@@ -238,14 +238,14 @@ var View = exports["default"] = /*#__PURE__*/function (_Marionette$ItemView) {
         return;
       }
 
-      //  Open Settings Panel for Global/Layout/Breakpoints Settings
+      /  Open Settings Panel for Global/Layout/Breakpoints Settings
       $e.run('editor/documents/switch', {
         id: elementor.config.kit_id,
         mode: 'autosave'
       }).then(function () {
         return $e.route('panel/global/settings-layout');
       })
-      // TODO: Replace with a standard routing solution once one is available
+      / TODO: Replace with a standard routing solution once one is available
       .then(function () {
         return jQuery('.elementor-control-section_breakpoints').trigger('click');
       });
@@ -269,7 +269,7 @@ var View = exports["default"] = /*#__PURE__*/function (_Marionette$ItemView) {
     key: "setWidthHeightInputsEditableState",
     value: function setWidthHeightInputsEditableState() {
       var currentDeviceMode = elementor.channels.deviceMode.request('currentMode');
-      // TODO: disable inputs
+      / TODO: disable inputs
       if ('desktop' === currentDeviceMode) {
         this.ui.sizeInputWidth.attr('disabled', 'disabled');
         this.ui.sizeInputHeight.attr('disabled', 'disabled');
@@ -282,7 +282,7 @@ var View = exports["default"] = /*#__PURE__*/function (_Marionette$ItemView) {
     key: "onCloseButtonClick",
     value: function onCloseButtonClick() {
       elementor.changeDeviceMode('desktop');
-      // Force exit if device mode is already desktop
+      / Force exit if device mode is already desktop
       elementor.exitDeviceMode();
     }
   }, {
@@ -541,27 +541,27 @@ module.exports = _typeof, module.exports.__esModule = true, module.exports["defa
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	

@@ -47,15 +47,15 @@ const builderCloseButtonEvent = function( clientID ) {
 				return;
 			}
 
-			// Insert a new block when a new form is created from the popup to update the form list and attributes.
+			/ Insert a new block when a new form is created from the popup to update the form list and attributes.
 			const newBlock = wp.blocks.createBlock( 'wpforms/form-selector', {
-				formId: formId.toString(), // Expects string value, make sure we insert string.
+				formId: formId.toString(), / Expects string value, make sure we insert string.
 			} );
 
-			// eslint-disable-next-line camelcase
+			/ eslint-disable-next-line camelcase
 			wpforms_gutenberg_form_selector.forms = [ { ID: formId, post_title: formTitle } ];
 
-			// Insert a new block.
+			/ Insert a new block.
 			wp.data.dispatch( 'core/block-editor' ).removeBlock( clientID );
 			wp.data.dispatch( 'core/block-editor' ).insertBlocks( newBlock );
 		} );
@@ -95,7 +95,7 @@ const loadChoiceJS = function( e ) {
 				$input = jQuery( self.input.element ),
 				sizeClass = $element.data( 'size-class' );
 
-			// Add CSS-class for size.
+			/ Add CSS-class for size.
 			if ( sizeClass ) {
 				jQuery( self.containerOuter.element ).addClass( sizeClass );
 			}
@@ -105,7 +105,7 @@ const loadChoiceJS = function( e ) {
 			 * In case if select is empty - we return placeholder text.
 			 */
 			if ( $element.prop( 'multiple' ) ) {
-				// On init event.
+				/ On init event.
 				$input.data( 'placeholder', $input.attr( 'placeholder' ) );
 
 				if ( self.getValue( true ).length ) {
@@ -119,7 +119,7 @@ const loadChoiceJS = function( e ) {
 
 		$el.data( 'choicesjs', new window.Choices( element, config ) );
 
-		// Placeholder fix on iframes.
+		/ Placeholder fix on iframes.
 		if ( $el.val() ) {
 			$el.parent().find( '.choices__input' ).attr( 'style', 'display: none !important' );
 		}
@@ -187,7 +187,7 @@ registerBlockType( 'wpforms/form-selector', {
 	supports: {
 		customClassName: hasForms(),
 	},
-	edit( props ) { // eslint-disable-line max-lines-per-function
+	edit( props ) { / eslint-disable-line max-lines-per-function
 		const { attributes: { formId = '', displayTitle = false, displayDesc = false, preview = false }, setAttributes } = props;
 		const formOptions = wpforms_gutenberg_form_selector.forms.map( ( value ) => (
 			{ value: value.ID, label: value.post_title }
@@ -198,15 +198,15 @@ registerBlockType( 'wpforms/form-selector', {
 
 		formOptions.unshift( { value: '', label: wpforms_gutenberg_form_selector.strings.form_select } );
 
-		function selectForm( value ) { // eslint-disable-line jsdoc/require-jsdoc
+		function selectForm( value ) { / eslint-disable-line jsdoc/require-jsdoc
 			setAttributes( { formId: value } );
 		}
 
-		function toggleDisplayTitle( value ) { // eslint-disable-line jsdoc/require-jsdoc
+		function toggleDisplayTitle( value ) { / eslint-disable-line jsdoc/require-jsdoc
 			setAttributes( { displayTitle: value } );
 		}
 
-		function toggleDisplayDesc( value ) { // eslint-disable-line jsdoc/require-jsdoc
+		function toggleDisplayDesc( value ) { / eslint-disable-line jsdoc/require-jsdoc
 			setAttributes( { displayDesc: value } );
 		}
 

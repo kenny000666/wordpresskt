@@ -80,7 +80,7 @@ WPForms.Admin.Builder.Help = WPForms.Admin.Builder.Help || ( function( document,
 		 */
 		setup: function() {
 
-			// Cache DOM elements.
+			/ Cache DOM elements.
 			el = {
 				$builder:     $( '#wpforms-builder' ),
 				$builderForm: $( '#wpforms-builder-form' ),
@@ -102,20 +102,20 @@ WPForms.Admin.Builder.Help = WPForms.Admin.Builder.Help || ( function( document,
 		 */
 		events: function() {
 
-			// Open/close help modal.
+			/ Open/close help modal.
 			el.$helpBtn.on( 'click', event.openHelp );
 			el.$closeBtn.on( 'click', event.closeHelp );
 
-			// Expand/collapse category.
+			/ Expand/collapse category.
 			el.$categories.on( 'click', '.wpforms-builder-help-category header', event.toggleCategory );
 
-			// View all Category Docs button click.
+			/ View all Category Docs button click.
 			el.$categories.on( 'click', '.wpforms-builder-help-category button.viewall', event.viewAllCategoryDocs );
 
-			// Input into search field.
+			/ Input into search field.
 			el.$search.on( 'keyup', 'input', _.debounce( event.inputSearch, 250 ) );
 
-			// Clear search field.
+			/ Clear search field.
 			el.$search.on( 'click', '#wpforms-builder-help-search-clear', event.clearSearch );
 		},
 
@@ -126,7 +126,7 @@ WPForms.Admin.Builder.Help = WPForms.Admin.Builder.Help || ( function( document,
 		 */
 		initCategories: function() {
 
-			// Display error if docs data is not available.
+			/ Display error if docs data is not available.
 			if ( wpf.empty( wpforms_builder_help.docs ) ) {
 				el.$categories.html( wp.template( 'wpforms-builder-help-categories-error' ) );
 
@@ -239,12 +239,12 @@ WPForms.Admin.Builder.Help = WPForms.Admin.Builder.Help || ( function( document,
 		 */
 		getBuilderContext: function() {
 
-			// New (not saved) form.
+			/ New (not saved) form.
 			if ( wpf.empty( el.$builderForm.data( 'id' ) ) ) {
 				return 'new_form';
 			}
 
-			// Determine builder panel and section.
+			/ Determine builder panel and section.
 			var panel = el.$builder.find( '#wpforms-panels-toggle button.active' ).data( 'panel' ),
 				$panel = el.$builder.find( '#wpforms-panel-' + panel ),
 				section = '',
@@ -264,17 +264,17 @@ WPForms.Admin.Builder.Help = WPForms.Admin.Builder.Help || ( function( document,
 
 			section = ! wpf.empty( section ) ? section.replace( /-/g, '_' ) : '';
 
-			// Detect field type.
+			/ Detect field type.
 			if ( section === 'field_options' ) {
 				subsection = $panel.find( '#wpforms-field-options .wpforms-field-option:visible .wpforms-field-option-hidden-type' ).val();
 			}
 
-			// Combine to context array.
+			/ Combine to context array.
 			context = [ panel, section, subsection ].filter( function( el ) {
 				return ! wpf.empty( el ) && el !== 'default';
 			} );
 
-			// Return imploded string.
+			/ Return imploded string.
 			return context.join( '/' );
 		},
 
@@ -304,7 +304,7 @@ WPForms.Admin.Builder.Help = WPForms.Admin.Builder.Help || ( function( document,
 		 * @type {object}
 		 */
 		config: {
-			speed: 300, // Fading/sliding duration in milliseconds.
+			speed: 300, / Fading/sliding duration in milliseconds.
 		},
 
 		/**
@@ -545,7 +545,7 @@ WPForms.Admin.Builder.Help = WPForms.Admin.Builder.Help || ( function( document,
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 
 }( document, window, jQuery ) );

@@ -68,7 +68,7 @@
 		 */
 		precise_round: ( num, decimals ) => {
 			const sign = num >= 0 ? 1 : -1;
-			// Keep the percentage below 100.
+			/ Keep the percentage below 100.
 			num = num > 100 ? 100 : num;
 			return (
 				Math.round( num * Math.pow( 10, decimals ) + sign * 0.001 ) /
@@ -213,11 +213,11 @@
 				'</span>' +
 				'</div></div>';
 		},
-		// Do not use arrow function to use `this`.
+		/ Do not use arrow function to use `this`.
 		isUpsellRendered( errorCode ) {
 			return this.cacheUpsellErrorCodes.includes( errorCode );
 		},
-		// Do not use arrow function to use `this`.
+		/ Do not use arrow function to use `this`.
 		cacheRenderedUpsell( errorCode ) {
 			this.cacheUpsellErrorCodes.push( errorCode );
 		},

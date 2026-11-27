@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 2058:
@@ -28,7 +28,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* global window, exports, define */
     }
 
     function sprintf(key) {
-        // `arguments` is not an array, but should be fine for this call
+        / `arguments` is not an array, but should be fine for this call
         return sprintf_format(sprintf_parse(key), arguments)
     }
 
@@ -43,8 +43,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* global window, exports, define */
                 output += parse_tree[i]
             }
             else if (typeof parse_tree[i] === 'object') {
-                ph = parse_tree[i] // convenience purposes only
-                if (ph.keys) { // keyword argument
+                ph = parse_tree[i] / convenience purposes only
+                if (ph.keys) { / keyword argument
                     arg = argv[cursor]
                     for (k = 0; k < ph.keys.length; k++) {
                         if (arg == undefined) {
@@ -53,10 +53,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* global window, exports, define */
                         arg = arg[ph.keys[k]]
                     }
                 }
-                else if (ph.param_no) { // positional argument (explicit)
+                else if (ph.param_no) { / positional argument (explicit)
                     arg = argv[ph.param_no]
                 }
-                else { // positional argument (implicit)
+                else { / positional argument (implicit)
                     arg = argv[cursor++]
                 }
 
@@ -235,41 +235,41 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* global window, exports, define */
         }
     }
     /* eslint-enable quote-props */
-}(); // eslint-disable-line
+}(); / eslint-disable-line
 
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -281,7 +281,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* global window, exports, define */
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -298,7 +298,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* global window, exports, define */
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -332,7 +332,7 @@ __webpack_require__.d(__webpack_exports__, {
   subscribe: () => (/* reexport */ subscribe)
 });
 
-;// ./node_modules/memize/dist/index.js
+;/ ./node_modules/memize/dist/index.js
 /**
  * Memize options object.
  *
@@ -390,19 +390,19 @@ function memize(fn, options) {
 			i;
 
 		searchCache: while (node) {
-			// Perform a shallow equality test to confirm that whether the node
-			// under test is a candidate for the arguments passed. Two arrays
-			// are shallowly equal if their length matches and each entry is
-			// strictly equal between the two sets. Avoid abstracting to a
-			// function which could incur an arguments leaking deoptimization.
+			/ Perform a shallow equality test to confirm that whether the node
+			/ under test is a candidate for the arguments passed. Two arrays
+			/ are shallowly equal if their length matches and each entry is
+			/ strictly equal between the two sets. Avoid abstracting to a
+			/ function which could incur an arguments leaking deoptimization.
 
-			// Check whether node arguments match arguments length
+			/ Check whether node arguments match arguments length
 			if (node.args.length !== arguments.length) {
 				node = node.next;
 				continue;
 			}
 
-			// Check whether node arguments match arguments values
+			/ Check whether node arguments match arguments values
 			for (i = 0; i < len; i++) {
 				if (node.args[i] !== arguments[i]) {
 					node = node.next;
@@ -410,18 +410,18 @@ function memize(fn, options) {
 				}
 			}
 
-			// At this point we can assume we've found a match
+			/ At this point we can assume we've found a match
 
-			// Surface matched node to head if not already
+			/ Surface matched node to head if not already
 			if (node !== head) {
-				// As tail, shift to previous. Must only shift if not also
-				// head, since if both head and tail, there is no previous.
+				/ As tail, shift to previous. Must only shift if not also
+				/ head, since if both head and tail, there is no previous.
 				if (node === tail) {
 					tail = node.prev;
 				}
 
-				// Adjust siblings to point to each other. If node was tail,
-				// this also handles new tail's empty `next` assignment.
+				/ Adjust siblings to point to each other. If node was tail,
+				/ this also handles new tail's empty `next` assignment.
 				/** @type {MemizeCacheNode} */ (node.prev).next = node.next;
 				if (node.next) {
 					node.next.prev = node.prev;
@@ -433,13 +433,13 @@ function memize(fn, options) {
 				head = node;
 			}
 
-			// Return immediately
+			/ Return immediately
 			return node.val;
 		}
 
-		// No cached value found. Continue to insertion phase:
+		/ No cached value found. Continue to insertion phase:
 
-		// Create a copy of arguments (avoid leaking deoptimization)
+		/ Create a copy of arguments (avoid leaking deoptimization)
 		args = new Array(len);
 		for (i = 0; i < len; i++) {
 			args[i] = arguments[i];
@@ -448,23 +448,23 @@ function memize(fn, options) {
 		node = {
 			args: args,
 
-			// Generate the result from original function
+			/ Generate the result from original function
 			val: fn.apply(null, args),
 		};
 
-		// Don't need to check whether node is already head, since it would
-		// have been returned above already if it was
+		/ Don't need to check whether node is already head, since it would
+		/ have been returned above already if it was
 
-		// Shift existing head down list
+		/ Shift existing head down list
 		if (head) {
 			head.prev = node;
 			node.next = head;
 		} else {
-			// If no head, follows that there's no tail (at initial or reset)
+			/ If no head, follows that there's no tail (at initial or reset)
 			tail = node;
 		}
 
-		// Trim tail if we're reached max size and are pending cache insertion
+		/ Trim tail if we're reached max size and are pending cache insertion
 		if (size === /** @type {MemizeOptions} */ (options).maxSize) {
 			tail = /** @type {MemizeCacheNode} */ (tail).prev;
 			/** @type {MemizeCacheNode} */ (tail).next = null;
@@ -483,12 +483,12 @@ function memize(fn, options) {
 		size = 0;
 	};
 
-	// Ignore reason: There's not a clear solution to create an intersection of
-	// the function with additional properties, where the goal is to retain the
-	// function signature of the incoming argument and add control properties
-	// on the return value.
+	/ Ignore reason: There's not a clear solution to create an intersection of
+	/ the function with additional properties, where the goal is to retain the
+	/ function signature of the incoming argument and add control properties
+	/ on the return value.
 
-	// @ts-ignore
+	/ @ts-ignore
 	return memoized;
 }
 
@@ -497,7 +497,7 @@ function memize(fn, options) {
 // EXTERNAL MODULE: ./node_modules/sprintf-js/src/sprintf.js
 var sprintf = __webpack_require__(2058);
 var sprintf_default = /*#__PURE__*/__webpack_require__.n(sprintf);
-;// ./node_modules/@wordpress/i18n/build-module/sprintf.js
+;/ ./node_modules/@wordpress/i18n/build-module/sprintf.js
 /**
  * External dependencies
  */
@@ -511,7 +511,7 @@ var sprintf_default = /*#__PURE__*/__webpack_require__.n(sprintf);
  *
  * @param {...*} args Arguments to pass to `console.error`
  */
-const logErrorOnce = memize(console.error); // eslint-disable-line no-console
+const logErrorOnce = memize(console.error); / eslint-disable-line no-console
 
 /**
  * Returns a formatted string. If an error occurs in applying the format, the
@@ -535,7 +535,7 @@ function sprintf_sprintf(format, ...args) {
   }
 }
 
-;// ./node_modules/@tannin/postfix/index.js
+;/ ./node_modules/@tannin/postfix/index.js
 var PRECEDENCE, OPENERS, TERMINATORS, PATTERN;
 
 /**
@@ -601,7 +601,7 @@ PATTERN = /<=|>=|==|!=|&&|\|\||\?:|\(|!|\*|\/|%|\+|-|<|>|\?|\)|:/;
  * import postfix from '@tannin/postfix';
  *
  * postfix( 'n > 1' );
- * // ⇒ [ 'n', '1', '>' ]
+ * / ⇒ [ 'n', '1', '>' ]
  * ```
  *
  * @param {string} expression C expression.
@@ -616,8 +616,8 @@ function postfix( expression ) {
 	while ( ( match = expression.match( PATTERN ) ) ) {
 		operator = match[ 0 ];
 
-		// Term is the string preceding the operator match. It may contain
-		// whitespace, and may be empty (if operator is at beginning).
+		/ Term is the string preceding the operator match. It may contain
+		/ whitespace, and may be empty (if operator is at beginning).
 		term = expression.substr( 0, match.index ).trim();
 		if ( term ) {
 			terms.push( term );
@@ -626,20 +626,20 @@ function postfix( expression ) {
 		while ( ( element = stack.pop() ) ) {
 			if ( TERMINATORS[ operator ] ) {
 				if ( TERMINATORS[ operator ][ 0 ] === element ) {
-					// Substitution works here under assumption that because
-					// the assigned operator will no longer be a terminator, it
-					// will be pushed to the stack during the condition below.
+					/ Substitution works here under assumption that because
+					/ the assigned operator will no longer be a terminator, it
+					/ will be pushed to the stack during the condition below.
 					operator = TERMINATORS[ operator ][ 1 ] || operator;
 					break;
 				}
 			} else if ( OPENERS.indexOf( element ) >= 0 || PRECEDENCE[ element ] < PRECEDENCE[ operator ] ) {
-				// Push to stack if either an opener or when pop reveals an
-				// element of lower precedence.
+				/ Push to stack if either an opener or when pop reveals an
+				/ element of lower precedence.
 				stack.push( element );
 				break;
 			}
 
-			// For each popped from stack, push to terms.
+			/ For each popped from stack, push to terms.
 			terms.push( element );
 		}
 
@@ -647,21 +647,21 @@ function postfix( expression ) {
 			stack.push( operator );
 		}
 
-		// Slice matched fragment from expression to continue match.
+		/ Slice matched fragment from expression to continue match.
 		expression = expression.substr( match.index + operator.length );
 	}
 
-	// Push remainder of operand, if exists, to terms.
+	/ Push remainder of operand, if exists, to terms.
 	expression = expression.trim();
 	if ( expression ) {
 		terms.push( expression );
 	}
 
-	// Pop remaining items from stack into terms.
+	/ Pop remaining items from stack into terms.
 	return terms.concat( stack.reverse() );
 }
 
-;// ./node_modules/@tannin/evaluate/index.js
+;/ ./node_modules/@tannin/evaluate/index.js
 /**
  * Operator callback functions.
  *
@@ -728,11 +728,11 @@ var OPERATORS = {
  * ```js
  * import evaluate from '@tannin/evaluate';
  *
- * // 3 + 4 * 5 / 6 ⇒ '3 4 5 * 6 / +'
+ * / 3 + 4 * 5 / 6 ⇒ '3 4 5 * 6 / +'
  * const terms = [ '3', '4', '5', '*', '6', '/', '+' ];
  *
  * evaluate( terms, {} );
- * // ⇒ 6.333333333333334
+ * / ⇒ 6.333333333333334
  * ```
  *
  * @param {string[]} postfix   Postfix terms.
@@ -749,7 +749,7 @@ function evaluate( postfix, variables ) {
 
 		getOperatorResult = OPERATORS[ term ];
 		if ( getOperatorResult ) {
-			// Pop from stack by number of function arguments.
+			/ Pop from stack by number of function arguments.
 			j = getOperatorResult.length;
 			args = Array( j );
 			while ( j-- ) {
@@ -773,7 +773,7 @@ function evaluate( postfix, variables ) {
 	return stack[ 0 ];
 }
 
-;// ./node_modules/@tannin/compile/index.js
+;/ ./node_modules/@tannin/compile/index.js
 
 
 
@@ -789,7 +789,7 @@ function evaluate( postfix, variables ) {
  * const evaluate = compile( 'n > 1' );
  *
  * evaluate( { n: 2 } );
- * // ⇒ true
+ * / ⇒ true
  * ```
  *
  * @param {string} expression C expression.
@@ -804,7 +804,7 @@ function compile( expression ) {
 	};
 }
 
-;// ./node_modules/@tannin/plural-forms/index.js
+;/ ./node_modules/@tannin/plural-forms/index.js
 
 
 /**
@@ -824,7 +824,7 @@ function pluralForms( expression ) {
 	};
 }
 
-;// ./node_modules/tannin/index.js
+;/ ./node_modules/tannin/index.js
 
 
 /**
@@ -967,9 +967,9 @@ Tannin.prototype.getPluralForm = function( domain, n ) {
 		pf = (
 			config[ 'Plural-Forms' ] ||
 			config[ 'plural-forms' ] ||
-			// Ignore reason: As known, there's no way to document the empty
-			// string property on a key to guarantee this as metadata.
-			// @ts-ignore
+			/ Ignore reason: As known, there's no way to document the empty
+			/ string property on a key to guarantee this as metadata.
+			/ @ts-ignore
 			config.plural_forms
 		);
 
@@ -977,9 +977,9 @@ Tannin.prototype.getPluralForm = function( domain, n ) {
 			plural = getPluralExpression(
 				config[ 'Plural-Forms' ] ||
 				config[ 'plural-forms' ] ||
-				// Ignore reason: As known, there's no way to document the empty
-				// string property on a key to guarantee this as metadata.
-				// @ts-ignore
+				/ Ignore reason: As known, there's no way to document the empty
+				/ string property on a key to guarantee this as metadata.
+				/ @ts-ignore
 				config.plural_forms
 			);
 
@@ -1008,24 +1008,24 @@ Tannin.prototype.dcnpgettext = function( domain, context, singular, plural, n ) 
 	var index, key, entry;
 
 	if ( n === undefined ) {
-		// Default to singular.
+		/ Default to singular.
 		index = 0;
 	} else {
-		// Find index by evaluating plural form for value.
+		/ Find index by evaluating plural form for value.
 		index = this.getPluralForm( domain, n );
 	}
 
 	key = singular;
 
-	// If provided, context is prepended to key with delimiter.
+	/ If provided, context is prepended to key with delimiter.
 	if ( context ) {
 		key = context + this.options.contextDelimiter + singular;
 	}
 
 	entry = this.data[ domain ][ key ];
 
-	// Verify not only that entry exists, but that the intended index is within
-	// range and non-empty.
+	/ Verify not only that entry exists, but that the intended index is within
+	/ range and non-empty.
 	if ( entry && entry[ index ] ) {
 		return entry[ index ];
 	}
@@ -1034,12 +1034,12 @@ Tannin.prototype.dcnpgettext = function( domain, context, singular, plural, n ) 
 		this.options.onMissingKey( singular, domain );
 	}
 
-	// If entry not found, fall back to singular vs. plural with zero index
-	// representing the singular value.
+	/ If entry not found, fall back to singular vs. plural with zero index
+	/ representing the singular value.
 	return index === 0 ? singular : plural;
 };
 
-;// ./node_modules/@wordpress/i18n/build-module/create-i18n.js
+;/ ./node_modules/@wordpress/i18n/build-module/create-i18n.js
 /**
  * External dependencies
  */
@@ -1231,14 +1231,14 @@ const createI18n = (initialData, initialDomain, hooks) => {
       ...data
     };
 
-    // Populate default domain configuration (supported locale date which omits
-    // a plural forms expression).
+    / Populate default domain configuration (supported locale date which omits
+    / a plural forms expression).
     tannin.data[domain][''] = {
       ...DEFAULT_LOCALE_DATA[''],
       ...tannin.data[domain]?.['']
     };
 
-    // Clean up cached plural forms functions cache as it might be updated.
+    / Clean up cached plural forms functions cache as it might be updated.
     delete tannin.pluralForms[domain];
   };
 
@@ -1253,8 +1253,8 @@ const createI18n = (initialData, initialDomain, hooks) => {
     tannin.data[domain] = {
       ...tannin.data[domain],
       ...data,
-      // Populate default domain configuration (supported locale date which omits
-      // a plural forms expression).
+      / Populate default domain configuration (supported locale date which omits
+      / a plural forms expression).
       '': {
         ...DEFAULT_LOCALE_DATA[''],
         ...tannin.data[domain]?.[''],
@@ -1262,17 +1262,17 @@ const createI18n = (initialData, initialDomain, hooks) => {
       }
     };
 
-    // Clean up cached plural forms functions cache as it might be updated.
+    / Clean up cached plural forms functions cache as it might be updated.
     delete tannin.pluralForms[domain];
     notifyListeners();
   };
 
   /** @type {ResetLocaleData} */
   const resetLocaleData = (data, domain) => {
-    // Reset all current Tannin locale data.
+    / Reset all current Tannin locale data.
     tannin.data = {};
 
-    // Reset cached plural forms functions cache.
+    / Reset cached plural forms functions cache.
     tannin.pluralForms = {};
     setLocaleData(data, domain);
   };
@@ -1294,7 +1294,7 @@ const createI18n = (initialData, initialDomain, hooks) => {
    */
   const dcnpgettext = (domain = 'default', context, single, plural, number) => {
     if (!tannin.data[domain]) {
-      // Use `doSetLocaleData` to set silently, without notifying listeners.
+      / Use `doSetLocaleData` to set silently, without notifying listeners.
       doSetLocaleData(undefined, domain);
     }
     return tannin.dcnpgettext(domain, context, single, plural, number);
@@ -1440,9 +1440,9 @@ const createI18n = (initialData, initialDomain, hooks) => {
   };
 };
 
-;// external ["wp","hooks"]
+;/ external ["wp","hooks"]
 const external_wp_hooks_namespaceObject = window["wp"]["hooks"];
-;// ./node_modules/@wordpress/i18n/build-module/default-i18n.js
+;/ ./node_modules/@wordpress/i18n/build-module/default-i18n.js
 /**
  * Internal dependencies
  */
@@ -1590,7 +1590,7 @@ const isRTL = i18n.isRTL.bind(i18n);
  */
 const hasTranslation = i18n.hasTranslation.bind(i18n);
 
-;// ./node_modules/@wordpress/i18n/build-module/index.js
+;/ ./node_modules/@wordpress/i18n/build-module/index.js
 
 
 

@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../assets/dev/js/utils/events.js":
@@ -41,18 +41,18 @@ var Events = exports.Events = /*#__PURE__*/function () {
     function dispatch(context, event) {
       var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var bcEvent = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-      // Make sure to use the native context if it's a jQuery instance.
+      / Make sure to use the native context if it's a jQuery instance.
       context = context instanceof jQuery ? context[0] : context;
 
-      // Dispatch the BC event only if exists.
+      / Dispatch the BC event only if exists.
       if (bcEvent) {
         context.dispatchEvent(new CustomEvent(bcEvent, {
           detail: data
         }));
       }
 
-      // jQuery's `.on()` listens also to native custom events, so there is no need
-      // to dispatch also a jQuery event.
+      / jQuery's `.on()` listens also to native custom events, so there is no need
+      / to dispatch also a jQuery event.
       context.dispatchEvent(new CustomEvent(event, {
         detail: data
       }));
@@ -193,39 +193,39 @@ module.exports = _typeof, module.exports.__esModule = true, module.exports["defa
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
-/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	/ expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = __webpack_modules__;
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/ensure chunk */
 /******/ 	(() => {
 /******/ 		__webpack_require__.f = {};
-/******/ 		// This file contains only the entry chunk.
-/******/ 		// The chunk loading function for additional chunks
+/******/ 		/ This file contains only the entry chunk.
+/******/ 		/ The chunk loading function for additional chunks
 /******/ 		__webpack_require__.e = (chunkId) => {
 /******/ 			return Promise.all(Object.keys(__webpack_require__.f).reduce((promises, key) => {
 /******/ 				__webpack_require__.f[key](chunkId, promises);
@@ -236,14 +236,14 @@ module.exports = _typeof, module.exports.__esModule = true, module.exports["defa
 /******/ 	
 /******/ 	/* webpack/runtime/get javascript chunk filename */
 /******/ 	(() => {
-/******/ 		// This function allow to reference async chunks
+/******/ 		/ This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
-/******/ 			// return url for filenames not based on template
+/******/ 			/ return url for filenames not based on template
 /******/ 			if (chunkId === "modules_nested-elements_assets_js_editor_module_js") return "513d3f05d575dabcdc35.bundle.js";
 /******/ 			if (chunkId === "vendors-node_modules_prop-types_index_js-node_modules_babel_runtime_helpers_slicedToArray_js") return "056b8f3bbbcabf026cd1.bundle.js";
 /******/ 			if (chunkId === "modules_nested-elements_assets_js_editor_nested-element-types-base_js") return "7f127a12416c8685d286.bundle.js";
 /******/ 			if (chunkId === "modules_nested-elements_assets_js_editor_views_view_js") return "e5d6feb1b1d6cf52126f.bundle.js";
-/******/ 			// return url for filenames based on template
+/******/ 			/ return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
 /******/ 	})();
@@ -269,7 +269,7 @@ module.exports = _typeof, module.exports.__esModule = true, module.exports["defa
 /******/ 	(() => {
 /******/ 		var inProgress = {};
 /******/ 		var dataWebpackPrefix = "elementor:";
-/******/ 		// loadScript function to load a script via script tag
+/******/ 		/ loadScript function to load a script via script tag
 /******/ 		__webpack_require__.l = (url, done, key, chunkId) => {
 /******/ 			if(inProgress[url]) { inProgress[url].push(done); return; }
 /******/ 			var script, needAttach;
@@ -295,7 +295,7 @@ module.exports = _typeof, module.exports.__esModule = true, module.exports["defa
 /******/ 			}
 /******/ 			inProgress[url] = [done];
 /******/ 			var onScriptComplete = (prev, event) => {
-/******/ 				// avoid mem leaks in IE.
+/******/ 				/ avoid mem leaks in IE.
 /******/ 				script.onerror = script.onload = null;
 /******/ 				clearTimeout(timeout);
 /******/ 				var doneFns = inProgress[url];
@@ -327,8 +327,8 @@ module.exports = _typeof, module.exports.__esModule = true, module.exports["defa
 /******/ 				}
 /******/ 			}
 /******/ 		}
-/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
-/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		/ When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		/ or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
 /******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
 /******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
 /******/ 		__webpack_require__.p = scriptUrl;
@@ -336,32 +336,32 @@ module.exports = _typeof, module.exports.__esModule = true, module.exports["defa
 /******/ 	
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	(() => {
-/******/ 		// no baseURI
+/******/ 		/ no baseURI
 /******/ 		
-/******/ 		// object to store loaded and loading chunks
-/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		/ object to store loaded and loading chunks
+/******/ 		/ undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		/ [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"nested-elements": 0
 /******/ 		};
 /******/ 		
 /******/ 		__webpack_require__.f.j = (chunkId, promises) => {
-/******/ 				// JSONP chunk loading for javascript
+/******/ 				/ JSONP chunk loading for javascript
 /******/ 				var installedChunkData = __webpack_require__.o(installedChunks, chunkId) ? installedChunks[chunkId] : undefined;
-/******/ 				if(installedChunkData !== 0) { // 0 means "already installed".
+/******/ 				if(installedChunkData !== 0) { / 0 means "already installed".
 /******/ 		
-/******/ 					// a Promise means "currently loading".
+/******/ 					/ a Promise means "currently loading".
 /******/ 					if(installedChunkData) {
 /******/ 						promises.push(installedChunkData[2]);
 /******/ 					} else {
-/******/ 						if(true) { // all chunks have JS
-/******/ 							// setup Promise in chunk cache
+/******/ 						if(true) { / all chunks have JS
+/******/ 							/ setup Promise in chunk cache
 /******/ 							var promise = new Promise((resolve, reject) => (installedChunkData = installedChunks[chunkId] = [resolve, reject]));
 /******/ 							promises.push(installedChunkData[2] = promise);
 /******/ 		
-/******/ 							// start chunk loading
+/******/ 							/ start chunk loading
 /******/ 							var url = __webpack_require__.p + __webpack_require__.u(chunkId);
-/******/ 							// create error before stack unwound to get useful stacktrace later
+/******/ 							/ create error before stack unwound to get useful stacktrace later
 /******/ 							var error = new Error();
 /******/ 							var loadingEnded = (event) => {
 /******/ 								if(__webpack_require__.o(installedChunks, chunkId)) {
@@ -384,21 +384,21 @@ module.exports = _typeof, module.exports.__esModule = true, module.exports["defa
 /******/ 				}
 /******/ 		};
 /******/ 		
-/******/ 		// no prefetching
+/******/ 		/ no prefetching
 /******/ 		
-/******/ 		// no preloaded
+/******/ 		/ no preloaded
 /******/ 		
-/******/ 		// no HMR
+/******/ 		/ no HMR
 /******/ 		
-/******/ 		// no HMR manifest
+/******/ 		/ no HMR manifest
 /******/ 		
-/******/ 		// no on chunks loaded
+/******/ 		/ no on chunks loaded
 /******/ 		
-/******/ 		// install a JSONP callback for chunk loading
+/******/ 		/ install a JSONP callback for chunk loading
 /******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
 /******/ 			var [chunkIds, moreModules, runtime] = data;
-/******/ 			// add "moreModules" to the modules object,
-/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			/ add "moreModules" to the modules object,
+/******/ 			/ then flag all "chunkIds" as loaded and fire callback
 /******/ 			var moduleId, chunkId, i = 0;
 /******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
 /******/ 				for(moduleId in moreModules) {
@@ -437,7 +437,7 @@ var __webpack_exports__ = {};
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 var _events = _interopRequireDefault(__webpack_require__(/*! elementor-utils/events */ "../assets/dev/js/utils/events.js"));
 elementorCommon.elements.$window.on('elementor:init-components', function () {
-  // Put promise of loading so other modules can use/await it.
+  / Put promise of loading so other modules can use/await it.
   elementor.modules.nestedElements = __webpack_require__.e(/*! import() */ "modules_nested-elements_assets_js_editor_module_js").then(__webpack_require__.bind(__webpack_require__, /*! ../editor/module */ "../modules/nested-elements/assets/js/editor/module.js"));
   elementor.modules.nestedElements.then(function (module) {
     elementor.modules.nestedElements = new module.default();

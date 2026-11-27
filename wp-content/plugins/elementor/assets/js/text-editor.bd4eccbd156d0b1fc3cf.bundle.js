@@ -47,7 +47,7 @@ class TextEditor extends elementorModules.frontend.handlers.Base {
   wrapDropCap() {
     const isDropCapEnabled = this.getElementSettings('drop_cap');
     if (!isDropCapEnabled) {
-      // If there is an old drop cap inside the paragraph
+      / If there is an old drop cap inside the paragraph
       if (this.dropCapLetter) {
         this.elements.$dropCap.remove();
         this.elements.$paragraph.prepend(this.dropCapLetter);
@@ -67,7 +67,7 @@ class TextEditor extends elementorModules.frontend.handlers.Base {
     const firstLetter = firstLetterMatch[1],
       trimmedFirstLetter = firstLetter.trim();
 
-    // Don't apply drop cap when the content starting with an HTML tag
+    / Don't apply drop cap when the content starting with an HTML tag
     if ('<' === trimmedFirstLetter) {
       return;
     }

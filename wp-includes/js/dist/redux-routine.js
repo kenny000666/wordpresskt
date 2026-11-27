@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
@@ -653,34 +653,34 @@ exports["default"] = create;
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -703,7 +703,7 @@ __webpack_require__.d(__webpack_exports__, {
   "default": () => (/* binding */ createMiddleware)
 });
 
-;// ./node_modules/@wordpress/redux-routine/build-module/is-generator.js
+;/ ./node_modules/@wordpress/redux-routine/build-module/is-generator.js
 /* eslint-disable jsdoc/valid-types */
 /**
  * Returns true if the given object is a generator, or false otherwise.
@@ -716,19 +716,19 @@ __webpack_require__.d(__webpack_exports__, {
  */
 function isGenerator(object) {
   /* eslint-enable jsdoc/valid-types */
-  // Check that iterator (next) and iterable (Symbol.iterator) interfaces are satisfied.
-  // These checks seem to be compatible with several generator helpers as well as the native implementation.
+  / Check that iterator (next) and iterable (Symbol.iterator) interfaces are satisfied.
+  / These checks seem to be compatible with several generator helpers as well as the native implementation.
   return !!object && typeof object[Symbol.iterator] === 'function' && typeof object.next === 'function';
 }
 
 // EXTERNAL MODULE: ./node_modules/rungen/dist/index.js
 var dist = __webpack_require__(8975);
-;// ./node_modules/is-promise/index.mjs
+;/ ./node_modules/is-promise/index.mjs
 function isPromise(obj) {
   return !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
 }
 
-;// ./node_modules/is-plain-object/dist/is-plain-object.mjs
+;/ ./node_modules/is-plain-object/dist/is-plain-object.mjs
 /*!
  * is-plain-object <https://github.com/jonschlinkert/is-plain-object>
  *
@@ -745,26 +745,26 @@ function isPlainObject(o) {
 
   if (isObject(o) === false) return false;
 
-  // If has modified constructor
+  / If has modified constructor
   ctor = o.constructor;
   if (ctor === undefined) return true;
 
-  // If has modified prototype
+  / If has modified prototype
   prot = ctor.prototype;
   if (isObject(prot) === false) return false;
 
-  // If constructor does not have an Object-specific method
+  / If constructor does not have an Object-specific method
   if (prot.hasOwnProperty('isPrototypeOf') === false) {
     return false;
   }
 
-  // Most likely a plain Object
+  / Most likely a plain Object
   return true;
 }
 
 
 
-;// ./node_modules/@wordpress/redux-routine/build-module/is-action.js
+;/ ./node_modules/@wordpress/redux-routine/build-module/is-action.js
 /**
  * External dependencies
  */
@@ -796,7 +796,7 @@ function isActionOfType(object, expectedType) {
   return isAction(object) && object.type === expectedType;
 }
 
-;// ./node_modules/@wordpress/redux-routine/build-module/runtime.js
+;/ ./node_modules/@wordpress/redux-routine/build-module/runtime.js
 /**
  * External dependencies
  */
@@ -821,7 +821,7 @@ function createRuntime(controls = {}, dispatch) {
     }
     const routine = control(value);
     if (isPromise(routine)) {
-      // Async control routine awaits resolution.
+      / Async control routine awaits resolution.
       routine.then(yieldNext, yieldError);
     } else {
       yieldNext(routine);
@@ -846,7 +846,7 @@ function createRuntime(controls = {}, dispatch) {
   }, reject));
 }
 
-;// ./node_modules/@wordpress/redux-routine/build-module/index.js
+;/ ./node_modules/@wordpress/redux-routine/build-module/index.js
 /**
  * Internal dependencies
  */

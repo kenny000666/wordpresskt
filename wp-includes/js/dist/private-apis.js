@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -23,7 +23,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -42,7 +42,7 @@ __webpack_require__.d(__webpack_exports__, {
   __dangerousOptInToUnstableAPIsOnlyForCoreModules: () => (/* reexport */ __dangerousOptInToUnstableAPIsOnlyForCoreModules)
 });
 
-;// ./node_modules/@wordpress/private-apis/build-module/implementation.js
+;/ ./node_modules/@wordpress/private-apis/build-module/implementation.js
 /**
  * wordpress/private-apis – the utilities to enable private cross-package
  * exports of private APIs.
@@ -94,9 +94,9 @@ const __dangerousOptInToUnstableAPIsOnlyForCoreModules = (consent, moduleName) =
     throw new Error(`You tried to opt-in to unstable APIs as module "${moduleName}". ` + 'This feature is only for JavaScript modules shipped with WordPress core. ' + 'Please do not use it in plugins and themes as the unstable APIs will be removed ' + 'without a warning. If you ignore this error and depend on unstable features, ' + 'your product will inevitably break on one of the next WordPress releases.');
   }
   if (!allowReRegistration && registeredPrivateApis.includes(moduleName)) {
-    // This check doesn't play well with Story Books / Hot Module Reloading
-    // and isn't included in the Gutenberg plugin. It only matters in the
-    // WordPress core release.
+    / This check doesn't play well with Story Books / Hot Module Reloading
+    / and isn't included in the Gutenberg plugin. It only matters in the
+    / WordPress core release.
     throw new Error(`You tried to opt-in to unstable APIs as module "${moduleName}" which is already registered. ` + 'This feature is only for JavaScript modules shipped with WordPress core. ' + 'Please do not use it in plugins and themes as the unstable APIs will be removed ' + 'without a warning. If you ignore this error and depend on unstable features, ' + 'your product will inevitably break on one of the next WordPress releases.');
   }
   if (consent !== requiredConsent) {
@@ -124,10 +124,10 @@ const __dangerousOptInToUnstableAPIsOnlyForCoreModules = (consent, moduleName) =
  * lock( object, privateData );
  *
  * object
- * // {}
+ * / {}
  *
  * unlock( object );
- * // { a: 1 }
+ * / { a: 1 }
  * ```
  *
  * @param object      The object to bind the private data to.
@@ -158,10 +158,10 @@ function lock(object, privateData) {
  * lock( object, privateData );
  *
  * object
- * // {}
+ * / {}
  *
  * unlock( object );
- * // { a: 1 }
+ * / { a: 1 }
  * ```
  *
  * @param object The object to unlock the private data from.
@@ -216,7 +216,7 @@ function resetRegisteredPrivateApis() {
   }
 }
 
-;// ./node_modules/@wordpress/private-apis/build-module/index.js
+;/ ./node_modules/@wordpress/private-apis/build-module/index.js
 
 
 (window.wp = window.wp || {}).privateApis = __webpack_exports__;

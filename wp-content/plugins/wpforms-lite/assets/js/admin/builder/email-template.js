@@ -77,7 +77,7 @@ var WPFormsBuilderEmailTemplate = window.WPFormsBuilderEmailTemplate || ( functi
 		 * @since 1.8.5
 		 */
 		setup() {
-			// Cache DOM elements.
+			/ Cache DOM elements.
 			el.$document = $( document );
 			el.$body = $( 'body' );
 		},
@@ -102,32 +102,32 @@ var WPFormsBuilderEmailTemplate = window.WPFormsBuilderEmailTemplate || ( functi
 		 * @param {Object} event The DOM event that triggered the function.
 		 */
 		handleOnChangeTemplate( event ) {
-			// Prevent the default action, which is to handle the change event.
+			/ Prevent the default action, which is to handle the change event.
 			event.preventDefault();
 
-			// Extract the ID of the field from the element.
+			/ Extract the ID of the field from the element.
 			const id = app.getIdFromElm( $( this ) );
 
-			// Get the corresponding select field.
+			/ Get the corresponding select field.
 			const $field = $( `#wpforms-panel-field-notifications-${ id }-template` );
 
-			// If the select field doesn't exist, no further action is needed.
+			/ If the select field doesn't exist, no further action is needed.
 			if ( ! $field.length ) {
 				return;
 			}
 
-			// If the modal doesn't exist, no further action is needed.
+			/ If the modal doesn't exist, no further action is needed.
 			if ( ! vars.modal ) {
 				return;
 			}
 
-			// Get the value of the radio button that triggered the change.
+			/ Get the value of the radio button that triggered the change.
 			const value = $( this ).val();
 
-			// Update the select field with the selected value and trigger the change event.
+			/ Update the select field with the selected value and trigger the change event.
 			$field.val( value ).trigger( 'change' );
 
-			// Close the modal.
+			/ Close the modal.
 			vars.modal.close();
 		},
 
@@ -138,32 +138,32 @@ var WPFormsBuilderEmailTemplate = window.WPFormsBuilderEmailTemplate || ( functi
 		 * @since 1.8.5
 		 */
 		handleOnOpenModal() {
-			// Get the email template modal template.
+			/ Get the email template modal template.
 			const template = wp.template( 'wpforms-email-template-modal' );
 
-			// If the template doesn't exist, exit the function.
+			/ If the template doesn't exist, exit the function.
 			if ( ! template.length ) {
 				return;
 			}
 
-			// Find the closest wrapper and select element.
+			/ Find the closest wrapper and select element.
 			const $wrapper = $( this ).closest( '.wpforms-panel-field-email-template-wrap' );
 			const $select = $wrapper.find( 'select' );
 
-			// Get the selected value from the select element and its ID.
+			/ Get the selected value from the select element and its ID.
 			const selected = $select.val() || '';
 			const id = app.getIdFromElm( $select );
 
-			// Extract relevant data from l10n.
+			/ Extract relevant data from l10n.
 			const { templates, is_pro } = l10n;
 
-			// Prepare the data to be passed to the template.
+			/ Prepare the data to be passed to the template.
 			const data = { templates, selected, is_pro, id };
 
-			// Generate the modal's content using the template and data.
+			/ Generate the modal's content using the template and data.
 			const content = template( data );
 
-			// Open the modal.
+			/ Open the modal.
 			vars.modal = $.confirm( {
 				content,
 				title: '',
@@ -173,12 +173,12 @@ var WPFormsBuilderEmailTemplate = window.WPFormsBuilderEmailTemplate || ( functi
 				smoothContent: false,
 				closeIcon: true,
 				buttons: false,
-				// Callback function before the modal opens.
+				/ Callback function before the modal opens.
 				onOpenBefore() {
 					this.$body.addClass( vars.classNames.modalBox );
 					el.$body.addClass( vars.classNames.modalOpen );
 				},
-				// Callback function when the modal is closed.
+				/ Callback function when the modal is closed.
 				onClose() {
 					el.$body.removeClass( vars.classNames.modalOpen );
 				},
@@ -196,20 +196,20 @@ var WPFormsBuilderEmailTemplate = window.WPFormsBuilderEmailTemplate || ( functi
 		 * @return {number} The numeric ID extracted from the element's ID attribute.
 		 */
 		getIdFromElm( $elm ) {
-			// Get the ID attribute from the element.
+			/ Get the ID attribute from the element.
 			const id = $elm.attr( 'id' );
 
-			// If no ID attribute is found, return 0.
+			/ If no ID attribute is found, return 0.
 			if ( ! id ) {
 				return 0;
 			}
 
-			// Extract and parse the numeric part from the ID.
+			/ Extract and parse the numeric part from the ID.
 			return parseInt( id.match( /\d+/ )[ 0 ], 10 );
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery, wpforms_builder_email_template ) );
 

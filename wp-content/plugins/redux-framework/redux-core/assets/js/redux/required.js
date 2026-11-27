@@ -48,9 +48,9 @@
 
 	$.redux.required = function () {
 
-		// Hide the fold elements on load.
-		// It's better to do this by PHP but there is no filter in tr tag , so is not possible
-		// we're going to move each attributes we may need for folding to tr tag.
+		/ Hide the fold elements on load.
+		/ It's better to do this by PHP but there is no filter in tr tag , so is not possible
+		/ we're going to move each attributes we may need for folding to tr tag.
 		$.each(
 			redux.opt_names,
 			function ( x ) {
@@ -200,7 +200,7 @@
 
 				if ( true === show ) {
 
-					// Shim for sections.
+					/ Shim for sections.
 					if ( childFieldset.hasClass( 'redux-container-section' ) ) {
 						div = $( '#section-' + child );
 

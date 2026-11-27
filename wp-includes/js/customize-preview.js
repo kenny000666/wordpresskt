@@ -118,7 +118,7 @@
 
 			if ( api.settings.channel ) {
 
-				// If in an iframe, then intercept the link clicks and form submissions.
+				/ If in an iframe, then intercept the link clicks and form submissions.
 				preview.body.on( 'click.preview', 'a', function( event ) {
 					preview.handleLinkClick( event );
 				} );
@@ -148,25 +148,25 @@
 			var preview = this, link, isInternalJumpLink;
 			link = $( event.target ).closest( 'a' );
 
-			// No-op if the anchor is not a link.
+			/ No-op if the anchor is not a link.
 			if ( _.isUndefined( link.attr( 'href' ) ) ) {
 				return;
 			}
 
-			// Allow internal jump links and JS links to behave normally without preventing default.
+			/ Allow internal jump links and JS links to behave normally without preventing default.
 			isInternalJumpLink = ( '#' === link.attr( 'href' ).substr( 0, 1 ) );
 			if ( isInternalJumpLink || ! /^https?:$/.test( link.prop( 'protocol' ) ) ) {
 				return;
 			}
 
-			// If the link is not previewable, prevent the browser from navigating to it.
+			/ If the link is not previewable, prevent the browser from navigating to it.
 			if ( ! api.isLinkPreviewable( link[0] ) ) {
 				wp.a11y.speak( api.settings.l10n.linkUnpreviewable );
 				event.preventDefault();
 				return;
 			}
 
-			// Prevent initiating navigating from click and instead rely on sending url message to pane.
+			/ Prevent initiating navigating from click and instead rely on sending url message to pane.
 			event.preventDefault();
 
 			/*
@@ -178,7 +178,7 @@
 				return;
 			}
 
-			// Note: It's not relevant to send scroll because sending url message will have the same effect.
+			/ Note: It's not relevant to send scroll because sending url message will have the same effect.
 			preview.send( 'url', link.prop( 'href' ) );
 		},
 
@@ -196,7 +196,7 @@
 			form = $( event.target );
 			urlParser.href = form.prop( 'action' );
 
-			// If the link is not previewable, prevent the browser from navigating to it.
+			/ If the link is not previewable, prevent the browser from navigating to it.
 			if ( 'GET' !== form.prop( 'method' ).toUpperCase() || ! api.isLinkPreviewable( urlParser ) ) {
 				wp.a11y.speak( api.settings.l10n.formUnpreviewable );
 				event.preventDefault();
@@ -222,7 +222,7 @@
 				preview.send( 'url', urlParser.href );
 			}
 
-			// Prevent default since navigation should be done via sending url message or via JS submit handler.
+			/ Prevent default since navigation should be done via sending url message or via JS submit handler.
 			event.preventDefault();
 		}
 	});
@@ -239,12 +239,12 @@
 	api.addLinkPreviewing = function addLinkPreviewing() {
 		var linkSelectors = 'a[href], area[href]';
 
-		// Inject links into initial document.
+		/ Inject links into initial document.
 		$( document.body ).find( linkSelectors ).each( function() {
 			api.prepareLinkPreview( this );
 		} );
 
-		// Inject links for new elements added to the page.
+		/ Inject links for new elements added to the page.
 		if ( 'undefined' !== typeof MutationObserver ) {
 			api.mutationObserver = new MutationObserver( function( mutations ) {
 				_.each( mutations, function( mutation ) {
@@ -259,7 +259,7 @@
 			} );
 		} else {
 
-			// If mutation observers aren't available, fallback to just-in-time injection.
+			/ If mutation observers aren't available, fallback to just-in-time injection.
 			$( document.documentElement ).on( 'click focus mouseover', linkSelectors, function() {
 				api.prepareLinkPreview( this );
 			} );
@@ -285,11 +285,11 @@
 
 		args = _.extend( {}, { allowAdminAjax: false }, options || {} );
 
-		if ( 'javascript:' === element.protocol ) { // jshint ignore:line
+		if ( 'javascript:' === element.protocol ) { / jshint ignore:line
 			return true;
 		}
 
-		// Only web URLs can be previewed.
+		/ Only web URLs can be previewed.
 		if ( 'https:' !== element.protocol && 'http:' !== element.protocol ) {
 			return false;
 		}
@@ -304,17 +304,17 @@
 			return false;
 		}
 
-		// Skip wp login and signup pages.
+		/ Skip wp login and signup pages.
 		if ( /\/wp-(login|signup)\.php$/.test( element.pathname ) ) {
 			return false;
 		}
 
-		// Allow links to admin ajax as faux frontend URLs.
+		/ Allow links to admin ajax as faux frontend URLs.
 		if ( /\/wp-admin\/admin-ajax\.php$/.test( element.pathname ) ) {
 			return args.allowAdminAjax;
 		}
 
-		// Disallow links to admin, includes, and content.
+		/ Disallow links to admin, includes, and content.
 		if ( /\/wp-(admin|includes|content)(\/|$)/.test( element.pathname ) ) {
 			return false;
 		}
@@ -337,34 +337,34 @@
 	api.prepareLinkPreview = function prepareLinkPreview( element ) {
 		var queryParams, $element = $( element );
 
-        // Skip elements with no href attribute. Check first to avoid more expensive checks down the road.
+        / Skip elements with no href attribute. Check first to avoid more expensive checks down the road.
         if ( ! element.hasAttribute( 'href' ) ) {
             return;
         }
 
-		// Skip links in admin bar.
+		/ Skip links in admin bar.
 		if ( $element.closest( '#wpadminbar' ).length ) {
 			return;
 		}
 
-		// Ignore links with href="#", href="#id", or non-HTTP protocols (e.g. javascript: and mailto:).
+		/ Ignore links with href="#", href="#id", or non-HTTP protocols (e.g. javascript: and mailto:).
 		if ( '#' === $element.attr( 'href' ).substr( 0, 1 ) || ! /^https?:$/.test( element.protocol ) ) {
 			return;
 		}
 
-		// Make sure links in preview use HTTPS if parent frame uses HTTPS.
+		/ Make sure links in preview use HTTPS if parent frame uses HTTPS.
 		if ( api.settings.channel && 'https' === api.preview.scheme.get() && 'http:' === element.protocol && -1 !== api.settings.url.allowedHosts.indexOf( element.host ) ) {
 			element.protocol = 'https:';
 		}
 
-		// Ignore links with class wp-playlist-caption.
+		/ Ignore links with class wp-playlist-caption.
 		if ( $element.hasClass( 'wp-playlist-caption' ) ) {
 			return;
 		}
 
 		if ( ! api.isLinkPreviewable( element ) ) {
 
-			// Style link as unpreviewable only if previewing in iframe; if previewing on frontend, links will be allowed to work normally.
+			/ Style link as unpreviewable only if previewing in iframe; if previewing on frontend, links will be allowed to work normally.
 			if ( api.settings.channel ) {
 				$element.addClass( 'customize-unpreviewable' );
 			}
@@ -411,13 +411,13 @@
 			urlParser = document.createElement( 'a' );
 			urlParser.href = options.url;
 
-			// Abort if the request is not for this site.
+			/ Abort if the request is not for this site.
 			if ( ! api.isLinkPreviewable( urlParser, { allowAdminAjax: true } ) ) {
 				return;
 			}
 			queryParams = api.utils.parseQueryString( urlParser.search.substring( 1 ) );
 
-			// Note that _dirty flag will be cleared with changeset updates.
+			/ Note that _dirty flag will be cleared with changeset updates.
 			api.each( function( setting ) {
 				if ( setting._dirty ) {
 					dirtyValues[ setting.id ] = setting.get();
@@ -427,14 +427,14 @@
 			if ( ! _.isEmpty( dirtyValues ) ) {
 				requestMethod = options.type.toUpperCase();
 
-				// Override underlying request method to ensure unsaved changes to changeset can be included (force Backbone.emulateHTTP).
+				/ Override underlying request method to ensure unsaved changes to changeset can be included (force Backbone.emulateHTTP).
 				if ( 'POST' !== requestMethod ) {
 					xhr.setRequestHeader( 'X-HTTP-Method-Override', requestMethod );
 					queryParams._method = requestMethod;
 					options.type = 'POST';
 				}
 
-				// Amend the post data with the customized values.
+				/ Amend the post data with the customized values.
 				if ( options.data ) {
 					options.data += '&';
 				} else {
@@ -445,7 +445,7 @@
 				} );
 			}
 
-			// Include customized state query params in URL.
+			/ Include customized state query params in URL.
 			queryParams.customize_changeset_uuid = api.settings.changeset.uuid;
 			if ( api.settings.changeset.autosaved ) {
 				queryParams.customize_autosaved = 'on';
@@ -454,7 +454,7 @@
 				queryParams.customize_theme = api.settings.theme.stylesheet;
 			}
 
-			// Ensure preview nonce is included with every customized request, to allow post data to be read.
+			/ Ensure preview nonce is included with every customized request, to allow post data to be read.
 			queryParams.customize_preview_nonce = api.settings.nonce.preview;
 
 			urlParser.search = $.param( queryParams );
@@ -474,12 +474,12 @@
 	 */
 	api.addFormPreviewing = function addFormPreviewing() {
 
-		// Inject inputs for forms in initial document.
+		/ Inject inputs for forms in initial document.
 		$( document.body ).find( 'form' ).each( function() {
 			api.prepareFormPreview( this );
 		} );
 
-		// Inject inputs for new forms added to the page.
+		/ Inject inputs for new forms added to the page.
 		if ( 'undefined' !== typeof MutationObserver ) {
 			api.mutationObserver = new MutationObserver( function( mutations ) {
 				_.each( mutations, function( mutation ) {
@@ -514,7 +514,7 @@
 		urlParser = document.createElement( 'a' );
 		urlParser.href = form.action;
 
-		// Make sure forms in preview use HTTPS if parent frame uses HTTPS.
+		/ Make sure forms in preview use HTTPS if parent frame uses HTTPS.
 		if ( api.settings.channel && 'https' === api.preview.scheme.get() && 'http:' === urlParser.protocol && -1 !== api.settings.url.allowedHosts.indexOf( urlParser.host ) ) {
 			urlParser.protocol = 'https:';
 			form.action = urlParser.href;
@@ -522,7 +522,7 @@
 
 		if ( 'GET' !== form.method.toUpperCase() || ! api.isLinkPreviewable( urlParser ) ) {
 
-			// Style form as unpreviewable only if previewing in iframe; if previewing on frontend, all forms will be allowed to work normally.
+			/ Style form as unpreviewable only if previewing in iframe; if previewing on frontend, all forms will be allowed to work normally.
 			if ( api.settings.channel ) {
 				$( form ).addClass( 'customize-unpreviewable' );
 			}
@@ -554,7 +554,7 @@
 			}
 		} );
 
-		// Prevent links from breaking out of preview iframe.
+		/ Prevent links from breaking out of preview iframe.
 		if ( api.settings.channel ) {
 			form.target = '_self';
 		}
@@ -578,7 +578,7 @@
 		return function keepAliveCurrentUrl() {
 			var urlParser, currentQueryParams;
 
-			// Short-circuit with keep-alive if previous URL is identical (as is normal case).
+			/ Short-circuit with keep-alive if previous URL is identical (as is normal case).
 			if ( previousQueryString === location.search.substr( 1 ) && previousPathName === location.pathname ) {
 				api.preview.send( 'keep-alive' );
 				return;
@@ -593,7 +593,7 @@
 				} );
 			}
 
-			// Determine if current URL minus customized state params and URL hash.
+			/ Determine if current URL minus customized state params and URL hash.
 			urlParser.href = location.href;
 			currentQueryParams = api.utils.parseQueryString( urlParser.search.substr( 1 ) );
 			_.each( stateQueryParams, function( name ) {
@@ -711,7 +711,7 @@
 					id: id
 				} );
 
-				// Mark dynamically-created settings as dirty so they will get posted.
+				/ Mark dynamically-created settings as dirty so they will get posted.
 				if ( createDirty ) {
 					setting._dirty = true;
 				}
@@ -767,7 +767,7 @@
 
 			api.preview.send( 'documentTitle', document.title );
 
-			// Send scroll in case of loading via non-refresh.
+			/ Send scroll in case of loading via non-refresh.
 			api.preview.send( 'scroll', $( window ).scrollTop() );
 		});
 
@@ -780,7 +780,7 @@
 		handleUpdatedChangesetUuid = function( uuid ) {
 			api.settings.changeset.uuid = uuid;
 
-			// Update UUIDs in links and forms.
+			/ Update UUIDs in links and forms.
 			$( document.body ).find( 'a[href], area[href]' ).each( function() {
 				api.prepareLinkPreview( this );
 			} );
@@ -807,13 +807,13 @@
 			api.trigger( 'saved', response );
 		} );
 
-		// Update the URLs to reflect the fact we've started autosaving.
+		/ Update the URLs to reflect the fact we've started autosaving.
 		api.preview.bind( 'autosaving', function() {
 			if ( api.settings.changeset.autosaved ) {
 				return;
 			}
 
-			api.settings.changeset.autosaved = true; // Start deferring to any autosave once changeset is updated.
+			api.settings.changeset.autosaved = true; / Start deferring to any autosave once changeset is updated.
 
 			$( document.body ).find( 'a[href], area[href]' ).each( function() {
 				api.prepareLinkPreview( this );
@@ -855,10 +855,10 @@
 			settingValidities: api.settings.settingValidities
 		} );
 
-		// Send ready when URL changes via JS.
+		/ Send ready when URL changes via JS.
 		setInterval( api.keepAliveCurrentUrl, api.settings.timeouts.keepAliveSend );
 
-		// Display a loading indicator when preview is reloading, and remove on failure.
+		/ Display a loading indicator when preview is reloading, and remove on failure.
 		api.preview.bind( 'loading-initiated', function () {
 			$( 'body' ).addClass( 'wp-customizer-unloading' );
 		});

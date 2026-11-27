@@ -21,7 +21,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"./mouse",
@@ -31,7 +31,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -47,8 +47,8 @@ return $.widget( "ui.slider", $.ui.mouse, {
 			"ui-slider": "ui-corner-all",
 			"ui-slider-handle": "ui-corner-all",
 
-			// Note: ui-widget-header isn't the most fittingly semantic framework class for this
-			// element, but worked best visually with a variety of themes
+			/ Note: ui-widget-header isn't the most fittingly semantic framework class for this
+			/ element, but worked best visually with a variety of themes
 			"ui-slider-range": "ui-corner-all ui-widget-header"
 		},
 		distance: 0,
@@ -60,15 +60,15 @@ return $.widget( "ui.slider", $.ui.mouse, {
 		value: 0,
 		values: null,
 
-		// Callbacks
+		/ Callbacks
 		change: null,
 		slide: null,
 		start: null,
 		stop: null
 	},
 
-	// Number of pages in a slider
-	// (how many times can you page up/down to go through the whole range)
+	/ Number of pages in a slider
+	/ (how many times can you page up/down to go through the whole range)
 	numPages: 5,
 
 	_create: function() {
@@ -148,7 +148,7 @@ return $.widget( "ui.slider", $.ui.mouse, {
 			} else {
 				this._removeClass( this.range, "ui-slider-range-min ui-slider-range-max" );
 
-				// Handle range switching from true to min/max
+				/ Handle range switching from true to min/max
 				this.range.css( {
 					"left": "",
 					"bottom": ""
@@ -349,7 +349,7 @@ return $.widget( "ui.slider", $.ui.mouse, {
 
 		allowed = this._trigger( "slide", event, this._uiHash( index, newVal, newValues ) );
 
-		// A slide can be canceled by returning false from the slide callback
+		/ A slide can be canceled by returning false from the slide callback
 		if ( allowed === false ) {
 			return;
 		}
@@ -368,7 +368,7 @@ return $.widget( "ui.slider", $.ui.mouse, {
 	_change: function( event, index ) {
 		if ( !this._keySliding && !this._mouseSliding ) {
 
-			//store the last changed value index for reference when handles overlap
+			/store the last changed value index for reference when handles overlap
 			this._lastChangedValue = index;
 			this._trigger( "change", event, this._uiHash( index ) );
 		}
@@ -448,7 +448,7 @@ return $.widget( "ui.slider", $.ui.mouse, {
 					this._refreshRange( value );
 				}
 
-				// Reset positioning from previous orientation
+				/ Reset positioning from previous orientation
 				this.handles.css( value === "horizontal" ? "bottom" : "left", "" );
 				break;
 			case "value":
@@ -461,7 +461,7 @@ return $.widget( "ui.slider", $.ui.mouse, {
 				this._animateOff = true;
 				this._refreshValue();
 
-				// Start from the last handle to prevent unreachable handles (#9046)
+				/ Start from the last handle to prevent unreachable handles (#9046)
 				for ( i = valsLength - 1; i >= 0; i-- ) {
 					this._change( null, i );
 				}
@@ -489,8 +489,8 @@ return $.widget( "ui.slider", $.ui.mouse, {
 		this._toggleClass( null, "ui-state-disabled", !!value );
 	},
 
-	//internal value getter
-	// _value() returns value trimmed by min and max, aligned by step
+	/internal value getter
+	/ _value() returns value trimmed by min and max, aligned by step
 	_value: function() {
 		var val = this.options.value;
 		val = this._trimAlignValue( val );
@@ -498,9 +498,9 @@ return $.widget( "ui.slider", $.ui.mouse, {
 		return val;
 	},
 
-	//internal values getter
-	// _values() returns array of values trimmed by min and max, aligned by step
-	// _values( index ) returns single value trimmed by min and max, aligned by step
+	/internal values getter
+	/ _values() returns array of values trimmed by min and max, aligned by step
+	/ _values( index ) returns single value trimmed by min and max, aligned by step
 	_values: function( index ) {
 		var val,
 			vals,
@@ -513,8 +513,8 @@ return $.widget( "ui.slider", $.ui.mouse, {
 			return val;
 		} else if ( this._hasMultipleValues() ) {
 
-			// .slice() creates a copy of the array
-			// this copy gets trimmed by min and max and then returned
+			/ .slice() creates a copy of the array
+			/ this copy gets trimmed by min and max and then returned
 			vals = this.options.values.slice();
 			for ( i = 0; i < vals.length; i += 1 ) {
 				vals[ i ] = this._trimAlignValue( vals[ i ] );
@@ -526,7 +526,7 @@ return $.widget( "ui.slider", $.ui.mouse, {
 		}
 	},
 
-	// Returns the step-aligned value that val is closest to, between (inclusive) min and max
+	/ Returns the step-aligned value that val is closest to, between (inclusive) min and max
 	_trimAlignValue: function( val ) {
 		if ( val <= this._valueMin() ) {
 			return this._valueMin();
@@ -542,8 +542,8 @@ return $.widget( "ui.slider", $.ui.mouse, {
 			alignValue += ( valModStep > 0 ) ? step : ( -step );
 		}
 
-		// Since JavaScript has problems with large floats, round
-		// the final value to 5 digits after the decimal point (see #4124)
+		/ Since JavaScript has problems with large floats, round
+		/ the final value to 5 digits after the decimal point (see #4124)
 		return parseFloat( alignValue.toFixed( 5 ) );
 	},
 
@@ -555,7 +555,7 @@ return $.widget( "ui.slider", $.ui.mouse, {
 		max = aboveMin + min;
 		if ( max > this.options.max ) {
 
-			//If max is not divisible by step, rounding off may increase its value
+			/If max is not divisible by step, rounding off may increase its value
 			max -= step;
 		}
 		this.max = parseFloat( max.toFixed( this._precision() ) );

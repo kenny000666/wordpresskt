@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../app/assets/js/app.scss":
@@ -470,7 +470,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 
 var createNamedContext = function createNamedContext(name, defaultValue) {
   var Ctx = create_react_context__WEBPACK_IMPORTED_MODULE_2___default()(defaultValue);
@@ -478,7 +478,7 @@ var createNamedContext = function createNamedContext(name, defaultValue) {
   return Ctx;
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // Location Context/Provider
 var LocationContext = createNamedContext("Location");
 
@@ -550,7 +550,7 @@ var LocationProvider = function (_React$Component) {
     history._onTransitionComplete();
     refs.unlisten = history.listen(function () {
       Promise.resolve().then(function () {
-        // TODO: replace rAF with react deferred update API when it's ready https://github.com/facebook/react/issues/13306
+        / TODO: replace rAF with react deferred update API when it's ready https://github.com/facebook/react/issues/13306
         requestAnimationFrame(function () {
           if (!_this2.unmounted) {
             _this2.setState(function () {
@@ -583,7 +583,7 @@ var LocationProvider = function (_React$Component) {
   return LocationProvider;
 }((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 
 
 LocationProvider.defaultProps = {
@@ -626,11 +626,11 @@ var ServerLocation = function ServerLocation(_ref2) {
     children
   );
 };
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // Sets baseuri and basepath for nested routers and links
 var BaseContext = createNamedContext("Base", { baseuri: "/", basepath: "/" });
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // The main event, welcome to the show everybody.
 var Router = function Router(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default().createElement(
@@ -684,7 +684,7 @@ var RouterImpl = function (_React$PureComponent) {
           route = match.route,
           element = match.route.value;
 
-      // remove the /* from the end for child routes relative paths
+      / remove the /* from the end for child routes relative paths
 
       basepath = route.default ? basepath : route.path.replace(/\*$/, "");
 
@@ -702,9 +702,9 @@ var RouterImpl = function (_React$PureComponent) {
         element.props.children
       ) : undefined);
 
-      // using 'div' for < 16.3 support
+      / using 'div' for < 16.3 support
       var FocusWrapper = primary ? FocusHandler : component;
-      // don't pass any props to 'div'
+      / don't pass any props to 'div'
       var wrapperProps = primary ? _extends({ uri: uri, location: location, component: component }, domProps) : domProps;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default().createElement(
@@ -717,19 +717,19 @@ var RouterImpl = function (_React$PureComponent) {
         )
       );
     } else {
-      // Not sure if we want this, would require index routes at every level
-      // warning(
-      //   false,
-      //   `<Router basepath="${basepath}">\n\nNothing matched:\n\t${
-      //     location.pathname
-      //   }\n\nPaths checked: \n\t${routes
-      //     .map(route => route.path)
-      //     .join(
-      //       "\n\t"
-      //     )}\n\nTo get rid of this warning, add a default NotFound component as child of Router:
-      //   \n\tlet NotFound = () => <div>Not Found!</div>
-      //   \n\t<Router>\n\t  <NotFound default/>\n\t  {/* ... */}\n\t</Router>`
-      // );
+      / Not sure if we want this, would require index routes at every level
+      / warning(
+      /   false,
+      /   `<Router basepath="${basepath}">\n\nNothing matched:\n\t${
+      /     location.pathname
+      /   }\n\nPaths checked: \n\t${routes
+      /     .map(route => route.path)
+      /     .join(
+      /       "\n\t"
+      /     )}\n\nTo get rid of this warning, add a default NotFound component as child of Router:
+      /   \n\tlet NotFound = () => <div>Not Found!</div>
+      /   \n\t<Router>\n\t  <NotFound default/>\n\t  {/* ... */}\n\t</Router>`
+      / );
       return null;
     }
   };
@@ -832,8 +832,8 @@ var FocusHandlerImpl = function (_React$Component2) {
       if (initialRender) {
         initialRender = false;
       } else if (this.node) {
-        // React polyfills [autofocus] and it fires earlier than cDM,
-        // so we were stealing focus away, this line prevents that.
+        / React polyfills [autofocus] and it fires earlier than cDM,
+        / so we were stealing focus away, this line prevents that.
         if (!this.node.contains(document.activeElement)) {
           this.node.focus();
         }
@@ -878,7 +878,7 @@ var FocusHandlerImpl = function (_React$Component2) {
 
 var k = function k() {};
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 var forwardRef = (react__WEBPACK_IMPORTED_MODULE_0___default().forwardRef);
 
 if (typeof forwardRef === "undefined") {
@@ -952,7 +952,7 @@ Link.displayName = "Link";
   to: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().string).isRequired
 } : 0;
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 function RedirectRequest(uri) {
   this.uri = uri;
 }
@@ -974,7 +974,7 @@ var RedirectImpl = function (_React$Component3) {
     return _possibleConstructorReturn(this, _React$Component3.apply(this, arguments));
   }
 
-  // Support React < 16 with this hook
+  / Support React < 16 with this hook
   RedirectImpl.prototype.componentDidMount = function componentDidMount() {
     var _props3 = this.props,
         navigate = _props3.navigate,
@@ -1034,7 +1034,7 @@ var Redirect = function Redirect(props) {
   to: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().string).isRequired
 } : 0;
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 var Match = function Match(_ref8) {
   var path = _ref8.path,
       children = _ref8.children;
@@ -1066,7 +1066,7 @@ var Match = function Match(_ref8) {
   );
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // Hooks
 
 var useLocation = function useLocation() {
@@ -1123,7 +1123,7 @@ var useMatch = function useMatch(path) {
   }) : null;
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // Junk
 var stripSlashes = function stripSlashes(str) {
   return str.replace(/(^\/+|\/+$)/g, "");
@@ -1164,7 +1164,7 @@ var shouldNavigate = function shouldNavigate(event) {
   return !event.defaultPrevented && event.button === 0 && !(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
 };
 
-////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////
 
 
 /***/ }),
@@ -1264,7 +1264,7 @@ var createHistory = function createHistory(source, options) {
         source.history.go(to);
       } else {
         state = _extends({}, state, { key: Date.now() + "" });
-        // try...catch iOS Safari limits to 100 pushState calls
+        / try...catch iOS Safari limits to 100 pushState calls
         try {
           if (transitioning || replace) {
             source.history.replaceState(state, null, to);
@@ -1289,7 +1289,7 @@ var createHistory = function createHistory(source, options) {
   };
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // Stores history entries in memory for testing or other platforms like Native
 var createMemorySource = function createMemorySource() {
   var initialPath = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/";
@@ -1352,7 +1352,7 @@ var createMemorySource = function createMemorySource() {
   };
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // global history - uses window.history as the source if available, otherwise a
 // memory history
 var canUseDOM = !!(typeof window !== "undefined" && window.document && window.document.createElement);
@@ -1363,7 +1363,7 @@ var getSource = function getSource() {
 var globalHistory = createHistory(getSource());
 var navigate = globalHistory.navigate;
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 
 
 
@@ -1390,13 +1390,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var invariant__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(invariant__WEBPACK_IMPORTED_MODULE_0__);
 
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // startsWith(string, search) - Check if `string` starts with `search`
 var startsWith = function startsWith(string, search) {
   return string.substr(0, search.length) === search;
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // pick(routes, uri)
 //
 // Ranks and picks the best route to match. Each segment gets the highest
@@ -1451,18 +1451,18 @@ var pick = function pick(routes, uri) {
       var uriSegment = uriSegments[index];
 
       if (isSplat(routeSegment)) {
-        // Hit a splat, just grab the rest, and return a match
-        // uri:   /files/documents/work
-        // route: /files/*
+        / Hit a splat, just grab the rest, and return a match
+        / uri:   /files/documents/work
+        / route: /files/*
         var param = routeSegment.slice(1) || "*";
         params[param] = uriSegments.slice(index).map(decodeURIComponent).join("/");
         break;
       }
 
       if (uriSegment === undefined) {
-        // URI is shorter than the route, no match
-        // uri:   /users
-        // route: /users/:userId
+        / URI is shorter than the route, no match
+        / uri:   /users
+        / route: /users/:userId
         missed = true;
         break;
       }
@@ -1475,9 +1475,9 @@ var pick = function pick(routes, uri) {
         var value = decodeURIComponent(uriSegment);
         params[dynamicMatch[1]] = value;
       } else if (routeSegment !== uriSegment) {
-        // Current segments don't match, not dynamic, not splat, so no match
-        // uri:   /users/123/settings
-        // route: /users/:id/profile
+        / Current segments don't match, not dynamic, not splat, so no match
+        / uri:   /users/123/settings
+        / route: /users/:id/profile
         missed = true;
         break;
       }
@@ -1496,13 +1496,13 @@ var pick = function pick(routes, uri) {
   return match || default_ || null;
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // match(path, uri) - Matches just one path to a uri, also lol
 var match = function match(path, uri) {
   return pick([{ path: path }], uri);
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // resolve(to, basepath)
 //
 // Resolves URIs as though every path is a directory, no files.  Relative URIs
@@ -1517,7 +1517,7 @@ var match = function match(path, uri) {
 // their current path. To go deeper you can do this:
 //
 //     <Link to="deeper"/>
-//     // instead of
+//     / instead of
 //     <Link to=`{${props.uri}/deeper}`/>
 //
 // Just like `cd`, if you want to go deeper from the command line, you do this:
@@ -1529,7 +1529,7 @@ var match = function match(path, uri) {
 // By treating every path as a directory, linking to relative paths should
 // require less contextual information and (fingers crossed) be more intuitive.
 var resolve = function resolve(to, base) {
-  // /foo/bar, /baz/qux => /foo/bar
+  / /foo/bar, /baz/qux => /foo/bar
   if (startsWith(to, "/")) {
     return to;
   }
@@ -1544,22 +1544,22 @@ var resolve = function resolve(to, base) {
   var toSegments = segmentize(toPathname);
   var baseSegments = segmentize(basePathname);
 
-  // ?a=b, /users?b=c => /users?a=b
+  / ?a=b, /users?b=c => /users?a=b
   if (toSegments[0] === "") {
     return addQuery(basePathname, toQuery);
   }
 
-  // profile, /users/789 => /users/789/profile
+  / profile, /users/789 => /users/789/profile
   if (!startsWith(toSegments[0], ".")) {
     var pathname = baseSegments.concat(toSegments).join("/");
     return addQuery((basePathname === "/" ? "" : "/") + pathname, toQuery);
   }
 
-  // ./         /users/123  =>  /users/123
-  // ../        /users/123  =>  /users
-  // ../..      /users/123  =>  /
-  // ../../one  /a/b/c/d    =>  /a/b/one
-  // .././one   /a/b/c/d    =>  /a/b/c/one
+  / ./         /users/123  =>  /users/123
+  / ../        /users/123  =>  /users
+  / ../..      /users/123  =>  /
+  / ../../one  /a/b/c/d    =>  /a/b/one
+  / .././one   /a/b/c/d    =>  /a/b/c/one
   var allSegments = baseSegments.concat(toSegments);
   var segments = [];
   for (var i = 0, l = allSegments.length; i < l; i++) {
@@ -1570,7 +1570,7 @@ var resolve = function resolve(to, base) {
   return addQuery("/" + segments.join("/"), toQuery);
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // insertParams(path, params)
 
 var insertParams = function insertParams(path, params) {
@@ -1603,7 +1603,7 @@ var validateRedirect = function validateRedirect(from, to) {
   return fromString === toString;
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // Junk
 var paramRe = /^:(.+)/;
 
@@ -1640,7 +1640,7 @@ var rankRoutes = function rankRoutes(routes) {
 
 var segmentize = function segmentize(uri) {
   return uri
-  // strip starting/ending slashes
+  / strip starting/ending slashes
   .replace(/(^\/+|\/+$)/g, "").split("/");
 };
 
@@ -1669,7 +1669,7 @@ var shallowCompare = function shallowCompare(obj1, obj2) {
   });
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 
 
 /***/ }),
@@ -1762,8 +1762,8 @@ function App() {
       }
     };
 
-  // Use hash route because it's actually rendered on a WP Admin page.
-  // Make it public for external uses.
+  / Use hash route because it's actually rendered on a WP Admin page.
+  / Make it public for external uses.
   _router.default.appHistory = (0, _router2.createHistory)((0, _reachRouterHashHistory.createHashSource)());
   return /*#__PURE__*/_react.default.createElement(_errorBoundary.default, null, /*#__PURE__*/_react.default.createElement(_router2.LocationProvider, {
     history: _router.default.appHistory
@@ -1797,7 +1797,7 @@ function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 var appsEventTrackingDispatch = exports.appsEventTrackingDispatch = function appsEventTrackingDispatch(command, eventParams) {
-  // Add existing eventParams key value pair to the data/details object.
+  / Add existing eventParams key value pair to the data/details object.
   var objectCreator = function objectCreator(array, obj) {
     var _iterator = _createForOfIteratorHelper(array),
       _step;
@@ -1826,7 +1826,7 @@ var appsEventTrackingDispatch = exports.appsEventTrackingDispatch = function app
     data.placement = commandSplit[0];
     data.event = commandSplit[1];
 
-    // If 'details' is not empty, add the details object to the data object.
+    / If 'details' is not empty, add the details object to the data object.
     if (Object.keys(details).length) {
       data.details = details;
     }
@@ -1856,16 +1856,16 @@ function useAction() {
       if (window.top === window) {
         window.top.location = elementorAppConfig.admin_url;
       } else {
-        // Iframe.
+        / Iframe.
         window.top.$e.run('app/close');
       }
     },
     backToReferrer: function backToReferrer() {
       if (window.top === window) {
-        // Directly - in case that the return_url is the login-page, the target should be the admin-page and not the login-page again.
+        / Directly - in case that the return_url is the login-page, the target should be the admin-page and not the login-page again.
         window.top.location = elementorAppConfig.return_url.includes(elementorAppConfig.login_url) ? elementorAppConfig.admin_url : elementorAppConfig.return_url;
       } else {
-        // Iframe.
+        / Iframe.
         window.top.$e.run('app/close');
       }
     }
@@ -2090,7 +2090,7 @@ function useQueryParams() {
     });
   }
 
-  // Merging the URL params with the hash params.
+  / Merging the URL params with the hash params.
   var queryParams = _objectSpread(_objectSpread({}, urlParams), hashParams);
   return {
     getAll: function getAll() {
@@ -2198,7 +2198,7 @@ var Button = exports["default"] = /*#__PURE__*/function (_BaseButton) {
   }, {
     key: "getClassName",
     value: function getClassName() {
-      // Avoid using the 'eps-app__header-btn' class to make sure it is not override custom styles.
+      / Avoid using the 'eps-app__header-btn' class to make sure it is not override custom styles.
       if (!this.props.includeHeaderBtnClass) {
         return _superPropGet(Button, "getClassName", this, 3)([]);
       }
@@ -2873,7 +2873,7 @@ function Tooltip(props) {
       }
     };
   (0, _react.useEffect)(function () {
-    // In case that the component is disabled the tipsy library will not be loaded by default.
+    / In case that the component is disabled the tipsy library will not be loaded by default.
     if (!props.disabled) {
       isAborted.current = false;
       import(/* webpackIgnore: true */"".concat(elementorCommon.config.urls.assets, "lib/tipsy/tipsy.min.js?ver=1.0.0")).then(function () {
@@ -2888,10 +2888,10 @@ function Tooltip(props) {
     }
     return function () {
       if (!props.disabled) {
-        // Aborting the current dynamic-import state update in case of re-render.
+        / Aborting the current dynamic-import state update in case of re-render.
         isAborted.current = true;
 
-        // Cleanup of existing tipsy element in case of re-render.
+        / Cleanup of existing tipsy element in case of re-render.
         var nodes = document.querySelectorAll('.tipsy');
         if (!nodes.length) {
           return;
@@ -2906,7 +2906,7 @@ function Tooltip(props) {
     }
   }, [isLibraryLoaded, showTooltip]);
   (0, _react.useEffect)(function () {
-    // The "show" state should not be changed while the component is disabled.
+    / The "show" state should not be changed while the component is disabled.
     if (!props.disabled && props.show !== showTooltip) {
       setShowTooltip(props.show);
     }
@@ -2963,7 +2963,7 @@ function UploadFile(props) {
     baseClassName = 'e-app-upload-file',
     classes = [baseClassName, props.className];
 
-  // For 'wp-media' type.
+  / For 'wp-media' type.
   var frame;
   return /*#__PURE__*/_react.default.createElement("div", {
     className: (0, _utils.arrayToClassName)(classes)
@@ -3010,7 +3010,7 @@ function UploadFile(props) {
             return;
           }
 
-          // Initialize the WP Media frame.
+          / Initialize the WP Media frame.
           frame = wp.media({
             multiple: false,
             library: {
@@ -3206,8 +3206,8 @@ var ErrorBoundary = exports["default"] = /*#__PURE__*/function (_React$Component
   return (0, _createClass2.default)(ErrorBoundary, [{
     key: "goBack",
     value: function goBack() {
-      // If the app was opened inside an iframe, it will close it,
-      // if not, it will redirect to the last location.
+      / If the app was opened inside an iframe, it will close it,
+      / if not, it will redirect to the last location.
       if (window.top !== window.self) {
         window.top.$e.run('app/close');
       }
@@ -3297,7 +3297,7 @@ function UnfilteredFilesDialog(props) {
     isEnableError = _useState4[0],
     setIsEnableError = _useState4[1];
 
-  // Sending the enable unfiltered files request.
+  / Sending the enable unfiltered files request.
   (0, _react.useEffect)(function () {
     if (enableUnfilteredFiles) {
       setShow(false);
@@ -3317,7 +3317,7 @@ function UnfilteredFilesDialog(props) {
     }
   }, [enableUnfilteredFiles]);
 
-  // Enabling unfiltered files ajax status.
+  / Enabling unfiltered files ajax status.
   (0, _react.useEffect)(function () {
     switch (ajaxState.status) {
       case 'success':
@@ -3444,7 +3444,7 @@ function Index() {
   var _elementorAppConfig$m;
   var urlSearchParams = new URLSearchParams(window.location.search),
     queryParams = Object.fromEntries(urlSearchParams.entries()),
-    // The 'action' query param is translated into a route URL.
+    / The 'action' query param is translated into a route URL.
     url = _actionsMap.default[queryParams.action] || ((_elementorAppConfig$m = elementorAppConfig.menu_url.split('#')) === null || _elementorAppConfig$m === void 0 ? void 0 : _elementorAppConfig$m[1]);
   return /*#__PURE__*/_react.default.createElement(_router.Redirect, {
     to: url || '/not-found',
@@ -4459,7 +4459,7 @@ function Dialog(props) {
     onClick: props.dismissButtonOnClick,
     url: props.dismissButtonUrl,
     target: props.dismissButtonTarget
-    // eslint-disable-next-line jsx-a11y/tabindex-no-positive
+    / eslint-disable-next-line jsx-a11y/tabindex-no-positive
     ,
     tabIndex: "2"
   }), /*#__PURE__*/_react.default.createElement(_dialogButton.default, {
@@ -4470,7 +4470,7 @@ function Dialog(props) {
     target: props.approveButtonTarget,
     color: props.approveButtonColor,
     elRef: props.approveButtonRef
-    // eslint-disable-next-line jsx-a11y/tabindex-no-positive
+    / eslint-disable-next-line jsx-a11y/tabindex-no-positive
     ,
     tabIndex: "1"
   })));
@@ -4717,7 +4717,7 @@ function ModalProvider(props) {
     hideModal = function hideModal() {
       setShow(false);
 
-      // The purpose of the props.setShow is to sync an external state with the component inner state.
+      / The purpose of the props.setShow is to sync an external state with the component inner state.
       if (props.setShow) {
         props.setShow(false);
       }
@@ -4725,7 +4725,7 @@ function ModalProvider(props) {
     showModal = function showModal() {
       setShow(true);
 
-      // The purpose of the props.setShow is to sync an external state with the component inner state.
+      / The purpose of the props.setShow is to sync an external state with the component inner state.
       if (props.setShow) {
         props.setShow(true);
       }
@@ -4736,7 +4736,7 @@ function ModalProvider(props) {
       showModal: showModal
     });
   (0, _react.useEffect)(function () {
-    // Sync with external state.
+    / Sync with external state.
     setShow(props.show);
   }, [props.show]);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, props.toggleButtonProps && /*#__PURE__*/_react.default.createElement(_button.default, (0, _extends2.default)({}, props.toggleButtonProps, {
@@ -4766,7 +4766,7 @@ var Modal = exports.Modal = function Modal(props) {
         closeNode = closeRef.current,
         isInCloseNode = closeNode && closeNode.contains(e.target);
 
-      // Ignore if click is inside the modal
+      / Ignore if click is inside the modal
       if (node && node.contains(e.target) && !isInCloseNode) {
         return;
       }
@@ -4790,7 +4790,7 @@ var Modal = exports.Modal = function Modal(props) {
   }
   return (
     /*#__PURE__*/
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+    / eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     _react.default.createElement("div", {
       className: "eps-modal__overlay",
       onClick: closeModal
@@ -4937,7 +4937,7 @@ var Button = exports["default"] = /*#__PURE__*/function (_React$Component) {
         id = this.getCssId(),
         className = this.getClassName();
 
-      // Add attributes only if they are not empty.
+      / Add attributes only if they are not empty.
       if (id) {
         attributes.id = id;
       }
@@ -4962,7 +4962,7 @@ var Button = exports["default"] = /*#__PURE__*/function (_React$Component) {
           }, attributes), buttonContent);
         }
 
-        // @see https://reach.tech/router/example/active-links.
+        / @see https://reach.tech/router/example/active-links.
         attributes.getProps = function (props) {
           if (props.isCurrent) {
             attributes.className += ' active';
@@ -5293,8 +5293,8 @@ var getDefaultSettings = function getDefaultSettings() {
 function Select2(props) {
   var ref = _react.default.useRef(null);
 
-  // Initiate the select 2 library, call to onReady after initiate, and
-  // listen to select event on the select instance.
+  / Initiate the select 2 library, call to onReady after initiate, and
+  / listen to select event on the select instance.
   _react.default.useEffect(function () {
     var $select2 = jQuery(ref.current).select2(_objectSpread(_objectSpread(_objectSpread({}, getDefaultSettings()), props.settings), {}, {
       placeholder: props.placeholder
@@ -5307,7 +5307,7 @@ function Select2(props) {
     };
   }, [props.settings, props.options]);
 
-  // Listen to changes in the prop `value`, if changed update the select 2.
+  / Listen to changes in the prop `value`, if changed update the select 2.
   _react.default.useEffect(function () {
     jQuery(ref.current).val(props.value).trigger('change');
   }, [props.value]);
@@ -5598,7 +5598,7 @@ function TableCheckbox(props) {
     onSelectAll = function onSelectAll() {
       setSelected(function () {
         if (isAllSelected || isIndeterminate) {
-          // Disabled checkboxes should not be unchecked.
+          / Disabled checkboxes should not be unchecked.
           return disabled.length ? (0, _toConsumableArray2.default)(disabled) : [];
         }
         return Array(props.allSelectedCount).fill(true).map(function (value, index) {
@@ -6387,7 +6387,7 @@ var ReducerUtils = exports.ReducerUtils = /*#__PURE__*/function () {
     key: "updateArray",
     value: function updateArray(state, key, value, action) {
       if ('add' === action) {
-        // If the value already exists, then do nothing.
+        / If the value already exists, then do nothing.
         if (state[key].includes(value)) {
           return state;
         }
@@ -6434,7 +6434,7 @@ var queryClient = new _reactQuery.QueryClient({
     queries: {
       refetchOnWindowFocus: false,
       retry: false,
-      staleTime: 1000 * 60 * 30 // 30 minutes
+      staleTime: 1000 * 60 * 30 / 30 minutes
     }
   }
 });
@@ -6633,7 +6633,7 @@ function useKit() {
               };
               ajaxConfig.data.data = JSON.stringify(ajaxConfig.data.data);
 
-              // The last runner should run using the setAjax method, so it will trigger the useEffect and update the kitState.
+              / The last runner should run using the setAjax method, so it will trigger the useEffect and update the kitState.
               isLastIteration = iteration === runners.length - 1;
               if (isLastIteration) {
                 _context2.next = 16;
@@ -6754,7 +6754,7 @@ function useKit() {
         newState.status = KIT_STATUS_MAP.ERROR;
       }
 
-      // The response is required even if an error occurred, in order to detect the error type.
+      / The response is required even if an error occurred, in order to detect the error type.
       newState.data = ajaxState.response || {};
       setKitState(function (prevState) {
         return _objectSpread(_objectSpread({}, prevState), newState);
@@ -6804,11 +6804,11 @@ function usePluginsData(plugins) {
     plugins.forEach(function (plugin) {
       switch (plugin.name) {
         case PLUGINS_KEYS.ELEMENTOR:
-          // Making sure that the core plugin is always first.
+          / Making sure that the core plugin is always first.
           elementorPlugins.unshift(plugin);
           break;
         case PLUGINS_KEYS.ELEMENTOR_PRO:
-          // Making sure that the pro plugin is always second.
+          / Making sure that the pro plugin is always second.
           elementorPlugins.push(plugin);
           break;
         default:
@@ -6816,7 +6816,7 @@ function usePluginsData(plugins) {
       }
     });
 
-    // Making sure that the elementor plugins are always first.
+    / Making sure that the elementor plugins are always first.
     return elementorPlugins.concat(generalPlugins);
   };
   return {
@@ -6881,7 +6881,7 @@ function usePlugins() {
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
           'X-WP-Nonce': wpApiSettings.nonce,
-          // TODO 18/04/2023 : This needs to be removed after https://elementor.atlassian.net/browse/HTS-434 is done.
+          / TODO 18/04/2023 : This needs to be removed after https://elementor.atlassian.net/browse/HTS-434 is done.
           'X-Elementor-Action': 'import-plugins'
         }
       };
@@ -6954,11 +6954,11 @@ function usePlugins() {
       return setResponse(getInitialState());
     };
 
-  // On load.
+  / On load.
   (0, _react.useEffect)(function () {
     fetchData();
 
-    // Cleanup on destroy.
+    / Cleanup on destroy.
     return function () {
       allowResponseUpdate.current = false;
     };
@@ -7292,7 +7292,7 @@ function KitName() {
     className: error ? 'e-app-export-kit-information__field--error' : '',
     title: error || '',
     value: ((_exportContext$data$k = exportContext.data.kitInfo) === null || _exportContext$data$k === void 0 ? void 0 : _exportContext$data$k.title) || ''
-    // eslint-disable-next-line jsx-a11y/no-autofocus
+    / eslint-disable-next-line jsx-a11y/no-autofocus
     ,
     autoFocus: true
   }), /*#__PURE__*/_react.default.createElement("div", {
@@ -7603,7 +7603,7 @@ var _usePluginsData2 = _interopRequireWildcard(__webpack_require__(/*! ../../../
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 var layout = [3, 1],
-  initialDisabled = [0]; // Elementor Core will always be first and should always be disabled.
+  initialDisabled = [0]; / Elementor Core will always be first and should always be disabled.
 
 function ExportPluginsSelection(_ref) {
   var onSelect = _ref.onSelect;
@@ -7616,10 +7616,10 @@ function ExportPluginsSelection(_ref) {
       return _usePlugins2.PLUGIN_STATUS_MAP.ACTIVE === status || _usePlugins2.PLUGIN_STATUS_MAP.MULTISITE_ACTIVE === status;
     }),
     getInitialSelected = function getInitialSelected() {
-      // Elementor Core will always be the first plugin on the list.
+      / Elementor Core will always be the first plugin on the list.
       var initialSelected = [0];
 
-      // In case that Elementor Pro appears in the list it will always be second and should always be selected by default.
+      / In case that Elementor Pro appears in the list it will always be second and should always be selected by default.
       if (activePlugins.length > 1 && _usePluginsData2.PLUGINS_KEYS.ELEMENTOR_PRO === activePlugins[1].name) {
         initialSelected.push(1);
       }
@@ -7700,24 +7700,24 @@ function ExportPlugins() {
       }, __('Learn More', 'elementor'));
     };
 
-  // On load.
+  / On load.
   (0, _react.useEffect)(function () {
     if (!isExportProcessStarted) {
-      // When not starting from the main screen.
+      / When not starting from the main screen.
       navigate('/export');
     }
   }, []);
 
-  // On plugins change.
+  / On plugins change.
   (0, _react.useEffect)(function () {
     if (hasIncludes && plugins.length) {
-      // In case that the kit has content and the plugins data exist, then the kit can be exported.
+      / In case that the kit has content and the plugins data exist, then the kit can be exported.
       setIsKitReady(true);
     } else {
-      // There should be at least one more plugin select in addition to Elementor Core.
+      / There should be at least one more plugin select in addition to Elementor Core.
       var isExportKitAllowed = plugins.length > 1;
 
-      // In case that the kit has no content, it can only be exported if there is at least one selected plugin.
+      / In case that the kit has no content, it can only be exported if there is at least one selected plugin.
       setIsKitReady(isExportKitAllowed);
     }
   }, [plugins]);
@@ -7859,17 +7859,17 @@ function ExportProcess() {
       };
     }();
 
-  // On load.
+  / On load.
   (0, _react.useEffect)(function () {
     if (isExportProcessStarted) {
       exportKit();
     } else {
-      // When not starting from the main screen.
+      / When not starting from the main screen.
       navigate('/export');
     }
   }, []);
 
-  // On kit status change.
+  / On kit status change.
   (0, _react.useEffect)(function () {
     switch (kitState.status) {
       case KIT_STATUS_MAP.EXPORTED:
@@ -7884,7 +7884,7 @@ function ExportProcess() {
     }
   }, [kitState.status]);
 
-  // On process finished.
+  / On process finished.
   (0, _react.useEffect)(function () {
     if (exportedData) {
       navigate('export/complete');
@@ -8348,7 +8348,7 @@ function ImportContentDisplay(_ref) {
     isAllRequiredPluginsSelected = _ref.isAllRequiredPluginsSelected,
     onResetProcess = _ref.onResetProcess;
   var sharedContext = (0, _react.useContext)(_sharedContextProvider.SharedContext);
-  // Getting the kit data from the manifest.
+  / Getting the kit data from the manifest.
   var kitData = _kitContentData.default.filter(function (_ref2) {
     var type = _ref2.type;
     var contentType = 'settings' === type ? 'site-settings' : type,
@@ -8541,7 +8541,7 @@ function ImportContent() {
       payload: ImportContent.name
     });
   }, []);
-  // On file change.
+  / On file change.
   (0, _react.useEffect)(function () {
     if (!file) {
       navigateToMainScreen();
@@ -8732,7 +8732,7 @@ function ImportKit() {
     kitId = _useQueryParams$getAl.kit_id;
   var isLoadingKitFromCloud = [importContext.data.source, source].includes(_useKit2.KIT_SOURCE_MAP.CLOUD);
 
-  // On load.
+  / On load.
   (0, _react.useEffect)(function () {
     sharedContext.dispatch({
       type: 'SET_INCLUDES',
@@ -8748,7 +8748,7 @@ function ImportKit() {
     });
   }, []);
 
-  // Uploading the kit after file is selected.
+  / Uploading the kit after file is selected.
   (0, _react.useEffect)(function () {
     if (importContext.data.file) {
       kitActions.upload({
@@ -8757,7 +8757,7 @@ function ImportKit() {
     }
   }, [importContext.data.file]);
 
-  // Listening to kit upload state.
+  / Listening to kit upload state.
   (0, _react.useEffect)(function () {
     if (KIT_STATUS_MAP.UPLOADED === kitState.status) {
       importContext.dispatch({
@@ -8775,7 +8775,7 @@ function ImportKit() {
     }
   }, [kitState.status]);
 
-  // After kit was uploaded.
+  / After kit was uploaded.
   (0, _react.useEffect)(function () {
     if (importContext.data.uploadedData && importContext.data.file) {
       var url = importContext.data.uploadedData.manifest.plugins ? '/import/plugins' : '/import/content';
@@ -8783,7 +8783,7 @@ function ImportKit() {
     }
   }, [importContext.data.uploadedData]);
 
-  // Trigger import kit from Cloud Library
+  / Trigger import kit from Cloud Library
   (0, _react.useEffect)(function () {
     if (_useKit2.KIT_SOURCE_MAP.CLOUD === source && kitId) {
       kitActions.upload({
@@ -8983,13 +8983,13 @@ function useInstallPlugins(_ref) {
     isError = _usePlugins2.PLUGINS_RESPONSE_MAP.ERROR === response.status,
     getBulk = function getBulk() {
       if (bulk.length > bulkMaxItems) {
-        // Getting a bulk for display, when needed to display only X plugins data that are in process.
+        / Getting a bulk for display, when needed to display only X plugins data that are in process.
         return bulk.slice(bulk.length - bulkMaxItems, bulk.length);
       }
       return bulk;
     };
 
-  // Setting the next plugin to activate/install and checking when all plugins ar ready.
+  / Setting the next plugin to activate/install and checking when all plugins ar ready.
   (0, _react.useEffect)(function () {
     if (plugins.length) {
       if (ready.length === plugins.length) {
@@ -9001,7 +9001,7 @@ function useInstallPlugins(_ref) {
     }
   }, [ready, isPluginsFetched]);
 
-  // Activating/installing the current plugin.
+  / Activating/installing the current plugin.
   (0, _react.useEffect)(function () {
     if (currentPlugin) {
       var runAction = _usePlugins2.PLUGIN_STATUS_MAP.INACTIVE === currentPlugin.status ? pluginsActions.activate : pluginsActions.install;
@@ -9009,12 +9009,12 @@ function useInstallPlugins(_ref) {
     }
   }, [currentPlugin]);
 
-  // Status Updater.
+  / Status Updater.
   (0, _react.useEffect)(function () {
     if (_usePlugins2.PLUGINS_RESPONSE_MAP.SUCCESS === response.status) {
       var data = response.data;
       if (Array.isArray(data)) {
-        // When the data type is an Array it means that the plugins data was fetched.
+        / When the data type is an Array it means that the plugins data was fetched.
         setIsPluginsFetched(true);
       } else if (!Object.prototype.hasOwnProperty.call(data, 'plugin')) {
         setActionStatus(ACTION_STATUS_MAP.FAILED);
@@ -9028,30 +9028,30 @@ function useInstallPlugins(_ref) {
     }
   }, [response.status]);
 
-  // Actions after data response.
+  / Actions after data response.
   (0, _react.useEffect)(function () {
     if (actionStatus) {
       var pluginData = ACTION_STATUS_MAP.FAILED === actionStatus ? _objectSpread(_objectSpread({}, currentPlugin), {}, {
         status: ACTION_STATUS_MAP.FAILED
       }) : response.data;
 
-      // Updating the current plugin status in the bulk.
+      / Updating the current plugin status in the bulk.
       setBulk(function (prevState) {
         var processedPlugins = (0, _toConsumableArray2.default)(prevState);
         processedPlugins[ready.length] = pluginData;
         return processedPlugins;
       });
       if (ACTION_STATUS_MAP.ACTIVATED === actionStatus || ACTION_STATUS_MAP.FAILED === actionStatus) {
-        // After the plugin process was finished.
+        / After the plugin process was finished.
         setReady(function (prevState) {
           return [].concat((0, _toConsumableArray2.default)(prevState), [pluginData]);
         });
       } else if (ACTION_STATUS_MAP.INSTALLED === actionStatus) {
-        // In case that the widget was installed it will be inactive after the installation and therefore should be activated manually.
+        / In case that the widget was installed it will be inactive after the installation and therefore should be activated manually.
         setCurrentPlugin(pluginData);
       }
 
-      // Reset the actionStatus value for the next iteration.
+      / Reset the actionStatus value for the next iteration.
       setActionStatus('');
     }
   }, [actionStatus]);
@@ -9107,14 +9107,14 @@ function ImportPluginsActivation() {
     ready = _useInstallPlugins.ready,
     isDone = _useInstallPlugins.isDone;
 
-  // In case there are no plugins to import.
+  / In case there are no plugins to import.
   (0, _react.useEffect)(function () {
     if (!importContext.data.plugins.length) {
       navigate('/import/');
     }
   }, [importContext.data.plugins]);
 
-  // When import plugins process is done.
+  / When import plugins process is done.
   (0, _react.useEffect)(function () {
     if (isDone) {
       importContext.dispatch({
@@ -9132,7 +9132,7 @@ function ImportPluginsActivation() {
     }
   }, [isDone]);
 
-  // Once the imported plugins data was updated.
+  / Once the imported plugins data was updated.
   (0, _react.useEffect)(function () {
     if (importContext.data.importedPlugins.length) {
       navigate('/import/process');
@@ -9192,11 +9192,11 @@ function ExistingPlugins(_ref) {
     return null;
   }
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  / eslint-disable-next-line react-hooks/rules-of-hooks
   var existingPlugins = (0, _react.useMemo)(function () {
       return plugins;
     }, []),
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    / eslint-disable-next-line react-hooks/rules-of-hooks
     initialSelected = (0, _react.useMemo)(function () {
       return plugins.map(function (plugin, index) {
         return index;
@@ -9314,31 +9314,31 @@ function PluginsToImport(_ref) {
     return null;
   }
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  / eslint-disable-next-line react-hooks/rules-of-hooks
   var importContext = (0, _react.useContext)(_importContextProvider.ImportContext),
     getPluginsToImport = function getPluginsToImport() {
       var _plugins$ = plugins[0],
         name = _plugins$.name,
         status = _plugins$.status;
 
-      // If Elementor Pro is the first plugin and is not inactive, it should not be displayed.
+      / If Elementor Pro is the first plugin and is not inactive, it should not be displayed.
       if (_usePluginsData.PLUGINS_KEYS.ELEMENTOR_PRO === name && _usePlugins.PLUGIN_STATUS_MAP.INACTIVE !== status) {
         return plugins.splice(1);
       }
       return plugins;
     },
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    / eslint-disable-next-line react-hooks/rules-of-hooks
     handleOnSelect = (0, _react.useCallback)(function (selectedPlugins) {
       return importContext.dispatch({
         type: 'SET_PLUGINS',
         payload: selectedPlugins
       });
     }, []),
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    / eslint-disable-next-line react-hooks/rules-of-hooks
     pluginsToImport = (0, _react.useMemo)(function () {
       return getPluginsToImport();
     }, [plugins]),
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    / eslint-disable-next-line react-hooks/rules-of-hooks
     initialSelected = (0, _react.useMemo)(function () {
       return pluginsToImport.map(function (plugin, index) {
         return index;
@@ -9481,12 +9481,12 @@ function useImportPluginsData(pluginsToInstall, existingPlugins) {
             status: _usePlugins.PLUGIN_STATUS_MAP.NOT_INSTALLED
           });
 
-        // Verifying that the current installed plugin version is not older than the kit plugin version.
+        / Verifying that the current installed plugin version is not older than the kit plugin version.
         if (installedPluginData && !getIsMinVersionExist(installedPluginData.version, plugin.version)) {
           data.minVersionMissing.push(plugin);
         }
 
-        // In case that the Pro plugin exist saving the data separately for easily knowing if the pro exist or not.
+        / In case that the Pro plugin exist saving the data separately for easily knowing if the pro exist or not.
         if (ELEMENTOR_PRO_PLUGIN_KEY === pluginData.name) {
           data.proData = pluginData;
         }
@@ -9563,7 +9563,7 @@ function ImportPlugins() {
     currentPage = _ref2.currentPage,
     handleRequiredPlugins = function handleRequiredPlugins() {
       if (missing.length) {
-        // Saving globally the plugins data that the kit requires in order to work properly.
+        / Saving globally the plugins data that the kit requires in order to work properly.
         importContext.dispatch({
           type: 'SET_REQUIRED_PLUGINS',
           payload: missing
@@ -9578,7 +9578,7 @@ function ImportPlugins() {
       pluginsActions.fetch();
     },
     handleProInstallationStatus = function handleProInstallationStatus() {
-      // In case that the Pro data is now exist but initially in the elementorAppConfig the value was false, it means that the pro was added during the process.
+      / In case that the Pro data is now exist but initially in the elementorAppConfig the value was false, it means that the pro was added during the process.
       if (proData && !elementorAppConfig.hasPro) {
         importContext.dispatch({
           type: 'SET_IS_PRO_INSTALLED_DURING_PROCESS',
@@ -9596,7 +9596,7 @@ function ImportPlugins() {
       }
     };
 
-  // On load.
+  / On load.
   (0, _react.useEffect)(function () {
     if (!kitPlugins.length) {
       navigate('import/content');
@@ -9607,13 +9607,13 @@ function ImportPlugins() {
     });
   }, []);
 
-  // On plugins data ready.
+  / On plugins data ready.
   (0, _react.useEffect)(function () {
     if (importPluginsData && !importContext.data.requiredPlugins.length) {
-      // Saving the required plugins to display them on the next screens.
+      / Saving the required plugins to display them on the next screens.
       handleRequiredPlugins();
 
-      // In case that the pro was installed in the middle of the process, the global state should be updated with the current status.
+      / In case that the pro was installed in the middle of the process, the global state should be updated with the current status.
       handleProInstallationStatus();
     }
   }, [importPluginsData]);
@@ -9805,9 +9805,9 @@ function ImportProcess() {
       }
     };
 
-  // On load.
+  / On load.
   (0, _react.useEffect)(function () {
-    // Saving the referrer value globally.
+    / Saving the referrer value globally.
     if (referrer) {
       sharedContext.dispatch({
         type: 'SET_REFERRER',
@@ -9824,10 +9824,10 @@ function ImportProcess() {
       setReturnTo(returnToParam);
     }
     if (fileURL && !file) {
-      // When the starting point of the app is the import/process screen and importing via file_url.
+      / When the starting point of the app is the import/process screen and importing via file_url.
       uploadKit();
     } else if (uploadedData) {
-      // When the import/process is the second step of the kit import process, after selecting the kit content.
+      / When the import/process is the second step of the kit import process, after selecting the kit content.
       importKit();
     } else {
       navigate('import');
@@ -9838,7 +9838,7 @@ function ImportProcess() {
     });
   }, []);
 
-  // Starting the import process.
+  / Starting the import process.
   (0, _react.useEffect)(function () {
     if (startImport) {
       var data = importContext.data;
@@ -9856,7 +9856,7 @@ function ImportProcess() {
     }
   }, [startImport]);
 
-  // Updating the kit data after upload/import.
+  / Updating the kit data after upload/import.
   (0, _react.useEffect)(function () {
     if (KIT_STATUS_MAP.INITIAL !== kitState.status) {
       switch (kitState.status) {
@@ -9879,11 +9879,11 @@ function ImportProcess() {
     }
   }, [kitState.status]);
 
-  // Actions after the kit upload/import data was updated.
+  / Actions after the kit upload/import data was updated.
   (0, _react.useEffect)(function () {
     if (KIT_STATUS_MAP.INITIAL !== kitState.status || isResolvedData && 'apply-all' === importContext.data.actionType) {
       if (importedData) {
-        // After kit upload.
+        / After kit upload.
         if (returnTo && isValidRedirectUrl(decodeURIComponent(returnTo))) {
           window.location.href = decodeURIComponent(returnTo);
           return;
@@ -9891,7 +9891,7 @@ function ImportProcess() {
         navigate('/import/complete');
       } else if ('apply-all' === importContext.data.actionType) {
         var _kitState$data3, _importContext$data$u;
-        // Forcing apply-all kit content.
+        / Forcing apply-all kit content.
         if ((_kitState$data3 = kitState.data) !== null && _kitState$data3 !== void 0 && (_kitState$data3 = _kitState$data3.manifest) !== null && _kitState$data3 !== void 0 && _kitState$data3.plugins || (_importContext$data$u = importContext.data.uploadedData) !== null && _importContext$data$u !== void 0 && _importContext$data$u.manifest.plugins) {
           importContext.dispatch({
             type: 'SET_PLUGINS_STATE',
@@ -9905,7 +9905,7 @@ function ImportProcess() {
             navigate('/import/resolver');
           }
         } else {
-          // The kitState must be reset due to staying in the same page, so that the useEffect will be re-triggered.
+          / The kitState must be reset due to staying in the same page, so that the useEffect will be re-triggered.
           kitActions.reset();
           if ('have' === importContext.data.pluginsState) {
             applyAllImportPlugins();
@@ -10380,7 +10380,7 @@ exports.cptObjectToOptionsArray = void 0;
 var cptObjectToOptionsArray = exports.cptObjectToOptionsArray = function cptObjectToOptionsArray(cptObject) {
   var label = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'label';
   var cptOptionsArray = [];
-  // eslint-disable-next-line no-unused-expressions
+  / eslint-disable-next-line no-unused-expressions
   if (cptObject && label) {
     Object.keys(cptObject).forEach(function (key) {
       return cptOptionsArray.push({
@@ -10461,7 +10461,7 @@ function CptSelectBox() {
     placeholder: __('Click to select custom post types', 'elementor')
   }) : /*#__PURE__*/_react.default.createElement(_textField.default, {
     variant: "outlined"
-    // eslint-disable-next-line @wordpress/i18n-ellipsis
+    / eslint-disable-next-line @wordpress/i18n-ellipsis
     ,
     placeholder: __('No custom post types in your site...', 'elementor'),
     className: "e-app-export-kit-content__disabled"
@@ -10498,7 +10498,7 @@ function FileProcess(props) {
   return /*#__PURE__*/_react.default.createElement(_wizardStep.default, {
     className: (0, _utils.arrayToClassName)(['e-app-import-export-file-process', props.className]),
     icon: "eicon-loading eicon-animation-spin"
-    // eslint-disable-next-line @wordpress/i18n-ellipsis
+    / eslint-disable-next-line @wordpress/i18n-ellipsis
     ,
     heading: __('Setting up your website template...', 'elementor'),
     description: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, __('This usually takes a few moments.', 'elementor'), /*#__PURE__*/_react.default.createElement("br", null), __("Don't close this window until the process is finished.", 'elementor')),
@@ -11199,7 +11199,7 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
 function useKitData(kitData) {
   var getLabel = function getLabel(type, key, amount) {
       var _kitData$configData;
-      // The summary-titles data will not exist in the kitData as part of the export process, and therefore should be taken from the elementorAppConfig.
+      / The summary-titles data will not exist in the kitData as part of the export process, and therefore should be taken from the elementorAppConfig.
       var summaryTitlesData = (kitData === null || kitData === void 0 || (_kitData$configData = kitData.configData) === null || _kitData$configData === void 0 ? void 0 : _kitData$configData.summaryTitles) || elementorAppConfig['import-export'].summaryTitles,
         label = summaryTitlesData[type][key];
       if (label !== null && label !== void 0 && label.single) {
@@ -11243,7 +11243,7 @@ function useKitData(kitData) {
         mergedContent[key] = Object.keys(mergedContent[key]).concat(wpContent[key] || []);
       }
 
-      // In case that wpContent has properties that doesn't exist in the content object.
+      / In case that wpContent has properties that doesn't exist in the content object.
       mergedContent = _objectSpread(_objectSpread({}, wpContent), mergedContent);
       return Object.entries(mergedContent).map(function (_ref3) {
         var _ref4 = (0, _slicedToArray2.default)(_ref3, 2),
@@ -11332,7 +11332,7 @@ function KitData(_ref) {
         included = _ref3.included,
         link = _ref3.link;
       if (!included.length) {
-        // eslint-disable-next-line array-callback-return
+        / eslint-disable-next-line array-callback-return
         return;
       }
       return [/*#__PURE__*/_react.default.createElement(_siteArea.default, {
@@ -11503,15 +11503,15 @@ function PluginsSelection(_ref) {
     return null;
   }
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  / eslint-disable-next-line react-hooks/rules-of-hooks
   var cachedPlugins = (0, _react.useMemo)(function () {
       return plugins;
     }, [plugins]),
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    / eslint-disable-next-line react-hooks/rules-of-hooks
     cachedInitialSelected = (0, _react.useMemo)(function () {
       return initialSelected;
     }, [plugins]),
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    / eslint-disable-next-line react-hooks/rules-of-hooks
     cachedInitialDisabled = (0, _react.useMemo)(function () {
       return initialDisabled;
     }, [plugins]),
@@ -11823,7 +11823,7 @@ function Layout(props) {
     },
     moduleAdminTab = '#tab-import-export-kit';
 
-  // Targeting the return_url value to the import-export dedicated admin tab (only when there is no specific referrer).
+  / Targeting the return_url value to the import-export dedicated admin tab (only when there is no specific referrer).
   if (!referrer && -1 === elementorAppConfig.return_url.indexOf(moduleAdminTab) && elementorAppConfig.return_url.includes('page=elementor-tools')) {
     elementorAppConfig.return_url += moduleAdminTab;
   }
@@ -12049,7 +12049,7 @@ function WizardStep(props) {
     container: true
   }, props.image &&
   /*#__PURE__*/
-  // eslint-disable-next-line jsx-a11y/alt-text
+  / eslint-disable-next-line jsx-a11y/alt-text
   _react.default.createElement("img", {
     className: "e-app-import-export-wizard-step__image",
     src: props.image
@@ -12642,10 +12642,10 @@ function render(app, domElement) {
       root.unmount();
     };
   } catch (e) {
-    // eslint-disable-next-line react/no-deprecated
+    / eslint-disable-next-line react/no-deprecated
     ReactDOM.render(app, domElement);
     unmountFunction = function unmountFunction() {
-      // eslint-disable-next-line react/no-deprecated
+      / eslint-disable-next-line react/no-deprecated
       ReactDOM.unmountComponentAtNode(domElement);
     };
   }
@@ -12766,7 +12766,7 @@ function createReactContext(defaultValue, calculateChangedBits) {
         var changedBits = void 0;
 
         if (objectIs(oldValue, newValue)) {
-          changedBits = 0; // No change
+          changedBits = 0; / No change
         } else {
           changedBits = typeof calculateChangedBits === 'function' ? calculateChangedBits(oldValue, newValue) : MAX_SIGNED_31_BIT_INT;
           if (true) {
@@ -12816,7 +12816,7 @@ function createReactContext(defaultValue, calculateChangedBits) {
     Consumer.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
       var observedBits = nextProps.observedBits;
 
-      this.observedBits = observedBits === undefined || observedBits === null ? MAX_SIGNED_31_BIT_INT // Subscribe to all changes by default
+      this.observedBits = observedBits === undefined || observedBits === null ? MAX_SIGNED_31_BIT_INT / Subscribe to all changes by default
       : observedBits;
     };
 
@@ -12826,7 +12826,7 @@ function createReactContext(defaultValue, calculateChangedBits) {
       }
       var observedBits = this.props.observedBits;
 
-      this.observedBits = observedBits === undefined || observedBits === null ? MAX_SIGNED_31_BIT_INT // Subscribe to all changes by default
+      this.observedBits = observedBits === undefined || observedBits === null ? MAX_SIGNED_31_BIT_INT / Subscribe to all changes by default
       : observedBits;
     };
 
@@ -12960,7 +12960,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
       error.name = 'Invariant Violation';
     }
 
-    error.framesToPop = 1; // we don't care about invariant's own frame
+    error.framesToPop = 1; / we don't care about invariant's own frame
     throw error;
   }
 };
@@ -13003,16 +13003,16 @@ function shouldUseNative() {
 			return false;
 		}
 
-		// Detect buggy property enumeration order in older V8 versions.
+		/ Detect buggy property enumeration order in older V8 versions.
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc');  / eslint-disable-line no-new-wrappers
 		test1[5] = 'de';
 		if (Object.getOwnPropertyNames(test1)[0] === '5') {
 			return false;
 		}
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=3056
 		var test2 = {};
 		for (var i = 0; i < 10; i++) {
 			test2['_' + String.fromCharCode(i)] = i;
@@ -13024,7 +13024,7 @@ function shouldUseNative() {
 			return false;
 		}
 
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		/ https://bugs.chromium.org/p/v8/issues/detail?id=3056
 		var test3 = {};
 		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
 			test3[letter] = letter;
@@ -13036,7 +13036,7 @@ function shouldUseNative() {
 
 		return true;
 	} catch (err) {
-		// We don't expect any of the above to throw, but better to be safe.
+		/ We don't expect any of the above to throw, but better to be safe.
 		return false;
 	}
 }
@@ -13100,9 +13100,9 @@ if (true) {
       console.error(message);
     }
     try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
+      / --- Welcome to debugging React ---
+      / This error was thrown as a convenience so that you can use this stack
+      / to find the callsite that caused this warning to fire.
       throw new Error(message);
     } catch (x) { /**/ }
   };
@@ -13124,12 +13124,12 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
     for (var typeSpecName in typeSpecs) {
       if (has(typeSpecs, typeSpecName)) {
         var error;
-        // Prop type validation may throw. In case they do, we don't want to
-        // fail the render phase where it didn't fail before. So we log it.
-        // After these have been cleaned up, we'll let them throw.
+        / Prop type validation may throw. In case they do, we don't want to
+        / fail the render phase where it didn't fail before. So we log it.
+        / After these have been cleaned up, we'll let them throw.
         try {
-          // This is intentionally an invariant that gets caught. It's the same
-          // behavior as without this statement except with a better message.
+          / This is intentionally an invariant that gets caught. It's the same
+          / behavior as without this statement except with a better message.
           if (typeof typeSpecs[typeSpecName] !== 'function') {
             var err = Error(
               (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
@@ -13154,8 +13154,8 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
           );
         }
         if (error instanceof Error && !(error.message in loggedTypeFailures)) {
-          // Only monitor this failure once because there tends to be a lot of the
-          // same error.
+          / Only monitor this failure once because there tends to be a lot of the
+          / same error.
           loggedTypeFailures[error.message] = true;
 
           var stack = getStack ? getStack() : '';
@@ -13217,9 +13217,9 @@ if (true) {
       console.error(message);
     }
     try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
+      / --- Welcome to debugging React ---
+      / This error was thrown as a convenience so that you can use this stack
+      / to find the callsite that caused this warning to fire.
       throw new Error(message);
     } catch (x) {}
   };
@@ -13232,7 +13232,7 @@ function emptyFunctionThatReturnsNull() {
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
   var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
-  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+  var FAUX_ITERATOR_SYMBOL = '@@iterator'; / Before Symbol spec.
 
   /**
    * Returns the iterator method function contained on the iterable object.
@@ -13262,13 +13262,13 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    *   var Props = require('ReactPropTypes');
    *   var MyArticle = React.createClass({
    *     propTypes: {
-   *       // An optional string prop named "description".
+   *       / An optional string prop named "description".
    *       description: Props.string,
    *
-   *       // A required enum prop named "category".
+   *       / A required enum prop named "category".
    *       category: Props.oneOf(['News','Photos']).isRequired,
    *
-   *       // A prop named "dialog" that requires an instance of Dialog.
+   *       / A prop named "dialog" that requires an instance of Dialog.
    *       dialog: Props.instanceOf(Dialog).isRequired
    *     },
    *     render: function() { ... }
@@ -13284,7 +13284,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    *
    *  var MyLink = React.createClass({
    *    propTypes: {
-   *      // An optional string or URI prop named "href".
+   *      / An optional string or URI prop named "href".
    *      href: function(props, propName, componentName) {
    *        var propValue = props[propName];
    *        if (propValue != null && typeof propValue !== 'string' &&
@@ -13304,8 +13304,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
   var ANONYMOUS = '<<anonymous>>';
 
-  // Important!
-  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+  / Important!
+  / Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
   var ReactPropTypes = {
     array: createPrimitiveTypeChecker('array'),
     bigint: createPrimitiveTypeChecker('bigint'),
@@ -13335,13 +13335,13 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
    */
   /*eslint-disable no-self-compare*/
   function is(x, y) {
-    // SameValue algorithm
+    / SameValue algorithm
     if (x === y) {
-      // Steps 1-5, 7-10
-      // Steps 6.b-6.e: +0 != -0
+      / Steps 1-5, 7-10
+      / Steps 6.b-6.e: +0 != -0
       return x !== 0 || 1 / x === 1 / y;
     } else {
-      // Step 6.a: NaN == NaN
+      / Step 6.a: NaN == NaN
       return x !== x && y !== y;
     }
   }
@@ -13359,7 +13359,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     this.data = data && typeof data === 'object' ? data: {};
     this.stack = '';
   }
-  // Make `instanceof Error` still work for returned errors.
+  / Make `instanceof Error` still work for returned errors.
   PropTypeError.prototype = Error.prototype;
 
   function createChainableTypeChecker(validate) {
@@ -13373,7 +13373,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
       if (secret !== ReactPropTypesSecret) {
         if (throwOnDirectAccess) {
-          // New behavior only for users of `prop-types` package
+          / New behavior only for users of `prop-types` package
           var err = new Error(
             'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
             'Use `PropTypes.checkPropTypes()` to call them. ' +
@@ -13382,11 +13382,11 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
           err.name = 'Invariant Violation';
           throw err;
         } else if ( true && typeof console !== 'undefined') {
-          // Old behavior for people using React.PropTypes
+          / Old behavior for people using React.PropTypes
           var cacheKey = componentName + ':' + propName;
           if (
             !manualPropTypeCallCache[cacheKey] &&
-            // Avoid spamming the console because they are often not actionable except for lib authors
+            / Avoid spamming the console because they are often not actionable except for lib authors
             manualPropTypeWarningCount < 3
           ) {
             printWarning(
@@ -13425,9 +13425,9 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
       var propValue = props[propName];
       var propType = getPropType(propValue);
       if (propType !== expectedType) {
-        // `propValue` being instance of, say, date/regexp, pass the 'object'
-        // check, but we can offer a more precise error message here rather than
-        // 'of type `object`'.
+        / `propValue` being instance of, say, date/regexp, pass the 'object'
+        / check, but we can offer a more precise error message here rather than
+        / 'of type `object`'.
         var preciseType = getPreciseType(propValue);
 
         return new PropTypeError(
@@ -13640,7 +13640,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
       if (propType !== 'object') {
         return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
       }
-      // We need to check all keys in case some are required but missing from props.
+      / We need to check all keys in case some are required but missing from props.
       var allKeys = assign({}, props[propName], shapeTypes);
       for (var key in allKeys) {
         var checker = shapeTypes[key];
@@ -13692,7 +13692,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
               }
             }
           } else {
-            // Iterator will provide entry [k,v] tuples rather than values.
+            / Iterator will provide entry [k,v] tuples rather than values.
             while (!(step = iterator.next()).done) {
               var entry = step.value;
               if (entry) {
@@ -13713,22 +13713,22 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
   }
 
   function isSymbol(propType, propValue) {
-    // Native Symbol.
+    / Native Symbol.
     if (propType === 'symbol') {
       return true;
     }
 
-    // falsy value can't be a Symbol
+    / falsy value can't be a Symbol
     if (!propValue) {
       return false;
     }
 
-    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
+    / 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
     if (propValue['@@toStringTag'] === 'Symbol') {
       return true;
     }
 
-    // Fallback for non-spec compliant Symbols which are polyfilled.
+    / Fallback for non-spec compliant Symbols which are polyfilled.
     if (typeof Symbol === 'function' && propValue instanceof Symbol) {
       return true;
     }
@@ -13736,16 +13736,16 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return false;
   }
 
-  // Equivalent of `typeof` but with special handling for array and regexp.
+  / Equivalent of `typeof` but with special handling for array and regexp.
   function getPropType(propValue) {
     var propType = typeof propValue;
     if (Array.isArray(propValue)) {
       return 'array';
     }
     if (propValue instanceof RegExp) {
-      // Old webkits (at least until Android 4.0) return 'function' rather than
-      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
-      // passes PropTypes.object.
+      / Old webkits (at least until Android 4.0) return 'function' rather than
+      / 'object' for typeof a RegExp. We'll normalize this here so that /bla/
+      / passes PropTypes.object.
       return 'object';
     }
     if (isSymbol(propType, propValue)) {
@@ -13754,8 +13754,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return propType;
   }
 
-  // This handles more types than `getPropType`. Only used for error messages.
-  // See `createPrimitiveTypeChecker`.
+  / This handles more types than `getPropType`. Only used for error messages.
+  / See `createPrimitiveTypeChecker`.
   function getPreciseType(propValue) {
     if (typeof propValue === 'undefined' || propValue === null) {
       return '' + propValue;
@@ -13771,8 +13771,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return propType;
   }
 
-  // Returns a string that is postfixed to a warning about an invalid type.
-  // For example, "undefined" or "of type array"
+  / Returns a string that is postfixed to a warning about an invalid type.
+  / For example, "undefined" or "of type array"
   function getPostfixForTypeWarning(value) {
     var type = getPreciseType(value);
     switch (type) {
@@ -13788,7 +13788,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     }
   }
 
-  // Returns class name of the object, if any.
+  / Returns class name of the object, if any.
   function getClassName(propValue) {
     if (!propValue.constructor || !propValue.constructor.name) {
       return ANONYMOUS;
@@ -13822,8 +13822,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 if (true) {
   var ReactIs = __webpack_require__(/*! react-is */ "../node_modules/prop-types/node_modules/react-is/index.js");
 
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
+  / By explicitly using `prop-types` you are opting into new development behavior.
+  / http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
   module.exports = __webpack_require__(/*! ./factoryWithTypeCheckers */ "../node_modules/prop-types/factoryWithTypeCheckers.js")(ReactIs.isElement, throwOnDirectAccess);
 } else {}
@@ -13898,7 +13898,7 @@ var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
 var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
 var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
 var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
-var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; / TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
 // (unstable) APIs that have been removed. Can we remove the symbols?
 
 var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
@@ -13914,7 +13914,7 @@ var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
 var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
 
 function isValidElementType(type) {
-  return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+  return typeof type === 'string' || typeof type === 'function' || / Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
   type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
 }
 
@@ -13958,7 +13958,7 @@ function typeOf(object) {
   }
 
   return undefined;
-} // AsyncMode is deprecated along with isAsyncMode
+} / AsyncMode is deprecated along with isAsyncMode
 
 var AsyncMode = REACT_ASYNC_MODE_TYPE;
 var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
@@ -13973,12 +13973,12 @@ var Portal = REACT_PORTAL_TYPE;
 var Profiler = REACT_PROFILER_TYPE;
 var StrictMode = REACT_STRICT_MODE_TYPE;
 var Suspense = REACT_SUSPENSE_TYPE;
-var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
+var hasWarnedAboutDeprecatedIsAsyncMode = false; / AsyncMode should be deprecated
 
 function isAsyncMode(object) {
   {
     if (!hasWarnedAboutDeprecatedIsAsyncMode) {
-      hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+      hasWarnedAboutDeprecatedIsAsyncMode = true; / Using console['warn'] to evade Babel and ESLint
 
       console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
     }
@@ -14088,8 +14088,8 @@ __webpack_require__.r(__webpack_exports__);
 // https://github.com/ReactTraining/history/blob/master/modules/createHashHistory.js
 
 function getHashPath() {
-  // We can't use window.location.hash here because it's not
-  // consistent across browsers - Firefox will pre-decode it!
+  / We can't use window.location.hash here because it's not
+  / consistent across browsers - Firefox will pre-decode it!
   const href = window.location.href;
   const hashIndex = href.indexOf('#');
   return hashIndex === -1 ? '' : href.substring(hashIndex + 1);
@@ -14108,13 +14108,13 @@ function replaceHashPath(path) {
 
 let createHashSource = (initialPathname = '/') => {
   let index = 0;
-  // let stack = [{ pathname: initialPathname, search: '' }];
-  // let states = [];
+  / let stack = [{ pathname: initialPathname, search: '' }];
+  / let states = [];
 
   return {
     get location() {
       return { pathname: getHashPath(), search: '' };
-      // return stack[index];
+      / return stack[index];
     },
     addEventListener(name, fn) {
       if (name === 'popstate') {
@@ -14129,27 +14129,27 @@ let createHashSource = (initialPathname = '/') => {
     history: {
       get entries() {
         return [{ pathname: getHashPath(), search: '' }];
-        // return stack;
+        / return stack;
       },
       get index() {
         return index;
       },
       get state() {
         return undefined;
-        // return states[index];
+        / return states[index];
       },
       pushState(state, _, uri) {
         pushHashPath(uri);
-        // let [pathname, search = ''] = uri.split('?');
-        // index++;
-        // stack.push({ pathname, search });
-        // states.push(state);
+        / let [pathname, search = ''] = uri.split('?');
+        / index++;
+        / stack.push({ pathname, search });
+        / states.push(state);
       },
       replaceState(state, _, uri) {
         replaceHashPath(uri);
-        // let [pathname, search = ''] = uri.split('?');
-        // stack[index] = { pathname, search };
-        // states[index] = state;
+        / let [pathname, search = ''] = uri.split('?');
+        / stack[index] = { pathname, search };
+        / states[index] = state;
       }
     }
   };
@@ -14212,7 +14212,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 function componentWillMount() {
-  // Call this.constructor.gDSFP to support sub-classes.
+  / Call this.constructor.gDSFP to support sub-classes.
   var state = this.constructor.getDerivedStateFromProps(this.props, this.state);
   if (state !== null && state !== undefined) {
     this.setState(state);
@@ -14220,13 +14220,13 @@ function componentWillMount() {
 }
 
 function componentWillReceiveProps(nextProps) {
-  // Call this.constructor.gDSFP to support sub-classes.
-  // Use the setState() updater to ensure state isn't stale in certain edge cases.
+  / Call this.constructor.gDSFP to support sub-classes.
+  / Use the setState() updater to ensure state isn't stale in certain edge cases.
   function updater(prevState) {
     var state = this.constructor.getDerivedStateFromProps(nextProps, prevState);
     return state !== null && state !== undefined ? state : null;
   }
-  // Binding "this" is important for shallow renderer support.
+  / Binding "this" is important for shallow renderer support.
   this.setState(updater.bind(this));
 }
 
@@ -14267,9 +14267,9 @@ function polyfill(Component) {
     return Component;
   }
 
-  // If new component APIs are defined, "unsafe" lifecycles won't be called.
-  // Error if any of these lifecycles are present,
-  // Because they would work differently between older and newer (16.3+) versions of React.
+  / If new component APIs are defined, "unsafe" lifecycles won't be called.
+  / Error if any of these lifecycles are present,
+  / Because they would work differently between older and newer (16.3+) versions of React.
   var foundWillMountName = null;
   var foundWillReceivePropsName = null;
   var foundWillUpdateName = null;
@@ -14315,17 +14315,17 @@ function polyfill(Component) {
     );
   }
 
-  // React <= 16.2 does not support static getDerivedStateFromProps.
-  // As a workaround, use cWM and cWRP to invoke the new static lifecycle.
-  // Newer versions of React will ignore these lifecycles if gDSFP exists.
+  / React <= 16.2 does not support static getDerivedStateFromProps.
+  / As a workaround, use cWM and cWRP to invoke the new static lifecycle.
+  / Newer versions of React will ignore these lifecycles if gDSFP exists.
   if (typeof Component.getDerivedStateFromProps === 'function') {
     prototype.componentWillMount = componentWillMount;
     prototype.componentWillReceiveProps = componentWillReceiveProps;
   }
 
-  // React <= 16.2 does not support getSnapshotBeforeUpdate.
-  // As a workaround, use cWU to invoke the new lifecycle.
-  // Newer versions of React will ignore that lifecycle if gSBU exists.
+  / React <= 16.2 does not support getSnapshotBeforeUpdate.
+  / As a workaround, use cWU to invoke the new lifecycle.
+  / Newer versions of React will ignore that lifecycle if gSBU exists.
   if (typeof prototype.getSnapshotBeforeUpdate === 'function') {
     if (typeof prototype.componentDidUpdate !== 'function') {
       throw new Error(
@@ -14342,14 +14342,14 @@ function polyfill(Component) {
       prevState,
       maybeSnapshot
     ) {
-      // 16.3+ will not execute our will-update method;
-      // It will pass a snapshot value to did-update though.
-      // Older versions will require our polyfilled will-update value.
-      // We need to handle both cases, but can't just check for the presence of "maybeSnapshot",
-      // Because for <= 15.x versions this might be a "prevContext" object.
-      // We also can't just check "__reactInternalSnapshot",
-      // Because get-snapshot might return a falsy value.
-      // So check for the explicit __reactInternalSnapshotFlag flag to determine behavior.
+      / 16.3+ will not execute our will-update method;
+      / It will pass a snapshot value to did-update though.
+      / Older versions will require our polyfilled will-update value.
+      / We need to handle both cases, but can't just check for the presence of "maybeSnapshot",
+      / Because for <= 15.x versions this might be a "prevContext" object.
+      / We also can't just check "__reactInternalSnapshot",
+      / Because get-snapshot might return a falsy value.
+      / So check for the explicit __reactInternalSnapshotFlag flag to determine behavior.
       var snapshot = this.__reactInternalSnapshotFlag
         ? this.__reactInternalSnapshot
         : maybeSnapshot;
@@ -14398,13 +14398,13 @@ var FocusManager = /*#__PURE__*/function (_Subscribable) {
       if (!_utils__WEBPACK_IMPORTED_MODULE_1__.isServer && ((_window = window) == null ? void 0 : _window.addEventListener)) {
         var listener = function listener() {
           return onFocus();
-        }; // Listen to visibillitychange and focus
+        }; / Listen to visibillitychange and focus
 
 
         window.addEventListener('visibilitychange', listener, false);
         window.addEventListener('focus', listener, false);
         return function () {
-          // Be sure to unsubscribe if a new handler is set
+          / Be sure to unsubscribe if a new handler is set
           window.removeEventListener('visibilitychange', listener);
           window.removeEventListener('focus', listener);
         };
@@ -14463,7 +14463,7 @@ var FocusManager = /*#__PURE__*/function (_Subscribable) {
   _proto.isFocused = function isFocused() {
     if (typeof this.focused === 'boolean') {
       return this.focused;
-    } // document global can be unavailable in react native
+    } / document global can be unavailable in react native
 
 
     if (typeof document === 'undefined') {
@@ -14501,7 +14501,7 @@ function dehydrateMutation(mutation) {
     mutationKey: mutation.options.mutationKey,
     state: mutation.state
   };
-} // Most config is not dehydrated but instead meant to configure again when
+} / Most config is not dehydrated but instead meant to configure again when
 // consuming the de/rehydrated data, typically with useQuery on the client.
 // Sometimes it might make sense to prefetch data on the server and include
 // in the html-payload, but not consume it on the initial render.
@@ -14572,7 +14572,7 @@ function hydrate(client, dehydratedState, options) {
   queries.forEach(function (dehydratedQuery) {
     var _options$defaultOptio2;
 
-    var query = queryCache.get(dehydratedQuery.queryHash); // Do not hydrate if an existing query exists with newer data
+    var query = queryCache.get(dehydratedQuery.queryHash); / Do not hydrate if an existing query exists with newer data
 
     if (query) {
       if (query.state.dataUpdatedAt < dehydratedQuery.state.dataUpdatedAt) {
@@ -14580,7 +14580,7 @@ function hydrate(client, dehydratedState, options) {
       }
 
       return;
-    } // Restore query
+    } / Restore query
 
 
     queryCache.build(client, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, options == null ? void 0 : (_options$defaultOptio2 = options.defaultOptions) == null ? void 0 : _options$defaultOptio2.queries, {
@@ -14652,7 +14652,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // Types
+ / Types
 
 
 
@@ -14693,7 +14693,7 @@ function infiniteQueryBehavior() {
         var abortController = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.getAbortController)();
         var abortSignal = abortController == null ? void 0 : abortController.signal;
         var newPageParams = oldPageParams;
-        var cancelled = false; // Get query function
+        var cancelled = false; / Get query function
 
         var queryFn = context.options.queryFn || function () {
           return Promise.reject('Missing queryFn');
@@ -14702,7 +14702,7 @@ function infiniteQueryBehavior() {
         var buildNewPages = function buildNewPages(pages, param, page, previous) {
           newPageParams = previous ? [param].concat(newPageParams) : [].concat(newPageParams, [param]);
           return previous ? [page].concat(pages) : [].concat(pages, [page]);
-        }; // Create function to fetch a page
+        }; / Create function to fetch a page
 
 
         var fetchPage = function fetchPage(pages, manual, param, previous) {
@@ -14733,30 +14733,30 @@ function infiniteQueryBehavior() {
           return promise;
         };
 
-        var promise; // Fetch first page?
+        var promise; / Fetch first page?
 
         if (!oldPages.length) {
           promise = fetchPage([]);
-        } // Fetch next page?
+        } / Fetch next page?
         else if (isFetchingNextPage) {
             var manual = typeof pageParam !== 'undefined';
             var param = manual ? pageParam : getNextPageParam(context.options, oldPages);
             promise = fetchPage(oldPages, manual, param);
-          } // Fetch previous page?
+          } / Fetch previous page?
           else if (isFetchingPreviousPage) {
               var _manual = typeof pageParam !== 'undefined';
 
               var _param = _manual ? pageParam : getPreviousPageParam(context.options, oldPages);
 
               promise = fetchPage(oldPages, _manual, _param, true);
-            } // Refetch pages
+            } / Refetch pages
             else {
                 (function () {
                   newPageParams = [];
                   var manual = typeof context.options.getNextPageParam === 'undefined';
-                  var shouldFetchFirstPage = refetchPage && oldPages[0] ? refetchPage(oldPages[0], 0, oldPages) : true; // Fetch first page
+                  var shouldFetchFirstPage = refetchPage && oldPages[0] ? refetchPage(oldPages[0], 0, oldPages) : true; / Fetch first page
 
-                  promise = shouldFetchFirstPage ? fetchPage([], manual, oldPageParams[0]) : Promise.resolve(buildNewPages([], oldPageParams[0], oldPages[0])); // Fetch remaining pages
+                  promise = shouldFetchFirstPage ? fetchPage([], manual, oldPageParams[0]) : Promise.resolve(buildNewPages([], oldPageParams[0], oldPages[0])); / Fetch remaining pages
 
                   var _loop = function _loop(i) {
                     promise = promise.then(function (pages) {
@@ -14853,10 +14853,10 @@ __webpack_require__.r(__webpack_exports__);
 var InfiniteQueryObserver = /*#__PURE__*/function (_QueryObserver) {
   (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(InfiniteQueryObserver, _QueryObserver);
 
-  // Type override
-  // Type override
-  // Type override
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
+  / Type override
+  / Type override
+  / Type override
+  / eslint-disable-next-line @typescript-eslint/no-useless-constructor
   function InfiniteQueryObserver(client, options) {
     return _QueryObserver.call(this, client, options) || this;
   }
@@ -14885,7 +14885,7 @@ var InfiniteQueryObserver = /*#__PURE__*/function (_QueryObserver) {
     var _options$cancelRefetc;
 
     return this.fetch({
-      // TODO consider removing `?? true` in future breaking change, to be consistent with `refetch` API (see https://github.com/tannerlinsley/react-query/issues/2617)
+      / TODO consider removing `?? true` in future breaking change, to be consistent with `refetch` API (see https://github.com/tannerlinsley/react-query/issues/2617)
       cancelRefetch: (_options$cancelRefetc = options == null ? void 0 : options.cancelRefetch) != null ? _options$cancelRefetc : true,
       throwOnError: options == null ? void 0 : options.throwOnError,
       meta: {
@@ -14901,7 +14901,7 @@ var InfiniteQueryObserver = /*#__PURE__*/function (_QueryObserver) {
     var _options$cancelRefetc2;
 
     return this.fetch({
-      // TODO consider removing `?? true` in future breaking change, to be consistent with `refetch` API (see https://github.com/tannerlinsley/react-query/issues/2617)
+      / TODO consider removing `?? true` in future breaking change, to be consistent with `refetch` API (see https://github.com/tannerlinsley/react-query/issues/2617)
       cancelRefetch: (_options$cancelRefetc2 = options == null ? void 0 : options.cancelRefetch) != null ? _options$cancelRefetc2 : true,
       throwOnError: options == null ? void 0 : options.throwOnError,
       meta: {
@@ -14980,7 +14980,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // TYPES
+ / TYPES
 
 // CLASS
 var Mutation = /*#__PURE__*/function () {
@@ -15045,7 +15045,7 @@ var Mutation = /*#__PURE__*/function () {
         variables: this.options.variables
       });
       promise = promise.then(function () {
-        // Notify cache callback
+        / Notify cache callback
         _this.mutationCache.config.onMutate == null ? void 0 : _this.mutationCache.config.onMutate(_this.state.variables, _this);
       }).then(function () {
         return _this.options.onMutate == null ? void 0 : _this.options.onMutate(_this.state.variables);
@@ -15063,7 +15063,7 @@ var Mutation = /*#__PURE__*/function () {
     return promise.then(function () {
       return _this.executeMutation();
     }).then(function (result) {
-      data = result; // Notify cache callback
+      data = result; / Notify cache callback
 
       _this.mutationCache.config.onSuccess == null ? void 0 : _this.mutationCache.config.onSuccess(data, _this.state.variables, _this.state.context, _this);
     }).then(function () {
@@ -15078,8 +15078,8 @@ var Mutation = /*#__PURE__*/function () {
 
       return data;
     }).catch(function (error) {
-      // Notify cache callback
-      _this.mutationCache.config.onError == null ? void 0 : _this.mutationCache.config.onError(error, _this.state.variables, _this.state.context, _this); // Log error
+      / Notify cache callback
+      _this.mutationCache.config.onError == null ? void 0 : _this.mutationCache.config.onError(error, _this.state.variables, _this.state.context, _this); / Log error
 
       (0,_logger__WEBPACK_IMPORTED_MODULE_2__.getLogger)().error(error);
       return Promise.resolve().then(function () {
@@ -15231,7 +15231,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // TYPES
+ / TYPES
 
 // CLASS
 var MutationCache = /*#__PURE__*/function (_Subscribable) {
@@ -15401,7 +15401,7 @@ var MutationObserver = /*#__PURE__*/function (_Subscribable) {
   };
 
   _proto.onMutationUpdate = function onMutationUpdate(action) {
-    this.updateResult(); // Determine which callbacks to trigger
+    this.updateResult(); / Determine which callbacks to trigger
 
     var notifyOptions = {
       listeners: true
@@ -15461,7 +15461,7 @@ var MutationObserver = /*#__PURE__*/function (_Subscribable) {
     var _this2 = this;
 
     _notifyManager__WEBPACK_IMPORTED_MODULE_3__.notifyManager.batch(function () {
-      // First trigger the mutate callbacks
+      / First trigger the mutate callbacks
       if (_this2.mutateOptions) {
         if (options.onSuccess) {
           _this2.mutateOptions.onSuccess == null ? void 0 : _this2.mutateOptions.onSuccess(_this2.currentResult.data, _this2.currentResult.variables, _this2.currentResult.context);
@@ -15470,7 +15470,7 @@ var MutationObserver = /*#__PURE__*/function (_Subscribable) {
           _this2.mutateOptions.onError == null ? void 0 : _this2.mutateOptions.onError(_this2.currentResult.error, _this2.currentResult.variables, _this2.currentResult.context);
           _this2.mutateOptions.onSettled == null ? void 0 : _this2.mutateOptions.onSettled(undefined, _this2.currentResult.error, _this2.currentResult.variables, _this2.currentResult.context);
         }
-      } // Then trigger the listeners
+      } / Then trigger the listeners
 
 
       if (options.listeners) {
@@ -15499,7 +15499,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   notifyManager: () => (/* binding */ notifyManager)
 /* harmony export */ });
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "../node_modules/react-query/es/core/utils.js");
- // TYPES
+ / TYPES
 
 // CLASS
 var NotifyManager = /*#__PURE__*/function () {
@@ -15601,7 +15601,7 @@ var NotifyManager = /*#__PURE__*/function () {
   };
 
   return NotifyManager;
-}(); // SINGLETON
+}(); / SINGLETON
 
 var notifyManager = new NotifyManager();
 
@@ -15639,13 +15639,13 @@ var OnlineManager = /*#__PURE__*/function (_Subscribable) {
       if (!_utils__WEBPACK_IMPORTED_MODULE_1__.isServer && ((_window = window) == null ? void 0 : _window.addEventListener)) {
         var listener = function listener() {
           return onOnline();
-        }; // Listen to online
+        }; / Listen to online
 
 
         window.addEventListener('online', listener, false);
         window.addEventListener('offline', listener, false);
         return function () {
-          // Be sure to unsubscribe if a new handler is set
+          / Be sure to unsubscribe if a new handler is set
           window.removeEventListener('online', listener);
           window.removeEventListener('offline', listener);
         };
@@ -15836,7 +15836,7 @@ var QueriesObserver = /*#__PURE__*/function (_Subscribable) {
     });
     var newOrReusedObservers = unmatchedQueries.map(function (options, index) {
       if (options.keepPreviousData) {
-        // return previous data from one of the observers that no longer match
+        / return previous data from one of the observers that no longer match
         var previouslyUsedObserver = unmatchedObservers[index];
 
         if (previouslyUsedObserver !== undefined) {
@@ -15872,7 +15872,7 @@ var QueriesObserver = /*#__PURE__*/function (_Subscribable) {
     _notifyManager__WEBPACK_IMPORTED_MODULE_2__.notifyManager.batch(function () {
       var prevObservers = _this4.observers;
 
-      var newObserverMatches = _this4.findMatchingObservers(_this4.queries); // set options for the new observers to notify of changes
+      var newObserverMatches = _this4.findMatchingObservers(_this4.queries); / set options for the new observers to notify of changes
 
 
       newObserverMatches.forEach(function (match) {
@@ -15960,7 +15960,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // TYPES
+ / TYPES
 
 // CLASS
 var Query = /*#__PURE__*/function () {
@@ -15985,7 +15985,7 @@ var Query = /*#__PURE__*/function () {
     var _this$options$cacheTi;
 
     this.options = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, this.defaultOptions, options);
-    this.meta = options == null ? void 0 : options.meta; // Default to 5 minutes if not cache time is set
+    this.meta = options == null ? void 0 : options.meta; / Default to 5 minutes if not cache time is set
 
     this.cacheTime = Math.max(this.cacheTime || 0, (_this$options$cacheTi = this.options.cacheTime) != null ? _this$options$cacheTi : 5 * 60 * 1000);
   };
@@ -16028,16 +16028,16 @@ var Query = /*#__PURE__*/function () {
   _proto.setData = function setData(updater, options) {
     var _this$options$isDataE, _this$options;
 
-    var prevData = this.state.data; // Get the new data
+    var prevData = this.state.data; / Get the new data
 
-    var data = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.functionalUpdate)(updater, prevData); // Use prev data if an isDataEqual function is defined and returns `true`
+    var data = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.functionalUpdate)(updater, prevData); / Use prev data if an isDataEqual function is defined and returns `true`
 
     if ((_this$options$isDataE = (_this$options = this.options).isDataEqual) == null ? void 0 : _this$options$isDataE.call(_this$options, prevData, data)) {
       data = prevData;
     } else if (this.options.structuralSharing !== false) {
-      // Structurally share data between prev and new data if needed
+      / Structurally share data between prev and new data if needed
       data = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.replaceEqualDeep)(prevData, data);
-    } // Set data and mark it as cached
+    } / Set data and mark it as cached
 
 
     this.dispatch({
@@ -16109,7 +16109,7 @@ var Query = /*#__PURE__*/function () {
 
     if (observer) {
       observer.refetch();
-    } // Continue fetch if currently paused
+    } / Continue fetch if currently paused
 
 
     (_this$retryer2 = this.retryer) == null ? void 0 : _this$retryer2.continue();
@@ -16124,7 +16124,7 @@ var Query = /*#__PURE__*/function () {
 
     if (observer) {
       observer.refetch();
-    } // Continue fetch if currently paused
+    } / Continue fetch if currently paused
 
 
     (_this$retryer3 = this.retryer) == null ? void 0 : _this$retryer3.continue();
@@ -16133,7 +16133,7 @@ var Query = /*#__PURE__*/function () {
   _proto.addObserver = function addObserver(observer) {
     if (this.observers.indexOf(observer) === -1) {
       this.observers.push(observer);
-      this.hadObservers = true; // Stop the query from being garbage collected
+      this.hadObservers = true; / Stop the query from being garbage collected
 
       this.clearGcTimeout();
       this.cache.notify({
@@ -16151,8 +16151,8 @@ var Query = /*#__PURE__*/function () {
       });
 
       if (!this.observers.length) {
-        // If the transport layer does not support cancellation
-        // we'll let the query continue so the result can be cached
+        / If the transport layer does not support cancellation
+        / we'll let the query continue so the result can be cached
         if (this.retryer) {
           if (this.retryer.isTransportCancelable || this.abortSignalConsumed) {
             this.retryer.cancel({
@@ -16198,25 +16198,25 @@ var Query = /*#__PURE__*/function () {
 
     if (this.state.isFetching) {
       if (this.state.dataUpdatedAt && (fetchOptions == null ? void 0 : fetchOptions.cancelRefetch)) {
-        // Silently cancel current fetch if the user wants to cancel refetches
+        / Silently cancel current fetch if the user wants to cancel refetches
         this.cancel({
           silent: true
         });
       } else if (this.promise) {
         var _this$retryer4;
 
-        // make sure that retries that were potentially cancelled due to unmounts can continue
-        (_this$retryer4 = this.retryer) == null ? void 0 : _this$retryer4.continueRetry(); // Return current promise if we are already fetching
+        / make sure that retries that were potentially cancelled due to unmounts can continue
+        (_this$retryer4 = this.retryer) == null ? void 0 : _this$retryer4.continueRetry(); / Return current promise if we are already fetching
 
         return this.promise;
       }
-    } // Update config if passed, otherwise the config from the last execution is used
+    } / Update config if passed, otherwise the config from the last execution is used
 
 
     if (options) {
       this.setOptions(options);
-    } // Use the options from the first observer with a query function if no function is found.
-    // This can happen when the query is hydrated or created with setQueryData.
+    } / Use the options from the first observer with a query function if no function is found.
+    / This can happen when the query is hydrated or created with setQueryData.
 
 
     if (!this.options.queryFn) {
@@ -16230,7 +16230,7 @@ var Query = /*#__PURE__*/function () {
     }
 
     var queryKey = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.ensureQueryKeyArray)(this.queryKey);
-    var abortController = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getAbortController)(); // Create query function context
+    var abortController = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getAbortController)(); / Create query function context
 
     var queryFnContext = {
       queryKey: queryKey,
@@ -16247,7 +16247,7 @@ var Query = /*#__PURE__*/function () {
 
         return undefined;
       }
-    }); // Create fetch function
+    }); / Create fetch function
 
     var fetchFn = function fetchFn() {
       if (!_this2.options.queryFn) {
@@ -16256,7 +16256,7 @@ var Query = /*#__PURE__*/function () {
 
       _this2.abortSignalConsumed = false;
       return _this2.options.queryFn(queryFnContext);
-    }; // Trigger behavior hook
+    }; / Trigger behavior hook
 
 
     var context = {
@@ -16272,10 +16272,10 @@ var Query = /*#__PURE__*/function () {
       var _this$options$behavio2;
 
       (_this$options$behavio2 = this.options.behavior) == null ? void 0 : _this$options$behavio2.onFetch(context);
-    } // Store state in case the current fetch needs to be reverted
+    } / Store state in case the current fetch needs to be reverted
 
 
-    this.revertState = this.state; // Set to fetching state if not already in it
+    this.revertState = this.state; / Set to fetching state if not already in it
 
     if (!this.state.isFetching || this.state.fetchMeta !== ((_context$fetchOptions = context.fetchOptions) == null ? void 0 : _context$fetchOptions.meta)) {
       var _context$fetchOptions2;
@@ -16284,24 +16284,24 @@ var Query = /*#__PURE__*/function () {
         type: 'fetch',
         meta: (_context$fetchOptions2 = context.fetchOptions) == null ? void 0 : _context$fetchOptions2.meta
       });
-    } // Try to fetch the data
+    } / Try to fetch the data
 
 
     this.retryer = new _retryer__WEBPACK_IMPORTED_MODULE_2__.Retryer({
       fn: context.fetchFn,
       abort: abortController == null ? void 0 : (_abortController$abor = abortController.abort) == null ? void 0 : _abortController$abor.bind(abortController),
       onSuccess: function onSuccess(data) {
-        _this2.setData(data); // Notify cache callback
+        _this2.setData(data); / Notify cache callback
 
 
-        _this2.cache.config.onSuccess == null ? void 0 : _this2.cache.config.onSuccess(data, _this2); // Remove query after fetching if cache time is 0
+        _this2.cache.config.onSuccess == null ? void 0 : _this2.cache.config.onSuccess(data, _this2); / Remove query after fetching if cache time is 0
 
         if (_this2.cacheTime === 0) {
           _this2.optionalRemove();
         }
       },
       onError: function onError(error) {
-        // Optimistically update state if needed
+        / Optimistically update state if needed
         if (!((0,_retryer__WEBPACK_IMPORTED_MODULE_2__.isCancelledError)(error) && error.silent)) {
           _this2.dispatch({
             type: 'error',
@@ -16310,11 +16310,11 @@ var Query = /*#__PURE__*/function () {
         }
 
         if (!(0,_retryer__WEBPACK_IMPORTED_MODULE_2__.isCancelledError)(error)) {
-          // Notify cache callback
-          _this2.cache.config.onError == null ? void 0 : _this2.cache.config.onError(error, _this2); // Log error
+          / Notify cache callback
+          _this2.cache.config.onError == null ? void 0 : _this2.cache.config.onError(error, _this2); / Log error
 
           (0,_logger__WEBPACK_IMPORTED_MODULE_3__.getLogger)().error(error);
-        } // Remove query after fetching if cache time is 0
+        } / Remove query after fetching if cache time is 0
 
 
         if (_this2.cacheTime === 0) {
@@ -16810,8 +16810,8 @@ var QueryClient = /*#__PURE__*/function () {
         options = _parseFilterArgs5[1];
 
     var refetchFilters = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, filters, {
-      // if filters.refetchActive is not provided and filters.active is explicitly false,
-      // e.g. invalidateQueries({ active: false }), we don't want to refetch active queries
+      / if filters.refetchActive is not provided and filters.active is explicitly false,
+      / e.g. invalidateQueries({ active: false }), we don't want to refetch active queries
       active: (_ref3 = (_filters$refetchActiv = filters.refetchActive) != null ? _filters$refetchActiv : filters.active) != null ? _ref3 : true,
       inactive: (_filters$refetchInact = filters.refetchInactive) != null ? _filters$refetchInact : false
     });
@@ -16852,7 +16852,7 @@ var QueryClient = /*#__PURE__*/function () {
 
   _proto.fetchQuery = function fetchQuery(arg1, arg2, arg3) {
     var parsedOptions = (0,_utils__WEBPACK_IMPORTED_MODULE_5__.parseQueryArgs)(arg1, arg2, arg3);
-    var defaultedOptions = this.defaultQueryOptions(parsedOptions); // https://github.com/tannerlinsley/react-query/issues/652
+    var defaultedOptions = this.defaultQueryOptions(parsedOptions); / https://github.com/tannerlinsley/react-query/issues/652
 
     if (typeof defaultedOptions.retry === 'undefined') {
       defaultedOptions.retry = false;
@@ -17089,7 +17089,7 @@ var QueryObserver = /*#__PURE__*/function (_Subscribable) {
 
     if (typeof this.options.enabled !== 'undefined' && typeof this.options.enabled !== 'boolean') {
       throw new Error('Expected enabled to be a boolean');
-    } // Keep previous query key if the user does not supply one
+    } / Keep previous query key if the user does not supply one
 
 
     if (!this.options.queryKey) {
@@ -17097,20 +17097,20 @@ var QueryObserver = /*#__PURE__*/function (_Subscribable) {
     }
 
     this.updateQuery();
-    var mounted = this.hasListeners(); // Fetch if there are subscribers
+    var mounted = this.hasListeners(); / Fetch if there are subscribers
 
     if (mounted && shouldFetchOptionally(this.currentQuery, prevQuery, this.options, prevOptions)) {
       this.executeFetch();
-    } // Update result
+    } / Update result
 
 
-    this.updateResult(notifyOptions); // Update stale interval if needed
+    this.updateResult(notifyOptions); / Update stale interval if needed
 
     if (mounted && (this.currentQuery !== prevQuery || this.options.enabled !== prevOptions.enabled || this.options.staleTime !== prevOptions.staleTime)) {
       this.updateStaleTimeout();
     }
 
-    var nextRefetchInterval = this.computeRefetchInterval(); // Update refetch interval if needed
+    var nextRefetchInterval = this.computeRefetchInterval(); / Update refetch interval if needed
 
     if (mounted && (this.currentQuery !== prevQuery || this.options.enabled !== prevOptions.enabled || nextRefetchInterval !== this.currentRefetchInterval)) {
       this.updateRefetchInterval(nextRefetchInterval);
@@ -17211,8 +17211,8 @@ var QueryObserver = /*#__PURE__*/function (_Subscribable) {
   };
 
   _proto.executeFetch = function executeFetch(fetchOptions) {
-    // Make sure we reference the latest query as the current one might have been removed
-    this.updateQuery(); // Fetch
+    / Make sure we reference the latest query as the current one might have been removed
+    this.updateQuery(); / Fetch
 
     var promise = this.currentQuery.fetch(this.options, fetchOptions);
 
@@ -17232,8 +17232,8 @@ var QueryObserver = /*#__PURE__*/function (_Subscribable) {
       return;
     }
 
-    var time = (0,_utils__WEBPACK_IMPORTED_MODULE_2__.timeUntilStale)(this.currentResult.dataUpdatedAt, this.options.staleTime); // The timeout is sometimes triggered 1 ms before the stale time expiration.
-    // To mitigate this issue we always add 1 ms to the timeout.
+    var time = (0,_utils__WEBPACK_IMPORTED_MODULE_2__.timeUntilStale)(this.currentResult.dataUpdatedAt, this.options.staleTime); / The timeout is sometimes triggered 1 ms before the stale time expiration.
+    / To mitigate this issue we always add 1 ms to the timeout.
 
     var timeout = time + 1;
     this.staleTimeoutId = setTimeout(function () {
@@ -17307,7 +17307,7 @@ var QueryObserver = /*#__PURE__*/function (_Subscribable) {
         status = state.status;
     var isPreviousData = false;
     var isPlaceholderData = false;
-    var data; // Optimistically set result in fetching state if needed
+    var data; / Optimistically set result in fetching state if needed
 
     if (options.optimisticResults) {
       var mounted = this.hasListeners();
@@ -17321,7 +17321,7 @@ var QueryObserver = /*#__PURE__*/function (_Subscribable) {
           status = 'loading';
         }
       }
-    } // Keep previous data if needed
+    } / Keep previous data if needed
 
 
     if (options.keepPreviousData && !state.dataUpdateCount && (prevQueryResult == null ? void 0 : prevQueryResult.isSuccess) && status !== 'error') {
@@ -17329,9 +17329,9 @@ var QueryObserver = /*#__PURE__*/function (_Subscribable) {
       dataUpdatedAt = prevQueryResult.dataUpdatedAt;
       status = prevQueryResult.status;
       isPreviousData = true;
-    } // Select data if needed
+    } / Select data if needed
     else if (options.select && typeof state.data !== 'undefined') {
-        // Memoize select result
+        / Memoize select result
         if (prevResult && state.data === (prevResultState == null ? void 0 : prevResultState.data) && options.select === this.selectFn) {
           data = this.selectResult;
         } else {
@@ -17350,14 +17350,14 @@ var QueryObserver = /*#__PURE__*/function (_Subscribable) {
             this.selectError = selectError;
           }
         }
-      } // Use query data
+      } / Use query data
       else {
           data = state.data;
-        } // Show placeholder data if needed
+        } / Show placeholder data if needed
 
 
     if (typeof options.placeholderData !== 'undefined' && typeof data === 'undefined' && (status === 'loading' || status === 'idle')) {
-      var placeholderData; // Memoize placeholder data
+      var placeholderData; / Memoize placeholder data
 
       if ((prevResult == null ? void 0 : prevResult.isPlaceholderData) && options.placeholderData === (prevResultOptions == null ? void 0 : prevResultOptions.placeholderData)) {
         placeholderData = prevResult.data;
@@ -17456,11 +17456,11 @@ var QueryObserver = /*#__PURE__*/function (_Subscribable) {
     var prevResult = this.currentResult;
     this.currentResult = this.createResult(this.currentQuery, this.options);
     this.currentResultState = this.currentQuery.state;
-    this.currentResultOptions = this.options; // Only notify if something has changed
+    this.currentResultOptions = this.options; / Only notify if something has changed
 
     if ((0,_utils__WEBPACK_IMPORTED_MODULE_2__.shallowEqualObjects)(this.currentResult, prevResult)) {
       return;
-    } // Determine which callbacks to trigger
+    } / Determine which callbacks to trigger
 
 
     var defaultNotifyOptions = {
@@ -17512,21 +17512,21 @@ var QueryObserver = /*#__PURE__*/function (_Subscribable) {
     var _this8 = this;
 
     _notifyManager__WEBPACK_IMPORTED_MODULE_6__.notifyManager.batch(function () {
-      // First trigger the configuration callbacks
+      / First trigger the configuration callbacks
       if (notifyOptions.onSuccess) {
         _this8.options.onSuccess == null ? void 0 : _this8.options.onSuccess(_this8.currentResult.data);
         _this8.options.onSettled == null ? void 0 : _this8.options.onSettled(_this8.currentResult.data, null);
       } else if (notifyOptions.onError) {
         _this8.options.onError == null ? void 0 : _this8.options.onError(_this8.currentResult.error);
         _this8.options.onSettled == null ? void 0 : _this8.options.onSettled(undefined, _this8.currentResult.error);
-      } // Then trigger the listeners
+      } / Then trigger the listeners
 
 
       if (notifyOptions.listeners) {
         _this8.listeners.forEach(function (listener) {
           listener(_this8.currentResult);
         });
-      } // Then the cache listeners
+      } / Then the cache listeners
 
 
       if (notifyOptions.cache) {
@@ -17602,7 +17602,7 @@ var CancelledError = function CancelledError(options) {
 };
 function isCancelledError(value) {
   return value instanceof CancelledError;
-} // CLASS
+} / CLASS
 
 var Retryer = function Retryer(config) {
   var _this = this;
@@ -17667,28 +17667,28 @@ var Retryer = function Retryer(config) {
       _this.isPaused = false;
       config.onContinue == null ? void 0 : config.onContinue();
     });
-  }; // Create loop function
+  }; / Create loop function
 
 
   var run = function run() {
-    // Do nothing if already resolved
+    / Do nothing if already resolved
     if (_this.isResolved) {
       return;
     }
 
-    var promiseOrValue; // Execute query
+    var promiseOrValue; / Execute query
 
     try {
       promiseOrValue = config.fn();
     } catch (error) {
       promiseOrValue = Promise.reject(error);
-    } // Create callback to cancel this fetch
+    } / Create callback to cancel this fetch
 
 
     cancelFn = function cancelFn(cancelOptions) {
       if (!_this.isResolved) {
         reject(new CancelledError(cancelOptions));
-        _this.abort == null ? void 0 : _this.abort(); // Cancel transport if supported
+        _this.abort == null ? void 0 : _this.abort(); / Cancel transport if supported
 
         if (isCancelable(promiseOrValue)) {
           try {
@@ -17696,17 +17696,17 @@ var Retryer = function Retryer(config) {
           } catch (_unused) {}
         }
       }
-    }; // Check if the transport layer support cancellation
+    }; / Check if the transport layer support cancellation
 
 
     _this.isTransportCancelable = isCancelable(promiseOrValue);
     Promise.resolve(promiseOrValue).then(resolve).catch(function (error) {
       var _config$retry, _config$retryDelay;
 
-      // Stop if the fetch is already resolved
+      / Stop if the fetch is already resolved
       if (_this.isResolved) {
         return;
-      } // Do we need to retry the request?
+      } / Do we need to retry the request?
 
 
       var retry = (_config$retry = config.retry) != null ? _config$retry : 3;
@@ -17715,16 +17715,16 @@ var Retryer = function Retryer(config) {
       var shouldRetry = retry === true || typeof retry === 'number' && _this.failureCount < retry || typeof retry === 'function' && retry(_this.failureCount, error);
 
       if (cancelRetry || !shouldRetry) {
-        // We are done if the query does not need to be retried
+        / We are done if the query does not need to be retried
         reject(error);
         return;
       }
 
-      _this.failureCount++; // Notify on fail
+      _this.failureCount++; / Notify on fail
 
-      config.onFail == null ? void 0 : config.onFail(_this.failureCount, error); // Delay
+      config.onFail == null ? void 0 : config.onFail(_this.failureCount, error); / Delay
 
-      (0,_utils__WEBPACK_IMPORTED_MODULE_0__.sleep)(delay) // Pause if the document is not visible or when the device is offline
+      (0,_utils__WEBPACK_IMPORTED_MODULE_0__.sleep)(delay) / Pause if the document is not visible or when the device is offline
       .then(function () {
         if (!_focusManager__WEBPACK_IMPORTED_MODULE_1__.focusManager.isFocused() || !_onlineManager__WEBPACK_IMPORTED_MODULE_2__.onlineManager.isOnline()) {
           return pause();
@@ -17737,7 +17737,7 @@ var Retryer = function Retryer(config) {
         }
       });
     });
-  }; // Start loop
+  }; / Start loop
 
 
   run();
@@ -17785,10 +17785,10 @@ var Subscribable = /*#__PURE__*/function () {
     return this.listeners.length > 0;
   };
 
-  _proto.onSubscribe = function onSubscribe() {// Do nothing
+  _proto.onSubscribe = function onSubscribe() {/ Do nothing
   };
 
-  _proto.onUnsubscribe = function onUnsubscribe() {// Do nothing
+  _proto.onUnsubscribe = function onUnsubscribe() {/ Do nothing
   };
 
   return Subscribable;
@@ -17928,8 +17928,8 @@ function mapQueryStatusFilter(active, inactive) {
   } else if (active === false && inactive === false) {
     return 'none';
   } else {
-    // At this point, active|inactive can only be true|false or false|true
-    // so, when only one value is provided, the missing one has to be the negated value
+    / At this point, active|inactive can only be true|false or false|true
+    / so, when only one value is provided, the missing one has to be the negated value
     var isActive = active != null ? active : !inactive;
     return isActive ? 'active' : 'inactive';
   }
@@ -18115,31 +18115,31 @@ function shallowEqualObjects(a, b) {
   }
 
   return true;
-} // Copied from: https://github.com/jonschlinkert/is-plain-object
+} / Copied from: https://github.com/jonschlinkert/is-plain-object
 
 function isPlainObject(o) {
   if (!hasObjectPrototype(o)) {
     return false;
-  } // If has modified constructor
+  } / If has modified constructor
 
 
   var ctor = o.constructor;
 
   if (typeof ctor === 'undefined') {
     return true;
-  } // If has modified prototype
+  } / If has modified prototype
 
 
   var prot = ctor.prototype;
 
   if (!hasObjectPrototype(prot)) {
     return false;
-  } // If constructor does not have an Object-specific method
+  } / If constructor does not have an Object-specific method
 
 
   if (!prot.hasOwnProperty('isPrototypeOf')) {
     return false;
-  } // Most likely a plain Object
+  } / Most likely a plain Object
 
 
   return true;
@@ -18223,10 +18223,10 @@ __webpack_require__.r(__webpack_exports__);
 function useHydrate(state, options) {
   var queryClient = (0,_QueryClientProvider__WEBPACK_IMPORTED_MODULE_1__.useQueryClient)();
   var optionsRef = react__WEBPACK_IMPORTED_MODULE_0___default().useRef(options);
-  optionsRef.current = options; // Running hydrate again with the same queries is safe,
-  // it wont overwrite or initialize existing queries,
-  // relying on useMemo here is only a performance optimization.
-  // hydrate can and should be run *during* render here for SSR to work properly
+  optionsRef.current = options; / Running hydrate again with the same queries is safe,
+  / it wont overwrite or initialize existing queries,
+  / relying on useMemo here is only a performance optimization.
+  / hydrate can and should be run *during* render here for SSR to work properly
 
   react__WEBPACK_IMPORTED_MODULE_0___default().useMemo(function () {
     if (state) {
@@ -18260,7 +18260,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 var defaultContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createContext(undefined);
-var QueryClientSharingContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createContext(false); // if contextSharing is on, we share the first and at least one
+var QueryClientSharingContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createContext(false); / if contextSharing is on, we share the first and at least one
 // instance of the context across the window
 // to ensure that if React Query is used across
 // different bundles or microfrontends they will
@@ -18323,7 +18323,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
- // CONTEXT
+ / CONTEXT
 
 function createValue() {
   var _isReset = false;
@@ -18340,11 +18340,11 @@ function createValue() {
   };
 }
 
-var QueryErrorResetBoundaryContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createContext(createValue()); // HOOK
+var QueryErrorResetBoundaryContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createContext(createValue()); / HOOK
 
 var useQueryErrorResetBoundary = function useQueryErrorResetBoundary() {
   return react__WEBPACK_IMPORTED_MODULE_0___default().useContext(QueryErrorResetBoundaryContext);
-}; // COMPONENT
+}; / COMPONENT
 
 var QueryErrorResetBoundary = function QueryErrorResetBoundary(_ref) {
   var children = _ref.children;
@@ -18407,7 +18407,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // Types
+ / Types
 
 
 
@@ -18518,9 +18518,9 @@ function useBaseQuery(options, Observer) {
 
   var queryClient = (0,_QueryClientProvider__WEBPACK_IMPORTED_MODULE_1__.useQueryClient)();
   var errorResetBoundary = (0,_QueryErrorResetBoundary__WEBPACK_IMPORTED_MODULE_2__.useQueryErrorResetBoundary)();
-  var defaultedOptions = queryClient.defaultQueryObserverOptions(options); // Make sure results are optimistically set in fetching state before subscribing or updating options
+  var defaultedOptions = queryClient.defaultQueryObserverOptions(options); / Make sure results are optimistically set in fetching state before subscribing or updating options
 
-  defaultedOptions.optimisticResults = true; // Include callbacks in batch renders
+  defaultedOptions.optimisticResults = true; / Include callbacks in batch renders
 
   if (defaultedOptions.onError) {
     defaultedOptions.onError = _core_notifyManager__WEBPACK_IMPORTED_MODULE_3__.notifyManager.batchCalls(defaultedOptions.onError);
@@ -18535,12 +18535,12 @@ function useBaseQuery(options, Observer) {
   }
 
   if (defaultedOptions.suspense) {
-    // Always set stale time when using suspense to prevent
-    // fetching again when directly mounting after suspending
+    / Always set stale time when using suspense to prevent
+    / fetching again when directly mounting after suspending
     if (typeof defaultedOptions.staleTime !== 'number') {
       defaultedOptions.staleTime = 1000;
-    } // Set cache time to 1 if the option has been set to 0
-    // when using suspense to prevent infinite loop of fetches
+    } / Set cache time to 1 if the option has been set to 0
+    / when using suspense to prevent infinite loop of fetches
 
 
     if (defaultedOptions.cacheTime === 0) {
@@ -18549,7 +18549,7 @@ function useBaseQuery(options, Observer) {
   }
 
   if (defaultedOptions.suspense || defaultedOptions.useErrorBoundary) {
-    // Prevent retrying failed query if the error boundary has not been reset yet
+    / Prevent retrying failed query if the error boundary has not been reset yet
     if (!errorResetBoundary.isReset()) {
       defaultedOptions.retryOnMount = false;
     }
@@ -18570,8 +18570,8 @@ function useBaseQuery(options, Observer) {
           return x + 1;
         });
       }
-    })); // Update result to make sure we did not miss any query updates
-    // between creating the observer and subscribing to it.
+    })); / Update result to make sure we did not miss any query updates
+    / between creating the observer and subscribing to it.
 
     observer.updateResult();
     return function () {
@@ -18580,12 +18580,12 @@ function useBaseQuery(options, Observer) {
     };
   }, [errorResetBoundary, observer]);
   react__WEBPACK_IMPORTED_MODULE_0___default().useEffect(function () {
-    // Do not notify on updates because of changes in the options because
-    // these changes should already be reflected in the optimistic result.
+    / Do not notify on updates because of changes in the options because
+    / these changes should already be reflected in the optimistic result.
     observer.setOptions(defaultedOptions, {
       listeners: false
     });
-  }, [defaultedOptions, observer]); // Handle suspense
+  }, [defaultedOptions, observer]); / Handle suspense
 
   if (defaultedOptions.suspense && result.isLoading) {
     throw observer.fetchOptimistic(defaultedOptions).then(function (_ref) {
@@ -18597,12 +18597,12 @@ function useBaseQuery(options, Observer) {
       defaultedOptions.onError == null ? void 0 : defaultedOptions.onError(error);
       defaultedOptions.onSettled == null ? void 0 : defaultedOptions.onSettled(undefined, error);
     });
-  } // Handle error boundary
+  } / Handle error boundary
 
 
   if (result.isError && !errorResetBoundary.isReset() && !result.isFetching && (0,_utils__WEBPACK_IMPORTED_MODULE_4__.shouldThrowError)(defaultedOptions.suspense, defaultedOptions.useErrorBoundary, [result.error, observer.getCurrentQuery()])) {
     throw result.error;
-  } // Handle result property usage tracking
+  } / Handle result property usage tracking
 
 
   if (defaultedOptions.notifyOnChangeProps === 'tracked') {
@@ -18630,7 +18630,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _useBaseQuery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useBaseQuery */ "../node_modules/react-query/es/react/useBaseQuery.js");
 
 
- // HOOK
+ / HOOK
 
 function useInfiniteQuery(arg1, arg2, arg3) {
   var options = (0,_core_utils__WEBPACK_IMPORTED_MODULE_0__.parseQueryArgs)(arg1, arg2, arg3);
@@ -18780,7 +18780,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // HOOK
+ / HOOK
 
 function useMutation(arg1, arg2, arg3) {
   var mountedRef = react__WEBPACK_IMPORTED_MODULE_1___default().useRef(false);
@@ -18858,7 +18858,7 @@ function useQueries(queries) {
   var queryClient = (0,_QueryClientProvider__WEBPACK_IMPORTED_MODULE_1__.useQueryClient)();
   var defaultedQueries = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
     return queries.map(function (options) {
-      var defaultedOptions = queryClient.defaultQueryObserverOptions(options); // Make sure the results are already in fetching state before subscribing or updating options
+      var defaultedOptions = queryClient.defaultQueryObserverOptions(options); / Make sure the results are already in fetching state before subscribing or updating options
 
       defaultedOptions.optimisticResults = true;
       return defaultedOptions;
@@ -18886,8 +18886,8 @@ function useQueries(queries) {
     };
   }, [observer]);
   react__WEBPACK_IMPORTED_MODULE_0___default().useEffect(function () {
-    // Do not notify on updates because of changes in the options because
-    // these changes should already be reflected in the optimistic result.
+    / Do not notify on updates because of changes in the options because
+    / these changes should already be reflected in the optimistic result.
     observer.setQueries(defaultedQueries, {
       listeners: false
     });
@@ -18913,7 +18913,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _useBaseQuery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useBaseQuery */ "../node_modules/react-query/es/react/useBaseQuery.js");
 
 
- // HOOK
+ / HOOK
 
 function useQuery(arg1, arg2, arg3) {
   var parsedOptions = (0,_core_utils__WEBPACK_IMPORTED_MODULE_0__.parseQueryArgs)(arg1, arg2, arg3);
@@ -18934,13 +18934,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   shouldThrowError: () => (/* binding */ shouldThrowError)
 /* harmony export */ });
 function shouldThrowError(suspense, _useErrorBoundary, params) {
-  // Allow useErrorBoundary function to override throwing behavior on a per-error basis
+  / Allow useErrorBoundary function to override throwing behavior on a per-error basis
   if (typeof _useErrorBoundary === 'function') {
     return _useErrorBoundary.apply(void 0, params);
-  } // Allow useErrorBoundary to override suspense's throwing behavior
+  } / Allow useErrorBoundary to override suspense's throwing behavior
 
 
-  if (typeof _useErrorBoundary === 'boolean') return _useErrorBoundary; // If suspense is enabled default to throwing errors
+  if (typeof _useErrorBoundary === 'boolean') return _useErrorBoundary; / If suspense is enabled default to throwing errors
 
   return !!suspense;
 }
@@ -18979,7 +18979,7 @@ module.exports = function shallowEqual(objA, objB, compare, compareContext) {
 
   var bHasOwnProperty = Object.prototype.hasOwnProperty.bind(objB);
 
-  // Test for A's keys different from B.
+  / Test for A's keys different from B.
   for (var idx = 0; idx < keysA.length; idx++) {
     var key = keysA[idx];
 
@@ -19061,7 +19061,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _emotion_memoize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/memoize */ "../node_modules/styled-components/node_modules/@emotion/memoize/dist/emotion-memoize.esm.js");
 
 
-var reactPropsRegex = /^((children|dangerouslySetInnerHTML|key|ref|autoFocus|defaultValue|defaultChecked|innerHTML|suppressContentEditableWarning|suppressHydrationWarning|valueLink|abbr|accept|acceptCharset|accessKey|action|allow|allowUserMedia|allowPaymentRequest|allowFullScreen|allowTransparency|alt|async|autoComplete|autoPlay|capture|cellPadding|cellSpacing|challenge|charSet|checked|cite|classID|className|cols|colSpan|content|contentEditable|contextMenu|controls|controlsList|coords|crossOrigin|data|dateTime|decoding|default|defer|dir|disabled|disablePictureInPicture|disableRemotePlayback|download|draggable|encType|enterKeyHint|form|formAction|formEncType|formMethod|formNoValidate|formTarget|frameBorder|headers|height|hidden|high|href|hrefLang|htmlFor|httpEquiv|id|inputMode|integrity|is|keyParams|keyType|kind|label|lang|list|loading|loop|low|marginHeight|marginWidth|max|maxLength|media|mediaGroup|method|min|minLength|multiple|muted|name|nonce|noValidate|open|optimum|pattern|placeholder|playsInline|poster|preload|profile|radioGroup|readOnly|referrerPolicy|rel|required|reversed|role|rows|rowSpan|sandbox|scope|scoped|scrolling|seamless|selected|shape|size|sizes|slot|span|spellCheck|src|srcDoc|srcLang|srcSet|start|step|style|summary|tabIndex|target|title|translate|type|useMap|value|width|wmode|wrap|about|datatype|inlist|prefix|property|resource|typeof|vocab|autoCapitalize|autoCorrect|autoSave|color|incremental|fallback|inert|itemProp|itemScope|itemType|itemID|itemRef|on|option|results|security|unselectable|accentHeight|accumulate|additive|alignmentBaseline|allowReorder|alphabetic|amplitude|arabicForm|ascent|attributeName|attributeType|autoReverse|azimuth|baseFrequency|baselineShift|baseProfile|bbox|begin|bias|by|calcMode|capHeight|clip|clipPathUnits|clipPath|clipRule|colorInterpolation|colorInterpolationFilters|colorProfile|colorRendering|contentScriptType|contentStyleType|cursor|cx|cy|d|decelerate|descent|diffuseConstant|direction|display|divisor|dominantBaseline|dur|dx|dy|edgeMode|elevation|enableBackground|end|exponent|externalResourcesRequired|fill|fillOpacity|fillRule|filter|filterRes|filterUnits|floodColor|floodOpacity|focusable|fontFamily|fontSize|fontSizeAdjust|fontStretch|fontStyle|fontVariant|fontWeight|format|from|fr|fx|fy|g1|g2|glyphName|glyphOrientationHorizontal|glyphOrientationVertical|glyphRef|gradientTransform|gradientUnits|hanging|horizAdvX|horizOriginX|ideographic|imageRendering|in|in2|intercept|k|k1|k2|k3|k4|kernelMatrix|kernelUnitLength|kerning|keyPoints|keySplines|keyTimes|lengthAdjust|letterSpacing|lightingColor|limitingConeAngle|local|markerEnd|markerMid|markerStart|markerHeight|markerUnits|markerWidth|mask|maskContentUnits|maskUnits|mathematical|mode|numOctaves|offset|opacity|operator|order|orient|orientation|origin|overflow|overlinePosition|overlineThickness|panose1|paintOrder|pathLength|patternContentUnits|patternTransform|patternUnits|pointerEvents|points|pointsAtX|pointsAtY|pointsAtZ|preserveAlpha|preserveAspectRatio|primitiveUnits|r|radius|refX|refY|renderingIntent|repeatCount|repeatDur|requiredExtensions|requiredFeatures|restart|result|rotate|rx|ry|scale|seed|shapeRendering|slope|spacing|specularConstant|specularExponent|speed|spreadMethod|startOffset|stdDeviation|stemh|stemv|stitchTiles|stopColor|stopOpacity|strikethroughPosition|strikethroughThickness|string|stroke|strokeDasharray|strokeDashoffset|strokeLinecap|strokeLinejoin|strokeMiterlimit|strokeOpacity|strokeWidth|surfaceScale|systemLanguage|tableValues|targetX|targetY|textAnchor|textDecoration|textRendering|textLength|to|transform|u1|u2|underlinePosition|underlineThickness|unicode|unicodeBidi|unicodeRange|unitsPerEm|vAlphabetic|vHanging|vIdeographic|vMathematical|values|vectorEffect|version|vertAdvY|vertOriginX|vertOriginY|viewBox|viewTarget|visibility|widths|wordSpacing|writingMode|x|xHeight|x1|x2|xChannelSelector|xlinkActuate|xlinkArcrole|xlinkHref|xlinkRole|xlinkShow|xlinkTitle|xlinkType|xmlBase|xmlns|xmlnsXlink|xmlLang|xmlSpace|y|y1|y2|yChannelSelector|z|zoomAndPan|for|class|autofocus)|(([Dd][Aa][Tt][Aa]|[Aa][Rr][Ii][Aa]|x)-.*))$/; // https://esbench.com/bench/5bfee68a4cd7e6009ef61d23
+var reactPropsRegex = /^((children|dangerouslySetInnerHTML|key|ref|autoFocus|defaultValue|defaultChecked|innerHTML|suppressContentEditableWarning|suppressHydrationWarning|valueLink|abbr|accept|acceptCharset|accessKey|action|allow|allowUserMedia|allowPaymentRequest|allowFullScreen|allowTransparency|alt|async|autoComplete|autoPlay|capture|cellPadding|cellSpacing|challenge|charSet|checked|cite|classID|className|cols|colSpan|content|contentEditable|contextMenu|controls|controlsList|coords|crossOrigin|data|dateTime|decoding|default|defer|dir|disabled|disablePictureInPicture|disableRemotePlayback|download|draggable|encType|enterKeyHint|form|formAction|formEncType|formMethod|formNoValidate|formTarget|frameBorder|headers|height|hidden|high|href|hrefLang|htmlFor|httpEquiv|id|inputMode|integrity|is|keyParams|keyType|kind|label|lang|list|loading|loop|low|marginHeight|marginWidth|max|maxLength|media|mediaGroup|method|min|minLength|multiple|muted|name|nonce|noValidate|open|optimum|pattern|placeholder|playsInline|poster|preload|profile|radioGroup|readOnly|referrerPolicy|rel|required|reversed|role|rows|rowSpan|sandbox|scope|scoped|scrolling|seamless|selected|shape|size|sizes|slot|span|spellCheck|src|srcDoc|srcLang|srcSet|start|step|style|summary|tabIndex|target|title|translate|type|useMap|value|width|wmode|wrap|about|datatype|inlist|prefix|property|resource|typeof|vocab|autoCapitalize|autoCorrect|autoSave|color|incremental|fallback|inert|itemProp|itemScope|itemType|itemID|itemRef|on|option|results|security|unselectable|accentHeight|accumulate|additive|alignmentBaseline|allowReorder|alphabetic|amplitude|arabicForm|ascent|attributeName|attributeType|autoReverse|azimuth|baseFrequency|baselineShift|baseProfile|bbox|begin|bias|by|calcMode|capHeight|clip|clipPathUnits|clipPath|clipRule|colorInterpolation|colorInterpolationFilters|colorProfile|colorRendering|contentScriptType|contentStyleType|cursor|cx|cy|d|decelerate|descent|diffuseConstant|direction|display|divisor|dominantBaseline|dur|dx|dy|edgeMode|elevation|enableBackground|end|exponent|externalResourcesRequired|fill|fillOpacity|fillRule|filter|filterRes|filterUnits|floodColor|floodOpacity|focusable|fontFamily|fontSize|fontSizeAdjust|fontStretch|fontStyle|fontVariant|fontWeight|format|from|fr|fx|fy|g1|g2|glyphName|glyphOrientationHorizontal|glyphOrientationVertical|glyphRef|gradientTransform|gradientUnits|hanging|horizAdvX|horizOriginX|ideographic|imageRendering|in|in2|intercept|k|k1|k2|k3|k4|kernelMatrix|kernelUnitLength|kerning|keyPoints|keySplines|keyTimes|lengthAdjust|letterSpacing|lightingColor|limitingConeAngle|local|markerEnd|markerMid|markerStart|markerHeight|markerUnits|markerWidth|mask|maskContentUnits|maskUnits|mathematical|mode|numOctaves|offset|opacity|operator|order|orient|orientation|origin|overflow|overlinePosition|overlineThickness|panose1|paintOrder|pathLength|patternContentUnits|patternTransform|patternUnits|pointerEvents|points|pointsAtX|pointsAtY|pointsAtZ|preserveAlpha|preserveAspectRatio|primitiveUnits|r|radius|refX|refY|renderingIntent|repeatCount|repeatDur|requiredExtensions|requiredFeatures|restart|result|rotate|rx|ry|scale|seed|shapeRendering|slope|spacing|specularConstant|specularExponent|speed|spreadMethod|startOffset|stdDeviation|stemh|stemv|stitchTiles|stopColor|stopOpacity|strikethroughPosition|strikethroughThickness|string|stroke|strokeDasharray|strokeDashoffset|strokeLinecap|strokeLinejoin|strokeMiterlimit|strokeOpacity|strokeWidth|surfaceScale|systemLanguage|tableValues|targetX|targetY|textAnchor|textDecoration|textRendering|textLength|to|transform|u1|u2|underlinePosition|underlineThickness|unicode|unicodeBidi|unicodeRange|unitsPerEm|vAlphabetic|vHanging|vIdeographic|vMathematical|values|vectorEffect|version|vertAdvY|vertOriginX|vertOriginY|viewBox|viewTarget|visibility|widths|wordSpacing|writingMode|x|xHeight|x1|x2|xChannelSelector|xlinkActuate|xlinkArcrole|xlinkHref|xlinkRole|xlinkShow|xlinkTitle|xlinkType|xmlBase|xmlns|xmlnsXlink|xmlLang|xmlSpace|y|y1|y2|yChannelSelector|z|zoomAndPan|for|class|autofocus)|(([Dd][Aa][Tt][Aa]|[Aa][Rr][Ii][Aa]|x)-.*))$/; / https://esbench.com/bench/5bfee68a4cd7e6009ef61d23
 
 var isPropValid = /* #__PURE__ */(0,_emotion_memoize__WEBPACK_IMPORTED_MODULE_0__["default"])(function (prop) {
   return reactPropsRegex.test(prop) || prop.charCodeAt(0) === 111
@@ -19152,7 +19152,7 @@ var unitlessKeys = {
   zIndex: 1,
   zoom: 1,
   WebkitLineClamp: 1,
-  // SVG-related properties
+  / SVG-related properties
   fillOpacity: 1,
   floodOpacity: 1,
   stopOpacity: 1,
@@ -19211,9 +19211,9 @@ if (__DEV__) {
       console.error(message);
     }
     try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
+      / --- Welcome to debugging React ---
+      / This error was thrown as a convenience so that you can use this stack
+      / to find the callsite that caused this warning to fire.
       throw new Error(message);
     } catch (x) {}
   }
@@ -20316,13 +20316,13 @@ function prefixer (element, index, children, callback) {
 					if (element.length)
 						return (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.combine)(children = element.props, function (value) {
 							switch ((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.match)(value, callback = /(::plac\w+|:read-\w+)/)) {
-								// :read-(only|write)
+								/ :read-(only|write)
 								case ':read-only': case ':read-write':
 									(0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_4__.lift)((0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_4__.copy)(element, {props: [(0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /:(read-\w+)/, ':' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MOZ + '$1')]}))
 									;(0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_4__.lift)((0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_4__.copy)(element, {props: [value]}))
 									;(0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.assign)(element, {props: (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.filter)(children, callback)})
 									break
-								// :placeholder
+								/ :placeholder
 								case '::placeholder':
 									;(0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_4__.lift)((0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_4__.copy)(element, {props: [(0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /:(plac\w+)/, ':' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + 'input-$1')]}))
 									;(0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_4__.lift)((0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_4__.copy)(element, {props: [(0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /:(plac\w+)/, ':' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MOZ + '$1')]}))
@@ -20348,17 +20348,17 @@ function namespace (element) {
 			element.props = element.props.map(function (value) {
 				return (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.combine)((0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_4__.tokenize)(value), function (value, index, children) {
 					switch ((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.charat)(value, 0)) {
-						// \f
+						/ \f
 						case 12:
 							return (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.substr)(value, 1, (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.strlen)(value))
-						// \0 ( + > ~
+						/ \0 ( + > ~
 						case 0: case 40: case 43: case 62: case 126:
 							return value
-						// :
+						/ :
 						case 58:
 							if (children[++index] === 'global')
 								children[index] = '', children[++index] = '\f' + (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.substr)(children[index], index = 1, -1)
-						// \s
+						/ \s
 						case 32:
 							return index === 1 ? '' : value
 						default:
@@ -20440,26 +20440,26 @@ function parse (value, root, parent, rule, rules, rulesets, pseudo, points, decl
 
 	while (scanning)
 		switch (previous = character, character = (0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.next)()) {
-			// (
+			/ (
 			case 40:
 				if (previous != 108 && (0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.charat)(characters, length - 1) == 58) {
 					if ((0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.indexof)(characters += (0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.replace)((0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.delimit)(character), '&', '&\f'), '&\f', (0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.abs)(index ? points[index - 1] : 0)) != -1)
 						ampersand = -1
 					break
 				}
-			// " ' [
+			/ " ' [
 			case 34: case 39: case 91:
 				characters += (0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.delimit)(character)
 				break
-			// \t \n \r \s
+			/ \t \n \r \s
 			case 9: case 10: case 13: case 32:
 				characters += (0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.whitespace)(previous)
 				break
-			// \
+			/ \
 			case 92:
 				characters += (0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.escaping)((0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.caret)() - 1, 7)
 				continue
-			// /
+			/ /
 			case 47:
 				switch ((0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.peek)()) {
 					case 42: case 47:
@@ -20469,22 +20469,22 @@ function parse (value, root, parent, rule, rules, rulesets, pseudo, points, decl
 						characters += '/'
 				}
 				break
-			// {
+			/ {
 			case 123 * variable:
 				points[index++] = (0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.strlen)(characters) * ampersand
-			// } ; \0
+			/ } ; \0
 			case 125 * variable: case 59: case 0:
 				switch (character) {
-					// \0 }
+					/ \0 }
 					case 0: case 125: scanning = 0
-					// ;
+					/ ;
 					case 59 + offset: if (ampersand == -1) characters = (0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.replace)(characters, /\f/g, '')
 						if (property > 0 && ((0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.strlen)(characters) - length))
 							(0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.append)(property > 32 ? declaration(characters + ';', rule, parent, length - 1, declarations) : declaration((0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.replace)(characters, ' ', '') + ';', rule, parent, length - 2, declarations), declarations)
 						break
-					// @ ;
+					/ @ ;
 					case 59: characters += ';'
-					// { rule/at-rule
+					/ { rule/at-rule
 					default:
 						;(0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.append)(reference = ruleset(characters, root, parent, index, offset, rules, points, type, props = [], children = [], length, rulesets), rulesets)
 
@@ -20493,7 +20493,7 @@ function parse (value, root, parent, rule, rules, rulesets, pseudo, points, decl
 								parse(characters, root, reference, reference, props, rulesets, length, points, children)
 							else
 								switch (atrule === 99 && (0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.charat)(characters, 3) === 110 ? 100 : atrule) {
-									// d l m s
+									/ d l m s
 									case 100: case 108: case 109: case 115:
 										parse(value, reference, reference, rule && (0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.append)(ruleset(value, reference, reference, 0, 0, rules, points, type, rules, props = [], length, children), children), rules, children, length, points, rule ? props : children)
 										break
@@ -20504,7 +20504,7 @@ function parse (value, root, parent, rule, rules, rulesets, pseudo, points, decl
 
 				index = offset = property = 0, variable = ampersand = 1, type = characters = '', length = pseudo
 				break
-			// :
+			/ :
 			case 58:
 				length = 1 + (0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.strlen)(characters), property = previous
 			default:
@@ -20515,23 +20515,23 @@ function parse (value, root, parent, rule, rules, rulesets, pseudo, points, decl
 						continue
 
 				switch (characters += (0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.from)(character), character * variable) {
-					// &
+					/ &
 					case 38:
 						ampersand = offset > 0 ? 1 : (characters += '\f', -1)
 						break
-					// ,
+					/ ,
 					case 44:
 						points[index++] = ((0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.strlen)(characters) - 1) * ampersand, ampersand = 1
 						break
-					// @
+					/ @
 					case 64:
-						// -
+						/ -
 						if ((0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.peek)() === 45)
 							characters += (0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.delimit)((0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.next)())
 
 						atrule = (0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.peek)(), offset = length = (0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.strlen)(type = characters += (0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.identifier)((0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.caret)())), character++
 						break
-					// -
+					/ -
 					case 45:
 						if (previous === 45 && (0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.strlen)(characters) == 2)
 							variable = 0
@@ -20619,134 +20619,134 @@ __webpack_require__.r(__webpack_exports__);
  */
 function prefix (value, length, children) {
 	switch ((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.hash)(value, length)) {
-		// color-adjust
+		/ color-adjust
 		case 5103:
 			return _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + 'print-' + value + value
-		// animation, animation-(delay|direction|duration|fill-mode|iteration-count|name|play-state|timing-function)
+		/ animation, animation-(delay|direction|duration|fill-mode|iteration-count|name|play-state|timing-function)
 		case 5737: case 4201: case 3177: case 3433: case 1641: case 4457: case 2921:
-		// text-decoration, filter, clip-path, backface-visibility, column, box-decoration-break
+		/ text-decoration, filter, clip-path, backface-visibility, column, box-decoration-break
 		case 5572: case 6356: case 5844: case 3191: case 6645: case 3005:
-		// mask, mask-image, mask-(mode|clip|size), mask-(repeat|origin), mask-position, mask-composite,
+		/ mask, mask-image, mask-(mode|clip|size), mask-(repeat|origin), mask-position, mask-composite,
 		case 6391: case 5879: case 5623: case 6135: case 4599: case 4855:
-		// background-clip, columns, column-(count|fill|gap|rule|rule-color|rule-style|rule-width|span|width)
+		/ background-clip, columns, column-(count|fill|gap|rule|rule-color|rule-style|rule-width|span|width)
 		case 4215: case 6389: case 5109: case 5365: case 5621: case 3829:
 			return _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + value + value
-		// tab-size
+		/ tab-size
 		case 4789:
 			return _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MOZ + value + value
-		// appearance, user-select, transform, hyphens, text-size-adjust
+		/ appearance, user-select, transform, hyphens, text-size-adjust
 		case 5349: case 4246: case 4810: case 6968: case 2756:
 			return _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + value + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MOZ + value + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + value + value
-		// writing-mode
+		/ writing-mode
 		case 5936:
 			switch ((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.charat)(value, length + 11)) {
-				// vertical-l(r)
+				/ vertical-l(r)
 				case 114:
 					return _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + value + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /[svh]\w+-[tblr]{2}/, 'tb') + value
-				// vertical-r(l)
+				/ vertical-r(l)
 				case 108:
 					return _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + value + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /[svh]\w+-[tblr]{2}/, 'tb-rl') + value
-				// horizontal(-)tb
+				/ horizontal(-)tb
 				case 45:
 					return _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + value + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /[svh]\w+-[tblr]{2}/, 'lr') + value
-				// default: fallthrough to below
+				/ default: fallthrough to below
 			}
-		// flex, flex-direction, scroll-snap-type, writing-mode
+		/ flex, flex-direction, scroll-snap-type, writing-mode
 		case 6828: case 4268: case 2903:
 			return _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + value + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + value + value
-		// order
+		/ order
 		case 6165:
 			return _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + value + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + 'flex-' + value + value
-		// align-items
+		/ align-items
 		case 5187:
 			return _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + value + (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /(\w+).+(:[^]+)/, _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + 'box-$1$2' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + 'flex-$1$2') + value
-		// align-self
+		/ align-self
 		case 5443:
 			return _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + value + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + 'flex-item-' + (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /flex-|-self/g, '') + (!(0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.match)(value, /flex-|baseline/) ? _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + 'grid-row-' + (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /flex-|-self/g, '') : '') + value
-		// align-content
+		/ align-content
 		case 4675:
 			return _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + value + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + 'flex-line-pack' + (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /align-content|flex-|-self/g, '') + value
-		// flex-shrink
+		/ flex-shrink
 		case 5548:
 			return _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + value + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, 'shrink', 'negative') + value
-		// flex-basis
+		/ flex-basis
 		case 5292:
 			return _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + value + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, 'basis', 'preferred-size') + value
-		// flex-grow
+		/ flex-grow
 		case 6060:
 			return _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + 'box-' + (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, '-grow', '') + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + value + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, 'grow', 'positive') + value
-		// transition
+		/ transition
 		case 4554:
 			return _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /([^-])(transform)/g, '$1' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + '$2') + value
-		// cursor
+		/ cursor
 		case 6187:
 			return (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /(zoom-|grab)/, _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + '$1'), /(image-set)/, _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + '$1'), value, '') + value
-		// background, background-image
+		/ background, background-image
 		case 5495: case 3959:
 			return (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /(image-set\([^]*)/, _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + '$1' + '$`$1')
-		// justify-content
+		/ justify-content
 		case 4968:
 			return (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /(.+:)(flex-)?(.*)/, _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + 'box-pack:$3' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + 'flex-pack:$3'), /s.+-b[^;]+/, 'justify') + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + value + value
-		// justify-self
+		/ justify-self
 		case 4200:
 			if (!(0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.match)(value, /flex-|baseline/)) return _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + 'grid-column-align' + (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.substr)(value, length) + value
 			break
-		// grid-template-(columns|rows)
+		/ grid-template-(columns|rows)
 		case 2592: case 3360:
 			return _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, 'template-', '') + value
-		// grid-(row|column)-start
+		/ grid-(row|column)-start
 		case 4384: case 3616:
 			if (children && children.some(function (element, index) { return length = index, (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.match)(element.props, /grid-\w+-end/) })) {
 				return ~(0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.indexof)(value + (children = children[length].value), 'span', 0) ? value : (_Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, '-start', '') + value + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + 'grid-row-span:' + (~(0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.indexof)(children, 'span', 0) ? (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.match)(children, /\d+/) : +(0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.match)(children, /\d+/) - +(0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.match)(value, /\d+/)) + ';')
 			}
 			return _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, '-start', '') + value
-		// grid-(row|column)-end
+		/ grid-(row|column)-end
 		case 4896: case 4128:
 			return (children && children.some(function (element) { return (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.match)(element.props, /grid-\w+-start/) })) ? value : _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, '-end', '-span'), 'span ', '') + value
-		// (margin|padding)-inline-(start|end)
+		/ (margin|padding)-inline-(start|end)
 		case 4095: case 3583: case 4068: case 2532:
 			return (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /(.+)-inline(.+)/, _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + '$1$2') + value
-		// (min|max)?(width|height|inline-size|block-size)
+		/ (min|max)?(width|height|inline-size|block-size)
 		case 8116: case 7059: case 5753: case 5535:
 		case 5445: case 5701: case 4933: case 4677:
 		case 5533: case 5789: case 5021: case 4765:
-			// stretch, max-content, min-content, fill-available
+			/ stretch, max-content, min-content, fill-available
 			if ((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.strlen)(value) - 1 - length > 6)
 				switch ((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.charat)(value, length + 1)) {
-					// (m)ax-content, (m)in-content
+					/ (m)ax-content, (m)in-content
 					case 109:
-						// -
+						/ -
 						if ((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.charat)(value, length + 4) !== 45)
 							break
-					// (f)ill-available, (f)it-content
+					/ (f)ill-available, (f)it-content
 					case 102:
 						return (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /(.+:)(.+)-([^]+)/, '$1' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + '$2-$3' + '$1' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MOZ + ((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.charat)(value, length + 3) == 108 ? '$3' : '$2-$3')) + value
-					// (s)tretch
+					/ (s)tretch
 					case 115:
 						return ~(0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.indexof)(value, 'stretch', 0) ? prefix((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, 'stretch', 'fill-available'), length, children) + value : value
 				}
 			break
-		// grid-(column|row)
+		/ grid-(column|row)
 		case 5152: case 5920:
 			return (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /(.+?):(\d+)(\s*\/\s*(span)?\s*(\d+))?(.*)/, function (_, a, b, c, d, e, f) { return (_Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + a + ':' + b + f) + (c ? (_Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + a + '-span:' + (d ? e : +e - +b)) + f : '') + value })
-		// position: sticky
+		/ position: sticky
 		case 4949:
-			// stick(y)?
+			/ stick(y)?
 			if ((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.charat)(value, length + 6) === 121)
 				return (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, ':', ':' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT) + value
 			break
-		// display: (flex|inline-flex|grid|inline-grid)
+		/ display: (flex|inline-flex|grid|inline-grid)
 		case 6444:
 			switch ((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.charat)(value, (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.charat)(value, 14) === 45 ? 18 : 11)) {
-				// (inline-)?fle(x)
+				/ (inline-)?fle(x)
 				case 120:
 					return (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /(.+:)([^;\s!]+)(;|(\s+)?!.+)?/, '$1' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + ((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.charat)(value, 14) === 45 ? 'inline-' : '') + 'box$3' + '$1' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + '$2$3' + '$1' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + '$2box$3') + value
-				// (inline-)?gri(d)
+				/ (inline-)?gri(d)
 				case 100:
 					return (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, ':', ':' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS) + value
 			}
 			break
-		// scroll-margin, scroll-margin-(top|right|bottom|left)
+		/ scroll-margin, scroll-margin-(top|right|bottom|left)
 		case 5719: case 2647: case 2135: case 3927: case 2391:
 			return (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, 'scroll-', 'scroll-snap-') + value
 	}
@@ -20949,21 +20949,21 @@ function slice (begin, end) {
  */
 function token (type) {
 	switch (type) {
-		// \0 \t \n \r \s whitespace token
+		/ \0 \t \n \r \s whitespace token
 		case 0: case 9: case 10: case 13: case 32:
 			return 5
-		// ! + , / > @ ~ isolate token
+		/ ! + , / > @ ~ isolate token
 		case 33: case 43: case 44: case 47: case 62: case 64: case 126:
-		// ; { } breakpoint token
+		/ ; { } breakpoint token
 		case 59: case 123: case 125:
 			return 4
-		// : accompanied token
+		/ : accompanied token
 		case 58:
 			return 3
-		// " ' ( [ opening delimit token
+		/ " ' ( [ opening delimit token
 		case 34: case 39: case 40: case 91:
 			return 2
-		// ) ] closing delimit token
+		/ ) ] closing delimit token
 		case 41: case 93:
 			return 1
 	}
@@ -21041,7 +21041,7 @@ function tokenizer (children) {
  */
 function escaping (index, count) {
 	while (--count && next())
-		// not 0-9 A-F a-f
+		/ not 0-9 A-F a-f
 		if (character < 48 || character > 102 || (character > 57 && character < 65) || (character > 70 && character < 97))
 			break
 
@@ -21055,20 +21055,20 @@ function escaping (index, count) {
 function delimiter (type) {
 	while (next())
 		switch (character) {
-			// ] ) " '
+			/ ] ) " '
 			case type:
 				return position
-			// " '
+			/ " '
 			case 34: case 39:
 				if (type !== 34 && type !== 39)
 					delimiter(character)
 				break
-			// (
+			/ (
 			case 40:
 				if (type === 41)
 					delimiter(type)
 				break
-			// \
+			/ \
 			case 92:
 				next()
 				break
@@ -21084,10 +21084,10 @@ function delimiter (type) {
  */
 function commenter (type, index) {
 	while (next())
-		// //
+		/ /
 		if (type + character === 47 + 10)
 			break
-		// /*
+		/ /*
 		else if (type + character === 42 + 42 && peek() === 47)
 			break
 
@@ -21680,37 +21680,37 @@ function __disposeResources(env) {
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
-/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	/ expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = __webpack_modules__;
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -21722,7 +21722,7 @@ function __disposeResources(env) {
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -21735,8 +21735,8 @@ function __disposeResources(env) {
 /******/ 	/* webpack/runtime/ensure chunk */
 /******/ 	(() => {
 /******/ 		__webpack_require__.f = {};
-/******/ 		// This file contains only the entry chunk.
-/******/ 		// The chunk loading function for additional chunks
+/******/ 		/ This file contains only the entry chunk.
+/******/ 		/ The chunk loading function for additional chunks
 /******/ 		__webpack_require__.e = (chunkId) => {
 /******/ 			return Promise.all(Object.keys(__webpack_require__.f).reduce((promises, key) => {
 /******/ 				__webpack_require__.f[key](chunkId, promises);
@@ -21747,13 +21747,13 @@ function __disposeResources(env) {
 /******/ 	
 /******/ 	/* webpack/runtime/get javascript chunk filename */
 /******/ 	(() => {
-/******/ 		// This function allow to reference async chunks
+/******/ 		/ This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
-/******/ 			// return url for filenames not based on template
+/******/ 			/ return url for filenames not based on template
 /******/ 			if (chunkId === "vendors-node_modules_react-query_devtools_index_js") return "533dfce075cc2d9f28bf.bundle.js";
 /******/ 			if (chunkId === "kit-library") return "" + chunkId + ".f3e637c5acf9b98d8334.bundle.js";
 /******/ 			if (chunkId === "onboarding") return "" + chunkId + ".7c597804d183da3658ed.bundle.js";
-/******/ 			// return url for filenames based on template
+/******/ 			/ return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
 /******/ 	})();
@@ -21779,7 +21779,7 @@ function __disposeResources(env) {
 /******/ 	(() => {
 /******/ 		var inProgress = {};
 /******/ 		var dataWebpackPrefix = "elementor:";
-/******/ 		// loadScript function to load a script via script tag
+/******/ 		/ loadScript function to load a script via script tag
 /******/ 		__webpack_require__.l = (url, done, key, chunkId) => {
 /******/ 			if(inProgress[url]) { inProgress[url].push(done); return; }
 /******/ 			var script, needAttach;
@@ -21805,7 +21805,7 @@ function __disposeResources(env) {
 /******/ 			}
 /******/ 			inProgress[url] = [done];
 /******/ 			var onScriptComplete = (prev, event) => {
-/******/ 				// avoid mem leaks in IE.
+/******/ 				/ avoid mem leaks in IE.
 /******/ 				script.onerror = script.onload = null;
 /******/ 				clearTimeout(timeout);
 /******/ 				var doneFns = inProgress[url];
@@ -21823,7 +21823,7 @@ function __disposeResources(env) {
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -21848,8 +21848,8 @@ function __disposeResources(env) {
 /******/ 				}
 /******/ 			}
 /******/ 		}
-/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
-/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		/ When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		/ or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
 /******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
 /******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
 /******/ 		__webpack_require__.p = scriptUrl;
@@ -21857,32 +21857,32 @@ function __disposeResources(env) {
 /******/ 	
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	(() => {
-/******/ 		// no baseURI
+/******/ 		/ no baseURI
 /******/ 		
-/******/ 		// object to store loaded and loading chunks
-/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		/ object to store loaded and loading chunks
+/******/ 		/ undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		/ [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"app": 0
 /******/ 		};
 /******/ 		
 /******/ 		__webpack_require__.f.j = (chunkId, promises) => {
-/******/ 				// JSONP chunk loading for javascript
+/******/ 				/ JSONP chunk loading for javascript
 /******/ 				var installedChunkData = __webpack_require__.o(installedChunks, chunkId) ? installedChunks[chunkId] : undefined;
-/******/ 				if(installedChunkData !== 0) { // 0 means "already installed".
+/******/ 				if(installedChunkData !== 0) { / 0 means "already installed".
 /******/ 		
-/******/ 					// a Promise means "currently loading".
+/******/ 					/ a Promise means "currently loading".
 /******/ 					if(installedChunkData) {
 /******/ 						promises.push(installedChunkData[2]);
 /******/ 					} else {
-/******/ 						if(true) { // all chunks have JS
-/******/ 							// setup Promise in chunk cache
+/******/ 						if(true) { / all chunks have JS
+/******/ 							/ setup Promise in chunk cache
 /******/ 							var promise = new Promise((resolve, reject) => (installedChunkData = installedChunks[chunkId] = [resolve, reject]));
 /******/ 							promises.push(installedChunkData[2] = promise);
 /******/ 		
-/******/ 							// start chunk loading
+/******/ 							/ start chunk loading
 /******/ 							var url = __webpack_require__.p + __webpack_require__.u(chunkId);
-/******/ 							// create error before stack unwound to get useful stacktrace later
+/******/ 							/ create error before stack unwound to get useful stacktrace later
 /******/ 							var error = new Error();
 /******/ 							var loadingEnded = (event) => {
 /******/ 								if(__webpack_require__.o(installedChunks, chunkId)) {
@@ -21905,21 +21905,21 @@ function __disposeResources(env) {
 /******/ 				}
 /******/ 		};
 /******/ 		
-/******/ 		// no prefetching
+/******/ 		/ no prefetching
 /******/ 		
-/******/ 		// no preloaded
+/******/ 		/ no preloaded
 /******/ 		
-/******/ 		// no HMR
+/******/ 		/ no HMR
 /******/ 		
-/******/ 		// no HMR manifest
+/******/ 		/ no HMR manifest
 /******/ 		
-/******/ 		// no on chunks loaded
+/******/ 		/ no on chunks loaded
 /******/ 		
-/******/ 		// install a JSONP callback for chunk loading
+/******/ 		/ install a JSONP callback for chunk loading
 /******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
 /******/ 			var [chunkIds, moreModules, runtime] = data;
-/******/ 			// add "moreModules" to the modules object,
-/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			/ add "moreModules" to the modules object,
+/******/ 			/ then flag all "chunkIds" as loaded and fire callback
 /******/ 			var moduleId, chunkId, i = 0;
 /******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
 /******/ 				for(moduleId in moreModules) {

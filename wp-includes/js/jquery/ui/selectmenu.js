@@ -23,7 +23,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"./menu",
@@ -37,7 +37,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -63,7 +63,7 @@ return $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 		},
 		width: false,
 
-		// Callbacks
+		/ Callbacks
 		change: null,
 		close: null,
 		focus: null,
@@ -95,7 +95,7 @@ return $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 				this.element[ 0 ].selectedIndex
 			);
 
-		// Associate existing label with the new button
+		/ Associate existing label with the new button
 		this.labels = this.element.labels().attr( "for", this.ids.button );
 		this._on( this.labels, {
 			click: function( event ) {
@@ -104,10 +104,10 @@ return $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 			}
 		} );
 
-		// Hide original select element
+		/ Hide original select element
 		this.element.hide();
 
-		// Create button
+		/ Create button
 		this.button = $( "<span>", {
 			tabindex: this.options.disabled ? -1 : 0,
 			id: this.ids.button,
@@ -135,8 +135,8 @@ return $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 		this._on( this.button, this._buttonEvents );
 		this.button.one( "focusin", function() {
 
-			// Delay rendering the menu items until the button receives focus.
-			// The menu may have already been rendered via a programmatic open.
+			/ Delay rendering the menu items until the button receives focus.
+			/ The menu may have already been rendered via a programmatic open.
 			if ( !that._rendered ) {
 				that._refreshMenu();
 			}
@@ -146,19 +146,19 @@ return $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 	_drawMenu: function() {
 		var that = this;
 
-		// Create menu
+		/ Create menu
 		this.menu = $( "<ul>", {
 			"aria-hidden": "true",
 			"aria-labelledby": this.ids.button,
 			id: this.ids.menu
 		} );
 
-		// Wrap menu
+		/ Wrap menu
 		this.menuWrap = $( "<div>" ).append( this.menu );
 		this._addClass( this.menuWrap, "ui-selectmenu-menu", "ui-front" );
 		this.menuWrap.appendTo( this._appendTo() );
 
-		// Initialize menu widget
+		/ Initialize menu widget
 		this.menuInstance = this.menu
 			.menu( {
 				classes: {
@@ -168,9 +168,9 @@ return $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 				select: function( event, ui ) {
 					event.preventDefault();
 
-					// Support: IE8
-					// If the item was selected via a click, the text selection
-					// will be destroyed in IE
+					/ Support: IE8
+					/ If the item was selected via a click, the text selection
+					/ will be destroyed in IE
 					that._setSelection();
 
 					that._select( ui.item.data( "ui-selectmenu-item" ), event );
@@ -178,7 +178,7 @@ return $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 				focus: function( event, ui ) {
 					var item = ui.item.data( "ui-selectmenu-item" );
 
-					// Prevent inital focus from firing and check if its a newly focused item
+					/ Prevent inital focus from firing and check if its a newly focused item
 					if ( that.focusIndex != null && item.index !== that.focusIndex ) {
 						that._trigger( "focus", event, { item: item } );
 						if ( !that.isOpen ) {
@@ -193,15 +193,15 @@ return $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 			} )
 			.menu( "instance" );
 
-		// Don't close the menu on mouseleave
+		/ Don't close the menu on mouseleave
 		this.menuInstance._off( this.menu, "mouseleave" );
 
-		// Cancel the menu's collapseAll on document click
+		/ Cancel the menu's collapseAll on document click
 		this.menuInstance._closeOnDocumentClick = function() {
 			return false;
 		};
 
-		// Selects often contain empty items, but never contain dividers
+		/ Selects often contain empty items, but never contain dividers
 		this.menuInstance._isDivider = function() {
 			return false;
 		};
@@ -212,7 +212,7 @@ return $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 		this.buttonItem.replaceWith(
 			this.buttonItem = this._renderButtonItem(
 
-				// Fall back to an empty object in case there are no options
+				/ Fall back to an empty object in case there are no options
 				this._getSelectedItem().data( "ui-selectmenu-item" ) || {}
 			)
 		);
@@ -243,11 +243,11 @@ return $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 
 		item = this._getSelectedItem();
 
-		// Update the menu to have the correct item focused
+		/ Update the menu to have the correct item focused
 		this.menuInstance.focus( null, item );
 		this._setAria( item.data( "ui-selectmenu-item" ) );
 
-		// Set disabled state
+		/ Set disabled state
 		this._setOption( "disabled", this.element.prop( "disabled" ) );
 	},
 
@@ -256,17 +256,17 @@ return $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 			return;
 		}
 
-		// If this is the first time the menu is being opened, render the items
+		/ If this is the first time the menu is being opened, render the items
 		if ( !this._rendered ) {
 			this._refreshMenu();
 		} else {
 
-			// Menu clears focus on close, reset focus to selected item
+			/ Menu clears focus on close, reset focus to selected item
 			this._removeClass( this.menu.find( ".ui-state-active" ), null, "ui-state-active" );
 			this.menuInstance.focus( null, this._getSelectedItem() );
 		}
 
-		// If there are no options, don't open the menu
+		/ If there are no options, don't open the menu
 		if ( !this.menuItems.length ) {
 			return;
 		}
@@ -414,14 +414,14 @@ return $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 			selection.removeAllRanges();
 			selection.addRange( this.range );
 
-		// Support: IE8
+		/ Support: IE8
 		} else {
 			this.range.select();
 		}
 
-		// Support: IE
-		// Setting the text selection kills the button focus in IE, but
-		// restoring the focus doesn't kill the selection.
+		/ Support: IE
+		/ Setting the text selection kills the button focus in IE, but
+		/ restoring the focus doesn't kill the selection.
 		this.button.trigger( "focus" );
 	},
 
@@ -440,7 +440,7 @@ return $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 
 	_buttonEvents: {
 
-		// Prevent text selection from being reset when interacting with the selectmenu (#10144)
+		/ Prevent text selection from being reset when interacting with the selectmenu (#10144)
 		mousedown: function() {
 			var selection;
 
@@ -450,7 +450,7 @@ return $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 					this.range = selection.getRangeAt( 0 );
 				}
 
-			// Support: IE8
+			/ Support: IE8
 			} else {
 				this.range = document.selection.createRange();
 			}
@@ -530,7 +530,7 @@ return $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 	_select: function( item, event ) {
 		var oldIndex = this.element[ 0 ].selectedIndex;
 
-		// Change native select element
+		/ Change native select element
 		this.element[ 0 ].selectedIndex = item.index;
 		this.buttonItem.replaceWith( this.buttonItem = this._renderButtonItem( item ) );
 		this._setAria( item );
@@ -610,9 +610,9 @@ return $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 	_toggleAttr: function() {
 		this.button.attr( "aria-expanded", this.isOpen );
 
-		// We can't use two _toggleClass() calls here, because we need to make sure
-		// we always remove classes first and add them second, otherwise if both classes have the
-		// same theme class, it will be removed after we add it.
+		/ We can't use two _toggleClass() calls here, because we need to make sure
+		/ we always remove classes first and add them second, otherwise if both classes have the
+		/ same theme class, it will be removed after we add it.
 		this._removeClass( this.button, "ui-selectmenu-button-" +
 			( this.isOpen ? "closed" : "open" ) )
 			._addClass( this.button, "ui-selectmenu-button-" +
@@ -625,13 +625,13 @@ return $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 	_resizeButton: function() {
 		var width = this.options.width;
 
-		// For `width: false`, just remove inline style and stop
+		/ For `width: false`, just remove inline style and stop
 		if ( width === false ) {
 			this.button.css( "width", "" );
 			return;
 		}
 
-		// For `width: null`, match the width of the original element
+		/ For `width: null`, match the width of the original element
 		if ( width === null ) {
 			width = this.element.show().outerWidth();
 			this.element.hide();
@@ -644,9 +644,9 @@ return $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 		this.menu.outerWidth( Math.max(
 			this.button.outerWidth(),
 
-			// Support: IE10
-			// IE10 wraps long text (possibly a rounding bug)
-			// so we add 1px to avoid the wrapping
+			/ Support: IE10
+			/ IE10 wraps long text (possibly a rounding bug)
+			/ so we add 1px to avoid the wrapping
 			this.menu.width( "" ).outerWidth() + 1
 		) );
 	},

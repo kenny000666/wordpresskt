@@ -53,8 +53,8 @@
 			var data = this.get('header'),
 				curr = api.HeaderTool.currentHeader.get('header').attachment_id;
 
-			// If the image we're removing is also the current header,
-			// unset the latter.
+			/ If the image we're removing is also the current header,
+			/ unset the latter.
 			if (curr && data.attachment_id === curr) {
 				api.HeaderTool.currentHeader.trigger('hide');
 			}
@@ -142,27 +142,27 @@
 	api.HeaderTool.ChoiceList = Backbone.Collection.extend({
 		model: api.HeaderTool.ImageModel,
 
-		// Ordered from most recently used to least.
+		/ Ordered from most recently used to least.
 		comparator: function(model) {
 			return -model.get('header').timestamp;
 		},
 
 		initialize: function() {
-			var current = api.HeaderTool.currentHeader.get('choice').replace(/^https?:\/\//, ''),
+			var current = api.HeaderTool.currentHeader.get('choice').replace(/^https?:\/\/, ''),
 				isRandom = this.isRandomChoice(api.get().header_image);
 
-			// Overridable by an extending class.
+			/ Overridable by an extending class.
 			if (!this.type) {
 				this.type = 'uploaded';
 			}
 
-			// Overridable by an extending class.
+			/ Overridable by an extending class.
 			if (typeof this.data === 'undefined') {
 				this.data = _wpCustomizeHeader.uploads;
 			}
 
 			if (isRandom) {
-				// So that when adding data we don't hide regular images.
+				/ So that when adding data we don't hide regular images.
 				current = api.get().header_image;
 			}
 
@@ -183,7 +183,7 @@
 				this.add({
 					header: elt,
 					choice: elt.url.split('/').pop(),
-					selected: current === elt.url.replace(/^https?:\/\//, '')
+					selected: current === elt.url.replace(/^https?:\/\/, '')
 				}, { silent: true });
 			}, this);
 
@@ -196,7 +196,7 @@
 			var newID = model.get( 'header' ).attachment_id || false,
 			 	oldCrop;
 
-			// Bail early if we don't have a new attachment ID.
+			/ Bail early if we don't have a new attachment ID.
 			if ( ! newID ) {
 				return;
 			}
@@ -205,7 +205,7 @@
 				return ( item.cid !== model.cid && item.get( 'header' ).attachment_id === newID );
 			} );
 
-			// If we found an old crop, remove it from the collection.
+			/ If we found an old crop, remove it from the collection.
 			if ( oldCrop ) {
 				this.remove( oldCrop );
 			}

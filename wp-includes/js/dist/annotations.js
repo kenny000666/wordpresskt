@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -23,7 +23,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -62,11 +62,11 @@ __webpack_require__.d(actions_namespaceObject, {
   __experimentalUpdateAnnotationRange: () => (__experimentalUpdateAnnotationRange)
 });
 
-;// external ["wp","richText"]
+;/ external ["wp","richText"]
 const external_wp_richText_namespaceObject = window["wp"]["richText"];
-;// external ["wp","i18n"]
+;/ external ["wp","i18n"]
 const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
-;// ./node_modules/@wordpress/annotations/build-module/store/constants.js
+;/ ./node_modules/@wordpress/annotations/build-module/store/constants.js
 /**
  * The identifier for the data store.
  *
@@ -74,7 +74,7 @@ const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
  */
 const STORE_NAME = 'core/annotations';
 
-;// ./node_modules/@wordpress/annotations/build-module/format/annotation.js
+;/ ./node_modules/@wordpress/annotations/build-module/format/annotation.js
 /**
  * WordPress dependencies
  */
@@ -151,9 +151,9 @@ function retrieveAnnotationPositions(formats) {
         };
       }
 
-      // Annotations refer to positions between characters.
-      // Formats refer to the character themselves.
-      // So we need to adjust for that here.
+      / Annotations refer to positions between characters.
+      / Formats refer to the character themselves.
+      / So we need to adjust for that here.
       positions[id].end = i + 1;
     });
   });
@@ -175,10 +175,10 @@ function updateAnnotationsWithPositions(annotations, positions, {
 }) {
   annotations.forEach(currentAnnotation => {
     const position = positions[currentAnnotation.id];
-    // If we cannot find an annotation, delete it.
+    / If we cannot find an annotation, delete it.
     if (!position) {
-      // Apparently the annotation has been removed, so remove it from the state:
-      // Remove...
+      / Apparently the annotation has been removed, so remove it from the state:
+      / Remove...
       removeAnnotation(currentAnnotation.id);
       return;
     }
@@ -248,7 +248,7 @@ const annotation = {
   }
 };
 
-;// ./node_modules/@wordpress/annotations/build-module/format/index.js
+;/ ./node_modules/@wordpress/annotations/build-module/format/index.js
 /**
  * WordPress dependencies
  */
@@ -264,11 +264,11 @@ const {
 } = annotation;
 (0,external_wp_richText_namespaceObject.registerFormatType)(format_name, settings);
 
-;// external ["wp","hooks"]
+;/ external ["wp","hooks"]
 const external_wp_hooks_namespaceObject = window["wp"]["hooks"];
-;// external ["wp","data"]
+;/ external ["wp","data"]
 const external_wp_data_namespaceObject = window["wp"]["data"];
-;// ./node_modules/@wordpress/annotations/build-module/block/index.js
+;/ ./node_modules/@wordpress/annotations/build-module/block/index.js
 /**
  * WordPress dependencies
  */
@@ -300,7 +300,7 @@ const addAnnotationClassName = OriginalComponent => {
 };
 (0,external_wp_hooks_namespaceObject.addFilter)('editor.BlockListBlock', 'core/annotations', addAnnotationClassName);
 
-;// ./node_modules/@wordpress/annotations/build-module/store/reducer.js
+;/ ./node_modules/@wordpress/annotations/build-module/store/reducer.js
 /**
  * Filters an array based on the predicate, but keeps the reference the same if
  * the array hasn't changed.
@@ -402,7 +402,7 @@ function annotations(state = {}, action) {
 }
 /* harmony default export */ const reducer = (annotations);
 
-;// ./node_modules/@wordpress/annotations/build-module/store/selectors.js
+;/ ./node_modules/@wordpress/annotations/build-module/store/selectors.js
 /**
  * WordPress dependencies
  */
@@ -482,21 +482,21 @@ function __experimentalGetAnnotations(state) {
   return Object.values(state).flat();
 }
 
-;// ./node_modules/@wordpress/annotations/node_modules/uuid/dist/esm-browser/native.js
+;/ ./node_modules/@wordpress/annotations/node_modules/uuid/dist/esm-browser/native.js
 const randomUUID = typeof crypto !== 'undefined' && crypto.randomUUID && crypto.randomUUID.bind(crypto);
 /* harmony default export */ const esm_browser_native = ({
   randomUUID
 });
-;// ./node_modules/@wordpress/annotations/node_modules/uuid/dist/esm-browser/rng.js
+;/ ./node_modules/@wordpress/annotations/node_modules/uuid/dist/esm-browser/rng.js
 // Unique ID creation requires a high quality random # generator. In the browser we therefore
 // require the crypto API and do not support built-in fallback to lower quality random number
 // generators (like Math.random()).
 let getRandomValues;
 const rnds8 = new Uint8Array(16);
 function rng() {
-  // lazy load so that environments that need to polyfill have a chance to do so
+  / lazy load so that environments that need to polyfill have a chance to do so
   if (!getRandomValues) {
-    // getRandomValues needs to be invoked in a context where "this" is a Crypto implementation.
+    / getRandomValues needs to be invoked in a context where "this" is a Crypto implementation.
     getRandomValues = typeof crypto !== 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto);
 
     if (!getRandomValues) {
@@ -506,7 +506,7 @@ function rng() {
 
   return getRandomValues(rnds8);
 }
-;// ./node_modules/@wordpress/annotations/node_modules/uuid/dist/esm-browser/stringify.js
+;/ ./node_modules/@wordpress/annotations/node_modules/uuid/dist/esm-browser/stringify.js
 
 /**
  * Convert array of 16 byte values to UUID string format of the form:
@@ -520,17 +520,17 @@ for (let i = 0; i < 256; ++i) {
 }
 
 function unsafeStringify(arr, offset = 0) {
-  // Note: Be careful editing this code!  It's been tuned for performance
-  // and works in ways you may not expect. See https://github.com/uuidjs/uuid/pull/434
+  / Note: Be careful editing this code!  It's been tuned for performance
+  / and works in ways you may not expect. See https://github.com/uuidjs/uuid/pull/434
   return byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + '-' + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + '-' + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + '-' + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + '-' + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]];
 }
 
 function stringify(arr, offset = 0) {
-  const uuid = unsafeStringify(arr, offset); // Consistency check for valid UUID.  If this throws, it's likely due to one
-  // of the following:
-  // - One or more input array values don't map to a hex octet (leading to
-  // "undefined" in the uuid)
-  // - Invalid input values for the RFC `version` or `variant` fields
+  const uuid = unsafeStringify(arr, offset); / Consistency check for valid UUID.  If this throws, it's likely due to one
+  / of the following:
+  / - One or more input array values don't map to a hex octet (leading to
+  / "undefined" in the uuid)
+  / - Invalid input values for the RFC `version` or `variant` fields
 
   if (!validate(uuid)) {
     throw TypeError('Stringified UUID is invalid');
@@ -540,7 +540,7 @@ function stringify(arr, offset = 0) {
 }
 
 /* harmony default export */ const esm_browser_stringify = ((/* unused pure expression or super */ null && (stringify)));
-;// ./node_modules/@wordpress/annotations/node_modules/uuid/dist/esm-browser/v4.js
+;/ ./node_modules/@wordpress/annotations/node_modules/uuid/dist/esm-browser/v4.js
 
 
 
@@ -551,10 +551,10 @@ function v4(options, buf, offset) {
   }
 
   options = options || {};
-  const rnds = options.random || (options.rng || rng)(); // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+  const rnds = options.random || (options.rng || rng)(); / Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
 
   rnds[6] = rnds[6] & 0x0f | 0x40;
-  rnds[8] = rnds[8] & 0x3f | 0x80; // Copy bytes to buffer, if provided
+  rnds[8] = rnds[8] & 0x3f | 0x80; / Copy bytes to buffer, if provided
 
   if (buf) {
     offset = offset || 0;
@@ -570,7 +570,7 @@ function v4(options, buf, offset) {
 }
 
 /* harmony default export */ const esm_browser_v4 = (v4);
-;// ./node_modules/@wordpress/annotations/build-module/store/actions.js
+;/ ./node_modules/@wordpress/annotations/build-module/store/actions.js
 /**
  * External dependencies
  */
@@ -671,7 +671,7 @@ function __experimentalRemoveAnnotationsBySource(source) {
   };
 }
 
-;// ./node_modules/@wordpress/annotations/build-module/store/index.js
+;/ ./node_modules/@wordpress/annotations/build-module/store/index.js
 /**
  * WordPress dependencies
  */
@@ -703,7 +703,7 @@ const store = (0,external_wp_data_namespaceObject.createReduxStore)(STORE_NAME, 
 });
 (0,external_wp_data_namespaceObject.register)(store);
 
-;// ./node_modules/@wordpress/annotations/build-module/index.js
+;/ ./node_modules/@wordpress/annotations/build-module/index.js
 /**
  * Internal dependencies
  */

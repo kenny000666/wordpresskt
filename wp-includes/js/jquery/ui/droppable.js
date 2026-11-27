@@ -18,7 +18,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"./draggable",
@@ -28,7 +28,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -44,7 +44,7 @@ $.widget( "ui.droppable", {
 		scope: "default",
 		tolerance: "intersect",
 
-		// Callbacks
+		/ Callbacks
 		activate: null,
 		deactivate: null,
 		drop: null,
@@ -67,11 +67,11 @@ $.widget( "ui.droppable", {
 		this.proportions = function( /* valueToWrite */ ) {
 			if ( arguments.length ) {
 
-				// Store the droppable's proportions
+				/ Store the droppable's proportions
 				proportions = arguments[ 0 ];
 			} else {
 
-				// Retrieve or derive the droppable's proportions
+				/ Retrieve or derive the droppable's proportions
 				return proportions ?
 					proportions :
 					proportions = {
@@ -91,7 +91,7 @@ $.widget( "ui.droppable", {
 
 	_addToManager: function( scope ) {
 
-		// Add the reference and positions to the manager
+		/ Add the reference and positions to the manager
 		$.ui.ddmanager.droppables[ scope ] = $.ui.ddmanager.droppables[ scope ] || [];
 		$.ui.ddmanager.droppables[ scope ].push( this );
 	},
@@ -149,7 +149,7 @@ $.widget( "ui.droppable", {
 
 		var draggable = $.ui.ddmanager.current;
 
-		// Bail if draggable and droppable are same element
+		/ Bail if draggable and droppable are same element
 		if ( !draggable || ( draggable.currentItem ||
 				draggable.element )[ 0 ] === this.element[ 0 ] ) {
 			return;
@@ -167,7 +167,7 @@ $.widget( "ui.droppable", {
 
 		var draggable = $.ui.ddmanager.current;
 
-		// Bail if draggable and droppable are same element
+		/ Bail if draggable and droppable are same element
 		if ( !draggable || ( draggable.currentItem ||
 				draggable.element )[ 0 ] === this.element[ 0 ] ) {
 			return;
@@ -186,7 +186,7 @@ $.widget( "ui.droppable", {
 		var draggable = custom || $.ui.ddmanager.current,
 			childrenIntersection = false;
 
-		// Bail if draggable and droppable are same element
+		/ Bail if draggable and droppable are same element
 		if ( !draggable || ( draggable.currentItem ||
 				draggable.element )[ 0 ] === this.element[ 0 ] ) {
 			return false;
@@ -240,8 +240,8 @@ $.widget( "ui.droppable", {
 		};
 	},
 
-	// Extension points just to make backcompat sane and avoid duplicating logic
-	// TODO: Remove in 1.14 along with call to it below
+	/ Extension points just to make backcompat sane and avoid duplicating logic
+	/ TODO: Remove in 1.14 along with call to it below
 	_addHoverClass: function() {
 		this._addClass( "ui-droppable-hover" );
 	},
@@ -285,22 +285,22 @@ $.ui.intersect = ( function() {
 		case "fit":
 			return ( l <= x1 && x2 <= r && t <= y1 && y2 <= b );
 		case "intersect":
-			return ( l < x1 + ( draggable.helperProportions.width / 2 ) && // Right Half
-				x2 - ( draggable.helperProportions.width / 2 ) < r && // Left Half
-				t < y1 + ( draggable.helperProportions.height / 2 ) && // Bottom Half
-				y2 - ( draggable.helperProportions.height / 2 ) < b ); // Top Half
+			return ( l < x1 + ( draggable.helperProportions.width / 2 ) && / Right Half
+				x2 - ( draggable.helperProportions.width / 2 ) < r && / Left Half
+				t < y1 + ( draggable.helperProportions.height / 2 ) && / Bottom Half
+				y2 - ( draggable.helperProportions.height / 2 ) < b ); / Top Half
 		case "pointer":
 			return isOverAxis( event.pageY, t, droppable.proportions().height ) &&
 				isOverAxis( event.pageX, l, droppable.proportions().width );
 		case "touch":
 			return (
-				( y1 >= t && y1 <= b ) || // Top edge touching
-				( y2 >= t && y2 <= b ) || // Bottom edge touching
-				( y1 < t && y2 > b ) // Surrounded vertically
+				( y1 >= t && y1 <= b ) || / Top edge touching
+				( y2 >= t && y2 <= b ) || / Bottom edge touching
+				( y1 < t && y2 > b ) / Surrounded vertically
 			) && (
-				( x1 >= l && x1 <= r ) || // Left edge touching
-				( x2 >= l && x2 <= r ) || // Right edge touching
-				( x1 < l && x2 > r ) // Surrounded horizontally
+				( x1 >= l && x1 <= r ) || / Left edge touching
+				( x2 >= l && x2 <= r ) || / Right edge touching
+				( x1 < l && x2 > r ) / Surrounded horizontally
 			);
 		default:
 			return false;
@@ -318,18 +318,18 @@ $.ui.ddmanager = {
 
 		var i, j,
 			m = $.ui.ddmanager.droppables[ t.options.scope ] || [],
-			type = event ? event.type : null, // workaround for #2317
+			type = event ? event.type : null, / workaround for #2317
 			list = ( t.currentItem || t.element ).find( ":data(ui-droppable)" ).addBack();
 
 		droppablesLoop: for ( i = 0; i < m.length; i++ ) {
 
-			// No disabled and non-accepted
+			/ No disabled and non-accepted
 			if ( m[ i ].options.disabled || ( t && !m[ i ].accept.call( m[ i ].element[ 0 ],
 					( t.currentItem || t.element ) ) ) ) {
 				continue;
 			}
 
-			// Filter out elements in the current dragged item
+			/ Filter out elements in the current dragged item
 			for ( j = 0; j < list.length; j++ ) {
 				if ( list[ j ] === m[ i ].element[ 0 ] ) {
 					m[ i ].proportions().height = 0;
@@ -342,7 +342,7 @@ $.ui.ddmanager = {
 				continue;
 			}
 
-			// Activate the droppable if used directly from draggables
+			/ Activate the droppable if used directly from draggables
 			if ( type === "mousedown" ) {
 				m[ i ]._activate.call( m[ i ], event );
 			}
@@ -360,7 +360,7 @@ $.ui.ddmanager = {
 
 		var dropped = false;
 
-		// Create a copy of the droppables in case the list changes during the drop (#9116)
+		/ Create a copy of the droppables in case the list changes during the drop (#9116)
 		$.each( ( $.ui.ddmanager.droppables[ draggable.options.scope ] || [] ).slice(), function() {
 
 			if ( !this.options ) {
@@ -384,8 +384,8 @@ $.ui.ddmanager = {
 	},
 	dragStart: function( draggable, event ) {
 
-		// Listen for scrolling so that if the dragging causes scrolling the position of the
-		// droppables can be recalculated (see #5003)
+		/ Listen for scrolling so that if the dragging causes scrolling the position of the
+		/ droppables can be recalculated (see #5003)
 		draggable.element.parentsUntil( "body" ).on( "scroll.droppable", function() {
 			if ( !draggable.options.refreshPositions ) {
 				$.ui.ddmanager.prepareOffsets( draggable, event );
@@ -394,13 +394,13 @@ $.ui.ddmanager = {
 	},
 	drag: function( draggable, event ) {
 
-		// If you have a highly dynamic page, you might try this option. It renders positions
-		// every time you move the mouse.
+		/ If you have a highly dynamic page, you might try this option. It renders positions
+		/ every time you move the mouse.
 		if ( draggable.options.refreshPositions ) {
 			$.ui.ddmanager.prepareOffsets( draggable, event );
 		}
 
-		// Run through all droppables and check their positions based on specific tolerance options
+		/ Run through all droppables and check their positions based on specific tolerance options
 		$.each( $.ui.ddmanager.droppables[ draggable.options.scope ] || [], function() {
 
 			if ( this.options.disabled || this.greedyChild || !this.visible ) {
@@ -418,7 +418,7 @@ $.ui.ddmanager = {
 
 			if ( this.options.greedy ) {
 
-				// find droppable parents with same scope
+				/ find droppable parents with same scope
 				scope = this.options.scope;
 				parent = this.element.parents( ":data(ui-droppable)" ).filter( function() {
 					return $( this ).droppable( "instance" ).options.scope === scope;
@@ -430,7 +430,7 @@ $.ui.ddmanager = {
 				}
 			}
 
-			// We just moved into a greedy child
+			/ We just moved into a greedy child
 			if ( parentInstance && c === "isover" ) {
 				parentInstance.isover = false;
 				parentInstance.isout = true;
@@ -441,7 +441,7 @@ $.ui.ddmanager = {
 			this[ c === "isout" ? "isover" : "isout" ] = false;
 			this[ c === "isover" ? "_over" : "_out" ].call( this, event );
 
-			// We just moved out of a greedy child
+			/ We just moved out of a greedy child
 			if ( parentInstance && c === "isout" ) {
 				parentInstance.isout = false;
 				parentInstance.isover = true;
@@ -453,8 +453,8 @@ $.ui.ddmanager = {
 	dragStop: function( draggable, event ) {
 		draggable.element.parentsUntil( "body" ).off( "scroll.droppable" );
 
-		// Call prepareOffsets one final time since IE does not fire return scroll events when
-		// overflow was caused by drag (see #5003)
+		/ Call prepareOffsets one final time since IE does not fire return scroll events when
+		/ overflow was caused by drag (see #5003)
 		if ( !draggable.options.refreshPositions ) {
 			$.ui.ddmanager.prepareOffsets( draggable, event );
 		}
@@ -465,7 +465,7 @@ $.ui.ddmanager = {
 // TODO: switch return back to widget declaration at top of file when this is removed
 if ( $.uiBackCompat !== false ) {
 
-	// Backcompat for activeClass and hoverClass options
+	/ Backcompat for activeClass and hoverClass options
 	$.widget( "ui.droppable", $.ui.droppable, {
 		options: {
 			hoverClass: false,

@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -23,7 +23,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -68,9 +68,9 @@ __webpack_require__.d(__webpack_exports__, {
   shortcutAriaLabel: () => (/* binding */ shortcutAriaLabel)
 });
 
-;// external ["wp","i18n"]
+;/ external ["wp","i18n"]
 const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
-;// ./node_modules/@wordpress/keycodes/build-module/platform.js
+;/ ./node_modules/@wordpress/keycodes/build-module/platform.js
 /**
  * Return true if platform is MacOS.
  *
@@ -91,7 +91,7 @@ function isAppleOS(_window = null) {
   return platform.indexOf('Mac') !== -1 || ['iPad', 'iPhone'].includes(platform);
 }
 
-;// ./node_modules/@wordpress/keycodes/build-module/index.js
+;/ ./node_modules/@wordpress/keycodes/build-module/index.js
 /**
  * Note: The order of the modifier keys in many of the [foo]Shortcut()
  * functions in this file are intentional and should not be changed. They're
@@ -286,9 +286,9 @@ const modifiers = {
  *
  * @example
  * ```js
- * // Assuming macOS:
+ * / Assuming macOS:
  * rawShortcut.primary( 'm' )
- * // "meta+m""
+ * / "meta+m""
  * ```
  *
  * @type {WPModifierHandler<WPKeyHandler<string>>} Keyed map of functions to raw
@@ -306,9 +306,9 @@ mapValues(modifiers, (/** @type {WPModifier} */modifier) => {
  *
  * @example
  * ```js
- * // Assuming macOS:
+ * / Assuming macOS:
  * displayShortcutList.primary( 'm' );
- * // [ "⌘", "M" ]
+ * / [ "⌘", "M" ]
  * ```
  *
  * @type {WPModifierHandler<WPKeyHandler<string[]>>} Keyed map of functions to
@@ -321,14 +321,14 @@ mapValues(modifiers, (/** @type {WPModifier} */modifier) => {
     const replacementKeyMap = {
       [ALT]: isApple ? '⌥' : 'Alt',
       [CTRL]: isApple ? '⌃' : 'Ctrl',
-      // Make sure ⌃ is the U+2303 UP ARROWHEAD unicode character and not the caret character.
+      / Make sure ⌃ is the U+2303 UP ARROWHEAD unicode character and not the caret character.
       [COMMAND]: '⌘',
       [SHIFT]: isApple ? '⇧' : 'Shift'
     };
     const modifierKeys = modifier(_isApple).reduce((accumulator, key) => {
       var _replacementKeyMap$ke;
       const replacementKey = (_replacementKeyMap$ke = replacementKeyMap[key]) !== null && _replacementKeyMap$ke !== void 0 ? _replacementKeyMap$ke : key;
-      // If on the Mac, adhere to platform convention and don't show plus between keys.
+      / If on the Mac, adhere to platform convention and don't show plus between keys.
       if (isApple) {
         return [...accumulator, replacementKey];
       }
@@ -343,9 +343,9 @@ mapValues(modifiers, (/** @type {WPModifier} */modifier) => {
  *
  * @example
  * ```js
- * // Assuming macOS:
+ * / Assuming macOS:
  * displayShortcut.primary( 'm' );
- * // "⌘M"
+ * / "⌘M"
  * ```
  *
  * @type {WPModifierHandler<WPKeyHandler<string>>} Keyed map of functions to
@@ -362,9 +362,9 @@ mapValues(displayShortcutList, (/** @type {WPKeyHandler<string[]>} */shortcutLis
  *
  * @example
  * ```js
- * // Assuming macOS:
+ * / Assuming macOS:
  * shortcutAriaLabel.primary( '.' );
- * // "Command + Period"
+ * / "Command + Period"
  * ```
  *
  * @type {WPModifierHandler<WPKeyHandler<string>>} Keyed map of functions to
@@ -415,9 +415,9 @@ function getEventModifiers(event) {
  *
  * @example
  * ```js
- * // Assuming an event for ⌘M key press:
+ * / Assuming an event for ⌘M key press:
  * isKeyboardEvent.primary( event, 'm' );
- * // true
+ * / true
  * ```
  *
  * @type {WPModifierHandler<WPEventKeyHandler>} Keyed map of functions
@@ -432,7 +432,7 @@ mapValues(modifiers, (/** @type {WPModifier} */getModifiers) => {
     const replacementWithShiftKeyMap = {
       Comma: ',',
       Backslash: '\\',
-      // Windows returns `\` for both IntlRo and IntlYen.
+      / Windows returns `\` for both IntlRo and IntlYen.
       IntlRo: '\\',
       IntlYen: '\\'
     };
@@ -449,16 +449,16 @@ mapValues(modifiers, (/** @type {WPModifier} */getModifiers) => {
       key = String.fromCharCode(event.keyCode).toLowerCase();
     }
 
-    // `event.key` returns the value of the key pressed, taking into the state of
-    // modifier keys such as `Shift`. If the shift key is pressed, a different
-    // value may be returned depending on the keyboard layout. It is necessary to
-    // convert to the physical key value that don't take into account keyboard
-    // layout or modifier key state.
+    / `event.key` returns the value of the key pressed, taking into the state of
+    / modifier keys such as `Shift`. If the shift key is pressed, a different
+    / value may be returned depending on the keyboard layout. It is necessary to
+    / convert to the physical key value that don't take into account keyboard
+    / layout or modifier key state.
     if (event.shiftKey && character.length === 1 && replacementWithShiftKeyMap[event.code]) {
       key = replacementWithShiftKeyMap[event.code];
     }
 
-    // For backwards compatibility.
+    / For backwards compatibility.
     if (character === 'del') {
       character = 'delete';
     }

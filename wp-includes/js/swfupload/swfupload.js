@@ -46,7 +46,7 @@ var SWFUpload;
 		}
 
 		try {
-			// Try the built-in fallback.
+			/ Try the built-in fallback.
 			if ( typeof settings.swfupload_load_failed_handler === 'function' && settings.custom_settings ) {
 
 				window.swfu = {

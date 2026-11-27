@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -18,7 +18,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -35,7 +35,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -77,13 +77,13 @@ __webpack_require__.d(widget_group_namespaceObject, {
   W0: () => (widget_group_settings)
 });
 
-;// external ["wp","blocks"]
+;/ external ["wp","blocks"]
 const external_wp_blocks_namespaceObject = window["wp"]["blocks"];
-;// external ["wp","primitives"]
+;/ external ["wp","primitives"]
 const external_wp_primitives_namespaceObject = window["wp"]["primitives"];
-;// external "ReactJSXRuntime"
+;/ external "ReactJSXRuntime"
 const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
-;// ./node_modules/@wordpress/icons/build-module/library/widget.js
+;/ ./node_modules/@wordpress/icons/build-module/library/widget.js
 /**
  * WordPress dependencies
  */
@@ -98,13 +98,13 @@ const widget = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ext
 });
 /* harmony default export */ const library_widget = (widget);
 
-;// ./node_modules/clsx/dist/clsx.mjs
+;/ ./node_modules/clsx/dist/clsx.mjs
 function r(e){var t,f,n="";if("string"==typeof e||"number"==typeof e)n+=e;else if("object"==typeof e)if(Array.isArray(e)){var o=e.length;for(t=0;t<o;t++)e[t]&&(f=r(e[t]))&&(n&&(n+=" "),n+=f)}else for(f in e)e[f]&&(n&&(n+=" "),n+=f);return n}function clsx(){for(var e,t,f=0,n="",o=arguments.length;f<o;f++)(e=arguments[f])&&(t=r(e))&&(n&&(n+=" "),n+=t);return n}/* harmony default export */ const dist_clsx = (clsx);
-;// external ["wp","blockEditor"]
+;/ external ["wp","blockEditor"]
 const external_wp_blockEditor_namespaceObject = window["wp"]["blockEditor"];
-;// external ["wp","components"]
+;/ external ["wp","components"]
 const external_wp_components_namespaceObject = window["wp"]["components"];
-;// ./node_modules/@wordpress/icons/build-module/library/brush.js
+;/ ./node_modules/@wordpress/icons/build-module/library/brush.js
 /**
  * WordPress dependencies
  */
@@ -119,15 +119,15 @@ const brush = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(exte
 });
 /* harmony default export */ const library_brush = (brush);
 
-;// external ["wp","i18n"]
+;/ external ["wp","i18n"]
 const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
-;// external ["wp","element"]
+;/ external ["wp","element"]
 const external_wp_element_namespaceObject = window["wp"]["element"];
-;// external ["wp","coreData"]
+;/ external ["wp","coreData"]
 const external_wp_coreData_namespaceObject = window["wp"]["coreData"];
-;// external ["wp","data"]
+;/ external ["wp","data"]
 const external_wp_data_namespaceObject = window["wp"]["data"];
-;// ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/edit/widget-type-selector.js
+;/ ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/edit/widget-type-selector.js
 /**
  * WordPress dependencies
  */
@@ -182,7 +182,7 @@ function WidgetTypeSelector({
   });
 }
 
-;// ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/edit/inspector-card.js
+;/ ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/edit/inspector-card.js
 
 function InspectorCard({
   name,
@@ -199,14 +199,14 @@ function InspectorCard({
   });
 }
 
-;// external ["wp","notices"]
+;/ external ["wp","notices"]
 const external_wp_notices_namespaceObject = window["wp"]["notices"];
-;// external ["wp","compose"]
+;/ external ["wp","compose"]
 const external_wp_compose_namespaceObject = window["wp"]["compose"];
-;// external ["wp","apiFetch"]
+;/ external ["wp","apiFetch"]
 const external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
 var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_namespaceObject);
-;// ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/edit/control.js
+;/ ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/edit/control.js
 /* wp:polyfill */
 /**
  * WordPress dependencies
@@ -253,9 +253,9 @@ class Control {
     this.onChangeHasPreview = onChangeHasPreview;
     this.onError = onError;
 
-    // We can't use the real widget number as this is calculated by the
-    // server and we may not ever *actually* save this widget. Instead, use
-    // a fake but unique number.
+    / We can't use the real widget number as this is calculated by the
+    / server and we may not ever *actually* save this widget. Instead, use
+    / a fake but unique number.
     this.number = ++lastNumber;
     this.handleFormChange = (0,external_wp_compose_namespaceObject.debounce)(this.handleFormChange.bind(this), 200);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -272,8 +272,8 @@ class Control {
   destroy() {
     this.unbindEvents();
     this.element.remove();
-    // TODO: How do we make third party widget scripts remove their event
-    // listeners?
+    / TODO: How do we make third party widget scripts remove their event
+    / listeners?
   }
 
   /**
@@ -291,8 +291,8 @@ class Control {
       class: 'form',
       method: 'post'
     }, [
-    // These hidden form inputs are what most widgets' scripts
-    // use to access data about the widget.
+    / These hidden form inputs are what most widgets' scripts
+    / use to access data about the widget.
     el('input', {
       class: 'widget-id',
       type: 'hidden',
@@ -321,7 +321,7 @@ class Control {
     }), this.content = el('div', {
       class: 'widget-content'
     }),
-    // Non-multi widgets can be saved via a Save button.
+    / Non-multi widgets can be saved via a Save button.
     this.id && el('button', {
       class: 'button is-primary',
       type: 'submit'
@@ -334,8 +334,8 @@ class Control {
    * @access private
    */
   bindEvents() {
-    // Prefer jQuery 'change' event instead of the native 'change' event
-    // because many widgets use jQuery's event bus to trigger an update.
+    / Prefer jQuery 'change' event instead of the native 'change' event
+    / because many widgets use jQuery's event bus to trigger an update.
     if (window.jQuery) {
       const {
         jQuery: $
@@ -395,8 +395,8 @@ class Control {
         this.content.innerHTML = form;
         this.hasPreview = !isEmptyHTML(preview);
 
-        // If we don't have an instance, perform a save right away. This
-        // happens when creating a new Legacy Widget block.
+        / If we don't have an instance, perform a save right away. This
+        / happens when creating a new Legacy Widget block.
         if (!this.instance.hash) {
           const {
             instance
@@ -410,11 +410,11 @@ class Control {
         }
       }
 
-      // Trigger 'widget-added' when widget is ready. This event is what
-      // widgets' scripts use to initialize, attach events, etc. The event
-      // must be fired using jQuery's event bus as this is what widget
-      // scripts expect. If jQuery is not loaded, do nothing - some
-      // widgets will still work regardless.
+      / Trigger 'widget-added' when widget is ready. This event is what
+      / widgets' scripts use to initialize, attach events, etc. The event
+      / must be fired using jQuery's event bus as this is what widget
+      / scripts expect. If jQuery is not loaded, do nothing - some
+      / widgets will still work regardless.
       if (window.jQuery) {
         const {
           jQuery: $
@@ -595,19 +595,19 @@ function isEmptyHTML(html) {
 function isEmptyNode(node) {
   switch (node.nodeType) {
     case node.TEXT_NODE:
-      // Text nodes are empty if it's entirely whitespace.
+      / Text nodes are empty if it's entirely whitespace.
       return node.nodeValue.trim() === '';
     case node.ELEMENT_NODE:
-      // Elements that are "embedded content" are not empty.
-      // https://dev.w3.org/html5/spec-LC/content-models.html#embedded-content-0
+      / Elements that are "embedded content" are not empty.
+      / https://dev.w3.org/html5/spec-LC/content-models.html#embedded-content-0
       if (['AUDIO', 'CANVAS', 'EMBED', 'IFRAME', 'IMG', 'MATH', 'OBJECT', 'SVG', 'VIDEO'].includes(node.tagName)) {
         return false;
       }
-      // Elements with no children are empty.
+      / Elements with no children are empty.
       if (!node.hasChildNodes()) {
         return true;
       }
-      // Elements with children are empty if all their children are empty.
+      / Elements with children are empty if all their children are empty.
       return Array.from(node.childNodes).every(isEmptyNode);
     default:
       return true;
@@ -617,7 +617,7 @@ function serializeForm(form) {
   return new window.URLSearchParams(Array.from(new window.FormData(form))).toString();
 }
 
-;// ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/edit/form.js
+;/ ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/edit/form.js
 /**
  * External dependencies
  */
@@ -649,10 +649,10 @@ function Form({
   const ref = (0,external_wp_element_namespaceObject.useRef)();
   const isMediumLargeViewport = (0,external_wp_compose_namespaceObject.useViewportMatch)('small');
 
-  // We only want to remount the control when the instance changes
-  // *externally*. For example, if the user performs an undo. To do this, we
-  // keep track of changes made to instance by the control itself and then
-  // ignore those.
+  / We only want to remount the control when the instance changes
+  / *externally*. For example, if the user performs an undo. To do this, we
+  / keep track of changes made to instance by the control itself and then
+  / ignore those.
   const outgoingInstances = (0,external_wp_element_namespaceObject.useRef)(new Set());
   const incomingInstances = (0,external_wp_element_namespaceObject.useRef)(new Set());
   const {
@@ -722,7 +722,7 @@ function Form({
   });
 }
 
-;// ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/edit/preview.js
+;/ ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/edit/preview.js
 /**
  * External dependencies
  */
@@ -761,7 +761,7 @@ function Preview({
       setSrcDoc(response.preview);
     }).catch(error => {
       if ('AbortError' === error.name) {
-        // We don't want to log aborted requests.
+        / We don't want to log aborted requests.
         return;
       }
       throw error;
@@ -769,33 +769,33 @@ function Preview({
     return () => abortController?.abort();
   }, [idBase, instance]);
 
-  // Resize the iframe on either the load event, or when the iframe becomes visible.
+  / Resize the iframe on either the load event, or when the iframe becomes visible.
   const ref = (0,external_wp_compose_namespaceObject.useRefEffect)(iframe => {
-    // Only set height if the iframe is loaded,
-    // or it will grow to an unexpected large height in Safari if it's hidden initially.
+    / Only set height if the iframe is loaded,
+    / or it will grow to an unexpected large height in Safari if it's hidden initially.
     if (!isLoaded) {
       return;
     }
-    // If the preview frame has another origin then this won't work.
-    // One possible solution is to add custom script to call `postMessage` in the preview frame.
-    // Or, better yet, we migrate away from iframe.
+    / If the preview frame has another origin then this won't work.
+    / One possible solution is to add custom script to call `postMessage` in the preview frame.
+    / Or, better yet, we migrate away from iframe.
     function setHeight() {
       var _iframe$contentDocume, _iframe$contentDocume2;
-      // Pick the maximum of these two values to account for margin collapsing.
+      / Pick the maximum of these two values to account for margin collapsing.
       const height = Math.max((_iframe$contentDocume = iframe.contentDocument.documentElement?.offsetHeight) !== null && _iframe$contentDocume !== void 0 ? _iframe$contentDocume : 0, (_iframe$contentDocume2 = iframe.contentDocument.body?.offsetHeight) !== null && _iframe$contentDocume2 !== void 0 ? _iframe$contentDocume2 : 0);
 
-      // Fallback to a height of 100px if the height cannot be determined.
-      // This ensures the block is still selectable. 100px should hopefully
-      // be not so big that it's annoying, and not so small that nothing
-      // can be seen.
+      / Fallback to a height of 100px if the height cannot be determined.
+      / This ensures the block is still selectable. 100px should hopefully
+      / be not so big that it's annoying, and not so small that nothing
+      / can be seen.
       iframe.style.height = `${height !== 0 ? height : 100}px`;
     }
     const {
       IntersectionObserver
     } = iframe.ownerDocument.defaultView;
 
-    // Observe for intersections that might cause a change in the height of
-    // the iframe, e.g. a Widget Area becoming expanded.
+    / Observe for intersections that might cause a change in the height of
+    / the iframe, e.g. a Widget Area becoming expanded.
     const intersectionObserver = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setHeight();
@@ -825,10 +825,10 @@ function Preview({
           title: (0,external_wp_i18n_namespaceObject.__)('Legacy Widget Preview'),
           srcDoc: srcDoc,
           onLoad: event => {
-            // To hide the scrollbars of the preview frame for some edge cases,
-            // such as negative margins in the Gallery Legacy Widget.
-            // It can't be scrolled anyway.
-            // TODO: Ideally, this should be fixed in core.
+            / To hide the scrollbars of the preview frame for some edge cases,
+            / such as negative margins in the Gallery Legacy Widget.
+            / It can't be scrolled anyway.
+            / TODO: Ideally, this should be fixed in core.
             event.target.contentDocument.body.style.overflow = 'hidden';
             setIsLoaded(true);
           },
@@ -839,7 +839,7 @@ function Preview({
   });
 }
 
-;// ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/edit/no-preview.js
+;/ ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/edit/no-preview.js
 /**
  * WordPress dependencies
  */
@@ -858,7 +858,7 @@ function NoPreview({
   });
 }
 
-;// ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/edit/convert-to-blocks-button.js
+;/ ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/edit/convert-to-blocks-button.js
 /**
  * WordPress dependencies
  */
@@ -893,7 +893,7 @@ function ConvertToBlocksButton({
   });
 }
 
-;// ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/edit/index.js
+;/ ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/edit/index.js
 /**
  * External dependencies
  */
@@ -1058,7 +1058,7 @@ function NotEmpty({
   });
 }
 
-;// ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/transforms.js
+;/ ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/transforms.js
 /**
  * WordPress dependencies
  */
@@ -1270,7 +1270,7 @@ const transforms = {
 };
 /* harmony default export */ const legacy_widget_transforms = (transforms);
 
-;// ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/index.js
+;/ ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/index.js
 /**
  * WordPress dependencies
  */
@@ -1320,7 +1320,7 @@ const settings = {
   transforms: legacy_widget_transforms
 };
 
-;// ./node_modules/@wordpress/icons/build-module/library/group.js
+;/ ./node_modules/@wordpress/icons/build-module/library/group.js
 /**
  * WordPress dependencies
  */
@@ -1335,7 +1335,7 @@ const group = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(exte
 });
 /* harmony default export */ const library_group = (group);
 
-;// ./node_modules/@wordpress/widgets/build-module/blocks/widget-group/edit.js
+;/ ./node_modules/@wordpress/widgets/build-module/blocks/widget-group/edit.js
 /**
  * WordPress dependencies
  */
@@ -1401,7 +1401,7 @@ function PreviewContent({
   });
 }
 
-;// ./node_modules/@wordpress/widgets/build-module/blocks/widget-group/save.js
+;/ ./node_modules/@wordpress/widgets/build-module/blocks/widget-group/save.js
 /**
  * WordPress dependencies
  */
@@ -1422,7 +1422,7 @@ function save({
   });
 }
 
-;// ./node_modules/@wordpress/widgets/build-module/blocks/widget-group/deprecated.js
+;/ ./node_modules/@wordpress/widgets/build-module/blocks/widget-group/deprecated.js
 /**
  * WordPress dependencies
  */
@@ -1454,7 +1454,7 @@ const v1 = {
 };
 /* harmony default export */ const deprecated = ([v1]);
 
-;// ./node_modules/@wordpress/widgets/build-module/blocks/widget-group/index.js
+;/ ./node_modules/@wordpress/widgets/build-module/blocks/widget-group/index.js
 /**
  * WordPress dependencies
  */
@@ -1507,21 +1507,21 @@ const widget_group_settings = {
       isMultiBlock: true,
       blocks: ['*'],
       isMatch(attributes, blocks) {
-        // Avoid transforming existing `widget-group` blocks.
+        / Avoid transforming existing `widget-group` blocks.
         return !blocks.some(block => block.name === 'core/widget-group');
       },
       __experimentalConvert(blocks) {
-        // Put the selected blocks inside the new Widget Group's innerBlocks.
+        / Put the selected blocks inside the new Widget Group's innerBlocks.
         let innerBlocks = [...blocks.map(block => {
           return (0,external_wp_blocks_namespaceObject.createBlock)(block.name, block.attributes, block.innerBlocks);
         })];
 
-        // If the first block is a heading then assume this is intended
-        // to be the Widget's "title".
+        / If the first block is a heading then assume this is intended
+        / to be the Widget's "title".
         const firstHeadingBlock = innerBlocks[0].name === 'core/heading' ? innerBlocks[0] : null;
 
-        // Remove the first heading block as we're copying
-        // it's content into the Widget Group's title attribute.
+        / Remove the first heading block as we're copying
+        / it's content into the Widget Group's title attribute.
         innerBlocks = innerBlocks.filter(block => block !== firstHeadingBlock);
         return (0,external_wp_blocks_namespaceObject.createBlock)('core/widget-group', {
           ...(firstHeadingBlock && {
@@ -1534,7 +1534,7 @@ const widget_group_settings = {
   deprecated: deprecated
 };
 
-;// ./node_modules/@wordpress/icons/build-module/library/move-to.js
+;/ ./node_modules/@wordpress/icons/build-module/library/move-to.js
 /**
  * WordPress dependencies
  */
@@ -1549,7 +1549,7 @@ const moveTo = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ext
 });
 /* harmony default export */ const move_to = (moveTo);
 
-;// ./node_modules/@wordpress/widgets/build-module/components/move-to-widget-area/index.js
+;/ ./node_modules/@wordpress/widgets/build-module/components/move-to-widget-area/index.js
 /**
  * WordPress dependencies
  */
@@ -1590,10 +1590,10 @@ function MoveToWidgetArea({
   });
 }
 
-;// ./node_modules/@wordpress/widgets/build-module/components/index.js
+;/ ./node_modules/@wordpress/widgets/build-module/components/index.js
 
 
-;// ./node_modules/@wordpress/widgets/build-module/utils.js
+;/ ./node_modules/@wordpress/widgets/build-module/utils.js
 // @ts-check
 
 /**
@@ -1628,7 +1628,7 @@ function addWidgetIdToBlock(block, widgetId) {
   };
 }
 
-;// ./node_modules/@wordpress/widgets/build-module/register-legacy-widget-variations.js
+;/ ./node_modules/@wordpress/widgets/build-module/register-legacy-widget-variations.js
 /**
  * WordPress dependencies
  */
@@ -1659,7 +1659,7 @@ function registerLegacyWidgetVariations(settings) {
   });
 }
 
-;// ./node_modules/@wordpress/widgets/build-module/index.js
+;/ ./node_modules/@wordpress/widgets/build-module/index.js
 /**
  * WordPress dependencies
  */

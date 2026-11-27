@@ -21,14 +21,14 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"../widget"
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -56,7 +56,7 @@ return $.widget( "ui.controlgroup", {
 		this._enhance();
 	},
 
-	// To support the enhanced option in jQuery Mobile, we isolate DOM manipulation
+	/ To support the enhanced option in jQuery Mobile, we isolate DOM manipulation
 	_enhance: function() {
 		this.element.attr( "role", "toolbar" );
 		this.refresh();
@@ -78,12 +78,12 @@ return $.widget( "ui.controlgroup", {
 		var that = this,
 			childWidgets = [];
 
-		// First we iterate over each of the items options
+		/ First we iterate over each of the items options
 		$.each( this.options.items, function( widget, selector ) {
 			var labels;
 			var options = {};
 
-			// Make sure the widget has a selector set
+			/ Make sure the widget has a selector set
 			if ( !selector ) {
 				return;
 			}
@@ -104,37 +104,37 @@ return $.widget( "ui.controlgroup", {
 				return;
 			}
 
-			// Make sure the widget actually exists
+			/ Make sure the widget actually exists
 			if ( !$.fn[ widget ] ) {
 				return;
 			}
 
-			// We assume everything is in the middle to start because we can't determine
-			// first / last elements until all enhancments are done.
+			/ We assume everything is in the middle to start because we can't determine
+			/ first / last elements until all enhancments are done.
 			if ( that[ "_" + widget + "Options" ] ) {
 				options = that[ "_" + widget + "Options" ]( "middle" );
 			} else {
 				options = { classes: {} };
 			}
 
-			// Find instances of this widget inside controlgroup and init them
+			/ Find instances of this widget inside controlgroup and init them
 			that.element
 				.find( selector )
 				.each( function() {
 					var element = $( this );
 					var instance = element[ widget ]( "instance" );
 
-					// We need to clone the default options for this type of widget to avoid
-					// polluting the variable options which has a wider scope than a single widget.
+					/ We need to clone the default options for this type of widget to avoid
+					/ polluting the variable options which has a wider scope than a single widget.
 					var instanceOptions = $.widget.extend( {}, options );
 
-					// If the button is the child of a spinner ignore it
-					// TODO: Find a more generic solution
+					/ If the button is the child of a spinner ignore it
+					/ TODO: Find a more generic solution
 					if ( widget === "button" && element.parent( ".ui-spinner" ).length ) {
 						return;
 					}
 
-					// Create the widget if it doesn't exist
+					/ Create the widget if it doesn't exist
 					if ( !instance ) {
 						instance = element[ widget ]()[ widget ]( "instance" );
 					}
@@ -144,8 +144,8 @@ return $.widget( "ui.controlgroup", {
 					}
 					element[ widget ]( instanceOptions );
 
-					// Store an instance of the controlgroup to be able to reference
-					// from the outermost element for changing options and refresh
+					/ Store an instance of the controlgroup to be able to reference
+					/ from the outermost element for changing options and refresh
 					var widgetElement = element[ widget ]( "widget" );
 					$.data( widgetElement[ 0 ], "ui-controlgroup-data",
 						instance ? instance : element[ widget ]( "instance" ) );
@@ -271,15 +271,15 @@ return $.widget( "ui.controlgroup", {
 
 		children = this.childWidgets;
 
-		// We filter here because we need to track all childWidgets not just the visible ones
+		/ We filter here because we need to track all childWidgets not just the visible ones
 		if ( this.options.onlyVisible ) {
 			children = children.filter( ":visible" );
 		}
 
 		if ( children.length ) {
 
-			// We do this last because we need to make sure all enhancment is done
-			// before determining first and last
+			/ We do this last because we need to make sure all enhancment is done
+			/ before determining first and last
 			$.each( [ "first", "last" ], function( index, value ) {
 				var instance = children[ value ]().data( "ui-controlgroup-data" );
 
@@ -294,7 +294,7 @@ return $.widget( "ui.controlgroup", {
 				}
 			} );
 
-			// Finally call the refresh method on each of the child widgets.
+			/ Finally call the refresh method on each of the child widgets.
 			this._callChildMethod( "refresh" );
 		}
 	}

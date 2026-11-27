@@ -12,12 +12,12 @@
 
 	redux.field_objects.custom_fonts.init = function ( selector ) {
 
-		// If no selector is passed, grab one from the HTML.
+		/ If no selector is passed, grab one from the HTML.
 		if ( ! selector ) {
 			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-custom_font:visible' );
 		}
 
-		// Enum instances of our object.
+		/ Enum instances of our object.
 		$( selector ).each(
 			function () {
 				const el   = $( this );
@@ -37,7 +37,7 @@
 					return;
 				}
 
-				// Init module level code.
+				/ Init module level code.
 				redux.field_objects.custom_fonts.modInit( el );
 			}
 		);
@@ -91,7 +91,7 @@
 			}
 		);
 
-		// Remove the image button.
+		/ Remove the image button.
 		el.find( '.remove-font' ).off( 'click' ).on(
 			'click',
 			function () {
@@ -99,7 +99,7 @@
 			}
 		);
 
-		// Upload media button.
+		/ Upload media button.
 		el.find( '.media_add_font' ).off().on(
 			'click',
 			function ( event ) {
@@ -193,32 +193,32 @@
 
 		event.preventDefault();
 
-		// If the media frame already exists, reopen it.
+		/ If the media frame already exists, reopen it.
 		if ( frame ) {
 			frame.open();
 			return;
 		}
 
-		// Create the media frame.
+		/ Create the media frame.
 		frame = wp.media(
 			{
 				multiple: false,
 				library: {
-					type: ['application', 'font'] // Only allow zip files.
-				}, // Set the title of the modal.
-				title: 'Redux Custom Fonts:  ' + l10n.media_title, // Customize the submit button.
+					type: ['application', 'font'] / Only allow zip files.
+				}, / Set the title of the modal.
+				title: 'Redux Custom Fonts:  ' + l10n.media_title, / Customize the submit button.
 				button: {
 
-					// Set the text of the button.
+					/ Set the text of the button.
 					text: l10n.media_button
 
-					// Tell the button not to close the modal, since we're
-					// going to refresh the page when the image is selected.
+					/ Tell the button not to close the modal, since we're
+					/ going to refresh the page when the image is selected.
 				}
 			}
 		);
 
-		// When an image is selected, run a callback.
+		/ When an image is selected, run a callback.
 		frame.on(
 			'select',
 			function () {
@@ -227,7 +227,7 @@
 				let status;
 				let conversion;
 
-				// Grab the selected attachment.
+				/ Grab the selected attachment.
 				const attachment = frame.state().get( 'selection' ).first();
 				const error      = selector.find( '.font-error' );
 
@@ -302,14 +302,14 @@
 			}
 		);
 
-		// Finally, open the modal.
+		/ Finally, open the modal.
 		frame.open();
 	};
 
 	redux.field_objects.custom_fonts.remove_font = function ( el, selector ) {
 		el = null;
 
-		// This shouldn't have been run...
+		/ This shouldn't have been run...
 		if ( ! selector.find( '.remove-image' ).addClass( 'hide' ) ) {
 			return null;
 		}

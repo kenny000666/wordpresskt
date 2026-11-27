@@ -21,7 +21,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"../keycode",
@@ -33,7 +33,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -55,7 +55,7 @@ return $.widget( "ui.menu", {
 		},
 		role: "menu",
 
-		// Callbacks
+		/ Callbacks
 		blur: null,
 		focus: null,
 		select: null
@@ -64,8 +64,8 @@ return $.widget( "ui.menu", {
 	_create: function() {
 		this.activeMenu = this.element;
 
-		// Flag used to prevent firing of the click handler
-		// as the event bubbles up through nested menus
+		/ Flag used to prevent firing of the click handler
+		/ as the event bubbles up through nested menus
 		this.mouseHandled = false;
 		this.lastMousePosition = { x: null, y: null };
 		this.element
@@ -78,8 +78,8 @@ return $.widget( "ui.menu", {
 		this._addClass( "ui-menu", "ui-widget ui-widget-content" );
 		this._on( {
 
-			// Prevent focus from sticking to links inside menu after clicking
-			// them (focus should always stay on UL during navigation).
+			/ Prevent focus from sticking to links inside menu after clicking
+			/ them (focus should always stay on UL during navigation).
 			"mousedown .ui-menu-item": function( event ) {
 				event.preventDefault();
 
@@ -91,22 +91,22 @@ return $.widget( "ui.menu", {
 				if ( !this.mouseHandled && target.not( ".ui-state-disabled" ).length ) {
 					this.select( event );
 
-					// Only set the mouseHandled flag if the event will bubble, see #9469.
+					/ Only set the mouseHandled flag if the event will bubble, see #9469.
 					if ( !event.isPropagationStopped() ) {
 						this.mouseHandled = true;
 					}
 
-					// Open submenu on click
+					/ Open submenu on click
 					if ( target.has( ".ui-menu" ).length ) {
 						this.expand( event );
 					} else if ( !this.element.is( ":focus" ) &&
 							active.closest( ".ui-menu" ).length ) {
 
-						// Redirect focus to the menu
+						/ Redirect focus to the menu
 						this.element.trigger( "focus", [ true ] );
 
-						// If the active item is on the top level, let it stay active.
-						// Otherwise, blur the active item since it is no longer visible.
+						/ If the active item is on the top level, let it stay active.
+						/ Otherwise, blur the active item since it is no longer visible.
 						if ( this.active && this.active.parents( ".ui-menu" ).length === 1 ) {
 							clearTimeout( this.timer );
 						}
@@ -119,8 +119,8 @@ return $.widget( "ui.menu", {
 			"mouseleave .ui-menu": "collapseAll",
 			focus: function( event, keepActiveItem ) {
 
-				// If there's already an active item, keep it active
-				// If not, activate the first item
+				/ If there's already an active item, keep it active
+				/ If not, activate the first item
 				var item = this.active || this._menuItems().first();
 
 				if ( !keepActiveItem ) {
@@ -143,14 +143,14 @@ return $.widget( "ui.menu", {
 
 		this.refresh();
 
-		// Clicks outside of a menu collapse any open menus
+		/ Clicks outside of a menu collapse any open menus
 		this._on( this.document, {
 			click: function( event ) {
 				if ( this._closeOnDocumentClick( event ) ) {
 					this.collapseAll( event, true );
 				}
 
-				// Reset the mouseHandled flag
+				/ Reset the mouseHandled flag
 				this.mouseHandled = false;
 			}
 		} );
@@ -158,14 +158,14 @@ return $.widget( "ui.menu", {
 
 	_activateItem: function( event ) {
 
-		// Ignore mouse events while typeahead is active, see #10458.
-		// Prevents focusing the wrong item when typeahead causes a scroll while the mouse
-		// is over an item in the menu
+		/ Ignore mouse events while typeahead is active, see #10458.
+		/ Prevents focusing the wrong item when typeahead causes a scroll while the mouse
+		/ is over an item in the menu
 		if ( this.previousFilter ) {
 			return;
 		}
 
-		// If the mouse didn't actually move, but the page was scrolled, ignore the event (#9356)
+		/ If the mouse didn't actually move, but the page was scrolled, ignore the event (#9356)
 		if ( event.clientX === this.lastMousePosition.x &&
 				event.clientY === this.lastMousePosition.y ) {
 			return;
@@ -179,18 +179,18 @@ return $.widget( "ui.menu", {
 		var actualTarget = $( event.target ).closest( ".ui-menu-item" ),
 			target = $( event.currentTarget );
 
-		// Ignore bubbled events on parent items, see #11641
+		/ Ignore bubbled events on parent items, see #11641
 		if ( actualTarget[ 0 ] !== target[ 0 ] ) {
 			return;
 		}
 
-		// If the item is already active, there's nothing to do
+		/ If the item is already active, there's nothing to do
 		if ( target.is( ".ui-state-active" ) ) {
 			return;
 		}
 
-		// Remove ui-state-active class from siblings of the newly focused menu item
-		// to avoid a jump caused by adjacent elements both having a class with a border
+		/ Remove ui-state-active class from siblings of the newly focused menu item
+		/ to avoid a jump caused by adjacent elements both having a class with a border
 		this._removeClass( target.siblings().children( ".ui-state-active" ),
 			null, "ui-state-active" );
 		this.focus( event, target );
@@ -203,7 +203,7 @@ return $.widget( "ui.menu", {
 				.removeUniqueId()
 				.removeAttr( "tabIndex role aria-haspopup" );
 
-		// Destroy (sub)menus
+		/ Destroy (sub)menus
 		this.element
 			.removeAttr( "aria-activedescendant" )
 			.find( ".ui-menu" ).addBack()
@@ -263,7 +263,7 @@ return $.widget( "ui.menu", {
 			prev = this.previousFilter || "";
 			skip = false;
 
-			// Support number pad values
+			/ Support number pad values
 			character = event.keyCode >= 96 && event.keyCode <= 105 ?
 				( event.keyCode - 96 ).toString() : String.fromCharCode( event.keyCode );
 
@@ -280,8 +280,8 @@ return $.widget( "ui.menu", {
 				this.active.nextAll( ".ui-menu-item" ) :
 				match;
 
-			// If no matches on the current filter, reset to the last character pressed
-			// to move down the menu to the first item that starts with that character
+			/ If no matches on the current filter, reset to the last character pressed
+			/ to move down the menu to the first item that starts with that character
 			if ( !match.length ) {
 				character = String.fromCharCode( event.keyCode );
 				match = this._filterMenuItems( character );
@@ -321,7 +321,7 @@ return $.widget( "ui.menu", {
 
 		this._toggleClass( "ui-menu-icons", null, !!this.element.find( ".ui-icon" ).length );
 
-		// Initialize nested menus
+		/ Initialize nested menus
 		newSubmenus = submenus.filter( ":not(.ui-menu)" )
 			.hide()
 			.attr( {
@@ -346,7 +346,7 @@ return $.widget( "ui.menu", {
 		menus = submenus.add( this.element );
 		items = menus.find( this.options.items );
 
-		// Initialize menu-items containing spaces and/or dashes only as dividers
+		/ Initialize menu-items containing spaces and/or dashes only as dividers
 		items.not( ".ui-menu-item" ).each( function() {
 			var item = $( this );
 			if ( that._isDivider( item ) ) {
@@ -354,7 +354,7 @@ return $.widget( "ui.menu", {
 			}
 		} );
 
-		// Don't refresh list items that are already adapted
+		/ Don't refresh list items that are already adapted
 		newItems = items.not( ".ui-menu-item, .ui-menu-divider" );
 		newWrappers = newItems.children()
 			.not( ".ui-menu" )
@@ -366,10 +366,10 @@ return $.widget( "ui.menu", {
 		this._addClass( newItems, "ui-menu-item" )
 			._addClass( newWrappers, "ui-menu-item-wrapper" );
 
-		// Add aria-disabled attribute to any disabled menu item
+		/ Add aria-disabled attribute to any disabled menu item
 		items.filter( ".ui-state-disabled" ).attr( "aria-disabled", "true" );
 
-		// If the active item has been removed, blur the menu
+		/ If the active item has been removed, blur the menu
 		if ( this.active && !$.contains( this.element[ 0 ], this.active[ 0 ] ) ) {
 			this.blur();
 		}
@@ -409,13 +409,13 @@ return $.widget( "ui.menu", {
 		focused = this.active.children( ".ui-menu-item-wrapper" );
 		this._addClass( focused, null, "ui-state-active" );
 
-		// Only update aria-activedescendant if there's a role
-		// otherwise we assume focus is managed elsewhere
+		/ Only update aria-activedescendant if there's a role
+		/ otherwise we assume focus is managed elsewhere
 		if ( this.options.role ) {
 			this.element.attr( "aria-activedescendant", focused.attr( "id" ) );
 		}
 
-		// Highlight active parent menu item, if any
+		/ Highlight active parent menu item, if any
 		activeParent = this.active
 			.parent()
 				.closest( ".ui-menu-item" )
@@ -476,8 +476,8 @@ return $.widget( "ui.menu", {
 	_startOpening: function( submenu ) {
 		clearTimeout( this.timer );
 
-		// Don't open if already open fixes a Firefox bug that caused a .5 pixel
-		// shift in the submenu position when mousing over the caret icon
+		/ Don't open if already open fixes a Firefox bug that caused a .5 pixel
+		/ shift in the submenu position when mousing over the caret icon
 		if ( submenu.attr( "aria-hidden" ) !== "true" ) {
 			return;
 		}
@@ -509,12 +509,12 @@ return $.widget( "ui.menu", {
 		clearTimeout( this.timer );
 		this.timer = this._delay( function() {
 
-			// If we were passed an event, look for the submenu that contains the event
+			/ If we were passed an event, look for the submenu that contains the event
 			var currentMenu = all ? this.element :
 				$( event && event.target ).closest( this.element.find( ".ui-menu" ) );
 
-			// If we found no valid submenu ancestor, use the main menu to close all
-			// sub menus anyway
+			/ If we found no valid submenu ancestor, use the main menu to close all
+			/ sub menus anyway
 			if ( !currentMenu.length ) {
 				currentMenu = this.element;
 			}
@@ -523,15 +523,15 @@ return $.widget( "ui.menu", {
 
 			this.blur( event );
 
-			// Work around active item staying active after menu is blurred
+			/ Work around active item staying active after menu is blurred
 			this._removeClass( currentMenu.find( ".ui-state-active" ), null, "ui-state-active" );
 
 			this.activeMenu = currentMenu;
 		}, all ? 0 : this.delay );
 	},
 
-	// With no arguments, closes the currently active menu - if nothing is active
-	// it closes all menus.  If passed an argument, it will search for menus BELOW
+	/ With no arguments, closes the currently active menu - if nothing is active
+	/ it closes all menus.  If passed an argument, it will search for menus BELOW
 	_close: function( startMenu ) {
 		if ( !startMenu ) {
 			startMenu = this.active ? this.active.parent() : this.element;
@@ -549,7 +549,7 @@ return $.widget( "ui.menu", {
 
 	_isDivider: function( item ) {
 
-		// Match hyphen, em dash, en dash
+		/ Match hyphen, em dash, en dash
 		return !/[^\-\u2014\u2013\s]/.test( item.text() );
 	},
 
@@ -568,7 +568,7 @@ return $.widget( "ui.menu", {
 		if ( newItem && newItem.length ) {
 			this._open( newItem.parent() );
 
-			// Delay so Firefox will not hide activedescendant change in expanding submenu from AT
+			/ Delay so Firefox will not hide activedescendant change in expanding submenu from AT
 			this._delay( function() {
 				this.focus( event, newItem );
 			} );
@@ -631,7 +631,7 @@ return $.widget( "ui.menu", {
 			base = this.active.offset().top;
 			height = this.element.innerHeight();
 
-			// jQuery 3.2 doesn't include scrollbars in innerHeight, add it back.
+			/ jQuery 3.2 doesn't include scrollbars in innerHeight, add it back.
 			if ( $.fn.jquery.indexOf( "3.2." ) === 0 ) {
 				height += this.element[ 0 ].offsetHeight - this.element.outerHeight();
 			}
@@ -661,7 +661,7 @@ return $.widget( "ui.menu", {
 			base = this.active.offset().top;
 			height = this.element.innerHeight();
 
-			// jQuery 3.2 doesn't include scrollbars in innerHeight, add it back.
+			/ jQuery 3.2 doesn't include scrollbars in innerHeight, add it back.
 			if ( $.fn.jquery.indexOf( "3.2." ) === 0 ) {
 				height += this.element[ 0 ].offsetHeight - this.element.outerHeight();
 			}
@@ -683,8 +683,8 @@ return $.widget( "ui.menu", {
 
 	select: function( event ) {
 
-		// TODO: It should never be possible to not have an active item at this
-		// point, but the tests don't trigger mouseenter before click.
+		/ TODO: It should never be possible to not have an active item at this
+		/ point, but the tests don't trigger mouseenter before click.
 		this.active = this.active || $( event.target ).closest( ".ui-menu-item" );
 		var ui = { item: this.active };
 		if ( !this.active.has( ".ui-menu" ).length ) {
@@ -700,7 +700,7 @@ return $.widget( "ui.menu", {
 		return this.activeMenu
 			.find( this.options.items )
 
-				// Only match on items, not dividers or other content (#10571)
+				/ Only match on items, not dividers or other content (#10571)
 				.filter( ".ui-menu-item" )
 					.filter( function() {
 						return regex.test(

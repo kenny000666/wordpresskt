@@ -37,7 +37,7 @@
  * @param wpforms_education.upgrade.url_template
  */
 
-var WPFormsEducation = window.WPFormsEducation || {}; // eslint-disable-line no-var
+var WPFormsEducation = window.WPFormsEducation || {}; / eslint-disable-line no-var
 
 WPFormsEducation.core = window.WPFormsEducation.core || ( function( document, window, $ ) {
 	/**
@@ -114,7 +114,7 @@ WPFormsEducation.core = window.WPFormsEducation.core || ( function( document, wi
 			const $this = $( this );
 			const action = $this.data( 'action' );
 
-			// Currently, only the upgrade action is supported.
+			/ Currently, only the upgrade action is supported.
 			if ( action !== 'upgrade' ) {
 				return;
 			}
@@ -255,22 +255,22 @@ WPFormsEducation.core = window.WPFormsEducation.core || ( function( document, wi
 		 * @return {string} UTM content string.
 		 */
 		getUTMContentValue( $el ) {
-			// UTM content for Fields.
+			/ UTM content for Fields.
 			if ( $el.hasClass( 'wpforms-add-fields-button' ) ) {
 				return $el.data( 'utm-content' ) + ' Field';
 			}
 
-			// UTM content for Templates.
+			/ UTM content for Templates.
 			if ( $el.hasClass( 'wpforms-template-select' ) ) {
 				return app.slugToUTMContent( $el.data( 'slug' ) );
 			}
 
-			// UTM content for Addons (sidebar).
+			/ UTM content for Addons (sidebar).
 			if ( $el.hasClass( 'wpforms-panel-sidebar-section' ) ) {
 				return app.slugToUTMContent( $el.data( 'slug' ) ) + ' Addon';
 			}
 
-			// UTM content by default with fallback `data-name`.
+			/ UTM content by default with fallback `data-name`.
 			return $el.data( 'utm-content' ) || $el.data( 'name' );
 		},
 
@@ -290,10 +290,10 @@ WPFormsEducation.core = window.WPFormsEducation.core || ( function( document, wi
 
 			return slug.toString()
 
-				// Replace all non-alphanumeric characters with space.
+				/ Replace all non-alphanumeric characters with space.
 				.replace( /[^a-z\d ]/gi, ' ' )
 
-				// Uppercase each word.
+				/ Uppercase each word.
 				.replace( /\b[a-z]/g, function( char ) {
 					return char.toUpperCase();
 				} );
@@ -316,10 +316,10 @@ WPFormsEducation.core = window.WPFormsEducation.core || ( function( document, wi
 				baseURL = wpforms_education.upgrade[ type ].url_template;
 			}
 
-			// Test if the base URL already contains `?`.
+			/ Test if the base URL already contains `?`.
 			let appendChar = /(\?)/.test( baseURL ) ? '&' : '?';
 
-			// If the upgrade link is changed by partners, appendChar has to be encoded.
+			/ If the upgrade link is changed by partners, appendChar has to be encoded.
 			if ( baseURL.indexOf( 'https://wpforms.com' ) === -1 ) {
 				appendChar = encodeURIComponent( appendChar );
 			}
@@ -481,7 +481,7 @@ WPFormsEducation.core = window.WPFormsEducation.core || ( function( document, wi
 			content = content || wpforms_education.save_prompt;
 
 			$.alert( {
-				title: title.replace( /\.$/, '' ), // Remove a dot in the title end.
+				title: title.replace( /\.$/, '' ), / Remove a dot in the title end.
 				content,
 				icon: 'fa fa-check-circle',
 				type: 'green',
@@ -778,7 +778,7 @@ WPFormsEducation.core = window.WPFormsEducation.core || ( function( document, wi
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

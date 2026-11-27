@@ -7,10 +7,10 @@ jQuery( function ( $ ) {
 	 * ---------------------------------------
 	 */
 
-	// Move the admin notices inside the appropriate div.
+	/ Move the admin notices inside the appropriate div.
 	$( '.js-ocdi-notice-wrapper' ).appendTo( '.js-ocdi-admin-notices-container' );
 
-	// Auto start the manual import if on the import page and the 'js-ocdi-auto-start-manual-import' element is present.
+	/ Auto start the manual import if on the import page and the 'js-ocdi-auto-start-manual-import' element is present.
 	if ( $( '.js-ocdi-auto-start-manual-import' ).length ) {
 		startImport( false );
 	}
@@ -33,7 +33,7 @@ jQuery( function ( $ ) {
 			return false;
 		}
 
-		// Prepare data for the AJAX call
+		/ Prepare data for the AJAX call
 		var data = new FormData();
 		data.append( 'action', 'ocdi_upload_manual_import_files' );
 		data.append( 'security', ocdi.ajax_nonce );
@@ -90,7 +90,7 @@ jQuery( function ( $ ) {
 
 		$button.addClass( 'ocdi-button-disabled' );
 
-		// AJAX call to upload all selected import files (content, widgets, customizer and redux).
+		/ AJAX call to upload all selected import files (content, widgets, customizer and redux).
 		$.ajax({
 			method: 'POST',
 			url: ocdi.ajax_url,
@@ -137,7 +137,7 @@ jQuery( function ( $ ) {
 			$label.show();
 		}
 
-		// Enable or disable the main manual import/cancel buttons.
+		/ Enable or disable the main manual import/cancel buttons.
 		$( '.ocdi__file-upload-container-items input[type=file]' ).each( function() {
 			if ( this.files && this.files.length > 0 ) {
 				fileIsSet = true;
@@ -304,13 +304,13 @@ jQuery( function ( $ ) {
 	 * Grid Layout categories navigation.
 	 */
 	(function () {
-		// Cache selector to all items
+		/ Cache selector to all items
 		var $items = $( '.js-ocdi-gl-item-container' ).find( '.js-ocdi-gl-item' ),
 			fadeoutClass = 'ocdi-is-fadeout',
 			fadeinClass = 'ocdi-is-fadein',
 			animationDuration = 200;
 
-		// Hide all items.
+		/ Hide all items.
 		var fadeOut = function () {
 			var dfd = jQuery.Deferred();
 
@@ -363,15 +363,15 @@ jQuery( function ( $ ) {
 		$( '.js-ocdi-nav-link' ).on( 'click', function( event ) {
 			event.preventDefault();
 
-			// Remove 'active' class from the previous nav list items.
+			/ Remove 'active' class from the previous nav list items.
 			$( this ).parent().siblings().removeClass( 'active' );
 
-			// Add the 'active' class to this nav list item.
+			/ Add the 'active' class to this nav list item.
 			$( this ).parent().addClass( 'active' );
 
 			var category = this.hash.slice(1);
 
-			// show/hide the right items, based on category selected
+			/ show/hide the right items, based on category selected
 			var $container = $( '.js-ocdi-gl-item-container' );
 			$container.css( 'min-width', $container.outerHeight() );
 
@@ -389,10 +389,10 @@ jQuery( function ( $ ) {
 	 */
 	$( '.js-ocdi-gl-search' ).on( 'keyup', function( event ) {
 		if ( 0 < $(this).val().length ) {
-			// Hide all items.
+			/ Hide all items.
 			$( '.js-ocdi-gl-item-container' ).find( '.js-ocdi-gl-item' ).hide();
 
-			// Show just the ones that have a match on the import name.
+			/ Show just the ones that have a match on the import name.
 			$( '.js-ocdi-gl-item-container' ).find( '.js-ocdi-gl-item[data-name*="' + $(this).val().toLowerCase() + '"]' ).show();
 		}
 		else {
@@ -428,12 +428,12 @@ jQuery( function ( $ ) {
 				ajaxCall( data );
 			}
 			else if ( 'undefined' !== typeof response.status && 'customizerAJAX' === response.status ) {
-				// Fix for data.set and data.delete, which they are not supported in some browsers.
+				/ Fix for data.set and data.delete, which they are not supported in some browsers.
 				var newData = new FormData();
 				newData.append( 'action', 'ocdi_import_customizer_data' );
 				newData.append( 'security', ocdi.ajax_nonce );
 
-				// Set the wp_customize=on only if the plugin filter is set to true.
+				/ Set the wp_customize=on only if the plugin filter is set to true.
 				if ( true === ocdi.wp_customize_on ) {
 					newData.append( 'wp_customize', 'on' );
 				}
@@ -441,7 +441,7 @@ jQuery( function ( $ ) {
 				ajaxCall( newData );
 			}
 			else if ( 'undefined' !== typeof response.status && 'afterAllImportAJAX' === response.status ) {
-				// Fix for data.set and data.delete, which they are not supported in some browsers.
+				/ Fix for data.set and data.delete, which they are not supported in some browsers.
 				var newData = new FormData();
 				newData.append( 'action', 'ocdi_after_import_data' );
 				newData.append( 'security', ocdi.ajax_nonce );
@@ -461,7 +461,7 @@ jQuery( function ( $ ) {
 				$( '.js-ocdi-importing' ).hide();
 				$( '.js-ocdi-imported' ).show();
 
-				// Trigger custom event, when OCDI import is complete.
+				/ Trigger custom event, when OCDI import is complete.
 				$( document ).trigger( 'ocdiImportComplete' );
 			}
 			else {
@@ -678,7 +678,7 @@ jQuery( function ( $ ) {
 	 * Files for the manual import have already been uploaded in the '.js-ocdi-start-manual-import' event above.
 	 */
 	function startImport( selected ) {
-		// Prepare data for the AJAX call
+		/ Prepare data for the AJAX call
 		var data = new FormData();
 		data.append( 'action', 'ocdi_import_demo_data' );
 		data.append( 'security', ocdi.ajax_nonce );
@@ -687,7 +687,7 @@ jQuery( function ( $ ) {
 			data.append( 'selected', selected );
 		}
 
-		// AJAX call to import everything (content, widgets, before/after setup)
+		/ AJAX call to import everything (content, widgets, before/after setup)
 		ajaxCall( data );
 	}
 } );

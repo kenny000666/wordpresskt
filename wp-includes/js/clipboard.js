@@ -14,7 +14,7 @@
 	else
 		root["ClipboardJS"] = factory();
 })(this, function() {
-return /******/ (function() { // webpackBootstrap
+return /******/ (function() { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 686:
@@ -36,7 +36,7 @@ var listen_default = /*#__PURE__*/__webpack_require__.n(listen);
 // EXTERNAL MODULE: ./node_modules/select/src/select.js
 var src_select = __webpack_require__(817);
 var select_default = /*#__PURE__*/__webpack_require__.n(src_select);
-;// CONCATENATED MODULE: ./src/common/command.js
+;/ CONCATENATED MODULE: ./src/common/command.js
 /**
  * Executes a given operation type.
  * @param {String} type
@@ -49,7 +49,7 @@ function command(type) {
     return false;
   }
 }
-;// CONCATENATED MODULE: ./src/actions/cut.js
+;/ CONCATENATED MODULE: ./src/actions/cut.js
 
 
 /**
@@ -65,7 +65,7 @@ var ClipboardActionCut = function ClipboardActionCut(target) {
 };
 
 /* harmony default export */ var actions_cut = (ClipboardActionCut);
-;// CONCATENATED MODULE: ./src/common/create-fake-element.js
+;/ CONCATENATED MODULE: ./src/common/create-fake-element.js
 /**
  * Creates a fake textarea element with a value.
  * @param {String} value
@@ -73,16 +73,16 @@ var ClipboardActionCut = function ClipboardActionCut(target) {
  */
 function createFakeElement(value) {
   var isRTL = document.documentElement.getAttribute('dir') === 'rtl';
-  var fakeElement = document.createElement('textarea'); // Prevent zooming on iOS
+  var fakeElement = document.createElement('textarea'); / Prevent zooming on iOS
 
-  fakeElement.style.fontSize = '12pt'; // Reset box model
+  fakeElement.style.fontSize = '12pt'; / Reset box model
 
   fakeElement.style.border = '0';
   fakeElement.style.padding = '0';
-  fakeElement.style.margin = '0'; // Move element out of screen horizontally
+  fakeElement.style.margin = '0'; / Move element out of screen horizontally
 
   fakeElement.style.position = 'absolute';
-  fakeElement.style[isRTL ? 'right' : 'left'] = '-9999px'; // Move element to the same position vertically
+  fakeElement.style[isRTL ? 'right' : 'left'] = '-9999px'; / Move element to the same position vertically
 
   var yPosition = window.pageYOffset || document.documentElement.scrollTop;
   fakeElement.style.top = "".concat(yPosition, "px");
@@ -90,7 +90,7 @@ function createFakeElement(value) {
   fakeElement.value = value;
   return fakeElement;
 }
-;// CONCATENATED MODULE: ./src/actions/copy.js
+;/ CONCATENATED MODULE: ./src/actions/copy.js
 
 
 
@@ -126,7 +126,7 @@ var ClipboardActionCopy = function ClipboardActionCopy(target) {
   if (typeof target === 'string') {
     selectedText = fakeCopyAction(target, options);
   } else if (target instanceof HTMLInputElement && !['text', 'search', 'url', 'tel', 'password'].includes(target === null || target === void 0 ? void 0 : target.type)) {
-    // If input type doesn't support `setSelectionRange`. Simulate it. https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/setSelectionRange
+    / If input type doesn't support `setSelectionRange`. Simulate it. https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/setSelectionRange
     selectedText = fakeCopyAction(target.value, options);
   } else {
     selectedText = select_default()(target);
@@ -137,7 +137,7 @@ var ClipboardActionCopy = function ClipboardActionCopy(target) {
 };
 
 /* harmony default export */ var actions_copy = (ClipboardActionCopy);
-;// CONCATENATED MODULE: ./src/actions/default.js
+;/ CONCATENATED MODULE: ./src/actions/default.js
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
@@ -150,16 +150,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 var ClipboardActionDefault = function ClipboardActionDefault() {
   var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  // Defines base properties passed from constructor.
+  / Defines base properties passed from constructor.
   var _options$action = options.action,
       action = _options$action === void 0 ? 'copy' : _options$action,
       container = options.container,
       target = options.target,
-      text = options.text; // Sets the `action` to be performed which can be either 'copy' or 'cut'.
+      text = options.text; / Sets the `action` to be performed which can be either 'copy' or 'cut'.
 
   if (action !== 'copy' && action !== 'cut') {
     throw new Error('Invalid "action" value, use either "copy" or "cut"');
-  } // Sets the `target` property using an element that will be have its content copied.
+  } / Sets the `target` property using an element that will be have its content copied.
 
 
   if (target !== undefined) {
@@ -174,14 +174,14 @@ var ClipboardActionDefault = function ClipboardActionDefault() {
     } else {
       throw new Error('Invalid "target" value, use a valid Element');
     }
-  } // Define selection strategy based on `text` property.
+  } / Define selection strategy based on `text` property.
 
 
   if (text) {
     return actions_copy(text, {
       container: container
     });
-  } // Defines which selection strategy based on `target` property.
+  } / Defines which selection strategy based on `target` property.
 
 
   if (target) {
@@ -192,7 +192,7 @@ var ClipboardActionDefault = function ClipboardActionDefault() {
 };
 
 /* harmony default export */ var actions_default = (ClipboardActionDefault);
-;// CONCATENATED MODULE: ./src/clipboard.js
+;/ CONCATENATED MODULE: ./src/clipboard.js
 function clipboard_typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { clipboard_typeof = function _typeof(obj) { return typeof obj; }; } else { clipboard_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return clipboard_typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -308,7 +308,7 @@ var Clipboard = /*#__PURE__*/function (_Emitter) {
         container: this.container,
         target: this.target(trigger),
         text: this.text(trigger)
-      }); // Fires an event based on the copy operation result.
+      }); / Fires an event based on the copy operation result.
 
       this.emit(text ? 'success' : 'error', {
         action: action,
@@ -496,24 +496,24 @@ function _delegate(element, selector, type, callback, useCapture) {
  * @return {Object}
  */
 function delegate(elements, selector, type, callback, useCapture) {
-    // Handle the regular Element usage
+    / Handle the regular Element usage
     if (typeof elements.addEventListener === 'function') {
         return _delegate.apply(null, arguments);
     }
 
-    // Handle Element-less usage, it defaults to global delegation
+    / Handle Element-less usage, it defaults to global delegation
     if (typeof type === 'function') {
-        // Use `document` as the first parameter, then apply arguments
-        // This is a short way to .unshift `arguments` without running into deoptimizations
+        / Use `document` as the first parameter, then apply arguments
+        / This is a short way to .unshift `arguments` without running into deoptimizations
         return _delegate.bind(null, document).apply(null, arguments);
     }
 
-    // Handle Selector-based usage
+    / Handle Selector-based usage
     if (typeof elements === 'string') {
         elements = document.querySelectorAll(elements);
     }
 
-    // Handle Array-like based usage
+    / Handle Array-like based usage
     return Array.prototype.map.call(elements, function (element) {
         return _delegate(element, selector, type, callback, useCapture);
     });
@@ -755,8 +755,8 @@ module.exports = select;
 /***/ (function(module) {
 
 function E () {
-  // Keep this empty so it's easier to inherit from
-  // (via https://github.com/lipsmack from https://github.com/scottcorgan/tiny-emitter/issues/3)
+  / Keep this empty so it's easier to inherit from
+  / (via https://github.com/lipsmack from https://github.com/scottcorgan/tiny-emitter/issues/3)
 }
 
 E.prototype = {
@@ -807,9 +807,9 @@ E.prototype = {
       }
     }
 
-    // Remove event from queue to prevent memory leak
-    // Suggested by https://github.com/lazd
-    // Ref: https://github.com/scottcorgan/tiny-emitter/commit/c6ebfaa9bc973b33d110a84a307742b7cf94c953#commitcomment-5024910
+    / Remove event from queue to prevent memory leak
+    / Suggested by https://github.com/lazd
+    / Ref: https://github.com/scottcorgan/tiny-emitter/commit/c6ebfaa9bc973b33d110a84a307742b7cf94c953#commitcomment-5024910
 
     (liveEvents.length)
       ? e[name] = liveEvents
@@ -827,33 +827,33 @@ module.exports.TinyEmitter = E;
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		if(__webpack_module_cache__[moduleId]) {
 /******/ 			return __webpack_module_cache__[moduleId].exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	!function() {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = function(module) {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				function() { return module['default']; } :
@@ -865,7 +865,7 @@ module.exports.TinyEmitter = E;
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	!function() {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = function(exports, definition) {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -881,9 +881,9 @@ module.exports.TinyEmitter = E;
 /******/ 	}();
 /******/ 	
 /************************************************************************/
-/******/ 	// module exports must be returned from runtime so entry inlining is disabled
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
+/******/ 	/ module exports must be returned from runtime so entry inlining is disabled
+/******/ 	/ startup
+/******/ 	/ Load entry module and return exports
 /******/ 	return __webpack_require__(686);
 /******/ })()
 .default;

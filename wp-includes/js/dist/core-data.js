@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
@@ -57,15 +57,15 @@ function _createClass(Constructor, protoProps, staticProps) {
 function getValuePair(instance, key) {
   var _map = instance._map,
       _arrayTreeMap = instance._arrayTreeMap,
-      _objectTreeMap = instance._objectTreeMap; // Map keeps a reference to the last object-like key used to set the
-  // value, which can be used to shortcut immediately to the value.
+      _objectTreeMap = instance._objectTreeMap; / Map keeps a reference to the last object-like key used to set the
+  / value, which can be used to shortcut immediately to the value.
 
   if (_map.has(key)) {
     return _map.get(key);
-  } // Sort keys to ensure stable retrieval from tree.
+  } / Sort keys to ensure stable retrieval from tree.
 
 
-  var properties = Object.keys(key).sort(); // Tree by type to avoid conflicts on numeric object keys, empty value.
+  var properties = Object.keys(key).sort(); / Tree by type to avoid conflicts on numeric object keys, empty value.
 
   var map = Array.isArray(key) ? _arrayTreeMap : _objectTreeMap;
 
@@ -89,8 +89,8 @@ function getValuePair(instance, key) {
 
   if (!valuePair) {
     return;
-  } // If reached, it implies that an object-like key was set with another
-  // reference, so delete the reference and replace with the current.
+  } / If reached, it implies that an object-like key was set with another
+  / reference, so delete the reference and replace with the current.
 
 
   _map.delete(valuePair[0]);
@@ -122,7 +122,7 @@ function () {
     this.clear();
 
     if (iterable instanceof EquivalentKeyMap) {
-      // Map#forEach is only means of iterating with support for IE11.
+      / Map#forEach is only means of iterating with support for IE11.
       var iterablePairs = [];
       iterable.forEach(function (value, key) {
         iterablePairs.push([key, value]);
@@ -155,16 +155,16 @@ function () {
      * @return {EquivalentKeyMap} Map instance.
      */
     value: function set(key, value) {
-      // Shortcut non-object-like to set on internal Map.
+      / Shortcut non-object-like to set on internal Map.
       if (key === null || _typeof(key) !== 'object') {
         this._map.set(key, value);
 
         return this;
-      } // Sort keys to ensure stable assignment into tree.
+      } / Sort keys to ensure stable assignment into tree.
 
 
       var properties = Object.keys(key).sort();
-      var valuePair = [key, value]; // Tree by type to avoid conflicts on numeric object keys, empty value.
+      var valuePair = [key, value]; / Tree by type to avoid conflicts on numeric object keys, empty value.
 
       var map = Array.isArray(key) ? this._arrayTreeMap : this._objectTreeMap;
 
@@ -183,10 +183,10 @@ function () {
         }
 
         map = map.get(propertyValue);
-      } // If an _ekm_value exists, there was already an equivalent key. Before
-      // overriding, ensure that the old key reference is removed from map to
-      // avoid memory leak of accumulating equivalent keys. This is, in a
-      // sense, a poor man's WeakMap, while still enabling iterability.
+      } / If an _ekm_value exists, there was already an equivalent key. Before
+      / overriding, ensure that the old key reference is removed from map to
+      / avoid memory leak of accumulating equivalent keys. This is, in a
+      / sense, a poor man's WeakMap, while still enabling iterability.
 
 
       var previousValuePair = map.get('_ekm_value');
@@ -213,7 +213,7 @@ function () {
   }, {
     key: "get",
     value: function get(key) {
-      // Shortcut non-object-like to get from internal Map.
+      / Shortcut non-object-like to get from internal Map.
       if (key === null || _typeof(key) !== 'object') {
         return this._map.get(key);
       }
@@ -238,8 +238,8 @@ function () {
     value: function has(key) {
       if (key === null || _typeof(key) !== 'object') {
         return this._map.has(key);
-      } // Test on the _presence_ of the pair, not its value, as even undefined
-      // can be a valid member value for a key.
+      } / Test on the _presence_ of the pair, not its value, as even undefined
+      / can be a valid member value for a key.
 
 
       return getValuePair(this, key) !== undefined;
@@ -258,8 +258,8 @@ function () {
     value: function _delete(key) {
       if (!this.has(key)) {
         return false;
-      } // This naive implementation will leave orphaned child trees. A better
-      // implementation should traverse and remove orphans.
+      } / This naive implementation will leave orphaned child trees. A better
+      / implementation should traverse and remove orphans.
 
 
       this.set(key, undefined);
@@ -282,7 +282,7 @@ function () {
       var thisArg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this;
 
       this._map.forEach(function (value, key) {
-        // Unwrap value from object-like value pair.
+        / Unwrap value from object-like value pair.
         if (key !== null && _typeof(key) === 'object') {
           value = value[1];
         }
@@ -388,7 +388,7 @@ module.exports = function equal(a, b) {
     return true;
   }
 
-  // true if both NaN, false otherwise
+  / true if both NaN, false otherwise
   return a!==a && b!==b;
 };
 
@@ -397,34 +397,34 @@ module.exports = function equal(a, b) {
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -436,7 +436,7 @@ module.exports = function equal(a, b) {
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -453,7 +453,7 @@ module.exports = function equal(a, b) {
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -629,17 +629,17 @@ __webpack_require__.d(resolvers_namespaceObject, {
   getUserPatternCategories: () => (resolvers_getUserPatternCategories)
 });
 
-;// external ["wp","data"]
+;/ external ["wp","data"]
 const external_wp_data_namespaceObject = window["wp"]["data"];
 // EXTERNAL MODULE: ./node_modules/fast-deep-equal/es6/index.js
 var es6 = __webpack_require__(7734);
 var es6_default = /*#__PURE__*/__webpack_require__.n(es6);
-;// external ["wp","compose"]
+;/ external ["wp","compose"]
 const external_wp_compose_namespaceObject = window["wp"]["compose"];
-;// external ["wp","isShallowEqual"]
+;/ external ["wp","isShallowEqual"]
 const external_wp_isShallowEqual_namespaceObject = window["wp"]["isShallowEqual"];
 var external_wp_isShallowEqual_default = /*#__PURE__*/__webpack_require__.n(external_wp_isShallowEqual_namespaceObject);
-;// ./node_modules/@wordpress/undo-manager/build-module/index.js
+;/ ./node_modules/@wordpress/undo-manager/build-module/index.js
 /**
  * WordPress dependencies
  */
@@ -692,7 +692,7 @@ const addHistoryChangesIntoRecord = (record, changes) => {
   });
   const nextRecord = [...record];
   if (existingChangesIndex !== -1) {
-    // If the edit is already in the stack leave the initial "from" value.
+    / If the edit is already in the stack leave the initial "from" value.
     nextRecord[existingChangesIndex] = {
       id: changes.id,
       changes: mergeHistoryChanges(nextRecord[existingChangesIndex].changes, changes.changes)
@@ -811,7 +811,7 @@ function createUndoManager() {
   };
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/utils/if-matching-action.js
+;/ ./node_modules/@wordpress/core-data/build-module/utils/if-matching-action.js
 /** @typedef {import('../types').AnyFunction} AnyFunction */
 
 /**
@@ -831,7 +831,7 @@ const ifMatchingAction = isMatch => reducer => (state, action) => {
 };
 /* harmony default export */ const if_matching_action = (ifMatchingAction);
 
-;// ./node_modules/@wordpress/core-data/build-module/utils/replace-action.js
+;/ ./node_modules/@wordpress/core-data/build-module/utils/replace-action.js
 /** @typedef {import('../types').AnyFunction} AnyFunction */
 
 /**
@@ -847,7 +847,7 @@ const replaceAction = replacer => reducer => (state, action) => {
 };
 /* harmony default export */ const replace_action = (replaceAction);
 
-;// ./node_modules/@wordpress/core-data/build-module/utils/conservative-map-item.js
+;/ ./node_modules/@wordpress/core-data/build-module/utils/conservative-map-item.js
 /**
  * External dependencies
  */
@@ -864,7 +864,7 @@ const replaceAction = replacer => reducer => (state, action) => {
  * @return {Object} Minimally modified merged item.
  */
 function conservativeMapItem(item, nextItem) {
-  // Return next item in its entirety if there is no original item.
+  / Return next item in its entirety if there is no original item.
   if (!item) {
     return nextItem;
   }
@@ -882,9 +882,9 @@ function conservativeMapItem(item, nextItem) {
     return item;
   }
 
-  // Only at this point, backfill properties from the original item which
-  // weren't explicitly set into the result above. This is an optimization
-  // to allow `hasChanges` to return early.
+  / Only at this point, backfill properties from the original item which
+  / weren't explicitly set into the result above. This is an optimization
+  / to allow `hasChanges` to return early.
   for (const key in item) {
     if (!result.hasOwnProperty(key)) {
       result[key] = item[key];
@@ -893,7 +893,7 @@ function conservativeMapItem(item, nextItem) {
   return result;
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/utils/on-sub-key.js
+;/ ./node_modules/@wordpress/core-data/build-module/utils/on-sub-key.js
 /** @typedef {import('../types').AnyFunction} AnyFunction */
 
 /**
@@ -905,15 +905,15 @@ function conservativeMapItem(item, nextItem) {
  * @return {AnyFunction} Higher-order reducer.
  */
 const onSubKey = actionProperty => reducer => (state = {}, action) => {
-  // Retrieve subkey from action. Do not track if undefined; useful for cases
-  // where reducer is scoped by action shape.
+  / Retrieve subkey from action. Do not track if undefined; useful for cases
+  / where reducer is scoped by action shape.
   const key = action[actionProperty];
   if (key === undefined) {
     return state;
   }
 
-  // Avoid updating state if unchanged. Note that this also accounts for a
-  // reducer which returns undefined on a key which is not yet tracked.
+  / Avoid updating state if unchanged. Note that this also accounts for a
+  / reducer which returns undefined on a key which is not yet tracked.
   const nextKeyState = reducer(state[key], action);
   if (nextKeyState === state[key]) {
     return state;
@@ -925,7 +925,7 @@ const onSubKey = actionProperty => reducer => (state = {}, action) => {
 };
 /* harmony default export */ const on_sub_key = (onSubKey);
 
-;// ./node_modules/tslib/tslib.es6.mjs
+;/ ./node_modules/tslib/tslib.es6.mjs
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -1285,7 +1285,7 @@ function __disposeResources(env) {
 }
 
 function __rewriteRelativeImportExtension(path, preserveJsx) {
-  if (typeof path === "string" && /^\.\.?\//.test(path)) {
+  if (typeof path === "string" && /^\.\.?\/.test(path)) {
       return path.replace(/\.(tsx)$|((?:\.d)?)((?:\.[^./]+?)?)\.([cm]?)ts$/i, function (m, tsx, d, ext, cm) {
           return tsx ? preserveJsx ? ".jsx" : ".js" : d && (!ext || !cm) ? m : (d + ext + "." + cm.toLowerCase() + "js");
       });
@@ -1328,7 +1328,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
   __rewriteRelativeImportExtension,
 });
 
-;// ./node_modules/lower-case/dist.es2015/index.js
+;/ ./node_modules/lower-case/dist.es2015/index.js
 /**
  * Source: ftp://ftp.unicode.org/Public/UCD/latest/ucd/SpecialCasing.txt
  */
@@ -1377,7 +1377,7 @@ function lowerCase(str) {
     return str.toLowerCase();
 }
 
-;// ./node_modules/no-case/dist.es2015/index.js
+;/ ./node_modules/no-case/dist.es2015/index.js
 
 // Support camel case ("camelCase" -> "camel Case" and "CAMELCase" -> "CAMEL Case").
 var DEFAULT_SPLIT_REGEXP = [/([a-z0-9])([A-Z])/g, /([A-Z])([A-Z][a-z])/g];
@@ -1392,12 +1392,12 @@ function noCase(input, options) {
     var result = replace(replace(input, splitRegexp, "$1\0$2"), stripRegexp, "\0");
     var start = 0;
     var end = result.length;
-    // Trim the delimiter from around the output string.
+    / Trim the delimiter from around the output string.
     while (result.charAt(start) === "\0")
         start++;
     while (result.charAt(end - 1) === "\0")
         end--;
-    // Transform each token independently.
+    / Transform each token independently.
     return result.slice(start, end).split("\0").map(transform).join(delimiter);
 }
 /**
@@ -1409,7 +1409,7 @@ function replace(input, re, value) {
     return re.reduce(function (input, re) { return input.replace(re, value); }, input);
 }
 
-;// ./node_modules/upper-case-first/dist.es2015/index.js
+;/ ./node_modules/upper-case-first/dist.es2015/index.js
 /**
  * Upper case the first character of an input string.
  */
@@ -1417,7 +1417,7 @@ function upperCaseFirst(input) {
     return input.charAt(0).toUpperCase() + input.substr(1);
 }
 
-;// ./node_modules/capital-case/dist.es2015/index.js
+;/ ./node_modules/capital-case/dist.es2015/index.js
 
 
 
@@ -1429,7 +1429,7 @@ function capitalCase(input, options) {
     return noCase(input, __assign({ delimiter: " ", transform: capitalCaseTransform }, options));
 }
 
-;// ./node_modules/pascal-case/dist.es2015/index.js
+;/ ./node_modules/pascal-case/dist.es2015/index.js
 
 
 function pascalCaseTransform(input, index) {
@@ -1448,14 +1448,14 @@ function pascalCase(input, options) {
     return noCase(input, __assign({ delimiter: "", transform: pascalCaseTransform }, options));
 }
 
-;// external ["wp","apiFetch"]
+;/ external ["wp","apiFetch"]
 const external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
 var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_namespaceObject);
-;// external ["wp","i18n"]
+;/ external ["wp","i18n"]
 const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
-;// external ["wp","richText"]
+;/ external ["wp","richText"]
 const external_wp_richText_namespaceObject = window["wp"]["richText"];
-;// ./node_modules/@wordpress/core-data/build-module/entities.js
+;/ ./node_modules/@wordpress/core-data/build-module/entities.js
 /**
  * External dependencies
  */
@@ -1475,12 +1475,12 @@ const rootEntitiesConfig = [{
   name: '__unstableBase',
   baseURL: '/',
   baseURLParams: {
-    // Please also change the preload path when changing this.
-    // @see lib/compat/wordpress-6.8/preload.php
+    / Please also change the preload path when changing this.
+    / @see lib/compat/wordpress-6.8/preload.php
     _fields: ['description', 'gmt_offset', 'home', 'name', 'site_icon', 'site_icon_url', 'site_logo', 'timezone_string', 'url', 'page_for_posts', 'page_on_front', 'show_on_front'].join(',')
   },
-  // The entity doesn't support selecting multiple records.
-  // The property is maintained for backward compatibility.
+  / The entity doesn't support selecting multiple records.
+  / The property is maintained for backward compatibility.
   plural: '__unstableBases',
   syncConfig: {
     fetch: async () => {
@@ -1642,7 +1642,7 @@ const rootEntitiesConfig = [{
     context: 'edit'
   },
   plural: 'globalStylesVariations',
-  // Should be different from name.
+  / Should be different from name.
   getTitle: record => record?.title?.rendered || record?.title,
   getRevisionsUrl: (parentId, revisionId) => `/wp/v2/global-styles/${parentId}/revisions${revisionId ? '/' + revisionId : ''}`,
   supportsPagination: true
@@ -1700,12 +1700,12 @@ const additionalEntityConfigLoaders = [{
 const prePersistPostType = (persistedRecord, edits) => {
   const newEdits = {};
   if (persistedRecord?.status === 'auto-draft') {
-    // Saving an auto-draft should create a draft by default.
+    / Saving an auto-draft should create a draft by default.
     if (!edits.status && !newEdits.status) {
       newEdits.status = 'draft';
     }
 
-    // Fix the auto-draft default title.
+    / Fix the auto-draft default title.
     if ((!edits.title || edits.title === 'Auto Draft') && !newEdits.title && (!persistedRecord?.title || persistedRecord?.title === 'Auto Draft')) {
       newEdits.title = '';
     }
@@ -1873,7 +1873,7 @@ async function loadSiteEntity() {
   });
   const labels = {};
   Object.entries((_site$schema$properti = site?.schema?.properties) !== null && _site$schema$properti !== void 0 ? _site$schema$properti : {}).forEach(([key, value]) => {
-    // Ignore properties `title` and `type` keys.
+    / Ignore properties `title` and `type` keys.
     if (typeof value === 'object' && value.title) {
       labels[key] = value.title;
     }
@@ -1892,10 +1892,10 @@ async function loadSiteEntity() {
  * @example
  * ```js
  * const nameSingular = getMethodName( 'root', 'theme', 'get' );
- * // nameSingular is getRootTheme
+ * / nameSingular is getRootTheme
  *
  * const namePlural = getMethodName( 'root', 'themes', 'set' );
- * // namePlural is setRootThemes
+ * / namePlural is setRootThemes
  * ```
  *
  * @param {string} kind   Entity kind.
@@ -1910,9 +1910,9 @@ const getMethodName = (kind, name, prefix = 'get') => {
   return `${prefix}${kindPrefix}${suffix}`;
 };
 
-;// external ["wp","url"]
+;/ external ["wp","url"]
 const external_wp_url_namespaceObject = window["wp"]["url"];
-;// ./node_modules/@wordpress/core-data/build-module/utils/get-normalized-comma-separable.js
+;/ ./node_modules/@wordpress/core-data/build-module/utils/get-normalized-comma-separable.js
 /**
  * Given a value which can be specified as one or the other of a comma-separated
  * string or an array, returns a value normalized to an array of strings, or
@@ -1932,7 +1932,7 @@ function getNormalizedCommaSeparable(value) {
 }
 /* harmony default export */ const get_normalized_comma_separable = (getNormalizedCommaSeparable);
 
-;// ./node_modules/@wordpress/core-data/build-module/utils/with-weak-map-cache.js
+;/ ./node_modules/@wordpress/core-data/build-module/utils/with-weak-map-cache.js
 /**
  * Given a function, returns an enhanced function which caches the result and
  * tracks in WeakMap. The result is only cached if the original function is
@@ -1951,9 +1951,9 @@ function withWeakMapCache(fn) {
     } else {
       value = fn(key);
 
-      // Can reach here if key is not valid for WeakMap, since `has`
-      // will return false for invalid key. Since `set` will throw,
-      // ensure that key is valid before setting into cache.
+      / Can reach here if key is not valid for WeakMap, since `has`
+      / will return false for invalid key. Since `set` will throw,
+      / ensure that key is valid before setting into cache.
       if (key !== null && typeof key === 'object') {
         cache.set(key, value);
       }
@@ -1963,7 +1963,7 @@ function withWeakMapCache(fn) {
 }
 /* harmony default export */ const with_weak_map_cache = (withWeakMapCache);
 
-;// ./node_modules/@wordpress/core-data/build-module/queried-data/get-query-parts.js
+;/ ./node_modules/@wordpress/core-data/build-module/queried-data/get-query-parts.js
 /**
  * WordPress dependencies
  */
@@ -2012,7 +2012,7 @@ function getQueryParts(query) {
     context: 'default'
   };
 
-  // Ensure stable key by sorting keys. Also more efficient for iterating.
+  / Ensure stable key by sorting keys. Also more efficient for iterating.
   const keys = Object.keys(query).sort();
   for (let i = 0; i < keys.length; i++) {
     const key = keys[i];
@@ -2028,36 +2028,36 @@ function getQueryParts(query) {
         parts.context = value;
         break;
       default:
-        // While in theory, we could exclude "_fields" from the stableKey
-        // because two request with different fields have the same results
-        // We're not able to ensure that because the server can decide to omit
-        // fields from the response even if we explicitly asked for it.
-        // Example: Asking for titles in posts without title support.
+        / While in theory, we could exclude "_fields" from the stableKey
+        / because two request with different fields have the same results
+        / We're not able to ensure that because the server can decide to omit
+        / fields from the response even if we explicitly asked for it.
+        / Example: Asking for titles in posts without title support.
         if (key === '_fields') {
           var _getNormalizedCommaSe;
           parts.fields = (_getNormalizedCommaSe = get_normalized_comma_separable(value)) !== null && _getNormalizedCommaSe !== void 0 ? _getNormalizedCommaSe : [];
-          // Make sure to normalize value for `stableKey`
+          / Make sure to normalize value for `stableKey`
           value = parts.fields.join();
         }
 
-        // Two requests with different include values cannot have same results.
+        / Two requests with different include values cannot have same results.
         if (key === 'include') {
           var _getNormalizedCommaSe2;
           if (typeof value === 'number') {
             value = value.toString();
           }
           parts.include = ((_getNormalizedCommaSe2 = get_normalized_comma_separable(value)) !== null && _getNormalizedCommaSe2 !== void 0 ? _getNormalizedCommaSe2 : []).map(Number);
-          // Normalize value for `stableKey`.
+          / Normalize value for `stableKey`.
           value = parts.include.join();
         }
 
-        // While it could be any deterministic string, for simplicity's
-        // sake mimic querystring encoding for stable key.
-        //
-        // TODO: For consistency with PHP implementation, addQueryArgs
-        // should accept a key value pair, which may optimize its
-        // implementation for our use here, vs. iterating an object
-        // with only a single key.
+        / While it could be any deterministic string, for simplicity's
+        / sake mimic querystring encoding for stable key.
+        /
+        / TODO: For consistency with PHP implementation, addQueryArgs
+        / should accept a key value pair, which may optimize its
+        / implementation for our use here, vs. iterating an object
+        / with only a single key.
         parts.stableKey += (parts.stableKey ? '&' : '') + (0,external_wp_url_namespaceObject.addQueryArgs)('', {
           [key]: value
         }).slice(1);
@@ -2067,7 +2067,7 @@ function getQueryParts(query) {
 }
 /* harmony default export */ const get_query_parts = (with_weak_map_cache(getQueryParts));
 
-;// ./node_modules/@wordpress/core-data/build-module/queried-data/reducer.js
+;/ ./node_modules/@wordpress/core-data/build-module/queried-data/reducer.js
 /**
  * WordPress dependencies
  */
@@ -2110,16 +2110,16 @@ function getMergedItemIds(itemIds, nextItemIds, page, perPage) {
   }
   const nextItemIdsStartIndex = (page - 1) * perPage;
 
-  // If later page has already been received, default to the larger known
-  // size of the existing array, else calculate as extending the existing.
+  / If later page has already been received, default to the larger known
+  / size of the existing array, else calculate as extending the existing.
   const size = Math.max((_itemIds$length = itemIds?.length) !== null && _itemIds$length !== void 0 ? _itemIds$length : 0, nextItemIdsStartIndex + nextItemIds.length);
 
-  // Preallocate array since size is known.
+  / Preallocate array since size is known.
   const mergedItemIds = new Array(size);
   for (let i = 0; i < size; i++) {
-    // Preserve existing item ID except for subset of range of next items.
-    // We need to check against the possible maximum upper boundary because
-    // a page could receive fewer than what was previously stored.
+    / Preserve existing item ID except for subset of range of next items.
+    / We need to check against the possible maximum upper boundary because
+    / a page could receive fewer than what was previously stored.
     const isInNextItemsRange = i >= nextItemIdsStartIndex && i < nextItemIdsStartIndex + perPage;
     mergedItemIds[i] = isInNextItemsRange ? nextItemIds[i - nextItemIdsStartIndex] : itemIds?.[i];
   }
@@ -2199,12 +2199,12 @@ function itemIsComplete(state = {}, action) {
           key = DEFAULT_ENTITY_KEY
         } = action;
 
-        // An item is considered complete if it is received without an associated
-        // fields query. Ideally, this would be implemented in such a way where the
-        // complete aggregate of all fields would satisfy completeness. Since the
-        // fields are not consistent across all entities, this would require
-        // introspection on the REST schema for each entity to know which fields
-        // compose a complete item for that entity.
+        / An item is considered complete if it is received without an associated
+        / fields query. Ideally, this would be implemented in such a way where the
+        / complete aggregate of all fields would satisfy completeness. Since the
+        / fields are not consistent across all entities, this would require
+        / introspection on the REST schema for each entity to know which fields
+        / compose a complete item for that entity.
         const queryParts = query ? get_query_parts(query) : {};
         const isCompleteQuery = !query || !Array.isArray(queryParts.fields);
         return {
@@ -2214,8 +2214,8 @@ function itemIsComplete(state = {}, action) {
             ...action.items.reduce((result, item) => {
               const itemId = item?.[key];
 
-              // Defer to completeness if already assigned. Technically the
-              // data may be outdated if receiving items for a field subset.
+              / Defer to completeness if already assigned. Technically the
+              / data may be outdated if receiving items for a field subset.
               result[itemId] = state?.[context]?.[itemId] || isCompleteQuery;
               return result;
             }, {})
@@ -2243,9 +2243,9 @@ const receiveQueries = (0,external_wp_compose_namespaceObject.compose)([
 if_matching_action(action => 'query' in action),
 // Inject query parts into action for use both in `onSubKey` and reducer.
 replace_action(action => {
-  // `ifMatchingAction` still passes on initialization, where state is
-  // undefined and a query is not assigned. Avoid attempting to parse
-  // parts. `onSubKey` will omit by lack of `stableKey`.
+  / `ifMatchingAction` still passes on initialization, where state is
+  / undefined and a query is not assigned. Avoid attempting to parse
+  / parts. `onSubKey` will omit by lack of `stableKey`.
   if (action.query) {
     return {
       ...action,
@@ -2303,7 +2303,7 @@ const queries = (state = {}, action) => {
   queries
 }));
 
-;// ./node_modules/@wordpress/core-data/build-module/reducer.js
+;/ ./node_modules/@wordpress/core-data/build-module/reducer.js
 /**
  * External dependencies
  */
@@ -2364,7 +2364,7 @@ function users(state = {
       return {
         byId: {
           ...state.byId,
-          // Key users by their ID.
+          / Key users by their ID.
           ...action.users.reduce((newUsers, user) => ({
             ...newUsers,
             [user.id]: user
@@ -2523,10 +2523,10 @@ const withMultiEntityRecordEdits = reducer => (state, action) => {
  */
 function entity(entityConfig) {
   return (0,external_wp_compose_namespaceObject.compose)([withMultiEntityRecordEdits,
-  // Limit to matching action type so we don't attempt to replace action on
-  // an unhandled action.
+  / Limit to matching action type so we don't attempt to replace action on
+  / an unhandled action.
   if_matching_action(action => action.name && action.kind && action.name === entityConfig.name && action.kind === entityConfig.kind),
-  // Inject the entity config into the action.
+  / Inject the entity config into the action.
   replace_action(action => {
     return {
       key: entityConfig.key || DEFAULT_ENTITY_KEY,
@@ -2553,15 +2553,15 @@ function entity(entityConfig) {
             }
             const nextEdits = Object.keys(edits).reduce((acc, key) => {
               var _record$key$raw;
-              // If the edited value is still different to the persisted value,
-              // keep the edited value in edits.
+              / If the edited value is still different to the persisted value,
+              / keep the edited value in edits.
               if (
-              // Edits are the "raw" attribute values, but records may have
-              // objects with more properties, so we use `get` here for the
-              // comparison.
+              / Edits are the "raw" attribute values, but records may have
+              / objects with more properties, so we use `get` here for the
+              / comparison.
               !es6_default()(edits[key], (_record$key$raw = record[key]?.raw) !== null && _record$key$raw !== void 0 ? _record$key$raw : record[key]) && (
-              // Sometimes the server alters the sent value which means
-              // we need to also remove the edits before the api request.
+              / Sometimes the server alters the sent value which means
+              / we need to also remove the edits before the api request.
               !action.persistedEdits || !es6_default()(edits[key], action.persistedEdits[key]))) {
                 acc[key] = edits[key];
               }
@@ -2580,8 +2580,8 @@ function entity(entityConfig) {
             ...action.edits
           };
           Object.keys(nextEdits).forEach(key => {
-            // Delete cleared edits so that the properties
-            // are not considered dirty.
+            / Delete cleared edits so that the properties
+            / are not considered dirty.
             if (nextEdits[key] === undefined) {
               delete nextEdits[key];
             }
@@ -2623,7 +2623,7 @@ function entity(entityConfig) {
       return state;
     },
     revisions: (state = {}, action) => {
-      // Use the same queriedDataReducer shape for revisions.
+      / Use the same queriedDataReducer shape for revisions.
       if (action.type === 'RECEIVE_ITEM_REVISIONS') {
         const recordKey = action.recordKey;
         delete action.recordKey;
@@ -2676,7 +2676,7 @@ function entitiesConfig(state = rootEntitiesConfig, action) {
 const entities = (state = {}, action) => {
   const newConfig = entitiesConfig(state.config, action);
 
-  // Generates a dynamic reducer for the entities.
+  / Generates a dynamic reducer for the entities.
   let entitiesDataReducer = state.reducer;
   if (!entitiesDataReducer || newConfig !== state.config) {
     const entitiesByKind = newConfig.reduce((acc, record) => {
@@ -2904,10 +2904,10 @@ function registeredPostMeta(state = {}, action) {
   registeredPostMeta
 }));
 
-;// external ["wp","deprecated"]
+;/ external ["wp","deprecated"]
 const external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
 var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_namespaceObject);
-;// ./node_modules/@wordpress/core-data/build-module/name.js
+;/ ./node_modules/@wordpress/core-data/build-module/name.js
 /**
  * The reducer key used by core data in store registration.
  * This is defined in a separate file to avoid cycle-dependency
@@ -2919,7 +2919,7 @@ const STORE_NAME = 'core';
 // EXTERNAL MODULE: ./node_modules/equivalent-key-map/equivalent-key-map.js
 var equivalent_key_map = __webpack_require__(3249);
 var equivalent_key_map_default = /*#__PURE__*/__webpack_require__.n(equivalent_key_map);
-;// ./node_modules/@wordpress/core-data/build-module/utils/set-nested-value.js
+;/ ./node_modules/@wordpress/core-data/build-module/utils/set-nested-value.js
 /**
  * Sets the value at path of object.
  * If a portion of path doesn’t exist, it’s created.
@@ -2963,7 +2963,7 @@ function setNestedValue(object, path, value) {
   return object;
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/queried-data/selectors.js
+;/ ./node_modules/@wordpress/core-data/build-module/queried-data/selectors.js
 /**
  * External dependencies
  */
@@ -3024,7 +3024,7 @@ function getQueriedItemsUncached(state, query) {
     if (itemId === undefined) {
       continue;
     }
-    // Having a target item ID doesn't guarantee that this object has been queried.
+    / Having a target item ID doesn't guarantee that this object has been queried.
     if (!state.items[context]?.hasOwnProperty(itemId)) {
       return null;
     }
@@ -3041,8 +3041,8 @@ function getQueriedItemsUncached(state, query) {
         setNestedValue(filteredItem, field, value);
       }
     } else {
-      // If expecting a complete item, validate that completeness, or
-      // otherwise abort.
+      / If expecting a complete item, validate that completeness, or
+      / otherwise abort.
       if (!state.itemIsComplete[context]?.[itemId]) {
         return null;
       }
@@ -3098,7 +3098,7 @@ function getQueriedTotalPages(state, query = {}) {
   return (_state$queries$contex2 = state.queries?.[context]?.[stableKey]?.meta?.totalPages) !== null && _state$queries$contex2 !== void 0 ? _state$queries$contex2 : null;
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/utils/is-numeric-id.js
+;/ ./node_modules/@wordpress/core-data/build-module/utils/is-numeric-id.js
 /**
  * Checks argument to determine if it's a numeric ID.
  * For example, '123' is a numeric ID, but '123abc' is not.
@@ -3110,7 +3110,7 @@ function isNumericID(id) {
   return /^\s*\d+\s*$/.test(id);
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/utils/is-raw-attribute.js
+;/ ./node_modules/@wordpress/core-data/build-module/utils/is-raw-attribute.js
 /**
  * Checks whether the attribute is a "raw" attribute or not.
  *
@@ -3123,7 +3123,7 @@ function isRawAttribute(entity, attribute) {
   return (entity.rawAttributes || []).includes(attribute);
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/utils/user-permissions.js
+;/ ./node_modules/@wordpress/core-data/build-module/utils/user-permissions.js
 const ALLOWED_RESOURCE_ACTIONS = ['create', 'read', 'update', 'delete'];
 function getUserPermissionsFromAllowHeader(allowedMethods) {
   const permissions = {};
@@ -3146,7 +3146,7 @@ function getUserPermissionCacheKey(action, resource, id) {
   return key;
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/selectors.js
+;/ ./node_modules/@wordpress/core-data/build-module/selectors.js
 /**
  * WordPress dependencies
  */
@@ -3315,8 +3315,8 @@ function getEntityConfig(state, kind, name) {
  *         key: K extends string ? 'string value' : false
  *    ) => K;
  * 		type BadlyInferredSignature = CurriedState< Selector >
- *    // BadlyInferredSignature evaluates to:
- *    // (kind: string number, key: false | "string value") => string number
+ *    / BadlyInferredSignature evaluates to:
+ *    / (kind: string number, key: false | "string value") => string number
  * ```
  *
  * The signature without the state parameter shipped as CurriedSignature
@@ -3347,7 +3347,7 @@ const getEntityRecord = (0,external_wp_data_namespaceObject.createSelector)((sta
   }
   const context = (_query$context = query?.context) !== null && _query$context !== void 0 ? _query$context : 'default';
   if (query === undefined) {
-    // If expecting a complete item, validate that completeness.
+    / If expecting a complete item, validate that completeness.
     if (!queriedState.itemIsComplete[context]?.[key]) {
       return undefined;
     }
@@ -3385,7 +3385,7 @@ getEntityRecord.__unstableNormalizeArgs = args => {
   const newArgs = [...args];
   const recordKey = newArgs?.[2];
 
-  // If recordKey looks to be a numeric ID then coerce to number.
+  / If recordKey looks to be a numeric ID then coerce to number.
   newArgs[2] = isNumericID(recordKey) ? Number(recordKey) : recordKey;
   return newArgs;
 };
@@ -3419,9 +3419,9 @@ const getRawEntityRecord = (0,external_wp_data_namespaceObject.createSelector)((
   const record = getEntityRecord(state, kind, name, key);
   return record && Object.keys(record).reduce((accumulator, _key) => {
     if (isRawAttribute(getEntityConfig(state, kind, name), _key)) {
-      // Because edits are the "raw" attribute values,
-      // we return those from record selectors to make rendering,
-      // comparisons, and joins with edits easier.
+      / Because edits are the "raw" attribute values,
+      / we return those from record selectors to make rendering,
+      / comparisons, and joins with edits easier.
       accumulator[_key] = record[_key]?.raw !== undefined ? record[_key]?.raw : record[_key];
     } else {
       accumulator[_key] = record[_key];
@@ -3470,8 +3470,8 @@ function hasEntityRecords(state, kind, name, query) {
  * @return Records.
  */
 const getEntityRecords = (state, kind, name, query) => {
-  // Queried data state is prepopulated for all known entities. If this is not
-  // assigned for the given parameters, then it is known to not exist.
+  / Queried data state is prepopulated for all known entities. If this is not
+  / assigned for the given parameters, then it is known to not exist.
   const queriedState = state.entities.records?.[kind]?.[name]?.queriedData;
   if (!queriedState) {
     return null;
@@ -3491,8 +3491,8 @@ const getEntityRecords = (state, kind, name, query) => {
  * @return number | null.
  */
 const getEntityRecordsTotalItems = (state, kind, name, query) => {
-  // Queried data state is prepopulated for all known entities. If this is not
-  // assigned for the given parameters, then it is known to not exist.
+  / Queried data state is prepopulated for all known entities. If this is not
+  / assigned for the given parameters, then it is known to not exist.
   const queriedState = state.entities.records?.[kind]?.[name]?.queriedData;
   if (!queriedState) {
     return null;
@@ -3512,8 +3512,8 @@ const getEntityRecordsTotalItems = (state, kind, name, query) => {
  * @return number | null.
  */
 const getEntityRecordsTotalPages = (state, kind, name, query) => {
-  // Queried data state is prepopulated for all known entities. If this is not
-  // assigned for the given parameters, then it is known to not exist.
+  / Queried data state is prepopulated for all known entities. If this is not
+  / assigned for the given parameters, then it is known to not exist.
   const queriedState = state.entities.records?.[kind]?.[name]?.queriedData;
   if (!queriedState) {
     return null;
@@ -3525,8 +3525,8 @@ const getEntityRecordsTotalPages = (state, kind, name, query) => {
   if (!totalItems) {
     return totalItems;
   }
-  // If `per_page` is not set and the query relies on the defaults of the
-  // REST endpoint, get the info from query's meta.
+  / If `per_page` is not set and the query relies on the defaults of the
+  / REST endpoint, get the info from query's meta.
   if (!query.per_page) {
     return getQueriedTotalPages(queriedState, query);
   }
@@ -3549,16 +3549,16 @@ const __experimentalGetDirtyEntityRecords = (0,external_wp_data_namespaceObject.
   Object.keys(records).forEach(kind => {
     Object.keys(records[kind]).forEach(name => {
       const primaryKeys = Object.keys(records[kind][name].edits).filter(primaryKey =>
-      // The entity record must exist (not be deleted),
-      // and it must have edits.
+      / The entity record must exist (not be deleted),
+      / and it must have edits.
       getEntityRecord(state, kind, name, primaryKey) && hasEditsForEntityRecord(state, kind, name, primaryKey));
       if (primaryKeys.length) {
         const entityConfig = getEntityConfig(state, kind, name);
         primaryKeys.forEach(primaryKey => {
           const entityRecord = getEditedEntityRecord(state, kind, name, primaryKey);
           dirtyRecords.push({
-            // We avoid using primaryKey because it's transformed into a string
-            // when it's used as an object key.
+            / We avoid using primaryKey because it's transformed into a string
+            / when it's used as an object key.
             key: entityRecord ? entityRecord[entityConfig.key || DEFAULT_ENTITY_KEY] : undefined,
             title: entityConfig?.getTitle?.(entityRecord) || '',
             name,
@@ -3593,8 +3593,8 @@ const __experimentalGetEntitiesBeingSaved = (0,external_wp_data_namespaceObject.
         primaryKeys.forEach(primaryKey => {
           const entityRecord = getEditedEntityRecord(state, kind, name, primaryKey);
           recordsBeingSaved.push({
-            // We avoid using primaryKey because it's transformed into a string
-            // when it's used as an object key.
+            / We avoid using primaryKey because it's transformed into a string
+            / when it's used as an object key.
             key: entityRecord ? entityRecord[entityConfig.key || DEFAULT_ENTITY_KEY] : undefined,
             title: entityConfig?.getTitle?.(entityRecord) || '',
             name,
@@ -3679,10 +3679,10 @@ function hasEditsForEntityRecord(state, kind, name, recordId) {
 const getEditedEntityRecord = (0,external_wp_data_namespaceObject.createSelector)((state, kind, name, recordId) => {
   const raw = getRawEntityRecord(state, kind, name, recordId);
   const edited = getEntityRecordEdits(state, kind, name, recordId);
-  // Never return a non-falsy empty object. Unfortunately we can't return
-  // undefined or null because we were previously returning an empty
-  // object, so trying to read properties from the result would throw.
-  // Using false here is a workaround to avoid breaking changes.
+  / Never return a non-falsy empty object. Unfortunately we can't return
+  / undefined or null because we were previously returning an empty
+  / object, so trying to read properties from the result would throw.
+  / Using false here is a workaround to avoid breaking changes.
   if (!raw && !edited) {
     return false;
   }
@@ -4166,7 +4166,7 @@ const getRevision = (0,external_wp_data_namespaceObject.createSelector)((state, 
   }
   const context = (_query$context5 = query?.context) !== null && _query$context5 !== void 0 ? _query$context5 : 'default';
   if (query === undefined) {
-    // If expecting a complete item, validate that completeness.
+    / If expecting a complete item, validate that completeness.
     if (!queriedState.itemIsComplete[context]?.[revisionKey]) {
       return undefined;
     }
@@ -4194,9 +4194,9 @@ const getRevision = (0,external_wp_data_namespaceObject.createSelector)((state, 
   return [state.entities.records?.[kind]?.[name]?.revisions?.[recordKey]?.items?.[context]?.[revisionKey], state.entities.records?.[kind]?.[name]?.revisions?.[recordKey]?.itemIsComplete?.[context]?.[revisionKey]];
 });
 
-;// external ["wp","privateApis"]
+;/ external ["wp","privateApis"]
 const external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
-;// ./node_modules/@wordpress/core-data/build-module/lock-unlock.js
+;/ ./node_modules/@wordpress/core-data/build-module/lock-unlock.js
 /**
  * WordPress dependencies
  */
@@ -4206,7 +4206,7 @@ const {
   unlock
 } = (0,external_wp_privateApis_namespaceObject.__dangerousOptInToUnstableAPIsOnlyForCoreModules)('I acknowledge private features are not for use in themes or plugins and doing so will break in the next version of WordPress.', '@wordpress/core-data');
 
-;// ./node_modules/@wordpress/core-data/build-module/private-selectors.js
+;/ ./node_modules/@wordpress/core-data/build-module/private-selectors.js
 /**
  * WordPress dependencies
  */
@@ -4293,7 +4293,7 @@ function normalizePageId(value) {
     return null;
   }
 
-  // We also need to check if it's not zero (`'0'`).
+  / We also need to check if it's not zero (`'0'`).
   if (Number(value) === 0) {
     return null;
   }
@@ -4331,13 +4331,13 @@ const getTemplateId = (0,external_wp_data_namespaceObject.createRegistrySelector
     return;
   }
 
-  // For the front page, we always use the front page template if existing.
+  / For the front page, we always use the front page template if existing.
   if (postType === 'page' && postType === homepage?.postType && postId.toString() === homepage?.postId) {
-    // The /lookup endpoint cannot currently handle a lookup
-    // when a page is set as the front page, so specifically in
-    // that case, we want to check if there is a front page
-    // template, and instead of falling back to the home
-    // template, we want to fall back to the page template.
+    / The /lookup endpoint cannot currently handle a lookup
+    / when a page is set as the front page, so specifically in
+    / that case, we want to check if there is a front page
+    / template, and instead of falling back to the home
+    / template, we want to fall back to the page template.
     const templates = select(STORE_NAME).getEntityRecords('postType', 'wp_template', {
       per_page: -1
     });
@@ -4350,21 +4350,21 @@ const getTemplateId = (0,external_wp_data_namespaceObject.createRegistrySelector
     if (id) {
       return id;
     }
-    // If no front page template is found, continue with the
-    // logic below (fetching the page template).
+    / If no front page template is found, continue with the
+    / logic below (fetching the page template).
   }
   const editedEntity = select(STORE_NAME).getEditedEntityRecord('postType', postType, postId);
   if (!editedEntity) {
     return;
   }
   const postsPageId = unlock(select(STORE_NAME)).getPostsPageId();
-  // Check if the current page is the posts page.
+  / Check if the current page is the posts page.
   if (postType === 'page' && postsPageId === postId.toString()) {
     return select(STORE_NAME).getDefaultTemplateId({
       slug: 'home'
     });
   }
-  // First see if the post/page has an assigned template and fetch it.
+  / First see if the post/page has an assigned template and fetch it.
   const currentTemplateSlug = editedEntity.template;
   if (currentTemplateSlug) {
     const currentTemplate = select(STORE_NAME).getEntityRecords('postType', 'wp_template', {
@@ -4376,12 +4376,12 @@ const getTemplateId = (0,external_wp_data_namespaceObject.createRegistrySelector
       return currentTemplate.id;
     }
   }
-  // If no template is assigned, use the default template.
+  / If no template is assigned, use the default template.
   let slugToCheck;
-  // In `draft` status we might not have a slug available, so we use the `single`
-  // post type templates slug(ex page, single-post, single-product etc..).
-  // Pages do not need the `single` prefix in the slug to be prioritized
-  // through template hierarchy.
+  / In `draft` status we might not have a slug available, so we use the `single`
+  / post type templates slug(ex page, single-post, single-product etc..).
+  / Pages do not need the `single` prefix in the slug to be prioritized
+  / through template hierarchy.
   if (editedEntity.slug) {
     slugToCheck = postType === 'page' ? `${postType}-${editedEntity.slug}` : `single-${postType}-${editedEntity.slug}`;
   } else {
@@ -4392,21 +4392,21 @@ const getTemplateId = (0,external_wp_data_namespaceObject.createRegistrySelector
   });
 });
 
-;// ./node_modules/@wordpress/core-data/node_modules/uuid/dist/esm-browser/native.js
+;/ ./node_modules/@wordpress/core-data/node_modules/uuid/dist/esm-browser/native.js
 const randomUUID = typeof crypto !== 'undefined' && crypto.randomUUID && crypto.randomUUID.bind(crypto);
 /* harmony default export */ const esm_browser_native = ({
   randomUUID
 });
-;// ./node_modules/@wordpress/core-data/node_modules/uuid/dist/esm-browser/rng.js
+;/ ./node_modules/@wordpress/core-data/node_modules/uuid/dist/esm-browser/rng.js
 // Unique ID creation requires a high quality random # generator. In the browser we therefore
 // require the crypto API and do not support built-in fallback to lower quality random number
 // generators (like Math.random()).
 let getRandomValues;
 const rnds8 = new Uint8Array(16);
 function rng() {
-  // lazy load so that environments that need to polyfill have a chance to do so
+  / lazy load so that environments that need to polyfill have a chance to do so
   if (!getRandomValues) {
-    // getRandomValues needs to be invoked in a context where "this" is a Crypto implementation.
+    / getRandomValues needs to be invoked in a context where "this" is a Crypto implementation.
     getRandomValues = typeof crypto !== 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto);
 
     if (!getRandomValues) {
@@ -4416,7 +4416,7 @@ function rng() {
 
   return getRandomValues(rnds8);
 }
-;// ./node_modules/@wordpress/core-data/node_modules/uuid/dist/esm-browser/stringify.js
+;/ ./node_modules/@wordpress/core-data/node_modules/uuid/dist/esm-browser/stringify.js
 
 /**
  * Convert array of 16 byte values to UUID string format of the form:
@@ -4430,17 +4430,17 @@ for (let i = 0; i < 256; ++i) {
 }
 
 function unsafeStringify(arr, offset = 0) {
-  // Note: Be careful editing this code!  It's been tuned for performance
-  // and works in ways you may not expect. See https://github.com/uuidjs/uuid/pull/434
+  / Note: Be careful editing this code!  It's been tuned for performance
+  / and works in ways you may not expect. See https://github.com/uuidjs/uuid/pull/434
   return byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + '-' + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + '-' + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + '-' + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + '-' + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]];
 }
 
 function stringify(arr, offset = 0) {
-  const uuid = unsafeStringify(arr, offset); // Consistency check for valid UUID.  If this throws, it's likely due to one
-  // of the following:
-  // - One or more input array values don't map to a hex octet (leading to
-  // "undefined" in the uuid)
-  // - Invalid input values for the RFC `version` or `variant` fields
+  const uuid = unsafeStringify(arr, offset); / Consistency check for valid UUID.  If this throws, it's likely due to one
+  / of the following:
+  / - One or more input array values don't map to a hex octet (leading to
+  / "undefined" in the uuid)
+  / - Invalid input values for the RFC `version` or `variant` fields
 
   if (!validate(uuid)) {
     throw TypeError('Stringified UUID is invalid');
@@ -4450,7 +4450,7 @@ function stringify(arr, offset = 0) {
 }
 
 /* harmony default export */ const esm_browser_stringify = ((/* unused pure expression or super */ null && (stringify)));
-;// ./node_modules/@wordpress/core-data/node_modules/uuid/dist/esm-browser/v4.js
+;/ ./node_modules/@wordpress/core-data/node_modules/uuid/dist/esm-browser/v4.js
 
 
 
@@ -4461,10 +4461,10 @@ function v4(options, buf, offset) {
   }
 
   options = options || {};
-  const rnds = options.random || (options.rng || rng)(); // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+  const rnds = options.random || (options.rng || rng)(); / Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
 
   rnds[6] = rnds[6] & 0x0f | 0x40;
-  rnds[8] = rnds[8] & 0x3f | 0x80; // Copy bytes to buffer, if provided
+  rnds[8] = rnds[8] & 0x3f | 0x80; / Copy bytes to buffer, if provided
 
   if (buf) {
     offset = offset || 0;
@@ -4480,7 +4480,7 @@ function v4(options, buf, offset) {
 }
 
 /* harmony default export */ const esm_browser_v4 = (v4);
-;// ./node_modules/@wordpress/core-data/build-module/utils/get-nested-value.js
+;/ ./node_modules/@wordpress/core-data/build-module/utils/get-nested-value.js
 /**
  * Helper util to return a value from a certain path of the object.
  * Path is specified as either:
@@ -4505,7 +4505,7 @@ function getNestedValue(object, path, defaultValue) {
   return value !== undefined ? value : defaultValue;
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/queried-data/actions.js
+;/ ./node_modules/@wordpress/core-data/build-module/queried-data/actions.js
 /**
  * Returns an action object used in signalling that items have been received.
  *
@@ -4562,7 +4562,7 @@ function receiveQueriedItems(items, query = {}, edits, meta) {
   };
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/batch/default-processor.js
+;/ ./node_modules/@wordpress/core-data/build-module/batch/default-processor.js
 /**
  * WordPress dependencies
  */
@@ -4603,7 +4603,7 @@ async function defaultProcessor(requests) {
   }
   const results = [];
 
-  // @ts-ignore We would have crashed or never gotten to this point if we hadn't received the maxItems count.
+  / @ts-ignore We would have crashed or never gotten to this point if we hadn't received the maxItems count.
   for (const batchRequests of chunk(requests, maxItems)) {
     const batchResponse = await external_wp_apiFetch_default()({
       path: '/batch/v1',
@@ -4613,7 +4613,7 @@ async function defaultProcessor(requests) {
         requests: batchRequests.map(request => ({
           path: request.path,
           body: request.data,
-          // Rename 'data' to 'body'.
+          / Rename 'data' to 'body'.
           method: request.method,
           headers: request.headers
         }))
@@ -4640,7 +4640,7 @@ async function defaultProcessor(requests) {
   return results;
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/batch/create-batch.js
+;/ ./node_modules/@wordpress/core-data/build-module/batch/create-batch.js
 /**
  * Internal dependencies
  */
@@ -4662,7 +4662,7 @@ async function defaultProcessor(requests) {
  *   method: 'POST',
  *   data: { title: 'Lord of the Rings' }
  * } );
- * const isSuccess = await batch.run(); // Sends one POST to /v1/batch.
+ * const isSuccess = await batch.run(); / Sends one POST to /v1/batch.
  * if ( isSuccess ) {
  *   console.log(
  *     'Saved two books:',
@@ -4693,7 +4693,7 @@ function createBatch(processor = defaultProcessor) {
      * asynchronously.
      *
      * ```
-     * // Both are allowed:
+     * / Both are allowed:
      * batch.add( { path: '/v1/books', ... } );
      * batch.add( ( add ) => add( { path: '/v1/books', ... } ) );
      * ```
@@ -4805,7 +4805,7 @@ class ObservableSet {
   }
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/actions.js
+;/ ./node_modules/@wordpress/core-data/build-module/actions.js
 /**
  * External dependencies
  */
@@ -4892,8 +4892,8 @@ function addEntities(entities) {
  * @return {Object} Action object.
  */
 function receiveEntityRecords(kind, name, records, query, invalidateCache = false, edits, meta) {
-  // Auto drafts should not have titles, but some plugins rely on them so we can't filter this
-  // on the server.
+  / Auto drafts should not have titles, but some plugins rely on them so we can't filter this
+  / on the server.
   if (kind === 'postType') {
     records = (Array.isArray(records) ? records : [records]).map(record => record.status === 'auto-draft' ? {
       ...record,
@@ -5147,8 +5147,8 @@ const editEntityRecord = (kind, name, recordId, edits, options = {}) => ({
     kind,
     name,
     recordId,
-    // Clear edits when they are equal to their persisted counterparts
-    // so that the property is not considered dirty.
+    / Clear edits when they are equal to their persisted counterparts
+    / so that the property is not considered dirty.
     edits: Object.keys(edits).reduce((acc, key) => {
       const recordValue = record[key];
       const editedRecordValue = editedRecord[key];
@@ -5267,8 +5267,8 @@ const saveEntityRecord = (kind, name, record, {
     exclusive: true
   });
   try {
-    // Evaluate optimized edits.
-    // (Function edits that should be evaluated on save to avoid expensive computations on every edit.)
+    / Evaluate optimized edits.
+    / (Function edits that should be evaluated on save to avoid expensive computations on every edit.)
     for (const [key, value] of Object.entries(record)) {
       if (typeof value === 'function') {
         const evaluatedValue = value(select.getEditedEntityRecord(kind, name, recordId));
@@ -5294,17 +5294,17 @@ const saveEntityRecord = (kind, name, record, {
       const path = `${entityConfig.baseURL}${recordId ? '/' + recordId : ''}`;
       const persistedRecord = select.getRawEntityRecord(kind, name, recordId);
       if (isAutosave) {
-        // Most of this autosave logic is very specific to posts.
-        // This is fine for now as it is the only supported autosave,
-        // but ideally this should all be handled in the back end,
-        // so the client just sends and receives objects.
+        / Most of this autosave logic is very specific to posts.
+        / This is fine for now as it is the only supported autosave,
+        / but ideally this should all be handled in the back end,
+        / so the client just sends and receives objects.
         const currentUser = select.getCurrentUser();
         const currentUserId = currentUser ? currentUser.id : undefined;
         const autosavePost = await resolveSelect.getAutosave(persistedRecord.type, persistedRecord.id, currentUserId);
-        // Autosaves need all expected fields to be present.
-        // So we fallback to the previous autosave and then
-        // to the actual persisted entity if the edits don't
-        // have a value.
+        / Autosaves need all expected fields to be present.
+        / So we fallback to the previous autosave and then
+        / to the actual persisted entity if the edits don't
+        / have a value.
         let data = {
           ...persistedRecord,
           ...autosavePost,
@@ -5316,10 +5316,10 @@ const saveEntityRecord = (kind, name, record, {
           }
           return acc;
         }, {
-          // Do not update the `status` if we have edited it when auto saving.
-          // It's very important to let the user explicitly save this change,
-          // because it can lead to unexpected results. An example would be to
-          // have a draft post and change the status to publish.
+          / Do not update the `status` if we have edited it when auto saving.
+          / It's very important to let the user explicitly save this change,
+          / because it can lead to unexpected results. An example would be to
+          / have a draft post and change the status to publish.
           status: data.status === 'auto-draft' ? 'draft' : undefined
         });
         updatedRecord = await __unstableFetch({
@@ -5328,9 +5328,9 @@ const saveEntityRecord = (kind, name, record, {
           data
         });
 
-        // An autosave may be processed by the server as a regular save
-        // when its update is requested by the author and the post had
-        // draft or auto-draft status.
+        / An autosave may be processed by the server as a regular save
+        / when its update is requested by the author and the post had
+        / draft or auto-draft status.
         if (persistedRecord.id === updatedRecord.id) {
           let newRecord = {
             ...persistedRecord,
@@ -5338,15 +5338,15 @@ const saveEntityRecord = (kind, name, record, {
             ...updatedRecord
           };
           newRecord = Object.keys(newRecord).reduce((acc, key) => {
-            // These properties are persisted in autosaves.
+            / These properties are persisted in autosaves.
             if (['title', 'excerpt', 'content'].includes(key)) {
               acc[key] = newRecord[key];
             } else if (key === 'status') {
-              // Status is only persisted in autosaves when going from
-              // "auto-draft" to "draft".
+              / Status is only persisted in autosaves when going from
+              / "auto-draft" to "draft".
               acc[key] = persistedRecord.status === 'auto-draft' && newRecord.status === 'draft' ? newRecord.status : persistedRecord.status;
             } else {
-              // These properties are not persisted in autosaves.
+              / These properties are not persisted in autosaves.
               acc[key] = persistedRecord[key];
             }
             return acc;
@@ -5498,10 +5498,10 @@ const __experimentalSaveSpecifiedEntityEdits = (kind, name, recordId, itemsToSav
   const entityConfig = configs.find(config => config.kind === kind && config.name === name);
   const entityIdKey = entityConfig?.key || DEFAULT_ENTITY_KEY;
 
-  // If a record key is provided then update the existing record.
-  // This necessitates providing `recordKey` to saveEntityRecord as part of the
-  // `record` argument (here called `editsToSave`) to stop that action creating
-  // a new record and instead cause it to update the existing record.
+  / If a record key is provided then update the existing record.
+  / This necessitates providing `recordKey` to saveEntityRecord as part of the
+  / `record` argument (here called `editsToSave`) to stop that action creating
+  / a new record and instead cause it to update the existing record.
   if (recordId) {
     editsToSave[entityIdKey] = recordId;
   }
@@ -5648,7 +5648,7 @@ const receiveRevisions = (kind, name, recordKey, records, query, invalidateCache
   });
 };
 
-;// ./node_modules/@wordpress/core-data/build-module/private-actions.js
+;/ ./node_modules/@wordpress/core-data/build-module/private-actions.js
 /**
  * Returns an action object used in signalling that the registered post meta
  * fields for a post type have been received.
@@ -5666,7 +5666,7 @@ function receiveRegisteredPostMeta(postType, registeredPostMeta) {
   };
 }
 
-;// ./node_modules/camel-case/dist.es2015/index.js
+;/ ./node_modules/camel-case/dist.es2015/index.js
 
 
 function camelCaseTransform(input, index) {
@@ -5684,9 +5684,9 @@ function camelCase(input, options) {
     return pascalCase(input, __assign({ transform: camelCaseTransform }, options));
 }
 
-;// external ["wp","htmlEntities"]
+;/ external ["wp","htmlEntities"]
 const external_wp_htmlEntities_namespaceObject = window["wp"]["htmlEntities"];
-;// ./node_modules/@wordpress/core-data/build-module/utils/forward-resolver.js
+;/ ./node_modules/@wordpress/core-data/build-module/utils/forward-resolver.js
 /**
  * Higher-order function which forward the resolution to another resolver with the same arguments.
  *
@@ -5701,10 +5701,10 @@ const forwardResolver = resolverName => (...args) => async ({
 };
 /* harmony default export */ const forward_resolver = (forwardResolver);
 
-;// ./node_modules/@wordpress/core-data/build-module/utils/receive-intermediate-results.js
+;/ ./node_modules/@wordpress/core-data/build-module/utils/receive-intermediate-results.js
 const RECEIVE_INTERMEDIATE_RESULTS = Symbol('RECEIVE_INTERMEDIATE_RESULTS');
 
-;// ./node_modules/@wordpress/core-data/build-module/fetch/__experimental-fetch-link-suggestions.js
+;/ ./node_modules/@wordpress/core-data/build-module/fetch/__experimental-fetch-link-suggestions.js
 /**
  * WordPress dependencies
  */
@@ -5726,7 +5726,7 @@ const RECEIVE_INTERMEDIATE_RESULTS = Symbol('RECEIVE_INTERMEDIATE_RESULTS');
  * ```js
  * import { __experimentalFetchLinkSuggestions as fetchLinkSuggestions } from '@wordpress/core-data';
  *
- * //...
+ * /...
  *
  * export function initialize( id, settings ) {
  *
@@ -5770,7 +5770,7 @@ async function fetchLinkSuggestions(search, searchOptions = {}, editorSettings =
           kind: 'post-type'
         };
       });
-    }).catch(() => []) // Fail by returning no results.
+    }).catch(() => []) / Fail by returning no results.
     );
   }
   if (!type || type === 'term') {
@@ -5792,7 +5792,7 @@ async function fetchLinkSuggestions(search, searchOptions = {}, editorSettings =
           kind: 'taxonomy'
         };
       });
-    }).catch(() => []) // Fail by returning no results.
+    }).catch(() => []) / Fail by returning no results.
     );
   }
   if (!disablePostFormats && (!type || type === 'post-format')) {
@@ -5814,7 +5814,7 @@ async function fetchLinkSuggestions(search, searchOptions = {}, editorSettings =
           kind: 'taxonomy'
         };
       });
-    }).catch(() => []) // Fail by returning no results.
+    }).catch(() => []) / Fail by returning no results.
     );
   }
   if (!type || type === 'attachment') {
@@ -5834,7 +5834,7 @@ async function fetchLinkSuggestions(search, searchOptions = {}, editorSettings =
           kind: 'media'
         };
       });
-    }).catch(() => []) // Fail by returning no results.
+    }).catch(() => []) / Fail by returning no results.
     );
   }
   const responses = await Promise.all(queries);
@@ -5868,10 +5868,10 @@ function sortResults(results, search) {
       const exactMatchingTokens = titleTokens.filter(titleToken => searchTokens.some(searchToken => titleToken === searchToken));
       const subMatchingTokens = titleTokens.filter(titleToken => searchTokens.some(searchToken => titleToken !== searchToken && titleToken.includes(searchToken)));
 
-      // The score is a combination of exact matches and sub-matches.
-      // More weight is given to exact matches, as they are more relevant (e.g. "cat" vs "caterpillar").
-      // Diving by the total number of tokens in the title normalizes the score and skews
-      // the results towards shorter titles.
+      / The score is a combination of exact matches and sub-matches.
+      / More weight is given to exact matches, as they are more relevant (e.g. "cat" vs "caterpillar").
+      / Diving by the total number of tokens in the title normalizes the score and skews
+      / the results towards shorter titles.
       const exactMatchScore = exactMatchingTokens.length / titleTokens.length * 10;
       const subMatchScore = subMatchingTokens.length / titleTokens.length;
       scores[result.id] = exactMatchScore + subMatchScore;
@@ -5890,12 +5890,12 @@ function sortResults(results, search) {
  * @param text
  */
 function tokenize(text) {
-  // \p{L} matches any kind of letter from any language.
-  // \p{N} matches any kind of numeric character.
+  / \p{L} matches any kind of letter from any language.
+  / \p{N} matches any kind of numeric character.
   return text.toLowerCase().match(/[\p{L}\p{N}]+/gu) || [];
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/fetch/__experimental-fetch-url-data.js
+;/ ./node_modules/@wordpress/core-data/build-module/fetch/__experimental-fetch-url-data.js
 /**
  * WordPress dependencies
  */
@@ -5926,7 +5926,7 @@ const CACHE = new Map();
  * ```js
  * import { __experimentalFetchUrlData as fetchUrlData } from '@wordpress/core-data';
  *
- * //...
+ * /...
  *
  * export function initialize( id, settings ) {
  *
@@ -5945,8 +5945,8 @@ const fetchUrlData = async (url, options = {}) => {
     return Promise.reject(`${url} is not a valid URL.`);
   }
 
-  // Test for "http" based URL as it is possible for valid
-  // yet unusable URLs such as `tel:123456` to be passed.
+  / Test for "http" based URL as it is possible for valid
+  / yet unusable URLs such as `tel:123456` to be passed.
   const protocol = (0,external_wp_url_namespaceObject.getProtocol)(url);
   if (!protocol || !(0,external_wp_url_namespaceObject.isValidProtocol)(protocol) || !protocol.startsWith('http') || !/^https?:\/\/[^\/\s]/i.test(url)) {
     return Promise.reject(`${url} does not have a valid protocol. URLs must be "http" based`);
@@ -5964,7 +5964,7 @@ const fetchUrlData = async (url, options = {}) => {
 };
 /* harmony default export */ const _experimental_fetch_url_data = (fetchUrlData);
 
-;// ./node_modules/@wordpress/core-data/build-module/fetch/index.js
+;/ ./node_modules/@wordpress/core-data/build-module/fetch/index.js
 /**
  * External dependencies
  */
@@ -5986,7 +5986,7 @@ async function fetchBlockPatterns() {
   return restPatterns.map(pattern => Object.fromEntries(Object.entries(pattern).map(([key, value]) => [camelCase(key), value])));
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/resolvers.js
+;/ ./node_modules/@wordpress/core-data/build-module/resolvers.js
 /**
  * External dependencies
  */
@@ -6061,28 +6061,28 @@ const resolvers_getEntityRecord = (kind, name, key = '', query) => async ({
     exclusive: false
   });
   try {
-    // Entity supports configs,
-    // use the sync algorithm instead of the old fetch behavior.
+    / Entity supports configs,
+    / use the sync algorithm instead of the old fetch behavior.
     if (window.__experimentalEnableSync && entityConfig.syncConfig && !query) {
       if (false) {}
     } else {
       if (query !== undefined && query._fields) {
-        // If requesting specific fields, items and query association to said
-        // records are stored by ID reference. Thus, fields must always include
-        // the ID.
+        / If requesting specific fields, items and query association to said
+        / records are stored by ID reference. Thus, fields must always include
+        / the ID.
         query = {
           ...query,
           _fields: [...new Set([...(get_normalized_comma_separable(query._fields) || []), entityConfig.key || DEFAULT_ENTITY_KEY])].join()
         };
       }
 
-      // Disable reason: While true that an early return could leave `path`
-      // unused, it's important that path is derived using the query prior to
-      // additional query modifications in the condition below, since those
-      // modifications are relevant to how the data is tracked in state, and not
-      // for how the request is made to the REST API.
+      / Disable reason: While true that an early return could leave `path`
+      / unused, it's important that path is derived using the query prior to
+      / additional query modifications in the condition below, since those
+      / modifications are relevant to how the data is tracked in state, and not
+      / for how the request is made to the REST API.
 
-      // eslint-disable-next-line @wordpress/no-unused-vars-before-return
+      / eslint-disable-next-line @wordpress/no-unused-vars-before-return
       const path = (0,external_wp_url_namespaceObject.addQueryArgs)(entityConfig.baseURL + (key ? '/' + key : ''), {
         ...entityConfig.baseURLParams,
         ...query
@@ -6093,9 +6093,9 @@ const resolvers_getEntityRecord = (kind, name, key = '', query) => async ({
           include: [key]
         };
 
-        // The resolution cache won't consider query as reusable based on the
-        // fields, so it's tested here, prior to initiating the REST request,
-        // and without causing `getEntityRecords` resolution to occur.
+        / The resolution cache won't consider query as reusable based on the
+        / fields, so it's tested here, prior to initiating the REST request,
+        / and without causing `getEntityRecords` resolution to occur.
         const hasRecords = select.hasEntityRecords(kind, name, query);
         if (hasRecords) {
           return;
@@ -6169,9 +6169,9 @@ const resolvers_getEntityRecords = (kind, name, query = {}) => async ({
   }
   try {
     if (query._fields) {
-      // If requesting specific fields, items and query association to said
-      // records are stored by ID reference. Thus, fields must always include
-      // the ID.
+      / If requesting specific fields, items and query association to said
+      / records are stored by ID reference. Thus, fields must always include
+      / the ID.
       query = {
         ...query,
         _fields: [...new Set([...(get_normalized_comma_separable(query._fields) || []), entityConfig.key || DEFAULT_ENTITY_KEY])].join()
@@ -6227,9 +6227,9 @@ const resolvers_getEntityRecords = (kind, name, query = {}) => async ({
       };
     }
 
-    // If we request fields but the result doesn't contain the fields,
-    // explicitly set these fields as "undefined"
-    // that way we consider the query "fulfilled".
+    / If we request fields but the result doesn't contain the fields,
+    / explicitly set these fields as "undefined"
+    / that way we consider the query "fulfilled".
     if (query._fields) {
       records = records.map(record => {
         query._fields.split(',').forEach(field => {
@@ -6243,10 +6243,10 @@ const resolvers_getEntityRecords = (kind, name, query = {}) => async ({
     registry.batch(() => {
       dispatch.receiveEntityRecords(kind, name, records, query, false, undefined, meta);
 
-      // When requesting all fields, the list of results can be used to resolve
-      // the `getEntityRecord` and `canUser` selectors in addition to `getEntityRecords`.
-      // See https://github.com/WordPress/gutenberg/pull/26575
-      // See https://github.com/WordPress/gutenberg/pull/64504
+      / When requesting all fields, the list of results can be used to resolve
+      / the `getEntityRecord` and `canUser` selectors in addition to `getEntityRecords`.
+      / See https://github.com/WordPress/gutenberg/pull/26575
+      / See https://github.com/WordPress/gutenberg/pull/64504
       if (!query?._fields && !query.context) {
         const targetHints = records.filter(record => record?.[key]).map(record => ({
           id: record[key],
@@ -6316,7 +6316,7 @@ const resolvers_getEmbedPreview = url => async ({
     });
     dispatch.receiveEmbedPreview(url, embedProxyResponse);
   } catch (error) {
-    // Embed API 404s if the URL cannot be embedded, so we have to catch the error from the apiRequest here.
+    / Embed API 404s if the URL cannot be embedded, so we have to catch the error from the apiRequest here.
     dispatch.receiveEmbedPreview(url, false);
   }
 };
@@ -6343,7 +6343,7 @@ const resolvers_canUser = (requestedAction, resource, id) => async ({
     hasStartedResolution
   } = registry.select(STORE_NAME);
 
-  // Prevent resolving the same resource twice.
+  / Prevent resolving the same resource twice.
   for (const relatedAction of ALLOWED_RESOURCE_ACTIONS) {
     if (relatedAction === requestedAction) {
       continue;
@@ -6375,21 +6375,21 @@ const resolvers_canUser = (requestedAction, resource, id) => async ({
       parse: false
     });
   } catch (error) {
-    // Do nothing if our OPTIONS request comes back with an API error (4xx or
-    // 5xx). The previously determined isAllowed value will remain in the store.
+    / Do nothing if our OPTIONS request comes back with an API error (4xx or
+    / 5xx). The previously determined isAllowed value will remain in the store.
     return;
   }
 
-  // Optional chaining operator is used here because the API requests don't
-  // return the expected result in the React native version. Instead, API requests
-  // only return the result, without including response properties like the headers.
+  / Optional chaining operator is used here because the API requests don't
+  / return the expected result in the React native version. Instead, API requests
+  / only return the result, without including response properties like the headers.
   const permissions = getUserPermissionsFromAllowHeader(response.headers?.get('allow'));
   registry.batch(() => {
     for (const action of ALLOWED_RESOURCE_ACTIONS) {
       const key = getUserPermissionCacheKey(action, resource, id);
       dispatch.receiveUserPermission(key, permissions[action]);
 
-      // Mark related action resolutions as finished.
+      / Mark related action resolutions as finished.
       if (action !== requestedAction) {
         dispatch.finishResolution('canUser', [action, resource, id]);
       }
@@ -6467,8 +6467,8 @@ const resolvers_experimentalGetCurrentGlobalStylesId = () => async ({
     return;
   }
 
-  // Regex matches the ID at the end of a URL or immediately before
-  // the query string.
+  / Regex matches the ID at the end of a URL or immediately before
+  / the query string.
   const matches = globalStylesURL.match(/\/(\d+)(?:\?|$)/);
   const id = matches ? Number(matches[1]) : null;
   if (id) {
@@ -6480,7 +6480,7 @@ const resolvers_experimentalGetCurrentThemeBaseGlobalStyles = () => async ({
   dispatch
 }) => {
   const currentTheme = await resolveSelect.getCurrentTheme();
-  // Please adjust the preloaded requests if this changes!
+  / Please adjust the preloaded requests if this changes!
   const themeGlobalStyles = await external_wp_apiFetch_default()({
     path: `/wp/v2/global-styles/themes/${currentTheme.stylesheet}?context=view`
   });
@@ -6491,7 +6491,7 @@ const resolvers_experimentalGetCurrentThemeGlobalStylesVariations = () => async 
   dispatch
 }) => {
   const currentTheme = await resolveSelect.getCurrentTheme();
-  // Please adjust the preloaded requests if this changes!
+  / Please adjust the preloaded requests if this changes!
   const variations = await external_wp_apiFetch_default()({
     path: `/wp/v2/global-styles/themes/${currentTheme.stylesheet}/variations?context=view`
   });
@@ -6575,14 +6575,14 @@ const resolvers_getNavigationFallbackId = () => async ({
       return;
     }
 
-    // If the fallback is already in the store, don't invalidate navigation queries.
-    // Otherwise, invalidate the cache for the scenario where there were no Navigation
-    // posts in the state and the fallback created one.
+    / If the fallback is already in the store, don't invalidate navigation queries.
+    / Otherwise, invalidate the cache for the scenario where there were no Navigation
+    / posts in the state and the fallback created one.
     const existingFallbackEntityRecord = select.getEntityRecord('postType', 'wp_navigation', fallback.id);
     const invalidateNavigationQueries = !existingFallbackEntityRecord;
     dispatch.receiveEntityRecords('postType', 'wp_navigation', record, undefined, invalidateNavigationQueries);
 
-    // Resolve to avoid further network requests.
+    / Resolve to avoid further network requests.
     dispatch.finishResolution('getEntityRecord', ['postType', 'wp_navigation', fallback.id]);
   });
 };
@@ -6594,15 +6594,15 @@ const resolvers_getDefaultTemplateId = query => async ({
   const template = await external_wp_apiFetch_default()({
     path: (0,external_wp_url_namespaceObject.addQueryArgs)('/wp/v2/templates/lookup', query)
   });
-  // Wait for the the entities config to be loaded, otherwise receiving
-  // the template as an entity will not work.
+  / Wait for the the entities config to be loaded, otherwise receiving
+  / the template as an entity will not work.
   await resolveSelect.getEntitiesConfig('postType');
-  // Endpoint may return an empty object if no template is found.
+  / Endpoint may return an empty object if no template is found.
   if (template?.id) {
     registry.batch(() => {
       dispatch.receiveDefaultTemplateId(query, template.id);
       dispatch.receiveEntityRecords('postType', 'wp_template', [template]);
-      // Avoid further network requests.
+      / Avoid further network requests.
       dispatch.finishResolution('getEntityRecord', ['postType', 'wp_template', template.id]);
     });
   }
@@ -6629,9 +6629,9 @@ const resolvers_getRevisions = (kind, name, recordKey, query = {}) => async ({
     return;
   }
   if (query._fields) {
-    // If requesting specific fields, items and query association to said
-    // records are stored by ID reference. Thus, fields must always include
-    // the ID.
+    / If requesting specific fields, items and query association to said
+    / records are stored by ID reference. Thus, fields must always include
+    / the ID.
     query = {
       ...query,
       _fields: [...new Set([...(get_normalized_comma_separable(query._fields) || []), entityConfig.revisionKey || DEFAULT_ENTITY_KEY])].join()
@@ -6647,7 +6647,7 @@ const resolvers_getRevisions = (kind, name, recordKey, query = {}) => async ({
       parse: !isPaginated
     });
   } catch (error) {
-    // Do nothing if our request comes back with an API error.
+    / Do nothing if our request comes back with an API error.
     return;
   }
   if (response) {
@@ -6658,9 +6658,9 @@ const resolvers_getRevisions = (kind, name, recordKey, query = {}) => async ({
       records = Object.values(response);
     }
 
-    // If we request fields but the result doesn't contain the fields,
-    // explicitly set these fields as "undefined"
-    // that way we consider the query "fulfilled".
+    / If we request fields but the result doesn't contain the fields,
+    / explicitly set these fields as "undefined"
+    / that way we consider the query "fulfilled".
     if (query._fields) {
       records = records.map(record => {
         query._fields.split(',').forEach(field => {
@@ -6674,8 +6674,8 @@ const resolvers_getRevisions = (kind, name, recordKey, query = {}) => async ({
     registry.batch(() => {
       dispatch.receiveRevisions(kind, name, recordKey, records, query, false, meta);
 
-      // When requesting all fields, the list of results can be used to
-      // resolve the `getRevision` selector in addition to `getRevisions`.
+      / When requesting all fields, the list of results can be used to
+      / resolve the `getRevision` selector in addition to `getRevisions`.
       if (!query?._fields && !query.context) {
         const key = entityConfig.key || DEFAULT_ENTITY_KEY;
         const resolutionsArgs = records.filter(record => record[key]).map(record => [kind, name, recordKey, record[key]]);
@@ -6709,9 +6709,9 @@ const resolvers_getRevision = (kind, name, recordKey, revisionKey, query) => asy
     return;
   }
   if (query !== undefined && query._fields) {
-    // If requesting specific fields, items and query association to said
-    // records are stored by ID reference. Thus, fields must always include
-    // the ID.
+    / If requesting specific fields, items and query association to said
+    / records are stored by ID reference. Thus, fields must always include
+    / the ID.
     query = {
       ...query,
       _fields: [...new Set([...(get_normalized_comma_separable(query._fields) || []), entityConfig.revisionKey || DEFAULT_ENTITY_KEY])].join()
@@ -6724,7 +6724,7 @@ const resolvers_getRevision = (kind, name, recordKey, revisionKey, query) => asy
       path
     });
   } catch (error) {
-    // Do nothing if our request comes back with an API error.
+    / Do nothing if our request comes back with an API error.
     return;
   }
   if (record) {
@@ -6752,7 +6752,7 @@ const resolvers_getRegisteredPostMeta = postType => async ({
       method: 'OPTIONS'
     });
   } catch (error) {
-    // Do nothing if the request comes back with an API error.
+    / Do nothing if the request comes back with an API error.
     return;
   }
   if (options) {
@@ -6779,11 +6779,11 @@ const resolvers_getEntitiesConfig = kind => async ({
     }
     dispatch.addEntities(configs);
   } catch {
-    // Do nothing if the request comes back with an API error.
+    / Do nothing if the request comes back with an API error.
   }
 };
 
-;// ./node_modules/@wordpress/core-data/build-module/locks/utils.js
+;/ ./node_modules/@wordpress/core-data/build-module/locks/utils.js
 function deepCopyLocksTreePath(tree, path) {
   const newTree = {
     ...tree
@@ -6845,7 +6845,7 @@ function hasConflictingLock({
   return false;
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/locks/reducer.js
+;/ ./node_modules/@wordpress/core-data/build-module/locks/reducer.js
 /**
  * Internal dependencies
  */
@@ -6916,7 +6916,7 @@ function locks(state = DEFAULT_STATE, action) {
   return state;
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/locks/selectors.js
+;/ ./node_modules/@wordpress/core-data/build-module/locks/selectors.js
 /**
  * Internal dependencies
  */
@@ -6930,7 +6930,7 @@ function isLockAvailable(state, store, path, {
   const storePath = [store, ...path];
   const locks = state.tree;
 
-  // Validate all parents and the node itself
+  / Validate all parents and the node itself
   for (const node of iteratePath(locks, storePath)) {
     if (hasConflictingLock({
       exclusive
@@ -6939,14 +6939,14 @@ function isLockAvailable(state, store, path, {
     }
   }
 
-  // iteratePath terminates early if path is unreachable, let's
-  // re-fetch the node and check it exists in the tree.
+  / iteratePath terminates early if path is unreachable, let's
+  / re-fetch the node and check it exists in the tree.
   const node = getNode(locks, storePath);
   if (!node) {
     return true;
   }
 
-  // Validate all nested nodes
+  / Validate all nested nodes
   for (const descendant of iterateDescendants(node)) {
     if (hasConflictingLock({
       exclusive
@@ -6957,7 +6957,7 @@ function isLockAvailable(state, store, path, {
   return true;
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/locks/engine.js
+;/ ./node_modules/@wordpress/core-data/build-module/locks/engine.js
 /**
  * Internal dependencies
  */
@@ -7019,7 +7019,7 @@ function createLocks() {
   };
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/locks/actions.js
+;/ ./node_modules/@wordpress/core-data/build-module/locks/actions.js
 /**
  * Internal dependencies
  */
@@ -7040,7 +7040,7 @@ function createLocksActions() {
   };
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/dynamic-entities.js
+;/ ./node_modules/@wordpress/core-data/build-module/dynamic-entities.js
 /**
  * Internal dependencies
  */
@@ -7069,18 +7069,18 @@ function createLocksActions() {
 let dynamicActions;
 let dynamicSelectors;
 
-;// external ["wp","element"]
+;/ external ["wp","element"]
 const external_wp_element_namespaceObject = window["wp"]["element"];
-;// ./node_modules/@wordpress/core-data/build-module/entity-context.js
+;/ ./node_modules/@wordpress/core-data/build-module/entity-context.js
 /**
  * WordPress dependencies
  */
 
 const EntityContext = (0,external_wp_element_namespaceObject.createContext)({});
 
-;// external "ReactJSXRuntime"
+;/ external "ReactJSXRuntime"
 const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
-;// ./node_modules/@wordpress/core-data/build-module/entity-provider.js
+;/ ./node_modules/@wordpress/core-data/build-module/entity-provider.js
 /**
  * WordPress dependencies
  */
@@ -7125,7 +7125,7 @@ function EntityProvider({
   });
 }
 
-;// ./node_modules/memize/dist/index.js
+;/ ./node_modules/memize/dist/index.js
 /**
  * Memize options object.
  *
@@ -7183,19 +7183,19 @@ function memize(fn, options) {
 			i;
 
 		searchCache: while (node) {
-			// Perform a shallow equality test to confirm that whether the node
-			// under test is a candidate for the arguments passed. Two arrays
-			// are shallowly equal if their length matches and each entry is
-			// strictly equal between the two sets. Avoid abstracting to a
-			// function which could incur an arguments leaking deoptimization.
+			/ Perform a shallow equality test to confirm that whether the node
+			/ under test is a candidate for the arguments passed. Two arrays
+			/ are shallowly equal if their length matches and each entry is
+			/ strictly equal between the two sets. Avoid abstracting to a
+			/ function which could incur an arguments leaking deoptimization.
 
-			// Check whether node arguments match arguments length
+			/ Check whether node arguments match arguments length
 			if (node.args.length !== arguments.length) {
 				node = node.next;
 				continue;
 			}
 
-			// Check whether node arguments match arguments values
+			/ Check whether node arguments match arguments values
 			for (i = 0; i < len; i++) {
 				if (node.args[i] !== arguments[i]) {
 					node = node.next;
@@ -7203,18 +7203,18 @@ function memize(fn, options) {
 				}
 			}
 
-			// At this point we can assume we've found a match
+			/ At this point we can assume we've found a match
 
-			// Surface matched node to head if not already
+			/ Surface matched node to head if not already
 			if (node !== head) {
-				// As tail, shift to previous. Must only shift if not also
-				// head, since if both head and tail, there is no previous.
+				/ As tail, shift to previous. Must only shift if not also
+				/ head, since if both head and tail, there is no previous.
 				if (node === tail) {
 					tail = node.prev;
 				}
 
-				// Adjust siblings to point to each other. If node was tail,
-				// this also handles new tail's empty `next` assignment.
+				/ Adjust siblings to point to each other. If node was tail,
+				/ this also handles new tail's empty `next` assignment.
 				/** @type {MemizeCacheNode} */ (node.prev).next = node.next;
 				if (node.next) {
 					node.next.prev = node.prev;
@@ -7226,13 +7226,13 @@ function memize(fn, options) {
 				head = node;
 			}
 
-			// Return immediately
+			/ Return immediately
 			return node.val;
 		}
 
-		// No cached value found. Continue to insertion phase:
+		/ No cached value found. Continue to insertion phase:
 
-		// Create a copy of arguments (avoid leaking deoptimization)
+		/ Create a copy of arguments (avoid leaking deoptimization)
 		args = new Array(len);
 		for (i = 0; i < len; i++) {
 			args[i] = arguments[i];
@@ -7241,23 +7241,23 @@ function memize(fn, options) {
 		node = {
 			args: args,
 
-			// Generate the result from original function
+			/ Generate the result from original function
 			val: fn.apply(null, args),
 		};
 
-		// Don't need to check whether node is already head, since it would
-		// have been returned above already if it was
+		/ Don't need to check whether node is already head, since it would
+		/ have been returned above already if it was
 
-		// Shift existing head down list
+		/ Shift existing head down list
 		if (head) {
 			head.prev = node;
 			node.next = head;
 		} else {
-			// If no head, follows that there's no tail (at initial or reset)
+			/ If no head, follows that there's no tail (at initial or reset)
 			tail = node;
 		}
 
-		// Trim tail if we're reached max size and are pending cache insertion
+		/ Trim tail if we're reached max size and are pending cache insertion
 		if (size === /** @type {MemizeOptions} */ (options).maxSize) {
 			tail = /** @type {MemizeCacheNode} */ (tail).prev;
 			/** @type {MemizeCacheNode} */ (tail).next = null;
@@ -7276,18 +7276,18 @@ function memize(fn, options) {
 		size = 0;
 	};
 
-	// Ignore reason: There's not a clear solution to create an intersection of
-	// the function with additional properties, where the goal is to retain the
-	// function signature of the incoming argument and add control properties
-	// on the return value.
+	/ Ignore reason: There's not a clear solution to create an intersection of
+	/ the function with additional properties, where the goal is to retain the
+	/ function signature of the incoming argument and add control properties
+	/ on the return value.
 
-	// @ts-ignore
+	/ @ts-ignore
 	return memoized;
 }
 
 
 
-;// ./node_modules/@wordpress/core-data/build-module/hooks/memoize.js
+;/ ./node_modules/@wordpress/core-data/build-module/hooks/memoize.js
 /**
  * External dependencies
  */
@@ -7296,7 +7296,7 @@ function memize(fn, options) {
 // re-export due to restrictive esModuleInterop setting
 /* harmony default export */ const memoize = (memize);
 
-;// ./node_modules/@wordpress/core-data/build-module/hooks/constants.js
+;/ ./node_modules/@wordpress/core-data/build-module/hooks/constants.js
 let Status = /*#__PURE__*/function (Status) {
   Status["Idle"] = "IDLE";
   Status["Resolving"] = "RESOLVING";
@@ -7305,7 +7305,7 @@ let Status = /*#__PURE__*/function (Status) {
   return Status;
 }({});
 
-;// ./node_modules/@wordpress/core-data/build-module/hooks/use-query-select.js
+;/ ./node_modules/@wordpress/core-data/build-module/hooks/use-query-select.js
 /**
  * WordPress dependencies
  */
@@ -7344,8 +7344,8 @@ const META_SELECTORS = ['getIsResolving', 'hasStartedResolution', 'hasFinishedRe
  *   return page.title;
  * }
  *
- * // Rendered in the application:
- * // <PageTitleDisplay id={ 10 } />
+ * / Rendered in the application:
+ * / <PageTitleDisplay id={ 10 } />
  * ```
  *
  * In the above example, when `PageTitleDisplay` is rendered into an
@@ -7411,7 +7411,7 @@ const enrichSelectors = memoize(selectors => {
   return resolvers;
 });
 
-;// ./node_modules/@wordpress/core-data/build-module/hooks/use-entity-record.js
+;/ ./node_modules/@wordpress/core-data/build-module/hooks/use-entity-record.js
 /**
  * WordPress dependencies
  */
@@ -7449,8 +7449,8 @@ const use_entity_record_EMPTY_OBJECT = {};
  *   return record.title;
  * }
  *
- * // Rendered in the application:
- * // <PageTitleDisplay id={ 1 } />
+ * / Rendered in the application:
+ * / <PageTitleDisplay id={ 1 } />
  * ```
  *
  * In the above example, when `PageTitleDisplay` is rendered into an
@@ -7505,8 +7505,8 @@ const use_entity_record_EMPTY_OBJECT = {};
  * 	);
  * }
  *
- * // Rendered in the application:
- * // <PageRenameForm id={ 1 } />
+ * / Rendered in the application:
+ * / <PageRenameForm id={ 1 } />
  * ```
  *
  * In the above example, updating and saving the page title is handled
@@ -7576,7 +7576,7 @@ function __experimentalUseEntityRecord(kind, name, recordId, options) {
   return useEntityRecord(kind, name, recordId, options);
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/hooks/use-entity-records.js
+;/ ./node_modules/@wordpress/core-data/build-module/hooks/use-entity-records.js
 /**
  * WordPress dependencies
  */
@@ -7622,8 +7622,8 @@ const EMPTY_ARRAY = [];
  *   );
  * }
  *
- * // Rendered in the application:
- * // <PageTitlesList />
+ * / Rendered in the application:
+ * / <PageTitlesList />
  * ```
  *
  * In the above example, when `PageTitlesList` is rendered into an
@@ -7636,10 +7636,10 @@ const EMPTY_ARRAY = [];
 function useEntityRecords(kind, name, queryArgs = {}, options = {
   enabled: true
 }) {
-  // Serialize queryArgs to a string that can be safely used as a React dep.
-  // We can't just pass queryArgs as one of the deps, because if it is passed
-  // as an object literal, then it will be a different object on each call even
-  // if the values remain the same.
+  / Serialize queryArgs to a string that can be safely used as a React dep.
+  / We can't just pass queryArgs as one of the deps, because if it is passed
+  / as an object literal, then it will be a different object on each call even
+  / if the values remain the same.
   const queryAsString = (0,external_wp_url_namespaceObject.addQueryArgs)('', queryArgs);
   const {
     data: records,
@@ -7647,7 +7647,7 @@ function useEntityRecords(kind, name, queryArgs = {}, options = {
   } = useQuerySelect(query => {
     if (!options.enabled) {
       return {
-        // Avoiding returning a new reference on every execution.
+        / Avoiding returning a new reference on every execution.
         data: EMPTY_ARRAY
       };
     }
@@ -7693,7 +7693,7 @@ function useEntityRecordsWithPermissions(kind, name, queryArgs = {}, options = {
   const ids = (0,external_wp_element_namespaceObject.useMemo)(() => {
     var _data$map;
     return (_data$map = data?.map(
-    // @ts-ignore
+    / @ts-ignore
     record => {
       var _entityConfig$key;
       return record[(_entityConfig$key = entityConfig?.key) !== null && _entityConfig$key !== void 0 ? _entityConfig$key : 'id'];
@@ -7708,7 +7708,7 @@ function useEntityRecordsWithPermissions(kind, name, queryArgs = {}, options = {
   const dataWithPermissions = (0,external_wp_element_namespaceObject.useMemo)(() => {
     var _data$map2;
     return (_data$map2 = data?.map((record, index) => ({
-      // @ts-ignore
+      / @ts-ignore
       ...record,
       permissions: permissions[index]
     }))) !== null && _data$map2 !== void 0 ? _data$map2 : [];
@@ -7719,10 +7719,10 @@ function useEntityRecordsWithPermissions(kind, name, queryArgs = {}, options = {
   };
 }
 
-;// external ["wp","warning"]
+;/ external ["wp","warning"]
 const external_wp_warning_namespaceObject = window["wp"]["warning"];
 var external_wp_warning_default = /*#__PURE__*/__webpack_require__.n(external_wp_warning_namespaceObject);
-;// ./node_modules/@wordpress/core-data/build-module/hooks/use-resource-permissions.js
+;/ ./node_modules/@wordpress/core-data/build-module/hooks/use-resource-permissions.js
 /**
  * WordPress dependencies
  */
@@ -7764,13 +7764,13 @@ var external_wp_warning_default = /*#__PURE__*/__webpack_require__.n(external_wp
  *   return (
  *     <div>
  *       {canCreate ? (<button>+ Create a new page</button>) : false}
- *       // ...
+ *       / ...
  *     </div>
  *   );
  * }
  *
- * // Rendered in the application:
- * // <PagesList />
+ * / Rendered in the application:
+ * / <PagesList />
  * ```
  *
  * @example
@@ -7794,13 +7794,13 @@ var external_wp_warning_default = /*#__PURE__*/__webpack_require__.n(external_wp
  *       {canCreate ? (<button>+ Create a new page</button>) : false}
  *       {canUpdate ? (<button>Edit page</button>) : false}
  *       {canDelete ? (<button>Delete page</button>) : false}
- *       // ...
+ *       / ...
  *     </div>
  *   );
  * }
  *
- * // Rendered in the application:
- * // <Page pageId={ 15 } />
+ * / Rendered in the application:
+ * / <Page pageId={ 15 } />
  * ```
  *
  * In the above example, when `PagesList` is rendered into an
@@ -7811,10 +7811,10 @@ var external_wp_warning_default = /*#__PURE__*/__webpack_require__.n(external_wp
  * @template IdType
  */
 function useResourcePermissions(resource, id) {
-  // Serialize `resource` to a string that can be safely used as a React dep.
-  // We can't just pass `resource` as one of the deps, because if it is passed
-  // as an object literal, then it will be a different object on each call even
-  // if the values remain the same.
+  / Serialize `resource` to a string that can be safely used as a React dep.
+  / We can't just pass `resource` as one of the deps, because if it is passed
+  / as an object literal, then it will be a different object on each call even
+  / if the values remain the same.
   const isEntity = typeof resource === 'object';
   const resourceAsString = isEntity ? JSON.stringify(resource) : resource;
   if (isEntity && typeof id !== 'undefined') {
@@ -7878,9 +7878,9 @@ function __experimentalUseResourcePermissions(resource, id) {
   return useResourcePermissions(resource, id);
 }
 
-;// external ["wp","blocks"]
+;/ external ["wp","blocks"]
 const external_wp_blocks_namespaceObject = window["wp"]["blocks"];
-;// ./node_modules/@wordpress/core-data/build-module/hooks/use-entity-id.js
+;/ ./node_modules/@wordpress/core-data/build-module/hooks/use-entity-id.js
 /**
  * WordPress dependencies
  */
@@ -7903,9 +7903,9 @@ function useEntityId(kind, name) {
   return context?.[kind]?.[name];
 }
 
-;// external ["wp","blockEditor"]
+;/ external ["wp","blockEditor"]
 const external_wp_blockEditor_namespaceObject = window["wp"]["blockEditor"];
-;// ./node_modules/@wordpress/core-data/build-module/footnotes/get-rich-text-values-cached.js
+;/ ./node_modules/@wordpress/core-data/build-module/footnotes/get-rich-text-values-cached.js
 /**
  * WordPress dependencies
  */
@@ -7939,7 +7939,7 @@ function getRichTextValuesCached(block) {
   return cache.get(block);
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/footnotes/get-footnotes-order.js
+;/ ./node_modules/@wordpress/core-data/build-module/footnotes/get-footnotes-order.js
 /**
  * Internal dependencies
  */
@@ -7953,7 +7953,7 @@ function getBlockFootnotesOrder(block) {
         continue;
       }
 
-      // replacements is a sparse array, use forEach to skip empty slots.
+      / replacements is a sparse array, use forEach to skip empty slots.
       value.replacements.forEach(({
         type,
         attributes
@@ -7968,14 +7968,14 @@ function getBlockFootnotesOrder(block) {
   return get_footnotes_order_cache.get(block);
 }
 function getFootnotesOrder(blocks) {
-  // We can only separate getting order from blocks at the root level. For
-  // deeper inner blocks, this will not work since it's possible to have both
-  // inner blocks and block attributes, so order needs to be computed from the
-  // Edit functions as a whole.
+  / We can only separate getting order from blocks at the root level. For
+  / deeper inner blocks, this will not work since it's possible to have both
+  / inner blocks and block attributes, so order needs to be computed from the
+  / Edit functions as a whole.
   return blocks.flatMap(getBlockFootnotesOrder);
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/footnotes/index.js
+;/ ./node_modules/@wordpress/core-data/build-module/footnotes/index.js
 /**
  * WordPress dependencies
  */
@@ -7994,7 +7994,7 @@ function updateFootnotesFromMeta(blocks, meta) {
     return output;
   }
 
-  // If meta.footnotes is empty, it means the meta is not registered.
+  / If meta.footnotes is empty, it means the meta is not registered.
   if (meta.footnotes === undefined) {
     return output;
   }
@@ -8009,7 +8009,7 @@ function updateFootnotesFromMeta(blocks, meta) {
     content: ''
   });
   function updateAttributes(attributes) {
-    // Only attempt to update attributes, if attributes is an object.
+    / Only attempt to update attributes, if attributes is an object.
     if (!attributes || Array.isArray(attributes) || typeof attributes !== 'object') {
       return attributes;
     }
@@ -8023,7 +8023,7 @@ function updateFootnotesFromMeta(blocks, meta) {
         continue;
       }
 
-      // To do, remove support for string values?
+      / To do, remove support for string values?
       if (typeof value !== 'string' && !(value instanceof external_wp_richText_namespaceObject.RichTextData)) {
         continue;
       }
@@ -8033,7 +8033,7 @@ function updateFootnotesFromMeta(blocks, meta) {
         if (replacement.type === 'core/footnote') {
           const id = replacement.attributes['data-fn'];
           const index = newOrder.indexOf(id);
-          // The innerHTML contains the count wrapped in a link.
+          / The innerHTML contains the count wrapped in a link.
           const countValue = (0,external_wp_richText_namespaceObject.create)({
             html: replacement.innerHTML
           });
@@ -8066,8 +8066,8 @@ function updateFootnotesFromMeta(blocks, meta) {
     });
   }
 
-  // We need to go through all block attributes deeply and update the
-  // footnote anchor numbering (textContent) to match the new order.
+  / We need to go through all block attributes deeply and update the
+  / footnote anchor numbering (textContent) to match the new order.
   const newBlocks = updateBlocksAttributes(blocks);
   oldFootnotes = {
     ...oldFootnotes,
@@ -8087,7 +8087,7 @@ function updateFootnotesFromMeta(blocks, meta) {
   };
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/hooks/use-entity-block-editor.js
+;/ ./node_modules/@wordpress/core-data/build-module/hooks/use-entity-block-editor.js
 /**
  * WordPress dependencies
  */
@@ -8164,8 +8164,8 @@ function useEntityBlockEditor(kind, name, {
       return use_entity_block_editor_EMPTY_ARRAY;
     }
 
-    // If there's an edit, cache the parsed blocks by the edit.
-    // If not, cache by the original entity record.
+    / If there's an edit, cache the parsed blocks by the edit.
+    / If not, cache by the original entity record.
     const edits = getEntityRecordEdits(kind, name, id);
     const isUnedited = !edits || !Object.keys(edits).length;
     const cackeKey = isUnedited ? getEntityRecord(kind, name, id) : edits;
@@ -8186,9 +8186,9 @@ function useEntityBlockEditor(kind, name, {
       ...rest
     } = options;
 
-    // We create a new function here on every persistent edit
-    // to make sure the edit makes the post dirty and creates
-    // a new undo level.
+    / We create a new function here on every persistent edit
+    / to make sure the edit makes the post dirty and creates
+    / a new undo level.
     const edits = {
       selection,
       content: ({
@@ -8219,7 +8219,7 @@ function useEntityBlockEditor(kind, name, {
   return [blocks, onInput, onChange];
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/hooks/use-entity-prop.js
+;/ ./node_modules/@wordpress/core-data/build-module/hooks/use-entity-prop.js
 /**
  * WordPress dependencies
  */
@@ -8260,7 +8260,7 @@ function useEntityProp(kind, name, prop, _id) {
       getEntityRecord,
       getEditedEntityRecord
     } = select(STORE_NAME);
-    const record = getEntityRecord(kind, name, id); // Trigger resolver.
+    const record = getEntityRecord(kind, name, id); / Trigger resolver.
     const editedRecord = getEditedEntityRecord(kind, name, id);
     return record && editedRecord ? {
       value: editedRecord[prop],
@@ -8278,7 +8278,7 @@ function useEntityProp(kind, name, prop, _id) {
   return [value, setValue, fullValue];
 }
 
-;// ./node_modules/@wordpress/core-data/build-module/hooks/index.js
+;/ ./node_modules/@wordpress/core-data/build-module/hooks/index.js
 
 
 
@@ -8286,7 +8286,7 @@ function useEntityProp(kind, name, prop, _id) {
 
 
 
-;// ./node_modules/@wordpress/core-data/build-module/private-apis.js
+;/ ./node_modules/@wordpress/core-data/build-module/private-apis.js
 /**
  * Internal dependencies
  */
@@ -8299,7 +8299,7 @@ lock(privateApis, {
   RECEIVE_INTERMEDIATE_RESULTS: RECEIVE_INTERMEDIATE_RESULTS
 });
 
-;// ./node_modules/@wordpress/core-data/build-module/index.js
+;/ ./node_modules/@wordpress/core-data/build-module/index.js
 /**
  * WordPress dependencies
  */
@@ -8387,7 +8387,7 @@ const storeConfig = () => ({
 const store = (0,external_wp_data_namespaceObject.createReduxStore)(STORE_NAME, storeConfig());
 unlock(store).registerPrivateSelectors(private_selectors_namespaceObject);
 unlock(store).registerPrivateActions(private_actions_namespaceObject);
-(0,external_wp_data_namespaceObject.register)(store); // Register store after unlocking private selectors to allow resolvers to use them.
+(0,external_wp_data_namespaceObject.register)(store); / Register store after unlocking private selectors to allow resolvers to use them.
 
 
 

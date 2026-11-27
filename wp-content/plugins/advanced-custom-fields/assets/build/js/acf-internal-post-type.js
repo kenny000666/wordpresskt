@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/_acf-internal-post-type.js":
@@ -32,7 +32,7 @@
       const name = $el.val();
       const $keyInput = $('.acf_slugified_key');
 
-      // Generate field key.
+      / Generate field key.
       if ($keyInput.val().trim() == '') {
         let slug = acf.strSanitize(name.trim()).replaceAll('_', '-');
         slug = acf.applyFilters('generate_internal_post_type_name', slug, this);
@@ -49,10 +49,10 @@
       }
     },
     initialize: function () {
-      // check we should init.
+      / check we should init.
       if (!['taxonomy', 'post_type'].includes(acf.get('screen'))) return;
 
-      // select2
+      / select2
       const template = function (selection) {
         if ('undefined' === typeof selection.element) {
           return selection;
@@ -213,14 +213,14 @@
       this.render();
     },
     isACFAdvancedSettingsChecked: function () {
-      // Screen option is hidden by filter.
+      / Screen option is hidden by filter.
       if (!this.$ACFAdvancedToggle.length) {
         return false;
       }
       return this.$ACFAdvancedToggle.prop('checked');
     },
     isScreenOptionsAdvancedSettingsChecked: function () {
-      // Screen option is hidden by filter.
+      / Screen option is hidden by filter.
       if (!this.$screenOptionsToggle.length) {
         return false;
       }
@@ -249,7 +249,7 @@
       }
     },
     render: function () {
-      // On render, sync screen options to ACF's setting.
+      / On render, sync screen options to ACF's setting.
       this.onToggleACFAdvancedSettings();
     }
   });
@@ -290,7 +290,7 @@
         }
         acf.startButtonLoading(popup.$('.button'));
 
-        // get HTML
+        / get HTML
         $.ajax({
           url: acf.get('ajaxurl'),
           data: acf.prepareForAjax({
@@ -318,34 +318,34 @@
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		/ getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				() => (module['default']) :
@@ -357,7 +357,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -374,7 +374,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });

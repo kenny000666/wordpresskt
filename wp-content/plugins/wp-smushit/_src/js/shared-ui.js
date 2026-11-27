@@ -9,5 +9,5 @@ require( '@wpmudev/shared-ui/dist/js/_src/notifications' );
 require( '@wpmudev/shared-ui/dist/js/_src/select2.full' );
 require( '@wpmudev/shared-ui/dist/js/_src/select2' );
 require( '@wpmudev/shared-ui/dist/js/_src/tabs' );
-require( '@wpmudev/shared-ui/dist/js/_src/upload' ); // Used on lazy load page (since 3.2.2).
+require( '@wpmudev/shared-ui/dist/js/_src/upload' ); / Used on lazy load page (since 3.2.2).
 require( '@wpmudev/shared-ui/dist/js/_src/reviews' );

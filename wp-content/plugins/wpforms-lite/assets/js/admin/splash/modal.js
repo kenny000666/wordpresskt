@@ -120,7 +120,7 @@ const WPSplash = window.WPSplash || ( function( document, window, $ ) {
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

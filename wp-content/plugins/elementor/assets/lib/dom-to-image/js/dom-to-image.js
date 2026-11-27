@@ -14,11 +14,11 @@
 	var fontFaces = newFontFaces();
 	var images = newImages();
 
-	// Default impl options
+	/ Default impl options
 	var defaultOptions = {
-		// Default is to fail on error, no placeholder
+		/ Default is to fail on error, no placeholder
 		imagePlaceholder: undefined,
-		// Default cache bust is false, it will use the cache
+		/ Default cache bust is false, it will use the cache
 		cacheBust: false
 	};
 
@@ -143,7 +143,7 @@
 	}
 
 	function copyOptions( options ) {
-		// Copy options to impl options for use in impl
+		/ Copy options to impl options for use in impl
 		if ( typeof (options.imagePlaceholder) === 'undefined' ) {
 			domtoimage.impl.options.imagePlaceholder = defaultOptions.imagePlaceholder;
 		} else {
@@ -471,8 +471,8 @@
 		function getAndEncode( url ) {
 			var TIMEOUT = 30000;
 			if ( domtoimage.impl.options.cacheBust ) {
-				// Cache bypass so we dont have CORS issues with cached images
-				// Source: https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#Bypassing_the_cache
+				/ Cache bypass so we dont have CORS issues with cached images
+				/ Source: https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#Bypassing_the_cache
 				url += ((/\?/).test( url ) ? "&" : "?") + (new Date()).getTime();
 			}
 

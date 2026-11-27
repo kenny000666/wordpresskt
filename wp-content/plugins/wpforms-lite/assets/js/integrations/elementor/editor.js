@@ -45,19 +45,19 @@ var WPFormsElementor = window.WPFormsElementor || ( function( document, window, 
 		 */
 		events: function() {
 
-			// Widget events.
+			/ Widget events.
 			$( window ).on( 'elementor/frontend/init', function( event, id, instance ) {
 
-				// Widget buttons click.
+				/ Widget buttons click.
 				elementor.channels.editor.on( 'elementorWPFormsAddFormBtnClick', app.addFormBtnClick );
 
-				// Widget frontend events.
+				/ Widget frontend events.
 				elementorFrontend.hooks.addAction( 'frontend/element_ready/wpforms.default', app.widgetPreviewEvents );
 
-				// Initialize widget controls.
+				/ Initialize widget controls.
 				elementor.hooks.addAction( 'panel/open_editor/widget/wpforms', app.widgetPanelOpen );
 
-				// Initialize choiceJS.
+				/ Initialize choiceJS.
 				elementorFrontend.hooks.addAction( 'frontend/element_ready/wpforms.default', app.loadChoicesJS );
 			} );
 		},
@@ -70,7 +70,7 @@ var WPFormsElementor = window.WPFormsElementor || ( function( document, window, 
 		 * @param {Object} $scope Elementor scope object.
 		 */
 		loadChoicesJS( $scope ) {
-			// Loads if function exists.
+			/ Loads if function exists.
 			if ( typeof parent.Choices !== 'function' ) {
 				return;
 			}
@@ -78,7 +78,7 @@ var WPFormsElementor = window.WPFormsElementor || ( function( document, window, 
 			const $elements = $scope.find( '.wpforms-field .choicesjs-select' );
 			const config = window.wpforms_choicesjs_config || {};
 
-			// Initialize ChoicesJS.
+			/ Initialize ChoicesJS.
 			$elements.each( function( index, el ) {
 				if ( ! ( el instanceof parent.HTMLSelectElement ) ) {
 					return;
@@ -98,7 +98,7 @@ var WPFormsElementor = window.WPFormsElementor || ( function( document, window, 
 						$input = $( self.input.element ),
 						sizeClass = $element.data( 'size-class' );
 
-					// Add CSS-class for size.
+					/ Add CSS-class for size.
 					if ( sizeClass ) {
 						$( self.containerOuter.element ).addClass( sizeClass );
 					}
@@ -108,7 +108,7 @@ var WPFormsElementor = window.WPFormsElementor || ( function( document, window, 
 					 * In case if select is empty - we return placeholder text.
 					 */
 					if ( $element.prop( 'multiple' ) ) {
-						// On init event.
+						/ On init event.
 						$input.data( 'placeholder', $input.attr( 'placeholder' ) );
 
 						if ( self.getValue( true ).length ) {
@@ -201,17 +201,17 @@ var WPFormsElementor = window.WPFormsElementor || ( function( document, window, 
 				$addFormNoticeControl = panel.$el.find( '.elementor-control.elementor-control-add_form_notice' ),
 				$testFormNoticeControl = panel.$el.find( '.elementor-control.elementor-control-test_form_notice' );
 
-			// Update form select options if it is available after adding the form.
+			/ Update form select options if it is available after adding the form.
 			if ( vars.formSelectOptions ) {
 				$formSelect.html( vars.formSelectOptions );
 			}
 
-			// Update form select value.
+			/ Update form select value.
 			if ( vars.formId && vars.formId !== '' ) {
 				$formSelect.val( vars.formId );
 			}
 
-			// Hide not needed controls.
+			/ Hide not needed controls.
 			if ( $formSelect.find( 'option' ).length > 0 ) {
 				$addFormNoticeControl.hide();
 			} else {
@@ -219,19 +219,19 @@ var WPFormsElementor = window.WPFormsElementor || ( function( document, window, 
 				$testFormNoticeControl.hide();
 			}
 
-			// Show needed controls.
+			/ Show needed controls.
 			if ( parseInt( $formSelect.val(), 10 ) > 0 ) {
 				$testFormNoticeControl.show();
 			}
 
-			// Select form.
+			/ Select form.
 			panel.$el.find( '.elementor-control.elementor-control-form_id' ).on( 'change', 'select', function() {
 
-				// Update `vars.formId` to be able to restore selected value after options update.
+				/ Update `vars.formId` to be able to restore selected value after options update.
 				vars.formId = $( this ).val();
 			} );
 
-			// Click on the `Edit the selected form` link.
+			/ Click on the `Edit the selected form` link.
 			panel.$el.find( '.elementor-control.elementor-control-edit_form' ).on( 'click', 'a', app.editFormLinkClick );
 		},
 
@@ -253,12 +253,12 @@ var WPFormsElementor = window.WPFormsElementor || ( function( document, window, 
 			 */
 			init: function( panel ) {
 
-				// Skip if observer for current widget already initialized.
+				/ Skip if observer for current widget already initialized.
 				if ( vars.observerWidgetId === vars.widgetId ) {
 					return;
 				}
 
-				// Disconnect previous widget observer.
+				/ Disconnect previous widget observer.
 				if ( typeof vars.observer !== 'undefined' && typeof vars.observer.disconnect === 'function' ) {
 					vars.observer.disconnect();
 				}
@@ -398,7 +398,7 @@ var WPFormsElementor = window.WPFormsElementor || ( function( document, window, 
 
 			let view = elementor.getPanelView().getCurrentPageView();
 
-			// We need to be sure that we are on the widget Content section.
+			/ We need to be sure that we are on the widget Content section.
 			if ( view.activeSection && view.activeSection !== 'section_form' ) {
 				$( view.ui.tabs[0] ).trigger( 'click' );
 			}
@@ -419,7 +419,7 @@ var WPFormsElementor = window.WPFormsElementor || ( function( document, window, 
 
 			app.findFormSelector();
 
-			// To be sure, that both form selector selects are in sync.
+			/ To be sure, that both form selector selects are in sync.
 			app.refreshFormsList( null, vars.formId );
 		},
 
@@ -466,7 +466,7 @@ var WPFormsElementor = window.WPFormsElementor || ( function( document, window, 
 
 			const url = $( this ).attr( 'href' );
 
-			// Open the url in a new tab with JS bc elementor doesn't allow links in the preview.
+			/ Open the url in a new tab with JS bc elementor doesn't allow links in the preview.
 			window.open( url, '_blank' ).focus();
 		},
 
@@ -483,7 +483,7 @@ var WPFormsElementor = window.WPFormsElementor || ( function( document, window, 
 
 			if ( ! vars.$popup ) {
 
-				// We need to add popup markup to the editor top document.
+				/ We need to add popup markup to the editor top document.
 				var $elementor = window.parent.jQuery( '#elementor-editor-wrapper' ),
 					popupTpl = wp.template( 'wpforms-builder-elementor-popup' );
 

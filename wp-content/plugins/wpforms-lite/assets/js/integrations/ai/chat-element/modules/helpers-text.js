@@ -11,7 +11,7 @@
  *
  * @return {Function} The app cloning function.
  */
-export default function( chat ) { // eslint-disable-line no-unused-vars
+export default function( chat ) { / eslint-disable-line no-unused-vars
 	/**
 	 * The default `text` mode helpers object.
 	 *

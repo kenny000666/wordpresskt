@@ -33,7 +33,7 @@
 		reduxObject.args.disable_save_warn = true;
 	};
 
-	// Check for a successful element added since WP ajax doesn't have a callback.
+	/ Check for a successful element added since WP ajax doesn't have a callback.
 	$.reduxUsers.editCount = $( '#the-list tr' );
 
 	$.reduxUsers.editCheck = function () {

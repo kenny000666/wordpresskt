@@ -15,22 +15,22 @@ class ProductAnalytics {
 
 		this.registerTroubleshootClickEvent();
 
-		// Scan Interrupted Event from Scan Modal.
+		/ Scan Interrupted Event from Scan Modal.
 		this.trackScanInterruptedEventOnStopScanningModal();
 		this.trackScanInterruptedEventOnRetryScanModal();
 
-		// Bulk Smush Interrupted Event from Bulk Smush Modal.
+		/ Bulk Smush Interrupted Event from Bulk Smush Modal.
 		this.trackBulkSmushInterruptedEventOnStopBulkSmushModal();
 		this.trackBulkSmushInterruptedEventOnRetryBulkSmushModal();
 		this.registerBulkSmushResumeClickEvent();
 
-		// Bulk Smush Interrupted Event when exit ajax bulk smush.
+		/ Bulk Smush Interrupted Event when exit ajax bulk smush.
 		this.trackBulkSmushInterruptedEventWhenExitingAjaxBulkSmush();
 
-		// Interrupted Event from Inline Notice.
+		/ Interrupted Event from Inline Notice.
 		this.trackInterruptedEventFromInlineNotice();
 
-		// Interrupted Event from Loopback Error Modal.
+		/ Interrupted Event from Loopback Error Modal.
 		this.trackInterruptedEventFromLoopbackErrorModal();
 
 		this.maybeTrackMissedEventsOnLoad();
@@ -80,7 +80,7 @@ class ProductAnalytics {
 
 				const campaign = params.get( 'utm_campaign' );
 				const upsellLocations = {
-					// CDN.
+					/ CDN.
 					summary_cdn: 'dash_summary',
 					'smush-dashboard-cdn-upsell': 'dash_widget',
 					smush_bulksmush_cdn: 'bulk_smush_progress',
@@ -88,10 +88,10 @@ class ProductAnalytics {
 					smush_bulksmush_library_gif_cdn: 'media_library',
 					smush_bulk_smush_complete_global: 'bulk_smush_complete',
 
-					// Local WebP.
+					/ Local WebP.
 					summary_local_webp: 'dash_summary',
 					'smush-dashboard-local-webp-upsell': 'dash_widget',
-					// smush_webp_upgrade_button: 'webp_page',// Handled inside React WebP - free-content.jsx
+					/ smush_webp_upgrade_button: 'webp_page',/ Handled inside React WebP - free-content.jsx
 				};
 
 				if ( ! ( campaign in upsellLocations ) ) {
@@ -266,7 +266,7 @@ class ProductAnalytics {
 
 	cacheMissedEvent( eventData ) {
 		if ( window.localStorage ) {
-			// As now we only use it for one event, so let's keep it as a simple array.
+			/ As now we only use it for one event, so let's keep it as a simple array.
 			window.localStorage.setItem( this.missedEventsKey, JSON.stringify( [ eventData ] ) );
 		}
 	}
@@ -310,7 +310,7 @@ class ProductAnalytics {
 
 	getBulkSmushProcessStats() {
 		if ( this.canUseBackgroundOptimization() ) {
-			// Handled it via PHP.
+			/ Handled it via PHP.
 			return {};
 		}
 		const ajaxBulkSmushObject = window.WP_Smush?.bulk?.bulkSmush;
@@ -419,8 +419,8 @@ class ProductAnalytics {
 		const triggerBackgroundScanImagesLink = recheckImagesNotice.querySelector( '.wp-smush-trigger-background-scan' );
 		if ( triggerBackgroundScanImagesLink ) {
 			triggerBackgroundScanImagesLink.addEventListener( 'click', () => {
-				// We are using the same frame for failed scan notice and generic required scan notice,
-				// so we need to verify the failed notice before tracking the event.
+				/ We are using the same frame for failed scan notice and generic required scan notice,
+				/ so we need to verify the failed notice before tracking the event.
 				const containTroubleshootingLink = triggerBackgroundScanImagesLink?.previousElementSibling?.querySelector( 'a' );
 				if ( ! containTroubleshootingLink ) {
 					return;

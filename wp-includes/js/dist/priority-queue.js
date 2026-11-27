@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 5033:
@@ -222,34 +222,34 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -278,7 +278,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
@@ -302,7 +302,7 @@ __webpack_require__.d(__webpack_exports__, {
 
 // EXTERNAL MODULE: ./node_modules/requestidlecallback/index.js
 var requestidlecallback = __webpack_require__(5033);
-;// ./node_modules/@wordpress/priority-queue/build-module/request-idle-callback.js
+;/ ./node_modules/@wordpress/priority-queue/build-module/request-idle-callback.js
 /**
  * External dependencies
  */
@@ -325,7 +325,7 @@ function createRequestIdleCallback() {
 }
 /* harmony default export */ const request_idle_callback = (createRequestIdleCallback());
 
-;// ./node_modules/@wordpress/priority-queue/build-module/index.js
+;/ ./node_modules/@wordpress/priority-queue/build-module/index.js
 /**
  * Internal dependencies
  */
@@ -382,11 +382,11 @@ function createRequestIdleCallback() {
  *
  * const queue = createQueue();
  *
- * // Context objects.
+ * / Context objects.
  * const ctx1 = {};
  * const ctx2 = {};
  *
- * // For a given context in the queue, only the last callback is executed.
+ * / For a given context in the queue, only the last callback is executed.
  * queue.add( ctx1, () => console.log( 'This will be printed first' ) );
  * queue.add( ctx2, () => console.log( 'This won\'t be printed' ) );
  * queue.add( ctx2, () => console.log( 'This will be printed second' ) );

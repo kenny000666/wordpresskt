@@ -308,7 +308,7 @@
 
 			if (settings.closeButton) {
 				if ( settings.closeButtonClass ) {
-					//  Backwards compatibility
+					/  Backwards compatibility
 					settings.closeButtonOptions.iconClass = settings.closeButtonClass;
 				}
 
@@ -414,7 +414,7 @@
 		};
 
 		var isContextMenuClickEvent = function(event) {
-			// Firefox fires `click` event on every `contextmenu` event.
+			/ Firefox fires `click` event on every `contextmenu` event.
 			return event.type === 'click' && event.button === 2;
 		};
 
@@ -729,7 +729,7 @@
 
 	DialogsManager.Widget.prototype.types = [];
 
-	// Inheritable widget methods
+	/ Inheritable widget methods
 	DialogsManager.Widget.prototype.buildWidget = function() {
 
 		var elements = this.getElements(),
@@ -1049,7 +1049,7 @@
 		}
 	}));
 
-	// Exporting the DialogsManager variable to global
+	/ Exporting the DialogsManager variable to global
 	global.DialogsManager = DialogsManager;
 })(
 	typeof jQuery !== 'undefined' ? jQuery : typeof require === 'function' && require('jquery'),

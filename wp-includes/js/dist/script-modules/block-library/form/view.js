@@ -8,7 +8,7 @@ try {
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable no-undef */
 document.querySelectorAll('form.wp-block-form').forEach(function (form) {
-  // Bail If the form settings not provided or the form is not using the mailto: action.
+  / Bail If the form settings not provided or the form is not using the mailto: action.
   if (!formSettings || !form.action || !form.action.startsWith('mailto:')) {
     return;
   }
@@ -18,10 +18,10 @@ document.querySelectorAll('form.wp-block-form').forEach(function (form) {
     window.location.search = urlParams.toString();
   };
 
-  // Add an event listener for the form submission.
+  / Add an event listener for the form submission.
   form.addEventListener('submit', async function (event) {
     event.preventDefault();
-    // Get the form data and merge it with the form action and nonce.
+    / Get the form data and merge it with the form action and nonce.
     const formData = Object.fromEntries(new FormData(form).entries());
     formData.formAction = form.action;
     formData._ajax_nonce = formSettings.nonce;

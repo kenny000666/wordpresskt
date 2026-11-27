@@ -33,7 +33,7 @@ window.wp = window.wp || {};
 				return;
 			}
 
-			// If we matched an escaped shortcode, try again.
+			/ If we matched an escaped shortcode, try again.
 			if ( '[' === match[1] && ']' === match[7] ) {
 				return wp.shortcode.next( tag, text, re.lastIndex );
 			}
@@ -44,14 +44,14 @@ window.wp = window.wp || {};
 				shortcode: wp.shortcode.fromMatch( match )
 			};
 
-			// If we matched a leading `[`, strip it from the match
-			// and increment the index accordingly.
+			/ If we matched a leading `[`, strip it from the match
+			/ and increment the index accordingly.
 			if ( match[1] ) {
 				result.content = result.content.slice( 1 );
 				result.index++;
 			}
 
-			// If we matched a trailing `]`, strip it from the match.
+			/ If we matched a trailing `]`, strip it from the match.
 			if ( match[7] ) {
 				result.content = result.content.slice( 0, -1 );
 			}
@@ -72,17 +72,17 @@ window.wp = window.wp || {};
 		 */
 		replace: function( tag, text, callback ) {
 			return text.replace( wp.shortcode.regexp( tag ), function( match, left, tag, attrs, slash, content, closing, right ) {
-				// If both extra brackets exist, the shortcode has been
-				// properly escaped.
+				/ If both extra brackets exist, the shortcode has been
+				/ properly escaped.
 				if ( left === '[' && right === ']' ) {
 					return match;
 				}
 
-				// Create the match object and pass it through the callback.
+				/ Create the match object and pass it through the callback.
 				var result = callback( wp.shortcode.fromMatch( arguments ) );
 
-				// Make sure to return any of the extra brackets if they
-				// weren't used to escape the shortcode.
+				/ Make sure to return any of the extra brackets if they
+				/ weren't used to escape the shortcode.
 				return result ? left + result + right : match;
 			});
 		},
@@ -158,10 +158,10 @@ window.wp = window.wp || {};
 			 */
 			pattern = /([\w-]+)\s*=\s*"([^"]*)"(?:\s|$)|([\w-]+)\s*=\s*'([^']*)'(?:\s|$)|([\w-]+)\s*=\s*([^\s'"]+)(?:\s|$)|"([^"]*)"(?:\s|$)|'([^']*)'(?:\s|$)|(\S+)(?:\s|$)/g;
 
-			// Map zero-width spaces to actual spaces.
+			/ Map zero-width spaces to actual spaces.
 			text = text.replace( /[\u00a0\u200b]/g, ' ' );
 
-			// Match and normalize attributes.
+			/ Match and normalize attributes.
 			while ( (match = pattern.exec( text )) ) {
 				if ( match[1] ) {
 					named[ match[1].toLowerCase() ] = match[2];
@@ -229,7 +229,7 @@ window.wp = window.wp || {};
 
 		var attrs = this.attrs;
 
-		// Ensure we have a correctly formatted `attrs` object.
+		/ Ensure we have a correctly formatted `attrs` object.
 		this.attrs = {
 			named:   {},
 			numeric: []
@@ -239,15 +239,15 @@ window.wp = window.wp || {};
 			return;
 		}
 
-		// Parse a string of attributes.
+		/ Parse a string of attributes.
 		if ( _.isString( attrs ) ) {
 			this.attrs = wp.shortcode.attrs( attrs );
 
-		// Identify a correctly formatted `attrs` object.
+		/ Identify a correctly formatted `attrs` object.
 		} else if ( _.difference( _.keys( attrs ), [ 'named', 'numeric' ] ).length === 0 ) {
 			this.attrs = _.defaults( attrs, this.attrs );
 
-		// Handle a flat object of attributes.
+		/ Handle a flat object of attributes.
 		} else {
 			_.each( options.attrs, function( value, key ) {
 				this.set( key, value );
@@ -277,7 +277,7 @@ window.wp = window.wp || {};
 			return this;
 		},
 
-		// ### Transform the shortcode match into a string.
+		/ ### Transform the shortcode match into a string.
 		string: function() {
 			var text    = '[' + this.tag;
 
@@ -293,22 +293,22 @@ window.wp = window.wp || {};
 				text += ' ' + name + '="' + value + '"';
 			});
 
-			// If the tag is marked as `single` or `self-closing`, close the
-			// tag and ignore any additional content.
+			/ If the tag is marked as `single` or `self-closing`, close the
+			/ tag and ignore any additional content.
 			if ( 'single' === this.type ) {
 				return text + ']';
 			} else if ( 'self-closing' === this.type ) {
 				return text + ' /]';
 			}
 
-			// Complete the opening tag.
+			/ Complete the opening tag.
 			text += ']';
 
 			if ( this.content ) {
 				text += this.content;
 			}
 
-			// Add the closing tag.
+			/ Add the closing tag.
 			return text + '[/' + this.tag + ']';
 		}
 	});
@@ -335,7 +335,7 @@ window.wp = window.wp || {};
 		attrs: function( content ) {
 			var result, attrs;
 
-			// If `content` ends in a slash, strip it.
+			/ If `content` ends in a slash, strip it.
 			if ( '/' === content[ content.length - 1 ] ) {
 				content = content.slice( 0, -1 );
 			}
@@ -354,7 +354,7 @@ window.wp = window.wp || {};
 			return attrs;
 		},
 
-		// ### Convert an HTML-representation of an object to a string.
+		/ ### Convert an HTML-representation of an object to a string.
 		string: function( options ) {
 			var text = '<' + options.tag,
 				content = options.content || '';
@@ -362,7 +362,7 @@ window.wp = window.wp || {};
 			_.each( options.attrs, function( value, attr ) {
 				text += ' ' + attr;
 
-				// Convert boolean values to strings.
+				/ Convert boolean values to strings.
 				if ( _.isBoolean( value ) ) {
 					value = value ? 'true' : 'false';
 				}
@@ -370,15 +370,15 @@ window.wp = window.wp || {};
 				text += '="' + value + '"';
 			});
 
-			// Return the result if it is a self-closing tag.
+			/ Return the result if it is a self-closing tag.
 			if ( options.single ) {
 				return text + ' />';
 			}
 
-			// Complete the opening tag.
+			/ Complete the opening tag.
 			text += '>';
 
-			// If `content` is an object, recursively call this function.
+			/ If `content` is an object, recursively call this function.
 			text += _.isObject( content ) ? wp.html.string( content ) : content;
 
 			return text + '</' + options.tag + '>';

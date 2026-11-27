@@ -18,7 +18,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		/ AMD. Register as an anonymous module.
 		define( [
 			"jquery",
 			"../version",
@@ -26,7 +26,7 @@
 		], factory );
 	} else {
 
-		// Browser globals
+		/ Browser globals
 		factory( jQuery );
 	}
 } )( function( $ ) {
@@ -34,7 +34,7 @@
 
 return $.effects.define( "fold", "hide", function( options, done ) {
 
-	// Create element
+	/ Create element
 	var element = $( this ),
 		mode = options.mode,
 		show = mode === "show",
@@ -71,7 +71,7 @@ return $.effects.define( "fold", "hide", function( options, done ) {
 		animation2.clip = start;
 	}
 
-	// Animate
+	/ Animate
 	element
 		.queue( function( next ) {
 			if ( placeholder ) {

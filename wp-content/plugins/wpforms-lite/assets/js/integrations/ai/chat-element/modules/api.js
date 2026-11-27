@@ -13,7 +13,7 @@
  *
  * @return {Function} The app cloning function.
  */
-export default function() { // eslint-disable-line no-unused-vars, max-lines-per-function
+export default function() { / eslint-disable-line no-unused-vars, max-lines-per-function
 	/**
 	 * Public functions and properties.
 	 *
@@ -51,7 +51,7 @@ export default function() { // eslint-disable-line no-unused-vars, max-lines-per
 		 *
 		 * @return {Promise} The fetch result data promise.
 		 */
-		// eslint-disable-next-line complexity
+		/ eslint-disable-next-line complexity
 		async ajax( data ) {
 			if ( ! data.nonce ) {
 				data.nonce = wpforms_ai_chat_element.nonce;
@@ -104,7 +104,7 @@ export default function() { // eslint-disable-line no-unused-vars, max-lines-per
 			};
 
 			if ( sessionId ) {
-				data.session_id = sessionId; // eslint-disable-line camelcase
+				data.session_id = sessionId; / eslint-disable-line camelcase
 			}
 
 			return app.ajax( data );
@@ -122,7 +122,7 @@ export default function() { // eslint-disable-line no-unused-vars, max-lines-per
 			const data = {
 				action: app.actions.rate,
 				helpful,
-				response_id: responseId, // eslint-disable-line camelcase
+				response_id: responseId, / eslint-disable-line camelcase
 			};
 
 			return app.ajax( data );

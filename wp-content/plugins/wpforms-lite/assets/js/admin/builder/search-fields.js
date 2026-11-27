@@ -70,7 +70,7 @@ WPForms.Admin.Builder.Search = WPForms.Admin.Builder.Search || ( function( docum
 		 */
 		setup: function() {
 
-			// Cache DOM elements
+			/ Cache DOM elements
 			el.$document            = $( document );
 			el.$builder             = $( '#wpforms-builder' );
 			el.$searchInput         = $( '#wpforms-search-fields-input' );
@@ -177,7 +177,7 @@ WPForms.Admin.Builder.Search = WPForms.Admin.Builder.Search || ( function( docum
 		 */
 		refreshSearchResults: function() {
 
-			// We need to wait for the original field to be unlocked.
+			/ We need to wait for the original field to be unlocked.
 			setTimeout( app.searchAction, 0 );
 		},
 
@@ -198,7 +198,7 @@ WPForms.Admin.Builder.Search = WPForms.Admin.Builder.Search || ( function( docum
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 
 }( document, window, jQuery ) );

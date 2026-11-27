@@ -1,12 +1,12 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	/ The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -31,9 +31,9 @@ __webpack_require__.d(__webpack_exports__, {
 
 // UNUSED EXPORTS: logged
 
-;// external ["wp","hooks"]
+;/ external ["wp","hooks"]
 const external_wp_hooks_namespaceObject = window["wp"]["hooks"];
-;// ./node_modules/@wordpress/deprecated/build-module/index.js
+;/ ./node_modules/@wordpress/deprecated/build-module/index.js
 /**
  * WordPress dependencies
  */
@@ -71,7 +71,7 @@ const logged = Object.create(null);
  * 	hint: 'You may find it beneficial to transition gradually.',
  * } );
  *
- * // Logs: 'Eating meat is deprecated since version 2019.01.01 and will be removed from the earth in version 2020.01.01. Please use vegetables instead. Note: You may find it beneficial to transition gradually.'
+ * / Logs: 'Eating meat is deprecated since version 2019.01.01 and will be removed from the earth in version 2020.01.01. Please use vegetables instead. Note: You may find it beneficial to transition gradually.'
  * ```
  */
 function deprecated(feature, options = {}) {
@@ -91,7 +91,7 @@ function deprecated(feature, options = {}) {
   const hintMessage = hint ? ` Note: ${hint}` : '';
   const message = `${feature} is deprecated${sinceMessage}${versionMessage}.${useInsteadMessage}${linkMessage}${hintMessage}`;
 
-  // Skip if already logged.
+  / Skip if already logged.
   if (message in logged) {
     return;
   }
@@ -111,7 +111,7 @@ function deprecated(feature, options = {}) {
    */
   (0,external_wp_hooks_namespaceObject.doAction)('deprecated', feature, options, message);
 
-  // eslint-disable-next-line no-console
+  / eslint-disable-next-line no-console
   console.warn(message);
   logged[message] = true;
 }

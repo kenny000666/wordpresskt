@@ -89,7 +89,7 @@ var WPFormsAIModal = window.WPFormsAIModal || ( function( document, window, $ ) 
 		 * @param {Object} args Modal window arguments.
 		 */
 		initModal( args ) {
-			// Open the modal window.
+			/ Open the modal window.
 			$.confirm( { ...app.defaultOptions, ...args } );
 		},
 
@@ -109,7 +109,7 @@ var WPFormsAIModal = window.WPFormsAIModal || ( function( document, window, $ ) 
 			const fieldId = $button.data( 'field-id' ),
 				$modal = $( `.jconfirm-wpforms-ai-modal-choices-${ fieldId }` );
 
-			// Close any other modals.
+			/ Close any other modals.
 			$( `.jconfirm-wpforms-ai-modal:not(.jconfirm-wpforms-ai-modal-choices-${ fieldId })` )
 				.addClass( 'wpforms-hidden' )
 				.fadeOut();
@@ -131,7 +131,7 @@ var WPFormsAIModal = window.WPFormsAIModal || ( function( document, window, $ ) 
 			args.backgroundDismissAnimation = '';
 			args.contentMaxHeight = Math.min( app.defaultOptions.contentMaxHeight, app.getMaxModalHeight() );
 			args.onOpen = function() {
-				// Unbind the click event from the close icon and use our own instead.
+				/ Unbind the click event from the close icon and use our own instead.
 				this.$closeIcon.off( 'click' );
 				this.$closeIcon.on( 'click', hideChoices );
 			};
@@ -174,7 +174,7 @@ var WPFormsAIModal = window.WPFormsAIModal || ( function( document, window, $ ) 
 		resizeModalHeight( fieldId ) {
 			const modalHeight = app.getMaxModalHeight();
 			const $modal = $( '.jconfirm-wpforms-ai-modal' ).filter( function() {
-				// find class starts with jconfirm-wpforms-ai-modal- and ends with -{fieldId}.
+				/ find class starts with jconfirm-wpforms-ai-modal- and ends with -{fieldId}.
 				return $( this ).attr( 'class' ).match( new RegExp( 'jconfirm-wpforms-ai-modal-.*-' + fieldId, 'i' ) );
 			} );
 
@@ -224,7 +224,7 @@ var WPFormsAIModal = window.WPFormsAIModal || ( function( document, window, $ ) 
 
 			app.showChoicesModal( fieldId );
 
-			// Reset choices modal window height.
+			/ Reset choices modal window height.
 			$( `.jconfirm-wpforms-ai-modal-choices-${ fieldId } .jconfirm-content-pane` )
 				.css( {
 					height: maxHeight,
@@ -240,7 +240,7 @@ var WPFormsAIModal = window.WPFormsAIModal || ( function( document, window, $ ) 
 		 * @return {number} The max modal height.
 		 */
 		getMaxModalHeight() {
-			// 80% of the window height, but not more than 800 px.
+			/ 80% of the window height, but not more than 800 px.
 			return Math.min( $( window ).height() * 0.8, 800 );
 		},
 
@@ -250,7 +250,7 @@ var WPFormsAIModal = window.WPFormsAIModal || ( function( document, window, $ ) 
 		 * @since 1.9.1
 		 */
 		extendJqueryConfirm() {
-			// Extend a method of global instance.
+			/ Extend a method of global instance.
 			window.Jconfirm.prototype._updateContentMaxHeight = function() {
 				this.$contentPane.css( {
 					'max-height': this.contentMaxHeight + 'px',
@@ -299,7 +299,7 @@ var WPFormsAIModal = window.WPFormsAIModal || ( function( document, window, $ ) 
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

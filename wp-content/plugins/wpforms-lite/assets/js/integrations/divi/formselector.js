@@ -48,9 +48,9 @@ class WPFormsSelector extends Component {
 	static get propTypes() {
 
 		return {
-			form_id: PropTypes.number, // eslint-disable-line camelcase
-			show_title: PropTypes.string, // eslint-disable-line camelcase
-			show_desc: PropTypes.string, // eslint-disable-line camelcase
+			form_id: PropTypes.number, / eslint-disable-line camelcase
+			show_title: PropTypes.string, / eslint-disable-line camelcase
+			show_desc: PropTypes.string, / eslint-disable-line camelcase
 		};
 	}
 
@@ -172,12 +172,12 @@ class WPFormsSelector extends Component {
 
 jQuery( window )
 
-	// Register custom modules.
+	/ Register custom modules.
 	.on( 'et_builder_api_ready', ( event, API ) => {
 		API.registerModules( [ WPFormsSelector ] );
 	} )
 
-	// Re-initialize WPForms frontend.
+	/ Re-initialize WPForms frontend.
 	.on( 'wpformsDiviModuleDisplay', () => {
 		window.wpforms.init();
 	} );
@@ -186,7 +186,7 @@ jQuery( document )
 	.on( 'wpformsReady', function() {
 		const $ = jQuery;
 
-		// Make all the modern dropdowns disabled.
+		/ Make all the modern dropdowns disabled.
 		$( '.choicesjs-select' ).each( function() {
 			const $instance = $( this ).data( 'choicesjs' );
 
@@ -195,7 +195,7 @@ jQuery( document )
 			}
 		} );
 
-		// Init Repeater fields.
+		/ Init Repeater fields.
 		if ( 'undefined' !== typeof WPFormsRepeaterField ) {
 			WPFormsRepeaterField.ready();
 		}

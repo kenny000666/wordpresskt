@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../assets/dev/js/editor/components/dynamic-tags/control-behavior.js":
@@ -54,7 +54,7 @@ module.exports = Marionette.Behavior.extend({
       }
     }
 
-    // Add a Tipsy Tooltip to the Dynamic Switcher
+    / Add a Tipsy Tooltip to the Dynamic Switcher
     this.ui.dynamicSwitcher.tipsy({
       title: function title() {
         return this.getAttribute('data-tooltip');
@@ -108,7 +108,7 @@ module.exports = Marionette.Behavior.extend({
       });
     });
 
-    // Create and inject pro dynamic teaser template if Pro is not installed
+    / Create and inject pro dynamic teaser template if Pro is not installed
     if (!elementor.helpers.hasPro() && Object.keys(tags).length) {
       var proTeaser = Marionette.Renderer.render('#tmpl-elementor-dynamic-tags-promo', {
         promotionUrl: elementor.config.dynamicPromotionURL.replace('%s', this.view.model.get('name'))
@@ -218,7 +218,7 @@ module.exports = Marionette.Behavior.extend({
     var $tag = jQuery(event.currentTarget);
     this.setTagView(elementorCommon.helpers.getUniqueId(), $tag.data('tagName'), {});
 
-    // If an element has an active global value, disable it before applying the dynamic value.
+    / If an element has an active global value, disable it before applying the dynamic value.
     if (this.view.getGlobalKey()) {
       this.view.triggerMethod('unset:global:value');
     }
@@ -294,7 +294,7 @@ module.exports = elementorModules.editor.views.ControlsStack.extend({
   template: _.noop,
   emptyView: EmptyView,
   isEmpty: function isEmpty() {
-    // Ignore the section control
+    / Ignore the section control
     return this.collection.length < 2;
   },
   childViewOptions: function childViewOptions() {
@@ -411,7 +411,7 @@ module.exports = Marionette.ItemView.extend({
     });
   },
   initialize: function initialize() {
-    // The `model` should always be available.
+    / The `model` should always be available.
     this.initModel();
     if (!this.hasSettings()) {
       return;
@@ -516,7 +516,7 @@ var BreakpointValidator = exports["default"] = /*#__PURE__*/function (_NumberVal
     value: function getDefaultSettings() {
       return {
         validationTerms: {
-          // Max width we allow in general
+          / Max width we allow in general
           max: 5120
         }
       };
@@ -559,7 +559,7 @@ var BreakpointValidator = exports["default"] = /*#__PURE__*/function (_NumberVal
       var validationTerms = this.getSettings('validationTerms'),
         errors = NumberValidator.prototype.validationMethod.call(this, newValue);
 
-      // Validate both numeric and empty values, since breakpoints utilize default values when empty.
+      / Validate both numeric and empty values, since breakpoints utilize default values when empty.
       if (_.isFinite(newValue) || '' === newValue) {
         if (!this.validateMinMaxForBreakpoint(newValue, validationTerms)) {
           errors.push('Value is not between the breakpoints above or under the edited breakpoint');
@@ -574,32 +574,32 @@ var BreakpointValidator = exports["default"] = /*#__PURE__*/function (_NumberVal
       var isValid = true;
       this.initBreakpointProperties();
 
-      // Since the following comparison is <=, allow usage of the 320px value for the mobile breakpoint.
+      / Since the following comparison is <=, allow usage of the 320px value for the mobile breakpoint.
       if ('mobile' === validationTerms.breakpointName && 320 === this.bottomBreakpoint) {
         this.bottomBreakpoint -= 1;
       }
 
-      // If there is a breakpoint below the currently edited breakpoint
+      / If there is a breakpoint below the currently edited breakpoint
       if (this.bottomBreakpoint) {
-        // Check that the new value is not under the bottom breakpoint's value.
+        / Check that the new value is not under the bottom breakpoint's value.
         if ('' !== newValue && newValue <= this.bottomBreakpoint) {
           isValid = false;
         }
 
-        // If the new value is empty, check that the default breakpoint value is not below the bottom breakpoint.
+        / If the new value is empty, check that the default breakpoint value is not below the bottom breakpoint.
         if ('' === newValue && breakpointDefaultValue <= this.bottomBreakpoint) {
           isValid = false;
         }
       }
 
-      // If there is a breakpoint above the currently edited breakpoint.
+      / If there is a breakpoint above the currently edited breakpoint.
       if (this.topBreakpoint) {
-        // Check that the value is not above the top breakpoint's value.
+        / Check that the value is not above the top breakpoint's value.
         if ('' !== newValue && newValue >= this.topBreakpoint) {
           isValid = false;
         }
 
-        // If the new value is empty, check that the default breakpoint value is not above the top breakpoint.
+        / If the new value is empty, check that the default breakpoint value is not above the top breakpoint.
         if ('' === newValue && breakpointDefaultValue >= this.topBreakpoint) {
           isValid = false;
         }
@@ -723,7 +723,7 @@ ControlBaseDataView = ControlBaseView.extend({
       this.model.set('inherit_placeholders', true);
     }
 
-    // TODO: this.elementSettingsModel is deprecated since 2.8.0.
+    / TODO: this.elementSettingsModel is deprecated since 2.8.0.
     var settings = this.container ? this.container.settings : this.elementSettingsModel;
     this.listenTo(settings, 'change:external:' + this.model.get('name'), this.onAfterExternalChange);
   },
@@ -739,7 +739,7 @@ ControlBaseDataView = ControlBaseView.extend({
   getGlobalDefault: function getGlobalDefault() {
     var controlGlobalArgs = this.model.get('global');
     if (controlGlobalArgs !== null && controlGlobalArgs !== void 0 && controlGlobalArgs.default) {
-      // If the control is a color/typography control and default colors/typography are disabled, don't return the global value.
+      / If the control is a color/typography control and default colors/typography are disabled, don't return the global value.
       if (!elementor.config.globals.defaults_enabled[this.getGlobalMeta().controlType]) {
         return '';
       }
@@ -750,7 +750,7 @@ ControlBaseDataView = ControlBaseView.extend({
       return result === null || result === void 0 ? void 0 : result.value;
     }
 
-    // No global default.
+    / No global default.
     return '';
   },
   getCurrentValue: function getCurrentValue() {
@@ -816,7 +816,7 @@ ControlBaseDataView = ControlBaseView.extend({
     var parent = this.model.get('parent');
     try {
       return parent && this.container.panel.getControlView(parent);
-      // eslint-disable-next-line no-empty
+      / eslint-disable-next-line no-empty
     } catch (e) {}
   },
   /**
@@ -835,7 +835,7 @@ ControlBaseDataView = ControlBaseView.extend({
           var child = _step.value;
           views.push(this.container.panel.getControlView(child));
         }
-        // eslint-disable-next-line no-empty
+        / eslint-disable-next-line no-empty
       } catch (err) {
         _iterator.e(err);
       } finally {
@@ -934,7 +934,7 @@ ControlBaseDataView = ControlBaseView.extend({
       return +inputValue;
     }
 
-    // Temp fix for jQuery (< 3.0) that return null instead of empty array
+    / Temp fix for jQuery (< 3.0) that return null instead of empty array
     if ('SELECT' === input.tagName && $input.prop('multiple') && null === inputValue) {
       inputValue = [];
     }
@@ -1041,10 +1041,10 @@ ControlBaseDataView = ControlBaseView.extend({
       return;
     }
 
-    // Create tooltip on controls
+    / Create tooltip on controls
     this.ui.tooltipTargets.tipsy({
       gravity: function gravity() {
-        // `n` for down, `s` for up
+        / `n` for down, `s` for up
         var gravity = jQuery(this).data('tooltip-pos');
         if (undefined !== gravity) {
           return gravity;
@@ -1065,7 +1065,7 @@ ControlBaseDataView = ControlBaseView.extend({
     this.setValue(value);
   }
 }, {
-  // Static methods
+  / Static methods
   getStyleValue: function getStyleValue(placeholder, controlValue, controlData) {
     if ('DEFAULT' === placeholder) {
       return controlData.default;
@@ -1108,7 +1108,7 @@ ControlBaseView = Marionette.CompositeView.extend({
     return this._behaviors[Object.keys(this.behaviors()).indexOf(name)];
   },
   className: function className() {
-    // TODO: Any better classes for that?
+    / TODO: Any better classes for that?
     var classes = 'elementor-control elementor-control-' + this.model.get('name') + ' elementor-control-type-' + this.model.get('type'),
       modelClasses = this.model.get('classes'),
       responsive = this.model.get('responsive');
@@ -1136,14 +1136,14 @@ ControlBaseView = Marionette.CompositeView.extend({
   initialize: function initialize(options) {
     var label = this.model.get('label');
 
-    // TODO: Temp backwards compatibility. since 2.8.0.
+    / TODO: Temp backwards compatibility. since 2.8.0.
     Object.defineProperty(this, 'container', {
       get: function get() {
         if (!options.container) {
           var settingsModel = options.elementSettingsModel,
             view = $e.components.get('document').utils.findViewById(settingsModel.id);
 
-          // Element control.
+          / Element control.
           if (view && view.getContainer) {
             options.container = view.getContainer();
           } else {
@@ -1151,7 +1151,7 @@ ControlBaseView = Marionette.CompositeView.extend({
               settingsModel.id = 'bc-' + elementorCommon.helpers.getUniqueId();
             }
 
-            // Document/General/Other control.
+            / Document/General/Other control.
             options.container = new elementorModules.editor.Container({
               type: 'bc-container',
               id: settingsModel.id,
@@ -1169,7 +1169,7 @@ ControlBaseView = Marionette.CompositeView.extend({
       }
     });
 
-    // Use `defineProperty` because `get elementSettingsModel()` fails during the `Marionette.CompositeView.extend`.
+    / Use `defineProperty` because `get elementSettingsModel()` fails during the `Marionette.CompositeView.extend`.
     Object.defineProperty(this, 'elementSettingsModel', {
       get: function get() {
         elementorDevTools.deprecation.deprecated('elementSettingsModel', '2.8.0', 'container.settings');
@@ -1180,7 +1180,7 @@ ControlBaseView = Marionette.CompositeView.extend({
       controlSettings = jQuery.extend(true, {}, elementor.config.controls[controlType], this.model.attributes);
     this.model.set(controlSettings);
 
-    // TODO: this.elementSettingsModel is deprecated since 2.8.0.
+    / TODO: this.elementSettingsModel is deprecated since 2.8.0.
     var settings = this.container ? this.container.settings : this.elementSettingsModel;
     this.listenTo(settings, 'change', this.onAfterChange);
     if (this.model.attributes.responsive) {
@@ -1198,7 +1198,7 @@ ControlBaseView = Marionette.CompositeView.extend({
     this.toggleControlVisibility();
   },
   toggleControlVisibility: function toggleControlVisibility() {
-    // TODO: this.elementSettingsModel is deprecated since 2.8.0.
+    / TODO: this.elementSettingsModel is deprecated since 2.8.0.
     var settings = this.container ? this.container.settings : this.elementSettingsModel;
     var isVisible = elementor.helpers.isActiveControl(this.model, settings.attributes, settings.controls);
     this.$el.toggleClass('elementor-hidden-control', !isVisible);
@@ -2127,27 +2127,27 @@ module.exports = _unsupportedIterableToArray, module.exports.__esModule = true, 
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	

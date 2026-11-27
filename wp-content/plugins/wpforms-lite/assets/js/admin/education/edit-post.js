@@ -9,13 +9,13 @@
 
 // eslint-disable-next-line no-var, no-unused-vars
 var WPFormsEditPostEducation = window.WPFormsEditPostEducation || ( function( document, window, $ ) {
-	// The identifiers for the Redux stores.
+	/ The identifiers for the Redux stores.
 	const coreEditSite = 'core/edit-site',
 		coreEditor = 'core/editor',
 		coreBlockEditor = 'core/block-editor',
 		coreNotices = 'core/notices',
 
-		// Heading block name.
+		/ Heading block name.
 		coreHeading = 'core/heading';
 
 	/**
@@ -48,7 +48,7 @@ var WPFormsEditPostEducation = window.WPFormsEditPostEducation || ( function( do
 		 */
 		init() {
 			$( window ).on( 'load', function() {
-				// In the case of jQuery 3.+, we need to wait for a ready event first.
+				/ In the case of jQuery 3.+, we need to wait for a ready event first.
 				if ( typeof $.ready.then === 'function' ) {
 					$.ready.then( app.load );
 				} else {
@@ -73,7 +73,7 @@ var WPFormsEditPostEducation = window.WPFormsEditPostEducation || ( function( do
 
 			app.maybeShowGutenbergNotice();
 
-			// "core/edit-site" store available only in the Site Editor.
+			/ "core/edit-site" store available only in the Site Editor.
 			if ( !! wp.data.select( coreEditSite ) ) {
 				app.subscribeForSiteEditor();
 
@@ -92,22 +92,22 @@ var WPFormsEditPostEducation = window.WPFormsEditPostEducation || ( function( do
 		 * @since 1.9.5
 		 */
 		subscribeForSiteEditor() {
-			// Store the initial editor title and focus mode state.
+			/ Store the initial editor title and focus mode state.
 			let prevTitle = app.getEditorTitle();
 			let prevFocusMode = null;
 			const { subscribe, select, dispatch } = wp.data;
 
-			// Listen for changes in the WordPress data store.
+			/ Listen for changes in the WordPress data store.
 			subscribe( () => {
-				// Fetch the current editor mode setting.
-				// If true - Site Editor canvas is opened, and you can edit something.
-				// If false - you should see the sidebar with navigation and preview
-				// with selected template or page.
+				/ Fetch the current editor mode setting.
+				/ If true - Site Editor canvas is opened, and you can edit something.
+				/ If false - you should see the sidebar with navigation and preview
+				/ with selected template or page.
 				const { focusMode } = select( coreEditor ).getEditorSettings();
 
-				// If focus mode is disabled and a notice is visible, remove the notice.
-				// This is essential because user can switch pages / templates
-				// without a page-reload.
+				/ If focus mode is disabled and a notice is visible, remove the notice.
+				/ This is essential because user can switch pages / templates
+				/ without a page-reload.
 				if ( ! focusMode && app.isNoticeVisible ) {
 					app.isNoticeVisible = false;
 					prevFocusMode = focusMode;
@@ -117,16 +117,16 @@ var WPFormsEditPostEducation = window.WPFormsEditPostEducation || ( function( do
 
 				const title = app.getEditorTitle();
 
-				// If neither the title nor the focus mode has changed, do nothing.
+				/ If neither the title nor the focus mode has changed, do nothing.
 				if ( prevTitle === title && prevFocusMode === focusMode ) {
 					return;
 				}
 
-				// Update the previous title and focus mode values for the next subscription cycle.
+				/ Update the previous title and focus mode values for the next subscription cycle.
 				prevTitle = title;
 				prevFocusMode = focusMode;
 
-				// Show a custom Gutenberg notice if conditions are met.
+				/ Show a custom Gutenberg notice if conditions are met.
 				app.maybeShowGutenbergNotice();
 			} );
 		},
@@ -142,21 +142,21 @@ var WPFormsEditPostEducation = window.WPFormsEditPostEducation || ( function( do
 			let prevTitle = app.getEditorTitle();
 			const { subscribe } = wp.data;
 
-			// Subscribe to WordPress data changes.
+			/ Subscribe to WordPress data changes.
 			const unsubscribe = subscribe( () => {
 				const title = app.getEditorTitle();
 
-				// Check if the title has changed since the previous value.
+				/ Check if the title has changed since the previous value.
 				if ( prevTitle === title ) {
 					return;
 				}
 
-				// Update the previous title to the current title.
+				/ Update the previous title to the current title.
 				prevTitle = title;
 
 				app.maybeShowGutenbergNotice();
 
-				// If the notice is visible, stop the WordPress data subscription.
+				/ If the notice is visible, stop the WordPress data subscription.
 				if ( app.isNoticeVisible ) {
 					unsubscribe();
 				}
@@ -175,7 +175,7 @@ var WPFormsEditPostEducation = window.WPFormsEditPostEducation || ( function( do
 		getEditorTitle() {
 			const { select } = wp.data;
 
-			// Retrieve the title for Post Editor.
+			/ Retrieve the title for Post Editor.
 			if ( ! select( coreEditSite ) ) {
 				return select( coreEditor ).getEditedPostAttribute( 'title' );
 			}
@@ -233,8 +233,8 @@ var WPFormsEditPostEducation = window.WPFormsEditPostEducation || ( function( do
 			const { select } = wp.data;
 			const { context } = select( coreEditSite ).getPage();
 
-			// Use `getEditedEntityRecord` instead of `getEntityRecord`
-			// to fetch the live, updated data for the post being edited.
+			/ Use `getEditedEntityRecord` instead of `getEntityRecord`
+			/ to fetch the live, updated data for the post being edited.
 			const { title = '' } = select( 'core' ).getEditedEntityRecord(
 				'postType',
 				context.postType,
@@ -281,8 +281,8 @@ var WPFormsEditPostEducation = window.WPFormsEditPostEducation || ( function( do
 				app.getGutenbergNoticeSettings()
 			);
 
-			// The notice component doesn't have a way to add HTML id or class to the notice.
-			// Also, the notice became visible with a delay on old Gutenberg versions.
+			/ The notice component doesn't have a way to add HTML id or class to the notice.
+			/ Also, the notice became visible with a delay on old Gutenberg versions.
 			const hasNotice = setInterval( function() {
 				const noticeBody = $( '.wpforms-edit-post-education-notice-body' );
 				if ( ! noticeBody.length ) {
@@ -293,7 +293,7 @@ var WPFormsEditPostEducation = window.WPFormsEditPostEducation || ( function( do
 				$notice.addClass( 'wpforms-edit-post-education-notice' );
 				$notice.find( '.is-secondary, .is-link' ).removeClass( 'is-secondary' ).removeClass( 'is-link' ).addClass( 'is-primary' );
 
-				// We can't use onDismiss callback as it was introduced in WordPress 6.0 only.
+				/ We can't use onDismiss callback as it was introduced in WordPress 6.0 only.
 				const dismissButton = $notice.find( '.components-notice__dismiss' );
 				if ( dismissButton ) {
 					dismissButton.on( 'click', function() {
@@ -345,7 +345,7 @@ var WPFormsEditPostEducation = window.WPFormsEditPostEducation || ( function( do
 				}
 
 				return (
-					// eslint-disable-next-line react/react-in-jsx-scope
+					/ eslint-disable-next-line react/react-in-jsx-scope
 					<Guide
 						className="edit-post-welcome-guide"
 						onFinish={ () => {

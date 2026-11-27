@@ -172,7 +172,7 @@ var WPFormsConnect = window.WPFormsConnect || ( function( document, window, $ ) 
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 
 }( document, window, jQuery ) );

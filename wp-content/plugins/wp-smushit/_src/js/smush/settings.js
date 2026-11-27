@@ -13,7 +13,7 @@
 		e.preventDefault();
 		$( '#save-settings-button' ).addClass( 'sui-button-onload' );
 		saveSettings( $( this ).serialize(), 'bulk' );
-		// runReCheck();
+		/ runReCheck();
 	} );
 
 	/**
@@ -142,7 +142,7 @@
 			type: 'media',
 		};
 
-		// Send ajax, Update Settings, And Check For resmush.
+		/ Send ajax, Update Settings, And Check For resmush.
 		$.post( ajaxurl, $.param( param ) ).done( function() {
 			$( '#save-settings-button' ).removeClass( 'sui-button-onload' );
 		} );
@@ -169,9 +169,9 @@
 		const noticeDiv = $( '.smush-highlighting-notice' );
 		const warningDiv = $( '.smush-highlighting-warning' );
 
-		// Setting enabled.
+		/ Setting enabled.
 		if ( $( this ).is( ':checked' ) ) {
-			// Highlighting is already active and setting not saved.
+			/ Highlighting is already active and setting not saved.
 			if ( noticeDiv.length > 0 ) {
 				noticeDiv.show();
 			} else {
@@ -201,14 +201,14 @@
 			new CustomEvent( `on-smush-${ noticeKey }-notice` )
 		);
 
-		// Remove the smush-notice query parameter.
+		/ Remove the smush-notice query parameter.
 		url.searchParams.delete( 'smush-notice' );
 		window.history.replaceState( {}, document.title, url.toString() );
 	};
 
 	formNoticeHandler();
 
-	// Handle toggle fields.
+	/ Handle toggle fields.
 	const toggleFieldVisibility = ( fieldVisibilitySettings, fieldWrapperClassName ) => {
 		for ( const fieldName in fieldVisibilitySettings ) {
 			const field = document.querySelector( `[name="${ fieldName }"]` );

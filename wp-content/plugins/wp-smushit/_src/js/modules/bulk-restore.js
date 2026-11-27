@@ -21,13 +21,13 @@ import tracker from "../utils/tracker";
 		modal: document.getElementById('smush-restore-images-dialog'),
 		contentContainer: document.getElementById('smush-bulk-restore-content'),
 		settings: {
-			slide: 'start', // start, progress or finish.
+			slide: 'start', / start, progress or finish.
 			success: 0,
 			errors: [],
 		},
-		items: [], // total items, 1 item = 1 step.
-		success: [], // successful items restored.
-		errors: [], // failed items.
+		items: [], / total items, 1 item = 1 step.
+		success: [], / successful items restored.
+		errors: [], / failed items.
 		currentStep: 0,
 		totalSteps: 0,
 
@@ -48,7 +48,7 @@ import tracker from "../utils/tracker";
 			this.resetModalWidth();
 			this.renderTemplate();
 
-			// Show the modal.
+			/ Show the modal.
 
 			window.SUI.openModal(
 				'smush-restore-images-dialog',
@@ -115,7 +115,7 @@ import tracker from "../utils/tracker";
 				'start' === this.settings.slide ||
 				'finish' === this.settings.slide
 			) {
-				// Hide the modal.
+				/ Hide the modal.
 				window.SUI.closeModal();
 			} else {
 				this.updateProgressBar(true);
@@ -141,7 +141,7 @@ import tracker from "../utils/tracker";
 				progress = 100;
 			}
 
-			// Update progress bar
+			/ Update progress bar
 			this.modal.querySelector('.sui-progress-text span').innerHTML =
 				progress + '%';
 			this.modal.querySelector('.sui-progress-bar span').style.width =
@@ -232,7 +232,7 @@ import tracker from "../utils/tracker";
 				};
 				xhr.send('item=' + item + '&_ajax_nonce=' + _nonce.value);
 			} else {
-				// Finish.
+				/ Finish.
 				this.settings = {
 					slide: 'finish',
 					success: this.success.length,

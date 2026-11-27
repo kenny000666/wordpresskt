@@ -2,7 +2,7 @@ import { isSmushLazySizesInstance } from './helper/lazysizes';
 
 ( () => {
 	'use strict';
-	// Constants
+	/ Constants
 	const VIDEO_WRAPPER_CLASS = 'smush-lazyload-video';
 	const LAZY_LOADED_CLASS = 'smush-lazyloaded-video';
 	const AUTO_PLAY_CLASS = 'smush-lazyload-autoplay';
@@ -35,7 +35,7 @@ import { isSmushLazySizesInstance } from './helper/lazysizes';
 				{ once: true, passive: true }
 			);
 
-			// Unified fallback for delayed video rendering.
+			/ Unified fallback for delayed video rendering.
 			const maybeTriggerVideoRenderingFallbackForMobile = () => {
 				if ( ! FALLBACK_VIDEO_RENDER_DELAY || FALLBACK_VIDEO_RENDER_DELAY < 0 ) {
 					return;
@@ -252,6 +252,6 @@ import { isSmushLazySizesInstance } from './helper/lazysizes';
 		}
 	}
 
-	// Initialize LazyLoadVideo
+	/ Initialize LazyLoadVideo
 	new LazyLoadVideo();
 } )();

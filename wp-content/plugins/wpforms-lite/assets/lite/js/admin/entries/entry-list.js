@@ -37,13 +37,13 @@ const WPFormsEntryList = window.WPFormsEntryList || ( function( document, window
 		 * @since 1.8.9
 		 */
 		events() {
-			// Show sample data for entries when the Explore Entries is clicked.
+			/ Show sample data for entries when the Explore Entries is clicked.
 			$( '#wpforms-entries-explore' ).on( 'click', app.showEntries );
 
-			// Hide sample data for entries when the Hide Sample Data is clicked.
+			/ Hide sample data for entries when the Hide Sample Data is clicked.
 			$( '#wpforms-hide-sample-data' ).on( 'click', app.hideEntries );
 
-			// Toggle the action dropdown.
+			/ Toggle the action dropdown.
 			$( '#wpforms-list-table-ext-edit-columns-cog' ).on( 'click', app.toggleActionDropdown );
 			$( '#wpcontent' ).on( 'click', app.hideActionDropdown );
 		},
@@ -62,7 +62,7 @@ const WPFormsEntryList = window.WPFormsEntryList || ( function( document, window
 				$( '#wpforms-sample-entry-main-notice' ).slideDown( 250 );
 				$( '#wpforms-entries-list' ).addClass( 'wpforms-entires-sample-view' );
 			} );
-			wpCookies.set( 'wpforms_sample_entries', 'true', 2592000 ); // 1 month
+			wpCookies.set( 'wpforms_sample_entries', 'true', 2592000 ); / 1 month
 		},
 
 		/**
@@ -75,7 +75,7 @@ const WPFormsEntryList = window.WPFormsEntryList || ( function( document, window
 		hideEntries( e ) {
 			e.preventDefault();
 
-			// Bypass animation as this is causing fade in/out issues.
+			/ Bypass animation as this is causing fade in/out issues.
 			$( '#wpforms-sample-entry-main-notice' ).fadeOut( 250, function() {
 				$( '#wpforms-entries-list' ).removeClass( 'wpforms-entires-sample-view' );
 				$( '.wpforms-sample-entry-notice' ).removeClass( 'wpf-no-animate' );

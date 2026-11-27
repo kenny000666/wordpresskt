@@ -38,7 +38,7 @@
 				el.each(
 					function () {
 
-						// Init each typography field.
+						/ Init each typography field.
 						$( this ).find( '.redux-typography-container' ).each(
 							function () {
 								const el   = $( this );
@@ -57,11 +57,11 @@
 								const thisID         = $( this ).find( '.redux-typography-family' ).parents( '.redux-container-typography:first' ).data( 'id' );
 								let usingGoogleFonts = $( '#' + thisID + ' .redux-typography-google' ).val();
 
-								// Set up data array.
+								/ Set up data array.
 								const buildData = [];
 								const fontKids  = [];
 
-								// User included fonts?
+								/ User included fonts?
 								let isUserFonts = $( '#' + thisID + ' .redux-typography-font-family' ).data( 'user-fonts' );
 
 								if ( ! el.hasClass( 'redux-field-container' ) ) {
@@ -86,28 +86,28 @@
 
 								isUserFonts = isUserFonts ? 1 : 0;
 
-								// Google font isn't in use?
+								/ Google font isn't in use?
 								usingGoogleFonts = usingGoogleFonts ? 1 : 0;
 
-								// If custom fonts, push onto array.
+								/ If custom fonts, push onto array.
 								if ( undefined !== redux.customfonts ) {
 									buildData.push( redux.customfonts );
 								}
 
-								// If typekit fonts, push onto array.
+								/ If typekit fonts, push onto array.
 								if ( undefined !== redux.typekitfonts ) {
 									buildData.push( redux.typekitfonts );
 								}
 
-								// If standard fonts, push onto array.
+								/ If standard fonts, push onto array.
 								if ( undefined !== redux.stdfonts && 0 === isUserFonts ) {
 									buildData.push( redux.stdfonts );
 								}
 
-								// If user fonts, pull from localize and push into array.
+								/ If user fonts, pull from localize and push into array.
 								if ( 1 === isUserFonts ) {
 
-									// <option>
+									/ <option>
 									for ( key in redux.optName.typography[thisID] ) {
 										if ( redux.optName.typography[thisID].hasOwnProperty( key ) ) {
 											obj = redux.optName.typography[thisID].std_font;
@@ -126,7 +126,7 @@
 										}
 									}
 
-									// <optgroup>
+									/ <optgroup>
 									fontData = {
 										text: 'Standard Fonts',
 										children: fontKids
@@ -135,12 +135,12 @@
 									buildData.push( fontData );
 								}
 
-								// If googlefonts on and had data, push into array.
+								/ If googlefonts on and had data, push into array.
 								if ( 1 === usingGoogleFonts || true === usingGoogleFonts && undefined !== redux.googlefonts ) {
 									buildData.push( redux.googlefonts );
 								}
 
-								// Output data to dropdown.
+								/ Output data to dropdown.
 								data = buildData;
 
 								val = $( this ).find( '.redux-typography-family' ).data( 'value' );
@@ -172,10 +172,10 @@
 									}
 								);
 
-								// Init select2 for indicated fields.
+								/ Init select2 for indicated fields.
 								redux.field_objects.typography.select( family, true, false, null, true );
 
-								// Init when value is changed.
+								/ Init when value is changed.
 								$( this ).find( '.redux-typography-family, .redux-typography-family-backup, .redux-typography-style, .redux-typography-subsets, .redux-typography-align' ).on(
 									'change',
 									function ( val ) {
@@ -226,7 +226,7 @@
 									}
 								);
 
-								// Init when value is changed.
+								/ Init when value is changed.
 								$( this ).find( '.redux-typography-size, .redux-typography-height, .redux-typography-word, .redux-typography-letter, .redux-typography-margin-top, .redux-typography-margin-bottom' ).on(
 									'keyup',
 									function () {
@@ -234,7 +234,7 @@
 									}
 								);
 
-								// Have to redeclare the wpColorPicker to get a callback function.
+								/ Have to redeclare the wpColorPicker to get a callback function.
 								$( this ).find( '.redux-typography-color, .redux-typography-shadow-color' ).wpColorPicker(
 									{
 										change: function ( e, ui ) {
@@ -245,10 +245,10 @@
 									}
 								);
 
-								// Don't allow negative numbers for size field.
+								/ Don't allow negative numbers for size field.
 								$( this ).find( '.redux-typography-size' ).numeric( { allowMinus: false } );
 
-								// Allow negative numbers for indicated fields.
+								/ Allow negative numbers for indicated fields.
 								$( this ).find( '.redux-typography-height, .redux-typography-word, .redux-typography-letter' ).numeric( { allowMinus: true } );
 
 								reduxTypography = $( this ).find( '.redux-typography' );
@@ -432,7 +432,7 @@
 		);
 	};
 
-	// Return font size.
+	/ Return font size.
 	redux.field_objects.typography.size = function ( obj ) {
 		let size = 0;
 		let key;
@@ -446,7 +446,7 @@
 		return size;
 	};
 
-	// Return proper bool value.
+	/ Return proper bool value.
 	redux.field_objects.typography.makeBool = function ( val ) {
 		if ( 'false' === val || '0' === val || false === val || 0 === val ) {
 			return false;
@@ -461,16 +461,16 @@
 		let g;
 		let res;
 
-		// Default value is black.
+		/ Default value is black.
 		let retVal = '#444444';
 
-		// In case - for some reason - a blank value is passed.
-		// This should *not* happen.  If a function passing a value
-		// is canceled, it should pass the current value instead of
-		// a blank.  This is how the Windows Common Controls do it.  :P .
+		/ In case - for some reason - a blank value is passed.
+		/ This should *not* happen.  If a function passing a value
+		/ is canceled, it should pass the current value instead of
+		/ a blank.  This is how the Windows Common Controls do it.  :P .
 		if ( '' !== hexcolour ) {
 
-			// Replace the hash with a blank.
+			/ Replace the hash with a blank.
 			hexcolour = hexcolour.replace( '#', '' );
 
 			r   = parseInt( hexcolour.substring( 0, 2 ), 16 );
@@ -478,7 +478,7 @@
 			b   = parseInt( hexcolour.substring( 4, 2 ), 16 );
 			res = ( ( r * 299 ) + ( g * 587 ) + ( b * 114 ) ) / 1000;
 
-			// Instead of pure black, I opted to use WP 3.8 black, so it looks uniform.  :) - kp.
+			/ Instead of pure black, I opted to use WP 3.8 black, so it looks uniform.  :) - kp.
 			retVal = ( res >= 128 ) ? '#444444' : '#ffffff';
 		}
 
@@ -486,15 +486,15 @@
 	};
 
 	redux.field_objects.typography.hexToInt = function ( hexColor ) {
-		// Remove the '#' if present.
+		/ Remove the '#' if present.
 		if ( hexColor.indexOf( '#' ) === 0 ) {
 			hexColor = hexColor.slice( 1 );
 		}
-		// Convert hex to integer.
+		/ Convert hex to integer.
 		return parseInt( hexColor, 16 );
 	};
 
-	// Sync up font options.
+	/ Sync up font options.
 	redux.field_objects.typography.select = function ( selector, skipCheck, destroy, fontName, active ) {
 		let mainID;
 		let that;
@@ -534,7 +534,7 @@
 		let html     = '<option value=""></option>';
 		let selected = '';
 
-		// Main id for selected field.
+		/ Main id for selected field.
 		mainID = $( selector ).parents( '.redux-container-typography:first' ).data( 'id' );
 
 		if ( undefined === mainID ) {
@@ -545,7 +545,7 @@
 		family = $( '#' + mainID + '-family' ).val();
 
 		if ( ! family ) {
-			family = null; // 'inherit';
+			family = null; / 'inherit';
 		}
 
 		if ( fontName ) {
@@ -581,17 +581,17 @@
 			defaultFontWeights = JSON.parse( decodeURIComponent( weights.data( 'weights' ) ) );
 		}
 
-		// Is selected font a Google font?
+		/ Is selected font a Google font?
 		if ( true === isSelecting ) {
 			google = redux.field_objects.typography.makeBool( selVals['data-google'] );
 			that.find( '.redux-typography-google-font' ).val( google );
 		} else {
-			google = redux.field_objects.typography.makeBool( that.find( '.redux-typography-google-font' ).val() ); // Check if font is a Google font.
+			google = redux.field_objects.typography.makeBool( that.find( '.redux-typography-google-font' ).val() ); / Check if font is a Google font.
 		}
 
 		if ( active ) {
 
-			// Page load. Speeds things up memory wise to offload to client.
+			/ Page load. Speeds things up memory wise to offload to client.
 			if ( ! that.hasClass( 'typography-initialized' ) ) {
 				style  = that.find( 'select.redux-typography-style' ).data( 'value' );
 				script = that.find( 'select.redux-typography-subsets' ).data( 'value' );
@@ -605,12 +605,12 @@
 				}
 			}
 
-			// Something went wrong trying to read google fonts, so turn google off.
+			/ Something went wrong trying to read google fonts, so turn google off.
 			if ( undefined === redux.fonts.google ) {
 				google = false;
 			}
 
-			// Get font details.
+			/ Get font details.
 			if ( true === google && ( family in redux.fonts.google ) ) {
 				details = redux.fonts.google[family];
 			} else {
@@ -626,13 +626,13 @@
 				that.find( 'input.typography-subsets' ).val( script );
 			}
 
-			// If we changed the font.
+			/ If we changed the font.
 			if ( $( selector ).hasClass( 'redux-typography-family' ) ) {
 
-				// Google specific stuff.
+				/ Google specific stuff.
 				if ( true === google ) {
 
-					// STYLES.
+					/ STYLES.
 					$.each(
 						details.variants,
 						function ( index, variant ) {
@@ -648,15 +648,15 @@
 						}
 					);
 
-					// Destroy select2.
+					/ Destroy select2.
 					if ( destroy ) {
 						that.find( '.redux-typography-style' ).select2( 'destroy' );
 					}
 
-					// Insert new HTML.
+					/ Insert new HTML.
 					that.find( '.redux-typography-style' ).html( html ).select2();
 
-					// SUBSETS.
+					/ SUBSETS.
 					selected = '';
 					html     = '<option value=""></option>';
 
@@ -675,12 +675,12 @@
 						}
 					);
 
-					// Destroy select2.
+					/ Destroy select2.
 					if ( destroy ) {
 						that.find( '.redux-typography-subsets' ).select2( 'destroy' );
 					}
 
-					// Inset new HTML.
+					/ Inset new HTML.
 					that.find( '.redux-typography-subsets' ).html( html ).select2( { width:'100%' } );
 
 					that.find( '.redux-typography-subsets' ).parent().fadeIn( 'fast' );
@@ -701,13 +701,13 @@
 						}
 					);
 
-					// Destroy select2.
+					/ Destroy select2.
 					that.find( '.redux-typography-style' ).select2( 'destroy' );
 
-					// Insert new HTML.
+					/ Insert new HTML.
 					that.find( '.redux-typography-style' ).html( html ).select2();
 
-					// Prettify things.
+					/ Prettify things.
 					that.find( '.redux-typography-subsets' ).parent().fadeOut( 'fast' );
 					that.find( '.typography-family-backup' ).fadeOut( 'fast' );
 				} else {
@@ -726,12 +726,12 @@
 							}
 						);
 
-						// Destroy select2.
+						/ Destroy select2.
 						if ( destroy ) {
 							that.find( '.redux-typography-style' ).select2( 'destroy' );
 						}
 
-						// Insert new HTML.
+						/ Insert new HTML.
 						that.find( '.redux-typography-style' ).html( html ).select2();
 					}
 				}
@@ -756,15 +756,15 @@
 						}
 					);
 
-					// Destroy select2.
+					/ Destroy select2.
 					if ( destroy ) {
 						that.find( '.redux-typography-style' ).select2( 'destroy' );
 					}
 
-					// Insert new HTML.
+					/ Insert new HTML.
 					that.find( '.redux-typography-style' ).html( html ).select2();
 
-					// Prettify things.
+					/ Prettify things.
 					that.find( '.redux-typography-subsets' ).parent().fadeOut( 'fast' );
 					that.find( '.typography-family-backup' ).fadeOut( 'fast' );
 				}
@@ -775,7 +775,7 @@
 
 			that.find( '.redux-typography-style' ).addClass( 'ignore-change' );
 
-			// Check if the selected value exists. If not, empty it. Else, apply it.
+			/ Check if the selected value exists. If not, empty it. Else, apply it.
 			if ( 0 === that.find( 'select.redux-typography-style option[value=\'' + style + '\']' ).length ) {
 				style = '';
 				that.find( 'select.redux-typography-style' ).val( '' ).trigger( 'change' );
@@ -785,7 +785,7 @@
 
 			that.find( '.redux-typography-style' ).removeClass( 'ignore-change' );
 
-			// Handle empty subset select.
+			/ Handle empty subset select.
 			if ( 0 === that.find( 'select.redux-typography-subsets option[value=\'' + script + '\']' ).length ) {
 				script = '';
 
@@ -798,17 +798,17 @@
 
 		_linkclass = 'style_link_' + mainID;
 
-		// Remove other elements crested in <head>.
+		/ Remove other elements crested in <head>.
 		$( '.' + _linkclass ).remove();
 
 		if ( null !== family && 'inherit' !== family && that.hasClass( 'typography-initialized' ) ) {
 
-			// Replace spaces with "+" sign.
+			/ Replace spaces with "+" sign.
 			the_font = family.replace( /\s+/g, '+' );
 
 			if ( true === google ) {
 
-				// Add reference to google font family.
+				/ Add reference to google font family.
 				link = the_font;
 
 				if ( style && '' !== style ) {
@@ -831,7 +831,7 @@
 			}
 		}
 
-		// Weight and italic.
+		/ Weight and italic.
 		if ( style && - 1 !== style.indexOf( 'italic' ) ) {
 			that.find( '.typography-preview' ).css( 'font-style', 'italic' );
 			that.find( '.typography-font-style' ).val( 'italic' );
@@ -893,7 +893,7 @@
 			that.find( '.typography-margin-bottom' ).val( marginBottom + marginBottomUnit );
 		}
 
-		// Show more preview stuff.
+		/ Show more preview stuff.
 		if ( that.hasClass( 'typography-initialized' ) ) {
 			isPreviewSize = that.find( '.typography-preview' ).data( 'preview-size' );
 
@@ -913,7 +913,7 @@
 
 			if ( 'none' === family && '' === family ) {
 
-				// If selected is not a font remove style 'font-family' at preview box.
+				/ If selected is not a font remove style 'font-family' at preview box.
 				that.find( '.typography-preview' ).css( 'font-family', 'inherit' );
 			}
 
@@ -932,17 +932,17 @@
 			if ( color ) {
 				that.find( '.typography-preview' ).css( 'color', color );
 
-				// Convert the color and range values to integers.
+				/ Convert the color and range values to integers.
 				const colorInt     = redux.field_objects.typography.hexToInt( color );
 				const whiteInt     = redux.field_objects.typography.hexToInt( 'ffffff' );
 				const lightGreyInt = redux.field_objects.typography.hexToInt( 'dddddd' );
 
-				// Check if the color is within the specified range.
+				/ Check if the color is within the specified range.
 				if (colorInt >= lightGreyInt && colorInt <= whiteInt) {
 					that.find( '.typography-preview' ).css( 'background-color', 'black' );
 				} else {
-					// Optionally reset the background color if the text color is not within the range.
-					that.find( '.typography-preview' ).css( 'background-color', '' ); // Or set to a default color.
+					/ Optionally reset the background color if the text color is not within the range.
+					that.find( '.typography-preview' ).css( 'background-color', '' ); / Or set to a default color.
 				}
 			}
 
@@ -970,8 +970,8 @@
 			that.find( '.typography-preview' ).slideDown();
 		}
 
-		// End preview stuff.
-		// If not preview showing, then set preview to show.
+		/ End preview stuff.
+		/ If not preview showing, then set preview to show.
 		if ( ! that.hasClass( 'typography-initialized' ) ) {
 			that.addClass( 'typography-initialized' );
 		}

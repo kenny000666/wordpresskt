@@ -12,7 +12,7 @@
  *
  * @since 1.8.6
  */
-var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( document, window, $ ) { // eslint-disable-line no-var
+var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( document, window, $ ) { / eslint-disable-line no-var
 	/**
 	 * Supported pages' CSS selectors.
 	 * It is the ids of the `.wpforms-admin-wrap` container, which reflects `page` + `view` URL attributes.
@@ -100,10 +100,10 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 
 			el.$tableScroll?.on( 'scroll', app.tableScroll );
 
-			// noinspection TypeScriptUMDGlobal
+			/ noinspection TypeScriptUMDGlobal
 			$( window ).on( 'resize', _.debounce( app.windowResize, 100 ) );
 
-			el.$searchInput?.on( 'input', _.debounce( app.maybeShowNoResults, 310 ) ); // On 300 ms the multiselect lib is updating the list of items so we need to wait a bit more.
+			el.$searchInput?.on( 'input', _.debounce( app.maybeShowNoResults, 310 ) ); / On 300 ms the multiselect lib is updating the list of items so we need to wait a bit more.
 		},
 
 		/**
@@ -124,13 +124,13 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 			el.$tablenavPages = $( '.tablenav-pages' );
 			el.$tablenavPagesLinks = $( '.tablenav-pages .pagination-links a' );
 
-			// The Forms Overview page has no table container, wrap the table.
+			/ The Forms Overview page has no table container, wrap the table.
 			if ( ! el.$tableContainer.hasClass( 'wpforms-table-container' ) ) {
 				el.$table.wrap( '<div class="wpforms-table-container"></div>' );
 				el.$tableContainer = el.$table.parent();
 			}
 
-			// Add specific classes to the page container.
+			/ Add specific classes to the page container.
 			el.$page.addClass( 'wpforms-list-table-ext-page' );
 		},
 
@@ -140,13 +140,13 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 		 * @since 1.9.3
 		 */
 		initPagination() {
-			// Prevent the error messages in console.
+			/ Prevent the error messages in console.
 			htmx.config.historyCacheSize = 2;
 
 			const perPage = $( '#pagination_per_page, #wpforms_entries_per_page' ).val();
 
-			// Do not proceed if the perPage value is too high.
-			// The HTMX pagination will be disabled in this case to avoid console errors coused by the large size of the page HTML.
+			/ Do not proceed if the perPage value is too high.
+			/ The HTMX pagination will be disabled in this case to avoid console errors coused by the large size of the page HTML.
 			if ( perPage > 200 ) {
 				return;
 			}
@@ -245,7 +245,7 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 				el.$table.find( 'tfoot tr .column-' + columnId ).attr( 'id', columnId + '-foot' );
 			} );
 
-			// Disable sorting of the cog column.
+			/ Disable sorting of the cog column.
 			el.$table.find( '.manage-column.column-cog' )
 				.addClass( 'wpforms-table-cell-sticky' );
 		},
@@ -255,11 +255,11 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 		 *
 		 * @since 1.8.6
 		 */
-		initTableSortableColumns() { // eslint-disable-line max-lines-per-function
+		initTableSortableColumns() { / eslint-disable-line max-lines-per-function
 			let $columnCells,
 				columnId;
 
-			el.$table.find( 'thead tr, tfoot tr' ).each( function() { // eslint-disable-line max-lines-per-function
+			el.$table.find( 'thead tr, tfoot tr' ).each( function() { / eslint-disable-line max-lines-per-function
 				const $sortable = $( this );
 
 				$sortable.sortable( {
@@ -282,38 +282,38 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 						return $helper.css( 'width', width + 'px' );
 					},
 					start( e, ui ) {
-						ui.helper.addClass( 'wpforms-table-column-drag-helper' ); // Add a specific class to the helper container.
+						ui.helper.addClass( 'wpforms-table-column-drag-helper' ); / Add a specific class to the helper container.
 						ui.item.addClass( 'wpforms-table-column-dragged-out' ).css( 'display', '' );
 
-						// Disable global scrolling.
+						/ Disable global scrolling.
 						el.$wpcontent.addClass( 'wpforms-no-scroll' );
 
 						columnId = ui.item.attr( 'id' ).replace( '-foot', '' );
 					},
 					stop( e, ui ) {
-						// Remove specific classes from the helper.
+						/ Remove specific classes from the helper.
 						ui.item
 							.removeClass( 'wpforms-table-column-drag-helper' )
 							.removeClass( 'wpforms-table-column-dragged-out' );
 
-						// Remove previously added vertical placeholder class from all columns.
+						/ Remove previously added vertical placeholder class from all columns.
 						el.$table.find( 'thead tr > *, tfoot tr > *' ).removeClass( 'wpforms-table-column-drag-placeholder-prev' );
 
-						// Enable global scrolling.
+						/ Enable global scrolling.
 						el.$wpcontent.removeClass( 'wpforms-no-scroll' );
 
 						const prevColumnId = ui.item.prev().attr( 'id' ).replace( '-foot', '' ),
 							$rows = el.$table.find( 'tbody tr:not(.wpforms-hidden)' ),
 							prevSelector = prevColumnId !== 'cb' ? '.column-' + prevColumnId : '.check-column';
 
-						// Move column cells.
+						/ Move column cells.
 						$columnCells = $rows.find( 'td.column-' + columnId ).detach();
 
 						for ( let i = 0; i < $columnCells.length; i++ ) {
 							$rows.eq( i ).find( prevSelector ).after( $columnCells.eq( i ) );
 						}
 
-						// Move opposite column header.
+						/ Move opposite column header.
 						const oppositeColumnsSelector = ui.item.closest( 'thead' ).length > 0 ? 'tfoot' : 'thead',
 							$oppositeColumn = el.$table.find( oppositeColumnsSelector + ' tr .column-' + columnId ).detach();
 
@@ -322,10 +322,10 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 						app.updateMenuColumnsOrder();
 					},
 					change( e, ui ) {
-						// Remove previously added vertical placeholder class from all columns.
+						/ Remove previously added vertical placeholder class from all columns.
 						el.$table.find( 'thead tr > *, tfoot tr > *' ).removeClass( 'wpforms-table-column-drag-placeholder-prev' );
 
-						// Add the vertical placeholder class to the previous column.
+						/ Add the vertical placeholder class to the previous column.
 						ui.placeholder.prev().addClass( 'wpforms-table-column-drag-placeholder-prev' );
 					},
 					update() {
@@ -341,20 +341,20 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 		 * @since 1.8.6
 		 */
 		initTableScrollColumns() {
-			// Init table horizontal scrolling only on the Entries page.
+			/ Init table horizontal scrolling only on the Entries page.
 			if ( ! el.$page.is( '#wpforms-entries-list' ) ) {
 				return;
 			}
 
 			el.$tableScroll = el.$tableContainer;
 
-			// The Entries page has own table container, add the class.
+			/ The Entries page has own table container, add the class.
 			el.$tableScroll.addClass( 'wpforms-table-scroll' );
 
-			// Detect the Windows OS platform.
+			/ Detect the Windows OS platform.
 			el.$tableScroll.toggleClass( 'wpforms-scrollbar', app.isCustomScrollbarNeeded() );
 
-			// Add specific class to the sticky columns.
+			/ Add specific class to the sticky columns.
 			el.$table.find( '.check-column, .column-indicators' )
 				.addClass( 'wpforms-table-cell-sticky' )
 				.addClass( 'left' );
@@ -378,10 +378,10 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 				scrollLeft = Math.abs( el.$tableScroll.get( 0 ).scrollLeft ),
 				scrollWidth = el.$tableScroll.get( 0 ).scrollWidth;
 
-			// Conditionally Add shadow to the sticky columns.
+			/ Conditionally Add shadow to the sticky columns.
 			el.$tableScroll
 				.find( '.wpforms-table-cell-sticky.left' )
-				.toggleClass( 'shadow', scrollLeft > 1 ); // 1px is fix for the RTL mode.
+				.toggleClass( 'shadow', scrollLeft > 1 ); / 1px is fix for the RTL mode.
 
 			el.$tableScroll
 				.find( '.wpforms-table-cell-sticky.right' )
@@ -394,7 +394,7 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 		 * @since 1.8.6
 		 */
 		windowResize() {
-			// Disable dragging on mobiles.
+			/ Disable dragging on mobiles.
 			el.$table.find( 'thead th, tfoot th' ).toggleClass( 'wpforms-table-column-not-draggable', window.innerWidth <= 782 );
 
 			app.closeMenu();
@@ -408,7 +408,7 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 		 * @since 1.8.6
 		 */
 		windowResizeToggleColumns() {
-			// Proceed only on the Forms Overview page.
+			/ Proceed only on the Forms Overview page.
 			if ( ! el.$page.is( '#wpforms-overview' ) ) {
 				return;
 			}
@@ -416,14 +416,14 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 			const $visibleColumns = el.$table.find( 'thead tr th:visible' );
 			const $columnTags = el.$table.find( '.column-tags' );
 
-			// For browser window with the width between 960px and 1280px.
+			/ For browser window with the width between 960px and 1280px.
 			if ( window.innerWidth > 960 && window.innerWidth <= 1280 ) {
 				$columnTags.toggleClass( 'wpforms-hidden', $visibleColumns.length > 4 );
 			} else {
 				$columnTags.removeClass( 'wpforms-hidden' );
 			}
 
-			// Synchronize menu items visibility.
+			/ Synchronize menu items visibility.
 			el.$menu.find( 'label' ).removeClass( 'wpforms-hidden' );
 			el.$table.find( 'thead tr th:not(:visible)' ).each( function() {
 				const $column = $( this );
@@ -468,7 +468,7 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 			el.$cog.removeClass( 'active' );
 			el.$menu.find( '.wpforms-multiselect-checkbox-list' ).removeClass( 'open' );
 
-			// Flush the search input.
+			/ Flush the search input.
 			el.$searchInput.val( '' );
 			el.$searchInput[ 0 ]?.dispatchEvent( new Event( 'input' ) );
 		},
@@ -507,12 +507,12 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 				columnsChecked.push( $( this ).val() );
 			} );
 
-			// Convert DOM element IDs to column IDs.
+			/ Convert DOM element IDs to column IDs.
 			columnsOrder = columnsOrder.map( function( column ) {
 				return app.convertColumnId( column );
 			} );
 
-			// Add checked columns in the same order as in the table.
+			/ Add checked columns in the same order as in the table.
 			for ( let i = 0; i < columnsOrder.length; i++ ) {
 				const column = columnsOrder[ i ];
 
@@ -522,7 +522,7 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 				}
 			}
 
-			// Add the rest of the checked columns.
+			/ Add the rest of the checked columns.
 			return columns.concat( columnsChecked );
 		},
 
@@ -535,11 +535,11 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 			const data = {
 				nonce: wpforms_admin.nonce,
 				action: el.$menu.find( '[name="action"]' ).val(),
-				form_id: el.$menu.find( '[name="form_id"]' ).val(), // eslint-disable-line camelcase
+				form_id: el.$menu.find( '[name="form_id"]' ).val(), / eslint-disable-line camelcase
 				columns: app.getColumnsOrder(),
 			};
 
-			// AJAX request to save the columns order.
+			/ AJAX request to save the columns order.
 			$.post( wpforms_admin.ajax_url, data )
 				.done( function( response ) {
 					if ( ! response.success ) {
@@ -579,29 +579,29 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 		 *
 		 * @since 1.8.6
 		 */
-		updateMenuColumnsOrder() { // eslint-disable-line complexity
+		updateMenuColumnsOrder() { / eslint-disable-line complexity
 			let columnsOrder = app.getColumnsOrder();
 			const $groups = el.$menu.find( '.wpforms-multiselect-checkbox-optgroup' );
 			const $itemsCont = el.$menu.find( '.wpforms-multiselect-checkbox-items' );
 			const $items = $itemsCont.find( 'label' );
 			const itemsByGroup = [ 0 ];
 
-			// If there are no groups, add the items to the first group.
+			/ If there are no groups, add the items to the first group.
 			itemsByGroup[ 0 ] = $items;
 
-			// If there are groups, split the items by groups.
+			/ If there are groups, split the items by groups.
 			if ( $groups.length ) {
 				$groups.each( function( i ) {
 					itemsByGroup[ i ] = $( this ).nextUntil( '.wpforms-multiselect-checkbox-optgroup' );
 				} );
 			}
 
-			// Convert DOM element IDs to column IDs.
+			/ Convert DOM element IDs to column IDs.
 			columnsOrder = columnsOrder.map( function( column ) {
 				return app.convertColumnId( column );
 			} );
 
-			// Rebuild the menu items order.
+			/ Rebuild the menu items order.
 			for ( let g = 0; g < itemsByGroup.length; g++ ) {
 				itemsByGroup[ g ] = itemsByGroup[ g ].filter( function() {
 					return $( this ).find( 'input:checked' ).length > 0;
@@ -611,8 +611,8 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 
 				const $group = $groups.eq( g );
 
-				// Add the items in the same order as in the table.
-				// It is necessary to process it in reverse mode to reproduce the columns order.
+				/ Add the items in the same order as in the table.
+				/ It is necessary to process it in reverse mode to reproduce the columns order.
 				for ( let i = columnsOrder.length - 1; i >= 0; i-- ) {
 					const column = columnsOrder[ i ];
 					const $item = itemsByGroup[ g ].filter( function() {
@@ -668,7 +668,7 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 				const showSearch = isEntriesPage && isLongList;
 				const $selectWrapper = $select.parent( '.wpforms-multiselect-checkbox-dropdown' );
 
-				// If the multiselect is already initialized, skip.
+				/ If the multiselect is already initialized, skip.
 				if ( $selectWrapper.length ) {
 					return;
 				}
@@ -682,7 +682,7 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 					}
 				);
 
-				// Initialize the multiselect.
+				/ Initialize the multiselect.
 				multiSelectColumns.init();
 
 				const $wrapper = $select.next( '.wpforms-multiselect-checkbox-wrapper' );
@@ -773,7 +773,7 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 			const data = {
 				nonce: wpforms_admin.nonce,
 				action: el.$menu.find( 'input[name="action"]' ).val(),
-				form_id: el.$menu.find( 'input[name="form_id"]' ).val(), // eslint-disable-line camelcase
+				form_id: el.$menu.find( 'input[name="form_id"]' ).val(), / eslint-disable-line camelcase
 				columns: app.getMenuColumnsOrder(),
 			};
 
@@ -804,7 +804,7 @@ var WPFormsAdminListTableExt = window.WPFormsAdminListTableExt || ( function( do
 		onMenuToggle( event ) {
 			$( selectors.cogIcon ).toggleClass( 'active', event.detail.isOpen );
 
-			// Hide no results messages.
+			/ Hide no results messages.
 			el.$menu.find( '.wpforms-multiselect-checkbox-no-results' ).addClass( 'wpforms-hidden' );
 
 			app.positionMultiselectColumnsMenu();

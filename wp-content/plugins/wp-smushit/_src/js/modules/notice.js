@@ -29,7 +29,7 @@
 		);
 	}
 
-	// Dismiss S3 support alert.
+	/ Dismiss S3 support alert.
 	s3alert.on( 'click', 'button', () => {
 		$.post( ajaxurl,
 			{
@@ -39,7 +39,7 @@
 		);
 	} );
 
-	// Remove API message.
+	/ Remove API message.
 	$( '#wp-smush-api-message button.sui-button-icon' ).on( 'click', function( e ) {
 		e.preventDefault();
 		const notice = $( '#wp-smush-api-message' );
@@ -54,7 +54,7 @@
 		);
 	} );
 
-	// Hide the notice after a CTA button was clicked
+	/ Hide the notice after a CTA button was clicked
 	function removeNotice( e ) {
 		const $notice = $( e.currentTarget ).closest( '.smush-notice' );
 		$notice.fadeTo( 100, 0, () =>
@@ -62,12 +62,12 @@
 		);
 	}
 
-	// Only used for the Dashboard notification for now.
+	/ Only used for the Dashboard notification for now.
 	$( '.smush-notice .smush-notice-act' ).on( 'click', ( e ) => {
 		removeNotice( e );
 	} );
 
-	// Dismiss the update notice.
+	/ Dismiss the update notice.
 	$( '.wp-smush-update-info' ).on( 'click', '.notice-dismiss', ( e ) => {
 		e.preventDefault();
 		removeNotice( e );

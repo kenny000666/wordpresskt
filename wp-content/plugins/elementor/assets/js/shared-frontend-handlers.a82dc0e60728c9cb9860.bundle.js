@@ -138,7 +138,7 @@ class BackgroundSlideshow extends elementorModules.frontend.handlers.SwiperBase 
     const Swiper = elementorFrontend.utils.swiper;
     this.swiper = await new Swiper(this.elements.$backgroundSlideShowContainer, this.getSwiperOptions());
 
-    // Expose the swiper instance in the frontend
+    / Expose the swiper instance in the frontend
     this.elements.$backgroundSlideShowContainer.data('swiper', this.swiper);
     if (elementSettings.background_slideshow_ken_burns) {
       this.handleKenBurns();
@@ -250,7 +250,7 @@ class BackgroundVideo extends elementorModules.frontend.handlers.Base {
     $video.width(size.width).height(size.height);
   }
   startVideoLoop(firstTime) {
-    // If the section has been removed
+    / If the section has been removed
     if (!this.player.getIframe().contentWindow) {
       return;
     }
@@ -286,7 +286,7 @@ class BackgroundVideo extends elementorModules.frontend.handlers.Base {
     }
     this.player = new Vimeo.Player(this.elements.$backgroundVideoContainer, vimeoOptions);
 
-    // Handle user-defined start/end times
+    / Handle user-defined start/end times
     this.handleVimeoStartEndTimes(elementSettings);
     this.player.ready().then(() => {
       jQuery(this.player.element).addClass('elementor-background-video-embed');
@@ -294,7 +294,7 @@ class BackgroundVideo extends elementorModules.frontend.handlers.Base {
     });
   }
   handleVimeoStartEndTimes(elementSettings) {
-    // If a start time is defined, set the start time
+    / If a start time is defined, set the start time
     if (elementSettings.background_video_start) {
       this.player.on('play', data => {
         if (0 === data.seconds) {
@@ -303,20 +303,20 @@ class BackgroundVideo extends elementorModules.frontend.handlers.Base {
       });
     }
     this.player.on('timeupdate', data => {
-      // If an end time is defined, handle ending the video
+      / If an end time is defined, handle ending the video
       if (elementSettings.background_video_end && elementSettings.background_video_end < data.seconds) {
         if (elementSettings.background_play_once) {
-          // Stop at user-defined end time if not loop
+          / Stop at user-defined end time if not loop
           this.player.pause();
         } else {
-          // Go to start time if loop
+          / Go to start time if loop
           this.player.setCurrentTime(elementSettings.background_video_start);
         }
       }
 
-      // If start time is defined but an end time is not, go to user-defined start time at video end.
-      // Vimeo JS API has an 'ended' event, but it never fires when infinite loop is defined, so we
-      // get the video duration (returns a promise) then use duration-0.5s as end time
+      / If start time is defined but an end time is not, go to user-defined start time at video end.
+      / Vimeo JS API has an 'ended' event, but it never fires when infinite loop is defined, so we
+      / get the video duration (returns a promise) then use duration-0.5s as end time
       this.player.getDuration().then(duration => {
         if (elementSettings.background_video_start && !elementSettings.background_video_end && data.seconds > duration - 0.5) {
           this.player.setCurrentTime(elementSettings.background_video_start);
@@ -329,7 +329,7 @@ class BackgroundVideo extends elementorModules.frontend.handlers.Base {
       elementSettings = this.getElementSettings();
     let startStateCode = YT.PlayerState.PLAYING;
 
-    // Since version 67, Chrome doesn't fire the `PLAYING` state at start time
+    / Since version 67, Chrome doesn't fire the `PLAYING` state at start time
     if (window.chrome) {
       startStateCode = YT.PlayerState.UNSTARTED;
     }
@@ -365,7 +365,7 @@ class BackgroundVideo extends elementorModules.frontend.handlers.Base {
       }
     };
 
-    // To handle CORS issues, when the default host is changed, the origin parameter has to be set.
+    / To handle CORS issues, when the default host is changed, the origin parameter has to be set.
     if (elementSettings.background_privacy_mode) {
       playerOptions.host = 'https://www.youtube-nocookie.com';
       playerOptions.origin = window.location.hostname;

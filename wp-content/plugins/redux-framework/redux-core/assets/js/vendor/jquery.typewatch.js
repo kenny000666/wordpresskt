@@ -22,11 +22,11 @@
 }(this, function($) {
 	'use strict';
 	$.fn.typeWatch = function(o) {
-		// The default input types that are supported
+		/ The default input types that are supported
 		var _supportedInputTypes =
 			    ['TEXT', 'TEXTAREA', 'PASSWORD', 'TEL', 'SEARCH', 'URL', 'EMAIL', 'DATETIME', 'DATE', 'MONTH', 'WEEK', 'TIME', 'DATETIME-LOCAL', 'NUMBER', 'RANGE', 'DIV'];
 
-		// Options
+		/ Options
 		var options = $.extend({
 			wait: 750,
 			callback: function() { },
@@ -41,9 +41,9 @@
 				? jQuery(timer.el).html()
 				: jQuery(timer.el).val();
 
-			// If has capture length and has changed value
-			// Or override and has capture length or allowSubmit option is true
-			// Or capture length is zero and changed value
+			/ If has capture length and has changed value
+			/ Or override and has capture length or allowSubmit option is true
+			/ Or capture length is zero and changed value
 			if ((value.length >= options.captureLength && value != timer.text)
 				|| (override && (value.length >= options.captureLength || options.allowSubmit))
 				|| (value.length == 0 && timer.text))
@@ -57,7 +57,7 @@
 			var elementType = (elem.type || elem.nodeName).toUpperCase();
 			if (jQuery.inArray(elementType, options.inputTypes) >= 0) {
 
-				// Allocate timer element
+				/ Allocate timer element
 				var timer = {
 					timer: null,
 					text: (elementType === 'DIV') ? jQuery(elem).html() : jQuery(elem).val(),
@@ -67,17 +67,17 @@
 					wait: options.wait
 				};
 
-				// Set focus action (highlight)
+				/ Set focus action (highlight)
 				if (options.highlight && elementType !== 'DIV')
 					jQuery(elem).on( 'focus', function() { this.trigger( 'select' ); });
 
-				// Key watcher / clear and reset the timer
+				/ Key watcher / clear and reset the timer
 				var startWatch = function(evt) {
 					var timerWait = timer.wait;
 					var overrideBool = false;
 					var evtElementType = elementType;
 
-					// If enter key is pressed and not a TEXTAREA or DIV
+					/ If enter key is pressed and not a TEXTAREA or DIV
 					if (typeof evt.keyCode != 'undefined' && evt.keyCode == 13
 						&& evtElementType !== 'TEXTAREA' && elementType !== 'DIV') {
 						timerWait = 1;
@@ -88,7 +88,7 @@
 						checkElement(timer, overrideBool)
 					}
 
-					// Clear timer
+					/ Clear timer
 					clearTimeout(timer.timer);
 					timer.timer = setTimeout(timerCallbackFx, timerWait);
 				};
@@ -97,7 +97,7 @@
 			}
 		};
 
-		// Watch each element
+		/ Watch each element
 		return this.each(function() {
 			watchElement(this);
 		});

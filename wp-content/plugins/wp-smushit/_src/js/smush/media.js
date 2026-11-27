@@ -7,7 +7,7 @@
 (function ($, _) {
 	'use strict';
 
-	// Local reference to the WordPress media namespace.
+	/ Local reference to the WordPress media namespace.
 	const smushMedia = wp.media,
 		sharedTemplate =
 			"<span class='setting smush-stats' data-setting='smush'>" +
@@ -37,7 +37,7 @@
 		'undefined' !== typeof smushMedia.view &&
 		'undefined' !== typeof smushMedia.view.Attachment.Details.TwoColumn
 	) {
-		// Local instance of the Attachment Details TwoColumn used in the edit attachment modal view
+		/ Local instance of the Attachment Details TwoColumn used in the edit attachment modal view
 		const smushMediaTwoColumn =
 			smushMedia.view.Attachment.Details.TwoColumn;
 
@@ -57,7 +57,7 @@
 				},
 
 				render() {
-					// Ensure that the main attachment fields are rendered.
+					/ Ensure that the main attachment fields are rendered.
 					smushMedia.view.Attachment.prototype.render.apply(
 						this,
 						arguments
@@ -86,7 +86,7 @@
 		);
 	}
 
-	// Local instance of the Attachment Details TwoColumn used in the edit attachment modal view
+	/ Local instance of the Attachment Details TwoColumn used in the edit attachment modal view
 	const smushAttachmentDetails = smushMedia.view.Attachment.Details;
 
 	/**
@@ -99,7 +99,7 @@
 		},
 
 		render() {
-			// Ensure that the main attachment fields are rendered.
+			/ Ensure that the main attachment fields are rendered.
 			smushMedia.view.Attachment.prototype.render.apply(this, arguments);
 
 			const smushHTML = this.model.get('smush');
@@ -165,7 +165,7 @@
 	const AttachmentsBrowser = wp.media.view.AttachmentsBrowser;
 	wp.media.view.AttachmentsBrowser = wp.media.view.AttachmentsBrowser.extend({
 		createToolbar() {
-			// Make sure to load the original toolbar
+			/ Make sure to load the original toolbar
 			AttachmentsBrowser.prototype.createToolbar.call(this);
 			this.toolbar.set(
 				'MediaLibraryTaxonomyFilter',

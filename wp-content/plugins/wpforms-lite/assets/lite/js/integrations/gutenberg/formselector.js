@@ -70,10 +70,10 @@ WPForms.FormSelector = WPForms.FormSelector || ( function() {
 				education: app.education,
 			};
 
-			// Initialize Advanced Settings module.
+			/ Initialize Advanced Settings module.
 			app.panels.advanced.init( app.common );
 
-			// Initialize block.
+			/ Initialize block.
 			app.common.init( blockOptions );
 		},
 
@@ -113,7 +113,7 @@ WPForms.FormSelector = WPForms.FormSelector || ( function() {
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }() );
 

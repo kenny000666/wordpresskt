@@ -183,7 +183,7 @@ class IconsManager {
     const iconName = this.prefix + name,
       iconSelector = '#' + this.prefix + name;
 
-    // Create symbol if not exist yet.
+    / Create symbol if not exist yet.
     if (!IconsManager.iconsUsageList.includes(iconName)) {
       if (!IconsManager.symbolsContainer.querySelector(iconSelector)) {
         const symbol = this.createSymbolElement({
@@ -350,7 +350,7 @@ module.exports = elementorModules.ViewModule.extend({
   initModal() {
     const closeIcon = {};
 
-    // If the experiment is active the closeIcon should be an entire SVG element otherwise it should pass the eicon class name.
+    / If the experiment is active the closeIcon should be an entire SVG element otherwise it should pass the eicon class name.
     if (this.isFontIconSvgExperiment) {
       closeIcon.iconElement = _eIcons.close.element;
     } else {
@@ -519,16 +519,16 @@ module.exports = elementorModules.ViewModule.extend({
   getRatioDictionry(ratio) {
     const aspectRatiosDictionary = {
       219: 2.33333,
-      // 21/9
+      / 21/9
       169: 1.77777,
-      // 16/9
+      / 16/9
       43: 1.33333,
-      // 4/3
+      / 4/3
       32: 1.5,
-      // 3/2
+      / 3/2
       11: 1,
-      // 1/1
-      916: 0.5625 // 9/16
+      / 1/1
+      916: 0.5625 / 9/16
     };
     return aspectRatiosDictionary[ratio] || ratio;
   },
@@ -684,7 +684,7 @@ module.exports = elementorModules.ViewModule.extend({
           ...fullScreenAttrs
         };
 
-      // Only if the experiment is not active, we use the class-name in order to render the icon.
+      / Only if the experiment is not active, we use the class-name in order to render the icon.
       if (!this.isFontIconSvgExperiment) {
         expandAttrs.class = slideshowClasses.iconExpand;
       }
@@ -732,10 +732,10 @@ module.exports = elementorModules.ViewModule.extend({
     this.elements.$container.addClass(classes.slideshow.shareMode);
     this.elements.$iconShare.attr('aria-expanded', true);
 
-    // Prevent swiper interactions while in share mode
+    / Prevent swiper interactions while in share mode
     this.swiper.detachEvents();
 
-    // Temporarily replace tabbable buttons with share-menu items
+    / Temporarily replace tabbable buttons with share-menu items
     this.$originalButtons = this.$buttons;
     this.$buttons = this.elements.$iconShare.add(this.elements.$shareMenu.find('a'));
     this.shareMode = true;
@@ -945,7 +945,7 @@ module.exports = elementorModules.ViewModule.extend({
       const Swiper = elementorFrontend.utils.swiper;
       this.swiper = await new Swiper($container, swiperOptions);
 
-      // Expose the swiper instance in the frontend
+      / Expose the swiper instance in the frontend
       $container.data('swiper', this.swiper);
       this.playSlideVideo();
       if (showFooter) {
@@ -1067,7 +1067,7 @@ module.exports = elementorModules.ViewModule.extend({
     let startStateCode = YT.PlayerState.PLAYING;
     $videoWrapper.append($videoPlaceholderElement);
 
-    // Since version 67, Chrome doesn't fire the `PLAYING` state at start time
+    / Since version 67, Chrome doesn't fire the `PLAYING` state at start time
     if (window.chrome) {
       startStateCode = YT.PlayerState.UNSTARTED;
     }
@@ -1186,9 +1186,9 @@ module.exports = elementorModules.ViewModule.extend({
   var fn = function () {
     var val;
     var fnMap = [['requestFullscreen', 'exitFullscreen', 'fullscreenElement', 'fullscreenEnabled', 'fullscreenchange', 'fullscreenerror'],
-    // New WebKit
+    / New WebKit
     ['webkitRequestFullscreen', 'webkitExitFullscreen', 'webkitFullscreenElement', 'webkitFullscreenEnabled', 'webkitfullscreenchange', 'webkitfullscreenerror'],
-    // Old WebKit
+    / Old WebKit
     ['webkitRequestFullScreen', 'webkitCancelFullScreen', 'webkitCurrentFullScreenElement', 'webkitCancelFullScreen', 'webkitfullscreenchange', 'webkitfullscreenerror'], ['mozRequestFullScreen', 'mozCancelFullScreen', 'mozFullScreenElement', 'mozFullScreenEnabled', 'mozfullscreenchange', 'mozfullscreenerror'], ['msRequestFullscreen', 'msExitFullscreen', 'msFullscreenElement', 'msFullscreenEnabled', 'MSFullscreenChange', 'MSFullscreenError']];
     var i = 0;
     var l = fnMap.length;
@@ -1285,7 +1285,7 @@ module.exports = elementorModules.ViewModule.extend({
     isEnabled: {
       enumerable: true,
       get() {
-        // Coerce to boolean in case of old WebKit
+        / Coerce to boolean in case of old WebKit
         return Boolean(document[fn.fullscreenEnabled]);
       }
     }

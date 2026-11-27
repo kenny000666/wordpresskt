@@ -85,7 +85,7 @@ const loadYouTubeAPI = () => {
         }
       };
 
-      // To handle CORS issues, when the default host is changed, the origin parameter has to be set.
+      / To handle CORS issues, when the default host is changed, the origin parameter has to be set.
       if (parsedSettings.privacy) {
         playerOptions.host = 'https://www.youtube-nocookie.com';
         playerOptions.origin = window.location.hostname;
@@ -133,7 +133,7 @@ module.exports = elementorV2.frontendHandlers;
 /***/ })
 
 },
-/******/ __webpack_require__ => { // webpackRuntimeModules
+/******/ __webpack_require__ => { / webpackRuntimeModules
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
 /******/ var __webpack_exports__ = (__webpack_exec__("../modules/atomic-widgets/elements/atomic-youtube/youtube-handler.js"));
 /******/ }

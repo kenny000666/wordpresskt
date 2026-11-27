@@ -74,7 +74,7 @@ module.exports = function from(arrayLike /* , mapfn = undefined, thisArg = undef
   var index = 0;
   var length, result, step, iterator, next, value;
   if (mapping) mapfn = bind(mapfn, argumentsLength > 2 ? arguments[2] : undefined, 2);
-  // if the target is not iterable or it's an array with the default iterator - use a simple case
+  / if the target is not iterable or it's an array with the default iterator - use a simple case
   if (iteratorMethod != undefined && !(C == Array && isArrayIteratorMethod(iteratorMethod))) {
     iterator = iteratorMethod.call(O);
     next = iterator.next;
@@ -107,13 +107,13 @@ var createMethod = function (IS_INCLUDES) {
     var length = toLength(O.length);
     var index = toAbsoluteIndex(fromIndex, length);
     var value;
-    // Array#includes uses SameValueZero equality algorithm
-    // eslint-disable-next-line no-self-compare
+    / Array#includes uses SameValueZero equality algorithm
+    / eslint-disable-next-line no-self-compare
     if (IS_INCLUDES && el != el) while (length > index) {
       value = O[index++];
-      // eslint-disable-next-line no-self-compare
+      / eslint-disable-next-line no-self-compare
       if (value != value) return true;
-    // Array#indexOf ignores holes, Array#includes - not
+    / Array#indexOf ignores holes, Array#includes - not
     } else for (;length > index; index++) {
       if ((IS_INCLUDES || index in O) && O[index] === el) return IS_INCLUDES || index || 0;
     } return !IS_INCLUDES && -1;
@@ -121,11 +121,11 @@ var createMethod = function (IS_INCLUDES) {
 };
 
 module.exports = {
-  // `Array.prototype.includes` method
-  // https://tc39.github.io/ecma262/#sec-array.prototype.includes
+  / `Array.prototype.includes` method
+  / https://tc39.github.io/ecma262/#sec-array.prototype.includes
   includes: createMethod(true),
-  // `Array.prototype.indexOf` method
-  // https://tc39.github.io/ecma262/#sec-array.prototype.indexof
+  / `Array.prototype.indexOf` method
+  / https://tc39.github.io/ecma262/#sec-array.prototype.indexof
   indexOf: createMethod(false)
 };
 
@@ -136,7 +136,7 @@ var anObject = require('../internals/an-object');
 module.exports = function (iterator, fn, value, ENTRIES) {
   try {
     return ENTRIES ? fn(anObject(value)[0], value[1]) : fn(value);
-  // 7.4.6 IteratorClose(iterator, completion)
+  / 7.4.6 IteratorClose(iterator, completion)
   } catch (error) {
     var returnMethod = iterator['return'];
     if (returnMethod !== undefined) anObject(returnMethod.call(iterator));
@@ -171,11 +171,11 @@ var tryGet = function (it, key) {
 module.exports = TO_STRING_TAG_SUPPORT ? classofRaw : function (it) {
   var O, tag, result;
   return it === undefined ? 'Undefined' : it === null ? 'Null'
-    // @@toStringTag case
+    / @@toStringTag case
     : typeof (tag = tryGet(O = Object(it), TO_STRING_TAG)) == 'string' ? tag
-    // builtinTag case
+    / builtinTag case
     : CORRECT_ARGUMENTS ? classofRaw(O)
-    // ES3 arguments fallback
+    / ES3 arguments fallback
     : (result = classofRaw(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : result;
 };
 
@@ -302,7 +302,7 @@ module.exports = function (Iterable, NAME, IteratorConstructor, next, DEFAULT, I
   var anyNativeIterator = NAME == 'Array' ? IterablePrototype.entries || nativeIterator : nativeIterator;
   var CurrentIteratorPrototype, methods, KEY;
 
-  // fix native
+  / fix native
   if (anyNativeIterator) {
     CurrentIteratorPrototype = getPrototypeOf(anyNativeIterator.call(new Iterable()));
     if (IteratorPrototype !== Object.prototype && CurrentIteratorPrototype.next) {
@@ -313,25 +313,25 @@ module.exports = function (Iterable, NAME, IteratorConstructor, next, DEFAULT, I
           createNonEnumerableProperty(CurrentIteratorPrototype, ITERATOR, returnThis);
         }
       }
-      // Set @@toStringTag to native iterators
+      / Set @@toStringTag to native iterators
       setToStringTag(CurrentIteratorPrototype, TO_STRING_TAG, true, true);
       if (IS_PURE) Iterators[TO_STRING_TAG] = returnThis;
     }
   }
 
-  // fix Array#{values, @@iterator}.name in V8 / FF
+  / fix Array#{values, @@iterator}.name in V8 / FF
   if (DEFAULT == VALUES && nativeIterator && nativeIterator.name !== VALUES) {
     INCORRECT_VALUES_NAME = true;
     defaultIterator = function values() { return nativeIterator.call(this); };
   }
 
-  // define iterator
+  / define iterator
   if ((!IS_PURE || FORCED) && IterablePrototype[ITERATOR] !== defaultIterator) {
     createNonEnumerableProperty(IterablePrototype, ITERATOR, defaultIterator);
   }
   Iterators[NAME] = defaultIterator;
 
-  // export additional methods
+  / export additional methods
   if (DEFAULT) {
     methods = {
       values: getIterationMethod(VALUES),
@@ -422,16 +422,16 @@ module.exports = function (options, source) {
       targetProperty = descriptor && descriptor.value;
     } else targetProperty = target[key];
     FORCED = isForced(GLOBAL ? key : TARGET + (STATIC ? '.' : '#') + key, options.forced);
-    // contained in target
+    / contained in target
     if (!FORCED && targetProperty !== undefined) {
       if (typeof sourceProperty === typeof targetProperty) continue;
       copyConstructorProperties(sourceProperty, targetProperty);
     }
-    // add a flag to not completely full polyfills
+    / add a flag to not completely full polyfills
     if (options.sham || (targetProperty && targetProperty.sham)) {
       createNonEnumerableProperty(sourceProperty, 'sham', true);
     }
-    // extend global
+    / extend global
     redefine(target, key, sourceProperty, options);
   }
 };
@@ -516,12 +516,12 @@ var check = function (it) {
 
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
 module.exports =
-  // eslint-disable-next-line no-undef
+  / eslint-disable-next-line no-undef
   check(typeof globalThis == 'object' && globalThis) ||
   check(typeof window == 'object' && window) ||
   check(typeof self == 'object' && self) ||
   check(typeof global == 'object' && global) ||
-  // eslint-disable-next-line no-new-func
+  / eslint-disable-next-line no-new-func
   Function('return this')();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
@@ -560,8 +560,8 @@ var split = ''.split;
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
 module.exports = fails(function () {
-  // throws an error in rhino, see https://github.com/mozilla/rhino/issues/346
-  // eslint-disable-next-line no-prototype-builtins
+  / throws an error in rhino, see https://github.com/mozilla/rhino/issues/346
+  / eslint-disable-next-line no-prototype-builtins
   return !Object('z').propertyIsEnumerable(0);
 }) ? function (it) {
   return classof(it) == 'String' ? split.call(it, '') : Object(it);
@@ -706,7 +706,7 @@ var IteratorPrototype, PrototypeOfArrayIteratorPrototype, arrayIterator;
 
 if ([].keys) {
   arrayIterator = [].keys();
-  // Safari 8 has buggy iterators w/o `next`
+  / Safari 8 has buggy iterators w/o `next`
   if (!('next' in arrayIterator)) BUGGY_SAFARI_ITERATORS = true;
   else {
     PrototypeOfArrayIteratorPrototype = getPrototypeOf(getPrototypeOf(arrayIterator));
@@ -732,8 +732,8 @@ arguments[4][29][0].apply(exports,arguments)
 var fails = require('../internals/fails');
 
 module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
-  // Chrome 38 Symbol has incorrect toString conversion
-  // eslint-disable-next-line no-undef
+  / Chrome 38 Symbol has incorrect toString conversion
+  / eslint-disable-next-line no-undef
   return !String(Symbol());
 });
 
@@ -759,16 +759,16 @@ module.exports = !fails(function () {
     || searchParams.get('c') !== '3'
     || String(new URLSearchParams('?a=1')) !== 'a=1'
     || !searchParams[ITERATOR]
-    // throws in Edge
+    / throws in Edge
     || new URL('https://a@b').username !== 'a'
     || new URLSearchParams(new URLSearchParams('a=b')).get('a') !== 'b'
-    // not punycoded in Edge
+    / not punycoded in Edge
     || new URL('http://тест').host !== 'xn--e1aybc'
-    // not escaped in Chrome 62-
+    / not escaped in Chrome 62-
     || new URL('http://a#б').hash !== '#%D0%B1'
-    // fails in Chrome 66-
+    / fails in Chrome 66-
     || result !== 'a1c3'
-    // throws in Safari
+    / throws in Safari
     || new URL('http://x', undefined).host !== 'x';
 });
 
@@ -796,7 +796,7 @@ var defineProperty = Object.defineProperty;
 // `Object.assign` method
 // https://tc39.github.io/ecma262/#sec-object.assign
 module.exports = !nativeAssign || fails(function () {
-  // should have correct order of operations (Edge bug)
+  / should have correct order of operations (Edge bug)
   if (DESCRIPTORS && nativeAssign({ b: 1 }, nativeAssign(defineProperty({}, 'a', {
     enumerable: true,
     get: function () {
@@ -806,16 +806,16 @@ module.exports = !nativeAssign || fails(function () {
       });
     }
   }), { b: 2 })).b !== 1) return true;
-  // should work with symbols and should have deterministic property order (V8 bug)
+  / should work with symbols and should have deterministic property order (V8 bug)
   var A = {};
   var B = {};
-  // eslint-disable-next-line no-undef
+  / eslint-disable-next-line no-undef
   var symbol = Symbol();
   var alphabet = 'abcdefghijklmnopqrst';
   A[symbol] = 7;
   alphabet.split('').forEach(function (chr) { B[chr] = chr; });
   return nativeAssign({}, A)[symbol] != 7 || objectKeys(nativeAssign({}, B)).join('') != alphabet;
-}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
+}) ? function assign(target, source) { / eslint-disable-line no-unused-vars
   var T = toObject(target);
   var argumentsLength = arguments.length;
   var index = 1;
@@ -860,19 +860,19 @@ var NullProtoObjectViaActiveX = function (activeXDocument) {
   activeXDocument.write(scriptTag(''));
   activeXDocument.close();
   var temp = activeXDocument.parentWindow.Object;
-  activeXDocument = null; // avoid memory leak
+  activeXDocument = null; / avoid memory leak
   return temp;
 };
 
 // Create object with fake `null` prototype: use iframe Object with cleared prototype
 var NullProtoObjectViaIFrame = function () {
-  // Thrash, waste and sodomy: IE GC bug
+  / Thrash, waste and sodomy: IE GC bug
   var iframe = documentCreateElement('iframe');
   var JS = 'java' + SCRIPT + ':';
   var iframeDocument;
   iframe.style.display = 'none';
   html.appendChild(iframe);
-  // https://github.com/zloirock/core-js/issues/475
+  / https://github.com/zloirock/core-js/issues/475
   iframe.src = String(JS);
   iframeDocument = iframe.contentWindow.document;
   iframeDocument.open();
@@ -908,7 +908,7 @@ module.exports = Object.create || function create(O, Properties) {
     EmptyConstructor[PROTOTYPE] = anObject(O);
     result = new EmptyConstructor();
     EmptyConstructor[PROTOTYPE] = null;
-    // add "__proto__" for Object.getPrototypeOf polyfill
+    / add "__proto__" for Object.getPrototypeOf polyfill
     result[IE_PROTO] = O;
   } else result = NullProtoObject();
   return Properties === undefined ? result : defineProperties(result, Properties);
@@ -1022,7 +1022,7 @@ module.exports = function (object, names) {
   var result = [];
   var key;
   for (key in O) !has(hiddenKeys, key) && has(O, key) && result.push(key);
-  // Don't enum bug & hidden keys
+  / Don't enum bug & hidden keys
   while (names.length > i) if (has(O, key = names[i++])) {
     ~indexOf(result, key) || result.push(key);
   }
@@ -1227,28 +1227,28 @@ var createMethod = function (CONVERT_TO_STRING) {
 };
 
 module.exports = {
-  // `String.prototype.codePointAt` method
-  // https://tc39.github.io/ecma262/#sec-string.prototype.codepointat
+  / `String.prototype.codePointAt` method
+  / https://tc39.github.io/ecma262/#sec-string.prototype.codepointat
   codeAt: createMethod(false),
-  // `String.prototype.at` method
-  // https://github.com/mathiasbynens/String.prototype.at
+  / `String.prototype.at` method
+  / https://github.com/mathiasbynens/String.prototype.at
   charAt: createMethod(true)
 };
 
 },{"../internals/require-object-coercible":60,"../internals/to-integer":70}],67:[function(require,module,exports){
 'use strict';
 // based on https://github.com/bestiejs/punycode.js/blob/master/punycode.js
-var maxInt = 2147483647; // aka. 0x7FFFFFFF or 2^31-1
+var maxInt = 2147483647; / aka. 0x7FFFFFFF or 2^31-1
 var base = 36;
 var tMin = 1;
 var tMax = 26;
 var skew = 38;
 var damp = 700;
 var initialBias = 72;
-var initialN = 128; // 0x80
-var delimiter = '-'; // '\x2D'
-var regexNonASCII = /[^\0-\u007E]/; // non-ASCII chars
-var regexSeparators = /[.\u3002\uFF0E\uFF61]/g; // RFC 3490 separators
+var initialN = 128; / 0x80
+var delimiter = '-'; / '\x2D'
+var regexNonASCII = /[^\0-\u007E]/; / non-ASCII chars
+var regexSeparators = /[.\u3002\uFF0E\uFF61]/g; / RFC 3490 separators
 var OVERFLOW_ERROR = 'Overflow: input needs wider integers to process';
 var baseMinusTMin = base - tMin;
 var floor = Math.floor;
@@ -1268,13 +1268,13 @@ var ucs2decode = function (string) {
   while (counter < length) {
     var value = string.charCodeAt(counter++);
     if (value >= 0xD800 && value <= 0xDBFF && counter < length) {
-      // It's a high surrogate, and there is a next character.
+      / It's a high surrogate, and there is a next character.
       var extra = string.charCodeAt(counter++);
-      if ((extra & 0xFC00) == 0xDC00) { // Low surrogate.
+      if ((extra & 0xFC00) == 0xDC00) { / Low surrogate.
         output.push(((value & 0x3FF) << 10) + (extra & 0x3FF) + 0x10000);
       } else {
-        // It's an unmatched surrogate; only append this code unit, in case the
-        // next code unit is the high surrogate of a surrogate pair.
+        / It's an unmatched surrogate; only append this code unit, in case the
+        / next code unit is the high surrogate of a surrogate pair.
         output.push(value);
         counter--;
       }
@@ -1289,8 +1289,8 @@ var ucs2decode = function (string) {
  * Converts a digit/integer into a basic code point.
  */
 var digitToBasic = function (digit) {
-  //  0..25 map to ASCII a..z or A..Z
-  // 26..35 map to ASCII 0..9
+  /  0..25 map to ASCII a..z or A..Z
+  / 26..35 map to ASCII 0..9
   return digit + 22 + 75 * (digit < 26);
 };
 
@@ -1316,19 +1316,19 @@ var adapt = function (delta, numPoints, firstTime) {
 var encode = function (input) {
   var output = [];
 
-  // Convert the input in UCS-2 to an array of Unicode code points.
+  / Convert the input in UCS-2 to an array of Unicode code points.
   input = ucs2decode(input);
 
-  // Cache the length.
+  / Cache the length.
   var inputLength = input.length;
 
-  // Initialize the state.
+  / Initialize the state.
   var n = initialN;
   var delta = 0;
   var bias = initialBias;
   var i, currentValue;
 
-  // Handle the basic code points.
+  / Handle the basic code points.
   for (i = 0; i < input.length; i++) {
     currentValue = input[i];
     if (currentValue < 0x80) {
@@ -1336,17 +1336,17 @@ var encode = function (input) {
     }
   }
 
-  var basicLength = output.length; // number of basic code points.
-  var handledCPCount = basicLength; // number of code points that have been handled;
+  var basicLength = output.length; / number of basic code points.
+  var handledCPCount = basicLength; / number of code points that have been handled;
 
-  // Finish the basic string with a delimiter unless it's empty.
+  / Finish the basic string with a delimiter unless it's empty.
   if (basicLength) {
     output.push(delimiter);
   }
 
-  // Main encoding loop:
+  / Main encoding loop:
   while (handledCPCount < inputLength) {
-    // All non-basic code points < n have been handled already. Find the next larger one:
+    / All non-basic code points < n have been handled already. Find the next larger one:
     var m = maxInt;
     for (i = 0; i < input.length; i++) {
       currentValue = input[i];
@@ -1355,7 +1355,7 @@ var encode = function (input) {
       }
     }
 
-    // Increase `delta` enough to advance the decoder's <n,i> state to <m,0>, but guard against overflow.
+    / Increase `delta` enough to advance the decoder's <n,i> state to <m,0>, but guard against overflow.
     var handledCPCountPlusOne = handledCPCount + 1;
     if (m - n > floor((maxInt - delta) / handledCPCountPlusOne)) {
       throw RangeError(OVERFLOW_ERROR);
@@ -1370,7 +1370,7 @@ var encode = function (input) {
         throw RangeError(OVERFLOW_ERROR);
       }
       if (currentValue == n) {
-        // Represent delta as a generalized variable-length integer.
+        / Represent delta as a generalized variable-length integer.
         var q = delta;
         for (var k = base; /* no condition */; k += base) {
           var t = k <= bias ? tMin : (k >= bias + tMax ? tMax : k - bias);
@@ -1446,7 +1446,7 @@ var min = Math.min;
 // `ToLength` abstract operation
 // https://tc39.github.io/ecma262/#sec-tolength
 module.exports = function (argument) {
-  return argument > 0 ? min(toInteger(argument), 0x1FFFFFFFFFFFFF) : 0; // 2 ** 53 - 1 == 9007199254740991
+  return argument > 0 ? min(toInteger(argument), 0x1FFFFFFFFFFFFF) : 0; / 2 ** 53 - 1 == 9007199254740991
 };
 
 },{"../internals/to-integer":70}],72:[function(require,module,exports){
@@ -1496,9 +1496,9 @@ module.exports = function (key) {
 var NATIVE_SYMBOL = require('../internals/native-symbol');
 
 module.exports = NATIVE_SYMBOL
-  // eslint-disable-next-line no-undef
+  / eslint-disable-next-line no-undef
   && !Symbol.sham
-  // eslint-disable-next-line no-undef
+  / eslint-disable-next-line no-undef
   && typeof Symbol.iterator == 'symbol';
 
 },{"../internals/native-symbol":41}],77:[function(require,module,exports){
@@ -1545,9 +1545,9 @@ var getInternalState = InternalStateModule.getterFor(ARRAY_ITERATOR);
 module.exports = defineIterator(Array, 'Array', function (iterated, kind) {
   setInternalState(this, {
     type: ARRAY_ITERATOR,
-    target: toIndexedObject(iterated), // target
-    index: 0,                          // next index
-    kind: kind                         // kind
+    target: toIndexedObject(iterated), / target
+    index: 0,                          / next index
+    kind: kind                         / kind
   });
 // `%ArrayIteratorPrototype%.next` method
 // https://tc39.github.io/ecma262/#sec-%arrayiteratorprototype%.next
@@ -1771,16 +1771,16 @@ var URLSearchParamsConstructor = function URLSearchParams(/* init */) {
 var URLSearchParamsPrototype = URLSearchParamsConstructor.prototype;
 
 redefineAll(URLSearchParamsPrototype, {
-  // `URLSearchParams.prototype.appent` method
-  // https://url.spec.whatwg.org/#dom-urlsearchparams-append
+  / `URLSearchParams.prototype.appent` method
+  / https://url.spec.whatwg.org/#dom-urlsearchparams-append
   append: function append(name, value) {
     validateArgumentsLength(arguments.length, 2);
     var state = getInternalParamsState(this);
     state.entries.push({ key: name + '', value: value + '' });
     state.updateURL();
   },
-  // `URLSearchParams.prototype.delete` method
-  // https://url.spec.whatwg.org/#dom-urlsearchparams-delete
+  / `URLSearchParams.prototype.delete` method
+  / https://url.spec.whatwg.org/#dom-urlsearchparams-delete
   'delete': function (name) {
     validateArgumentsLength(arguments.length, 1);
     var state = getInternalParamsState(this);
@@ -1793,8 +1793,8 @@ redefineAll(URLSearchParamsPrototype, {
     }
     state.updateURL();
   },
-  // `URLSearchParams.prototype.get` method
-  // https://url.spec.whatwg.org/#dom-urlsearchparams-get
+  / `URLSearchParams.prototype.get` method
+  / https://url.spec.whatwg.org/#dom-urlsearchparams-get
   get: function get(name) {
     validateArgumentsLength(arguments.length, 1);
     var entries = getInternalParamsState(this).entries;
@@ -1805,8 +1805,8 @@ redefineAll(URLSearchParamsPrototype, {
     }
     return null;
   },
-  // `URLSearchParams.prototype.getAll` method
-  // https://url.spec.whatwg.org/#dom-urlsearchparams-getall
+  / `URLSearchParams.prototype.getAll` method
+  / https://url.spec.whatwg.org/#dom-urlsearchparams-getall
   getAll: function getAll(name) {
     validateArgumentsLength(arguments.length, 1);
     var entries = getInternalParamsState(this).entries;
@@ -1818,8 +1818,8 @@ redefineAll(URLSearchParamsPrototype, {
     }
     return result;
   },
-  // `URLSearchParams.prototype.has` method
-  // https://url.spec.whatwg.org/#dom-urlsearchparams-has
+  / `URLSearchParams.prototype.has` method
+  / https://url.spec.whatwg.org/#dom-urlsearchparams-has
   has: function has(name) {
     validateArgumentsLength(arguments.length, 1);
     var entries = getInternalParamsState(this).entries;
@@ -1830,8 +1830,8 @@ redefineAll(URLSearchParamsPrototype, {
     }
     return false;
   },
-  // `URLSearchParams.prototype.set` method
-  // https://url.spec.whatwg.org/#dom-urlsearchparams-set
+  / `URLSearchParams.prototype.set` method
+  / https://url.spec.whatwg.org/#dom-urlsearchparams-set
   set: function set(name, value) {
     validateArgumentsLength(arguments.length, 1);
     var state = getInternalParamsState(this);
@@ -1854,12 +1854,12 @@ redefineAll(URLSearchParamsPrototype, {
     if (!found) entries.push({ key: key, value: val });
     state.updateURL();
   },
-  // `URLSearchParams.prototype.sort` method
-  // https://url.spec.whatwg.org/#dom-urlsearchparams-sort
+  / `URLSearchParams.prototype.sort` method
+  / https://url.spec.whatwg.org/#dom-urlsearchparams-sort
   sort: function sort() {
     var state = getInternalParamsState(this);
     var entries = state.entries;
-    // Array#sort is not stable in some engines
+    / Array#sort is not stable in some engines
     var slice = entries.slice();
     var entry, entriesIndex, sliceIndex;
     entries.length = 0;
@@ -1875,7 +1875,7 @@ redefineAll(URLSearchParamsPrototype, {
     }
     state.updateURL();
   },
-  // `URLSearchParams.prototype.forEach` method
+  / `URLSearchParams.prototype.forEach` method
   forEach: function forEach(callback /* , thisArg */) {
     var entries = getInternalParamsState(this).entries;
     var boundFunction = bind(callback, arguments.length > 1 ? arguments[1] : undefined, 3);
@@ -1886,15 +1886,15 @@ redefineAll(URLSearchParamsPrototype, {
       boundFunction(entry.value, entry.key, this);
     }
   },
-  // `URLSearchParams.prototype.keys` method
+  / `URLSearchParams.prototype.keys` method
   keys: function keys() {
     return new URLSearchParamsIterator(this, 'keys');
   },
-  // `URLSearchParams.prototype.values` method
+  / `URLSearchParams.prototype.values` method
   values: function values() {
     return new URLSearchParamsIterator(this, 'values');
   },
-  // `URLSearchParams.prototype.entries` method
+  / `URLSearchParams.prototype.entries` method
   entries: function entries() {
     return new URLSearchParamsIterator(this, 'entries');
   }
@@ -2012,7 +2012,7 @@ var parseHost = function (url, input) {
     result = parseIPv6(input.slice(1, -1));
     if (!result) return INVALID_HOST;
     url.host = result;
-  // opaque host
+  / opaque host
   } else if (!isSpecial(url)) {
     if (FORBIDDEN_HOST_CODE_POINT_EXCLUDING_PERCENT.test(input)) return INVALID_HOST;
     result = '';
@@ -2173,14 +2173,14 @@ var findLongestZeroSequence = function (ipv6) {
 
 var serializeHost = function (host) {
   var result, index, compress, ignore0;
-  // ipv4
+  / ipv4
   if (typeof host == 'number') {
     result = [];
     for (index = 0; index < 4; index++) {
       result.unshift(host % 256);
       host = floor(host / 256);
     } return result.join('.');
-  // ipv6
+  / ipv6
   } else if (typeof host == 'object') {
     result = '';
     compress = findLongestZeroSequence(host);
@@ -2638,7 +2638,7 @@ var parseURL = function (url, input, stateOverride, base) {
           } else {
             if (url.scheme == 'file' && !url.path.length && isWindowsDriveLetter(buffer)) {
               if (url.host) url.host = '';
-              buffer = buffer.charAt(0) + ':'; // normalize windows drive letter
+              buffer = buffer.charAt(0) + ':'; / normalize windows drive letter
             }
             url.path.push(buffer);
           }
@@ -2742,13 +2742,13 @@ var serializeURL = function () {
   var fragment = url.fragment;
   var output = scheme + ':';
   if (host !== null) {
-    output += '//';
+    output += '/';
     if (includesCredentials(url)) {
       output += username + (password ? ':' + password : '') + '@';
     }
     output += serializeHost(host);
     if (port !== null) output += ':' + port;
-  } else if (scheme == 'file') output += '//';
+  } else if (scheme == 'file') output += '/';
   output += url.cannotBeABaseURL ? path[0] : path.length ? '/' + path.join('/') : '';
   if (query !== null) output += '?' + query;
   if (fragment !== null) output += '#' + fragment;
@@ -2825,8 +2825,8 @@ var accessorDescriptor = function (getter, setter) {
 
 if (DESCRIPTORS) {
   defineProperties(URLPrototype, {
-    // `URL.prototype.href` accessors pair
-    // https://url.spec.whatwg.org/#dom-url-href
+    / `URL.prototype.href` accessors pair
+    / https://url.spec.whatwg.org/#dom-url-href
     href: accessorDescriptor(serializeURL, function (href) {
       var url = getInternalURLState(this);
       var urlString = String(href);
@@ -2834,17 +2834,17 @@ if (DESCRIPTORS) {
       if (failure) throw TypeError(failure);
       getInternalSearchParamsState(url.searchParams).updateSearchParams(url.query);
     }),
-    // `URL.prototype.origin` getter
-    // https://url.spec.whatwg.org/#dom-url-origin
+    / `URL.prototype.origin` getter
+    / https://url.spec.whatwg.org/#dom-url-origin
     origin: accessorDescriptor(getOrigin),
-    // `URL.prototype.protocol` accessors pair
-    // https://url.spec.whatwg.org/#dom-url-protocol
+    / `URL.prototype.protocol` accessors pair
+    / https://url.spec.whatwg.org/#dom-url-protocol
     protocol: accessorDescriptor(getProtocol, function (protocol) {
       var url = getInternalURLState(this);
       parseURL(url, String(protocol) + ':', SCHEME_START);
     }),
-    // `URL.prototype.username` accessors pair
-    // https://url.spec.whatwg.org/#dom-url-username
+    / `URL.prototype.username` accessors pair
+    / https://url.spec.whatwg.org/#dom-url-username
     username: accessorDescriptor(getUsername, function (username) {
       var url = getInternalURLState(this);
       var codePoints = arrayFrom(String(username));
@@ -2854,8 +2854,8 @@ if (DESCRIPTORS) {
         url.username += percentEncode(codePoints[i], userinfoPercentEncodeSet);
       }
     }),
-    // `URL.prototype.password` accessors pair
-    // https://url.spec.whatwg.org/#dom-url-password
+    / `URL.prototype.password` accessors pair
+    / https://url.spec.whatwg.org/#dom-url-password
     password: accessorDescriptor(getPassword, function (password) {
       var url = getInternalURLState(this);
       var codePoints = arrayFrom(String(password));
@@ -2865,22 +2865,22 @@ if (DESCRIPTORS) {
         url.password += percentEncode(codePoints[i], userinfoPercentEncodeSet);
       }
     }),
-    // `URL.prototype.host` accessors pair
-    // https://url.spec.whatwg.org/#dom-url-host
+    / `URL.prototype.host` accessors pair
+    / https://url.spec.whatwg.org/#dom-url-host
     host: accessorDescriptor(getHost, function (host) {
       var url = getInternalURLState(this);
       if (url.cannotBeABaseURL) return;
       parseURL(url, String(host), HOST);
     }),
-    // `URL.prototype.hostname` accessors pair
-    // https://url.spec.whatwg.org/#dom-url-hostname
+    / `URL.prototype.hostname` accessors pair
+    / https://url.spec.whatwg.org/#dom-url-hostname
     hostname: accessorDescriptor(getHostname, function (hostname) {
       var url = getInternalURLState(this);
       if (url.cannotBeABaseURL) return;
       parseURL(url, String(hostname), HOSTNAME);
     }),
-    // `URL.prototype.port` accessors pair
-    // https://url.spec.whatwg.org/#dom-url-port
+    / `URL.prototype.port` accessors pair
+    / https://url.spec.whatwg.org/#dom-url-port
     port: accessorDescriptor(getPort, function (port) {
       var url = getInternalURLState(this);
       if (cannotHaveUsernamePasswordPort(url)) return;
@@ -2888,16 +2888,16 @@ if (DESCRIPTORS) {
       if (port == '') url.port = null;
       else parseURL(url, port, PORT);
     }),
-    // `URL.prototype.pathname` accessors pair
-    // https://url.spec.whatwg.org/#dom-url-pathname
+    / `URL.prototype.pathname` accessors pair
+    / https://url.spec.whatwg.org/#dom-url-pathname
     pathname: accessorDescriptor(getPathname, function (pathname) {
       var url = getInternalURLState(this);
       if (url.cannotBeABaseURL) return;
       url.path = [];
       parseURL(url, pathname + '', PATH_START);
     }),
-    // `URL.prototype.search` accessors pair
-    // https://url.spec.whatwg.org/#dom-url-search
+    / `URL.prototype.search` accessors pair
+    / https://url.spec.whatwg.org/#dom-url-search
     search: accessorDescriptor(getSearch, function (search) {
       var url = getInternalURLState(this);
       search = String(search);
@@ -2910,11 +2910,11 @@ if (DESCRIPTORS) {
       }
       getInternalSearchParamsState(url.searchParams).updateSearchParams(url.query);
     }),
-    // `URL.prototype.searchParams` getter
-    // https://url.spec.whatwg.org/#dom-url-searchparams
+    / `URL.prototype.searchParams` getter
+    / https://url.spec.whatwg.org/#dom-url-searchparams
     searchParams: accessorDescriptor(getSearchParams),
-    // `URL.prototype.hash` accessors pair
-    // https://url.spec.whatwg.org/#dom-url-hash
+    / `URL.prototype.hash` accessors pair
+    / https://url.spec.whatwg.org/#dom-url-hash
     hash: accessorDescriptor(getHash, function (hash) {
       var url = getInternalURLState(this);
       hash = String(hash);
@@ -2944,15 +2944,15 @@ redefine(URLPrototype, 'toString', function toString() {
 if (NativeURL) {
   var nativeCreateObjectURL = NativeURL.createObjectURL;
   var nativeRevokeObjectURL = NativeURL.revokeObjectURL;
-  // `URL.createObjectURL` method
-  // https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL
-  // eslint-disable-next-line no-unused-vars
+  / `URL.createObjectURL` method
+  / https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL
+  / eslint-disable-next-line no-unused-vars
   if (nativeCreateObjectURL) redefine(URLConstructor, 'createObjectURL', function createObjectURL(blob) {
     return nativeCreateObjectURL.apply(NativeURL, arguments);
   });
-  // `URL.revokeObjectURL` method
-  // https://developer.mozilla.org/en-US/docs/Web/API/URL/revokeObjectURL
-  // eslint-disable-next-line no-unused-vars
+  / `URL.revokeObjectURL` method
+  / https://developer.mozilla.org/en-US/docs/Web/API/URL/revokeObjectURL
+  / eslint-disable-next-line no-unused-vars
   if (nativeRevokeObjectURL) redefine(URLConstructor, 'revokeObjectURL', function revokeObjectURL(url) {
     return nativeRevokeObjectURL.apply(NativeURL, arguments);
   });

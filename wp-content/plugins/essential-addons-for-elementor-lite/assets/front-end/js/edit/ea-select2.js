@@ -63,8 +63,8 @@
                 }
             });
 
-            //Manual Sorting : Select2 drag and drop : starts
-            // #ToDo Try to use promise in future
+            /Manual Sorting : Select2 drag and drop : starts
+            / #ToDo Try to use promise in future
             setTimeout(function (){
                 IDSelect2.next().children().children().children().sortable({
                     containment: 'parent',
@@ -103,7 +103,7 @@
                     }
                 });
             },200);
-            //Manual Sorting : Select2 drag and drop : ends
+            /Manual Sorting : Select2 drag and drop : ends
 
         }, 100);
 

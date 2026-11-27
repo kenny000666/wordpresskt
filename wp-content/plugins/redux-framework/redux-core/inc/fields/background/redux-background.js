@@ -35,7 +35,7 @@
 					return;
 				}
 
-				// Remove the image button.
+				/ Remove the image button.
 				el.find( '.redux-remove-background' ).off( 'click' ).on(
 					'click',
 					function ( e ) {
@@ -46,7 +46,7 @@
 					}
 				);
 
-				// Upload media button.
+				/ Upload media button.
 				el.find( '.redux-background-upload' ).off().on(
 					'click',
 					function ( event ) {
@@ -78,7 +78,7 @@
 					}
 				);
 
-				// Replace and validate field on blur.
+				/ Replace and validate field on blur.
 				el.find( '.redux-color' ).on(
 					'blur',
 					function () {
@@ -128,7 +128,7 @@
 					}
 				);
 
-				// When transparency checkbox is clicked.
+				/ When transparency checkbox is clicked.
 				el.find( '.color-transparency' ).on(
 					'click',
 					function () {
@@ -158,7 +158,7 @@
 		);
 	};
 
-	// Update the background preview.
+	/ Update the background preview.
 	redux.field_objects.background.preview = function ( selector ) {
 		let css;
 
@@ -166,7 +166,7 @@
 		const parent  = $( selector ).parents( '.redux-container-background:first' );
 		const preview = $( parent ).find( '.background-preview' );
 
-		if ( ! preview ) { // No preview present.
+		if ( ! preview ) { / No preview present.
 			return;
 		}
 
@@ -201,20 +201,20 @@
 		}
 	};
 
-	// Add a file via the wp.media function.
+	/ Add a file via the wp.media function.
 	redux.field_objects.background.addImage = function ( event, selector ) {
 		let frame;
 		const jQueryel = $( this );
 
 		event.preventDefault();
 
-		// If the media frame already exists, reopen it.
+		/ If the media frame already exists, reopen it.
 		if ( frame ) {
 			frame.open();
 			return;
 		}
 
-		// Create the media frame.
+		/ Create the media frame.
 		frame = wp.media(
 			{
 				multiple: false,
@@ -229,7 +229,7 @@
 			}
 		);
 
-		// When an image is selected, run a callback.
+		/ When an image is selected, run a callback.
 		frame.on(
 			'select',
 			function () {
@@ -238,7 +238,7 @@
 				let key;
 				let object;
 
-				// Grab the selected attachment.
+				/ Grab the selected attachment.
 				const attachment = frame.state().get( 'selection' ).first();
 				frame.close();
 
@@ -286,20 +286,20 @@
 			}
 		);
 
-		// Finally, open the modal.
+		/ Finally, open the modal.
 		frame.open();
 	};
 
-	// Update the background preview.
+	/ Update the background preview.
 	redux.field_objects.background.removeImage = function ( selector ) {
 		let screenshot;
 
-		// This shouldn't have been run...
+		/ This shouldn't have been run...
 		if ( ! selector.find( '.redux-remove-background' ).addClass( 'hide' ) ) {
 			return;
 		}
 
-		selector.find( '.redux-remove-background' ).addClass( 'hide' ); // Hide "Remove" button.
+		selector.find( '.redux-remove-background' ).addClass( 'hide' ); / Hide "Remove" button.
 		selector.find( '.upload' ).val( '' );
 		selector.find( '.upload-id' ).val( '' );
 		selector.find( '.upload-height' ).val( '' );
@@ -311,13 +311,13 @@
 
 		screenshot = selector.find( '.screenshot' );
 
-		// Hide the screenshot.
+		/ Hide the screenshot.
 		screenshot.slideUp();
 
 		selector.find( '.remove-file' ).off();
 
-		// We don't display the upload button if .upload-notice is present
-		// This means the user doesn't have the WordPress 3.5 Media Library Support.
+		/ We don't display the upload button if .upload-notice is present
+		/ This means the user doesn't have the WordPress 3.5 Media Library Support.
 		if ( $( '.section-upload .upload-notice' ).length > 0 ) {
 			$( '.redux-background-upload' ).remove();
 		}

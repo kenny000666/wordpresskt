@@ -82,7 +82,7 @@
 					}
 				);
 
-				// Replace and validate field on blur.
+				/ Replace and validate field on blur.
 				el.find( '.redux-color' ).on(
 					'blur',
 					function () {
@@ -105,7 +105,7 @@
 					}
 				);
 
-				// Store the old valid color on keydown.
+				/ Store the old valid color on keydown.
 				el.find( '.redux-color' ).on(
 					'keydown',
 					function () {
@@ -113,7 +113,7 @@
 					}
 				);
 
-				// When transparency checkbox is clicked.
+				/ When transparency checkbox is clicked.
 				el.find( '.color-transparency' ).on(
 					'click',
 					function () {

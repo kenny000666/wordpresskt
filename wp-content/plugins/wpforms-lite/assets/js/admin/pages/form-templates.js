@@ -70,7 +70,7 @@ var WPFormsAdminFormTemplates = window.WPFormsAdminFormTemplates || ( function( 
 
 			const $button = $( this );
 
-			// Don't do anything for inactive button.
+			/ Don't do anything for inactive button.
 			if ( $button.hasClass( 'wpforms-inactive wpforms-help-tooltip' ) ) {
 				return;
 			}
@@ -91,12 +91,12 @@ var WPFormsAdminFormTemplates = window.WPFormsAdminFormTemplates || ( function( 
 			const $button = $( this );
 			const spinner = '<i class="wpforms-loading-spinner wpforms-loading-white wpforms-loading-inline"></i>';
 
-			// Don't do anything for templates that trigger education modal OR addons-modal.
+			/ Don't do anything for templates that trigger education modal OR addons-modal.
 			if ( $button.hasClass( 'education-modal' ) ) {
 				return;
 			}
 
-			// User templates are applied differently for new forms.
+			/ User templates are applied differently for new forms.
 			if ( $button.data( 'template' ).match( /wpforms-user-template-(\d+)/ ) && $button.data( 'create-url' ) ) {
 				window.location.href = $button.data( 'create-url' );
 				return;
@@ -105,10 +105,10 @@ var WPFormsAdminFormTemplates = window.WPFormsAdminFormTemplates || ( function( 
 			$( '.wpforms-form-setup-content' ).find( '.wpforms-template' ).removeClass( 'active' );
 			$button.closest( '.wpforms-template' ).addClass( 'active' );
 
-			// Save the original label.
+			/ Save the original label.
 			$button.data( 'labelOriginal', $button.html() );
 
-			// Display loading indicator.
+			/ Display loading indicator.
 			$button.html( spinner + wpforms_admin.loading );
 
 			WPFormsFormTemplates.selectTemplateProcess( $button.data( 'template-name-raw' ), $button.data( 'template' ), $button, app.selectTemplateProcessAjax );
@@ -140,7 +140,7 @@ var WPFormsAdminFormTemplates = window.WPFormsAdminFormTemplates || ( function( 
 				title: formName,
 				action: 'wpforms_new_form',
 				template,
-				// eslint-disable-next-line camelcase
+				/ eslint-disable-next-line camelcase
 				form_id: 0,
 				nonce: wpforms_admin_form_templates.nonce,
 			};
@@ -239,7 +239,7 @@ var WPFormsAdminFormTemplates = window.WPFormsAdminFormTemplates || ( function( 
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 }( document, window, jQuery ) );
 

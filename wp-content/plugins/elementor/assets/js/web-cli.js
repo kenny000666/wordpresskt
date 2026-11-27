@@ -1,5 +1,5 @@
 /*! elementor - v3.30.0 - 09-07-2025 */
-/******/ (() => { // webpackBootstrap
+/******/ (() => { / webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "../node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js":
@@ -2249,8 +2249,8 @@ var ArgsObject = exports["default"] = /*#__PURE__*/function (_InstanceType) {
       var args = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.args;
       this.requireArgument(property, args);
 
-      // Note: Converting the constructor to string in order to avoid equation issues
-      // due to different memory addresses between iframes (window.Object !== window.top.Object).
+      / Note: Converting the constructor to string in order to avoid equation issues
+      / due to different memory addresses between iframes (window.Object !== window.top.Object).
       if (args[property].constructor.toString() !== type.prototype.constructor.toString()) {
         throw Error("".concat(property, " invalid constructor type."));
       }
@@ -2288,7 +2288,7 @@ var InstanceType = exports["default"] = /*#__PURE__*/function () {
   function InstanceType() {
     var _this = this;
     (0, _classCallCheck2.default)(this, InstanceType);
-    // Since anonymous classes sometimes do not get validated by babel, do it manually.
+    / Since anonymous classes sometimes do not get validated by babel, do it manually.
     var target = this instanceof InstanceType ? this.constructor : void 0;
     var prototypes = [];
     while (target.__proto__ && target.__proto__.name) {
@@ -2309,7 +2309,7 @@ var InstanceType = exports["default"] = /*#__PURE__*/function () {
        */
       var result = _superPropGet(InstanceType, Symbol.hasInstance, this, 2)([target]);
 
-      // Act normal when validate a class, which does not have instance type.
+      / Act normal when validate a class, which does not have instance type.
       if (target && !target.constructor.getInstanceType) {
         return result;
       }
@@ -2330,7 +2330,7 @@ var InstanceType = exports["default"] = /*#__PURE__*/function () {
         }
       }
       if (!result && target) {
-        // Check if the given 'target', is instance of known types.
+        / Check if the given 'target', is instance of known types.
         result = target.instanceTypes && Array.isArray(target.instanceTypes) && -1 !== target.instanceTypes.indexOf(this.getInstanceType());
       }
       return result;
@@ -2434,7 +2434,7 @@ var Module = function Module() {
     return message;
   };
 
-  // TODO: This function should be deleted ?.
+  / TODO: This function should be deleted ?.
   this.forceMethodImplementation = function (functionName) {
     throw new Error(this.getErrorMessage('forceMethodImplementation', functionName));
   };
@@ -2466,7 +2466,7 @@ var Module = function Module() {
     if (-1 !== callbackIndex) {
       delete events[eventName][callbackIndex];
 
-      // Reset array index (for next off on same event).
+      / Reset array index (for next off on same event).
       events[eventName] = events[eventName].filter(function (val) {
         return val;
       });
@@ -2583,7 +2583,7 @@ var API = exports["default"] = /*#__PURE__*/function () {
       hashCommands: new _hashCommands.default()
     };
 
-    // Backwards compatibility should be last, in order to handle others.
+    / Backwards compatibility should be last, in order to handle others.
     this.bc = new _backwardsCompatibility.default();
   }
 
@@ -2640,7 +2640,7 @@ var API = exports["default"] = /*#__PURE__*/function () {
       return $e.routes.to(_route, args, options);
     }
 
-    // TODO: shortcut();
+    / TODO: shortcut();
   }]);
 }();
 
@@ -2745,7 +2745,7 @@ var CommandsBackwardsCompatibility = exports["default"] = /*#__PURE__*/function 
       if ('run' === eventName) {
         var componentName = _this.getConstructorID();
 
-        // Regex takes the first letter and convert it to lower case.
+        / Regex takes the first letter and convert it to lower case.
         componentName = componentName.replace(/^./, function (val) {
           return val.toLowerCase();
         });
@@ -3174,16 +3174,16 @@ var Commands = exports["default"] = /*#__PURE__*/function (_CommandsBackwardsCom
       }
       this.beforeRun(command, args);
 
-      // Get command class or callback.
+      / Get command class or callback.
       var context = this.commands[command];
 
-      // Is it command-base based class?
+      / Is it command-base based class?
       if (context.getInstanceType) {
         context = new context(args);
       }
       var currentComponent = this.getComponent(command);
 
-      // Is simple callback? (e.g.  a route)
+      / Is simple callback? (e.g.  a route)
       if (!(context instanceof _commandBase.default)) {
         var results = context.apply(currentComponent, [args]);
         this.afterRun(command, args, results);
@@ -3207,10 +3207,10 @@ var Commands = exports["default"] = /*#__PURE__*/function (_CommandsBackwardsCom
     value: function runInstance(instance) {
       var results = null;
 
-      // For UI Hooks.
+      / For UI Hooks.
       instance.onBeforeRun(instance.args);
       try {
-        // For data hooks.
+        / For data hooks.
         instance.onBeforeApply(instance.args);
         results = instance.run();
       } catch (e) {
@@ -3238,7 +3238,7 @@ var Commands = exports["default"] = /*#__PURE__*/function (_CommandsBackwardsCom
     key: "applyRunAfter",
     value: function applyRunAfter(instance, result) {
       var _this3 = this;
-      // TODO: Temp code determine if it's a jQuery deferred object.
+      / TODO: Temp code determine if it's a jQuery deferred object.
       if (result && 'object' === (0, _typeof2.default)(result) && result.promise && result.then && result.fail) {
         var handleJQueryDeferred = function handleJQueryDeferred(_result) {
           _result.fail(function (e) {
@@ -3269,10 +3269,10 @@ var Commands = exports["default"] = /*#__PURE__*/function (_CommandsBackwardsCom
   }, {
     key: "applyRunAfterSync",
     value: function applyRunAfterSync(instance, result) {
-      // Run Data hooks.
+      / Run Data hooks.
       instance.onAfterApply(instance.args, result);
 
-      // For UI hooks.
+      / For UI hooks.
       instance.onAfterRun(instance.args, result);
       this.afterRun(instance.command, instance.args, result);
     }
@@ -3290,7 +3290,7 @@ var Commands = exports["default"] = /*#__PURE__*/function (_CommandsBackwardsCom
     key: "applyRunAfterAsync",
     value: function applyRunAfterAsync(instance, result) {
       var _this4 = this;
-      // Override initial result ( promise ) to await onAfter promises, first!.
+      / Override initial result ( promise ) to await onAfter promises, first!.
       return (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
         return _regenerator.default.wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
@@ -3333,7 +3333,7 @@ var Commands = exports["default"] = /*#__PURE__*/function (_CommandsBackwardsCom
         return _regenerator.default.wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
-              // Run Data hooks.
+              / Run Data hooks.
               results = instance.onAfterApply(instance.args, result), promises = Array.isArray(results) ? results.flat().filter(function (filtered) {
                 return filtered instanceof Promise;
               }) : [];
@@ -3344,7 +3344,7 @@ var Commands = exports["default"] = /*#__PURE__*/function (_CommandsBackwardsCom
               _context2.next = 4;
               return Promise.all(promises);
             case 4:
-              // For UI hooks.
+              / For UI hooks.
               instance.onAfterRun(instance.args, result);
               this.afterRun(instance.command, instance.args, result);
             case 6:
@@ -3426,7 +3426,7 @@ var Commands = exports["default"] = /*#__PURE__*/function (_CommandsBackwardsCom
         this.error("invalid instance, command: '".concat(command, "' "));
       }
 
-      // In case of different scope.
+      / In case of different scope.
       if (currentComponent !== instance.component) {
         if ($e.devTools) {
           $e.devTools.log.warn("Command: '".concat(command, "' registerArgs.component: '").concat(instance.component.getNamespace(), "' while current component is: '").concat(currentComponent.getNamespace(), "'"));
@@ -3554,7 +3554,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_Module) {
   }, {
     key: "activate",
     value: function activate(namespace) {
-      // Add as last.
+      / Add as last.
       this.inactivate(namespace);
       this.activeComponents[namespace] = true;
     }
@@ -3725,7 +3725,7 @@ var Data = exports["default"] = /*#__PURE__*/function (_Commands) {
     key: "getEndpointURL",
     value: function getEndpointURL(requestData) {
       var endpoint = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : requestData.endpoint;
-      // Allow to request data override default namespace and args.
+      / Allow to request data override default namespace and args.
       var _requestData$baseEndp = requestData.baseEndpointURL,
         baseEndpointURL = _requestData$baseEndp === void 0 ? this.args.baseEndpointURL : _requestData$baseEndp,
         _requestData$namespac = requestData.namespace,
@@ -3757,12 +3757,12 @@ var Data = exports["default"] = /*#__PURE__*/function (_Commands) {
       var endpoint = command;
       var argsQueryLength = args !== null && args !== void 0 && args.query ? Object.values(args.query).length : 0;
       if (argsQueryLength && format && format.includes('/{')) {
-        // Means command includes magic query arguments ( controller/endpoint/{whatever} ).
+        / Means command includes magic query arguments ( controller/endpoint/{whatever} ).
         var magicParams = format.split('/').filter(function (str) {
           return '{' === str.charAt(0);
         });
         magicParams.forEach(function (param) {
-          // Remove the '{', '}'.
+          / Remove the '{', '}'.
           param = param.replace('{', '');
           param = param.replace('}', '');
           var formatted = Object.entries(args.query).find(function (_ref) {
@@ -3776,7 +3776,7 @@ var Data = exports["default"] = /*#__PURE__*/function (_Commands) {
           var key = formatted[0],
             value = formatted[1].toString();
 
-          // Replace magic params with values.
+          / Replace magic params with values.
           format = format.replace(new RegExp('{' + param + '}', 'g'), value);
           delete args.query[key];
         });
@@ -3785,38 +3785,38 @@ var Data = exports["default"] = /*#__PURE__*/function (_Commands) {
         endpoint = format;
       }
 
-      // If requested magic param does not exist in args, need to remove it to have fixed endpoint.
-      // eg: 'documents/{documentId}/elements/{elementId}' and args { documentId: 4123 }.
-      // result: 'documents/4123/elements'
+      / If requested magic param does not exist in args, need to remove it to have fixed endpoint.
+      / eg: 'documents/{documentId}/elements/{elementId}' and args { documentId: 4123 }.
+      / result: 'documents/4123/elements'
       if (format && endpoint.includes('/{')) {
         endpoint = endpoint.substring(0, endpoint.indexOf('/{'));
       }
       if (args.query && Object.values(args.query).length) {
-        // Sorting since the endpoint later will be used as key to store the cache.
+        / Sorting since the endpoint later will be used as key to store the cache.
         var queryEntries = Object.entries(args.query).sort(function (_ref3, _ref4) {
           var _ref5 = (0, _slicedToArray2.default)(_ref3, 1),
             aKey = _ref5[0];
           var _ref6 = (0, _slicedToArray2.default)(_ref4, 1),
             bKey = _ref6[0];
           return aKey - bKey;
-        } // Sort by param name.
+        } / Sort by param name.
         );
 
-        // `args.query` will become a part of GET params.
+        / `args.query` will become a part of GET params.
         if (queryEntries.length) {
           endpoint += '?';
           queryEntries.forEach(function (_ref7) {
             var _ref8 = (0, _slicedToArray2.default)(_ref7, 2),
               name = _ref8[0],
               value = _ref8[1];
-            // Replace the character '/' with the encoded version,
-            // mostly because when saving this endpoint value to the cache it splits the url base on the '/' character.
-            value = "".concat(value).replace(/\//g, '%2F');
+            / Replace the character '/' with the encoded version,
+            / mostly because when saving this endpoint value to the cache it splits the url base on the '/' character.
+            value = "".concat(value).replace(/\/g, '%2F');
             endpoint += name + '=' + value + '&';
           });
         }
 
-        // If last character is '&' remove it.
+        / If last character is '&' remove it.
         endpoint = endpoint.replace(/&$/, '');
       }
       return endpoint;
@@ -3866,7 +3866,7 @@ var Data = exports["default"] = /*#__PURE__*/function (_Commands) {
     key: "validateRequestData",
     value: function validateRequestData(requestData) {
       var requireArgsData = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-      // Do not validate if its already valid.
+      / Do not validate if its already valid.
       if (requestData.timestamp && this.validatedRequests[requestData.timestamp]) {
         return;
       }
@@ -3878,7 +3878,7 @@ var Data = exports["default"] = /*#__PURE__*/function (_Commands) {
         argsObject.requireArgumentType('data', 'object', requestData.args);
       }
 
-      // Ensure timestamp.
+      / Ensure timestamp.
       if (!requestData.timestamp) {
         requestData.timestamp = new Date().getTime();
       }
@@ -3902,7 +3902,7 @@ var Data = exports["default"] = /*#__PURE__*/function (_Commands) {
         nonce = elementorWebCliConfig.nonce,
         params = {
           signal: (_requestData$args = requestData.args) === null || _requestData$args === void 0 || (_requestData$args = _requestData$args.options) === null || _requestData$args === void 0 ? void 0 : _requestData$args.signal,
-          credentials: 'include' // Cookies is required for wp reset.
+          credentials: 'include' / Cookies is required for wp reset.
         },
         headers = {
           'X-WP-Nonce': nonce
@@ -3990,7 +3990,7 @@ var Data = exports["default"] = /*#__PURE__*/function (_Commands) {
         }
       }
       var params = this.prepareHeaders(requestData);
-      // eslint-disable-next-line no-async-promise-executor
+      / eslint-disable-next-line no-async-promise-executor
       return new Promise(/*#__PURE__*/function () {
         var _ref9 = (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee2(resolve, reject) {
           var endpoint, request, response;
@@ -4034,8 +4034,8 @@ var Data = exports["default"] = /*#__PURE__*/function (_Commands) {
                 }());
               case 5:
                 response = _context2.sent;
-                // At this point, it got the resolved response from remote.
-                // So load cache, and resolve it.
+                / At this point, it got the resolved response from remote.
+                / So load cache, and resolve it.
                 if (saveCache) {
                   _this2.cache.set(requestData, response);
                 }
@@ -4376,14 +4376,14 @@ var Cache = exports["default"] = /*#__PURE__*/function () {
     value: function getAsync(requestData) {
       var data = this.get(requestData);
       if (null !== data) {
-        // If data comes from cache, add 'cache = hit' to requestData.
+        / If data comes from cache, add 'cache = hit' to requestData.
         requestData.cache = 'hit';
         return new Promise(function (resolve) {
           resolve(data);
         });
       }
 
-      // TODO: Check if possible, always return promise and reject it.
+      / TODO: Check if possible, always return promise and reject it.
       return false;
     }
 
@@ -4407,23 +4407,23 @@ var Cache = exports["default"] = /*#__PURE__*/function () {
         pureEndpointParts = pureEndpoint.split('/');
       var newData = {};
 
-      // Example of working with reaming endpoint part(s) can be found at 'cache.spec.js' test: 'load(): deep'.
-      // Analyze reaming endpoint.
+      / Example of working with reaming endpoint part(s) can be found at 'cache.spec.js' test: 'load(): deep'.
+      / Analyze reaming endpoint.
       if (pureEndpointParts.length && pureEndpoint !== componentName) {
-        // Using reaming endpoint parts, to build new data object.
+        / Using reaming endpoint parts, to build new data object.
         var result = pureEndpointParts.reduce(function (accumulator, pureEndpointPart) {
           accumulator[pureEndpointPart] = {};
           return accumulator[pureEndpointPart];
         }, newData);
 
-        // 'result' is equal to 'newData' with a deeper pointer, build based on 'pureEndpointParts' ( will effect newData ).
+        / 'result' is equal to 'newData' with a deeper pointer, build based on 'pureEndpointParts' ( will effect newData ).
         Object.assign(result, data);
       } else {
         newData = data;
       }
       var oldData = this.storage.getItem(componentName);
 
-      // When have old data, merge it recursively with newData using jQuery.extend().
+      / When have old data, merge it recursively with newData using jQuery.extend().
       if (oldData !== null) {
         newData = jQuery.extend(true, oldData, newData);
       }
@@ -4450,18 +4450,18 @@ var Cache = exports["default"] = /*#__PURE__*/function () {
           return componentData;
         }
 
-        // Example of working with reaming endpoint part(s) can be found at 'cache.spec.js' test: 'get(): complex'.
-        // Analyze reaming endpoint (Using reduce over endpoint parts, build the right index).
+        / Example of working with reaming endpoint part(s) can be found at 'cache.spec.js' test: 'get(): complex'.
+        / Analyze reaming endpoint (Using reduce over endpoint parts, build the right index).
         var pureEndpoint = requestData.endpoint.replace(requestData.component.getNamespace() + '/', ''),
           pureEndpointParts = pureEndpoint.split('/'),
-          // eslint-disable-next-line array-callback-return
+          / eslint-disable-next-line array-callback-return
           result = pureEndpointParts.reduce(function (accumulator, endpointPart) {
             if (accumulator && accumulator[endpointPart]) {
               return accumulator[endpointPart];
             }
           }, componentData);
 
-        // Since $e.data.cache.receive will reject only if null is the result.
+        / Since $e.data.cache.receive will reject only if null is the result.
         return result || null;
       }
       return null;
@@ -4483,19 +4483,19 @@ var Cache = exports["default"] = /*#__PURE__*/function () {
       var endpoint = requestData.endpoint;
       var response = {};
 
-      // Simulate response from cache.
+      / Simulate response from cache.
       Object.entries(this.storage.getAll()).forEach(function (_ref) {
         var _ref2 = (0, _slicedToArray2.default)(_ref, 2),
           endpointKey = _ref2[0],
           /* String*/endpointValue = _ref2[1];
         if (endpointValue && endpoint.includes(endpointKey)) {
-          // Assuming it is a specific endpoint.
+          / Assuming it is a specific endpoint.
           var oldData = endpointValue,
             pureEndpoint = requestData.endpoint.replace(requestData.component.getNamespace() + '/', ''),
             pureEndpointParts = pureEndpoint.split('/'),
             isComponentUpdate = 1 === pureEndpointParts.length && endpointKey === requestData.endpoint && endpointKey === requestData.component.getNamespace();
 
-          // Component update or specific update?
+          / Component update or specific update?
           if (isComponentUpdate) {
             response = jQuery.extend(true, oldData, requestData.args.data);
           } else {
@@ -4507,12 +4507,12 @@ var Cache = exports["default"] = /*#__PURE__*/function () {
         }
       });
 
-      // If response not found.
+      / If response not found.
       if (0 === Object.values(response).length) {
         return false;
       }
 
-      // Update cache.
+      / Update cache.
       this.set(requestData, response);
       return true;
     }
@@ -4543,7 +4543,7 @@ var Cache = exports["default"] = /*#__PURE__*/function () {
           lastEndpointPart = pureEndpointParts[pureEndpointParts.length - 1];
         pureEndpointParts.reduce(function (accumulator, pureEndpointPart) {
           if (pureEndpointPart === lastEndpointPart) {
-            // Null, means delete.
+            / Null, means delete.
             accumulator[pureEndpointPart] = null;
           } else {
             accumulator[pureEndpointPart] = {};
@@ -4562,7 +4562,7 @@ var Cache = exports["default"] = /*#__PURE__*/function () {
                 }
               });
             } else {
-              // Means need to clear all the object.
+              / Means need to clear all the object.
               Object.keys(target).forEach(function (key) {
                 return delete target[key];
               });
@@ -5402,7 +5402,7 @@ var HooksBase = exports["default"] = /*#__PURE__*/function (_Module) {
       });
     }
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Function getType().
      *
@@ -5615,13 +5615,13 @@ var HooksBase = exports["default"] = /*#__PURE__*/function (_Module) {
         this.callbacks[event][command] = [];
       }
 
-      // Save used id(s).
+      / Save used id(s).
       this.usedIds.push(id);
       if (!this.callbacks[event][command]) {
         this.callbacks[event][command] = {};
       }
 
-      // TODO: Create HookCallback class/type.
+      / TODO: Create HookCallback class/type.
       var callback = {
         id: id,
         callback: instance.run.bind(instance),
@@ -5694,13 +5694,13 @@ var HooksBase = exports["default"] = /*#__PURE__*/function (_Module) {
           continue;
         }
 
-        // If not exist, set zero.
+        / If not exist, set zero.
         if (undefined === this.depth[event][callback.id]) {
           this.depth[event][callback.id] = 0;
         }
         this.depth[event][callback.id]++;
 
-        // Prevent recursive hooks.
+        / Prevent recursive hooks.
         if (1 === this.depth[event][callback.id]) {
           this.onCallback(command, args, event, callback.id);
           try {
@@ -5710,7 +5710,7 @@ var HooksBase = exports["default"] = /*#__PURE__*/function (_Module) {
             }
             callbacksResult.push(callbackResult);
           } catch (e) {
-            // If its 'Hook-Break' then parent `try {}` will handle it.
+            / If its 'Hook-Break' then parent `try {}` will handle it.
             if (e instanceof $e.modules.HookBreak) {
               throw e;
             }
@@ -5722,7 +5722,7 @@ var HooksBase = exports["default"] = /*#__PURE__*/function (_Module) {
       return callbacksResult;
     }
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Function runCallback().
      *
@@ -5740,7 +5740,7 @@ var HooksBase = exports["default"] = /*#__PURE__*/function (_Module) {
   }, {
     key: "runCallback",
     value: function runCallback(event, callback, args, result) {
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       (0, _forceMethodImplementation.default)();
     }
 
@@ -5758,7 +5758,7 @@ var HooksBase = exports["default"] = /*#__PURE__*/function (_Module) {
   }, {
     key: "onRun",
     value: function onRun(command, args, event) {
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       (0, _forceMethodImplementation.default)();
     }
 
@@ -5777,7 +5777,7 @@ var HooksBase = exports["default"] = /*#__PURE__*/function (_Module) {
   }, {
     key: "onCallback",
     value: function onCallback(command, args, event, id) {
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       (0, _forceMethodImplementation.default)();
     }
   }]);
@@ -5833,11 +5833,11 @@ var Data = exports["default"] = /*#__PURE__*/function (_HooksBase) {
       switch (event) {
         case 'dependency':
           {
-            // If callback returns false and its dependency, then 'Hook-Break'.
+            / If callback returns false and its dependency, then 'Hook-Break'.
             if (!callback.callback(args)) {
               this.depth[event][callback.id]--;
 
-              // Throw custom break to be catch by the base for 'Safe' exit.
+              / Throw custom break to be catch by the base for 'Safe' exit.
               throw new $e.modules.HookBreak();
             }
             return true;
@@ -6087,8 +6087,8 @@ var Routes = exports["default"] = /*#__PURE__*/function (_Commands) {
       _superPropGet(Routes, "beforeRun", this, 3)([route, args, false]);
       this.attachCurrent(container, route, args);
 
-      // In the previous condition, `$e.routes.is()` resolves the old route as active (because the actual route
-      // switching happens inside `this.attachCurrent()`), so we can't use it there.
+      / In the previous condition, `$e.routes.is()` resolves the old route as active (because the actual route
+      / switching happens inside `this.attachCurrent()`), so we can't use it there.
       if (oldRoute) {
         this.dispatchOnClose(oldRoute);
       }
@@ -6116,7 +6116,7 @@ var Routes = exports["default"] = /*#__PURE__*/function (_Commands) {
     value: function back(namespaceRoot) {
       var history = this.getHistory(namespaceRoot);
 
-      // Remove current;
+      / Remove current;
       history.pop();
       var last = history.pop();
       if (!last) {
@@ -6125,14 +6125,14 @@ var Routes = exports["default"] = /*#__PURE__*/function (_Commands) {
       this.to(last.route, last.args);
     }
 
-    // Don't use the event object.
+    / Don't use the event object.
   }, {
     key: "runShortcut",
     value: function runShortcut(command) {
       this.to(command);
     }
 
-    // Don't clear current route.
+    / Don't clear current route.
   }, {
     key: "afterRun",
     value: function afterRun(route, args) {
@@ -6305,7 +6305,7 @@ var Shortcuts = exports["default"] = /*#__PURE__*/function () {
           return false;
         }
 
-        // Fix for some keyboard sources that consider alt key as ctrl key
+        / Fix for some keyboard sources that consider alt key as ctrl key
         if (!handler.allowAltKey && event.altKey) {
           return false;
         }
@@ -6362,7 +6362,7 @@ var Shortcuts = exports["default"] = /*#__PURE__*/function () {
         return true;
       }
 
-      // Else filter by namespaceRoot.
+      / Else filter by namespaceRoot.
       var namespaceRoot = component.getServiceName();
       return scopes.some(function (scope) {
         return namespaceRoot === scope;
@@ -6377,7 +6377,7 @@ var Shortcuts = exports["default"] = /*#__PURE__*/function () {
         return false;
       }
 
-      // TODO: Prioritize current scope before roo scope.
+      / TODO: Prioritize current scope before roo scope.
       var inCurrentScope = handlers.filter(function (handler) {
         return handler.scopes && _this4.isActiveScope(handler.scopes);
       });
@@ -6458,8 +6458,8 @@ var Store = exports["default"] = /*#__PURE__*/function () {
     key: "createStore",
     value: function createStore() {
       return (0, _toolkit.configureStore)({
-        // Use an empty function instead of empty object since an empty object
-        // isn't a valid reducer value.
+        / Use an empty function instead of empty object since an empty object
+        / isn't a valid reducer value.
         reducer: function reducer() {}
       });
     }
@@ -6720,7 +6720,7 @@ var UiStates = exports["default"] = /*#__PURE__*/function () {
   }, {
     key: "set",
     value: function set(state, value) {
-      // Invalid state or option.
+      / Invalid state or option.
       if (!this.get(state)) {
         throw "State '".concat(state, "' doesn't exist.");
       }
@@ -6730,17 +6730,17 @@ var UiStates = exports["default"] = /*#__PURE__*/function () {
         newStateClass = "".concat(classPrefix, "__").concat(value),
         scopes = this.get(state).getScopes();
 
-      // Set the current state to the new value.
+      / Set the current state to the new value.
       this.get(state).set(value);
       scopes.forEach(function (scope) {
         scope.classList.remove(oldStateClass);
 
-        // Set the new class only if there is a value (i.e. it's not a state removal action).
+        / Set the new class only if there is a value (i.e. it's not a state removal action).
         if (value) {
           scope.classList.add(newStateClass);
         }
 
-        // Dispatch a custom state-change event to the scope.
+        / Dispatch a custom state-change event to the scope.
         var event = new CustomEvent("e-ui-state:".concat(state), {
           detail: {
             oldValue: oldValue,
@@ -6869,10 +6869,10 @@ var HashCommands = exports["default"] = /*#__PURE__*/function () {
       var hash = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : location.hash;
       var result = [];
       if (hash) {
-        // Remove first '#' and split each '&'.
+        / Remove first '#' and split each '&'.
         var hashList = hash.substr(1).split('&');
         hashList.forEach(function (hashItem) {
-          // eslint-disable-next-line @wordpress/no-unused-vars-before-return
+          / eslint-disable-next-line @wordpress/no-unused-vars-before-return
           var _hashItem$split = hashItem.split('?'),
             _hashItem$split2 = (0, _slicedToArray2.default)(_hashItem$split, 2),
             rawCommand = _hashItem$split2[0],
@@ -6922,7 +6922,7 @@ var HashCommands = exports["default"] = /*#__PURE__*/function () {
           while (1) switch (_context.prev = _context.next) {
             case 0:
               commands = _args.length > 0 && _args[0] !== undefined ? _args[0] : this.commands;
-              // To allow validate the run first.
+              / To allow validate the run first.
               _iterator = _createForOfIteratorHelper(commands);
               _context.prev = 2;
               _iterator.s();
@@ -6959,7 +6959,7 @@ var HashCommands = exports["default"] = /*#__PURE__*/function () {
               _iterator.f();
               return _context.finish(18);
             case 21:
-              // This logic will run the promises by sequence (will wait for dispatcher to finish, before run again).
+              / This logic will run the promises by sequence (will wait for dispatcher to finish, before run again).
               _iterator2 = _createForOfIteratorHelper(commands);
               _context.prev = 22;
               _iterator2.s();
@@ -7344,19 +7344,19 @@ var CommandData = exports["default"] = /*#__PURE__*/function (_CommandBase) {
       var _this2 = this;
       var applyMethods = this.getApplyMethods();
 
-      // Run 'before' method.
+      / Run 'before' method.
       this.args = applyMethods.before(this.args);
       var requestData = this.getRequestData();
       return $e.data.fetch(requestData).then(function (data) {
         _this2.data = data;
 
-        // Run 'after' method.
+        / Run 'after' method.
         _this2.data = applyMethods.after(data, _this2.args);
         _this2.data = {
           data: _this2.data
         };
 
-        // Append requestData.
+        / Append requestData.
         _this2.data = Object.assign({
           __requestData__: requestData
         }, _this2.data);
@@ -7384,7 +7384,7 @@ var CommandData = exports["default"] = /*#__PURE__*/function (_CommandBase) {
     key: "applyAfterCreate",
     value: function applyAfterCreate(data) {
       var args = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       return data;
     }
 
@@ -7408,7 +7408,7 @@ var CommandData = exports["default"] = /*#__PURE__*/function (_CommandBase) {
     key: "applyAfterDelete",
     value: function applyAfterDelete(data) {
       var args = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       return data;
     }
 
@@ -7432,7 +7432,7 @@ var CommandData = exports["default"] = /*#__PURE__*/function (_CommandBase) {
     key: "applyAfterGet",
     value: function applyAfterGet(data) {
       var args = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       return data;
     }
 
@@ -7456,7 +7456,7 @@ var CommandData = exports["default"] = /*#__PURE__*/function (_CommandBase) {
     key: "applyAfterUpdate",
     value: function applyAfterUpdate(data) {
       var args = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       return data;
     }
 
@@ -7480,7 +7480,7 @@ var CommandData = exports["default"] = /*#__PURE__*/function (_CommandBase) {
     key: "applyAfterOptions",
     value: function applyAfterOptions(data) {
       var args = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       return data;
     }
 
@@ -7496,7 +7496,7 @@ var CommandData = exports["default"] = /*#__PURE__*/function (_CommandBase) {
     key: "onCatchApply",
     value: function onCatchApply(e) {
       var _e;
-      // TODO: If the errors that returns from the server is consistent remove the '?' from 'e'
+      / TODO: If the errors that returns from the server is consistent remove the '?' from 'e'
       var httpErrorCode = ((_e = e) === null || _e === void 0 || (_e = _e.data) === null || _e === void 0 ? void 0 : _e.status) || 501;
       var dataError = Object.values(errors).find(function (error) {
         return error.getHTTPErrorCode() === httpErrorCode;
@@ -7567,19 +7567,19 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
       throw RangeError('Doing it wrong: Each command type should have `registerConfig`.');
     }
 
-    // Acknowledge self about which command it run.
+    / Acknowledge self about which command it run.
     _this.command = _this.constructor.getCommand();
 
-    // Assign instance of current component.
+    / Assign instance of current component.
     _this.component = _this.constructor.getComponent();
 
-    // Who ever need do something before without `super` the constructor can use `initialize` method.
+    / Who ever need do something before without `super` the constructor can use `initialize` method.
     _this.initialize(args);
 
-    // Refresh args, maybe the changed via `initialize`.
+    / Refresh args, maybe the changed via `initialize`.
     args = _this.args;
 
-    // Validate args before run.
+    / Validate args before run.
     _this.validateArgs(args);
     return _this;
   }
@@ -7606,7 +7606,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     key: "initialize",
     value: function initialize() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
     /**
      * Function validateArgs().
@@ -7619,9 +7619,9 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     key: "validateArgs",
     value: function validateArgs() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Function apply().
      *
@@ -7635,7 +7635,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     key: "apply",
     value: function apply() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       elementorModules.ForceMethodImplementation();
     }
 
@@ -7663,7 +7663,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     key: "onBeforeRun",
     value: function onBeforeRun() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
     /**
      * Function onAfterRun.
@@ -7678,7 +7678,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     value: function onAfterRun() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var result = arguments.length > 1 ? arguments[1] : undefined;
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
     /**
      * Function onBeforeApply.
@@ -7691,7 +7691,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     key: "onBeforeApply",
     value: function onBeforeApply() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
     /**
      * Function onAfterApply.
@@ -7706,7 +7706,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
     value: function onAfterApply() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var result = arguments.length > 1 ? arguments[1] : undefined;
-    } // eslint-disable-line no-unused-vars
+    } / eslint-disable-line no-unused-vars
 
     /**
      * Function onCatchApply.
@@ -7717,7 +7717,7 @@ var CommandInfra = exports["default"] = /*#__PURE__*/function (_ArgsObject) {
      */
   }, {
     key: "onCatchApply",
-    value: function onCatchApply(e) {} // eslint-disable-line no-unused-vars
+    value: function onCatchApply(e) {} / eslint-disable-line no-unused-vars
   }], [{
     key: "getInstanceType",
     value: function getInstanceType() {
@@ -8071,7 +8071,7 @@ var ComponentBase = exports["default"] = /*#__PURE__*/function (_Module) {
       });
     }
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * @return {string} namespace
      */
@@ -8250,14 +8250,14 @@ var ComponentBase = exports["default"] = /*#__PURE__*/function (_Module) {
           component: this
         };
 
-      // Support pure callback.
+      / Support pure callback.
       if (!instanceType) {
         if ($e.devTools) {
           $e.devTools.log.warn("Attach command-callback-base, on command: '".concat(fullCommand, "', context is unknown type."));
         }
         registerConfig.callback = context;
 
-        // Unique class.
+        / Unique class.
         context = /*#__PURE__*/function (_CommandCallbackBase) {
           function context() {
             (0, _classCallCheck2.default)(this, context);
@@ -8416,14 +8416,14 @@ var ComponentBase = exports["default"] = /*#__PURE__*/function (_Module) {
     value: function addTab(tab, args, position) {
       var _this3 = this;
       this.tabs[tab] = args;
-      // It can be 0.
+      / It can be 0.
       if ('undefined' !== typeof position) {
         var newTabs = {};
         var ids = Object.keys(this.tabs);
-        // Remove new tab
+        / Remove new tab
         ids.pop();
 
-        // Add it to position.
+        / Add it to position.
         ids.splice(position, 0, tab);
         ids.forEach(function (id) {
           newTabs[id] = _this3.tabs[id];
@@ -8444,7 +8444,7 @@ var ComponentBase = exports["default"] = /*#__PURE__*/function (_Module) {
     }
   }, {
     key: "renderTab",
-    value: function renderTab(tab) {} // eslint-disable-line
+    value: function renderTab(tab) {} / eslint-disable-line
   }, {
     key: "activateTab",
     value: function activateTab(tab, args) {
@@ -8462,7 +8462,7 @@ var ComponentBase = exports["default"] = /*#__PURE__*/function (_Module) {
   }, {
     key: "getBodyClass",
     value: function getBodyClass(route) {
-      return 'e-route-' + route.replace(/\//g, '-');
+      return 'e-route-' + route.replace(/\/g, '-');
     }
 
     /**
@@ -8489,7 +8489,7 @@ var ComponentBase = exports["default"] = /*#__PURE__*/function (_Module) {
       var _this5 = this;
       var commands = {};
 
-      // Convert `Commands` to `ComponentBase` workable format.
+      / Convert `Commands` to `ComponentBase` workable format.
       Object.entries(commandsFromImport).forEach(function (_ref11) {
         var _ref12 = (0, _slicedToArray2.default)(_ref11, 2),
           className = _ref12[0],
@@ -8726,7 +8726,7 @@ var HookBase = exports["default"] = /*#__PURE__*/function () {
       (0, _forceMethodImplementation.default)();
     }
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Function getType().
      *
@@ -8742,7 +8742,7 @@ var HookBase = exports["default"] = /*#__PURE__*/function () {
       (0, _forceMethodImplementation.default)();
     }
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Function getCommand().
      *
@@ -8760,7 +8760,7 @@ var HookBase = exports["default"] = /*#__PURE__*/function () {
       (0, _forceMethodImplementation.default)();
     }
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Function getId().
      *
@@ -8776,7 +8776,7 @@ var HookBase = exports["default"] = /*#__PURE__*/function () {
       (0, _forceMethodImplementation.default)();
     }
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Function getContainerType().
      *
@@ -8805,11 +8805,11 @@ var HookBase = exports["default"] = /*#__PURE__*/function () {
     value: function getConditions() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var result = arguments.length > 1 ? arguments[1] : undefined;
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       return true;
     }
 
-    // eslint-disable-next-line jsdoc/require-returns-check
+    / eslint-disable-next-line jsdoc/require-returns-check
     /**
      * Function apply().
      *
@@ -8822,7 +8822,7 @@ var HookBase = exports["default"] = /*#__PURE__*/function () {
   }, {
     key: "apply",
     value: function apply(args) {
-      // eslint-disable-line no-unused-vars
+      / eslint-disable-line no-unused-vars
       (0, _forceMethodImplementation.default)();
     }
 
@@ -8842,7 +8842,7 @@ var HookBase = exports["default"] = /*#__PURE__*/function () {
         _ref$options = _ref.options,
         options = _ref$options === void 0 ? {} : _ref$options;
 
-      // Disable callback if requested by args.options.
+      / Disable callback if requested by args.options.
       if (options.callbacks && false === options.callbacks[this.id]) {
         return true;
       }
@@ -9313,14 +9313,14 @@ var Console = exports["default"] = /*#__PURE__*/function () {
   return (0, _createClass2.default)(Console, null, [{
     key: "error",
     value: function error(message) {
-      // Show an error if devTools is available.
+      / Show an error if devTools is available.
       if ($e.devTools) {
         $e.devTools.log.error(message);
       }
 
-      // If not a 'Hook-Break' then show error.
+      / If not a 'Hook-Break' then show error.
       if (!(message instanceof $e.modules.HookBreak)) {
-        // eslint-disable-next-line no-console
+        / eslint-disable-next-line no-console
         console.error(message);
       }
     }
@@ -9333,7 +9333,7 @@ var Console = exports["default"] = /*#__PURE__*/function () {
         args[_key] = arguments[_key];
       }
       args.unshift('%c  %c', style, '');
-      (_console = console).warn.apply(_console, args); // eslint-disable-line no-console
+      (_console = console).warn.apply(_console, args); / eslint-disable-line no-console
     }
   }]);
 }();
@@ -9505,25 +9505,25 @@ var matchUserAgent = function matchUserAgent(UserAgentStr) {
     return userAgent.indexOf(UserAgentStr) >= 0;
   },
   userAgent = navigator.userAgent,
-  // Solution influenced by https://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser
+  / Solution influenced by https://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser
 
-  // Opera 8.0+
+  / Opera 8.0+
   isOpera = !!window.opr && !!opr.addons || !!window.opera || matchUserAgent(' OPR/'),
-  // Firefox 1.0+
+  / Firefox 1.0+
   isFirefox = matchUserAgent('Firefox'),
-  // Safari 3.0+ "[object HTMLElementConstructor]"
+  / Safari 3.0+ "[object HTMLElementConstructor]"
   isSafari = /^((?!chrome|android).)*safari/i.test(userAgent) || /constructor/i.test(window.HTMLElement) || function (p) {
     return '[object SafariRemoteNotification]' === p.toString();
   }(!window.safari || typeof safari !== 'undefined' && safari.pushNotification),
-  // Internet Explorer 6-11
+  / Internet Explorer 6-11
   isIE = /Trident|MSIE/.test(userAgent) && (/* @cc_on!@*/ false || !!document.documentMode),
-  // Edge 20+
+  / Edge 20+
   isEdge = !isIE && !!window.StyleMedia || matchUserAgent('Edg'),
-  // Google Chrome (Not accurate)
+  / Google Chrome (Not accurate)
   isChrome = !!window.chrome && matchUserAgent('Chrome') && !(isEdge || isOpera),
-  // Blink engine
+  / Blink engine
   isBlink = matchUserAgent('Chrome') && !!window.CSS,
-  // Apple Webkit engine
+  / Apple Webkit engine
   isAppleWebkit = matchUserAgent('AppleWebKit') && !isBlink,
   environment = {
     appleWebkit: isAppleWebkit,
@@ -9610,19 +9610,19 @@ __webpack_require__.r(__webpack_exports__);
  * and returns an instance of the thunk middleware that uses that value
  */
 function createThunkMiddleware(extraArgument) {
-  // Standard Redux middleware definition pattern:
-  // See: https://redux.js.org/tutorials/fundamentals/part-4-store#writing-custom-middleware
+  / Standard Redux middleware definition pattern:
+  / See: https://redux.js.org/tutorials/fundamentals/part-4-store#writing-custom-middleware
   var middleware = function middleware(_ref) {
     var dispatch = _ref.dispatch,
         getState = _ref.getState;
     return function (next) {
       return function (action) {
-        // The thunk middleware looks for any functions that were passed to `store.dispatch`.
-        // If this "action" is really a function, call it and return the result.
+        / The thunk middleware looks for any functions that were passed to `store.dispatch`.
+        / If this "action" is really a function, call it and return the result.
         if (typeof action === 'function') {
-          // Inject the store's `dispatch` and `getState` methods, as well as any "extra arg"
+          / Inject the store's `dispatch` and `getState` methods, as well as any "extra arg"
           return action(dispatch, getState, extraArgument);
-        } // Otherwise, pass the action down the middleware chain as usual
+        } / Otherwise, pass the action down the middleware chain as usual
 
 
         return next(action);
@@ -9633,7 +9633,7 @@ function createThunkMiddleware(extraArgument) {
   return middleware;
 }
 
-var thunk = createThunkMiddleware(); // Attach the factory function so users can create a customized version
+var thunk = createThunkMiddleware(); / Attach the factory function so users can create a customized version
 // with whatever "extra arg" they want to inject into their thunks
 
 thunk.withExtraArgument = createThunkMiddleware;
@@ -9740,7 +9740,7 @@ function miniKindOf(val) {
     case 'Map':
     case 'Set':
       return constructorName;
-  } // other
+  } / other
 
 
   return type.slice(8, -1).toLowerCase().replace(/\s/g, '');
@@ -9977,10 +9977,10 @@ function createStore(reducer, preloadedState, enhancer) {
       throw new Error( false ? 0 : "Expected the nextReducer to be a function. Instead, received: '" + kindOf(nextReducer));
     }
 
-    currentReducer = nextReducer; // This action has a similiar effect to ActionTypes.INIT.
-    // Any reducers that existed in both the new and old rootReducer
-    // will receive the previous state. This effectively populates
-    // the new state tree with any relevant data from the old one.
+    currentReducer = nextReducer; / This action has a similiar effect to ActionTypes.INIT.
+    / Any reducers that existed in both the new and old rootReducer
+    / will receive the previous state. This effectively populates
+    / the new state tree with any relevant data from the old one.
 
     dispatch({
       type: ActionTypes.REPLACE
@@ -10027,9 +10027,9 @@ function createStore(reducer, preloadedState, enhancer) {
     }, _ref[$$observable] = function () {
       return this;
     }, _ref;
-  } // When a store is created, an "INIT" action is dispatched so that every
-  // reducer returns their initial state. This effectively populates
-  // the initial state tree.
+  } / When a store is created, an "INIT" action is dispatched so that every
+  / reducer returns their initial state. This effectively populates
+  / the initial state tree.
 
 
   dispatch({
@@ -10090,11 +10090,11 @@ function warning(message) {
 
 
   try {
-    // This error was thrown as a convenience so that if you enable
-    // "break on all exceptions" in your console,
-    // it would pause the execution at this line.
+    / This error was thrown as a convenience so that if you enable
+    / "break on all exceptions" in your console,
+    / it would pause the execution at this line.
     throw new Error(message);
-  } catch (e) {} // eslint-disable-line no-empty
+  } catch (e) {} / eslint-disable-line no-empty
 
 }
 
@@ -10177,8 +10177,8 @@ function combineReducers(reducers) {
     }
   }
 
-  var finalReducerKeys = Object.keys(finalReducers); // This is used to make sure we don't warn about the same
-  // keys multiple times.
+  var finalReducerKeys = Object.keys(finalReducers); / This is used to make sure we don't warn about the same
+  / keys multiple times.
 
   var unexpectedKeyCache;
 
@@ -10416,10 +10416,10 @@ function createLruCache(maxSize, equals) {
   function get(key) {
     var cacheIndex = entries.findIndex(function (entry) {
       return equals(key, entry.key);
-    }); // We found a cached entry
+    }); / We found a cached entry
 
     if (cacheIndex > -1) {
-      var entry = entries[cacheIndex]; // Cached entry not at top of cache, move it to the top
+      var entry = entries[cacheIndex]; / Cached entry not at top of cache, move it to the top
 
       if (cacheIndex > 0) {
         entries.splice(cacheIndex, 1);
@@ -10427,7 +10427,7 @@ function createLruCache(maxSize, equals) {
       }
 
       return entry.value;
-    } // No entry found in cache, return sentinel
+    } / No entry found in cache, return sentinel
 
 
     return NOT_FOUND;
@@ -10435,7 +10435,7 @@ function createLruCache(maxSize, equals) {
 
   function put(key, value) {
     if (get(key) === NOT_FOUND) {
-      // TODO Is unshift slow?
+      / TODO Is unshift slow?
       entries.unshift({
         key: key,
         value: value
@@ -10470,7 +10470,7 @@ function createCacheKeyComparator(equalityCheck) {
   return function areArgumentsShallowlyEqual(prev, next) {
     if (prev === null || next === null || prev.length !== next.length) {
       return false;
-    } // Do this in a for loop (and not a `forEach` or an `every`) so we can determine equality as fast as possible.
+    } / Do this in a for loop (and not a `forEach` or an `every`) so we can determine equality as fast as possible.
 
 
     var length = prev.length;
@@ -10496,13 +10496,13 @@ function defaultMemoize(func, equalityCheckOrOptions) {
       maxSize = _providedOptions$maxS === void 0 ? 1 : _providedOptions$maxS,
       resultEqualityCheck = providedOptions.resultEqualityCheck;
   var comparator = createCacheKeyComparator(equalityCheck);
-  var cache = maxSize === 1 ? createSingletonCache(comparator) : createLruCache(maxSize, comparator); // we reference arguments instead of spreading them for performance reasons
+  var cache = maxSize === 1 ? createSingletonCache(comparator) : createLruCache(maxSize, comparator); / we reference arguments instead of spreading them for performance reasons
 
   function memoized() {
     var value = cache.get(arguments);
 
     if (value === NOT_FOUND) {
-      // @ts-ignore
+      / @ts-ignore
       value = func.apply(null, arguments);
 
       if (resultEqualityCheck) {
@@ -10577,54 +10577,54 @@ function createSelectorCreator(memoize) {
 
     var _recomputations = 0;
 
-    var _lastResult; // Due to the intricacies of rest params, we can't do an optional arg after `...funcs`.
-    // So, start by declaring the default value here.
-    // (And yes, the words 'memoize' and 'options' appear too many times in this next sequence.)
+    var _lastResult; / Due to the intricacies of rest params, we can't do an optional arg after `...funcs`.
+    / So, start by declaring the default value here.
+    / (And yes, the words 'memoize' and 'options' appear too many times in this next sequence.)
 
 
     var directlyPassedOptions = {
       memoizeOptions: undefined
-    }; // Normally, the result func or "output selector" is the last arg
+    }; / Normally, the result func or "output selector" is the last arg
 
-    var resultFunc = funcs.pop(); // If the result func is actually an _object_, assume it's our options object
+    var resultFunc = funcs.pop(); / If the result func is actually an _object_, assume it's our options object
 
     if (typeof resultFunc === 'object') {
-      directlyPassedOptions = resultFunc; // and pop the real result func off
+      directlyPassedOptions = resultFunc; / and pop the real result func off
 
       resultFunc = funcs.pop();
     }
 
     if (typeof resultFunc !== 'function') {
       throw new Error("createSelector expects an output function after the inputs, but received: [" + typeof resultFunc + "]");
-    } // Determine which set of options we're using. Prefer options passed directly,
-    // but fall back to options given to createSelectorCreator.
+    } / Determine which set of options we're using. Prefer options passed directly,
+    / but fall back to options given to createSelectorCreator.
 
 
     var _directlyPassedOption = directlyPassedOptions,
         _directlyPassedOption2 = _directlyPassedOption.memoizeOptions,
-        memoizeOptions = _directlyPassedOption2 === void 0 ? memoizeOptionsFromArgs : _directlyPassedOption2; // Simplifying assumption: it's unlikely that the first options arg of the provided memoizer
-    // is an array. In most libs I've looked at, it's an equality function or options object.
-    // Based on that, if `memoizeOptions` _is_ an array, we assume it's a full
-    // user-provided array of options. Otherwise, it must be just the _first_ arg, and so
-    // we wrap it in an array so we can apply it.
+        memoizeOptions = _directlyPassedOption2 === void 0 ? memoizeOptionsFromArgs : _directlyPassedOption2; / Simplifying assumption: it's unlikely that the first options arg of the provided memoizer
+    / is an array. In most libs I've looked at, it's an equality function or options object.
+    / Based on that, if `memoizeOptions` _is_ an array, we assume it's a full
+    / user-provided array of options. Otherwise, it must be just the _first_ arg, and so
+    / we wrap it in an array so we can apply it.
 
     var finalMemoizeOptions = Array.isArray(memoizeOptions) ? memoizeOptions : [memoizeOptions];
     var dependencies = getDependencies(funcs);
     var memoizedResultFunc = memoize.apply(void 0, [function recomputationWrapper() {
-      _recomputations++; // apply arguments instead of spreading for performance.
+      _recomputations++; / apply arguments instead of spreading for performance.
 
       return resultFunc.apply(null, arguments);
-    }].concat(finalMemoizeOptions)); // If a selector is called with the exact same arguments we don't need to traverse our dependencies again.
+    }].concat(finalMemoizeOptions)); / If a selector is called with the exact same arguments we don't need to traverse our dependencies again.
 
     var selector = memoize(function dependenciesChecker() {
       var params = [];
       var length = dependencies.length;
 
       for (var i = 0; i < length; i++) {
-        // apply arguments instead of spreading and mutate a local list of params for performance.
-        // @ts-ignore
+        / apply arguments instead of spreading and mutate a local list of params for performance.
+        / @ts-ignore
         params.push(dependencies[i].apply(null, arguments));
-      } // apply arguments instead of spreading for performance.
+      } / apply arguments instead of spreading for performance.
 
 
       _lastResult = memoizedResultFunc.apply(null, params);
@@ -10645,7 +10645,7 @@ function createSelectorCreator(memoize) {
       }
     });
     return selector;
-  }; // @ts-ignore
+  }; / @ts-ignore
 
 
   return createSelector;
@@ -10662,7 +10662,7 @@ var createStructuredSelector = function createStructuredSelector(selectors, sele
   }
 
   var objectKeys = Object.keys(selectors);
-  var resultSelector = selectorCreator( // @ts-ignore
+  var resultSelector = selectorCreator( / @ts-ignore
   objectKeys.map(function (key) {
     return selectors[key];
   }), function () {
@@ -11677,34 +11677,34 @@ function n(n){for(var r=arguments.length,t=Array(r>1?r-1:0),e=1;e<r;e++)t[e-1]=a
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	/ The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
+/******/ 	/ The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
+/******/ 		/ Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		/ Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			/ no module.id needed
+/******/ 			/ no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
+/******/ 		/ Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		/ Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		/ define getter functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
@@ -11733,7 +11733,7 @@ function n(n){for(var r=arguments.length,t=Array(r>1?r-1:0),e=1;e<r;e++)t[e-1]=a
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		/ define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });

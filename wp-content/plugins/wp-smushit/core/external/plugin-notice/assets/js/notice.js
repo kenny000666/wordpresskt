@@ -3,7 +3,7 @@
 	    selectorEl = notice.data('selectorEl'),
 	    selectorFn = notice.data('selectorFn');
 
-	// customize placement
+	/ customize placement
 	if ('' !== selectorEl && '' !== selectorFn) {
 		try {
 			$.fn[selectorFn].call($(selectorEl), notice);
@@ -27,11 +27,11 @@
 					action: action,
 				},
 			}).always(function () {
-				// ALWAYS CLOSE WHATEVER AJAX RESULT
+				/ ALWAYS CLOSE WHATEVER AJAX RESULT
 				removeNotice();
 			});
 		} else {
-			// ALWAYS CLOSE EVEN AJAX NOT POSSIBLE
+			/ ALWAYS CLOSE EVEN AJAX NOT POSSIBLE
 			removeNotice();
 		}
 

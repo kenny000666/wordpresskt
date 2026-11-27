@@ -70,7 +70,7 @@ jQuery(document).ready(function ($) {
             },
             success: function (result) {
                 Duplicator.Help.Data = result;
-                //because ajax is async we need to open the modal here for first time
+                /because ajax is async we need to open the modal here for first time
                 Duplicator.Help.Display();
             },
             error: function (result) {
@@ -102,7 +102,7 @@ jQuery(document).ready(function ($) {
         }
 
         $.each(search.split(' '), function(key, value) {
-            //escape regex
+            /escape regex
             value = value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
             if (value.length > 1) {

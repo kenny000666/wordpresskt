@@ -9,10 +9,10 @@
  * @type {Object}
  */
 window.addComment = ( function( window ) {
-	// Avoid scope lookups on commonly used variables.
+	/ Avoid scope lookups on commonly used variables.
 	var document = window.document;
 
-	// Settings.
+	/ Settings.
 	var config = {
 		commentReplyClass   : 'comment-reply-link',
 		commentReplyTitleId : 'reply-title',
@@ -23,10 +23,10 @@ window.addComment = ( function( window ) {
 		postIdFieldId       : 'comment_post_ID'
 	};
 
-	// Cross browser MutationObserver.
+	/ Cross browser MutationObserver.
 	var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
 
-	// Check browser cuts the mustard.
+	/ Check browser cuts the mustard.
 	var cutsTheMustard = 'querySelector' in document && 'addEventListener' in window;
 
 	/*
@@ -35,16 +35,16 @@ window.addComment = ( function( window ) {
 	 */
 	var supportsDataset = !! document.documentElement.dataset;
 
-	// For holding the cancel element.
+	/ For holding the cancel element.
 	var cancelElement;
 
-	// For holding the comment form element.
+	/ For holding the comment form element.
 	var commentFormElement;
 
-	// The respond element.
+	/ The respond element.
 	var respondElement;
 
-	// The mutation observer.
+	/ The mutation observer.
 	var observer;
 
 	if ( cutsTheMustard && document.readyState !== 'loading' ) {
@@ -59,10 +59,10 @@ window.addComment = ( function( window ) {
 	 * @since 5.1.1
 	 */
 	function ready() {
-		// Initialize the events.
+		/ Initialize the events.
 		init();
 
-		// Set up a MutationObserver to check for comments loaded late.
+		/ Set up a MutationObserver to check for comments loaded late.
 		observeChanges();
 	}
 
@@ -84,11 +84,11 @@ window.addComment = ( function( window ) {
 			return;
 		}
 
-		// Get required elements.
+		/ Get required elements.
 		cancelElement = getElementById( config.cancelReplyId );
 		commentFormElement = getElementById( config.commentFormId );
 
-		// No cancel element, no replies.
+		/ No cancel element, no replies.
 		if ( ! cancelElement ) {
 			return;
 		}
@@ -96,12 +96,12 @@ window.addComment = ( function( window ) {
 		cancelElement.addEventListener( 'touchstart', cancelEvent );
 		cancelElement.addEventListener( 'click',      cancelEvent );
 
-		// Submit the comment form when the user types [Ctrl] or [Cmd] + [Enter].
+		/ Submit the comment form when the user types [Ctrl] or [Cmd] + [Enter].
 		var submitFormHandler = function( e ) {
 			if ( ( e.metaKey || e.ctrlKey ) && e.keyCode === 13 && document.activeElement.tagName.toLowerCase() !== 'a' ) {
 				commentFormElement.removeEventListener( 'keydown', submitFormHandler );
 				e.preventDefault();
-				// The submit button ID is 'submit' so we can't call commentFormElement.submit(). Click it instead.
+				/ The submit button ID is 'submit' so we can't call commentFormElement.submit(). Click it instead.
 				commentFormElement.submit.click();
 				return false;
 			}
@@ -135,17 +135,17 @@ window.addComment = ( function( window ) {
 		var selectorClass = config.commentReplyClass;
 		var allReplyLinks;
 
-		// childNodes is a handy check to ensure the context is a HTMLElement.
+		/ childNodes is a handy check to ensure the context is a HTMLElement.
 		if ( ! context || ! context.childNodes ) {
 			context = document;
 		}
 
 		if ( document.getElementsByClassName ) {
-			// Fastest.
+			/ Fastest.
 			allReplyLinks = context.getElementsByClassName( selectorClass );
 		}
 		else {
-			// Fast.
+			/ Fast.
 			allReplyLinks = context.querySelectorAll( '.' + selectorClass );
 		}
 
@@ -165,13 +165,13 @@ window.addComment = ( function( window ) {
 		var temporaryElement = getElementById( temporaryFormId );
 
 		if ( ! temporaryElement || ! respondElement ) {
-			// Conditions for cancel link fail.
+			/ Conditions for cancel link fail.
 			return;
 		}
 
 		getElementById( config.parentIdFieldId ).value = '0';
 
-		// Move the respond form back in place of the temporary element.
+		/ Move the respond form back in place of the temporary element.
 		var headingText = temporaryElement.textContent;
 		temporaryElement.parentNode.replaceChild( respondElement, temporaryElement );
 		cancelLink.style.display = 'none';
@@ -257,7 +257,7 @@ window.addComment = ( function( window ) {
 		var i = mutationRecords.length;
 
 		while ( i-- ) {
-			// Call init() once if any record in this set adds nodes.
+			/ Call init() once if any record in this set adds nodes.
 			if ( mutationRecords[ i ].addedNodes.length ) {
 				init();
 				return;
@@ -313,11 +313,11 @@ window.addComment = ( function( window ) {
 	 * @param {string} replyTo    Form heading content.
 	 */
 	function moveForm( addBelowId, commentId, respondId, postId, replyTo ) {
-		// Get elements based on their IDs.
+		/ Get elements based on their IDs.
 		var addBelowElement = getElementById( addBelowId );
 		respondElement  = getElementById( respondId );
 
-		// Get the hidden fields.
+		/ Get the hidden fields.
 		var parentIdField   = getElementById( config.parentIdFieldId );
 		var postIdField     = getElementById( config.postIdFieldId );
 		var element, cssHidden, style;
@@ -327,7 +327,7 @@ window.addComment = ( function( window ) {
 		var replyLinkToParent    = replyHeadingTextNode && replyHeadingTextNode.nextSibling;
 
 		if ( ! addBelowElement || ! respondElement || ! parentIdField ) {
-			// Missing key elements, fail.
+			/ Missing key elements, fail.
 			return;
 		}
 
@@ -337,7 +337,7 @@ window.addComment = ( function( window ) {
 
 		addPlaceHolder( respondElement );
 
-		// Set the value of the post.
+		/ Set the value of the post.
 		if ( postId && postIdField ) {
 			postIdField.value = postId;
 		}
@@ -363,18 +363,18 @@ window.addComment = ( function( window ) {
 			return false;
 		};
 
-		// Focus on the first field in the comment form.
+		/ Focus on the first field in the comment form.
 		try {
 			for ( var i = 0; i < commentFormElement.elements.length; i++ ) {
 				element = commentFormElement.elements[i];
 				cssHidden = false;
 
-				// Get elements computed style.
+				/ Get elements computed style.
 				if ( 'getComputedStyle' in window ) {
-					// Modern browsers.
+					/ Modern browsers.
 					style = window.getComputedStyle( element );
 				} else if ( document.documentElement.currentStyle ) {
-					// IE 8.
+					/ IE 8.
 					style = element.currentStyle;
 				}
 
@@ -388,13 +388,13 @@ window.addComment = ( function( window ) {
 					cssHidden = true;
 				}
 
-				// Skip form elements that are hidden or disabled.
+				/ Skip form elements that are hidden or disabled.
 				if ( 'hidden' === element.type || element.disabled || cssHidden ) {
 					continue;
 				}
 
 				element.focus();
-				// Stop after the first focusable element.
+				/ Stop after the first focusable element.
 				break;
 			}
 		}
@@ -426,7 +426,7 @@ window.addComment = ( function( window ) {
 		var initialHeadingText = replyElement ? replyElement.firstChild.textContent : '';
 
 		if ( temporaryElement ) {
-			// The element already exists, no need to recreate.
+			/ The element already exists, no need to recreate.
 			return;
 		}
 

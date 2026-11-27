@@ -9,7 +9,7 @@
 	var InlineEditor, debugMode, selection, utils = {};
 	var slice = Array.prototype.slice;
 
-	// allow command list
+	/ allow command list
 	var commandsReg = {
 		block: /^(?:p|h[1-6]|blockquote|pre)$/,
 		inline: /^(?:justify(center|full|left|right)|strikethrough|insert(un)?orderedlist|(in|out)dent)$/,
@@ -30,7 +30,7 @@
 
 	var autoLinkReg = {
 		url: /((https?|ftp):\/\/|www\.)[^\s<]{3,}/gi,
-		prefix: /^(?:https?|ftp):\/\//i,
+		prefix: /^(?:https?|ftp):\/\/i,
 		notLink: /^(?:img|a|input|audio|video|source|code|pre|script|head|title|style)$/i,
 		maxLength: 100
 	};
@@ -50,7 +50,7 @@
 		}
 	};
 
-	// type detect
+	/ type detect
 	utils.is = function(obj, type) {
 		return Object.prototype.toString.call(obj).slice(8, -1) === type;
 	};
@@ -67,7 +67,7 @@
 		}
 	};
 
-	// copy props from a obj
+	/ copy props from a obj
 	utils.copy = function(defaults, source) {
 		utils.forEach(source, function (value, key) {
 			defaults[key] = utils.is(value, 'Object') ? utils.copy({}, value) :
@@ -76,7 +76,7 @@
 		return defaults;
 	};
 
-	// log
+	/ log
 	utils.log = function(message, force) {
 		if (debugMode || force)
 			console.log('%cPEN DEBUGGER: %c' + message, 'font-family:arial,sans-serif;color:#1abf89;line-height:2em;', 'font-family:cursor,monospace;color:#333;');
@@ -92,16 +92,16 @@
 		};
 	};
 
-	// merge: make it easy to have a fallback
+	/ merge: make it easy to have a fallback
 	utils.merge = function(config) {
 
-		// default settings
+		/ default settings
 		var defaults = {
 			class: 'pen',
 			placeholderClass: 'pen-placeholder',
 			placeholderAttr: 'data-pen-placeholder',
 			debug: false,
-			toolbar: null, // custom toolbar
+			toolbar: null, / custom toolbar
 			mode: 'basic',
 			ignoreLineBreak: false,
 			toolbarIconsPrefix: 'fa fa-',
@@ -119,7 +119,7 @@
 			linksInNewWindow: false
 		};
 
-		// user-friendly config
+		/ user-friendly config
 		if (config.nodeType === 1) {
 			defaults.editor = config;
 		} else if (config.match && config.match(/^#[\S]+$/)) {
@@ -137,7 +137,7 @@
 		try {
 			doc.execCommand(cmd, false, val);
 		} catch(err) {
-			// TODO: there's an error when insert a image to document, but not a bug
+			/ TODO: there's an error when insert a image to document, but not a bug
 			return utils.log('fail' + message, true);
 		}
 
@@ -150,7 +150,7 @@
 		ctx._range.selectNode(node);
 		ctx._range.collapse(false);
 
-		// hide menu when a image was inserted
+		/ hide menu when a image was inserted
 		if(name === 'insertimage' && ctx._menu) toggleNode(ctx._menu, true);
 
 		return commandOverall(name, val);
@@ -353,7 +353,7 @@
 
 		if (!ctx._urlInput) return;
 
-		// create link
+		/ create link
 		var input = ctx._urlInput;
 		if (toolbar === ctx._menu) showLinkInput(ctx);
 		else {
@@ -463,11 +463,11 @@
 				if (ctx._menu.style.display === 'flex') ctx.menu();
 			};
 
-			// change menu offset when window resize / scroll
+			/ change menu offset when window resize / scroll
 			addListener(ctx, root, 'resize', setpos);
 			addListener(ctx, root, 'scroll', setpos);
 
-			// toggle toolbar on mouse select
+			/ toggle toolbar on mouse select
 			var selecting = false;
 			addListener(ctx, editor, 'mousedown', function() {
 				selecting = true;
@@ -483,7 +483,7 @@
 				selecting = false;
 			});
 
-			// Hide menu when focusing outside of editor
+			/ Hide menu when focusing outside of editor
 			outsideClick = function(e) {
 				if (ctx._menu && !containsNode(editor, e.target) && !containsNode(ctx._menu, e.target)) {
 					removeListener(ctx, doc, 'click', outsideClick);
@@ -513,12 +513,12 @@
 				addEmptyCharAtEnd(ctx);
 			}
 
-			// toggle toolbar on key select
+			/ toggle toolbar on key select
 			if (e.which !== 13 || e.shiftKey) return updateStatus(400);
 			var node = getNode(ctx, true);
 			if (!node || !node.nextSibling || !lineBreakReg.test(node.nodeName)) return;
 			if (node.nodeName !== node.nextSibling.nodeName) return;
-			// hack for webkit, make 'enter' behavior like as firefox.
+			/ hack for webkit, make 'enter' behavior like as firefox.
 			if (node.lastChild.nodeName !== 'BR') node.appendChild(doc.createElement('br'));
 			utils.forEach(node.nextSibling.childNodes, function(child) {
 				if (child) node.appendChild(child);
@@ -527,7 +527,7 @@
 			focusNode(ctx, node.lastChild, ctx.getRange());
 		});
 
-		// check line break
+		/ check line break
 		addListener(ctx, editor, 'keydown', function(e) {
 			editor.classList.remove(ctx.config.placeholderClass);
 
@@ -558,7 +558,7 @@
 			var lastChild = node.lastChild;
 			if (!lastChild || !lastChild.previousSibling) return;
 			if (lastChild.previousSibling.textContent || lastChild.textContent) return;
-			// quit block mode for 2 'enter'
+			/ quit block mode for 2 'enter'
 			e.preventDefault();
 			var p = doc.createElement('p');
 			p.innerHTML = '<br>';
@@ -584,7 +584,7 @@
 			ctx.checkContentChange();
 		});
 
-		// listen for paste and clear style
+		/ listen for paste and clear style
 		addListener(ctx, editor, 'paste', function() {
 			setTimeout(function() {
 				ctx.cleanContent();
@@ -609,7 +609,7 @@
 		return ctx;
 	}
 
-	// trigger local events
+	/ trigger local events
 	function triggerListener(ctx, type) {
 		if (!ctx._events.hasOwnProperty(type)) return;
 		var args = slice.call(arguments, 2);
@@ -657,7 +657,7 @@
 		return (str || '').trim().replace(/\u200b/g, '');
 	}
 
-	// node.contains is not implemented in IE10/IE11
+	/ node.contains is not implemented in IE10/IE11
 	function containsNode(parent, child) {
 		if (parent === child) return true;
 		child = child.parentNode;
@@ -676,7 +676,7 @@
 
 		node = ctx._range.commonAncestorContainer;
 
-		// Fix selection detection for Firefox
+		/ Fix selection detection for Firefox
 		if (node.hasChildNodes() && ctx._range.startOffset + 1 === ctx._range.endOffset) {
 			node = node.childNodes[ctx._range.startOffset];
 		}
@@ -786,7 +786,7 @@
 			var realUrl = url, displayUrl = url;
 			count++;
 			if (url.length > autoLinkReg.maxLength) displayUrl = url.slice(0, autoLinkReg.maxLength) + '...';
-			// Add http prefix if necessary
+			/ Add http prefix if necessary
 			if (!autoLinkReg.prefix.test(realUrl)) realUrl = 'http://' + realUrl;
 			return '<a href="' + realUrl + '">' + displayUrl + '</a>';
 		});
@@ -803,45 +803,45 @@
 
 		debugMode = config.debug;
 
-		// merge user config
+		/ merge user config
 		var defaults = utils.merge(config);
 
 		var editor = defaults.editor;
 
 		if (!editor || editor.nodeType !== 1) throw new Error('Can\'t find editor');
 
-		// set default class
+		/ set default class
 		editor.classList.add.apply(editor.classList, defaults.class.split(' '));
 
-		// set contenteditable
+		/ set contenteditable
 		editor.setAttribute('contenteditable', 'true');
 
-		// assign config
+		/ assign config
 		this.config = defaults;
 
-		// set placeholder
+		/ set placeholder
 		if (defaults.placeholder) editor.setAttribute(this.config.placeholderAttr, defaults.placeholder);
 		checkPlaceholder(this);
 
-		// save the selection obj
+		/ save the selection obj
 		this.selection = selection;
 
-		// define local events
+		/ define local events
 		this._events = {change: []};
 
-		// enable toolbar
+		/ enable toolbar
 		initToolbar(this);
 
-		// init events
+		/ init events
 		initEvents(this);
 
-		// to check content change
+		/ to check content change
 		this._prevContent = this.getContent();
 
-		// enable markdown covert
+		/ enable markdown covert
 		if (this.markdown) this.markdown.init(this);
 
-		// stay on the page
+		/ stay on the page
 		if (this.config.stay) this.stay(this.config);
 
 		if(this.config.input) {
@@ -908,7 +908,7 @@
 
 		if (!range) {
 			range = this.getRange();
-			range.collapse(false); // set to end
+			range.collapse(false); / set to end
 		}
 		try {
 			selection.removeAllRanges();
@@ -932,8 +932,8 @@
 		} else if (commandsReg.inline.test(name)) {
 			commandOverall(name, value);
 		} else if (commandsReg.biu.test(name)) {
-			// Temporarily removing all override style rules
-			// to make sure the command will be executed correctly
+			/ Temporarily removing all override style rules
+			/ to make sure the command will be executed correctly
 			var styleBackup = styleBackupDict[ name ];
 
 			styleBackup.backupValue = this.config.editor.style[ styleBackup.styleKey ];
@@ -956,8 +956,8 @@
 		if (name === 'indent') this.checkContentChange();
 	};
 
-	// remove attrs and tags
-	// pen.cleanContent({cleanAttrs: ['style'], cleanTags: ['id']})
+	/ remove attrs and tags
+	/ pen.cleanContent({cleanAttrs: ['style'], cleanTags: ['id']})
 	InlineEditor.prototype.cleanContent = function(options) {
 		var editor = this.config.editor;
 
@@ -978,18 +978,18 @@
 		return this;
 	};
 
-	// auto link content, return content
+	/ auto link content, return content
 	InlineEditor.prototype.autoLink = function() {
 		autoLink(this.config.editor);
 		return this.getContent();
 	};
 
-	// highlight menu
+	/ highlight menu
 	InlineEditor.prototype.highlight = function() {
 		var toolbar = this._toolbar || this._menu,
 			node = getNode(this);
 
-		// remove all highlights
+		/ remove all highlights
 		utils.forEach(toolbar.querySelectorAll('.active'), function(el) {
 			el.classList.remove('active');
 		}, true);
@@ -1002,7 +1002,7 @@
 			highlight;
 
 		if (urlInput && toolbar === this._menu) {
-			// reset url inputs
+			/ reset url inputs
 			urlInput.value = '';
 
 			this._externalUrlCheckbox.checked = false;
@@ -1088,12 +1088,12 @@
 		return this;
 	};
 
-	// show menu
+	/ show menu
 	InlineEditor.prototype.menu = function() {
 		if (!this._menu) return this;
 
 		if (selection.isCollapsed) {
-			this._menu.style.display = 'none'; //hide menu
+			this._menu.style.display = 'none'; /hide menu
 			this._inputActive = false;
 			return this;
 		}
@@ -1114,25 +1114,25 @@
 			, menuOffset = {x: 0, y: 0}
 			, stylesheet = this._stylesheet;
 
-		// fixes some browser double click visual discontinuity
-		// if the offset has no width or height it should not be used
+		/ fixes some browser double click visual discontinuity
+		/ if the offset has no width or height it should not be used
 		if (offset.width === 0 && offset.height === 0) return this;
 
-		// store the stylesheet used for positioning the menu horizontally
+		/ store the stylesheet used for positioning the menu horizontally
 		if (this._stylesheet === undefined) {
 			var style = document.createElement("style");
 			document.head.appendChild(style);
 			this._stylesheet = stylesheet = style.sheet;
 		}
-		// display it to caculate its width & height
+		/ display it to caculate its width & height
 		menu.style.display = 'flex';
 
 		menuOffset.x = left - (menu.clientWidth / 2);
 		menuOffset.y = top - menu.clientHeight;
 
-		// check to see if menu has over-extended its bounding box. if it has,
-		// 1) apply a new class if overflowed on top;
-		// 2) apply a new rule if overflowed on the left
+		/ check to see if menu has over-extended its bounding box. if it has,
+		/ 1) apply a new class if overflowed on top;
+		/ 2) apply a new rule if overflowed on the left
 		if (stylesheet.cssRules.length > 0) {
 			stylesheet.deleteRule(0);
 		}
@@ -1193,7 +1193,7 @@
 		return this;
 	};
 
-	// a fallback for old browers
+	/ a fallback for old browers
 	root.ElementorInlineEditor = function(config) {
 		if (!config) return utils.log('can\'t find config', true);
 
@@ -1206,7 +1206,7 @@
 		return defaults.editor;
 	};
 
-	// export content as markdown
+	/ export content as markdown
 	var regs = {
 		a: [/<a\b[^>]*href=["']([^"]+|[^']+)\b[^>]*>(.*?)<\/a>/ig, '[$2]($1)'],
 		img: [/<img\b[^>]*src=["']([^\"+|[^']+)[^>]*>/ig, '![]($1)'],
@@ -1225,8 +1225,8 @@
 
 	InlineEditor.prototype.toMd = function() {
 		var html = this.getContent()
-			.replace(/\n+/g, '') // remove line break
-			.replace(/<([uo])l\b[^>]*>(.*?)<\/\1l>/ig, '$2'); // remove ul/ol
+			.replace(/\n+/g, '') / remove line break
+			.replace(/<([uo])l\b[^>]*>(.*?)<\/\1l>/ig, '$2'); / remove ul/ol
 
 		for(var p in regs) {
 			if (regs.hasOwnProperty(p))
@@ -1235,7 +1235,7 @@
 		return html.replace(/\*{5}/g, '**');
 	};
 
-	// make it accessible
+	/ make it accessible
 	if (doc.getSelection) {
 		selection = doc.getSelection();
 		root.ElementorInlineEditor = InlineEditor;

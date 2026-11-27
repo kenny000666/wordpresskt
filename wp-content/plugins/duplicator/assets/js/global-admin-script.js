@@ -131,7 +131,7 @@ jQuery(document).ready(function ($) {
                     nonce: dup_global_script_data.nonce_dashboard_widged_dismiss_recommended
                 },
                 success: function (result, textStatus, jqXHR) {
-                    // do nothing
+                    / do nothing
                 }
             });
         });

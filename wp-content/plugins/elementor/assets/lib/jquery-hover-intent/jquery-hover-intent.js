@@ -49,7 +49,7 @@
 			}
 		}
 
-		// Public methods
+		/ Public methods
 		h.options = function( opt ) {
 			options = $.extend( {}, options, opt );
 

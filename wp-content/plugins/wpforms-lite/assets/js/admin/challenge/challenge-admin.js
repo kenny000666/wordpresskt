@@ -82,8 +82,8 @@ WPFormsChallenge.admin = window.WPFormsChallenge.admin || ( function( document, 
 				wpforms_challenge_admin.option.window_closed = '1';
 				$listBlock.addClass( 'closed' );
 
-				// Add `transition-back` class when the forward transition is completed.
-				// It is needed to properly implement transitions order for some elements.
+				/ Add `transition-back` class when the forward transition is completed.
+				/ It is needed to properly implement transitions order for some elements.
 				setTimeout( function() {
 					$listBlock.addClass( 'transition-back' );
 				}, 600 );
@@ -105,7 +105,7 @@ WPFormsChallenge.admin = window.WPFormsChallenge.admin || ( function( document, 
 
 			$( '.wpforms-challenge' ).remove();
 
-			// In the Form Builder, we must also make the Embed button clickable.
+			/ In the Form Builder, we must also make the Embed button clickable.
 			$( '#wpforms-embed' ).removeClass( 'wpforms-disabled' );
 
 			app.saveChallengeOption( optionData );
@@ -136,17 +136,17 @@ WPFormsChallenge.admin = window.WPFormsChallenge.admin || ( function( document, 
 
 			if ( typeof WPFormsBuilder !== 'undefined' ) {
 				WPFormsChallenge.admin.saveChallengeOption( optionData )
-					.done( function() { // Save the form before removing scripts if we're in a WPForms Builder.
+					.done( function() { / Save the form before removing scripts if we're in a WPForms Builder.
 						if ( localStorage.getItem( 'wpformsChallengeStep' ) !==  null ) {
 							WPFormsBuilder.formSave( false );
 						}
-					} ).done( // Remove scripts related to challenge.
+					} ).done( / Remove scripts related to challenge.
 						$( '#wpforms-challenge-admin-js, #wpforms-challenge-core-js, #wpforms-challenge-admin-js-extra, #wpforms-challenge-builder-js' )
 							.remove()
 					);
 			} else {
 				WPFormsChallenge.admin.saveChallengeOption( optionData )
-					.done( app.triggerPageSave ); // Assume we're on form embed page.
+					.done( app.triggerPageSave ); / Assume we're on form embed page.
 			}
 		},
 
@@ -167,7 +167,7 @@ WPFormsChallenge.admin = window.WPFormsChallenge.admin || ( function( document, 
 				_wpnonce   : app.l10n.nonce,
 			};
 
-			// Save window closed (collapsed) state as well.
+			/ Save window closed (collapsed) state as well.
 			data.option_data.window_closed = wpforms_challenge_admin.option.window_closed;
 
 			$.extend( wpforms_challenge_admin.option, optionData );
@@ -180,7 +180,7 @@ WPFormsChallenge.admin = window.WPFormsChallenge.admin || ( function( document, 
 		},
 	};
 
-	// Provide access to public functions/properties.
+	/ Provide access to public functions/properties.
 	return app;
 
 }( document, window, jQuery ) );

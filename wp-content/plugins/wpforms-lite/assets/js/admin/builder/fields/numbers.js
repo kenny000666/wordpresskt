@@ -5,12 +5,12 @@
  *
  * @since 1.9.4
  */
-var WPForms = window.WPForms || {}; // eslint-disable-line no-var
+var WPForms = window.WPForms || {}; / eslint-disable-line no-var
 
 WPForms.Admin = WPForms.Admin || {};
 WPForms.Admin.Builder = WPForms.Admin.Builder || {};
 
-WPForms.Admin.Builder.FieldNumbers = WPForms.Admin.Builder.FieldNumbers || ( function( document, window, $ ) { // eslint-disable-line
+WPForms.Admin.Builder.FieldNumbers = WPForms.Admin.Builder.FieldNumbers || ( function( document, window, $ ) { / eslint-disable-line
 	/**
 	 * Public functions and properties.
 	 *
@@ -96,7 +96,7 @@ WPForms.Admin.Builder.FieldNumbers = WPForms.Admin.Builder.FieldNumbers || ( fun
 		smartTagClickTracking() {
 			app.tagClicked = true;
 
-			// Reset the flag after a short delay.
+			/ Reset the flag after a short delay.
 			setTimeout( () => {
 				app.tagClicked = false;
 			}, 200 );
@@ -288,8 +288,8 @@ WPForms.Admin.Builder.FieldNumbers = WPForms.Admin.Builder.FieldNumbers || ( fun
 		 */
 		onChangeNumbersDefaultValue( event ) {
 			if (
-				app.tagClicked || // Tag was recently clicked to prevent unnecessary updates.
-				event.handleObj?.type === 'focusout' // Event was triggered when editable tag was changed.
+				app.tagClicked || / Tag was recently clicked to prevent unnecessary updates.
+				event.handleObj?.type === 'focusout' / Event was triggered when editable tag was changed.
 			) {
 				return;
 			}

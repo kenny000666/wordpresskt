@@ -20,7 +20,7 @@
 
 			s = this.settings;
 
-			// Document ready.
+			/ Document ready.
 			$( WPFormsProviders.ready );
 
 			WPFormsProviders.bindUIActions();
@@ -33,7 +33,7 @@
 		 */
 		ready: function() {
 
-			// Setup/cache some vars not available before.
+			/ Setup/cache some vars not available before.
 			s.form = $( '#wpforms-builder-form' );
 		},
 
@@ -44,33 +44,33 @@
 		 */
 		bindUIActions: function() {
 
-			// Delete connection.
+			/ Delete connection.
 			$( document ).on( 'click', '.wpforms-provider-connection-delete', function( e ) {
 				WPFormsProviders.connectionDelete( this, e );
 			} );
 
-			// Add new connection.
+			/ Add new connection.
 			$( document ).on( 'click', '.wpforms-provider-connections-add', function( e ) {
 				WPFormsProviders.connectionAdd( this, e );
 			} );
 
-			// Add new provider account.
+			/ Add new provider account.
 			$( document ).on( 'click', '.wpforms-provider-account-add button', function( e ) {
 				WPFormsProviders.accountAdd( this, e );
 			} );
 
-			// Select provider account.
+			/ Select provider account.
 			$( document ).on( 'change', '.wpforms-provider-accounts select', function( e ) {
 				WPFormsProviders.accountSelect( this, e );
 			} );
 
-			// Select account list.
+			/ Select account list.
 			$( document ).on( 'change', '.wpforms-provider-lists select', function( e ) {
 				WPFormsProviders.accountListSelect( this, e );
 			} );
 
-			// BC: Constant Contact v2, Aweber v1 and Campaign Monitor don't have JS logic for updating select fields with form fields options.
-			// That's why we have to refresh the form every time when change something in fields and visit the Marketing tab.
+			/ BC: Constant Contact v2, Aweber v1 and Campaign Monitor don't have JS logic for updating select fields with form fields options.
+			/ That's why we have to refresh the form every time when change something in fields and visit the Marketing tab.
 			$( document ).on( 'wpformsPanelSwitch', function( e, targetPanel ) {
 				const legacyProviders = [ 'aweber', 'campaign-monitor', 'constant-contact' ];
 				const hasConfiguredLegacyProvider = legacyProviders.some( ( legacyProvider ) => $( `.wpforms-panel-content-section-${ legacyProvider } .wpforms-provider-connection` ).length > 0 );
@@ -80,8 +80,8 @@
 				}
 			} );
 
-			// Alert users if they save a form and do not configure required
-			// fields.
+			/ Alert users if they save a form and do not configure required
+			/ fields.
 			$( document ).on( 'wpformsSaved', function( e, data ) {
 				var providerAlerts = [];
 				var $connectionBlocks = $( '#wpforms-panel-providers' ).find( '.wpforms-connection-block' );
@@ -153,7 +153,7 @@
 
 							$this.closest( '.wpforms-provider-connection' ).remove();
 
-							// Update sidebar icon near the provider.
+							/ Update sidebar icon near the provider.
 							const provider = $this.closest( '.wpforms-provider-connection' ).data( 'provider' ),
 								$sidebarItem = $( '.wpforms-panel-sidebar-section-' + provider );
 
@@ -210,10 +210,10 @@
 								return false;
 							} else {
 
-								// Disable button.
+								/ Disable button.
 								WPFormsProviders.inputToggle( $this, 'disable' );
 
-								// Fire AJAX.
+								/ Fire AJAX.
 								var data =  {
 									action  : 'wpforms_provider_ajax_' + provider,
 									provider: provider,
@@ -227,7 +227,7 @@
 										$connections.find( '.wpforms-builder-provider-connections-default' ).addClass( 'wpforms-hidden' );
 										$connections.find( '.wpforms-provider-connections' ).prepend( res.data.html );
 
-										// Process and load the accounts if they exist.
+										/ Process and load the accounts if they exist.
 										var $connection = $connections.find( '.wpforms-provider-connection' ).first();
 										if ( $connection.find( '.wpforms-provider-accounts option:selected' ) ) {
 											$connection.find( '.wpforms-provider-accounts option' ).first().prop( 'selected', true );
@@ -262,16 +262,16 @@
 				$fields     = $container.find( ':input' ),
 				errors      = WPFormsProviders.requiredCheck( $fields, $container );
 
-			// Disable button.
+			/ Disable button.
 			WPFormsProviders.inputToggle( $this, 'disable' );
 
-			// Bail if we have any errors.
+			/ Bail if we have any errors.
 			if ( errors ) {
 				$this.prop( 'disabled', false ).find( 'i' ).remove();
 				return false;
 			}
 
-			// Fire AJAX.
+			/ Fire AJAX.
 			var data = {
 				action       : 'wpforms_provider_ajax_' + provider,
 				provider     : provider,
@@ -305,16 +305,16 @@
 				$container  = $this.parent(),
 				provider    = $connection.data( 'provider' );
 
-			// Disable select, show loading.
+			/ Disable select, show loading.
 			WPFormsProviders.inputToggle( $this, 'disable' );
 
-			// Remove any blocks that might exist as we prep for new account.
+			/ Remove any blocks that might exist as we prep for new account.
 			$container.nextAll( '.wpforms-connection-block' ).remove();
 			$container.nextAll( '.wpforms-conditional-block' ).remove();
 
 			if ( ! $this.val() ) {
 
-				// User selected to option to add new account.
+				/ User selected to option to add new account.
 				$connection.find( '.wpforms-provider-account-add input' ).val( '' );
 				$connection.find( '.wpforms-provider-account-add' ).slideDown();
 				WPFormsProviders.inputToggle( $this, 'enable' );
@@ -323,7 +323,7 @@
 
 				$connection.find( '.wpforms-provider-account-add' ).slideUp();
 
-				// Fire AJAX.
+				/ Fire AJAX.
 				var data = {
 					action       : 'wpforms_provider_ajax_' + provider,
 					provider     : provider,
@@ -335,7 +335,7 @@
 					if ( res.success ) {
 						$container.after( res.data.html );
 
-						// Process first list found.
+						/ Process first list found.
 						$connection.find( '.wpforms-provider-lists option' ).first().prop( 'selected', true );
 						$connection.find( '.wpforms-provider-lists select' ).trigger( 'change' );
 					} else {
@@ -358,10 +358,10 @@
 				$container  = $this.parent(),
 				provider    = $connection.data( 'provider' );
 
-			// Disable select, show loading.
+			/ Disable select, show loading.
 			WPFormsProviders.inputToggle( $this, 'disable' );
 
-			// Remove any blocks that might exist as we prep for new account.
+			/ Remove any blocks that might exist as we prep for new account.
 			$container.nextAll( '.wpforms-connection-block' ).remove();
 			$container.nextAll( '.wpforms-conditional-block' ).remove();
 
@@ -379,7 +379,7 @@
 				if ( res.success ) {
 					$container.after( res.data.html );
 
-					// Re-init tooltips for new fields.
+					/ Re-init tooltips for new fields.
 					wpf.initTooltips();
 				} else {
 					WPFormsProviders.errorDisplay( res.data.error, $container );
@@ -416,7 +416,7 @@
 										const $section = $( `#wpforms-panel-${ targetPanel } .wpforms-panel-sidebar-section.active` );
 										const section = $section.length && $section.data( 'section' ) !== 'default' ? $section.data( 'section' ) : null;
 
-										// Adding an active section parameter.
+										/ Adding an active section parameter.
 										if ( section ) {
 											wpforms_builder_provider_url += `&section=${ section }`;
 										}
@@ -434,9 +434,9 @@
 			}
 		},
 
-		//--------------------------------------------------------------------//
-		// Helper functions.
-		//--------------------------------------------------------------------//
+		/--------------------------------------------------------------------/
+		/ Helper functions.
+		/--------------------------------------------------------------------/
 
 		/**
 		 * Fire AJAX call.
@@ -499,10 +499,10 @@
 		requiredCheck: function( fields, location ) {
 			var error = false;
 
-			// Remove any previous errors.
+			/ Remove any previous errors.
 			location.find( '.wpforms-alert-required' ).remove();
 
-			// Loop through input fields and check for values.
+			/ Loop through input fields and check for values.
 			fields.each( function( index, el ) {
 				if ( $( el ).hasClass( 'wpforms-required' ) && $( el ).val().length === 0 ) {
 					$( el ).addClass( 'wpforms-error' );
@@ -574,7 +574,7 @@
 		 * @return {Object|null} Return provider object or null.
 		 */
 		getProviderClass( provider ) {
-			// eslint-disable-next-line no-console
+			/ eslint-disable-next-line no-console
 			console.warn( 'WARNING! Function "WPFormsProviders.getProviderClass()" has been deprecated!' );
 
 			const upperProviderPart = ( providerPart ) => (

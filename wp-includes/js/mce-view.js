@@ -106,16 +106,16 @@
 					var remaining = piece.content,
 						result, text;
 
-					// Ignore processed pieces, but retain their location.
+					/ Ignore processed pieces, but retain their location.
 					if ( piece.processed ) {
 						pieces.push( piece );
 						return;
 					}
 
-					// Iterate through the string progressively matching views
-					// and slicing the string as we go.
+					/ Iterate through the string progressively matching views
+					/ and slicing the string as we go.
 					while ( remaining && ( result = view.prototype.match( remaining ) ) ) {
-						// Any text before the match becomes an unprocessed piece.
+						/ Any text before the match becomes an unprocessed piece.
 						if ( result.index ) {
 							pieces.push( { content: remaining.substring( 0, result.index ) } );
 						}
@@ -124,18 +124,18 @@
 						instance = self.createInstance( type, result.content, result.options );
 						text = instance.loader ? '.' : instance.text;
 
-						// Add the processed piece for the match.
+						/ Add the processed piece for the match.
 						pieces.push( {
 							content: instance.ignore ? text : '<p data-wpview-marker="' + instance.encodedText + '">' + text + '</p>',
 							processed: true
 						} );
 
-						// Update the remaining content.
+						/ Update the remaining content.
 						remaining = remaining.slice( result.index + result.content.length );
 					}
 
-					// There are no additional matches.
-					// If any content remains, add it as an unprocessed piece.
+					/ There are no additional matches.
+					/ If any content remains, add it as an unprocessed piece.
 					if ( remaining ) {
 						pieces.push( { content: remaining } );
 					}
@@ -162,8 +162,8 @@
 				instance;
 
 			if ( text.indexOf( '[' ) !== -1 && text.indexOf( ']' ) !== -1 ) {
-				// Looks like a shortcode? Remove any line breaks from inside of shortcodes
-				// or autop will replace them with <p> and <br> later and the string won't match.
+				/ Looks like a shortcode? Remove any line breaks from inside of shortcodes
+				/ or autop will replace them with <p> and <br> later and the string won't match.
 				text = text.replace( /\[[^\]]+\]/g, function( match ) {
 					return match.replace( /[\r\n]/g, '' );
 				});
@@ -327,15 +327,15 @@
 
 			content = this.getContent();
 
-			// If there's nothing to render an no loader needs to be shown, stop.
+			/ If there's nothing to render an no loader needs to be shown, stop.
 			if ( ! this.loader && ! content ) {
 				return;
 			}
 
-			// We're about to rerender all views of this instance, so unbind rendered views.
+			/ We're about to rerender all views of this instance, so unbind rendered views.
 			force && this.unbind();
 
-			// Replace any left over markers.
+			/ Replace any left over markers.
 			this.replaceMarkers();
 
 			if ( content ) {
@@ -512,7 +512,7 @@
 
 			if ( body.indexOf( '[' ) !== -1 && body.indexOf( ']' ) !== -1 ) {
 				var shortcodesRegExp = new RegExp( '\\[\\/?(?:' + window.mceViewL10n.shortcodes.join( '|' ) + ')[^\\]]*?\\]', 'g' );
-				// Escape tags inside shortcode previews.
+				/ Escape tags inside shortcode previews.
 				body = body.replace( shortcodesRegExp, function( match ) {
 					return match.replace( /</g, '&lt;' ).replace( />/g, '&gt;' );
 				} );
@@ -622,7 +622,7 @@
 						return;
 					}
 
-					// Make sure the iframe still exists.
+					/ Make sure the iframe still exists.
 					if ( iframe.contentWindow ) {
 						$iframe = $( iframe );
 						self.iframeHeight = $( iframeDoc.body ).height();
@@ -861,7 +861,7 @@
 				} );
 			}
 
-			// Obtain the target width for the embed.
+			/ Obtain the target width for the embed.
 			if ( self.editor ) {
 				maxwidth = self.editor.getBody().clientWidth;
 			}
@@ -957,7 +957,7 @@
 
 	views.register( 'embedURL', _.extend( {}, embed, {
 		match: function( content ) {
-			// There may be a "bookmark" node next to the URL...
+			/ There may be a "bookmark" node next to the URL...
 			var re = /(^|<p>(?:<span data-mce-type="bookmark"[^>]+>\s*<\/span>)?)(https?:\/\/[^\s"]+?)((?:<span data-mce-type="bookmark"[^>]+>\s*<\/span>)?<\/p>\s*|$)/gi;
 			var match = re.exec( content );
 
