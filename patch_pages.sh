@@ -61,7 +61,8 @@ find . -type f \( -name '*.html' -o -name '*.css' -o -name '*.js' \) -print0 | \
     -e "s#http://152\.67\.158\.125#https://kayleightse.com#g"
 
 # 9) De-duplicate accidental double slashes in path portions (preserve ://)
+#    Only collapse // between word/path characters — never touch // comments.
 find . -type f \( -name '*.html' -o -name '*.css' -o -name '*.js' \) -print0 | \
-  xargs -0 sed -i '' -E -e 's#([^:])//#\1/#g'
+  xargs -0 sed -i '' -E -e 's#([a-zA-Z0-9_.-])//([a-zA-Z0-9_.-])#\1/\2#g'
 
 echo "Patch complete. Review changes, then git add/commit/push to update GitHub Pages."

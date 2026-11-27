@@ -5,7 +5,7 @@ describe('background data from property value', () => {
 	const dataSet = [
 		[
 			// background-image: url
-			"url('https://kenny000666.github.io/wordpresskt/wp-content/uploads/2024/08/image1.jpeg')",
+			"url('/wordpresskt/wp-content/uploads/2024/08/image1.jpeg')",
 			'background-image',
 			[
 				'https://kenny000666.github.io/wordpresskt/wp-content/uploads/2024/08/image1.jpeg'
@@ -26,8 +26,8 @@ describe('background data from property value', () => {
 		[
 			// background-image: image-set with url
 			"image-set(" +
-			"url('https://kenny000666.github.io/wordpresskt/wp-content/uploads/2024/08/image1-768x437.jpeg') 1x, " +
-			"url('https://kenny000666.github.io/wordpresskt/wp-content/uploads/2024/08/image1.jpeg') 2x" +
+			"url('/wordpresskt/wp-content/uploads/2024/08/image1-768x437.jpeg') 1x, " +
+			"url('/wordpresskt/wp-content/uploads/2024/08/image1.jpeg') 2x" +
 			");",
 			'background-image-set',
 			[
